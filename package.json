@@ -1,0 +1,25 @@
+{
+  "name": "@loft-enterprise/client",
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "node": "16"
+  },
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "module": "lib/index.esm.js",
+  "scripts": {
+    "build": "node bin/build.js",
+    "postbuild": "yarn dts-bundle-generator -o lib/index.d.ts ./index.ts --external-imports=@kubernetes/client-node --project tsconfig.build.json --no-check --no-banner"
+  },
+  "description": "loft-enterprise js client",
+  "dependencies": {
+    "@kubernetes/client-node": "0.15.1",
+    "js-cookie": "3.0.1",
+    "json-merge-patch": "1.0.2"
+  },
+  "devDependencies": {
+    "dts-bundle-generator": "8.0.1",
+    "esbuild": "0.17.18"
+  }
+}
