@@ -534,13 +534,13 @@ export declare const ClusterBasePath = "/kubernetes/cluster/";
 export declare const VClusterBasePath = "/kubernetes/virtualcluster/";
 export declare const ProjectBasePath = "/kubernetes/project/";
 export declare function getProjectNamespace(name: string | undefined): string;
-declare class Client {
+export declare class Client {
 	static getAccessKey(): string | null;
 	static tryCastToStatus(obj: any): Result<V1Status | null>;
 	private readonly apiHost;
 	private readonly wsHost;
 	private accessKey;
-	constructor();
+	constructor(accessKey?: string, apiHost?: string, wsHost?: string);
 	getUser(): Promise<Result<string>>;
 	getAccessKey(): string | null;
 	loftVersion(refresh?: boolean): Promise<Result<VersionV1Version>>;
@@ -559,11 +559,11 @@ declare class Client {
 	socket(path: string): Promise<WebSocket>;
 	private parseResponse;
 	management<T>(groupVersionResource: GroupVersionResource<T>): Request<T>;
-	managementNonResource<T>(): Request<T>;
-	cluster<T>(name: string, groupVersionResource: GroupVersionResource<T>): Request<T>;
-	clusterNonResource<T>(name: string): Request<T>;
-	project<T>(project: RequestOptionsProject, groupVersionResource: GroupVersionResource<T>): Request<T>;
-	projectNonResource<T>(project: RequestOptionsProject): Request<T>;
+	managementNonResource: <T>() => Request<T>;
+	cluster: <T>(name: string, groupVersionResource: GroupVersionResource<T>) => Request<T>;
+	clusterNonResource: <T>(name: string) => Request<T>;
+	project: <T>(project: RequestOptionsProject, groupVersionResource: GroupVersionResource<T>) => Request<T>;
+	projectNonResource: <T>(project: RequestOptionsProject) => Request<T>;
 	vCluster<T>(vCluster: RequestOptionsVCluster, groupVersionResource: GroupVersionResource<T>): Request<T>;
 	vClusterNonResource<T>(vCluster: RequestOptionsVCluster): Request<T>;
 	auto<T>(cluster: string | undefined, vCluster: RequestOptionsVCluster | undefined, project: RequestOptionsProject | undefined, groupVersionResource: GroupVersionResource<T>): Request<T>;
@@ -578,8 +578,9 @@ declare class Client {
 	logout(): Promise<ResultError>;
 }
 declare class Request<T> {
+	private readonly client;
 	private readonly options;
-	constructor(options: RequestOptions<T>);
+	constructor(client: Client, options: RequestOptions<T>);
 	Name(name: string): Request<T>;
 	Namespace(namespace?: string): Request<T>;
 	Resource(groupVersionResource: GroupVersionResource<T>): Request<T>;
@@ -602,7 +603,6 @@ declare class Request<T> {
 	Delete(name: string, options?: DeleteOptions): Promise<Result<T>>;
 	CanI(verb: RequestVerb): Promise<Result<boolean>>;
 }
-export declare const client: Client;
 declare class V1ScopedResourceSelectorRequirement {
 	/**
 	* Represents a scope's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist.  Possible enum values:  - `\"DoesNotExist\"`  - `\"Exists\"`  - `\"In\"`  - `\"NotIn\"`

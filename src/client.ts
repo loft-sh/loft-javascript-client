@@ -138,16 +138,16 @@ class Client {
   private readonly wsHost: string | null = ""
   private accessKey: string | null = ""
 
-  constructor() {
-    this.apiHost = getApiHost()
-    this.wsHost = getWebSocketHost()
-    this.accessKey = Client.getAccessKey()
+  constructor(accessKey?: string, apiHost?: string, wsHost?: string) {
+    this.apiHost = apiHost || getApiHost()
+    this.wsHost = wsHost || getWebSocketHost()
+    this.accessKey = accessKey || Client.getAccessKey()
   }
 
   public async getUser(): Promise<Result<string>> {
-    const selfResult = await client
-      .management(Resources.ManagementV1Self)
-      .Create(NewResource<ManagementV1Self>(Resources.ManagementV1Self))
+    const selfResult = await this.management(Resources.ManagementV1Self).Create(
+      NewResource<ManagementV1Self>(Resources.ManagementV1Self)
+    )
     if (selfResult.err) {
       return selfResult
     } else if (!selfResult.val.status?.user) {
@@ -264,9 +264,9 @@ class Client {
     }
 
     this.accessKey = accessKey
-    const result = await client
-      .management(Resources.ManagementV1Self)
-      .Create(NewResource(Resources.ManagementV1Self))
+    const result = await this.management(Resources.ManagementV1Self).Create(
+      NewResource(Resources.ManagementV1Self)
+    )
     if (result.err) {
       this.clearStorage()
 
@@ -417,37 +417,40 @@ class Client {
   }
 
   public management<T>(groupVersionResource: GroupVersionResource<T>) {
-    return new Request<T>({
+    return new Request<T>(this, {
       basePath: ManagementBasePath,
       groupVersionResource,
       headers: this.impersonationHeaders(),
     })
   }
 
-  public managementNonResource<T>() {
-    return new Request<T>({
+  public managementNonResource = <T>() => {
+    return new Request<T>(this, {
       basePath: ManagementBasePath,
       headers: this.impersonationHeaders(),
     })
   }
 
-  public cluster<T>(name: string, groupVersionResource: GroupVersionResource<T>) {
-    return new Request<T>({
+  public cluster = <T>(name: string, groupVersionResource: GroupVersionResource<T>) => {
+    return new Request<T>(this, {
       basePath: ClusterBasePath + name,
       groupVersionResource,
       headers: this.impersonationHeaders(),
     })
   }
 
-  public clusterNonResource<T>(name: string) {
-    return new Request<T>({
+  public clusterNonResource = <T>(name: string) => {
+    return new Request<T>(this, {
       basePath: ClusterBasePath + name,
       headers: this.impersonationHeaders(),
     })
   }
 
-  public project<T>(project: RequestOptionsProject, groupVersionResource: GroupVersionResource<T>) {
-    return new Request<T>({
+  public project = <T>(
+    project: RequestOptionsProject,
+    groupVersionResource: GroupVersionResource<T>
+  ) => {
+    return new Request<T>(this, {
       basePath:
         ProjectBasePath +
         project.project +
@@ -459,8 +462,8 @@ class Client {
     })
   }
 
-  public projectNonResource<T>(project: RequestOptionsProject) {
-    return new Request<T>({
+  public projectNonResource = <T>(project: RequestOptionsProject) => {
+    return new Request<T>(this, {
       basePath:
         ProjectBasePath +
         project.project +
@@ -475,7 +478,7 @@ class Client {
     vCluster: RequestOptionsVCluster,
     groupVersionResource: GroupVersionResource<T>
   ) {
-    return new Request<T>({
+    return new Request<T>(this, {
       basePath:
         VClusterBasePath + vCluster.cluster + "/" + vCluster.namespace + "/" + vCluster.name,
       groupVersionResource,
@@ -485,7 +488,7 @@ class Client {
   }
 
   public vClusterNonResource<T>(vCluster: RequestOptionsVCluster) {
-    return new Request<T>({
+    return new Request<T>(this, {
       basePath:
         VClusterBasePath + vCluster.cluster + "/" + vCluster.namespace + "/" + vCluster.name,
       vCluster,
@@ -665,26 +668,28 @@ class Client {
 }
 
 class Request<T> {
+  private readonly client: Client
   private readonly options: RequestOptions<T>
 
-  constructor(options: RequestOptions<T>) {
+  constructor(client: Client, options: RequestOptions<T>) {
+    this.client = client
     this.options = options
   }
 
   public Name(name: string) {
-    return new Request({ ...this.options, name })
+    return new Request(this.client, { ...this.options, name })
   }
 
   public Namespace(namespace?: string) {
     if (!namespace) {
-      return new Request({ ...this.options })
+      return new Request(this.client, { ...this.options })
     }
 
-    return new Request({ ...this.options, namespace })
+    return new Request(this.client, { ...this.options, namespace })
   }
 
   public Resource(groupVersionResource: GroupVersionResource<T>) {
-    return new Request({ ...this.options, groupVersionResource })
+    return new Request(this.client, { ...this.options, groupVersionResource })
   }
 
   private buildPath(options?: any): Result<string> {
@@ -785,7 +790,7 @@ class Request<T> {
     const returnValue: Array<GroupVersionResource<Unstructured>> = []
 
     // parse api resources
-    const apiVersionsResult = await client.doRaw<V1APIVersions>(
+    const apiVersionsResult = await this.client.doRaw<V1APIVersions>(
       [this.options.basePath, "api"].join("/")
     )
     if (apiVersionsResult.err) {
@@ -800,7 +805,7 @@ class Request<T> {
           if (version === undefined) {
             return
           }
-          const resourcesResult = await client.doRaw<V1APIResourceList>(
+          const resourcesResult = await this.client.doRaw<V1APIResourceList>(
             [this.options.basePath, "api", version].join("/")
           )
           if (resourcesResult.err) {
@@ -831,7 +836,7 @@ class Request<T> {
     }
 
     // parse apis resources
-    const apisGroupListResult = await client.doRaw<V1APIGroupList>(
+    const apisGroupListResult = await this.client.doRaw<V1APIGroupList>(
       [this.options.basePath, "apis"].join("/")
     )
     if (apisGroupListResult.err) {
@@ -851,7 +856,7 @@ class Request<T> {
             if (version === undefined) {
               return
             }
-            const resourcesResult = await client.doRaw<V1APIResourceList>(
+            const resourcesResult = await this.client.doRaw<V1APIResourceList>(
               [this.options.basePath, "apis", group.name, version.version].join("/")
             )
             if (resourcesResult.err) {
@@ -886,7 +891,7 @@ class Request<T> {
   public async Version(): Promise<Result<VersionInfo>> {
     const path = [this.options.basePath, "version"]
 
-    return await client.doRaw<VersionInfo>(path.join("/"))
+    return await this.client.doRaw<VersionInfo>(path.join("/"))
   }
 
   public async VirtualClusterInstanceLogs(
@@ -908,7 +913,7 @@ class Request<T> {
       requestPath += "?" + parameters.join("&")
     }
 
-    return await client.doRawStream(requestPath, undefined, this.options.headers)
+    return await this.client.doRawStream(requestPath, undefined, this.options.headers)
   }
 
   public async TaskLogs(
@@ -929,7 +934,7 @@ class Request<T> {
       requestPath += "?" + parameters.join("&")
     }
 
-    return await client.doRawStream(requestPath, undefined, this.options.headers)
+    return await this.client.doRawStream(requestPath, undefined, this.options.headers)
   }
 
   public async Logs(
@@ -946,7 +951,7 @@ class Request<T> {
       requestPath += "?" + queryString
     }
 
-    return await client.doRawStream(requestPath, undefined, this.options.headers)
+    return await this.client.doRawStream(requestPath, undefined, this.options.headers)
   }
 
   public async Exec(
@@ -963,7 +968,7 @@ class Request<T> {
       requestPath += "?" + queryString
     }
 
-    return await client.doRawSocket(requestPath)
+    return await this.client.doRawSocket(requestPath)
   }
 
   public async Path(
@@ -973,7 +978,7 @@ class Request<T> {
   ): Promise<Result<T>> {
     const requestPath = [this.options.basePath, path]
 
-    return await client.doRaw<T>(requestPath.join("/"), init, {
+    return await this.client.doRaw<T>(requestPath.join("/"), init, {
       ...headers,
       ...this.options.headers,
     })
@@ -987,7 +992,7 @@ class Request<T> {
     }
 
     return Return.WithExtra(
-      await client.doRaw<T>(path.val, undefined, this.options.headers),
+      await this.client.doRaw<T>(path.val, undefined, this.options.headers),
       this.options
     )
   }
@@ -1003,7 +1008,7 @@ class Request<T> {
     }
 
     return Return.WithExtra(
-      await client.doRaw<List<T>>(path.val, undefined, this.options.headers),
+      await this.client.doRaw<List<T>>(path.val, undefined, this.options.headers),
       this.options
     )
   }
@@ -1019,7 +1024,7 @@ class Request<T> {
     }
 
     return Return.WithExtra(
-      await client.doRaw<List<T>>(path.val, undefined, {
+      await this.client.doRaw<List<T>>(path.val, undefined, {
         ...this.options.headers,
         Accept:
           "application/json;as=Table;v=v1;g=meta.k8s.io,application/json;as=Table;v=v1beta1;g=meta.k8s.io,application/json",
@@ -1035,7 +1040,7 @@ class Request<T> {
     }
 
     return Return.WithExtra(
-      await client.doRaw<T>(
+      await this.client.doRaw<T>(
         path.val,
         {
           method: "POST",
@@ -1072,7 +1077,7 @@ class Request<T> {
     }
 
     return Return.WithExtra(
-      await client.doRaw<T>(
+      await this.client.doRaw<T>(
         path.val,
         {
           method: "PATCH",
@@ -1098,7 +1103,7 @@ class Request<T> {
     }
 
     return Return.WithExtra(
-      await client.doRaw<T>(
+      await this.client.doRaw<T>(
         path.val,
         {
           method: "PUT",
@@ -1119,7 +1124,7 @@ class Request<T> {
     }
 
     return Return.WithExtra(
-      await client.doRaw<T>(
+      await this.client.doRaw<T>(
         path.val,
         {
           method: "DELETE",
@@ -1140,16 +1145,16 @@ class Request<T> {
     let request: Request<V1SelfSubjectAccessReview | ManagementV1SelfSubjectAccessReview>
     let selfSubjectAccessReview: V1SelfSubjectAccessReview | ManagementV1SelfSubjectAccessReview
     if (this.options.project) {
-      request = client.project(this.options.project, Resources.V1SelfSubjectAccessReview)
+      request = this.client.project(this.options.project, Resources.V1SelfSubjectAccessReview)
       selfSubjectAccessReview = NewResource(Resources.V1SelfSubjectAccessReview)
     } else if (this.options.vCluster) {
-      request = client.vCluster(this.options.vCluster, Resources.V1SelfSubjectAccessReview)
+      request = this.client.vCluster(this.options.vCluster, Resources.V1SelfSubjectAccessReview)
       selfSubjectAccessReview = NewResource(Resources.V1SelfSubjectAccessReview)
     } else if (cluster) {
-      request = client.cluster(cluster, Resources.V1SelfSubjectAccessReview)
+      request = this.client.cluster(cluster, Resources.V1SelfSubjectAccessReview)
       selfSubjectAccessReview = NewResource(Resources.V1SelfSubjectAccessReview)
     } else {
-      request = client.management(Resources.ManagementV1SelfSubjectAccessReview)
+      request = this.client.management(Resources.ManagementV1SelfSubjectAccessReview)
       selfSubjectAccessReview = NewResource(Resources.ManagementV1SelfSubjectAccessReview)
     }
 
@@ -1192,5 +1197,4 @@ function toQueryString(options: any): string {
   return params.toString()
 }
 
-const client = new Client()
-export default client
+export default Client
