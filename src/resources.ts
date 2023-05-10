@@ -1,14 +1,17 @@
-import {
-  APIExtensionsGroup,
-  APIExtensionsVersion,
-  LoftSchemeGroupCluster,
-  LoftSchemeGroupVirtualCluster,
-  LoftSchemeVersion,
-  LoftSchemeVersionCluster,
-  LoftSchemeVersionVirtualCluster,
-  V1Beta1PodMetrics,
-} from "./types"
-import { GroupVersionResource } from "./client"
+import { StorageV1ClusterQuota } from "@gen/models/agentstorageV1ClusterQuota"
+import { StorageV1LocalUser } from "@gen/models/agentstorageV1LocalUser"
+import { StorageV1VirtualCluster } from "@gen/models/agentstorageV1VirtualCluster"
+import { ClusterV1ChartInfo } from "@gen/models/clusterV1ChartInfo"
+import { ClusterV1ClusterQuota } from "@gen/models/clusterV1ClusterQuota"
+import { ClusterV1HelmRelease } from "@gen/models/clusterV1HelmRelease"
+import { ClusterV1LocalClusterAccess } from "@gen/models/clusterV1LocalClusterAccess"
+import { ClusterV1SleepModeConfig } from "@gen/models/clusterV1SleepModeConfig"
+import { ClusterV1Space } from "@gen/models/clusterV1Space"
+import { ClusterV1VirtualCluster } from "@gen/models/clusterV1VirtualCluster"
+import { PolicyV1beta1JsPolicy } from "@gen/models/policyV1beta1JsPolicy"
+import { PolicyV1beta1JsPolicyViolations } from "@gen/models/policyV1beta1JsPolicyViolations"
+import { VirtualclusterV1HelmRelease } from "@gen/models/virtualclusterV1HelmRelease"
+import { GenResources, TGenResources } from "@gen/resources"
 import {
   CoreV1Event,
   NetworkingV1beta1Ingress,
@@ -29,20 +32,17 @@ import {
   V1StatefulSet,
   V1StorageClassList,
 } from "@kubernetes/client-node"
-import { ClusterV1SleepModeConfig } from "@gen/models/clusterV1SleepModeConfig"
-import { ClusterV1HelmRelease } from "@gen/models/clusterV1HelmRelease"
-import { StorageV1VirtualCluster } from "@gen/models/agentstorageV1VirtualCluster"
-import { PolicyV1beta1JsPolicy } from "@gen/models/policyV1beta1JsPolicy"
-import { PolicyV1beta1JsPolicyViolations } from "@gen/models/policyV1beta1JsPolicyViolations"
-import { VirtualclusterV1HelmRelease } from "@gen/models/virtualclusterV1HelmRelease"
-import { ClusterV1VirtualCluster } from "@gen/models/clusterV1VirtualCluster"
-import { ClusterV1Space } from "@gen/models/clusterV1Space"
-import { StorageV1ClusterQuota } from "@gen/models/agentstorageV1ClusterQuota"
-import { StorageV1LocalUser } from "@gen/models/agentstorageV1LocalUser"
-import { ClusterV1LocalClusterAccess } from "@gen/models/clusterV1LocalClusterAccess"
-import { ClusterV1ClusterQuota } from "@gen/models/clusterV1ClusterQuota"
-import { ClusterV1ChartInfo } from "@gen/models/clusterV1ChartInfo"
-import { GenResources, TGenResources } from "@gen/resources"
+import {
+  APIExtensionsGroup,
+  APIExtensionsVersion,
+  GroupVersionResource,
+  LoftSchemeGroupCluster,
+  LoftSchemeGroupVirtualCluster,
+  LoftSchemeVersion,
+  LoftSchemeVersionCluster,
+  LoftSchemeVersionVirtualCluster,
+  V1Beta1PodMetrics,
+} from "./types"
 
 export const Resources: {
   ClusterV1SleepModeConfig: GroupVersionResource<ClusterV1SleepModeConfig>

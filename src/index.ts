@@ -1,2 +1,5 @@
 export * from "./client"
 export { default as client } from "./client"
+export * from "./resources"
+export * from "./result"
+export * from "./types"

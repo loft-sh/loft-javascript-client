@@ -20,5 +20,5 @@
       "@gen/*": ["gen/*"]
     }
   },
-  "include": ["src/"]
+  "include": ["src/", "gen/"]
 }
