@@ -110,7 +110,11 @@ export const ClusterBasePath = "/kubernetes/cluster/"
 export const VClusterBasePath = "/kubernetes/virtualcluster/"
 export const ProjectBasePath = "/kubernetes/project/"
 
-export function getProjectNamespace(name: string) {
+export function getProjectNamespace(name: string | undefined) {
+  if (!name) {
+    return "loft-p-"
+  }
+
   // TODO: actually implement ProjectNamespace from golang
   return "loft-p-" + name
 }

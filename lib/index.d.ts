@@ -533,7 +533,7 @@ export declare const ManagementBasePath = "/kubernetes/management";
 export declare const ClusterBasePath = "/kubernetes/cluster/";
 export declare const VClusterBasePath = "/kubernetes/virtualcluster/";
 export declare const ProjectBasePath = "/kubernetes/project/";
-export declare function getProjectNamespace(name: string): string;
+export declare function getProjectNamespace(name: string | undefined): string;
 declare class Client {
 	static getAccessKey(): string | null;
 	static tryCastToStatus(obj: any): Result<V1Status | null>;
@@ -6231,3019 +6231,6 @@ declare class VirtualclusterV1HelmRelease {
 	}[];
 	constructor();
 }
-declare class ManagementV1ProjectMember {
-	"info"?: ClusterV1EntityInfo;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1ProjectMembers {
-	/**
-	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
-	*/
-	"apiVersion"?: string;
-	/**
-	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-	*/
-	"kind"?: string;
-	"metadata"?: V1ObjectMeta;
-	/**
-	* Teams holds all the teams that have access to the cluster
-	*/
-	"teams"?: Array<ManagementV1ProjectMember>;
-	/**
-	* Users holds all the users that have access to the cluster
-	*/
-	"users"?: Array<ManagementV1ProjectMember>;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class StorageV1Access {
-	/**
-	* Name is an optional name that is used for this access rule
-	*/
-	"name"?: string;
-	/**
-	* Subresources defines the sub resources that are allowed by this access rule
-	*/
-	"subresources"?: Array<string>;
-	/**
-	* Teams specifies which teams should be able to access this secret with the aforementioned verbs
-	*/
-	"teams"?: Array<string>;
-	/**
-	* Users specifies which users should be able to access this secret with the aforementioned verbs
-	*/
-	"users"?: Array<string>;
-	/**
-	* Verbs is a list of Verbs that apply to ALL the ResourceKinds and AttributeRestrictions contained in this rule. VerbAll represents all kinds.
-	*/
-	"verbs": Array<string>;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class StorageV1TemplateRef {
-	/**
-	* Name holds the name of the template to reference.
-	*/
-	"name"?: string;
-	/**
-	* SyncOnce tells the controller to sync the instance once with the template. This is useful if you want to sync an instance after a template was changed. To automatically sync an instance with a template, use 'x.x.x' as version instead.
-	*/
-	"syncOnce"?: boolean;
-	/**
-	* Version holds the template version to use. Version is expected to be in semantic versioning format. Alternatively, you can also exchange major, minor or patch with an 'x' to tell Loft to automatically select the latest major, minor or patch version.
-	*/
-	"version"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class StorageV1UserOrTeam {
-	/**
-	* Team specifies a Loft team.
-	*/
-	"team"?: string;
-	/**
-	* User specifies a Loft user.
-	*/
-	"user"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class StorageV1VirtualClusterClusterRef {
-	/**
-	* Cluster is the connected cluster the space will be created in
-	*/
-	"cluster"?: string;
-	/**
-	* Namespace is the namespace inside the connected cluster holding the space
-	*/
-	"namespace"?: string;
-	/**
-	* VirtualCluster is the name of the virtual cluster inside the namespace
-	*/
-	"virtualCluster"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class StorageV1TemplateMetadata {
-	/**
-	* Annotations are annotations on the object
-	*/
-	"annotations"?: {
-		[key: string]: string;
-	};
-	/**
-	* Labels are labels on the object
-	*/
-	"labels"?: {
-		[key: string]: string;
-	};
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class StorageV1VirtualClusterSpaceTemplateDefinition {
-	/**
-	* Apps specifies the apps that should get deployed by this template
-	*/
-	"apps"?: Array<StorageV1AppReference>;
-	/**
-	* Charts are helm charts that should get deployed
-	*/
-	"charts"?: Array<StorageV1TemplateHelmChart>;
-	"metadata"?: StorageV1TemplateMetadata;
-	/**
-	* Objects are Kubernetes style yamls that should get deployed into the virtual cluster namespace
-	*/
-	"objects"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class StorageV1VirtualClusterTemplateDefinition {
-	"access"?: StorageV1InstanceAccess;
-	"accessPoint"?: StorageV1VirtualClusterAccessPoint;
-	/**
-	* Apps specifies the apps that should get deployed by this template
-	*/
-	"apps"?: Array<StorageV1AppReference>;
-	/**
-	* Charts are helm charts that should get deployed
-	*/
-	"charts"?: Array<StorageV1TemplateHelmChart>;
-	"helmRelease"?: StorageV1VirtualClusterHelmRelease;
-	"metadata"?: StorageV1TemplateMetadata;
-	/**
-	* Objects are Kubernetes style yamls that should get deployed into the virtual cluster
-	*/
-	"objects"?: string;
-	"spaceTemplate"?: StorageV1VirtualClusterSpaceTemplateDefinition;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1VirtualClusterInstanceSpec {
-	/**
-	* Access to the virtual cluster object itself
-	*/
-	"access"?: Array<StorageV1Access>;
-	"clusterRef"?: StorageV1VirtualClusterClusterRef;
-	/**
-	* Description describes a virtual cluster instance
-	*/
-	"description"?: string;
-	/**
-	* DisplayName is the name that should be displayed in the UI
-	*/
-	"displayName"?: string;
-	/**
-	* ExtraAccessRules defines extra rules which users and teams should have which access to the virtual cluster.
-	*/
-	"extraAccessRules"?: Array<StorageV1InstanceAccessRule>;
-	"owner"?: StorageV1UserOrTeam;
-	/**
-	* Parameters are values to pass to the template
-	*/
-	"parameters"?: string;
-	"template"?: StorageV1VirtualClusterTemplateDefinition;
-	"templateRef"?: StorageV1TemplateRef;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1VirtualClusterInstanceStatus {
-	/**
-	* CanUpdate specifies if the requester can update the instance
-	*/
-	"canUpdate"?: boolean;
-	/**
-	* CanUse specifies if the requester can use the instance
-	*/
-	"canUse"?: boolean;
-	/**
-	* Conditions holds several conditions the virtual cluster might be in
-	*/
-	"conditions"?: Array<StorageV1Condition>;
-	/**
-	* IgnoreReconciliation tells the controller to ignore reconciliation for this instance -- this is primarily used when migrating virtual cluster instances from project to project; this prevents a situation where there are two virtual cluster instances representing the same virtual cluster which could cause issues with concurrent reconciliations of the same object. Once the virtual cluster instance has been cloned and placed into the new project, this (the \"old\") virtual cluster instance can safely be deleted.
-	*/
-	"ignoreReconciliation"?: boolean;
-	/**
-	* Message describes the reason in human-readable form why the cluster is in the current phase
-	*/
-	"message"?: string;
-	/**
-	* Phase describes the current phase the virtual cluster instance is in
-	*/
-	"phase"?: string;
-	/**
-	* Reason describes the reason in machine-readable form why the cluster is in the current phase
-	*/
-	"reason"?: string;
-	"sleepModeConfig"?: ClusterV1SleepModeConfig;
-	"spaceObjects"?: StorageV1ObjectsStatus;
-	"virtualCluster"?: StorageV1VirtualClusterTemplateDefinition;
-	"virtualClusterObjects"?: StorageV1ObjectsStatus;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1VirtualClusterInstance {
-	/**
-	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
-	*/
-	"apiVersion"?: string;
-	/**
-	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-	*/
-	"kind"?: string;
-	"metadata"?: V1ObjectMeta;
-	"spec"?: ManagementV1VirtualClusterInstanceSpec;
-	"status"?: ManagementV1VirtualClusterInstanceStatus;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1VirtualClusterInstanceLog {
-	/**
-	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
-	*/
-	"apiVersion"?: string;
-	/**
-	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-	*/
-	"kind"?: string;
-	"metadata"?: V1ObjectMeta;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class StorageV1AccessKeyIdentity {
-	/**
-	* Connector is the name of the connector this access key was created from
-	*/
-	"connector"?: string;
-	/**
-	* ConnectorData holds data used by the connector for subsequent requests after initial authentication, such as access tokens for upstream providers.  This data is never shared with end users, OAuth clients, or through the API.
-	*/
-	"connectorData"?: string;
-	/**
-	* The user email
-	*/
-	"email"?: string;
-	/**
-	* If the user email was verified
-	*/
-	"emailVerified"?: boolean;
-	/**
-	* The groups from the identity provider
-	*/
-	"groups"?: Array<string>;
-	/**
-	* The preferred username / display name
-	*/
-	"preferredUsername"?: string;
-	/**
-	* The subject of the user
-	*/
-	"userId"?: string;
-	/**
-	* The username
-	*/
-	"username"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class StorageV1AccessKeyOIDC {
-	/**
-	* The current access token that was created during login
-	*/
-	"accessToken"?: string;
-	/**
-	* The current id token that was created during login
-	*/
-	"idToken"?: string;
-	/**
-	* The last time the id token was refreshed
-	*/
-	"lastRefresh"?: Date;
-	/**
-	* The current refresh token that was created during login
-	*/
-	"refreshToken"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class StorageV1AccessKeyOIDCProvider {
-	/**
-	* ClientId the token was generated for
-	*/
-	"clientId"?: string;
-	/**
-	* Nonce to use
-	*/
-	"nonce"?: string;
-	/**
-	* RedirectUri to use
-	*/
-	"redirectUri"?: string;
-	/**
-	* Scopes to use
-	*/
-	"scopes"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class StorageV1AccessKeyScopeProject {
-	/**
-	* Project is the name of the project. You can specify * to select all projects.
-	*/
-	"project"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class StorageV1AccessKeyVirtualCluster {
-	/**
-	* Name of the virtual cluster. Empty means all virtual clusters.
-	*/
-	"name"?: string;
-	/**
-	* Namespace of the virtual cluster. Empty means all namespaces.
-	*/
-	"namespace"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class StorageV1GroupResources {
-	/**
-	* Group is the name of the API group that contains the resources. The empty string represents the core API group.
-	*/
-	"group"?: string;
-	/**
-	* ResourceNames is a list of resource instance names that the policy matches. Using this field requires Resources to be specified. An empty list implies that every instance of the resource is matched.
-	*/
-	"resourceNames"?: Array<string>;
-	/**
-	* Resources is a list of resources this rule applies to.  For example: 'pods' matches pods. 'pods/log' matches the log subresource of pods. '*' matches all resources and their subresources. 'pods/_*' matches all subresources of pods. '*_/scale' matches all scale subresources.  If wildcard is present, the validation rule will ensure resources do not overlap with each other.  An empty list implies all resources and subresources in this API groups apply.
-	*/
-	"resources"?: Array<string>;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class StorageV1AccessKeyScopeRule {
-	/**
-	* Cluster that this rule matches. Only applies to cluster requests. If this is set, no requests for non cluster requests are allowed. An empty cluster means no restrictions will apply.
-	*/
-	"cluster"?: string;
-	/**
-	* Namespaces that this rule matches. The empty string \"\" matches non-namespaced resources. An empty list implies every namespace.
-	*/
-	"namespaces"?: Array<string>;
-	/**
-	* NonResourceURLs is a set of URL paths that should be checked. *s are allowed, but only as the full, final step in the path. Examples:  \"/metrics\" - Log requests for apiserver metrics  \"/healthz*\" - Log all health checks
-	*/
-	"nonResourceURLs"?: Array<string>;
-	/**
-	* RequestTargets is a list of request targets that are allowed. An empty list implies every request.
-	*/
-	"requestTargets"?: Array<string>;
-	/**
-	* Resources that this rule matches. An empty list implies all kinds in all API groups.
-	*/
-	"resources"?: Array<StorageV1GroupResources>;
-	/**
-	* The verbs that match this rule. An empty list implies every verb.
-	*/
-	"verbs"?: Array<string>;
-	/**
-	* VirtualClusters that this rule matches. Only applies to virtual cluster requests. An empty list means no restrictions will apply.
-	*/
-	"virtualClusters"?: Array<StorageV1AccessKeyVirtualCluster>;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class StorageV1AccessKeyScopeSpace {
-	/**
-	* Project is the name of the project.
-	*/
-	"project"?: string;
-	/**
-	* Space is the name of the space. You can specify * to select all spaces.
-	*/
-	"space"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class StorageV1AccessKeyScopeVirtualCluster {
-	/**
-	* Project is the name of the project.
-	*/
-	"project"?: string;
-	/**
-	* VirtualCluster is the name of the virtual cluster to access. You can specify * to select all virtual clusters.
-	*/
-	"virtualCluster"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class StorageV1AccessKeyScope {
-	/**
-	* AllowLoftCLI allows certain read-only management requests to make sure loft cli works correctly with this specific access key.
-	*/
-	"allowLoftCli"?: boolean;
-	/**
-	* Projects specifies the projects the access key should have access to.
-	*/
-	"projects"?: Array<StorageV1AccessKeyScopeProject>;
-	/**
-	* DEPRECATED: Use Projects, Spaces and VirtualClusters instead Rules specifies the rules that should apply to the access key.
-	*/
-	"rules"?: Array<StorageV1AccessKeyScopeRule>;
-	/**
-	* Spaces specifies the spaces the access key is allowed to access.
-	*/
-	"spaces"?: Array<StorageV1AccessKeyScopeSpace>;
-	/**
-	* VirtualClusters specifies the virtual clusters the access key is allowed to access.
-	*/
-	"virtualClusters"?: Array<StorageV1AccessKeyScopeVirtualCluster>;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1OwnedAccessKeySpec {
-	/**
-	* Description describes an app
-	*/
-	"description"?: string;
-	/**
-	* If this field is true, the access key is still allowed to exist, however will not work to access the api
-	*/
-	"disabled"?: boolean;
-	/**
-	* The display name shown in the UI
-	*/
-	"displayName"?: string;
-	/**
-	* Groups specifies extra groups to apply when using this access key
-	*/
-	"groups"?: Array<string>;
-	"identity"?: StorageV1AccessKeyIdentity;
-	/**
-	* The last time the identity was refreshed
-	*/
-	"identityRefresh"?: Date;
-	/**
-	* The actual access key that will be used as a bearer token
-	*/
-	"key"?: string;
-	"oidcLogin"?: StorageV1AccessKeyOIDC;
-	"oidcProvider"?: StorageV1AccessKeyOIDCProvider;
-	/**
-	* DEPRECATED: do not use anymore Parent is used to share OIDC and external token information with multiple access keys. Since copying an OIDC refresh token would result in the other access keys becoming invalid after a refresh parent allows access keys to share that information.  The use case for this is primarily user generated access keys, which will have the users current access key as parent if it contains an OIDC token.
-	*/
-	"parent"?: string;
-	"scope"?: StorageV1AccessKeyScope;
-	/**
-	* Subject is a generic subject that can be used instead of user or team
-	*/
-	"subject"?: string;
-	/**
-	* The team this access key refers to
-	*/
-	"team"?: string;
-	/**
-	* The time to life for this access key
-	*/
-	"ttl"?: number;
-	/**
-	* If this is specified, the time to life for this access key will start after the lastActivity instead of creation timestamp
-	*/
-	"ttlAfterLastActivity"?: boolean;
-	/**
-	* The type of an access key, which basically describes if the access key is user managed or managed by loft itself.
-	*/
-	"type"?: string;
-	/**
-	* The user this access key refers to
-	*/
-	"user"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1OwnedAccessKeyStatus {
-	/**
-	* The last time this access key was used to access the api
-	*/
-	"lastActivity"?: Date;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1OwnedAccessKey {
-	/**
-	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
-	*/
-	"apiVersion"?: string;
-	/**
-	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-	*/
-	"kind"?: string;
-	"metadata"?: V1ObjectMeta;
-	"spec"?: ManagementV1OwnedAccessKeySpec;
-	"status"?: ManagementV1OwnedAccessKeyStatus;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1UserAccessKeys {
-	"accessKeys"?: Array<ManagementV1OwnedAccessKey>;
-	/**
-	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
-	*/
-	"apiVersion"?: string;
-	/**
-	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-	*/
-	"kind"?: string;
-	"metadata"?: V1ObjectMeta;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ServerButton {
-	/**
-	* URL is the link at the other end of the button.
-	*/
-	"URL": string;
-	/**
-	* Direct indicates if the Loft front end should directly hit this endpoint. If false, it means that the Loft front end will be hitting the license server first to generate a one time token for the operation; this also means that there will be a redirect URL in the response to the request for this and that link should be followed by the front end.
-	*/
-	"direct"?: boolean;
-	/**
-	* DisplayText is the text to display on the button. If display text is unset the button will never be shown in the loft UI.
-	*/
-	"displayText"?: string;
-	/**
-	* PayloadType indicates the payload type to set in the request. Typically, this will be \"standard\" -- meaning the standard payload that includes the instance token auth and a return url, however in the future we may add additional types. An unset value is assumed to be \"standard\".
-	*/
-	"payloadType"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ServerRequest {
-	/**
-	* Group is the api group.
-	*/
-	"group"?: string;
-	/**
-	* Resource is the resource name for the request.
-	*/
-	"resource"?: string;
-	/**
-	* Verbs is the list of verbs for the request.
-	*/
-	"verbs"?: Array<string>;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ServerAnalytics {
-	/**
-	* Endpoint is the endpoint for the analytics server.
-	*/
-	"endpoint"?: string;
-	/**
-	* Requests is a slice of requested resources to return analytics for.
-	*/
-	"requests"?: Array<ServerRequest>;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ServerResourceQuantity {
-	/**
-	* Group is the api group.
-	*/
-	"group"?: string;
-	/**
-	* Kind is the resource kind.
-	*/
-	"kind"?: string;
-	/**
-	* Quantity is the quantity for hte limit (for example).
-	*/
-	"quantity": number;
-	/**
-	* Version is the api version.
-	*/
-	"version"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ServerLicense {
-	"analytics"?: ServerAnalytics;
-	/**
-	* Announcements is a map string/string such that we can easily add any additional data without needing to change types. For now, we will use the keys \"name\" and \"content\".
-	*/
-	"announcement"?: {
-		[key: string]: string;
-	};
-	/**
-	* BlockRequests is a slice of Request objects that the Loft instance should block from being created due to license usage overrun.
-	*/
-	"blockRequests"?: Array<ServerRequest>;
-	/**
-	* Buttons is a slice of license server endpoints (buttons) that the Loft instance may need to hit. Each Button contains the display text and link for the front end to work with.
-	*/
-	"buttons"?: Array<ServerButton>;
-	/**
-	* Features is a map of enabled features.
-	*/
-	"features"?: {
-		[key: string]: boolean;
-	};
-	/**
-	* IsOffline indicates if the license is an offline license or not.
-	*/
-	"isOffline"?: boolean;
-	/**
-	* Limits is the number of resources allowed by the current license.
-	*/
-	"limits"?: Array<ServerResourceQuantity>;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1LicenseStatus {
-	/**
-	* Buttons is the selection of routes or endpoints in the license server that are used for license related operations such as updating subscriptions.
-	*/
-	"buttons"?: Array<ServerButton>;
-	"info"?: ServerLicense;
-	/**
-	* InstanceID is the instance ID for the Loft license/instance.
-	*/
-	"instanceID"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1License {
-	/**
-	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
-	*/
-	"apiVersion"?: string;
-	/**
-	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-	*/
-	"kind"?: string;
-	"metadata"?: V1ObjectMeta;
-	"spec"?: any;
-	"status"?: ManagementV1LicenseStatus;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ServerStandardRequestInputFrontEnd {
-	/**
-	* ReturnURL is the url that operations should ultimately return to after their operation is complete. For example, once the license activate process is done, the Loft portal should redirect to this URL.
-	*/
-	"returnURL"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1LicenseRequestSpec {
-	"input"?: ServerStandardRequestInputFrontEnd;
-	/**
-	* Route is the route to make the request to on the license server.
-	*/
-	"url": string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ServerStandardRequestOutput {
-	/**
-	* RedirectURL is the URL to redirect to for continuing the license operation (typically stripe or the loft portal).
-	*/
-	"redirectURL"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1LicenseRequestStatus {
-	/**
-	* OK indicates if the license request operation was successful or not. If OK is true, the front end should follow the link in the output.
-	*/
-	"ok"?: boolean;
-	"output"?: ServerStandardRequestOutput;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1LicenseRequest {
-	/**
-	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
-	*/
-	"apiVersion"?: string;
-	/**
-	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-	*/
-	"kind"?: string;
-	"metadata"?: V1ObjectMeta;
-	"spec"?: ManagementV1LicenseRequestSpec;
-	"status"?: ManagementV1LicenseRequestStatus;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1ProjectImportSpaceSource {
-	/**
-	* Cluster name of the cluster the space is running on
-	*/
-	"cluster"?: string;
-	/**
-	* ImportName is an optional name to use as the spaceinstance name, if not provided the space name will be used
-	*/
-	"importName"?: string;
-	/**
-	* Name of the space to import
-	*/
-	"name"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1ProjectImportSpace {
-	/**
-	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
-	*/
-	"apiVersion"?: string;
-	/**
-	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-	*/
-	"kind"?: string;
-	"metadata"?: V1ObjectMeta;
-	"sourceSpace": ManagementV1ProjectImportSpaceSource;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1TaskLog {
-	/**
-	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
-	*/
-	"apiVersion"?: string;
-	/**
-	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-	*/
-	"kind"?: string;
-	"metadata"?: V1ObjectMeta;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class StorageV1TargetCluster {
-	/**
-	* Cluster is the cluster where the task should get executed
-	*/
-	"cluster"?: string;
-	/**
-	* Namespace is the namespace where the task should get executed
-	*/
-	"namespace"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class StorageV1TargetInstance {
-	/**
-	* Name is the name of the instance
-	*/
-	"name"?: string;
-	/**
-	* Project where the instance is in
-	*/
-	"project"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class StorageV1TargetVirtualCluster {
-	/**
-	* Cluster is the cluster where the virtual cluster lies
-	*/
-	"cluster"?: string;
-	/**
-	* Name of the virtual cluster
-	*/
-	"name"?: string;
-	/**
-	* Namespace is the namespace where the virtual cluster is located
-	*/
-	"namespace"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class StorageV1Target {
-	"cluster"?: StorageV1TargetCluster;
-	"spaceInstance"?: StorageV1TargetInstance;
-	"virtualCluster"?: StorageV1TargetVirtualCluster;
-	"virtualClusterInstance"?: StorageV1TargetInstance;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class StorageV1AppTask {
-	"appReference"?: StorageV1AppReference;
-	/**
-	* RollbackRevision is the revision to rollback to
-	*/
-	"rollbackRevision"?: string;
-	/**
-	* Type is the task type. Defaults to Upgrade
-	*/
-	"type"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ClusterV1HelmReleaseConfig {
-	/**
-	* Annotations are extra annotations for this helm release
-	*/
-	"annotations"?: {
-		[key: string]: string;
-	};
-	"bash"?: ClusterV1Bash;
-	"chart"?: StorageV1Chart;
-	/**
-	* Manifests holds kube manifests that will be deployed as a chart
-	*/
-	"manifests"?: string;
-	/**
-	* Parameters are additional helm chart values that will get merged with config and are then used to deploy the helm chart.
-	*/
-	"parameters"?: string;
-	/**
-	* Values is the set of extra Values added to the chart. These values merge with the default values inside of the chart. You can use golang templating in here with values from parameters.
-	*/
-	"values"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class StorageV1HelmTaskRelease {
-	"config"?: ClusterV1HelmReleaseConfig;
-	/**
-	* Labels are additional labels for the helm release.
-	*/
-	"labels"?: {
-		[key: string]: string;
-	};
-	/**
-	* Name is the name of the release
-	*/
-	"name"?: string;
-	/**
-	* Namespace of the release, if empty will use the target namespace
-	*/
-	"namespace"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class StorageV1HelmTask {
-	"release"?: StorageV1HelmTaskRelease;
-	/**
-	* RollbackRevision is the revision to rollback to
-	*/
-	"rollbackRevision"?: string;
-	/**
-	* Type is the task type. Defaults to Upgrade
-	*/
-	"type"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class StorageV1SpaceCreationTask {
-	/**
-	* Apps specifies the apps that should get deployed by this template
-	*/
-	"apps"?: Array<StorageV1AppReference>;
-	"metadata"?: V1ObjectMeta;
-	/**
-	* Objects are objects to put into the space
-	*/
-	"objects"?: string;
-	"owner"?: StorageV1UserOrTeam;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class StorageV1VirtualClusterCreationTask {
-	"access"?: StorageV1InstanceAccess;
-	/**
-	* Apps specifies the apps that should get deployed by this template
-	*/
-	"apps"?: Array<StorageV1AppReference>;
-	"helmRelease"?: StorageV1VirtualClusterHelmRelease;
-	"metadata"?: V1ObjectMeta;
-	/**
-	* Objects is the optional objects configuration for the virtual cluster
-	*/
-	"objects"?: string;
-	"spaceCreation"?: StorageV1SpaceCreationTask;
-	/**
-	* Wait defines if the task should wait until the virtual cluster is ready
-	*/
-	"wait"?: boolean;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class StorageV1TaskDefinition {
-	"appTask"?: StorageV1AppTask;
-	"helm"?: StorageV1HelmTask;
-	"spaceCreation"?: StorageV1SpaceCreationTask;
-	"virtualClusterCreation"?: StorageV1VirtualClusterCreationTask;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1TaskSpec {
-	/**
-	* Access holds the access rights for users and teams
-	*/
-	"access"?: Array<StorageV1Access>;
-	/**
-	* DisplayName is the name that should be displayed in the UI
-	*/
-	"displayName"?: string;
-	"owner"?: StorageV1UserOrTeam;
-	"scope"?: StorageV1AccessKeyScope;
-	"target"?: StorageV1Target;
-	"task"?: StorageV1TaskDefinition;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1TaskStatus {
-	"cluster"?: ClusterV1EntityInfo;
-	/**
-	* Conditions holds several conditions the virtual cluster might be in
-	*/
-	"conditions"?: Array<StorageV1Condition>;
-	"containerState"?: V1ContainerStatus;
-	/**
-	* ObservedGeneration is the latest generation observed by the controller.
-	*/
-	"observedGeneration"?: number;
-	"owner"?: ClusterV1UserOrTeam;
-	/**
-	* PodPhase describes the phase this task is in  Possible enum values:  - `\"Failed\"` means that all containers in the pod have terminated, and at least one container has terminated in a failure (exited with a non-zero exit code or was stopped by the system).  - `\"Pending\"` means the pod has been accepted by the system, but one or more of the containers has not been started. This includes time before being bound to a node, as well as time spent pulling images onto the host.  - `\"Running\"` means the pod has been bound to a node and all of the containers have been started. At least one container is still running or is in the process of being restarted.  - `\"Succeeded\"` means that all containers in the pod have voluntarily terminated with a container exit code of 0, and the system is not going to restart any of these containers.  - `\"Unknown\"` means that for some reason the state of the pod could not be obtained, typically due to an error in communicating with the host of the pod. Deprecated: It isn't being set since 2015 (74da3b14b0c0f658b3bb8d2def5094686d0e9095)
-	*/
-	"podPhase"?: ManagementV1TaskStatusPodPhaseEnum;
-	/**
-	* Started determines if the task was started
-	*/
-	"started"?: boolean;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-export type ManagementV1TaskStatusPodPhaseEnum = "Failed" | "Pending" | "Running" | "Succeeded" | "Unknown";
-declare class ManagementV1Task {
-	/**
-	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
-	*/
-	"apiVersion"?: string;
-	/**
-	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-	*/
-	"kind"?: string;
-	"metadata"?: V1ObjectMeta;
-	"spec"?: ManagementV1TaskSpec;
-	"status"?: ManagementV1TaskStatus;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1ResetAccessKeySpec {
-	/**
-	* Description describes an app
-	*/
-	"description"?: string;
-	/**
-	* If this field is true, the access key is still allowed to exist, however will not work to access the api
-	*/
-	"disabled"?: boolean;
-	/**
-	* The display name shown in the UI
-	*/
-	"displayName"?: string;
-	/**
-	* Groups specifies extra groups to apply when using this access key
-	*/
-	"groups"?: Array<string>;
-	"identity"?: StorageV1AccessKeyIdentity;
-	/**
-	* The last time the identity was refreshed
-	*/
-	"identityRefresh"?: Date;
-	/**
-	* The actual access key that will be used as a bearer token
-	*/
-	"key"?: string;
-	"oidcLogin"?: StorageV1AccessKeyOIDC;
-	"oidcProvider"?: StorageV1AccessKeyOIDCProvider;
-	/**
-	* DEPRECATED: do not use anymore Parent is used to share OIDC and external token information with multiple access keys. Since copying an OIDC refresh token would result in the other access keys becoming invalid after a refresh parent allows access keys to share that information.  The use case for this is primarily user generated access keys, which will have the users current access key as parent if it contains an OIDC token.
-	*/
-	"parent"?: string;
-	"scope"?: StorageV1AccessKeyScope;
-	/**
-	* Subject is a generic subject that can be used instead of user or team
-	*/
-	"subject"?: string;
-	/**
-	* The team this access key refers to
-	*/
-	"team"?: string;
-	/**
-	* The time to life for this access key
-	*/
-	"ttl"?: number;
-	/**
-	* If this is specified, the time to life for this access key will start after the lastActivity instead of creation timestamp
-	*/
-	"ttlAfterLastActivity"?: boolean;
-	/**
-	* The type of an access key, which basically describes if the access key is user managed or managed by loft itself.
-	*/
-	"type"?: string;
-	/**
-	* The user this access key refers to
-	*/
-	"user"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1ResetAccessKeyStatus {
-	/**
-	* The last time this access key was used to access the api
-	*/
-	"lastActivity"?: Date;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1ResetAccessKey {
-	/**
-	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
-	*/
-	"apiVersion"?: string;
-	/**
-	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-	*/
-	"kind"?: string;
-	"metadata"?: V1ObjectMeta;
-	"spec"?: ManagementV1ResetAccessKeySpec;
-	"status"?: ManagementV1ResetAccessKeyStatus;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1DirectClusterEndpointTokenSpec {
-	"scope"?: StorageV1AccessKeyScope;
-	/**
-	* The time to life for this access token in seconds
-	*/
-	"ttl"?: number;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1DirectClusterEndpointTokenStatus {
-	"token"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1DirectClusterEndpointToken {
-	/**
-	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
-	*/
-	"apiVersion"?: string;
-	/**
-	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-	*/
-	"kind"?: string;
-	"metadata"?: V1ObjectMeta;
-	"spec"?: ManagementV1DirectClusterEndpointTokenSpec;
-	"status"?: ManagementV1DirectClusterEndpointTokenStatus;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1ProjectMigrateSpaceInstanceSource {
-	/**
-	* Name of the spaceinstance to migrate
-	*/
-	"name"?: string;
-	/**
-	* Namespace of the spaceinstance to migrate
-	*/
-	"namespace"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1ProjectMigrateSpaceInstance {
-	/**
-	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
-	*/
-	"apiVersion"?: string;
-	/**
-	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-	*/
-	"kind"?: string;
-	"metadata"?: V1ObjectMeta;
-	"sourceSpaceInstance": ManagementV1ProjectMigrateSpaceInstanceSource;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class StorageV1ClusterRef {
-	/**
-	* Cluster is the connected cluster the space will be created in
-	*/
-	"cluster"?: string;
-	/**
-	* Namespace is the namespace inside the connected cluster holding the space
-	*/
-	"namespace"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class StorageV1SpaceTemplateDefinition {
-	"access"?: StorageV1InstanceAccess;
-	/**
-	* Apps specifies the apps that should get deployed by this template
-	*/
-	"apps"?: Array<StorageV1AppReference>;
-	/**
-	* Charts are helm charts that should get deployed
-	*/
-	"charts"?: Array<StorageV1TemplateHelmChart>;
-	"metadata"?: StorageV1TemplateMetadata;
-	/**
-	* Objects are Kubernetes style yamls that should get deployed into the virtual cluster
-	*/
-	"objects"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1SpaceInstanceSpec {
-	/**
-	* Access holds the access rights for users and teams
-	*/
-	"access"?: Array<StorageV1Access>;
-	"clusterRef"?: StorageV1ClusterRef;
-	/**
-	* Description describes a space instance
-	*/
-	"description"?: string;
-	/**
-	* DisplayName is the name that should be displayed in the UI
-	*/
-	"displayName"?: string;
-	/**
-	* ExtraAccessRules defines extra rules which users and teams should have which access to the virtual cluster.
-	*/
-	"extraAccessRules"?: Array<StorageV1InstanceAccessRule>;
-	"owner"?: StorageV1UserOrTeam;
-	/**
-	* Parameters are values to pass to the template
-	*/
-	"parameters"?: string;
-	"template"?: StorageV1SpaceTemplateDefinition;
-	"templateRef"?: StorageV1TemplateRef;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1SpaceInstanceStatus {
-	/**
-	* CanUpdate specifies if the requester can update the instance
-	*/
-	"canUpdate"?: boolean;
-	/**
-	* CanUse specifies if the requester can use the instance
-	*/
-	"canUse"?: boolean;
-	/**
-	* Conditions holds several conditions the virtual cluster might be in
-	*/
-	"conditions"?: Array<StorageV1Condition>;
-	/**
-	* IgnoreReconciliation tells the controller to ignore reconciliation for this instance -- this is primarily used when migrating virtual cluster instances from project to project; this prevents a situation where there are two virtual cluster instances representing the same virtual cluster which could cause issues with concurrent reconciliations of the same object. Once the virtual cluster instance has been cloned and placed into the new project, this (the \"old\") virtual cluster instance can safely be deleted.
-	*/
-	"ignoreReconciliation"?: boolean;
-	/**
-	* Message describes the reason in human-readable form
-	*/
-	"message"?: string;
-	/**
-	* Phase describes the current phase the space instance is in
-	*/
-	"phase"?: string;
-	/**
-	* Reason describes the reason in machine-readable form
-	*/
-	"reason"?: string;
-	"sleepModeConfig"?: ClusterV1SleepModeConfig;
-	"space"?: StorageV1SpaceTemplateDefinition;
-	"spaceObjects"?: StorageV1ObjectsStatus;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1SpaceInstance {
-	/**
-	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
-	*/
-	"apiVersion"?: string;
-	/**
-	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-	*/
-	"kind"?: string;
-	"metadata"?: V1ObjectMeta;
-	"spec"?: ManagementV1SpaceInstanceSpec;
-	"status"?: ManagementV1SpaceInstanceStatus;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1ProjectChartInfoSpec {
-	"chart"?: StorageV1Chart;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1ProjectChartInfoStatus {
-	"metadata"?: ClusterV1Metadata;
-	/**
-	* Readme is the readme of the chart
-	*/
-	"readme"?: string;
-	/**
-	* Values are the default values of the chart
-	*/
-	"values"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1ProjectChartInfo {
-	/**
-	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
-	*/
-	"apiVersion"?: string;
-	/**
-	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-	*/
-	"kind"?: string;
-	"metadata"?: V1ObjectMeta;
-	"spec"?: ManagementV1ProjectChartInfoSpec;
-	"status"?: ManagementV1ProjectChartInfoStatus;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1IngressAuthTokenSpec {
-	/**
-	* Host is the host where the UI should get redirected
-	*/
-	"host"?: string;
-	/**
-	* Signature is the signature of the agent for the host
-	*/
-	"signature"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1IngressAuthTokenStatus {
-	"token"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1IngressAuthToken {
-	/**
-	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
-	*/
-	"apiVersion"?: string;
-	/**
-	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-	*/
-	"kind"?: string;
-	"metadata"?: V1ObjectMeta;
-	"spec"?: ManagementV1IngressAuthTokenSpec;
-	"status"?: ManagementV1IngressAuthTokenStatus;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class StorageV1SecretRef {
-	"key"?: string;
-	"secretName"?: string;
-	"secretNamespace"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1ClusterSpec {
-	/**
-	* Access holds the access rights for users and teams
-	*/
-	"access"?: Array<StorageV1Access>;
-	"config"?: StorageV1SecretRef;
-	/**
-	* Description describes a cluster access object
-	*/
-	"description"?: string;
-	/**
-	* If specified this name is displayed in the UI instead of the metadata name
-	*/
-	"displayName"?: string;
-	/**
-	* Local specifies if it is the local cluster that should be connected, when this is specified, config is optional
-	*/
-	"local"?: boolean;
-	/**
-	* The namespace where the cluster components will be installed in
-	*/
-	"managementNamespace"?: string;
-	"owner"?: StorageV1UserOrTeam;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1ClusterStatus {
-	"message"?: string;
-	"phase"?: string;
-	"reason"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1Cluster {
-	/**
-	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
-	*/
-	"apiVersion"?: string;
-	/**
-	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-	*/
-	"kind"?: string;
-	"metadata"?: V1ObjectMeta;
-	"spec"?: ManagementV1ClusterSpec;
-	"status"?: ManagementV1ClusterStatus;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1ClusterReset {
-	"agent"?: boolean;
-	/**
-	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
-	*/
-	"apiVersion"?: string;
-	/**
-	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-	*/
-	"kind"?: string;
-	"metadata"?: V1ObjectMeta;
-	"rbac"?: boolean;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class StorageV1AllowedCluster {
-	/**
-	* Name is the name of the cluster that is allowed to create an environment in
-	*/
-	"name"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class StorageV1AllowedTemplate {
-	/**
-	* Group of the template that is allowed. Currently only supports storage.loft.sh
-	*/
-	"group"?: string;
-	/**
-	* IsDefault specifies if the template should be used as a default
-	*/
-	"isDefault"?: boolean;
-	/**
-	* Kind of the template that is allowed. Currently only supports VirtualClusterTemplate & SpaceTemplate
-	*/
-	"kind"?: string;
-	/**
-	* Name of the template
-	*/
-	"name"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class StorageV1ArgoProjectPolicyRule {
-	/**
-	* Action is one of \"*\", \"get\", \"create\", \"update\", \"delete\", \"sync\", or \"override\".
-	*/
-	"action"?: string;
-	/**
-	* Application is the ArgoCD project/repository to apply the rule to.
-	*/
-	"application"?: string;
-	/**
-	* Allow applies the \"allow\" permission to the rule, if allow is not set, the permission will always be set to \"deny\".
-	*/
-	"permission"?: boolean;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class StorageV1ArgoProjectRole {
-	/**
-	* Description to add to the ArgoCD project.
-	*/
-	"description"?: string;
-	/**
-	* Groups is a list of OIDC group names to bind to the role.
-	*/
-	"groups"?: Array<string>;
-	/**
-	* Name of the ArgoCD role to attach to the project.
-	*/
-	"name"?: string;
-	/**
-	* Rules ist a list of policy rules to attach to the role.
-	*/
-	"rules"?: Array<StorageV1ArgoProjectPolicyRule>;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class StorageV1ArgoProjectSpecMetadata {
-	/**
-	* Description to add to the ArgoCD project.
-	*/
-	"description"?: string;
-	/**
-	* ExtraAnnotations are optional annotations that can be attached to the project in ArgoCD.
-	*/
-	"extraAnnotations"?: {
-		[key: string]: string;
-	};
-	/**
-	* ExtraLabels are optional labels that can be attached to the project in ArgoCD.
-	*/
-	"extraLabels"?: {
-		[key: string]: string;
-	};
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class StorageV1ArgoProjectSpec {
-	/**
-	* Enabled indicates if the ArgoCD Project Integration is enabled for this project. Enabling this will cause Loft to create an appProject in ArgoCD that is associated with the Loft Project. When Project integration is enabled Loft will override the default assigned role set in the SSO integration spec.
-	*/
-	"enabled"?: boolean;
-	"metadata"?: StorageV1ArgoProjectSpecMetadata;
-	/**
-	* Roles is a list of roles that should be attached to the ArgoCD project. If roles are provided no loft default roles will be set. If no roles are provided *and* SSO is enabled, loft will configure sane default values.
-	*/
-	"roles"?: Array<StorageV1ArgoProjectRole>;
-	/**
-	* SourceRepos is a list of source repositories to attach/allow on the project, if not specified will be \"*\" indicating all source repositories.
-	*/
-	"sourceRepos"?: Array<string>;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class StorageV1ArgoSSOSpec {
-	/**
-	* AssignedRoles is a list of roles to assign for users who authenticate via Loft -- by default this will be the `read-only` role. If any roles are provided this will override the default setting.
-	*/
-	"assignedRoles"?: Array<string>;
-	/**
-	* Enabled indicates if the ArgoCD SSO Integration is enabled for this project. Enabling this will cause Loft to configure SSO authentication via Loft in ArgoCD. If Projects are *not* enabled, all users associated with this Project will be assigned either the 'read-only' (default) role, *or* the roles set under the AssignedRoles field.
-	*/
-	"enabled"?: boolean;
-	/**
-	* Host defines the ArgoCD host address that will be used for OIDC authentication between loft and ArgoCD. If not specified OIDC integration will be skipped, but vclusters/spaces will still be synced to ArgoCD.
-	*/
-	"host"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class StorageV1ArgoIntegrationSpec {
-	/**
-	* Cluster defines the name of the cluster that ArgoCD is deployed into -- if not provided this will default to 'loft-cluster'.
-	*/
-	"cluster"?: string;
-	/**
-	* Enabled indicates if the ArgoCD Integration is enabled for the project -- this knob only enables the syncing of virtualclusters, but does not enable SSO integration or project creation (see subsequent spec sections!).
-	*/
-	"enabled"?: boolean;
-	/**
-	* Namespace defines the namespace in which ArgoCD is running in the cluster.
-	*/
-	"namespace"?: string;
-	"project"?: StorageV1ArgoProjectSpec;
-	"sso"?: StorageV1ArgoSSOSpec;
-	/**
-	* VirtualClusterInstance defines the name of *virtual cluster* (instance) that ArgoCD is deployed into. If provided, Cluster will be ignored and Loft will assume that ArgoCD is running in the specified virtual cluster.
-	*/
-	"virtualClusterInstance"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class StorageV1Member {
-	/**
-	* ClusterRole is the assigned role for the above member
-	*/
-	"clusterRole"?: string;
-	/**
-	* Group of the member. Currently only supports storage.loft.sh
-	*/
-	"group"?: string;
-	/**
-	* Kind is the kind of the member. Currently either User or Team
-	*/
-	"kind"?: string;
-	/**
-	* Name of the member
-	*/
-	"name"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class StorageV1NamespacePattern {
-	/**
-	* Space holds the namespace pattern to use for space instances
-	*/
-	"space"?: string;
-	/**
-	* VirtualCluster holds the namespace pattern to use for virtual cluster instances
-	*/
-	"virtualCluster"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class StorageV1Quotas {
-	/**
-	* Project holds the quotas for the whole project
-	*/
-	"project"?: {
-		[key: string]: string;
-	};
-	/**
-	* User holds the quotas per user / team
-	*/
-	"user"?: {
-		[key: string]: string;
-	};
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class StorageV1VaultAuthSpec {
-	/**
-	* Token defines the token to use for authentication.
-	*/
-	"token"?: string;
-	"tokenSecretRef"?: V1SecretKeySelector;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class StorageV1VaultIntegrationSpec {
-	/**
-	* Address defines the address of the Vault instance to use for this project. Will default to the `VAULT_ADDR` environment variable if not provided.
-	*/
-	"address"?: string;
-	"auth"?: StorageV1VaultAuthSpec;
-	/**
-	* Enabled indicates if the Vault Integration is enabled for the project -- this knob only enables the syncing of secrets to or from Vault, but does not setup Kubernetes authentication methods or Kubernetes secrets engines for vclusters.
-	*/
-	"enabled"?: boolean;
-	/**
-	* Namespace defines the namespace to use when storing secrets in Vault.
-	*/
-	"namespace"?: string;
-	/**
-	* SkipTLSVerify defines if TLS verification should be skipped when connecting to Vault.
-	*/
-	"skipTLSVerify"?: boolean;
-	/**
-	* SyncInterval defines the interval at which to sync secrets from Vault. Defaults to `1m.` See https://pkg.go.dev/time#ParseDuration for supported formats.
-	*/
-	"syncInterval"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1ProjectSpec {
-	/**
-	* Access holds the access rights for users and teams
-	*/
-	"access"?: Array<StorageV1Access>;
-	/**
-	* AllowedClusters are target clusters that are allowed to target with environments.
-	*/
-	"allowedClusters"?: Array<StorageV1AllowedCluster>;
-	/**
-	* AllowedTemplates are the templates that are allowed to use in this project.
-	*/
-	"allowedTemplates"?: Array<StorageV1AllowedTemplate>;
-	"argoCD"?: StorageV1ArgoIntegrationSpec;
-	/**
-	* Description describes an app
-	*/
-	"description"?: string;
-	/**
-	* DisplayName is the name that should be displayed in the UI
-	*/
-	"displayName"?: string;
-	/**
-	* Members are the users and teams that are part of this project
-	*/
-	"members"?: Array<StorageV1Member>;
-	"namespacePattern"?: StorageV1NamespacePattern;
-	"owner"?: StorageV1UserOrTeam;
-	"quotas"?: StorageV1Quotas;
-	"vault"?: StorageV1VaultIntegrationSpec;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class StorageV1QuotaStatusProjectCluster {
-	/**
-	* Used is the amount currently used. Maps resource name, such as pods, to their used amount.
-	*/
-	"used"?: {
-		[key: string]: string;
-	};
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class StorageV1QuotaStatusProject {
-	/**
-	* Clusters holds the used amount per cluster. Maps cluster name to used resources
-	*/
-	"clusters"?: {
-		[key: string]: StorageV1QuotaStatusProjectCluster;
-	};
-	/**
-	* Limit is the amount limited, copied from spec.quotas.project
-	*/
-	"limit"?: {
-		[key: string]: string;
-	};
-	/**
-	* Used is the amount currently used across all clusters
-	*/
-	"used"?: {
-		[key: string]: string;
-	};
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class StorageV1QuotaStatusUserUsed {
-	/**
-	* Teams is a mapping of teams to used resources
-	*/
-	"teams"?: {
-		[key: string]: {
-			[key: string]: string;
-		};
-	};
-	/**
-	* Users is a mapping of users to used resources
-	*/
-	"users"?: {
-		[key: string]: {
-			[key: string]: string;
-		};
-	};
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class StorageV1QuotaStatusUser {
-	/**
-	* Clusters holds the used amount per cluster. Maps cluster name to used resources
-	*/
-	"clusters"?: {
-		[key: string]: StorageV1QuotaStatusUserUsed;
-	};
-	/**
-	* Limit is the amount limited per user / team
-	*/
-	"limit"?: {
-		[key: string]: string;
-	};
-	"used"?: StorageV1QuotaStatusUserUsed;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class StorageV1QuotaStatus {
-	"project"?: StorageV1QuotaStatusProject;
-	"user"?: StorageV1QuotaStatusUser;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1ProjectStatus {
-	/**
-	* Conditions holds several conditions the project might be in
-	*/
-	"conditions"?: Array<StorageV1Condition>;
-	"quotas"?: StorageV1QuotaStatus;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1Project {
-	/**
-	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
-	*/
-	"apiVersion"?: string;
-	/**
-	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-	*/
-	"kind"?: string;
-	"metadata"?: V1ObjectMeta;
-	"spec"?: ManagementV1ProjectSpec;
-	"status"?: ManagementV1ProjectStatus;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1PolicyViolationStatus {
-	/**
-	* Cluster is the cluster where the violation occurred in
-	*/
-	"cluster"?: string;
-	/**
-	* Policy is the name of the policy where the violation occurred
-	*/
-	"policy"?: string;
-	"user"?: ClusterV1EntityInfo;
-	"violation"?: PolicyV1beta1PolicyViolation;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1PolicyViolation {
-	/**
-	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
-	*/
-	"apiVersion"?: string;
-	/**
-	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-	*/
-	"kind"?: string;
-	"metadata"?: V1ObjectMeta;
-	"spec"?: any;
-	"status"?: ManagementV1PolicyViolationStatus;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1ClusterMember {
-	"info"?: ClusterV1EntityInfo;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1ClusterMembers {
-	/**
-	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
-	*/
-	"apiVersion"?: string;
-	/**
-	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-	*/
-	"kind"?: string;
-	"metadata"?: V1ObjectMeta;
-	/**
-	* Teams holds all the teams that have access to the cluster
-	*/
-	"teams"?: Array<ManagementV1ClusterMember>;
-	/**
-	* Users holds all the users that have access to the cluster
-	*/
-	"users"?: Array<ManagementV1ClusterMember>;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
 declare class AuditV1ObjectReference {
 	/**
 	* APIGroup is the name of the API group that contains the referred object. The empty string represents the core API group.
@@ -9480,7 +6467,7 @@ declare class V1UserInfo {
 	}[];
 	constructor();
 }
-declare class ManagementV1EventStatus {
+declare class AuditV1Event {
 	/**
 	* Annotations is an unstructured key value map stored with an audit event that may be set by plugins invoked in the request serving chain, including authentication, authorization and admission plugins. Note that these annotations are for the audit event, and do not correspond to the metadata.annotations of the submitted object. Keys should uniquely identify the informing component to avoid name collisions (e.g. podsecuritypolicy.admission.k8s.io/policy). Values should be short. Annotations are included in the Metadata level.
 	*/
@@ -9552,7 +6539,27 @@ declare class ManagementV1EventStatus {
 	}[];
 	constructor();
 }
-declare class ManagementV1Event {
+declare class ManagementV1AgentAuditEventSpec {
+	/**
+	* Events are the events the agent has recorded
+	*/
+	"events"?: Array<AuditV1Event>;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1AgentAuditEvent {
 	/**
 	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
 	*/
@@ -9562,11 +6569,460 @@ declare class ManagementV1Event {
 	*/
 	"kind"?: string;
 	"metadata"?: V1ObjectMeta;
+	"spec"?: ManagementV1AgentAuditEventSpec;
 	/**
-	* EventSpec holds the specification
+	* AgentAuditEventStatus holds the status
 	*/
+	"status"?: any;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ServerInstanceTokenAuth {
+	/**
+	* Certificate is the signing certificate for the token.
+	*/
+	"certificate": string;
+	/**
+	* Token is the jwt token identifying the loft instance.
+	*/
+	"token": string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1AnnouncementStatus {
+	"analyticsToken"?: ServerInstanceTokenAuth;
+	/**
+	* Announcement is the html announcement that should be displayed in the frontend
+	*/
+	"announcement"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1Announcement {
+	/**
+	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	*/
+	"apiVersion"?: string;
+	/**
+	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	*/
+	"kind"?: string;
+	"metadata"?: V1ObjectMeta;
 	"spec"?: any;
-	"status"?: ManagementV1EventStatus;
+	"status"?: ManagementV1AnnouncementStatus;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ClusterV1HelmReleaseConfig {
+	/**
+	* Annotations are extra annotations for this helm release
+	*/
+	"annotations"?: {
+		[key: string]: string;
+	};
+	"bash"?: ClusterV1Bash;
+	"chart"?: StorageV1Chart;
+	/**
+	* Manifests holds kube manifests that will be deployed as a chart
+	*/
+	"manifests"?: string;
+	/**
+	* Parameters are additional helm chart values that will get merged with config and are then used to deploy the helm chart.
+	*/
+	"parameters"?: string;
+	/**
+	* Values is the set of extra Values added to the chart. These values merge with the default values inside of the chart. You can use golang templating in here with values from parameters.
+	*/
+	"values"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1Access {
+	/**
+	* Name is an optional name that is used for this access rule
+	*/
+	"name"?: string;
+	/**
+	* Subresources defines the sub resources that are allowed by this access rule
+	*/
+	"subresources"?: Array<string>;
+	/**
+	* Teams specifies which teams should be able to access this secret with the aforementioned verbs
+	*/
+	"teams"?: Array<string>;
+	/**
+	* Users specifies which users should be able to access this secret with the aforementioned verbs
+	*/
+	"users"?: Array<string>;
+	/**
+	* Verbs is a list of Verbs that apply to ALL the ResourceKinds and AttributeRestrictions contained in this rule. VerbAll represents all kinds.
+	*/
+	"verbs": Array<string>;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1AppParameter {
+	/**
+	* DefaultValue is the default value if none is specified
+	*/
+	"defaultValue"?: string;
+	/**
+	* Description is the description to show for this parameter
+	*/
+	"description"?: string;
+	/**
+	* Invalidation regex that if matched will reject the input
+	*/
+	"invalidation"?: string;
+	/**
+	* Label is the label to show for this parameter
+	*/
+	"label"?: string;
+	/**
+	* Max is the maximum number if type is number
+	*/
+	"max"?: number;
+	/**
+	* Min is the minimum number if type is number
+	*/
+	"min"?: number;
+	/**
+	* Options are the options if type is enum
+	*/
+	"options"?: Array<string>;
+	/**
+	* Placeholder shown in the UI
+	*/
+	"placeholder"?: string;
+	/**
+	* Required specifies if this parameter is required
+	*/
+	"required"?: boolean;
+	/**
+	* Section where this app should be displayed. Apps with the same section name will be grouped together
+	*/
+	"section"?: string;
+	/**
+	* Type of the parameter. Can be one of: string, multiline, boolean, enum and password
+	*/
+	"type"?: string;
+	/**
+	* Validation regex that if matched will allow the input
+	*/
+	"validation"?: string;
+	/**
+	* Variable is the path of the variable. Can be foo or foo.bar for nested objects.
+	*/
+	"variable"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1StreamContainer {
+	/**
+	* Container is the container name to use
+	*/
+	"container"?: string;
+	"selector"?: V1LabelSelector;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1AppVersion {
+	"config"?: ClusterV1HelmReleaseConfig;
+	/**
+	* DefaultNamespace is the default namespace this app should installed in.
+	*/
+	"defaultNamespace"?: string;
+	/**
+	* Icon holds an URL to the app icon
+	*/
+	"icon"?: string;
+	/**
+	* Parameters define additional app parameters that will set helm values
+	*/
+	"parameters"?: Array<StorageV1AppParameter>;
+	/**
+	* Readme is a longer markdown string that describes the app.
+	*/
+	"readme"?: string;
+	"streamContainer"?: StorageV1StreamContainer;
+	/**
+	* Timeout is the time to wait for any individual Kubernetes operation (like Jobs for hooks) (default 5m0s)
+	*/
+	"timeout"?: string;
+	/**
+	* Version is the version. Needs to be in X.X.X format.
+	*/
+	"version"?: string;
+	/**
+	* Wait determines if Loft should wait during deploy for the app to become ready
+	*/
+	"wait"?: boolean;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1HelmConfiguration {
+	/**
+	* Determines if the remote location uses an insecure TLS certificate.
+	*/
+	"insecure"?: boolean;
+	/**
+	* Name of the chart to deploy
+	*/
+	"name": string;
+	/**
+	* The password to use for the selected repository
+	*/
+	"password"?: string;
+	/**
+	* The repo url to use
+	*/
+	"repoUrl"?: string;
+	/**
+	* The username to use for the selected repository
+	*/
+	"username"?: string;
+	/**
+	* The additional helm values to use. Expected block string
+	*/
+	"values"?: string;
+	/**
+	* Version is the version of the chart to deploy
+	*/
+	"version"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1UserOrTeam {
+	/**
+	* Team specifies a Loft team.
+	*/
+	"team"?: string;
+	/**
+	* User specifies a Loft user.
+	*/
+	"user"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1AppSpec {
+	/**
+	* Access holds the access rights for users and teams
+	*/
+	"access"?: Array<StorageV1Access>;
+	/**
+	* Clusters are the clusters this app can be installed in.
+	*/
+	"clusters"?: Array<string>;
+	"config"?: ClusterV1HelmReleaseConfig;
+	/**
+	* DefaultNamespace is the default namespace this app should installed in.
+	*/
+	"defaultNamespace"?: string;
+	/**
+	* Description describes an app
+	*/
+	"description"?: string;
+	/**
+	* DisplayName is the name that should be displayed in the UI
+	*/
+	"displayName"?: string;
+	"helm"?: StorageV1HelmConfiguration;
+	/**
+	* Icon holds an URL to the app icon
+	*/
+	"icon"?: string;
+	/**
+	* DEPRECATED: Use config instead manifest represents kubernetes resources that will be deployed into the target namespace
+	*/
+	"manifests"?: string;
+	"owner"?: StorageV1UserOrTeam;
+	/**
+	* Parameters define additional app parameters that will set helm values
+	*/
+	"parameters"?: Array<StorageV1AppParameter>;
+	/**
+	* Readme is a longer markdown string that describes the app.
+	*/
+	"readme"?: string;
+	/**
+	* RecommendedApp specifies where this app should show up as recommended app
+	*/
+	"recommendedApp"?: Array<string>;
+	"streamContainer"?: StorageV1StreamContainer;
+	/**
+	* Timeout is the time to wait for any individual Kubernetes operation (like Jobs for hooks) (default 5m0s)
+	*/
+	"timeout"?: string;
+	/**
+	* Versions are different app versions that can be referenced
+	*/
+	"versions"?: Array<StorageV1AppVersion>;
+	/**
+	* Wait determines if Loft should wait during deploy for the app to become ready
+	*/
+	"wait"?: boolean;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1App {
+	/**
+	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	*/
+	"apiVersion"?: string;
+	/**
+	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	*/
+	"kind"?: string;
+	"metadata"?: V1ObjectMeta;
+	"spec"?: ManagementV1AppSpec;
+	/**
+	* AppStatus holds the status
+	*/
+	"status"?: any;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -9726,6 +7182,854 @@ declare class ManagementV1ClusterAccess {
 	}[];
 	constructor();
 }
+declare class StorageV1HelmChartRepository {
+	/**
+	* Insecure specifies if the chart should be retrieved without TLS verification
+	*/
+	"insecure"?: boolean;
+	/**
+	* Name is the name of the repository
+	*/
+	"name"?: string;
+	/**
+	* Password of the repository
+	*/
+	"password"?: string;
+	/**
+	* URL is the repository url
+	*/
+	"url"?: string;
+	/**
+	* Username of the repository
+	*/
+	"username"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1HelmChart {
+	"metadata"?: ClusterV1Metadata;
+	"repository"?: StorageV1HelmChartRepository;
+	/**
+	* Versions holds all chart versions
+	*/
+	"versions"?: Array<string>;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1ClusterCharts {
+	/**
+	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	*/
+	"apiVersion"?: string;
+	/**
+	* Busy will indicate if the chart parsing is still in progress.
+	*/
+	"busy"?: boolean;
+	/**
+	* Holds the available helm charts for this cluster
+	*/
+	"charts": Array<StorageV1HelmChart>;
+	/**
+	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	*/
+	"kind"?: string;
+	"metadata"?: V1ObjectMeta;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1SecretRef {
+	"key"?: string;
+	"secretName"?: string;
+	"secretNamespace"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1ClusterSpec {
+	/**
+	* Access holds the access rights for users and teams
+	*/
+	"access"?: Array<StorageV1Access>;
+	"config"?: StorageV1SecretRef;
+	/**
+	* Description describes a cluster access object
+	*/
+	"description"?: string;
+	/**
+	* If specified this name is displayed in the UI instead of the metadata name
+	*/
+	"displayName"?: string;
+	/**
+	* Local specifies if it is the local cluster that should be connected, when this is specified, config is optional
+	*/
+	"local"?: boolean;
+	/**
+	* The namespace where the cluster components will be installed in
+	*/
+	"managementNamespace"?: string;
+	"owner"?: StorageV1UserOrTeam;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1ClusterStatus {
+	"message"?: string;
+	"phase"?: string;
+	"reason"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1Cluster {
+	/**
+	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	*/
+	"apiVersion"?: string;
+	/**
+	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	*/
+	"kind"?: string;
+	"metadata"?: V1ObjectMeta;
+	"spec"?: ManagementV1ClusterSpec;
+	"status"?: ManagementV1ClusterStatus;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1ClusterConnectSpec {
+	/**
+	* The user to create an admin account for
+	*/
+	"adminUser"?: string;
+	"clusterTemplate"?: ManagementV1Cluster;
+	/**
+	* the kube config used to connect the cluster
+	*/
+	"config"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1ClusterConnectStatus {
+	"failed"?: boolean;
+	"message"?: string;
+	"reason"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1ClusterConnect {
+	/**
+	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	*/
+	"apiVersion"?: string;
+	/**
+	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	*/
+	"kind"?: string;
+	"metadata"?: V1ObjectMeta;
+	"spec"?: ManagementV1ClusterConnectSpec;
+	"status"?: ManagementV1ClusterConnectStatus;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1ClusterDomain {
+	/**
+	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	*/
+	"apiVersion"?: string;
+	"domain"?: string;
+	/**
+	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	*/
+	"kind"?: string;
+	"metadata"?: V1ObjectMeta;
+	"target"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1ClusterMember {
+	"info"?: ClusterV1EntityInfo;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1ClusterMemberAccess {
+	/**
+	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	*/
+	"apiVersion"?: string;
+	/**
+	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	*/
+	"kind"?: string;
+	"metadata"?: V1ObjectMeta;
+	/**
+	* Teams holds all the teams that the current user has access to the cluster
+	*/
+	"teams"?: Array<ManagementV1ClusterMember>;
+	/**
+	* Users holds all the users that the current user has access to the cluster
+	*/
+	"users"?: Array<ManagementV1ClusterMember>;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1ClusterMembers {
+	/**
+	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	*/
+	"apiVersion"?: string;
+	/**
+	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	*/
+	"kind"?: string;
+	"metadata"?: V1ObjectMeta;
+	/**
+	* Teams holds all the teams that have access to the cluster
+	*/
+	"teams"?: Array<ManagementV1ClusterMember>;
+	/**
+	* Users holds all the users that have access to the cluster
+	*/
+	"users"?: Array<ManagementV1ClusterMember>;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1ClusterReset {
+	"agent"?: boolean;
+	/**
+	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	*/
+	"apiVersion"?: string;
+	/**
+	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	*/
+	"kind"?: string;
+	"metadata"?: V1ObjectMeta;
+	"rbac"?: boolean;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class V1AggregationRule {
+	/**
+	* ClusterRoleSelectors holds a list of selectors which will be used to find ClusterRoles and create the rules. If any of the selectors match, then the ClusterRole's permissions will be added
+	*/
+	"clusterRoleSelectors"?: Array<V1LabelSelector>;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class V1PolicyRule {
+	/**
+	* APIGroups is the name of the APIGroup that contains the resources.  If multiple API groups are specified, any action requested against one of the enumerated resources in any API group will be allowed. \"\" represents the core API group and \"*\" represents all API groups.
+	*/
+	"apiGroups"?: Array<string>;
+	/**
+	* NonResourceURLs is a set of partial urls that a user should have access to.  *s are allowed, but only as the full, final step in the path Since non-resource URLs are not namespaced, this field is only applicable for ClusterRoles referenced from a ClusterRoleBinding. Rules can either apply to API resources (such as \"pods\" or \"secrets\") or non-resource URL paths (such as \"/api\"),  but not both.
+	*/
+	"nonResourceURLs"?: Array<string>;
+	/**
+	* ResourceNames is an optional white list of names that the rule applies to.  An empty set means that everything is allowed.
+	*/
+	"resourceNames"?: Array<string>;
+	/**
+	* Resources is a list of resources this rule applies to. '*' represents all resources.
+	*/
+	"resources"?: Array<string>;
+	/**
+	* Verbs is a list of Verbs that apply to ALL the ResourceKinds contained in this rule. '*' represents all verbs.
+	*/
+	"verbs": Array<string>;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1ClusterRoleTemplateTemplate {
+	"aggregationRule"?: V1AggregationRule;
+	"metadata"?: V1ObjectMeta;
+	/**
+	* Rules holds all the PolicyRules for this ClusterRole
+	*/
+	"rules"?: Array<V1PolicyRule>;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1LocalClusterRoleTemplateSpec {
+	"clusterRoleTemplate"?: StorageV1ClusterRoleTemplateTemplate;
+	/**
+	* Description is the description of this object in human-readable text.
+	*/
+	"description"?: string;
+	/**
+	* DisplayName is the name that should be shown in the UI
+	*/
+	"displayName"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1LocalClusterRoleTemplate {
+	"metadata"?: V1ObjectMeta;
+	"spec"?: StorageV1LocalClusterRoleTemplateSpec;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1ClusterRoleTemplateSpec {
+	/**
+	* Access holds the access rights for users and teams
+	*/
+	"access"?: Array<StorageV1Access>;
+	"clusterRoleTemplate"?: StorageV1ClusterRoleTemplateTemplate;
+	/**
+	* Clusters are the clusters this template should be applied on.
+	*/
+	"clusters"?: Array<string>;
+	/**
+	* Description describes a cluster role template object
+	*/
+	"description"?: string;
+	/**
+	* DisplayName is the name that should be displayed in the UI
+	*/
+	"displayName"?: string;
+	"localClusterRoleTemplate"?: StorageV1LocalClusterRoleTemplate;
+	/**
+	* Management defines if this cluster role should be created in the management instance.
+	*/
+	"management"?: boolean;
+	"owner"?: StorageV1UserOrTeam;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1ClusterRoleTemplateStatus {
+	"clusters"?: Array<ClusterV1EntityInfo>;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1ClusterRoleTemplate {
+	/**
+	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	*/
+	"apiVersion"?: string;
+	/**
+	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	*/
+	"kind"?: string;
+	"metadata"?: V1ObjectMeta;
+	"spec"?: ManagementV1ClusterRoleTemplateSpec;
+	"status"?: ManagementV1ClusterRoleTemplateStatus;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1TemplateMetadata {
+	/**
+	* Annotations are annotations on the object
+	*/
+	"annotations"?: {
+		[key: string]: string;
+	};
+	/**
+	* Labels are labels on the object
+	*/
+	"labels"?: {
+		[key: string]: string;
+	};
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1VirtualClusterSpaceTemplateDefinition {
+	/**
+	* Apps specifies the apps that should get deployed by this template
+	*/
+	"apps"?: Array<StorageV1AppReference>;
+	/**
+	* Charts are helm charts that should get deployed
+	*/
+	"charts"?: Array<StorageV1TemplateHelmChart>;
+	"metadata"?: StorageV1TemplateMetadata;
+	/**
+	* Objects are Kubernetes style yamls that should get deployed into the virtual cluster namespace
+	*/
+	"objects"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1VirtualClusterTemplateDefinition {
+	"access"?: StorageV1InstanceAccess;
+	"accessPoint"?: StorageV1VirtualClusterAccessPoint;
+	/**
+	* Apps specifies the apps that should get deployed by this template
+	*/
+	"apps"?: Array<StorageV1AppReference>;
+	/**
+	* Charts are helm charts that should get deployed
+	*/
+	"charts"?: Array<StorageV1TemplateHelmChart>;
+	"helmRelease"?: StorageV1VirtualClusterHelmRelease;
+	"metadata"?: StorageV1TemplateMetadata;
+	/**
+	* Objects are Kubernetes style yamls that should get deployed into the virtual cluster
+	*/
+	"objects"?: string;
+	"spaceTemplate"?: StorageV1VirtualClusterSpaceTemplateDefinition;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1VirtualClusterTemplateSpaceTemplateRef {
+	/**
+	* Name of the space template
+	*/
+	"name"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1VirtualClusterTemplateVersion {
+	/**
+	* Parameters define additional app parameters that will set helm values
+	*/
+	"parameters"?: Array<StorageV1AppParameter>;
+	"template"?: StorageV1VirtualClusterTemplateDefinition;
+	/**
+	* Version is the version. Needs to be in X.X.X format.
+	*/
+	"version"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1VirtualClusterTemplateSpec {
+	/**
+	* Access holds the access rights for users and teams
+	*/
+	"access"?: Array<StorageV1Access>;
+	/**
+	* Description describes the virtual cluster template
+	*/
+	"description"?: string;
+	/**
+	* DisplayName is the name that is shown in the UI
+	*/
+	"displayName"?: string;
+	"owner"?: StorageV1UserOrTeam;
+	/**
+	* Parameters define additional app parameters that will set helm values
+	*/
+	"parameters"?: Array<StorageV1AppParameter>;
+	"spaceTemplateRef"?: StorageV1VirtualClusterTemplateSpaceTemplateRef;
+	"template"?: StorageV1VirtualClusterTemplateDefinition;
+	/**
+	* Versions are different versions of the template that can be referenced as well
+	*/
+	"versions"?: Array<StorageV1VirtualClusterTemplateVersion>;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1VirtualClusterTemplate {
+	/**
+	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	*/
+	"apiVersion"?: string;
+	/**
+	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	*/
+	"kind"?: string;
+	"metadata"?: V1ObjectMeta;
+	"spec"?: StorageV1VirtualClusterTemplateSpec;
+	/**
+	* VirtualClusterTemplateStatus holds the status
+	*/
+	"status"?: any;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1ClusterVirtualClusterDefaults {
+	/**
+	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	*/
+	"apiVersion"?: string;
+	"defaultTemplate"?: StorageV1VirtualClusterTemplate;
+	/**
+	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	*/
+	"kind"?: string;
+	/**
+	* LatestVersion is the latest virtual cluster version
+	*/
+	"latestVersion"?: string;
+	"metadata"?: V1ObjectMeta;
+	/**
+	* Default values for the virtual cluster chart
+	*/
+	"values"?: string;
+	/**
+	* Warning should be somehow shown to the user when there is a problem retrieving the defaults
+	*/
+	"warning"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
 declare class ManagementV1ConfigSpec {
 	/**
 	* Raw holds the raw config
@@ -9775,42 +8079,6 @@ declare class ManagementV1PredefinedApp {
 	* Title is the name that should be displayed for the predefined app. If empty the chart name is used.
 	*/
 	"title"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class StorageV1HelmChartRepository {
-	/**
-	* Insecure specifies if the chart should be retrieved without TLS verification
-	*/
-	"insecure"?: boolean;
-	/**
-	* Name is the name of the repository
-	*/
-	"name"?: string;
-	/**
-	* Password of the repository
-	*/
-	"password"?: string;
-	/**
-	* URL is the repository url
-	*/
-	"url"?: string;
-	/**
-	* Username of the repository
-	*/
-	"username"?: string;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -10610,6 +8878,64 @@ declare class ManagementV1OIDC {
 	}[];
 	constructor();
 }
+declare class StorageV1VaultAuthSpec {
+	/**
+	* Token defines the token to use for authentication.
+	*/
+	"token"?: string;
+	"tokenSecretRef"?: V1SecretKeySelector;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1VaultIntegrationSpec {
+	/**
+	* Address defines the address of the Vault instance to use for this project. Will default to the `VAULT_ADDR` environment variable if not provided.
+	*/
+	"address"?: string;
+	"auth"?: StorageV1VaultAuthSpec;
+	/**
+	* Enabled indicates if the Vault Integration is enabled for the project -- this knob only enables the syncing of secrets to or from Vault, but does not setup Kubernetes authentication methods or Kubernetes secrets engines for vclusters.
+	*/
+	"enabled"?: boolean;
+	/**
+	* Namespace defines the namespace to use when storing secrets in Vault.
+	*/
+	"namespace"?: string;
+	/**
+	* SkipTLSVerify defines if TLS verification should be skipped when connecting to Vault.
+	*/
+	"skipTLSVerify"?: boolean;
+	/**
+	* SyncInterval defines the interval at which to sync secrets from Vault. Defaults to `1m.` See https://pkg.go.dev/time#ParseDuration for supported formats.
+	*/
+	"syncInterval"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
 declare class UiV1NavBarButton {
 	/**
 	* Icon holds the url of the icon to display
@@ -10747,11 +9073,11 @@ declare class ManagementV1Config {
 	}[];
 	constructor();
 }
-declare class V1AggregationRule {
+declare class StorageV1AccessKeyScopeProject {
 	/**
-	* ClusterRoleSelectors holds a list of selectors which will be used to find ClusterRoles and create the rules. If any of the selectors match, then the ClusterRole's permissions will be added
+	* Project is the name of the project. You can specify * to select all projects.
 	*/
-	"clusterRoleSelectors"?: Array<V1LabelSelector>;
+	"project"?: string;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -10767,27 +9093,43 @@ declare class V1AggregationRule {
 	}[];
 	constructor();
 }
-declare class V1PolicyRule {
+declare class StorageV1AccessKeyVirtualCluster {
 	/**
-	* APIGroups is the name of the APIGroup that contains the resources.  If multiple API groups are specified, any action requested against one of the enumerated resources in any API group will be allowed. \"\" represents the core API group and \"*\" represents all API groups.
+	* Name of the virtual cluster. Empty means all virtual clusters.
 	*/
-	"apiGroups"?: Array<string>;
+	"name"?: string;
 	/**
-	* NonResourceURLs is a set of partial urls that a user should have access to.  *s are allowed, but only as the full, final step in the path Since non-resource URLs are not namespaced, this field is only applicable for ClusterRoles referenced from a ClusterRoleBinding. Rules can either apply to API resources (such as \"pods\" or \"secrets\") or non-resource URL paths (such as \"/api\"),  but not both.
+	* Namespace of the virtual cluster. Empty means all namespaces.
 	*/
-	"nonResourceURLs"?: Array<string>;
+	"namespace"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1GroupResources {
 	/**
-	* ResourceNames is an optional white list of names that the rule applies to.  An empty set means that everything is allowed.
+	* Group is the name of the API group that contains the resources. The empty string represents the core API group.
+	*/
+	"group"?: string;
+	/**
+	* ResourceNames is a list of resource instance names that the policy matches. Using this field requires Resources to be specified. An empty list implies that every instance of the resource is matched.
 	*/
 	"resourceNames"?: Array<string>;
 	/**
-	* Resources is a list of resources this rule applies to. '*' represents all resources.
+	* Resources is a list of resources this rule applies to.  For example: 'pods' matches pods. 'pods/log' matches the log subresource of pods. '*' matches all resources and their subresources. 'pods/_*' matches all subresources of pods. '*_/scale' matches all scale subresources.  If wildcard is present, the validation rule will ensure resources do not overlap with each other.  An empty list implies all resources and subresources in this API groups apply.
 	*/
 	"resources"?: Array<string>;
-	/**
-	* Verbs is a list of Verbs that apply to ALL the ResourceKinds contained in this rule. '*' represents all verbs.
-	*/
-	"verbs": Array<string>;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -10803,13 +9145,35 @@ declare class V1PolicyRule {
 	}[];
 	constructor();
 }
-declare class StorageV1ClusterRoleTemplateTemplate {
-	"aggregationRule"?: V1AggregationRule;
-	"metadata"?: V1ObjectMeta;
+declare class StorageV1AccessKeyScopeRule {
 	/**
-	* Rules holds all the PolicyRules for this ClusterRole
+	* Cluster that this rule matches. Only applies to cluster requests. If this is set, no requests for non cluster requests are allowed. An empty cluster means no restrictions will apply.
 	*/
-	"rules"?: Array<V1PolicyRule>;
+	"cluster"?: string;
+	/**
+	* Namespaces that this rule matches. The empty string \"\" matches non-namespaced resources. An empty list implies every namespace.
+	*/
+	"namespaces"?: Array<string>;
+	/**
+	* NonResourceURLs is a set of URL paths that should be checked. *s are allowed, but only as the full, final step in the path. Examples:  \"/metrics\" - Log requests for apiserver metrics  \"/healthz*\" - Log all health checks
+	*/
+	"nonResourceURLs"?: Array<string>;
+	/**
+	* RequestTargets is a list of request targets that are allowed. An empty list implies every request.
+	*/
+	"requestTargets"?: Array<string>;
+	/**
+	* Resources that this rule matches. An empty list implies all kinds in all API groups.
+	*/
+	"resources"?: Array<StorageV1GroupResources>;
+	/**
+	* The verbs that match this rule. An empty list implies every verb.
+	*/
+	"verbs"?: Array<string>;
+	/**
+	* VirtualClusters that this rule matches. Only applies to virtual cluster requests. An empty list means no restrictions will apply.
+	*/
+	"virtualClusters"?: Array<StorageV1AccessKeyVirtualCluster>;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -10825,16 +9189,15 @@ declare class StorageV1ClusterRoleTemplateTemplate {
 	}[];
 	constructor();
 }
-declare class StorageV1LocalClusterRoleTemplateSpec {
-	"clusterRoleTemplate"?: StorageV1ClusterRoleTemplateTemplate;
+declare class StorageV1AccessKeyScopeSpace {
 	/**
-	* Description is the description of this object in human-readable text.
+	* Project is the name of the project.
 	*/
-	"description"?: string;
+	"project"?: string;
 	/**
-	* DisplayName is the name that should be shown in the UI
+	* Space is the name of the space. You can specify * to select all spaces.
 	*/
-	"displayName"?: string;
+	"space"?: string;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -10850,9 +9213,15 @@ declare class StorageV1LocalClusterRoleTemplateSpec {
 	}[];
 	constructor();
 }
-declare class StorageV1LocalClusterRoleTemplate {
-	"metadata"?: V1ObjectMeta;
-	"spec"?: StorageV1LocalClusterRoleTemplateSpec;
+declare class StorageV1AccessKeyScopeVirtualCluster {
+	/**
+	* Project is the name of the project.
+	*/
+	"project"?: string;
+	/**
+	* VirtualCluster is the name of the virtual cluster to access. You can specify * to select all virtual clusters.
+	*/
+	"virtualCluster"?: string;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -10868,30 +9237,27 @@ declare class StorageV1LocalClusterRoleTemplate {
 	}[];
 	constructor();
 }
-declare class ManagementV1ClusterRoleTemplateSpec {
+declare class StorageV1AccessKeyScope {
 	/**
-	* Access holds the access rights for users and teams
+	* AllowLoftCLI allows certain read-only management requests to make sure loft cli works correctly with this specific access key.
 	*/
-	"access"?: Array<StorageV1Access>;
-	"clusterRoleTemplate"?: StorageV1ClusterRoleTemplateTemplate;
+	"allowLoftCli"?: boolean;
 	/**
-	* Clusters are the clusters this template should be applied on.
+	* Projects specifies the projects the access key should have access to.
 	*/
-	"clusters"?: Array<string>;
+	"projects"?: Array<StorageV1AccessKeyScopeProject>;
 	/**
-	* Description describes a cluster role template object
+	* DEPRECATED: Use Projects, Spaces and VirtualClusters instead Rules specifies the rules that should apply to the access key.
 	*/
-	"description"?: string;
+	"rules"?: Array<StorageV1AccessKeyScopeRule>;
 	/**
-	* DisplayName is the name that should be displayed in the UI
+	* Spaces specifies the spaces the access key is allowed to access.
 	*/
-	"displayName"?: string;
-	"localClusterRoleTemplate"?: StorageV1LocalClusterRoleTemplate;
+	"spaces"?: Array<StorageV1AccessKeyScopeSpace>;
 	/**
-	* Management defines if this cluster role should be created in the management instance.
+	* VirtualClusters specifies the virtual clusters the access key is allowed to access.
 	*/
-	"management"?: boolean;
-	"owner"?: StorageV1UserOrTeam;
+	"virtualClusters"?: Array<StorageV1AccessKeyScopeVirtualCluster>;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -10907,8 +9273,12 @@ declare class ManagementV1ClusterRoleTemplateSpec {
 	}[];
 	constructor();
 }
-declare class ManagementV1ClusterRoleTemplateStatus {
-	"clusters"?: Array<ClusterV1EntityInfo>;
+declare class ManagementV1DirectClusterEndpointTokenSpec {
+	"scope"?: StorageV1AccessKeyScope;
+	/**
+	* The time to life for this access token in seconds
+	*/
+	"ttl"?: number;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -10924,7 +9294,24 @@ declare class ManagementV1ClusterRoleTemplateStatus {
 	}[];
 	constructor();
 }
-declare class ManagementV1ClusterRoleTemplate {
+declare class ManagementV1DirectClusterEndpointTokenStatus {
+	"token"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1DirectClusterEndpointToken {
 	/**
 	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
 	*/
@@ -10934,8 +9321,8 @@ declare class ManagementV1ClusterRoleTemplate {
 	*/
 	"kind"?: string;
 	"metadata"?: V1ObjectMeta;
-	"spec"?: ManagementV1ClusterRoleTemplateSpec;
-	"status"?: ManagementV1ClusterRoleTemplateStatus;
+	"spec"?: ManagementV1DirectClusterEndpointTokenSpec;
+	"status"?: ManagementV1DirectClusterEndpointTokenStatus;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -10951,29 +9338,1713 @@ declare class ManagementV1ClusterRoleTemplate {
 	}[];
 	constructor();
 }
-declare class StorageV1ClusterSpec {
+declare class ManagementV1EventStatus {
+	/**
+	* Annotations is an unstructured key value map stored with an audit event that may be set by plugins invoked in the request serving chain, including authentication, authorization and admission plugins. Note that these annotations are for the audit event, and do not correspond to the metadata.annotations of the submitted object. Keys should uniquely identify the informing component to avoid name collisions (e.g. podsecuritypolicy.admission.k8s.io/policy). Values should be short. Annotations are included in the Metadata level.
+	*/
+	"annotations"?: {
+		[key: string]: string;
+	};
+	/**
+	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	*/
+	"apiVersion"?: string;
+	/**
+	* Unique audit ID, generated for each request.
+	*/
+	"auditID": string;
+	"impersonatedUser"?: V1UserInfo;
+	/**
+	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	*/
+	"kind"?: string;
+	/**
+	* AuditLevel at which event was generated
+	*/
+	"level": string;
+	"objectRef"?: AuditV1ObjectReference;
+	"requestObject"?: RuntimeUnknown;
+	/**
+	* MicroTime is version of Time with microsecond level precision.
+	*/
+	"requestReceivedTimestamp"?: Date;
+	/**
+	* RequestURI is the request URI as sent by the client to a server.
+	*/
+	"requestURI": string;
+	"responseObject"?: RuntimeUnknown;
+	"responseStatus"?: V1Status;
+	/**
+	* Source IPs, from where the request originated and intermediate proxies.
+	*/
+	"sourceIPs"?: Array<string>;
+	/**
+	* Stage of the request handling when this event instance was generated.
+	*/
+	"stage": string;
+	/**
+	* MicroTime is version of Time with microsecond level precision.
+	*/
+	"stageTimestamp"?: Date;
+	"user": V1UserInfo;
+	/**
+	* UserAgent records the user agent string reported by the client. Note that the UserAgent is provided by the client, and must not be trusted.
+	*/
+	"userAgent"?: string;
+	/**
+	* Verb is the kubernetes verb associated with the request. For non-resource requests, this is the lower-cased HTTP method.
+	*/
+	"verb": string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1Event {
+	/**
+	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	*/
+	"apiVersion"?: string;
+	/**
+	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	*/
+	"kind"?: string;
+	"metadata"?: V1ObjectMeta;
+	/**
+	* EventSpec holds the specification
+	*/
+	"spec"?: any;
+	"status"?: ManagementV1EventStatus;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1FeatureStatus {
+	/**
+	* Enabled signals if the feature is currently enabled or disabled
+	*/
+	"enabled"?: boolean;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1Feature {
+	/**
+	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	*/
+	"apiVersion"?: string;
+	/**
+	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	*/
+	"kind"?: string;
+	"metadata"?: V1ObjectMeta;
+	/**
+	* FeatureSpec holds the specification
+	*/
+	"spec"?: any;
+	"status"?: ManagementV1FeatureStatus;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1IngressAuthTokenSpec {
+	/**
+	* Host is the host where the UI should get redirected
+	*/
+	"host"?: string;
+	/**
+	* Signature is the signature of the agent for the host
+	*/
+	"signature"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1IngressAuthTokenStatus {
+	"token"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1IngressAuthToken {
+	/**
+	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	*/
+	"apiVersion"?: string;
+	/**
+	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	*/
+	"kind"?: string;
+	"metadata"?: V1ObjectMeta;
+	"spec"?: ManagementV1IngressAuthTokenSpec;
+	"status"?: ManagementV1IngressAuthTokenStatus;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1LocalClusterAccess {
+	/**
+	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	*/
+	"apiVersion"?: string;
+	/**
+	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	*/
+	"kind"?: string;
+	"metadata"?: V1ObjectMeta;
+	"spec"?: StorageV1LocalClusterAccessSpec;
+	/**
+	* LocalClusterAccessStatus holds the status of a user access
+	*/
+	"status"?: any;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1LocalTeamStatus {
+	/**
+	* Annotations are the annotations of the user
+	*/
+	"annotations"?: {
+		[key: string]: string;
+	};
+	/**
+	* The display name shown in the UI
+	*/
+	"displayName"?: string;
+	/**
+	* The groups defined in a token that belong to a team
+	*/
+	"groups"?: Array<string>;
+	/**
+	* Labels are the labels of the user
+	*/
+	"labels"?: {
+		[key: string]: string;
+	};
+	/**
+	* The username of the team that will be used for identification and docker registry namespace
+	*/
+	"username"?: string;
+	/**
+	* The loft users that belong to a team
+	*/
+	"users"?: Array<string>;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1LocalTeam {
+	/**
+	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	*/
+	"apiVersion"?: string;
+	/**
+	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	*/
+	"kind"?: string;
+	"metadata"?: V1ObjectMeta;
+	"spec"?: any;
+	"status"?: StorageV1LocalTeamStatus;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class UiV1UISettingsStatus {
+	/**
+	* FeatureEnabled indicates if the UI white label feature is enabled or disabled
+	*/
+	"featureEnabled": boolean;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class UiV1UISettings {
+	/**
+	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	*/
+	"apiVersion"?: string;
+	/**
+	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	*/
+	"kind"?: string;
+	"metadata"?: V1ObjectMeta;
+	"spec"?: UiV1UISettingsSpec;
+	"status"?: UiV1UISettingsStatus;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class PolicyV1beta1JsPolicyBundleSpec {
+	/**
+	* Bundle holds the bundled payload (including dependencies and minified javascript code)
+	*/
+	"bundle"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class PolicyV1beta1JsPolicyBundle {
+	/**
+	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	*/
+	"apiVersion"?: string;
+	/**
+	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	*/
+	"kind"?: string;
+	"metadata"?: V1ObjectMeta;
+	"spec"?: PolicyV1beta1JsPolicyBundleSpec;
+	"status"?: any;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1KioskSpec {
+	"UISettings"?: UiV1UISettings;
+	"chartInfo"?: ClusterV1ChartInfo;
+	"clusterQuota"?: ClusterV1ClusterQuota;
+	"helmRelease"?: ClusterV1HelmRelease;
+	"jsPolicy"?: PolicyV1beta1JsPolicy;
+	"jsPolicyBundle"?: PolicyV1beta1JsPolicyBundle;
+	"jsPolicyViolations"?: PolicyV1beta1JsPolicyViolations;
+	"localClusterAccess"?: ClusterV1LocalClusterAccess;
+	"localStorageClusterAccess"?: StorageV1LocalClusterAccess;
+	"localTeam"?: StorageV1LocalTeam;
+	"localUser"?: StorageV1LocalUser;
+	"sleepModeConfig"?: ClusterV1SleepModeConfig;
+	"space"?: ClusterV1Space;
+	"storageClusterQuota"?: StorageV1ClusterQuota;
+	"storageVirtualCluster"?: StorageV1VirtualCluster;
+	"virtualCluster"?: ClusterV1VirtualCluster;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1Kiosk {
+	/**
+	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	*/
+	"apiVersion"?: string;
+	/**
+	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	*/
+	"kind"?: string;
+	"metadata"?: V1ObjectMeta;
+	"spec"?: ManagementV1KioskSpec;
+	"status"?: any;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ServerStandardRequestInputFrontEnd {
+	/**
+	* ReturnURL is the url that operations should ultimately return to after their operation is complete. For example, once the license activate process is done, the Loft portal should redirect to this URL.
+	*/
+	"returnURL"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1LicenseRequestSpec {
+	"input"?: ServerStandardRequestInputFrontEnd;
+	/**
+	* Route is the route to make the request to on the license server.
+	*/
+	"url": string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ServerStandardRequestOutput {
+	/**
+	* RedirectURL is the URL to redirect to for continuing the license operation (typically stripe or the loft portal).
+	*/
+	"redirectURL"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1LicenseRequestStatus {
+	/**
+	* OK indicates if the license request operation was successful or not. If OK is true, the front end should follow the link in the output.
+	*/
+	"ok"?: boolean;
+	"output"?: ServerStandardRequestOutput;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1LicenseRequest {
+	/**
+	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	*/
+	"apiVersion"?: string;
+	/**
+	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	*/
+	"kind"?: string;
+	"metadata"?: V1ObjectMeta;
+	"spec"?: ManagementV1LicenseRequestSpec;
+	"status"?: ManagementV1LicenseRequestStatus;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1LicenseTokenStatus {
+	"token"?: ServerInstanceTokenAuth;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1LicenseToken {
+	/**
+	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	*/
+	"apiVersion"?: string;
+	/**
+	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	*/
+	"kind"?: string;
+	"metadata"?: V1ObjectMeta;
+	"spec"?: any;
+	"status"?: ManagementV1LicenseTokenStatus;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ServerButton {
+	/**
+	* URL is the link at the other end of the button.
+	*/
+	"URL": string;
+	/**
+	* Direct indicates if the Loft front end should directly hit this endpoint. If false, it means that the Loft front end will be hitting the license server first to generate a one time token for the operation; this also means that there will be a redirect URL in the response to the request for this and that link should be followed by the front end.
+	*/
+	"direct"?: boolean;
+	/**
+	* DisplayText is the text to display on the button. If display text is unset the button will never be shown in the loft UI.
+	*/
+	"displayText"?: string;
+	/**
+	* PayloadType indicates the payload type to set in the request. Typically, this will be \"standard\" -- meaning the standard payload that includes the instance token auth and a return url, however in the future we may add additional types. An unset value is assumed to be \"standard\".
+	*/
+	"payloadType"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ServerRequest {
+	/**
+	* Group is the api group.
+	*/
+	"group"?: string;
+	/**
+	* Resource is the resource name for the request.
+	*/
+	"resource"?: string;
+	/**
+	* Verbs is the list of verbs for the request.
+	*/
+	"verbs"?: Array<string>;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ServerAnalytics {
+	/**
+	* Endpoint is the endpoint for the analytics server.
+	*/
+	"endpoint"?: string;
+	/**
+	* Requests is a slice of requested resources to return analytics for.
+	*/
+	"requests"?: Array<ServerRequest>;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ServerResourceQuantity {
+	/**
+	* Group is the api group.
+	*/
+	"group"?: string;
+	/**
+	* Kind is the resource kind.
+	*/
+	"kind"?: string;
+	/**
+	* Quantity is the quantity for hte limit (for example).
+	*/
+	"quantity": number;
+	/**
+	* Version is the api version.
+	*/
+	"version"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ServerLicense {
+	"analytics"?: ServerAnalytics;
+	/**
+	* Announcements is a map string/string such that we can easily add any additional data without needing to change types. For now, we will use the keys \"name\" and \"content\".
+	*/
+	"announcement"?: {
+		[key: string]: string;
+	};
+	/**
+	* BlockRequests is a slice of Request objects that the Loft instance should block from being created due to license usage overrun.
+	*/
+	"blockRequests"?: Array<ServerRequest>;
+	/**
+	* Buttons is a slice of license server endpoints (buttons) that the Loft instance may need to hit. Each Button contains the display text and link for the front end to work with.
+	*/
+	"buttons"?: Array<ServerButton>;
+	/**
+	* Features is a map of enabled features.
+	*/
+	"features"?: {
+		[key: string]: boolean;
+	};
+	/**
+	* IsOffline indicates if the license is an offline license or not.
+	*/
+	"isOffline"?: boolean;
+	/**
+	* Limits is the number of resources allowed by the current license.
+	*/
+	"limits"?: Array<ServerResourceQuantity>;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1LicenseStatus {
+	/**
+	* Buttons is the selection of routes or endpoints in the license server that are used for license related operations such as updating subscriptions.
+	*/
+	"buttons"?: Array<ServerButton>;
+	"info"?: ServerLicense;
+	/**
+	* InstanceID is the instance ID for the Loft license/instance.
+	*/
+	"instanceID"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1License {
+	/**
+	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	*/
+	"apiVersion"?: string;
+	/**
+	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	*/
+	"kind"?: string;
+	"metadata"?: V1ObjectMeta;
+	"spec"?: any;
+	"status"?: ManagementV1LicenseStatus;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1LoftUpgradeSpec {
+	/**
+	* If specified, updated the release in the given namespace
+	*/
+	"namespace"?: string;
+	/**
+	* If specified, uses this as release name
+	*/
+	"release"?: string;
+	"version"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1LoftUpgrade {
+	/**
+	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	*/
+	"apiVersion"?: string;
+	/**
+	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	*/
+	"kind"?: string;
+	"metadata"?: V1ObjectMeta;
+	"spec"?: ManagementV1LoftUpgradeSpec;
+	"status"?: any;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1AccessKeyIdentity {
+	/**
+	* Connector is the name of the connector this access key was created from
+	*/
+	"connector"?: string;
+	/**
+	* ConnectorData holds data used by the connector for subsequent requests after initial authentication, such as access tokens for upstream providers.  This data is never shared with end users, OAuth clients, or through the API.
+	*/
+	"connectorData"?: string;
+	/**
+	* The user email
+	*/
+	"email"?: string;
+	/**
+	* If the user email was verified
+	*/
+	"emailVerified"?: boolean;
+	/**
+	* The groups from the identity provider
+	*/
+	"groups"?: Array<string>;
+	/**
+	* The preferred username / display name
+	*/
+	"preferredUsername"?: string;
+	/**
+	* The subject of the user
+	*/
+	"userId"?: string;
+	/**
+	* The username
+	*/
+	"username"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1AccessKeyOIDC {
+	/**
+	* The current access token that was created during login
+	*/
+	"accessToken"?: string;
+	/**
+	* The current id token that was created during login
+	*/
+	"idToken"?: string;
+	/**
+	* The last time the id token was refreshed
+	*/
+	"lastRefresh"?: Date;
+	/**
+	* The current refresh token that was created during login
+	*/
+	"refreshToken"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1AccessKeyOIDCProvider {
+	/**
+	* ClientId the token was generated for
+	*/
+	"clientId"?: string;
+	/**
+	* Nonce to use
+	*/
+	"nonce"?: string;
+	/**
+	* RedirectUri to use
+	*/
+	"redirectUri"?: string;
+	/**
+	* Scopes to use
+	*/
+	"scopes"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1OwnedAccessKeySpec {
+	/**
+	* Description describes an app
+	*/
+	"description"?: string;
+	/**
+	* If this field is true, the access key is still allowed to exist, however will not work to access the api
+	*/
+	"disabled"?: boolean;
+	/**
+	* The display name shown in the UI
+	*/
+	"displayName"?: string;
+	/**
+	* Groups specifies extra groups to apply when using this access key
+	*/
+	"groups"?: Array<string>;
+	"identity"?: StorageV1AccessKeyIdentity;
+	/**
+	* The last time the identity was refreshed
+	*/
+	"identityRefresh"?: Date;
+	/**
+	* The actual access key that will be used as a bearer token
+	*/
+	"key"?: string;
+	"oidcLogin"?: StorageV1AccessKeyOIDC;
+	"oidcProvider"?: StorageV1AccessKeyOIDCProvider;
+	/**
+	* DEPRECATED: do not use anymore Parent is used to share OIDC and external token information with multiple access keys. Since copying an OIDC refresh token would result in the other access keys becoming invalid after a refresh parent allows access keys to share that information.  The use case for this is primarily user generated access keys, which will have the users current access key as parent if it contains an OIDC token.
+	*/
+	"parent"?: string;
+	"scope"?: StorageV1AccessKeyScope;
+	/**
+	* Subject is a generic subject that can be used instead of user or team
+	*/
+	"subject"?: string;
+	/**
+	* The team this access key refers to
+	*/
+	"team"?: string;
+	/**
+	* The time to life for this access key
+	*/
+	"ttl"?: number;
+	/**
+	* If this is specified, the time to life for this access key will start after the lastActivity instead of creation timestamp
+	*/
+	"ttlAfterLastActivity"?: boolean;
+	/**
+	* The type of an access key, which basically describes if the access key is user managed or managed by loft itself.
+	*/
+	"type"?: string;
+	/**
+	* The user this access key refers to
+	*/
+	"user"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1OwnedAccessKeyStatus {
+	/**
+	* The last time this access key was used to access the api
+	*/
+	"lastActivity"?: Date;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1OwnedAccessKey {
+	/**
+	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	*/
+	"apiVersion"?: string;
+	/**
+	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	*/
+	"kind"?: string;
+	"metadata"?: V1ObjectMeta;
+	"spec"?: ManagementV1OwnedAccessKeySpec;
+	"status"?: ManagementV1OwnedAccessKeyStatus;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1PolicyViolationStatus {
+	/**
+	* Cluster is the cluster where the violation occurred in
+	*/
+	"cluster"?: string;
+	/**
+	* Policy is the name of the policy where the violation occurred
+	*/
+	"policy"?: string;
+	"user"?: ClusterV1EntityInfo;
+	"violation"?: PolicyV1beta1PolicyViolation;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1PolicyViolation {
+	/**
+	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	*/
+	"apiVersion"?: string;
+	/**
+	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	*/
+	"kind"?: string;
+	"metadata"?: V1ObjectMeta;
+	"spec"?: any;
+	"status"?: ManagementV1PolicyViolationStatus;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1ProjectChartInfoSpec {
+	"chart"?: StorageV1Chart;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1ProjectChartInfoStatus {
+	"metadata"?: ClusterV1Metadata;
+	/**
+	* Readme is the readme of the chart
+	*/
+	"readme"?: string;
+	/**
+	* Values are the default values of the chart
+	*/
+	"values"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1ProjectChartInfo {
+	/**
+	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	*/
+	"apiVersion"?: string;
+	/**
+	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	*/
+	"kind"?: string;
+	"metadata"?: V1ObjectMeta;
+	"spec"?: ManagementV1ProjectChartInfoSpec;
+	"status"?: ManagementV1ProjectChartInfoStatus;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1ProjectCharts {
+	/**
+	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	*/
+	"apiVersion"?: string;
+	/**
+	* Busy will indicate if the chart parsing is still in progress.
+	*/
+	"busy"?: boolean;
+	/**
+	* Holds the available helm charts for this cluster
+	*/
+	"charts": Array<StorageV1HelmChart>;
+	/**
+	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	*/
+	"kind"?: string;
+	"metadata"?: V1ObjectMeta;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1ProjectClusters {
+	/**
+	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	*/
+	"apiVersion"?: string;
+	/**
+	* Clusters holds all the allowed clusters
+	*/
+	"clusters"?: Array<ManagementV1Cluster>;
+	/**
+	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	*/
+	"kind"?: string;
+	"metadata"?: V1ObjectMeta;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1ProjectImportSpaceSource {
+	/**
+	* Cluster name of the cluster the space is running on
+	*/
+	"cluster"?: string;
+	/**
+	* ImportName is an optional name to use as the spaceinstance name, if not provided the space name will be used
+	*/
+	"importName"?: string;
+	/**
+	* Name of the space to import
+	*/
+	"name"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1ProjectImportSpace {
+	/**
+	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	*/
+	"apiVersion"?: string;
+	/**
+	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	*/
+	"kind"?: string;
+	"metadata"?: V1ObjectMeta;
+	"sourceSpace": ManagementV1ProjectImportSpaceSource;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1ProjectImportVirtualClusterSource {
+	/**
+	* Cluster name of the cluster the virtual cluster is running on
+	*/
+	"cluster"?: string;
+	/**
+	* ImportName is an optional name to use as the virtualclusterinstance name, if not provided the vcluster name will be used
+	*/
+	"importName"?: string;
+	/**
+	* Name of the virtual cluster to import
+	*/
+	"name"?: string;
+	/**
+	* Namespace of the virtual cluster to import
+	*/
+	"namespace"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1ProjectImportVirtualCluster {
+	/**
+	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	*/
+	"apiVersion"?: string;
+	/**
+	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	*/
+	"kind"?: string;
+	"metadata"?: V1ObjectMeta;
+	"sourceVirtualCluster": ManagementV1ProjectImportVirtualClusterSource;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1ProjectMember {
+	"info"?: ClusterV1EntityInfo;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1ProjectMembers {
+	/**
+	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	*/
+	"apiVersion"?: string;
+	/**
+	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	*/
+	"kind"?: string;
+	"metadata"?: V1ObjectMeta;
+	/**
+	* Teams holds all the teams that have access to the cluster
+	*/
+	"teams"?: Array<ManagementV1ProjectMember>;
+	/**
+	* Users holds all the users that have access to the cluster
+	*/
+	"users"?: Array<ManagementV1ProjectMember>;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1ProjectMigrateSpaceInstanceSource {
+	/**
+	* Name of the spaceinstance to migrate
+	*/
+	"name"?: string;
+	/**
+	* Namespace of the spaceinstance to migrate
+	*/
+	"namespace"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1ProjectMigrateSpaceInstance {
+	/**
+	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	*/
+	"apiVersion"?: string;
+	/**
+	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	*/
+	"kind"?: string;
+	"metadata"?: V1ObjectMeta;
+	"sourceSpaceInstance": ManagementV1ProjectMigrateSpaceInstanceSource;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1ProjectMigrateVirtualClusterInstanceSource {
+	/**
+	* Name of the virtual cluster instance to migrate
+	*/
+	"name"?: string;
+	/**
+	* Namespace of the virtual cluster instance to migrate
+	*/
+	"namespace"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1ProjectMigrateVirtualClusterInstance {
+	/**
+	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	*/
+	"apiVersion"?: string;
+	/**
+	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	*/
+	"kind"?: string;
+	"metadata"?: V1ObjectMeta;
+	"sourceVirtualClusterInstance": ManagementV1ProjectMigrateVirtualClusterInstanceSource;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1ProjectSecretSpec {
+	/**
+	* Data contains the secret data. Each key must consist of alphanumeric characters, '-', '_' or '.'. The serialized form of the secret data is a base64 encoded string, representing the arbitrary (possibly non-string) data value here. Described in https://tools.ietf.org/html/rfc4648#section-4
+	*/
+	"data"?: {
+		[key: string]: string;
+	};
+	/**
+	* Description describes a Project secret
+	*/
+	"description"?: string;
+	/**
+	* DisplayName is the name that should be displayed in the UI
+	*/
+	"displayName"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1ProjectSecret {
+	/**
+	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	*/
+	"apiVersion"?: string;
+	/**
+	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	*/
+	"kind"?: string;
+	"metadata"?: V1ObjectMeta;
+	"spec"?: ManagementV1ProjectSecretSpec;
+	/**
+	* ProjectSecretStatus holds the status
+	*/
+	"status"?: any;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1SpaceTemplateDefinition {
+	"access"?: StorageV1InstanceAccess;
+	/**
+	* Apps specifies the apps that should get deployed by this template
+	*/
+	"apps"?: Array<StorageV1AppReference>;
+	/**
+	* Charts are helm charts that should get deployed
+	*/
+	"charts"?: Array<StorageV1TemplateHelmChart>;
+	"metadata"?: StorageV1TemplateMetadata;
+	/**
+	* Objects are Kubernetes style yamls that should get deployed into the virtual cluster
+	*/
+	"objects"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1SpaceTemplateVersion {
+	/**
+	* Parameters define additional app parameters that will set helm values
+	*/
+	"parameters"?: Array<StorageV1AppParameter>;
+	"template"?: StorageV1SpaceTemplateDefinition;
+	/**
+	* Version is the version. Needs to be in X.X.X format.
+	*/
+	"version"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1SpaceTemplateSpec {
 	/**
 	* Access holds the access rights for users and teams
 	*/
 	"access"?: Array<StorageV1Access>;
-	"config"?: StorageV1SecretRef;
 	/**
-	* Description describes a cluster access object
+	* Description describes the space template
 	*/
 	"description"?: string;
 	/**
-	* If specified this name is displayed in the UI instead of the metadata name
+	* DisplayName is the name that is shown in the UI
 	*/
 	"displayName"?: string;
-	/**
-	* Local specifies if it is the local cluster that should be connected, when this is specified, config is optional
-	*/
-	"local"?: boolean;
-	/**
-	* The namespace where the cluster components will be installed in
-	*/
-	"managementNamespace"?: string;
 	"owner"?: StorageV1UserOrTeam;
+	/**
+	* Parameters define additional app parameters that will set helm values
+	*/
+	"parameters"?: Array<StorageV1AppParameter>;
+	"template"?: StorageV1SpaceTemplateDefinition;
+	/**
+	* Versions are different space template versions that can be referenced as well
+	*/
+	"versions"?: Array<StorageV1SpaceTemplateVersion>;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -10989,9 +11060,942 @@ declare class StorageV1ClusterSpec {
 	}[];
 	constructor();
 }
-declare class StorageV1ClusterStatus {
-	"message"?: string;
-	"phase"?: string;
+declare class ManagementV1SpaceTemplateStatus {
+	"apps"?: Array<ClusterV1EntityInfo>;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1SpaceTemplate {
+	/**
+	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	*/
+	"apiVersion"?: string;
+	/**
+	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	*/
+	"kind"?: string;
+	"metadata"?: V1ObjectMeta;
+	"spec"?: ManagementV1SpaceTemplateSpec;
+	"status"?: ManagementV1SpaceTemplateStatus;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1VirtualClusterTemplateSpec {
+	/**
+	* Access holds the access rights for users and teams
+	*/
+	"access"?: Array<StorageV1Access>;
+	/**
+	* Description describes the virtual cluster template
+	*/
+	"description"?: string;
+	/**
+	* DisplayName is the name that is shown in the UI
+	*/
+	"displayName"?: string;
+	"owner"?: StorageV1UserOrTeam;
+	/**
+	* Parameters define additional app parameters that will set helm values
+	*/
+	"parameters"?: Array<StorageV1AppParameter>;
+	"spaceTemplateRef"?: StorageV1VirtualClusterTemplateSpaceTemplateRef;
+	"template"?: StorageV1VirtualClusterTemplateDefinition;
+	/**
+	* Versions are different versions of the template that can be referenced as well
+	*/
+	"versions"?: Array<StorageV1VirtualClusterTemplateVersion>;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1VirtualClusterTemplateStatus {
+	"apps"?: Array<ClusterV1EntityInfo>;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1VirtualClusterTemplate {
+	/**
+	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	*/
+	"apiVersion"?: string;
+	/**
+	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	*/
+	"kind"?: string;
+	"metadata"?: V1ObjectMeta;
+	"spec"?: ManagementV1VirtualClusterTemplateSpec;
+	"status"?: ManagementV1VirtualClusterTemplateStatus;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1ProjectTemplates {
+	/**
+	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	*/
+	"apiVersion"?: string;
+	/**
+	* DefaultSpaceTemplate
+	*/
+	"defaultSpaceTemplate"?: string;
+	/**
+	* DefaultVirtualClusterTemplate is the default template for the project
+	*/
+	"defaultVirtualClusterTemplate"?: string;
+	/**
+	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	*/
+	"kind"?: string;
+	"metadata"?: V1ObjectMeta;
+	/**
+	* SpaceTemplates holds all the allowed space templates
+	*/
+	"spaceTemplates"?: Array<ManagementV1SpaceTemplate>;
+	/**
+	* VirtualClusterTemplates holds all the allowed virtual cluster templates
+	*/
+	"virtualClusterTemplates"?: Array<ManagementV1VirtualClusterTemplate>;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1AllowedCluster {
+	/**
+	* Name is the name of the cluster that is allowed to create an environment in
+	*/
+	"name"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1AllowedTemplate {
+	/**
+	* Group of the template that is allowed. Currently only supports storage.loft.sh
+	*/
+	"group"?: string;
+	/**
+	* IsDefault specifies if the template should be used as a default
+	*/
+	"isDefault"?: boolean;
+	/**
+	* Kind of the template that is allowed. Currently only supports VirtualClusterTemplate & SpaceTemplate
+	*/
+	"kind"?: string;
+	/**
+	* Name of the template
+	*/
+	"name"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1ArgoProjectPolicyRule {
+	/**
+	* Action is one of \"*\", \"get\", \"create\", \"update\", \"delete\", \"sync\", or \"override\".
+	*/
+	"action"?: string;
+	/**
+	* Application is the ArgoCD project/repository to apply the rule to.
+	*/
+	"application"?: string;
+	/**
+	* Allow applies the \"allow\" permission to the rule, if allow is not set, the permission will always be set to \"deny\".
+	*/
+	"permission"?: boolean;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1ArgoProjectRole {
+	/**
+	* Description to add to the ArgoCD project.
+	*/
+	"description"?: string;
+	/**
+	* Groups is a list of OIDC group names to bind to the role.
+	*/
+	"groups"?: Array<string>;
+	/**
+	* Name of the ArgoCD role to attach to the project.
+	*/
+	"name"?: string;
+	/**
+	* Rules ist a list of policy rules to attach to the role.
+	*/
+	"rules"?: Array<StorageV1ArgoProjectPolicyRule>;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1ArgoProjectSpecMetadata {
+	/**
+	* Description to add to the ArgoCD project.
+	*/
+	"description"?: string;
+	/**
+	* ExtraAnnotations are optional annotations that can be attached to the project in ArgoCD.
+	*/
+	"extraAnnotations"?: {
+		[key: string]: string;
+	};
+	/**
+	* ExtraLabels are optional labels that can be attached to the project in ArgoCD.
+	*/
+	"extraLabels"?: {
+		[key: string]: string;
+	};
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1ArgoProjectSpec {
+	/**
+	* Enabled indicates if the ArgoCD Project Integration is enabled for this project. Enabling this will cause Loft to create an appProject in ArgoCD that is associated with the Loft Project. When Project integration is enabled Loft will override the default assigned role set in the SSO integration spec.
+	*/
+	"enabled"?: boolean;
+	"metadata"?: StorageV1ArgoProjectSpecMetadata;
+	/**
+	* Roles is a list of roles that should be attached to the ArgoCD project. If roles are provided no loft default roles will be set. If no roles are provided *and* SSO is enabled, loft will configure sane default values.
+	*/
+	"roles"?: Array<StorageV1ArgoProjectRole>;
+	/**
+	* SourceRepos is a list of source repositories to attach/allow on the project, if not specified will be \"*\" indicating all source repositories.
+	*/
+	"sourceRepos"?: Array<string>;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1ArgoSSOSpec {
+	/**
+	* AssignedRoles is a list of roles to assign for users who authenticate via Loft -- by default this will be the `read-only` role. If any roles are provided this will override the default setting.
+	*/
+	"assignedRoles"?: Array<string>;
+	/**
+	* Enabled indicates if the ArgoCD SSO Integration is enabled for this project. Enabling this will cause Loft to configure SSO authentication via Loft in ArgoCD. If Projects are *not* enabled, all users associated with this Project will be assigned either the 'read-only' (default) role, *or* the roles set under the AssignedRoles field.
+	*/
+	"enabled"?: boolean;
+	/**
+	* Host defines the ArgoCD host address that will be used for OIDC authentication between loft and ArgoCD. If not specified OIDC integration will be skipped, but vclusters/spaces will still be synced to ArgoCD.
+	*/
+	"host"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1ArgoIntegrationSpec {
+	/**
+	* Cluster defines the name of the cluster that ArgoCD is deployed into -- if not provided this will default to 'loft-cluster'.
+	*/
+	"cluster"?: string;
+	/**
+	* Enabled indicates if the ArgoCD Integration is enabled for the project -- this knob only enables the syncing of virtualclusters, but does not enable SSO integration or project creation (see subsequent spec sections!).
+	*/
+	"enabled"?: boolean;
+	/**
+	* Namespace defines the namespace in which ArgoCD is running in the cluster.
+	*/
+	"namespace"?: string;
+	"project"?: StorageV1ArgoProjectSpec;
+	"sso"?: StorageV1ArgoSSOSpec;
+	/**
+	* VirtualClusterInstance defines the name of *virtual cluster* (instance) that ArgoCD is deployed into. If provided, Cluster will be ignored and Loft will assume that ArgoCD is running in the specified virtual cluster.
+	*/
+	"virtualClusterInstance"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1Member {
+	/**
+	* ClusterRole is the assigned role for the above member
+	*/
+	"clusterRole"?: string;
+	/**
+	* Group of the member. Currently only supports storage.loft.sh
+	*/
+	"group"?: string;
+	/**
+	* Kind is the kind of the member. Currently either User or Team
+	*/
+	"kind"?: string;
+	/**
+	* Name of the member
+	*/
+	"name"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1NamespacePattern {
+	/**
+	* Space holds the namespace pattern to use for space instances
+	*/
+	"space"?: string;
+	/**
+	* VirtualCluster holds the namespace pattern to use for virtual cluster instances
+	*/
+	"virtualCluster"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1Quotas {
+	/**
+	* Project holds the quotas for the whole project
+	*/
+	"project"?: {
+		[key: string]: string;
+	};
+	/**
+	* User holds the quotas per user / team
+	*/
+	"user"?: {
+		[key: string]: string;
+	};
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1ProjectSpec {
+	/**
+	* Access holds the access rights for users and teams
+	*/
+	"access"?: Array<StorageV1Access>;
+	/**
+	* AllowedClusters are target clusters that are allowed to target with environments.
+	*/
+	"allowedClusters"?: Array<StorageV1AllowedCluster>;
+	/**
+	* AllowedTemplates are the templates that are allowed to use in this project.
+	*/
+	"allowedTemplates"?: Array<StorageV1AllowedTemplate>;
+	"argoCD"?: StorageV1ArgoIntegrationSpec;
+	/**
+	* Description describes an app
+	*/
+	"description"?: string;
+	/**
+	* DisplayName is the name that should be displayed in the UI
+	*/
+	"displayName"?: string;
+	/**
+	* Members are the users and teams that are part of this project
+	*/
+	"members"?: Array<StorageV1Member>;
+	"namespacePattern"?: StorageV1NamespacePattern;
+	"owner"?: StorageV1UserOrTeam;
+	"quotas"?: StorageV1Quotas;
+	"vault"?: StorageV1VaultIntegrationSpec;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1QuotaStatusProjectCluster {
+	/**
+	* Used is the amount currently used. Maps resource name, such as pods, to their used amount.
+	*/
+	"used"?: {
+		[key: string]: string;
+	};
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1QuotaStatusProject {
+	/**
+	* Clusters holds the used amount per cluster. Maps cluster name to used resources
+	*/
+	"clusters"?: {
+		[key: string]: StorageV1QuotaStatusProjectCluster;
+	};
+	/**
+	* Limit is the amount limited, copied from spec.quotas.project
+	*/
+	"limit"?: {
+		[key: string]: string;
+	};
+	/**
+	* Used is the amount currently used across all clusters
+	*/
+	"used"?: {
+		[key: string]: string;
+	};
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1QuotaStatusUserUsed {
+	/**
+	* Teams is a mapping of teams to used resources
+	*/
+	"teams"?: {
+		[key: string]: {
+			[key: string]: string;
+		};
+	};
+	/**
+	* Users is a mapping of users to used resources
+	*/
+	"users"?: {
+		[key: string]: {
+			[key: string]: string;
+		};
+	};
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1QuotaStatusUser {
+	/**
+	* Clusters holds the used amount per cluster. Maps cluster name to used resources
+	*/
+	"clusters"?: {
+		[key: string]: StorageV1QuotaStatusUserUsed;
+	};
+	/**
+	* Limit is the amount limited per user / team
+	*/
+	"limit"?: {
+		[key: string]: string;
+	};
+	"used"?: StorageV1QuotaStatusUserUsed;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1QuotaStatus {
+	"project"?: StorageV1QuotaStatusProject;
+	"user"?: StorageV1QuotaStatusUser;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1ProjectStatus {
+	/**
+	* Conditions holds several conditions the project might be in
+	*/
+	"conditions"?: Array<StorageV1Condition>;
+	"quotas"?: StorageV1QuotaStatus;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1Project {
+	/**
+	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	*/
+	"apiVersion"?: string;
+	/**
+	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	*/
+	"kind"?: string;
+	"metadata"?: V1ObjectMeta;
+	"spec"?: ManagementV1ProjectSpec;
+	"status"?: ManagementV1ProjectStatus;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1ResetAccessKeySpec {
+	/**
+	* Description describes an app
+	*/
+	"description"?: string;
+	/**
+	* If this field is true, the access key is still allowed to exist, however will not work to access the api
+	*/
+	"disabled"?: boolean;
+	/**
+	* The display name shown in the UI
+	*/
+	"displayName"?: string;
+	/**
+	* Groups specifies extra groups to apply when using this access key
+	*/
+	"groups"?: Array<string>;
+	"identity"?: StorageV1AccessKeyIdentity;
+	/**
+	* The last time the identity was refreshed
+	*/
+	"identityRefresh"?: Date;
+	/**
+	* The actual access key that will be used as a bearer token
+	*/
+	"key"?: string;
+	"oidcLogin"?: StorageV1AccessKeyOIDC;
+	"oidcProvider"?: StorageV1AccessKeyOIDCProvider;
+	/**
+	* DEPRECATED: do not use anymore Parent is used to share OIDC and external token information with multiple access keys. Since copying an OIDC refresh token would result in the other access keys becoming invalid after a refresh parent allows access keys to share that information.  The use case for this is primarily user generated access keys, which will have the users current access key as parent if it contains an OIDC token.
+	*/
+	"parent"?: string;
+	"scope"?: StorageV1AccessKeyScope;
+	/**
+	* Subject is a generic subject that can be used instead of user or team
+	*/
+	"subject"?: string;
+	/**
+	* The team this access key refers to
+	*/
+	"team"?: string;
+	/**
+	* The time to life for this access key
+	*/
+	"ttl"?: number;
+	/**
+	* If this is specified, the time to life for this access key will start after the lastActivity instead of creation timestamp
+	*/
+	"ttlAfterLastActivity"?: boolean;
+	/**
+	* The type of an access key, which basically describes if the access key is user managed or managed by loft itself.
+	*/
+	"type"?: string;
+	/**
+	* The user this access key refers to
+	*/
+	"user"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1ResetAccessKeyStatus {
+	/**
+	* The last time this access key was used to access the api
+	*/
+	"lastActivity"?: Date;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1ResetAccessKey {
+	/**
+	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	*/
+	"apiVersion"?: string;
+	/**
+	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	*/
+	"kind"?: string;
+	"metadata"?: V1ObjectMeta;
+	"spec"?: ManagementV1ResetAccessKeySpec;
+	"status"?: ManagementV1ResetAccessKeyStatus;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class V1NonResourceAttributes {
+	/**
+	* Path is the URL path of the request
+	*/
+	"path"?: string;
+	/**
+	* Verb is the standard HTTP verb
+	*/
+	"verb"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class V1ResourceAttributes {
+	/**
+	* Group is the API Group of the Resource.  \"*\" means all.
+	*/
+	"group"?: string;
+	/**
+	* Name is the name of the resource being requested for a \"get\" or deleted for a \"delete\". \"\" (empty) means all.
+	*/
+	"name"?: string;
+	/**
+	* Namespace is the namespace of the action being requested.  Currently, there is no distinction between no namespace and all namespaces \"\" (empty) is defaulted for LocalSubjectAccessReviews \"\" (empty) is empty for cluster-scoped resources \"\" (empty) means \"all\" for namespace scoped resources from a SubjectAccessReview or SelfSubjectAccessReview
+	*/
+	"namespace"?: string;
+	/**
+	* Resource is one of the existing resource types.  \"*\" means all.
+	*/
+	"resource"?: string;
+	/**
+	* Subresource is one of the existing resource types.  \"\" means none.
+	*/
+	"subresource"?: string;
+	/**
+	* Verb is a kubernetes resource API verb, like: get, list, watch, create, update, delete, proxy.  \"*\" means all.
+	*/
+	"verb"?: string;
+	/**
+	* Version is the API Version of the Resource.  \"*\" means all.
+	*/
+	"version"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1SelfSubjectAccessReviewSpec {
+	"nonResourceAttributes"?: V1NonResourceAttributes;
+	"resourceAttributes"?: V1ResourceAttributes;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1SelfSubjectAccessReviewStatus {
+	/**
+	* Allowed is required. True if the action would be allowed, false otherwise.
+	*/
+	"allowed": boolean;
+	/**
+	* Denied is optional. True if the action would be denied, otherwise false. If both allowed is false and denied is false, then the authorizer has no opinion on whether to authorize the action. Denied may not be true if Allowed is true.
+	*/
+	"denied"?: boolean;
+	/**
+	* EvaluationError is an indication that some error occurred during the authorization check. It is entirely possible to get an error and be able to continue determine authorization status in spite of it. For instance, RBAC can be missing a role, but enough roles are still present and bound to reason about the request.
+	*/
+	"evaluationError"?: string;
+	/**
+	* Reason is optional.  It indicates why a request was allowed or denied.
+	*/
 	"reason"?: string;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
@@ -11008,7 +12012,7 @@ declare class StorageV1ClusterStatus {
 	}[];
 	constructor();
 }
-declare class StorageV1Cluster {
+declare class ManagementV1SelfSubjectAccessReview {
 	/**
 	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
 	*/
@@ -11018,8 +12022,8 @@ declare class StorageV1Cluster {
 	*/
 	"kind"?: string;
 	"metadata"?: V1ObjectMeta;
-	"spec"?: StorageV1ClusterSpec;
-	"status"?: StorageV1ClusterStatus;
+	"spec"?: ManagementV1SelfSubjectAccessReviewSpec;
+	"status"?: ManagementV1SelfSubjectAccessReviewStatus;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -11035,12 +12039,35 @@ declare class StorageV1Cluster {
 	}[];
 	constructor();
 }
-declare class ManagementV1ClusterAccounts {
+declare class ManagementV1UserInfo {
 	/**
-	* Accounts are the accounts that belong to the user in the cluster
+	* The display name shown in the UI
 	*/
-	"accounts"?: Array<string>;
-	"cluster"?: StorageV1Cluster;
+	"displayName"?: string;
+	/**
+	* The users email address
+	*/
+	"email"?: string;
+	/**
+	* Icon is the icon of the user / team
+	*/
+	"icon"?: string;
+	/**
+	* Name is the kubernetes name of the object
+	*/
+	"name"?: string;
+	/**
+	* The user subject
+	*/
+	"subject"?: string;
+	/**
+	* Teams are the teams the user is part of
+	*/
+	"teams"?: Array<ClusterV1EntityInfo>;
+	/**
+	* The username that is used to login
+	*/
+	"username"?: string;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -11056,17 +12083,33 @@ declare class ManagementV1ClusterAccounts {
 	}[];
 	constructor();
 }
-declare class ManagementV1TeamClusters {
+declare class ManagementV1SelfStatus {
 	/**
-	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	* The name of the currently used access key
 	*/
-	"apiVersion"?: string;
-	"clusters"?: Array<ManagementV1ClusterAccounts>;
+	"accessKey"?: string;
 	/**
-	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	* The type of the currently used access key
 	*/
-	"kind"?: string;
-	"metadata"?: V1ObjectMeta;
+	"accessKeyType"?: string;
+	/**
+	* The groups of the currently logged in user
+	*/
+	"groups"?: Array<string>;
+	/**
+	* InstanceID is the loft instance id
+	*/
+	"instanceID"?: string;
+	/**
+	* IntercomHash is the hmac used to link a user/instance to intercomm
+	*/
+	"intercomHash"?: string;
+	/**
+	* The subject of the currently logged in user
+	*/
+	"subject"?: string;
+	"team"?: ClusterV1EntityInfo;
+	"user"?: ManagementV1UserInfo;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -11082,17 +12125,83 @@ declare class ManagementV1TeamClusters {
 	}[];
 	constructor();
 }
-declare class ManagementV1UserClusters {
+declare class ManagementV1Self {
 	/**
 	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
 	*/
 	"apiVersion"?: string;
-	"clusters"?: Array<ManagementV1ClusterAccounts>;
 	/**
 	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
 	*/
 	"kind"?: string;
 	"metadata"?: V1ObjectMeta;
+	"spec"?: any;
+	"status"?: ManagementV1SelfStatus;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1SharedSecretSpec {
+	/**
+	* Access holds the access rights for users and teams which will be transformed to Roles and RoleBindings
+	*/
+	"access"?: Array<StorageV1Access>;
+	/**
+	* Data contains the secret data. Each key must consist of alphanumeric characters, '-', '_' or '.'. The serialized form of the secret data is a base64 encoded string, representing the arbitrary (possibly non-string) data value here. Described in https://tools.ietf.org/html/rfc4648#section-4
+	*/
+	"data"?: {
+		[key: string]: string;
+	};
+	/**
+	* Description describes a shared secret
+	*/
+	"description"?: string;
+	/**
+	* DisplayName is the name that should be displayed in the UI
+	*/
+	"displayName"?: string;
+	"owner"?: StorageV1UserOrTeam;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1SharedSecret {
+	/**
+	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	*/
+	"apiVersion"?: string;
+	/**
+	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	*/
+	"kind"?: string;
+	"metadata"?: V1ObjectMeta;
+	"spec"?: ManagementV1SharedSecretSpec;
+	/**
+	* SharedSecretStatus holds the status
+	*/
+	"status"?: any;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -11259,59 +12368,15 @@ declare class ManagementV1SpaceConstraint {
 	}[];
 	constructor();
 }
-declare class StorageV1AppParameter {
+declare class StorageV1ClusterRef {
 	/**
-	* DefaultValue is the default value if none is specified
+	* Cluster is the connected cluster the space will be created in
 	*/
-	"defaultValue"?: string;
+	"cluster"?: string;
 	/**
-	* Description is the description to show for this parameter
+	* Namespace is the namespace inside the connected cluster holding the space
 	*/
-	"description"?: string;
-	/**
-	* Invalidation regex that if matched will reject the input
-	*/
-	"invalidation"?: string;
-	/**
-	* Label is the label to show for this parameter
-	*/
-	"label"?: string;
-	/**
-	* Max is the maximum number if type is number
-	*/
-	"max"?: number;
-	/**
-	* Min is the minimum number if type is number
-	*/
-	"min"?: number;
-	/**
-	* Options are the options if type is enum
-	*/
-	"options"?: Array<string>;
-	/**
-	* Placeholder shown in the UI
-	*/
-	"placeholder"?: string;
-	/**
-	* Required specifies if this parameter is required
-	*/
-	"required"?: boolean;
-	/**
-	* Section where this app should be displayed. Apps with the same section name will be grouped together
-	*/
-	"section"?: string;
-	/**
-	* Type of the parameter. Can be one of: string, multiline, boolean, enum and password
-	*/
-	"type"?: string;
-	/**
-	* Validation regex that if matched will allow the input
-	*/
-	"validation"?: string;
-	/**
-	* Variable is the path of the variable. Can be foo or foo.bar for nested objects.
-	*/
-	"variable"?: string;
+	"namespace"?: string;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -11327,14 +12392,17 @@ declare class StorageV1AppParameter {
 	}[];
 	constructor();
 }
-declare class StorageV1SpaceTemplateVersion {
+declare class StorageV1TemplateRef {
 	/**
-	* Parameters define additional app parameters that will set helm values
+	* Name holds the name of the template to reference.
 	*/
-	"parameters"?: Array<StorageV1AppParameter>;
-	"template"?: StorageV1SpaceTemplateDefinition;
+	"name"?: string;
 	/**
-	* Version is the version. Needs to be in X.X.X format.
+	* SyncOnce tells the controller to sync the instance once with the template. This is useful if you want to sync an instance after a template was changed. To automatically sync an instance with a template, use 'x.x.x' as version instead.
+	*/
+	"syncOnce"?: boolean;
+	/**
+	* Version holds the template version to use. Version is expected to be in semantic versioning format. Alternatively, you can also exchange major, minor or patch with an 'x' to tell Loft to automatically select the latest major, minor or patch version.
 	*/
 	"version"?: string;
 	static readonly discriminator: string | undefined;
@@ -11352,29 +12420,508 @@ declare class StorageV1SpaceTemplateVersion {
 	}[];
 	constructor();
 }
-declare class ManagementV1SpaceTemplateSpec {
+declare class ManagementV1SpaceInstanceSpec {
+	/**
+	* Access holds the access rights for users and teams
+	*/
+	"access"?: Array<StorageV1Access>;
+	"clusterRef"?: StorageV1ClusterRef;
+	/**
+	* Description describes a space instance
+	*/
+	"description"?: string;
+	/**
+	* DisplayName is the name that should be displayed in the UI
+	*/
+	"displayName"?: string;
+	/**
+	* ExtraAccessRules defines extra rules which users and teams should have which access to the virtual cluster.
+	*/
+	"extraAccessRules"?: Array<StorageV1InstanceAccessRule>;
+	"owner"?: StorageV1UserOrTeam;
+	/**
+	* Parameters are values to pass to the template
+	*/
+	"parameters"?: string;
+	"template"?: StorageV1SpaceTemplateDefinition;
+	"templateRef"?: StorageV1TemplateRef;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1SpaceInstanceStatus {
+	/**
+	* CanUpdate specifies if the requester can update the instance
+	*/
+	"canUpdate"?: boolean;
+	/**
+	* CanUse specifies if the requester can use the instance
+	*/
+	"canUse"?: boolean;
+	/**
+	* Conditions holds several conditions the virtual cluster might be in
+	*/
+	"conditions"?: Array<StorageV1Condition>;
+	/**
+	* IgnoreReconciliation tells the controller to ignore reconciliation for this instance -- this is primarily used when migrating virtual cluster instances from project to project; this prevents a situation where there are two virtual cluster instances representing the same virtual cluster which could cause issues with concurrent reconciliations of the same object. Once the virtual cluster instance has been cloned and placed into the new project, this (the \"old\") virtual cluster instance can safely be deleted.
+	*/
+	"ignoreReconciliation"?: boolean;
+	/**
+	* Message describes the reason in human-readable form
+	*/
+	"message"?: string;
+	/**
+	* Phase describes the current phase the space instance is in
+	*/
+	"phase"?: string;
+	/**
+	* Reason describes the reason in machine-readable form
+	*/
+	"reason"?: string;
+	"sleepModeConfig"?: ClusterV1SleepModeConfig;
+	"space"?: StorageV1SpaceTemplateDefinition;
+	"spaceObjects"?: StorageV1ObjectsStatus;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1SpaceInstance {
+	/**
+	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	*/
+	"apiVersion"?: string;
+	/**
+	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	*/
+	"kind"?: string;
+	"metadata"?: V1ObjectMeta;
+	"spec"?: ManagementV1SpaceInstanceSpec;
+	"status"?: ManagementV1SpaceInstanceStatus;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1SubjectAccessReviewSpec {
+	/**
+	* Extra corresponds to the user.Info.GetExtra() method from the authenticator.  Since that is input to the authorizer it needs a reflection here.
+	*/
+	"extra"?: {
+		[key: string]: Array<string>;
+	};
+	/**
+	* Groups is the groups you're testing for.
+	*/
+	"groups"?: Array<string>;
+	"nonResourceAttributes"?: V1NonResourceAttributes;
+	"resourceAttributes"?: V1ResourceAttributes;
+	/**
+	* UID information about the requesting user.
+	*/
+	"uid"?: string;
+	/**
+	* User is the user you're testing for. If you specify \"User\" but not \"Groups\", then is it interpreted as \"What if User were not a member of any groups
+	*/
+	"user"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1SubjectAccessReviewStatus {
+	/**
+	* Allowed is required. True if the action would be allowed, false otherwise.
+	*/
+	"allowed": boolean;
+	/**
+	* Denied is optional. True if the action would be denied, otherwise false. If both allowed is false and denied is false, then the authorizer has no opinion on whether to authorize the action. Denied may not be true if Allowed is true.
+	*/
+	"denied"?: boolean;
+	/**
+	* EvaluationError is an indication that some error occurred during the authorization check. It is entirely possible to get an error and be able to continue determine authorization status in spite of it. For instance, RBAC can be missing a role, but enough roles are still present and bound to reason about the request.
+	*/
+	"evaluationError"?: string;
+	/**
+	* Reason is optional.  It indicates why a request was allowed or denied.
+	*/
+	"reason"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1SubjectAccessReview {
+	/**
+	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	*/
+	"apiVersion"?: string;
+	/**
+	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	*/
+	"kind"?: string;
+	"metadata"?: V1ObjectMeta;
+	"spec"?: ManagementV1SubjectAccessReviewSpec;
+	"status"?: ManagementV1SubjectAccessReviewStatus;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1TaskLog {
+	/**
+	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	*/
+	"apiVersion"?: string;
+	/**
+	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	*/
+	"kind"?: string;
+	"metadata"?: V1ObjectMeta;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1TargetCluster {
+	/**
+	* Cluster is the cluster where the task should get executed
+	*/
+	"cluster"?: string;
+	/**
+	* Namespace is the namespace where the task should get executed
+	*/
+	"namespace"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1TargetInstance {
+	/**
+	* Name is the name of the instance
+	*/
+	"name"?: string;
+	/**
+	* Project where the instance is in
+	*/
+	"project"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1TargetVirtualCluster {
+	/**
+	* Cluster is the cluster where the virtual cluster lies
+	*/
+	"cluster"?: string;
+	/**
+	* Name of the virtual cluster
+	*/
+	"name"?: string;
+	/**
+	* Namespace is the namespace where the virtual cluster is located
+	*/
+	"namespace"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1Target {
+	"cluster"?: StorageV1TargetCluster;
+	"spaceInstance"?: StorageV1TargetInstance;
+	"virtualCluster"?: StorageV1TargetVirtualCluster;
+	"virtualClusterInstance"?: StorageV1TargetInstance;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1AppTask {
+	"appReference"?: StorageV1AppReference;
+	/**
+	* RollbackRevision is the revision to rollback to
+	*/
+	"rollbackRevision"?: string;
+	/**
+	* Type is the task type. Defaults to Upgrade
+	*/
+	"type"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1HelmTaskRelease {
+	"config"?: ClusterV1HelmReleaseConfig;
+	/**
+	* Labels are additional labels for the helm release.
+	*/
+	"labels"?: {
+		[key: string]: string;
+	};
+	/**
+	* Name is the name of the release
+	*/
+	"name"?: string;
+	/**
+	* Namespace of the release, if empty will use the target namespace
+	*/
+	"namespace"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1HelmTask {
+	"release"?: StorageV1HelmTaskRelease;
+	/**
+	* RollbackRevision is the revision to rollback to
+	*/
+	"rollbackRevision"?: string;
+	/**
+	* Type is the task type. Defaults to Upgrade
+	*/
+	"type"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1SpaceCreationTask {
+	/**
+	* Apps specifies the apps that should get deployed by this template
+	*/
+	"apps"?: Array<StorageV1AppReference>;
+	"metadata"?: V1ObjectMeta;
+	/**
+	* Objects are objects to put into the space
+	*/
+	"objects"?: string;
+	"owner"?: StorageV1UserOrTeam;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1VirtualClusterCreationTask {
+	"access"?: StorageV1InstanceAccess;
+	/**
+	* Apps specifies the apps that should get deployed by this template
+	*/
+	"apps"?: Array<StorageV1AppReference>;
+	"helmRelease"?: StorageV1VirtualClusterHelmRelease;
+	"metadata"?: V1ObjectMeta;
+	/**
+	* Objects is the optional objects configuration for the virtual cluster
+	*/
+	"objects"?: string;
+	"spaceCreation"?: StorageV1SpaceCreationTask;
+	/**
+	* Wait defines if the task should wait until the virtual cluster is ready
+	*/
+	"wait"?: boolean;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1TaskDefinition {
+	"appTask"?: StorageV1AppTask;
+	"helm"?: StorageV1HelmTask;
+	"spaceCreation"?: StorageV1SpaceCreationTask;
+	"virtualClusterCreation"?: StorageV1VirtualClusterCreationTask;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1TaskSpec {
 	/**
 	* Access holds the access rights for users and teams
 	*/
 	"access"?: Array<StorageV1Access>;
 	/**
-	* Description describes the space template
-	*/
-	"description"?: string;
-	/**
-	* DisplayName is the name that is shown in the UI
+	* DisplayName is the name that should be displayed in the UI
 	*/
 	"displayName"?: string;
 	"owner"?: StorageV1UserOrTeam;
-	/**
-	* Parameters define additional app parameters that will set helm values
-	*/
-	"parameters"?: Array<StorageV1AppParameter>;
-	"template"?: StorageV1SpaceTemplateDefinition;
-	/**
-	* Versions are different space template versions that can be referenced as well
-	*/
-	"versions"?: Array<StorageV1SpaceTemplateVersion>;
+	"scope"?: StorageV1AccessKeyScope;
+	"target"?: StorageV1Target;
+	"task"?: StorageV1TaskDefinition;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -11390,8 +12937,26 @@ declare class ManagementV1SpaceTemplateSpec {
 	}[];
 	constructor();
 }
-declare class ManagementV1SpaceTemplateStatus {
-	"apps"?: Array<ClusterV1EntityInfo>;
+declare class ManagementV1TaskStatus {
+	"cluster"?: ClusterV1EntityInfo;
+	/**
+	* Conditions holds several conditions the virtual cluster might be in
+	*/
+	"conditions"?: Array<StorageV1Condition>;
+	"containerState"?: V1ContainerStatus;
+	/**
+	* ObservedGeneration is the latest generation observed by the controller.
+	*/
+	"observedGeneration"?: number;
+	"owner"?: ClusterV1UserOrTeam;
+	/**
+	* PodPhase describes the phase this task is in  Possible enum values:  - `\"Failed\"` means that all containers in the pod have terminated, and at least one container has terminated in a failure (exited with a non-zero exit code or was stopped by the system).  - `\"Pending\"` means the pod has been accepted by the system, but one or more of the containers has not been started. This includes time before being bound to a node, as well as time spent pulling images onto the host.  - `\"Running\"` means the pod has been bound to a node and all of the containers have been started. At least one container is still running or is in the process of being restarted.  - `\"Succeeded\"` means that all containers in the pod have voluntarily terminated with a container exit code of 0, and the system is not going to restart any of these containers.  - `\"Unknown\"` means that for some reason the state of the pod could not be obtained, typically due to an error in communicating with the host of the pod. Deprecated: It isn't being set since 2015 (74da3b14b0c0f658b3bb8d2def5094686d0e9095)
+	*/
+	"podPhase"?: ManagementV1TaskStatusPodPhaseEnum;
+	/**
+	* Started determines if the task was started
+	*/
+	"started"?: boolean;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -11407,7 +12972,8 @@ declare class ManagementV1SpaceTemplateStatus {
 	}[];
 	constructor();
 }
-declare class ManagementV1SpaceTemplate {
+export type ManagementV1TaskStatusPodPhaseEnum = "Failed" | "Pending" | "Running" | "Succeeded" | "Unknown";
+declare class ManagementV1Task {
 	/**
 	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
 	*/
@@ -11417,8 +12983,8 @@ declare class ManagementV1SpaceTemplate {
 	*/
 	"kind"?: string;
 	"metadata"?: V1ObjectMeta;
-	"spec"?: ManagementV1SpaceTemplateSpec;
-	"status"?: ManagementV1SpaceTemplateStatus;
+	"spec"?: ManagementV1TaskSpec;
+	"status"?: ManagementV1TaskStatus;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -11434,47 +13000,8 @@ declare class ManagementV1SpaceTemplate {
 	}[];
 	constructor();
 }
-declare class ManagementV1VirtualClusterInstanceKubeConfigSpec {
-	/**
-	* CertificateTTL holds the ttl (in seconds) to set for the certificate associated with the returned kubeconfig. This field is optional, if no value is provided, the certificate TTL will be set to one day. If set to zero, this will cause loft to pass nil to the certificate signing request, which will result in the certificate being valid for the clusters `cluster-signing-duration` value which is typically one year.
-	*/
-	"certificateTTL"?: number;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1VirtualClusterInstanceKubeConfigStatus {
-	/**
-	* KubeConfig holds the final kubeconfig output
-	*/
-	"kubeConfig"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1VirtualClusterInstanceKubeConfig {
+declare class ManagementV1TeamAccessKeys {
+	"accessKeys"?: Array<ManagementV1OwnedAccessKey>;
 	/**
 	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
 	*/
@@ -11484,8 +13011,137 @@ declare class ManagementV1VirtualClusterInstanceKubeConfig {
 	*/
 	"kind"?: string;
 	"metadata"?: V1ObjectMeta;
-	"spec"?: ManagementV1VirtualClusterInstanceKubeConfigSpec;
-	"status"?: ManagementV1VirtualClusterInstanceKubeConfigStatus;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1ClusterSpec {
+	/**
+	* Access holds the access rights for users and teams
+	*/
+	"access"?: Array<StorageV1Access>;
+	"config"?: StorageV1SecretRef;
+	/**
+	* Description describes a cluster access object
+	*/
+	"description"?: string;
+	/**
+	* If specified this name is displayed in the UI instead of the metadata name
+	*/
+	"displayName"?: string;
+	/**
+	* Local specifies if it is the local cluster that should be connected, when this is specified, config is optional
+	*/
+	"local"?: boolean;
+	/**
+	* The namespace where the cluster components will be installed in
+	*/
+	"managementNamespace"?: string;
+	"owner"?: StorageV1UserOrTeam;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1ClusterStatus {
+	"message"?: string;
+	"phase"?: string;
+	"reason"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1Cluster {
+	/**
+	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	*/
+	"apiVersion"?: string;
+	/**
+	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	*/
+	"kind"?: string;
+	"metadata"?: V1ObjectMeta;
+	"spec"?: StorageV1ClusterSpec;
+	"status"?: StorageV1ClusterStatus;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1ClusterAccounts {
+	/**
+	* Accounts are the accounts that belong to the user in the cluster
+	*/
+	"accounts"?: Array<string>;
+	"cluster"?: StorageV1Cluster;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1TeamClusters {
+	/**
+	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	*/
+	"apiVersion"?: string;
+	"clusters"?: Array<ManagementV1ClusterAccounts>;
+	/**
+	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	*/
+	"kind"?: string;
+	"metadata"?: V1ObjectMeta;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -11788,270 +13444,7 @@ declare class ManagementV1Team {
 	}[];
 	constructor();
 }
-declare class ManagementV1FeatureStatus {
-	/**
-	* Enabled signals if the feature is currently enabled or disabled
-	*/
-	"enabled"?: boolean;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1Feature {
-	/**
-	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
-	*/
-	"apiVersion"?: string;
-	/**
-	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-	*/
-	"kind"?: string;
-	"metadata"?: V1ObjectMeta;
-	/**
-	* FeatureSpec holds the specification
-	*/
-	"spec"?: any;
-	"status"?: ManagementV1FeatureStatus;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class StorageV1HelmChart {
-	"metadata"?: ClusterV1Metadata;
-	"repository"?: StorageV1HelmChartRepository;
-	/**
-	* Versions holds all chart versions
-	*/
-	"versions"?: Array<string>;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1ProjectCharts {
-	/**
-	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
-	*/
-	"apiVersion"?: string;
-	/**
-	* Busy will indicate if the chart parsing is still in progress.
-	*/
-	"busy"?: boolean;
-	/**
-	* Holds the available helm charts for this cluster
-	*/
-	"charts": Array<StorageV1HelmChart>;
-	/**
-	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-	*/
-	"kind"?: string;
-	"metadata"?: V1ObjectMeta;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1ProjectSecretSpec {
-	/**
-	* Data contains the secret data. Each key must consist of alphanumeric characters, '-', '_' or '.'. The serialized form of the secret data is a base64 encoded string, representing the arbitrary (possibly non-string) data value here. Described in https://tools.ietf.org/html/rfc4648#section-4
-	*/
-	"data"?: {
-		[key: string]: string;
-	};
-	/**
-	* Description describes a Project secret
-	*/
-	"description"?: string;
-	/**
-	* DisplayName is the name that should be displayed in the UI
-	*/
-	"displayName"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1ProjectSecret {
-	/**
-	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
-	*/
-	"apiVersion"?: string;
-	/**
-	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-	*/
-	"kind"?: string;
-	"metadata"?: V1ObjectMeta;
-	"spec"?: ManagementV1ProjectSecretSpec;
-	/**
-	* ProjectSecretStatus holds the status
-	*/
-	"status"?: any;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1SharedSecretSpec {
-	/**
-	* Access holds the access rights for users and teams which will be transformed to Roles and RoleBindings
-	*/
-	"access"?: Array<StorageV1Access>;
-	/**
-	* Data contains the secret data. Each key must consist of alphanumeric characters, '-', '_' or '.'. The serialized form of the secret data is a base64 encoded string, representing the arbitrary (possibly non-string) data value here. Described in https://tools.ietf.org/html/rfc4648#section-4
-	*/
-	"data"?: {
-		[key: string]: string;
-	};
-	/**
-	* Description describes a shared secret
-	*/
-	"description"?: string;
-	/**
-	* DisplayName is the name that should be displayed in the UI
-	*/
-	"displayName"?: string;
-	"owner"?: StorageV1UserOrTeam;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1SharedSecret {
-	/**
-	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
-	*/
-	"apiVersion"?: string;
-	/**
-	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-	*/
-	"kind"?: string;
-	"metadata"?: V1ObjectMeta;
-	"spec"?: ManagementV1SharedSecretSpec;
-	/**
-	* SharedSecretStatus holds the status
-	*/
-	"status"?: any;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1ClusterCharts {
-	/**
-	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
-	*/
-	"apiVersion"?: string;
-	/**
-	* Busy will indicate if the chart parsing is still in progress.
-	*/
-	"busy"?: boolean;
-	/**
-	* Holds the available helm charts for this cluster
-	*/
-	"charts": Array<StorageV1HelmChart>;
-	/**
-	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-	*/
-	"kind"?: string;
-	"metadata"?: V1ObjectMeta;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1TeamAccessKeys {
+declare class ManagementV1UserAccessKeys {
 	"accessKeys"?: Array<ManagementV1OwnedAccessKey>;
 	/**
 	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
@@ -12077,119 +13470,17 @@ declare class ManagementV1TeamAccessKeys {
 	}[];
 	constructor();
 }
-declare class StorageV1VirtualClusterTemplateSpaceTemplateRef {
-	/**
-	* Name of the space template
-	*/
-	"name"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class StorageV1VirtualClusterTemplateVersion {
-	/**
-	* Parameters define additional app parameters that will set helm values
-	*/
-	"parameters"?: Array<StorageV1AppParameter>;
-	"template"?: StorageV1VirtualClusterTemplateDefinition;
-	/**
-	* Version is the version. Needs to be in X.X.X format.
-	*/
-	"version"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1VirtualClusterTemplateSpec {
-	/**
-	* Access holds the access rights for users and teams
-	*/
-	"access"?: Array<StorageV1Access>;
-	/**
-	* Description describes the virtual cluster template
-	*/
-	"description"?: string;
-	/**
-	* DisplayName is the name that is shown in the UI
-	*/
-	"displayName"?: string;
-	"owner"?: StorageV1UserOrTeam;
-	/**
-	* Parameters define additional app parameters that will set helm values
-	*/
-	"parameters"?: Array<StorageV1AppParameter>;
-	"spaceTemplateRef"?: StorageV1VirtualClusterTemplateSpaceTemplateRef;
-	"template"?: StorageV1VirtualClusterTemplateDefinition;
-	/**
-	* Versions are different versions of the template that can be referenced as well
-	*/
-	"versions"?: Array<StorageV1VirtualClusterTemplateVersion>;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1VirtualClusterTemplateStatus {
-	"apps"?: Array<ClusterV1EntityInfo>;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1VirtualClusterTemplate {
+declare class ManagementV1UserClusters {
 	/**
 	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
 	*/
 	"apiVersion"?: string;
+	"clusters"?: Array<ManagementV1ClusterAccounts>;
 	/**
 	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
 	*/
 	"kind"?: string;
 	"metadata"?: V1ObjectMeta;
-	"spec"?: ManagementV1VirtualClusterTemplateSpec;
-	"status"?: ManagementV1VirtualClusterTemplateStatus;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -12205,56 +13496,23 @@ declare class ManagementV1VirtualClusterTemplate {
 	}[];
 	constructor();
 }
-declare class ManagementV1ProjectTemplates {
+declare class ManagementV1UserPermissionsRole {
 	/**
-	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	* ClusterRole is the name of the cluster role assigned to this user.
 	*/
-	"apiVersion"?: string;
+	"clusterRole"?: string;
 	/**
-	* DefaultSpaceTemplate
-	*/
-	"defaultSpaceTemplate"?: string;
-	/**
-	* DefaultVirtualClusterTemplate is the default template for the project
-	*/
-	"defaultVirtualClusterTemplate"?: string;
-	/**
-	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-	*/
-	"kind"?: string;
-	"metadata"?: V1ObjectMeta;
-	/**
-	* SpaceTemplates holds all the allowed space templates
-	*/
-	"spaceTemplates"?: Array<ManagementV1SpaceTemplate>;
-	/**
-	* VirtualClusterTemplates holds all the allowed virtual cluster templates
-	*/
-	"virtualClusterTemplates"?: Array<ManagementV1VirtualClusterTemplate>;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1ProjectMigrateVirtualClusterInstanceSource {
-	/**
-	* Name of the virtual cluster instance to migrate
-	*/
-	"name"?: string;
-	/**
-	* Namespace of the virtual cluster instance to migrate
+	* Namespace where this rules are valid.
 	*/
 	"namespace"?: string;
+	/**
+	* Role is the name of the role assigned to this user.
+	*/
+	"role"?: string;
+	/**
+	* Rules are the roles rules
+	*/
+	"rules"?: Array<V1PolicyRule>;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -12270,17 +13528,77 @@ declare class ManagementV1ProjectMigrateVirtualClusterInstanceSource {
 	}[];
 	constructor();
 }
-declare class ManagementV1ProjectMigrateVirtualClusterInstance {
+declare class ManagementV1UserPermissions {
 	/**
 	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
 	*/
 	"apiVersion"?: string;
 	/**
+	* ClusterRoles that apply to the user.
+	*/
+	"clusterRoles"?: Array<ManagementV1UserPermissionsRole>;
+	/**
 	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
 	*/
 	"kind"?: string;
 	"metadata"?: V1ObjectMeta;
-	"sourceVirtualClusterInstance": ManagementV1ProjectMigrateVirtualClusterInstanceSource;
+	/**
+	* NamespaceRoles that apply to the user. Can be either regular roles or cluster roles that are namespace scoped.
+	*/
+	"namespaceRoles"?: Array<ManagementV1UserPermissionsRole>;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1UserProfile {
+	/**
+	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	*/
+	"apiVersion"?: string;
+	/**
+	* CurrentPassword is the current password of the user
+	*/
+	"currentPassword"?: string;
+	/**
+	* Custom is custom information that should be saved of the user
+	*/
+	"custom"?: string;
+	/**
+	* The new display name shown in the UI
+	*/
+	"displayName"?: string;
+	/**
+	* Email is the new email of the user
+	*/
+	"email"?: string;
+	/**
+	* Icon is the new icon of the user
+	*/
+	"icon"?: string;
+	/**
+	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	*/
+	"kind"?: string;
+	"metadata"?: V1ObjectMeta;
+	/**
+	* Password is the new password of the user
+	*/
+	"password"?: string;
+	/**
+	* Username is the new username of the user
+	*/
+	"username"?: string;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -12427,15 +13745,11 @@ declare class ManagementV1User {
 	}[];
 	constructor();
 }
-declare class V1NonResourceAttributes {
+declare class ManagementV1VirtualClusterInstanceKubeConfigSpec {
 	/**
-	* Path is the URL path of the request
+	* CertificateTTL holds the ttl (in seconds) to set for the certificate associated with the returned kubeconfig. This field is optional, if no value is provided, the certificate TTL will be set to one day. If set to zero, this will cause loft to pass nil to the certificate signing request, which will result in the certificate being valid for the clusters `cluster-signing-duration` value which is typically one year.
 	*/
-	"path"?: string;
-	/**
-	* Verb is the standard HTTP verb
-	*/
-	"verb"?: string;
+	"certificateTTL"?: number;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -12451,35 +13765,11 @@ declare class V1NonResourceAttributes {
 	}[];
 	constructor();
 }
-declare class V1ResourceAttributes {
+declare class ManagementV1VirtualClusterInstanceKubeConfigStatus {
 	/**
-	* Group is the API Group of the Resource.  \"*\" means all.
+	* KubeConfig holds the final kubeconfig output
 	*/
-	"group"?: string;
-	/**
-	* Name is the name of the resource being requested for a \"get\" or deleted for a \"delete\". \"\" (empty) means all.
-	*/
-	"name"?: string;
-	/**
-	* Namespace is the namespace of the action being requested.  Currently, there is no distinction between no namespace and all namespaces \"\" (empty) is defaulted for LocalSubjectAccessReviews \"\" (empty) is empty for cluster-scoped resources \"\" (empty) means \"all\" for namespace scoped resources from a SubjectAccessReview or SelfSubjectAccessReview
-	*/
-	"namespace"?: string;
-	/**
-	* Resource is one of the existing resource types.  \"*\" means all.
-	*/
-	"resource"?: string;
-	/**
-	* Subresource is one of the existing resource types.  \"\" means none.
-	*/
-	"subresource"?: string;
-	/**
-	* Verb is a kubernetes resource API verb, like: get, list, watch, create, update, delete, proxy.  \"*\" means all.
-	*/
-	"verb"?: string;
-	/**
-	* Version is the API Version of the Resource.  \"*\" means all.
-	*/
-	"version"?: string;
+	"kubeConfig"?: string;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -12495,75 +13785,7 @@ declare class V1ResourceAttributes {
 	}[];
 	constructor();
 }
-declare class ManagementV1SubjectAccessReviewSpec {
-	/**
-	* Extra corresponds to the user.Info.GetExtra() method from the authenticator.  Since that is input to the authorizer it needs a reflection here.
-	*/
-	"extra"?: {
-		[key: string]: Array<string>;
-	};
-	/**
-	* Groups is the groups you're testing for.
-	*/
-	"groups"?: Array<string>;
-	"nonResourceAttributes"?: V1NonResourceAttributes;
-	"resourceAttributes"?: V1ResourceAttributes;
-	/**
-	* UID information about the requesting user.
-	*/
-	"uid"?: string;
-	/**
-	* User is the user you're testing for. If you specify \"User\" but not \"Groups\", then is it interpreted as \"What if User were not a member of any groups
-	*/
-	"user"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1SubjectAccessReviewStatus {
-	/**
-	* Allowed is required. True if the action would be allowed, false otherwise.
-	*/
-	"allowed": boolean;
-	/**
-	* Denied is optional. True if the action would be denied, otherwise false. If both allowed is false and denied is false, then the authorizer has no opinion on whether to authorize the action. Denied may not be true if Allowed is true.
-	*/
-	"denied"?: boolean;
-	/**
-	* EvaluationError is an indication that some error occurred during the authorization check. It is entirely possible to get an error and be able to continue determine authorization status in spite of it. For instance, RBAC can be missing a role, but enough roles are still present and bound to reason about the request.
-	*/
-	"evaluationError"?: string;
-	/**
-	* Reason is optional.  It indicates why a request was allowed or denied.
-	*/
-	"reason"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1SubjectAccessReview {
+declare class ManagementV1VirtualClusterInstanceKubeConfig {
 	/**
 	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
 	*/
@@ -12573,8 +13795,8 @@ declare class ManagementV1SubjectAccessReview {
 	*/
 	"kind"?: string;
 	"metadata"?: V1ObjectMeta;
-	"spec"?: ManagementV1SubjectAccessReviewSpec;
-	"status"?: ManagementV1SubjectAccessReviewStatus;
+	"spec"?: ManagementV1VirtualClusterInstanceKubeConfigSpec;
+	"status"?: ManagementV1VirtualClusterInstanceKubeConfigStatus;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -12590,7 +13812,7 @@ declare class ManagementV1SubjectAccessReview {
 	}[];
 	constructor();
 }
-declare class StorageV1LocalClusterAccess {
+declare class ManagementV1VirtualClusterInstanceLog {
 	/**
 	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
 	*/
@@ -12600,11 +13822,6 @@ declare class StorageV1LocalClusterAccess {
 	*/
 	"kind"?: string;
 	"metadata"?: V1ObjectMeta;
-	"spec"?: StorageV1LocalClusterAccessSpec;
-	/**
-	* LocalClusterAccessStatus holds the status of a user access
-	*/
-	"status"?: any;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -12620,299 +13837,19 @@ declare class StorageV1LocalClusterAccess {
 	}[];
 	constructor();
 }
-declare class StorageV1LocalTeamStatus {
+declare class StorageV1VirtualClusterClusterRef {
 	/**
-	* Annotations are the annotations of the user
-	*/
-	"annotations"?: {
-		[key: string]: string;
-	};
-	/**
-	* The display name shown in the UI
-	*/
-	"displayName"?: string;
-	/**
-	* The groups defined in a token that belong to a team
-	*/
-	"groups"?: Array<string>;
-	/**
-	* Labels are the labels of the user
-	*/
-	"labels"?: {
-		[key: string]: string;
-	};
-	/**
-	* The username of the team that will be used for identification and docker registry namespace
-	*/
-	"username"?: string;
-	/**
-	* The loft users that belong to a team
-	*/
-	"users"?: Array<string>;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class StorageV1LocalTeam {
-	/**
-	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
-	*/
-	"apiVersion"?: string;
-	/**
-	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-	*/
-	"kind"?: string;
-	"metadata"?: V1ObjectMeta;
-	"spec"?: any;
-	"status"?: StorageV1LocalTeamStatus;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class UiV1UISettingsStatus {
-	/**
-	* FeatureEnabled indicates if the UI white label feature is enabled or disabled
-	*/
-	"featureEnabled": boolean;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class UiV1UISettings {
-	/**
-	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
-	*/
-	"apiVersion"?: string;
-	/**
-	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-	*/
-	"kind"?: string;
-	"metadata"?: V1ObjectMeta;
-	"spec"?: UiV1UISettingsSpec;
-	"status"?: UiV1UISettingsStatus;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class PolicyV1beta1JsPolicyBundleSpec {
-	/**
-	* Bundle holds the bundled payload (including dependencies and minified javascript code)
-	*/
-	"bundle"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class PolicyV1beta1JsPolicyBundle {
-	/**
-	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
-	*/
-	"apiVersion"?: string;
-	/**
-	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-	*/
-	"kind"?: string;
-	"metadata"?: V1ObjectMeta;
-	"spec"?: PolicyV1beta1JsPolicyBundleSpec;
-	"status"?: any;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1KioskSpec {
-	"UISettings"?: UiV1UISettings;
-	"chartInfo"?: ClusterV1ChartInfo;
-	"clusterQuota"?: ClusterV1ClusterQuota;
-	"helmRelease"?: ClusterV1HelmRelease;
-	"jsPolicy"?: PolicyV1beta1JsPolicy;
-	"jsPolicyBundle"?: PolicyV1beta1JsPolicyBundle;
-	"jsPolicyViolations"?: PolicyV1beta1JsPolicyViolations;
-	"localClusterAccess"?: ClusterV1LocalClusterAccess;
-	"localStorageClusterAccess"?: StorageV1LocalClusterAccess;
-	"localTeam"?: StorageV1LocalTeam;
-	"localUser"?: StorageV1LocalUser;
-	"sleepModeConfig"?: ClusterV1SleepModeConfig;
-	"space"?: ClusterV1Space;
-	"storageClusterQuota"?: StorageV1ClusterQuota;
-	"storageVirtualCluster"?: StorageV1VirtualCluster;
-	"virtualCluster"?: ClusterV1VirtualCluster;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1Kiosk {
-	/**
-	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
-	*/
-	"apiVersion"?: string;
-	/**
-	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-	*/
-	"kind"?: string;
-	"metadata"?: V1ObjectMeta;
-	"spec"?: ManagementV1KioskSpec;
-	"status"?: any;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1LoftUpgradeSpec {
-	/**
-	* If specified, updated the release in the given namespace
-	*/
-	"namespace"?: string;
-	/**
-	* If specified, uses this as release name
-	*/
-	"release"?: string;
-	"version"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1LoftUpgrade {
-	/**
-	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
-	*/
-	"apiVersion"?: string;
-	/**
-	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-	*/
-	"kind"?: string;
-	"metadata"?: V1ObjectMeta;
-	"spec"?: ManagementV1LoftUpgradeSpec;
-	"status"?: any;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1ProjectImportVirtualClusterSource {
-	/**
-	* Cluster name of the cluster the virtual cluster is running on
+	* Cluster is the connected cluster the space will be created in
 	*/
 	"cluster"?: string;
 	/**
-	* ImportName is an optional name to use as the virtualclusterinstance name, if not provided the vcluster name will be used
-	*/
-	"importName"?: string;
-	/**
-	* Name of the virtual cluster to import
-	*/
-	"name"?: string;
-	/**
-	* Namespace of the virtual cluster to import
+	* Namespace is the namespace inside the connected cluster holding the space
 	*/
 	"namespace"?: string;
+	/**
+	* VirtualCluster is the name of the virtual cluster inside the namespace
+	*/
+	"virtualCluster"?: string;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -12928,394 +13865,31 @@ declare class ManagementV1ProjectImportVirtualClusterSource {
 	}[];
 	constructor();
 }
-declare class ManagementV1ProjectImportVirtualCluster {
+declare class ManagementV1VirtualClusterInstanceSpec {
 	/**
-	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
-	*/
-	"apiVersion"?: string;
-	/**
-	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-	*/
-	"kind"?: string;
-	"metadata"?: V1ObjectMeta;
-	"sourceVirtualCluster": ManagementV1ProjectImportVirtualClusterSource;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1UserProfile {
-	/**
-	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
-	*/
-	"apiVersion"?: string;
-	/**
-	* CurrentPassword is the current password of the user
-	*/
-	"currentPassword"?: string;
-	/**
-	* Custom is custom information that should be saved of the user
-	*/
-	"custom"?: string;
-	/**
-	* The new display name shown in the UI
-	*/
-	"displayName"?: string;
-	/**
-	* Email is the new email of the user
-	*/
-	"email"?: string;
-	/**
-	* Icon is the new icon of the user
-	*/
-	"icon"?: string;
-	/**
-	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-	*/
-	"kind"?: string;
-	"metadata"?: V1ObjectMeta;
-	/**
-	* Password is the new password of the user
-	*/
-	"password"?: string;
-	/**
-	* Username is the new username of the user
-	*/
-	"username"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class StorageV1StreamContainer {
-	/**
-	* Container is the container name to use
-	*/
-	"container"?: string;
-	"selector"?: V1LabelSelector;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class StorageV1AppVersion {
-	"config"?: ClusterV1HelmReleaseConfig;
-	/**
-	* DefaultNamespace is the default namespace this app should installed in.
-	*/
-	"defaultNamespace"?: string;
-	/**
-	* Icon holds an URL to the app icon
-	*/
-	"icon"?: string;
-	/**
-	* Parameters define additional app parameters that will set helm values
-	*/
-	"parameters"?: Array<StorageV1AppParameter>;
-	/**
-	* Readme is a longer markdown string that describes the app.
-	*/
-	"readme"?: string;
-	"streamContainer"?: StorageV1StreamContainer;
-	/**
-	* Timeout is the time to wait for any individual Kubernetes operation (like Jobs for hooks) (default 5m0s)
-	*/
-	"timeout"?: string;
-	/**
-	* Version is the version. Needs to be in X.X.X format.
-	*/
-	"version"?: string;
-	/**
-	* Wait determines if Loft should wait during deploy for the app to become ready
-	*/
-	"wait"?: boolean;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class StorageV1HelmConfiguration {
-	/**
-	* Determines if the remote location uses an insecure TLS certificate.
-	*/
-	"insecure"?: boolean;
-	/**
-	* Name of the chart to deploy
-	*/
-	"name": string;
-	/**
-	* The password to use for the selected repository
-	*/
-	"password"?: string;
-	/**
-	* The repo url to use
-	*/
-	"repoUrl"?: string;
-	/**
-	* The username to use for the selected repository
-	*/
-	"username"?: string;
-	/**
-	* The additional helm values to use. Expected block string
-	*/
-	"values"?: string;
-	/**
-	* Version is the version of the chart to deploy
-	*/
-	"version"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1AppSpec {
-	/**
-	* Access holds the access rights for users and teams
+	* Access to the virtual cluster object itself
 	*/
 	"access"?: Array<StorageV1Access>;
+	"clusterRef"?: StorageV1VirtualClusterClusterRef;
 	/**
-	* Clusters are the clusters this app can be installed in.
-	*/
-	"clusters"?: Array<string>;
-	"config"?: ClusterV1HelmReleaseConfig;
-	/**
-	* DefaultNamespace is the default namespace this app should installed in.
-	*/
-	"defaultNamespace"?: string;
-	/**
-	* Description describes an app
+	* Description describes a virtual cluster instance
 	*/
 	"description"?: string;
 	/**
 	* DisplayName is the name that should be displayed in the UI
 	*/
 	"displayName"?: string;
-	"helm"?: StorageV1HelmConfiguration;
 	/**
-	* Icon holds an URL to the app icon
+	* ExtraAccessRules defines extra rules which users and teams should have which access to the virtual cluster.
 	*/
-	"icon"?: string;
-	/**
-	* DEPRECATED: Use config instead manifest represents kubernetes resources that will be deployed into the target namespace
-	*/
-	"manifests"?: string;
+	"extraAccessRules"?: Array<StorageV1InstanceAccessRule>;
 	"owner"?: StorageV1UserOrTeam;
 	/**
-	* Parameters define additional app parameters that will set helm values
+	* Parameters are values to pass to the template
 	*/
-	"parameters"?: Array<StorageV1AppParameter>;
-	/**
-	* Readme is a longer markdown string that describes the app.
-	*/
-	"readme"?: string;
-	/**
-	* RecommendedApp specifies where this app should show up as recommended app
-	*/
-	"recommendedApp"?: Array<string>;
-	"streamContainer"?: StorageV1StreamContainer;
-	/**
-	* Timeout is the time to wait for any individual Kubernetes operation (like Jobs for hooks) (default 5m0s)
-	*/
-	"timeout"?: string;
-	/**
-	* Versions are different app versions that can be referenced
-	*/
-	"versions"?: Array<StorageV1AppVersion>;
-	/**
-	* Wait determines if Loft should wait during deploy for the app to become ready
-	*/
-	"wait"?: boolean;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1App {
-	/**
-	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
-	*/
-	"apiVersion"?: string;
-	/**
-	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-	*/
-	"kind"?: string;
-	"metadata"?: V1ObjectMeta;
-	"spec"?: ManagementV1AppSpec;
-	/**
-	* AppStatus holds the status
-	*/
-	"status"?: any;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ServerInstanceTokenAuth {
-	/**
-	* Certificate is the signing certificate for the token.
-	*/
-	"certificate": string;
-	/**
-	* Token is the jwt token identifying the loft instance.
-	*/
-	"token": string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1AnnouncementStatus {
-	"analyticsToken"?: ServerInstanceTokenAuth;
-	/**
-	* Announcement is the html announcement that should be displayed in the frontend
-	*/
-	"announcement"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1Announcement {
-	/**
-	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
-	*/
-	"apiVersion"?: string;
-	/**
-	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-	*/
-	"kind"?: string;
-	"metadata"?: V1ObjectMeta;
-	"spec"?: any;
-	"status"?: ManagementV1AnnouncementStatus;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class StorageV1VirtualClusterTemplateSpec {
-	/**
-	* Access holds the access rights for users and teams
-	*/
-	"access"?: Array<StorageV1Access>;
-	/**
-	* Description describes the virtual cluster template
-	*/
-	"description"?: string;
-	/**
-	* DisplayName is the name that is shown in the UI
-	*/
-	"displayName"?: string;
-	"owner"?: StorageV1UserOrTeam;
-	/**
-	* Parameters define additional app parameters that will set helm values
-	*/
-	"parameters"?: Array<StorageV1AppParameter>;
-	"spaceTemplateRef"?: StorageV1VirtualClusterTemplateSpaceTemplateRef;
+	"parameters"?: string;
 	"template"?: StorageV1VirtualClusterTemplateDefinition;
-	/**
-	* Versions are different versions of the template that can be referenced as well
-	*/
-	"versions"?: Array<StorageV1VirtualClusterTemplateVersion>;
+	"templateRef"?: StorageV1TemplateRef;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -13331,521 +13905,39 @@ declare class StorageV1VirtualClusterTemplateSpec {
 	}[];
 	constructor();
 }
-declare class StorageV1VirtualClusterTemplate {
+declare class ManagementV1VirtualClusterInstanceStatus {
 	/**
-	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	* CanUpdate specifies if the requester can update the instance
 	*/
-	"apiVersion"?: string;
+	"canUpdate"?: boolean;
 	/**
-	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	* CanUse specifies if the requester can use the instance
 	*/
-	"kind"?: string;
-	"metadata"?: V1ObjectMeta;
-	"spec"?: StorageV1VirtualClusterTemplateSpec;
+	"canUse"?: boolean;
 	/**
-	* VirtualClusterTemplateStatus holds the status
+	* Conditions holds several conditions the virtual cluster might be in
 	*/
-	"status"?: any;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1ClusterVirtualClusterDefaults {
+	"conditions"?: Array<StorageV1Condition>;
 	/**
-	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	* IgnoreReconciliation tells the controller to ignore reconciliation for this instance -- this is primarily used when migrating virtual cluster instances from project to project; this prevents a situation where there are two virtual cluster instances representing the same virtual cluster which could cause issues with concurrent reconciliations of the same object. Once the virtual cluster instance has been cloned and placed into the new project, this (the \"old\") virtual cluster instance can safely be deleted.
 	*/
-	"apiVersion"?: string;
-	"defaultTemplate"?: StorageV1VirtualClusterTemplate;
+	"ignoreReconciliation"?: boolean;
 	/**
-	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	* Message describes the reason in human-readable form why the cluster is in the current phase
 	*/
-	"kind"?: string;
-	/**
-	* LatestVersion is the latest virtual cluster version
-	*/
-	"latestVersion"?: string;
-	"metadata"?: V1ObjectMeta;
-	/**
-	* Default values for the virtual cluster chart
-	*/
-	"values"?: string;
-	/**
-	* Warning should be somehow shown to the user when there is a problem retrieving the defaults
-	*/
-	"warning"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1SelfSubjectAccessReviewSpec {
-	"nonResourceAttributes"?: V1NonResourceAttributes;
-	"resourceAttributes"?: V1ResourceAttributes;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1SelfSubjectAccessReviewStatus {
-	/**
-	* Allowed is required. True if the action would be allowed, false otherwise.
-	*/
-	"allowed": boolean;
-	/**
-	* Denied is optional. True if the action would be denied, otherwise false. If both allowed is false and denied is false, then the authorizer has no opinion on whether to authorize the action. Denied may not be true if Allowed is true.
-	*/
-	"denied"?: boolean;
-	/**
-	* EvaluationError is an indication that some error occurred during the authorization check. It is entirely possible to get an error and be able to continue determine authorization status in spite of it. For instance, RBAC can be missing a role, but enough roles are still present and bound to reason about the request.
-	*/
-	"evaluationError"?: string;
-	/**
-	* Reason is optional.  It indicates why a request was allowed or denied.
-	*/
-	"reason"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1SelfSubjectAccessReview {
-	/**
-	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
-	*/
-	"apiVersion"?: string;
-	/**
-	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-	*/
-	"kind"?: string;
-	"metadata"?: V1ObjectMeta;
-	"spec"?: ManagementV1SelfSubjectAccessReviewSpec;
-	"status"?: ManagementV1SelfSubjectAccessReviewStatus;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class AuditV1Event {
-	/**
-	* Annotations is an unstructured key value map stored with an audit event that may be set by plugins invoked in the request serving chain, including authentication, authorization and admission plugins. Note that these annotations are for the audit event, and do not correspond to the metadata.annotations of the submitted object. Keys should uniquely identify the informing component to avoid name collisions (e.g. podsecuritypolicy.admission.k8s.io/policy). Values should be short. Annotations are included in the Metadata level.
-	*/
-	"annotations"?: {
-		[key: string]: string;
-	};
-	/**
-	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
-	*/
-	"apiVersion"?: string;
-	/**
-	* Unique audit ID, generated for each request.
-	*/
-	"auditID": string;
-	"impersonatedUser"?: V1UserInfo;
-	/**
-	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-	*/
-	"kind"?: string;
-	/**
-	* AuditLevel at which event was generated
-	*/
-	"level": string;
-	"objectRef"?: AuditV1ObjectReference;
-	"requestObject"?: RuntimeUnknown;
-	/**
-	* MicroTime is version of Time with microsecond level precision.
-	*/
-	"requestReceivedTimestamp"?: Date;
-	/**
-	* RequestURI is the request URI as sent by the client to a server.
-	*/
-	"requestURI": string;
-	"responseObject"?: RuntimeUnknown;
-	"responseStatus"?: V1Status;
-	/**
-	* Source IPs, from where the request originated and intermediate proxies.
-	*/
-	"sourceIPs"?: Array<string>;
-	/**
-	* Stage of the request handling when this event instance was generated.
-	*/
-	"stage": string;
-	/**
-	* MicroTime is version of Time with microsecond level precision.
-	*/
-	"stageTimestamp"?: Date;
-	"user": V1UserInfo;
-	/**
-	* UserAgent records the user agent string reported by the client. Note that the UserAgent is provided by the client, and must not be trusted.
-	*/
-	"userAgent"?: string;
-	/**
-	* Verb is the kubernetes verb associated with the request. For non-resource requests, this is the lower-cased HTTP method.
-	*/
-	"verb": string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1AgentAuditEventSpec {
-	/**
-	* Events are the events the agent has recorded
-	*/
-	"events"?: Array<AuditV1Event>;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1AgentAuditEvent {
-	/**
-	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
-	*/
-	"apiVersion"?: string;
-	/**
-	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-	*/
-	"kind"?: string;
-	"metadata"?: V1ObjectMeta;
-	"spec"?: ManagementV1AgentAuditEventSpec;
-	/**
-	* AgentAuditEventStatus holds the status
-	*/
-	"status"?: any;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1UserInfo {
-	/**
-	* The display name shown in the UI
-	*/
-	"displayName"?: string;
-	/**
-	* The users email address
-	*/
-	"email"?: string;
-	/**
-	* Icon is the icon of the user / team
-	*/
-	"icon"?: string;
-	/**
-	* Name is the kubernetes name of the object
-	*/
-	"name"?: string;
-	/**
-	* The user subject
-	*/
-	"subject"?: string;
-	/**
-	* Teams are the teams the user is part of
-	*/
-	"teams"?: Array<ClusterV1EntityInfo>;
-	/**
-	* The username that is used to login
-	*/
-	"username"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1SelfStatus {
-	/**
-	* The name of the currently used access key
-	*/
-	"accessKey"?: string;
-	/**
-	* The type of the currently used access key
-	*/
-	"accessKeyType"?: string;
-	/**
-	* The groups of the currently logged in user
-	*/
-	"groups"?: Array<string>;
-	/**
-	* InstanceID is the loft instance id
-	*/
-	"instanceID"?: string;
-	/**
-	* IntercomHash is the hmac used to link a user/instance to intercomm
-	*/
-	"intercomHash"?: string;
-	/**
-	* The subject of the currently logged in user
-	*/
-	"subject"?: string;
-	"team"?: ClusterV1EntityInfo;
-	"user"?: ManagementV1UserInfo;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1Self {
-	/**
-	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
-	*/
-	"apiVersion"?: string;
-	/**
-	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-	*/
-	"kind"?: string;
-	"metadata"?: V1ObjectMeta;
-	"spec"?: any;
-	"status"?: ManagementV1SelfStatus;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1ProjectClusters {
-	/**
-	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
-	*/
-	"apiVersion"?: string;
-	/**
-	* Clusters holds all the allowed clusters
-	*/
-	"clusters"?: Array<ManagementV1Cluster>;
-	/**
-	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-	*/
-	"kind"?: string;
-	"metadata"?: V1ObjectMeta;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1LicenseTokenStatus {
-	"token"?: ServerInstanceTokenAuth;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1LicenseToken {
-	/**
-	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
-	*/
-	"apiVersion"?: string;
-	/**
-	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-	*/
-	"kind"?: string;
-	"metadata"?: V1ObjectMeta;
-	"spec"?: any;
-	"status"?: ManagementV1LicenseTokenStatus;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1ClusterMemberAccess {
-	/**
-	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
-	*/
-	"apiVersion"?: string;
-	/**
-	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-	*/
-	"kind"?: string;
-	"metadata"?: V1ObjectMeta;
-	/**
-	* Teams holds all the teams that the current user has access to the cluster
-	*/
-	"teams"?: Array<ManagementV1ClusterMember>;
-	/**
-	* Users holds all the users that the current user has access to the cluster
-	*/
-	"users"?: Array<ManagementV1ClusterMember>;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1ClusterConnectSpec {
-	/**
-	* The user to create an admin account for
-	*/
-	"adminUser"?: string;
-	"clusterTemplate"?: ManagementV1Cluster;
-	/**
-	* the kube config used to connect the cluster
-	*/
-	"config"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1ClusterConnectStatus {
-	"failed"?: boolean;
 	"message"?: string;
+	/**
+	* Phase describes the current phase the virtual cluster instance is in
+	*/
+	"phase"?: string;
+	/**
+	* Reason describes the reason in machine-readable form why the cluster is in the current phase
+	*/
 	"reason"?: string;
+	"sleepModeConfig"?: ClusterV1SleepModeConfig;
+	"spaceObjects"?: StorageV1ObjectsStatus;
+	"virtualCluster"?: StorageV1VirtualClusterTemplateDefinition;
+	"virtualClusterObjects"?: StorageV1ObjectsStatus;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -13861,7 +13953,7 @@ declare class ManagementV1ClusterConnectStatus {
 	}[];
 	constructor();
 }
-declare class ManagementV1ClusterConnect {
+declare class ManagementV1VirtualClusterInstance {
 	/**
 	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
 	*/
@@ -13871,35 +13963,8 @@ declare class ManagementV1ClusterConnect {
 	*/
 	"kind"?: string;
 	"metadata"?: V1ObjectMeta;
-	"spec"?: ManagementV1ClusterConnectSpec;
-	"status"?: ManagementV1ClusterConnectStatus;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1ClusterDomain {
-	/**
-	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
-	*/
-	"apiVersion"?: string;
-	"domain"?: string;
-	/**
-	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-	*/
-	"kind"?: string;
-	"metadata"?: V1ObjectMeta;
-	"target"?: string;
+	"spec"?: ManagementV1VirtualClusterInstanceSpec;
+	"status"?: ManagementV1VirtualClusterInstanceStatus;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -13916,63 +13981,64 @@ declare class ManagementV1ClusterDomain {
 	constructor();
 }
 export type TGenResources = {
-	ManagementV1ProjectMembers: GroupVersionResource<ManagementV1ProjectMembers>;
-	ManagementV1VirtualClusterInstance: GroupVersionResource<ManagementV1VirtualClusterInstance>;
-	ManagementV1VirtualClusterInstanceLog: GroupVersionResource<ManagementV1VirtualClusterInstanceLog>;
-	ManagementV1UserAccessKeys: GroupVersionResource<ManagementV1UserAccessKeys>;
+	ManagementV1AgentAuditEvent: GroupVersionResource<ManagementV1AgentAuditEvent>;
+	ManagementV1Announcement: GroupVersionResource<ManagementV1Announcement>;
+	ManagementV1App: GroupVersionResource<ManagementV1App>;
+	ManagementV1Cluster: GroupVersionResource<ManagementV1Cluster>;
+	ManagementV1ClusterAccess: GroupVersionResource<ManagementV1ClusterAccess>;
+	ManagementV1ClusterCharts: GroupVersionResource<ManagementV1ClusterCharts>;
+	ManagementV1ClusterConnect: GroupVersionResource<ManagementV1ClusterConnect>;
+	ManagementV1ClusterDomain: GroupVersionResource<ManagementV1ClusterDomain>;
+	ManagementV1ClusterMemberAccess: GroupVersionResource<ManagementV1ClusterMemberAccess>;
+	ManagementV1ClusterMembers: GroupVersionResource<ManagementV1ClusterMembers>;
+	ManagementV1ClusterReset: GroupVersionResource<ManagementV1ClusterReset>;
+	ManagementV1ClusterRoleTemplate: GroupVersionResource<ManagementV1ClusterRoleTemplate>;
+	ManagementV1ClusterVirtualClusterDefaults: GroupVersionResource<ManagementV1ClusterVirtualClusterDefaults>;
+	ManagementV1Config: GroupVersionResource<ManagementV1Config>;
+	ManagementV1DirectClusterEndpointToken: GroupVersionResource<ManagementV1DirectClusterEndpointToken>;
+	ManagementV1Event: GroupVersionResource<ManagementV1Event>;
+	ManagementV1Feature: GroupVersionResource<ManagementV1Feature>;
+	ManagementV1IngressAuthToken: GroupVersionResource<ManagementV1IngressAuthToken>;
+	ManagementV1Kiosk: GroupVersionResource<ManagementV1Kiosk>;
 	ManagementV1License: GroupVersionResource<ManagementV1License>;
 	ManagementV1LicenseRequest: GroupVersionResource<ManagementV1LicenseRequest>;
-	ManagementV1ProjectImportSpace: GroupVersionResource<ManagementV1ProjectImportSpace>;
-	ManagementV1TaskLog: GroupVersionResource<ManagementV1TaskLog>;
-	ManagementV1Task: GroupVersionResource<ManagementV1Task>;
-	ManagementV1ResetAccessKey: GroupVersionResource<ManagementV1ResetAccessKey>;
-	ManagementV1DirectClusterEndpointToken: GroupVersionResource<ManagementV1DirectClusterEndpointToken>;
-	ManagementV1ProjectMigrateSpaceInstance: GroupVersionResource<ManagementV1ProjectMigrateSpaceInstance>;
-	ManagementV1SpaceInstance: GroupVersionResource<ManagementV1SpaceInstance>;
-	ManagementV1ProjectChartInfo: GroupVersionResource<ManagementV1ProjectChartInfo>;
-	ManagementV1IngressAuthToken: GroupVersionResource<ManagementV1IngressAuthToken>;
-	ManagementV1Cluster: GroupVersionResource<ManagementV1Cluster>;
-	ManagementV1ClusterReset: GroupVersionResource<ManagementV1ClusterReset>;
-	ManagementV1Project: GroupVersionResource<ManagementV1Project>;
-	ManagementV1PolicyViolation: GroupVersionResource<ManagementV1PolicyViolation>;
-	ManagementV1ClusterMembers: GroupVersionResource<ManagementV1ClusterMembers>;
-	ManagementV1Event: GroupVersionResource<ManagementV1Event>;
-	ManagementV1ClusterAccess: GroupVersionResource<ManagementV1ClusterAccess>;
-	ManagementV1Config: GroupVersionResource<ManagementV1Config>;
-	ManagementV1ClusterRoleTemplate: GroupVersionResource<ManagementV1ClusterRoleTemplate>;
-	ManagementV1TeamClusters: GroupVersionResource<ManagementV1TeamClusters>;
-	ManagementV1UserClusters: GroupVersionResource<ManagementV1UserClusters>;
-	ManagementV1SpaceConstraint: GroupVersionResource<ManagementV1SpaceConstraint>;
-	ManagementV1SpaceTemplate: GroupVersionResource<ManagementV1SpaceTemplate>;
-	ManagementV1VirtualClusterInstanceKubeConfig: GroupVersionResource<ManagementV1VirtualClusterInstanceKubeConfig>;
-	ManagementV1Team: GroupVersionResource<ManagementV1Team>;
-	ManagementV1OwnedAccessKey: GroupVersionResource<ManagementV1OwnedAccessKey>;
-	ManagementV1Feature: GroupVersionResource<ManagementV1Feature>;
-	ManagementV1ProjectCharts: GroupVersionResource<ManagementV1ProjectCharts>;
-	ManagementV1ProjectSecret: GroupVersionResource<ManagementV1ProjectSecret>;
-	ManagementV1SharedSecret: GroupVersionResource<ManagementV1SharedSecret>;
-	ManagementV1ClusterCharts: GroupVersionResource<ManagementV1ClusterCharts>;
-	ManagementV1TeamAccessKeys: GroupVersionResource<ManagementV1TeamAccessKeys>;
-	ManagementV1ProjectTemplates: GroupVersionResource<ManagementV1ProjectTemplates>;
-	ManagementV1ProjectMigrateVirtualClusterInstance: GroupVersionResource<ManagementV1ProjectMigrateVirtualClusterInstance>;
-	ManagementV1User: GroupVersionResource<ManagementV1User>;
-	ManagementV1SubjectAccessReview: GroupVersionResource<ManagementV1SubjectAccessReview>;
-	ManagementV1Kiosk: GroupVersionResource<ManagementV1Kiosk>;
-	ManagementV1LoftUpgrade: GroupVersionResource<ManagementV1LoftUpgrade>;
-	ManagementV1ProjectImportVirtualCluster: GroupVersionResource<ManagementV1ProjectImportVirtualCluster>;
-	ManagementV1UserProfile: GroupVersionResource<ManagementV1UserProfile>;
-	ManagementV1App: GroupVersionResource<ManagementV1App>;
-	ManagementV1Announcement: GroupVersionResource<ManagementV1Announcement>;
-	ManagementV1ClusterVirtualClusterDefaults: GroupVersionResource<ManagementV1ClusterVirtualClusterDefaults>;
-	ManagementV1SelfSubjectAccessReview: GroupVersionResource<ManagementV1SelfSubjectAccessReview>;
-	ManagementV1AgentAuditEvent: GroupVersionResource<ManagementV1AgentAuditEvent>;
-	ManagementV1Self: GroupVersionResource<ManagementV1Self>;
-	ManagementV1ProjectClusters: GroupVersionResource<ManagementV1ProjectClusters>;
 	ManagementV1LicenseToken: GroupVersionResource<ManagementV1LicenseToken>;
-	ManagementV1ClusterMemberAccess: GroupVersionResource<ManagementV1ClusterMemberAccess>;
-	ManagementV1ClusterConnect: GroupVersionResource<ManagementV1ClusterConnect>;
+	ManagementV1LoftUpgrade: GroupVersionResource<ManagementV1LoftUpgrade>;
+	ManagementV1OwnedAccessKey: GroupVersionResource<ManagementV1OwnedAccessKey>;
+	ManagementV1PolicyViolation: GroupVersionResource<ManagementV1PolicyViolation>;
+	ManagementV1Project: GroupVersionResource<ManagementV1Project>;
+	ManagementV1ProjectChartInfo: GroupVersionResource<ManagementV1ProjectChartInfo>;
+	ManagementV1ProjectCharts: GroupVersionResource<ManagementV1ProjectCharts>;
+	ManagementV1ProjectClusters: GroupVersionResource<ManagementV1ProjectClusters>;
+	ManagementV1ProjectImportSpace: GroupVersionResource<ManagementV1ProjectImportSpace>;
+	ManagementV1ProjectImportVirtualCluster: GroupVersionResource<ManagementV1ProjectImportVirtualCluster>;
+	ManagementV1ProjectMembers: GroupVersionResource<ManagementV1ProjectMembers>;
+	ManagementV1ProjectMigrateSpaceInstance: GroupVersionResource<ManagementV1ProjectMigrateSpaceInstance>;
+	ManagementV1ProjectMigrateVirtualClusterInstance: GroupVersionResource<ManagementV1ProjectMigrateVirtualClusterInstance>;
+	ManagementV1ProjectSecret: GroupVersionResource<ManagementV1ProjectSecret>;
+	ManagementV1ProjectTemplates: GroupVersionResource<ManagementV1ProjectTemplates>;
+	ManagementV1ResetAccessKey: GroupVersionResource<ManagementV1ResetAccessKey>;
+	ManagementV1Self: GroupVersionResource<ManagementV1Self>;
+	ManagementV1SelfSubjectAccessReview: GroupVersionResource<ManagementV1SelfSubjectAccessReview>;
+	ManagementV1SharedSecret: GroupVersionResource<ManagementV1SharedSecret>;
+	ManagementV1SpaceConstraint: GroupVersionResource<ManagementV1SpaceConstraint>;
+	ManagementV1SpaceInstance: GroupVersionResource<ManagementV1SpaceInstance>;
+	ManagementV1SpaceTemplate: GroupVersionResource<ManagementV1SpaceTemplate>;
+	ManagementV1SubjectAccessReview: GroupVersionResource<ManagementV1SubjectAccessReview>;
+	ManagementV1Task: GroupVersionResource<ManagementV1Task>;
+	ManagementV1TaskLog: GroupVersionResource<ManagementV1TaskLog>;
+	ManagementV1Team: GroupVersionResource<ManagementV1Team>;
+	ManagementV1TeamAccessKeys: GroupVersionResource<ManagementV1TeamAccessKeys>;
+	ManagementV1TeamClusters: GroupVersionResource<ManagementV1TeamClusters>;
+	ManagementV1User: GroupVersionResource<ManagementV1User>;
+	ManagementV1UserAccessKeys: GroupVersionResource<ManagementV1UserAccessKeys>;
+	ManagementV1UserClusters: GroupVersionResource<ManagementV1UserClusters>;
+	ManagementV1UserPermissions: GroupVersionResource<ManagementV1UserPermissions>;
+	ManagementV1UserProfile: GroupVersionResource<ManagementV1UserProfile>;
+	ManagementV1VirtualClusterInstance: GroupVersionResource<ManagementV1VirtualClusterInstance>;
+	ManagementV1VirtualClusterInstanceKubeConfig: GroupVersionResource<ManagementV1VirtualClusterInstanceKubeConfig>;
+	ManagementV1VirtualClusterInstanceLog: GroupVersionResource<ManagementV1VirtualClusterInstanceLog>;
 	ManagementV1VirtualClusterTemplate: GroupVersionResource<ManagementV1VirtualClusterTemplate>;
-	ManagementV1ClusterDomain: GroupVersionResource<ManagementV1ClusterDomain>;
 };
 export declare const Resources: {
 	ClusterV1SleepModeConfig: GroupVersionResource<ClusterV1SleepModeConfig>;
