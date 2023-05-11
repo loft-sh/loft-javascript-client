@@ -21,9 +21,9 @@ export class V1HostPathVolumeSource {
     */
     'path': string;
     /**
-    * type for HostPath Volume Defaults to \"\" More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath
+    * type for HostPath Volume Defaults to \"\" More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath  Possible enum values:  - `\"\"` For backwards compatible, leave it empty if unset  - `\"BlockDevice\"` A block device must exist at the given path  - `\"CharDevice\"` A character device must exist at the given path  - `\"Directory\"` A directory must exist at the given path  - `\"DirectoryOrCreate\"` If nothing exists at the given path, an empty directory will be created there as needed with file mode 0755, having the same group and ownership with Kubelet.  - `\"File\"` A file must exist at the given path  - `\"FileOrCreate\"` If nothing exists at the given path, an empty file will be created there as needed with file mode 0644, having the same group and ownership with Kubelet.  - `\"Socket\"` A UNIX socket must exist at the given path
     */
-    'type'?: string;
+    'type'?: V1HostPathVolumeSourceTypeEnum;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -37,7 +37,7 @@ export class V1HostPathVolumeSource {
         {
             "name": "type",
             "baseName": "type",
-            "type": "string",
+            "type": "V1HostPathVolumeSourceTypeEnum",
             "format": ""
         }    ];
 
@@ -48,4 +48,7 @@ export class V1HostPathVolumeSource {
     public constructor() {
     }
 }
+
+
+export type V1HostPathVolumeSourceTypeEnum = "" | "BlockDevice" | "CharDevice" | "Directory" | "DirectoryOrCreate" | "File" | "FileOrCreate" | "Socket" ;
 

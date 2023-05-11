@@ -35,17 +35,17 @@ export class PolicyV1beta1JsPolicySpec {
     */
     'dependencies'?: { [key: string]: string; };
     /**
-    * FailurePolicy defines how unrecognized errors from the admission endpoint are handled - allowed values are Ignore or Fail. Defaults to Fail.
+    * FailurePolicy defines how unrecognized errors from the admission endpoint are handled - allowed values are Ignore or Fail. Defaults to Fail.  Possible enum values:  - `\"Fail\"` means that an error calling the webhook causes the admission to fail.  - `\"Ignore\"` means that an error calling the webhook is ignored.
     */
-    'failurePolicy'?: string;
+    'failurePolicy'?: PolicyV1beta1JsPolicySpecFailurePolicyEnum;
     /**
     * JavaScript is the payload of the webhook that will be executed. If this is not defined, jsPolicy expects the user to create a JsPolicyBundle for this policy.
     */
     'javascript'?: string;
     /**
-    * matchPolicy defines how the \"rules\" list is used to match incoming requests. Allowed values are \"Exact\" or \"Equivalent\".  - Exact: match a request only if it exactly matches a specified rule. For example, if deployments can be modified via apps/v1, apps/v1beta1, and extensions/v1beta1, but \"rules\" only included `apiGroups:[\"apps\"], apiVersions:[\"v1\"], resources: [\"deployments\"]`, a request to apps/v1beta1 or extensions/v1beta1 would not be sent to the webhook.  - Equivalent: match a request if modifies a resource listed in rules, even via another API group or version. For example, if deployments can be modified via apps/v1, apps/v1beta1, and extensions/v1beta1, and \"rules\" only included `apiGroups:[\"apps\"], apiVersions:[\"v1\"], resources: [\"deployments\"]`, a request to apps/v1beta1 or extensions/v1beta1 would be converted to apps/v1 and sent to the webhook.  Defaults to \"Equivalent\"
+    * matchPolicy defines how the \"rules\" list is used to match incoming requests. Allowed values are \"Exact\" or \"Equivalent\".  - Exact: match a request only if it exactly matches a specified rule. For example, if deployments can be modified via apps/v1, apps/v1beta1, and extensions/v1beta1, but \"rules\" only included `apiGroups:[\"apps\"], apiVersions:[\"v1\"], resources: [\"deployments\"]`, a request to apps/v1beta1 or extensions/v1beta1 would not be sent to the webhook.  - Equivalent: match a request if modifies a resource listed in rules, even via another API group or version. For example, if deployments can be modified via apps/v1, apps/v1beta1, and extensions/v1beta1, and \"rules\" only included `apiGroups:[\"apps\"], apiVersions:[\"v1\"], resources: [\"deployments\"]`, a request to apps/v1beta1 or extensions/v1beta1 would be converted to apps/v1 and sent to the webhook.  Defaults to \"Equivalent\"  Possible enum values:  - `\"Equivalent\"` means requests should be sent to the webhook if they modify a resource listed in rules via another API group or version.  - `\"Exact\"` means requests should only be sent to the webhook if they exactly match a given rule.
     */
-    'matchPolicy'?: string;
+    'matchPolicy'?: PolicyV1beta1JsPolicySpecMatchPolicyEnum;
     'namespaceSelector'?: V1LabelSelector;
     'objectSelector'?: V1LabelSelector;
     /**
@@ -109,7 +109,7 @@ export class PolicyV1beta1JsPolicySpec {
         {
             "name": "failurePolicy",
             "baseName": "failurePolicy",
-            "type": "string",
+            "type": "PolicyV1beta1JsPolicySpecFailurePolicyEnum",
             "format": ""
         },
         {
@@ -121,7 +121,7 @@ export class PolicyV1beta1JsPolicySpec {
         {
             "name": "matchPolicy",
             "baseName": "matchPolicy",
-            "type": "string",
+            "type": "PolicyV1beta1JsPolicySpecMatchPolicyEnum",
             "format": ""
         },
         {
@@ -180,4 +180,8 @@ export class PolicyV1beta1JsPolicySpec {
     public constructor() {
     }
 }
+
+
+export type PolicyV1beta1JsPolicySpecFailurePolicyEnum = "Fail" | "Ignore" ;
+export type PolicyV1beta1JsPolicySpecMatchPolicyEnum = "Equivalent" | "Exact" ;
 

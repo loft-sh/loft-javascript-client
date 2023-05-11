@@ -3409,9 +3409,9 @@ declare class V1SecurityContext {
 	*/
 	"privileged"?: boolean;
 	/**
-	* procMount denotes the type of proc mount to use for the containers. The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.
+	* procMount denotes the type of proc mount to use for the containers. The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.  Possible enum values:  - `\"Default\"` uses the container runtime defaults for readonly and masked paths for /proc. Most container runtimes mask certain paths in /proc to avoid accidental security exposure of special devices or information.  - `\"Unmasked\"` bypasses the default masking behavior of the container runtime and ensures the newly created /proc the container stays in tact with no modifications.
 	*/
-	"procMount"?: string;
+	"procMount"?: V1SecurityContextProcMountEnum;
 	/**
 	* Whether this container has a read-only root filesystem. Default is false. Note that this field cannot be set when spec.os.name is windows.
 	*/
@@ -3446,6 +3446,7 @@ declare class V1SecurityContext {
 	}[];
 	constructor();
 }
+export type V1SecurityContextProcMountEnum = "Default" | "Unmasked";
 declare class V1VolumeDevice {
 	/**
 	* devicePath is the path inside of the container that the device will be mapped to.
@@ -3476,9 +3477,9 @@ declare class V1VolumeMount {
 	*/
 	"mountPath": string;
 	/**
-	* mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.
+	* mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.  Possible enum values:  - `\"Bidirectional\"` means that the volume in a container will receive new mounts from the host or other containers, and its own mounts will be propagated from the container to the host or other containers. Note that this mode is recursively applied to all mounts in the volume (\"rshared\" in Linux terminology).  - `\"HostToContainer\"` means that the volume in a container will receive new mounts from the host or other containers, but filesystems mounted inside the container won't be propagated to the host or other containers. Note that this mode is recursively applied to all mounts in the volume (\"rslave\" in Linux terminology).  - `\"None\"` means that the volume in a container will not receive new mounts from the host or other containers, and filesystems mounted inside the container won't be propagated to the host or other containers. Note that this mode corresponds to \"private\" in Linux terminology.
 	*/
-	"mountPropagation"?: string;
+	"mountPropagation"?: V1VolumeMountMountPropagationEnum;
 	/**
 	* This must match the Name of a Volume.
 	*/
@@ -3510,6 +3511,7 @@ declare class V1VolumeMount {
 	}[];
 	constructor();
 }
+export type V1VolumeMountMountPropagationEnum = "Bidirectional" | "HostToContainer" | "None";
 declare class V1Container {
 	/**
 	* Arguments to the entrypoint. The container image's CMD is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. \"$$(VAR_NAME)\" will produce the string literal \"$(VAR_NAME)\". Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell
@@ -3918,9 +3920,9 @@ declare class V1PodSecurityContext {
 	*/
 	"fsGroup"?: number;
 	/**
-	* fsGroupChangePolicy defines behavior of changing ownership and permission of the volume before being exposed inside Pod. This field will only apply to volume types which support fsGroup based ownership(and permissions). It will have no effect on ephemeral volume types such as: secret, configmaps and emptydir. Valid values are \"OnRootMismatch\" and \"Always\". If not specified, \"Always\" is used. Note that this field cannot be set when spec.os.name is windows.
+	* fsGroupChangePolicy defines behavior of changing ownership and permission of the volume before being exposed inside Pod. This field will only apply to volume types which support fsGroup based ownership(and permissions). It will have no effect on ephemeral volume types such as: secret, configmaps and emptydir. Valid values are \"OnRootMismatch\" and \"Always\". If not specified, \"Always\" is used. Note that this field cannot be set when spec.os.name is windows.  Possible enum values:  - `\"Always\"` indicates that volume's ownership and permissions should always be changed whenever volume is mounted inside a Pod. This the default behavior.  - `\"OnRootMismatch\"` indicates that volume's ownership and permissions will be changed only when permission and ownership of root directory does not match with expected permissions on the volume. This can help shorten the time it takes to change ownership and permissions of a volume.
 	*/
-	"fsGroupChangePolicy"?: string;
+	"fsGroupChangePolicy"?: V1PodSecurityContextFsGroupChangePolicyEnum;
 	/**
 	* The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.
 	*/
@@ -3959,6 +3961,7 @@ declare class V1PodSecurityContext {
 	}[];
 	constructor();
 }
+export type V1PodSecurityContextFsGroupChangePolicyEnum = "Always" | "OnRootMismatch";
 declare class V1Toleration {
 	/**
 	* Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.  Possible enum values:  - `\"NoExecute\"` Evict any already-running pods that do not tolerate the taint. Currently enforced by NodeController.  - `\"NoSchedule\"` Do not allow new pods to schedule onto the node unless they tolerate the taint, but allow all pods submitted to Kubelet without going through the scheduler to start, and allow all already-running pods to continue running. Enforced by the scheduler.  - `\"PreferNoSchedule\"` Like TaintEffectNoSchedule, but the scheduler tries not to schedule new pods onto the node, rather than prohibiting new pods from scheduling onto the node entirely. Enforced by the scheduler.
@@ -4012,13 +4015,13 @@ declare class V1TopologySpreadConstraint {
 	*/
 	"minDomains"?: number;
 	/**
-	* NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelector when calculating pod topology spread skew. Options are: - Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations. - Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations.  If this value is nil, the behavior is equivalent to the Honor policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.
+	* NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelector when calculating pod topology spread skew. Options are: - Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations. - Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations.  If this value is nil, the behavior is equivalent to the Honor policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.  Possible enum values:  - `\"Honor\"` means use this scheduling directive when calculating pod topology spread skew.  - `\"Ignore\"` means ignore this scheduling directive when calculating pod topology spread skew.
 	*/
-	"nodeAffinityPolicy"?: string;
+	"nodeAffinityPolicy"?: V1TopologySpreadConstraintNodeAffinityPolicyEnum;
 	/**
-	* NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew. Options are: - Honor: nodes without taints, along with tainted nodes for which the incoming pod has a toleration, are included. - Ignore: node taints are ignored. All nodes are included.  If this value is nil, the behavior is equivalent to the Ignore policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.
+	* NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew. Options are: - Honor: nodes without taints, along with tainted nodes for which the incoming pod has a toleration, are included. - Ignore: node taints are ignored. All nodes are included.  If this value is nil, the behavior is equivalent to the Ignore policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.  Possible enum values:  - `\"Honor\"` means use this scheduling directive when calculating pod topology spread skew.  - `\"Ignore\"` means ignore this scheduling directive when calculating pod topology spread skew.
 	*/
-	"nodeTaintsPolicy"?: string;
+	"nodeTaintsPolicy"?: V1TopologySpreadConstraintNodeTaintsPolicyEnum;
 	/**
 	* TopologyKey is the key of node labels. Nodes that have a label with this key and identical values are considered to be in the same topology. We consider each <key, value> as a \"bucket\", and try to put balanced number of pods into each bucket. We define a domain as a particular instance of a topology. Also, we define an eligible domain as a domain whose nodes meet the requirements of nodeAffinityPolicy and nodeTaintsPolicy. e.g. If TopologyKey is \"kubernetes.io/hostname\", each Node is a domain of that topology. And, if TopologyKey is \"topology.kubernetes.io/zone\", each zone is a domain of that topology. It's a required field.
 	*/
@@ -4042,6 +4045,8 @@ declare class V1TopologySpreadConstraint {
 	}[];
 	constructor();
 }
+export type V1TopologySpreadConstraintNodeAffinityPolicyEnum = "Honor" | "Ignore";
+export type V1TopologySpreadConstraintNodeTaintsPolicyEnum = "Honor" | "Ignore";
 export type V1TopologySpreadConstraintWhenUnsatisfiableEnum = "DoNotSchedule" | "ScheduleAnyway";
 declare class V1AWSElasticBlockStoreVolumeSource {
 	/**
@@ -4077,9 +4082,9 @@ declare class V1AWSElasticBlockStoreVolumeSource {
 }
 declare class V1AzureDiskVolumeSource {
 	/**
-	* cachingMode is the Host Caching mode: None, Read Only, Read Write.
+	* cachingMode is the Host Caching mode: None, Read Only, Read Write.  Possible enum values:  - `\"None\"`  - `\"ReadOnly\"`  - `\"ReadWrite\"`
 	*/
-	"cachingMode"?: string;
+	"cachingMode"?: V1AzureDiskVolumeSourceCachingModeEnum;
 	/**
 	* diskName is the Name of the data disk in the blob storage
 	*/
@@ -4093,9 +4098,9 @@ declare class V1AzureDiskVolumeSource {
 	*/
 	"fsType"?: string;
 	/**
-	* kind expected values are Shared: multiple blob disks per storage account  Dedicated: single blob disk per storage account  Managed: azure managed data disk (only in managed availability set). defaults to shared
+	* kind expected values are Shared: multiple blob disks per storage account  Dedicated: single blob disk per storage account  Managed: azure managed data disk (only in managed availability set). defaults to shared  Possible enum values:  - `\"Dedicated\"`  - `\"Managed\"`  - `\"Shared\"`
 	*/
-	"kind"?: string;
+	"kind"?: V1AzureDiskVolumeSourceKindEnum;
 	/**
 	* readOnly Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
 	*/
@@ -4115,6 +4120,8 @@ declare class V1AzureDiskVolumeSource {
 	}[];
 	constructor();
 }
+export type V1AzureDiskVolumeSourceCachingModeEnum = "None" | "ReadOnly" | "ReadWrite";
+export type V1AzureDiskVolumeSourceKindEnum = "Dedicated" | "Managed" | "Shared";
 declare class V1AzureFileVolumeSource {
 	/**
 	* readOnly defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
@@ -4452,9 +4459,9 @@ declare class V1PersistentVolumeClaimSpec {
 	*/
 	"storageClassName"?: string;
 	/**
-	* volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.
+	* volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.  Possible enum values:  - `\"Block\"` means the volume will not be formatted with a filesystem and will remain a raw block device.  - `\"Filesystem\"` means the volume will be or is formatted with a filesystem.
 	*/
-	"volumeMode"?: string;
+	"volumeMode"?: V1PersistentVolumeClaimSpecVolumeModeEnum;
 	/**
 	* volumeName is the binding reference to the PersistentVolume backing this claim.
 	*/
@@ -4474,6 +4481,7 @@ declare class V1PersistentVolumeClaimSpec {
 	}[];
 	constructor();
 }
+export type V1PersistentVolumeClaimSpecVolumeModeEnum = "Block" | "Filesystem";
 declare class V1PersistentVolumeClaimTemplate {
 	"metadata"?: V1ObjectMeta;
 	"spec": V1PersistentVolumeClaimSpec;
@@ -4698,9 +4706,9 @@ declare class V1HostPathVolumeSource {
 	*/
 	"path": string;
 	/**
-	* type for HostPath Volume Defaults to \"\" More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath
+	* type for HostPath Volume Defaults to \"\" More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath  Possible enum values:  - `\"\"` For backwards compatible, leave it empty if unset  - `\"BlockDevice\"` A block device must exist at the given path  - `\"CharDevice\"` A character device must exist at the given path  - `\"Directory\"` A directory must exist at the given path  - `\"DirectoryOrCreate\"` If nothing exists at the given path, an empty directory will be created there as needed with file mode 0755, having the same group and ownership with Kubelet.  - `\"File\"` A file must exist at the given path  - `\"FileOrCreate\"` If nothing exists at the given path, an empty file will be created there as needed with file mode 0644, having the same group and ownership with Kubelet.  - `\"Socket\"` A UNIX socket must exist at the given path
 	*/
-	"type"?: string;
+	"type"?: V1HostPathVolumeSourceTypeEnum;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -4716,6 +4724,7 @@ declare class V1HostPathVolumeSource {
 	}[];
 	constructor();
 }
+export type V1HostPathVolumeSourceTypeEnum = "" | "BlockDevice" | "CharDevice" | "Directory" | "DirectoryOrCreate" | "File" | "FileOrCreate" | "Socket";
 declare class V1ISCSIVolumeSource {
 	/**
 	* chapAuthDiscovery defines whether support iSCSI Discovery CHAP authentication
@@ -5386,9 +5395,9 @@ declare class V1PodSpec {
 		[key: string]: string;
 	};
 	/**
-	* PreemptionPolicy is the Policy for preempting pods with lower priority. One of Never, PreemptLowerPriority. Defaults to PreemptLowerPriority if unset.
+	* PreemptionPolicy is the Policy for preempting pods with lower priority. One of Never, PreemptLowerPriority. Defaults to PreemptLowerPriority if unset.  Possible enum values:  - `\"Never\"` means that pod never preempts other pods with lower priority.  - `\"PreemptLowerPriority\"` means that pod can preempt other pods with lower priority.
 	*/
-	"preemptionPolicy"?: string;
+	"preemptionPolicy"?: V1PodSpecPreemptionPolicyEnum;
 	/**
 	* The priority value. Various system components use this field to find the priority of the pod. When Priority Admission Controller is enabled, it prevents users from setting this field. The admission controller populates this field from PriorityClassName. The higher the value, the higher the priority.
 	*/
@@ -5474,6 +5483,7 @@ declare class V1PodSpec {
 	constructor();
 }
 export type V1PodSpecDnsPolicyEnum = "ClusterFirst" | "ClusterFirstWithHostNet" | "Default" | "None";
+export type V1PodSpecPreemptionPolicyEnum = "Never" | "PreemptLowerPriority";
 export type V1PodSpecRestartPolicyEnum = "Always" | "Never" | "OnFailure";
 declare class V1ContainerStateRunning {
 	/**
@@ -5890,17 +5900,17 @@ declare class PolicyV1beta1JsPolicySpec {
 		[key: string]: string;
 	};
 	/**
-	* FailurePolicy defines how unrecognized errors from the admission endpoint are handled - allowed values are Ignore or Fail. Defaults to Fail.
+	* FailurePolicy defines how unrecognized errors from the admission endpoint are handled - allowed values are Ignore or Fail. Defaults to Fail.  Possible enum values:  - `\"Fail\"` means that an error calling the webhook causes the admission to fail.  - `\"Ignore\"` means that an error calling the webhook is ignored.
 	*/
-	"failurePolicy"?: string;
+	"failurePolicy"?: PolicyV1beta1JsPolicySpecFailurePolicyEnum;
 	/**
 	* JavaScript is the payload of the webhook that will be executed. If this is not defined, jsPolicy expects the user to create a JsPolicyBundle for this policy.
 	*/
 	"javascript"?: string;
 	/**
-	* matchPolicy defines how the \"rules\" list is used to match incoming requests. Allowed values are \"Exact\" or \"Equivalent\".  - Exact: match a request only if it exactly matches a specified rule. For example, if deployments can be modified via apps/v1, apps/v1beta1, and extensions/v1beta1, but \"rules\" only included `apiGroups:[\"apps\"], apiVersions:[\"v1\"], resources: [\"deployments\"]`, a request to apps/v1beta1 or extensions/v1beta1 would not be sent to the webhook.  - Equivalent: match a request if modifies a resource listed in rules, even via another API group or version. For example, if deployments can be modified via apps/v1, apps/v1beta1, and extensions/v1beta1, and \"rules\" only included `apiGroups:[\"apps\"], apiVersions:[\"v1\"], resources: [\"deployments\"]`, a request to apps/v1beta1 or extensions/v1beta1 would be converted to apps/v1 and sent to the webhook.  Defaults to \"Equivalent\"
+	* matchPolicy defines how the \"rules\" list is used to match incoming requests. Allowed values are \"Exact\" or \"Equivalent\".  - Exact: match a request only if it exactly matches a specified rule. For example, if deployments can be modified via apps/v1, apps/v1beta1, and extensions/v1beta1, but \"rules\" only included `apiGroups:[\"apps\"], apiVersions:[\"v1\"], resources: [\"deployments\"]`, a request to apps/v1beta1 or extensions/v1beta1 would not be sent to the webhook.  - Equivalent: match a request if modifies a resource listed in rules, even via another API group or version. For example, if deployments can be modified via apps/v1, apps/v1beta1, and extensions/v1beta1, and \"rules\" only included `apiGroups:[\"apps\"], apiVersions:[\"v1\"], resources: [\"deployments\"]`, a request to apps/v1beta1 or extensions/v1beta1 would be converted to apps/v1 and sent to the webhook.  Defaults to \"Equivalent\"  Possible enum values:  - `\"Equivalent\"` means requests should be sent to the webhook if they modify a resource listed in rules via another API group or version.  - `\"Exact\"` means requests should only be sent to the webhook if they exactly match a given rule.
 	*/
-	"matchPolicy"?: string;
+	"matchPolicy"?: PolicyV1beta1JsPolicySpecMatchPolicyEnum;
 	"namespaceSelector"?: V1LabelSelector;
 	"objectSelector"?: V1LabelSelector;
 	/**
@@ -5942,6 +5952,8 @@ declare class PolicyV1beta1JsPolicySpec {
 	}[];
 	constructor();
 }
+export type PolicyV1beta1JsPolicySpecFailurePolicyEnum = "Fail" | "Ignore";
+export type PolicyV1beta1JsPolicySpecMatchPolicyEnum = "Equivalent" | "Exact";
 declare class PolicyV1beta1JsPolicyStatus {
 	/**
 	* BundleHash is used to determine if we have to re-bundle the javascript
@@ -8779,7 +8791,7 @@ declare class ManagementV1ConnectorWithName {
 }
 declare class ManagementV1Authentication {
 	/**
-	* AccessKeyMaxTTLSeconds is the global maximum lifespan of an accesskey in seconds. Leaving it 0 or unspecified will disable it. Specifing 2592000 will mean all keys have a Time-To-Live of 30 days.
+	* AccessKeyMaxTTLSeconds is the global maximum lifespan of an accesskey in seconds. Leaving it 0 or unspecified will disable it. Specifying 2592000 will mean all keys have a Time-To-Live of 30 days.
 	*/
 	"accessKeyMaxTTLSeconds"?: number;
 	/**
@@ -8800,7 +8812,7 @@ declare class ManagementV1Authentication {
 	"gitlab"?: ManagementV1AuthenticationGitlab;
 	"google"?: ManagementV1AuthenticationGoogle;
 	/**
-	* LoginAccessKeyTTLSeconds is the time in seconds an access key is kept until it is deleted. Leaving it unspecified will default to 20 days. Setting it to zero will disable the ttl. Specifing 2592000 will mean all keys have a  default Time-To-Live of 30 days.
+	* LoginAccessKeyTTLSeconds is the time in seconds an access key is kept until it is deleted. Leaving it unspecified will default to 20 days. Setting it to zero will disable the ttl. Specifying 2592000 will mean all keys have a  default Time-To-Live of 30 days.
 	*/
 	"loginAccessKeyTTLSeconds"?: number;
 	"microsoft"?: ManagementV1AuthenticationMicrosoft;

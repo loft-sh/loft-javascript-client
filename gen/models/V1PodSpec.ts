@@ -102,9 +102,9 @@ export class V1PodSpec {
     */
     'overhead'?: { [key: string]: string; };
     /**
-    * PreemptionPolicy is the Policy for preempting pods with lower priority. One of Never, PreemptLowerPriority. Defaults to PreemptLowerPriority if unset.
+    * PreemptionPolicy is the Policy for preempting pods with lower priority. One of Never, PreemptLowerPriority. Defaults to PreemptLowerPriority if unset.  Possible enum values:  - `\"Never\"` means that pod never preempts other pods with lower priority.  - `\"PreemptLowerPriority\"` means that pod can preempt other pods with lower priority.
     */
-    'preemptionPolicy'?: string;
+    'preemptionPolicy'?: V1PodSpecPreemptionPolicyEnum;
     /**
     * The priority value. Various system components use this field to find the priority of the pod. When Priority Admission Controller is enabled, it prevents users from setting this field. The admission controller populates this field from PriorityClassName. The higher the value, the higher the priority.
     */
@@ -301,7 +301,7 @@ export class V1PodSpec {
         {
             "name": "preemptionPolicy",
             "baseName": "preemptionPolicy",
-            "type": "string",
+            "type": "V1PodSpecPreemptionPolicyEnum",
             "format": ""
         },
         {
@@ -423,5 +423,6 @@ export class V1PodSpec {
 
 
 export type V1PodSpecDnsPolicyEnum = "ClusterFirst" | "ClusterFirstWithHostNet" | "Default" | "None" ;
+export type V1PodSpecPreemptionPolicyEnum = "Never" | "PreemptLowerPriority" ;
 export type V1PodSpecRestartPolicyEnum = "Always" | "Never" | "OnFailure" ;
 

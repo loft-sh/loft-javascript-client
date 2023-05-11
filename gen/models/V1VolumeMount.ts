@@ -21,9 +21,9 @@ export class V1VolumeMount {
     */
     'mountPath': string;
     /**
-    * mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.
+    * mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.  Possible enum values:  - `\"Bidirectional\"` means that the volume in a container will receive new mounts from the host or other containers, and its own mounts will be propagated from the container to the host or other containers. Note that this mode is recursively applied to all mounts in the volume (\"rshared\" in Linux terminology).  - `\"HostToContainer\"` means that the volume in a container will receive new mounts from the host or other containers, but filesystems mounted inside the container won't be propagated to the host or other containers. Note that this mode is recursively applied to all mounts in the volume (\"rslave\" in Linux terminology).  - `\"None\"` means that the volume in a container will not receive new mounts from the host or other containers, and filesystems mounted inside the container won't be propagated to the host or other containers. Note that this mode corresponds to \"private\" in Linux terminology.
     */
-    'mountPropagation'?: string;
+    'mountPropagation'?: V1VolumeMountMountPropagationEnum;
     /**
     * This must match the Name of a Volume.
     */
@@ -53,7 +53,7 @@ export class V1VolumeMount {
         {
             "name": "mountPropagation",
             "baseName": "mountPropagation",
-            "type": "string",
+            "type": "V1VolumeMountMountPropagationEnum",
             "format": ""
         },
         {
@@ -88,4 +88,7 @@ export class V1VolumeMount {
     public constructor() {
     }
 }
+
+
+export type V1VolumeMountMountPropagationEnum = "Bidirectional" | "HostToContainer" | "None" ;
 

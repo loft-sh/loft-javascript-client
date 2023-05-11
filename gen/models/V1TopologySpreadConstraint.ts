@@ -31,13 +31,13 @@ export class V1TopologySpreadConstraint {
     */
     'minDomains'?: number;
     /**
-    * NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelector when calculating pod topology spread skew. Options are: - Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations. - Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations.  If this value is nil, the behavior is equivalent to the Honor policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.
+    * NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelector when calculating pod topology spread skew. Options are: - Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations. - Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations.  If this value is nil, the behavior is equivalent to the Honor policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.  Possible enum values:  - `\"Honor\"` means use this scheduling directive when calculating pod topology spread skew.  - `\"Ignore\"` means ignore this scheduling directive when calculating pod topology spread skew.
     */
-    'nodeAffinityPolicy'?: string;
+    'nodeAffinityPolicy'?: V1TopologySpreadConstraintNodeAffinityPolicyEnum;
     /**
-    * NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew. Options are: - Honor: nodes without taints, along with tainted nodes for which the incoming pod has a toleration, are included. - Ignore: node taints are ignored. All nodes are included.  If this value is nil, the behavior is equivalent to the Ignore policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.
+    * NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew. Options are: - Honor: nodes without taints, along with tainted nodes for which the incoming pod has a toleration, are included. - Ignore: node taints are ignored. All nodes are included.  If this value is nil, the behavior is equivalent to the Ignore policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.  Possible enum values:  - `\"Honor\"` means use this scheduling directive when calculating pod topology spread skew.  - `\"Ignore\"` means ignore this scheduling directive when calculating pod topology spread skew.
     */
-    'nodeTaintsPolicy'?: string;
+    'nodeTaintsPolicy'?: V1TopologySpreadConstraintNodeTaintsPolicyEnum;
     /**
     * TopologyKey is the key of node labels. Nodes that have a label with this key and identical values are considered to be in the same topology. We consider each <key, value> as a \"bucket\", and try to put balanced number of pods into each bucket. We define a domain as a particular instance of a topology. Also, we define an eligible domain as a domain whose nodes meet the requirements of nodeAffinityPolicy and nodeTaintsPolicy. e.g. If TopologyKey is \"kubernetes.io/hostname\", each Node is a domain of that topology. And, if TopologyKey is \"topology.kubernetes.io/zone\", each zone is a domain of that topology. It's a required field.
     */
@@ -77,13 +77,13 @@ export class V1TopologySpreadConstraint {
         {
             "name": "nodeAffinityPolicy",
             "baseName": "nodeAffinityPolicy",
-            "type": "string",
+            "type": "V1TopologySpreadConstraintNodeAffinityPolicyEnum",
             "format": ""
         },
         {
             "name": "nodeTaintsPolicy",
             "baseName": "nodeTaintsPolicy",
-            "type": "string",
+            "type": "V1TopologySpreadConstraintNodeTaintsPolicyEnum",
             "format": ""
         },
         {
@@ -108,5 +108,7 @@ export class V1TopologySpreadConstraint {
 }
 
 
+export type V1TopologySpreadConstraintNodeAffinityPolicyEnum = "Honor" | "Ignore" ;
+export type V1TopologySpreadConstraintNodeTaintsPolicyEnum = "Honor" | "Ignore" ;
 export type V1TopologySpreadConstraintWhenUnsatisfiableEnum = "DoNotSchedule" | "ScheduleAnyway" ;
 

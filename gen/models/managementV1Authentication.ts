@@ -25,7 +25,7 @@ import { ManagementV1ConnectorWithName } from './managementV1ConnectorWithName';
 */
 export class ManagementV1Authentication {
     /**
-    * AccessKeyMaxTTLSeconds is the global maximum lifespan of an accesskey in seconds. Leaving it 0 or unspecified will disable it. Specifing 2592000 will mean all keys have a Time-To-Live of 30 days.
+    * AccessKeyMaxTTLSeconds is the global maximum lifespan of an accesskey in seconds. Leaving it 0 or unspecified will disable it. Specifying 2592000 will mean all keys have a Time-To-Live of 30 days.
     */
     'accessKeyMaxTTLSeconds'?: number;
     /**
@@ -44,7 +44,7 @@ export class ManagementV1Authentication {
     'gitlab'?: ManagementV1AuthenticationGitlab;
     'google'?: ManagementV1AuthenticationGoogle;
     /**
-    * LoginAccessKeyTTLSeconds is the time in seconds an access key is kept until it is deleted. Leaving it unspecified will default to 20 days. Setting it to zero will disable the ttl. Specifing 2592000 will mean all keys have a  default Time-To-Live of 30 days.
+    * LoginAccessKeyTTLSeconds is the time in seconds an access key is kept until it is deleted. Leaving it unspecified will default to 20 days. Setting it to zero will disable the ttl. Specifying 2592000 will mean all keys have a  default Time-To-Live of 30 days.
     */
     'loginAccessKeyTTLSeconds'?: number;
     'microsoft'?: ManagementV1AuthenticationMicrosoft;

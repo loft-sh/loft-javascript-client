@@ -25,9 +25,9 @@ export class V1PodSecurityContext {
     */
     'fsGroup'?: number;
     /**
-    * fsGroupChangePolicy defines behavior of changing ownership and permission of the volume before being exposed inside Pod. This field will only apply to volume types which support fsGroup based ownership(and permissions). It will have no effect on ephemeral volume types such as: secret, configmaps and emptydir. Valid values are \"OnRootMismatch\" and \"Always\". If not specified, \"Always\" is used. Note that this field cannot be set when spec.os.name is windows.
+    * fsGroupChangePolicy defines behavior of changing ownership and permission of the volume before being exposed inside Pod. This field will only apply to volume types which support fsGroup based ownership(and permissions). It will have no effect on ephemeral volume types such as: secret, configmaps and emptydir. Valid values are \"OnRootMismatch\" and \"Always\". If not specified, \"Always\" is used. Note that this field cannot be set when spec.os.name is windows.  Possible enum values:  - `\"Always\"` indicates that volume's ownership and permissions should always be changed whenever volume is mounted inside a Pod. This the default behavior.  - `\"OnRootMismatch\"` indicates that volume's ownership and permissions will be changed only when permission and ownership of root directory does not match with expected permissions on the volume. This can help shorten the time it takes to change ownership and permissions of a volume.
     */
-    'fsGroupChangePolicy'?: string;
+    'fsGroupChangePolicy'?: V1PodSecurityContextFsGroupChangePolicyEnum;
     /**
     * The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.
     */
@@ -64,7 +64,7 @@ export class V1PodSecurityContext {
         {
             "name": "fsGroupChangePolicy",
             "baseName": "fsGroupChangePolicy",
-            "type": "string",
+            "type": "V1PodSecurityContextFsGroupChangePolicyEnum",
             "format": ""
         },
         {
@@ -123,4 +123,7 @@ export class V1PodSecurityContext {
     public constructor() {
     }
 }
+
+
+export type V1PodSecurityContextFsGroupChangePolicyEnum = "Always" | "OnRootMismatch" ;
 

@@ -17,9 +17,9 @@
 */
 export class V1AzureDiskVolumeSource {
     /**
-    * cachingMode is the Host Caching mode: None, Read Only, Read Write.
+    * cachingMode is the Host Caching mode: None, Read Only, Read Write.  Possible enum values:  - `\"None\"`  - `\"ReadOnly\"`  - `\"ReadWrite\"`
     */
-    'cachingMode'?: string;
+    'cachingMode'?: V1AzureDiskVolumeSourceCachingModeEnum;
     /**
     * diskName is the Name of the data disk in the blob storage
     */
@@ -33,9 +33,9 @@ export class V1AzureDiskVolumeSource {
     */
     'fsType'?: string;
     /**
-    * kind expected values are Shared: multiple blob disks per storage account  Dedicated: single blob disk per storage account  Managed: azure managed data disk (only in managed availability set). defaults to shared
+    * kind expected values are Shared: multiple blob disks per storage account  Dedicated: single blob disk per storage account  Managed: azure managed data disk (only in managed availability set). defaults to shared  Possible enum values:  - `\"Dedicated\"`  - `\"Managed\"`  - `\"Shared\"`
     */
-    'kind'?: string;
+    'kind'?: V1AzureDiskVolumeSourceKindEnum;
     /**
     * readOnly Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
     */
@@ -47,7 +47,7 @@ export class V1AzureDiskVolumeSource {
         {
             "name": "cachingMode",
             "baseName": "cachingMode",
-            "type": "string",
+            "type": "V1AzureDiskVolumeSourceCachingModeEnum",
             "format": ""
         },
         {
@@ -71,7 +71,7 @@ export class V1AzureDiskVolumeSource {
         {
             "name": "kind",
             "baseName": "kind",
-            "type": "string",
+            "type": "V1AzureDiskVolumeSourceKindEnum",
             "format": ""
         },
         {
@@ -88,4 +88,8 @@ export class V1AzureDiskVolumeSource {
     public constructor() {
     }
 }
+
+
+export type V1AzureDiskVolumeSourceCachingModeEnum = "None" | "ReadOnly" | "ReadWrite" ;
+export type V1AzureDiskVolumeSourceKindEnum = "Dedicated" | "Managed" | "Shared" ;
 
