@@ -11,6 +11,7 @@
  */
 
 import { ManagementV1ProjectSecretSpec } from './managementV1ProjectSecretSpec';
+import { ManagementV1ProjectSecretStatus } from './managementV1ProjectSecretStatus';
 import { V1ObjectMeta } from './V1ObjectMeta';
 
 
@@ -28,10 +29,7 @@ export class ManagementV1ProjectSecret {
     'kind'?: string;
     'metadata'?: V1ObjectMeta;
     'spec'?: ManagementV1ProjectSecretSpec;
-    /**
-    * ProjectSecretStatus holds the status
-    */
-    'status'?: any;
+    'status'?: ManagementV1ProjectSecretStatus;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -63,7 +61,7 @@ export class ManagementV1ProjectSecret {
         {
             "name": "status",
             "baseName": "status",
-            "type": "any",
+            "type": "ManagementV1ProjectSecretStatus",
             "format": ""
         }    ];
 

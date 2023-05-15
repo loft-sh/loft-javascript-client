@@ -11,6 +11,7 @@
  */
 
 import { ManagementV1SharedSecretSpec } from './managementV1SharedSecretSpec';
+import { ManagementV1SharedSecretStatus } from './managementV1SharedSecretStatus';
 import { V1ObjectMeta } from './V1ObjectMeta';
 
 
@@ -28,10 +29,7 @@ export class ManagementV1SharedSecret {
     'kind'?: string;
     'metadata'?: V1ObjectMeta;
     'spec'?: ManagementV1SharedSecretSpec;
-    /**
-    * SharedSecretStatus holds the status
-    */
-    'status'?: any;
+    'status'?: ManagementV1SharedSecretStatus;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -63,7 +61,7 @@ export class ManagementV1SharedSecret {
         {
             "name": "status",
             "baseName": "status",
-            "type": "any",
+            "type": "ManagementV1SharedSecretStatus",
             "format": ""
         }    ];
 

@@ -10949,6 +10949,26 @@ declare class ManagementV1ProjectSecretSpec {
 	}[];
 	constructor();
 }
+declare class ManagementV1ProjectSecretStatus {
+	/**
+	* Conditions holds several conditions the project might be in
+	*/
+	"conditions"?: Array<StorageV1Condition>;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
 declare class ManagementV1ProjectSecret {
 	/**
 	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
@@ -10960,10 +10980,7 @@ declare class ManagementV1ProjectSecret {
 	"kind"?: string;
 	"metadata"?: V1ObjectMeta;
 	"spec"?: ManagementV1ProjectSecretSpec;
-	/**
-	* ProjectSecretStatus holds the status
-	*/
-	"status"?: any;
+	"status"?: ManagementV1ProjectSecretStatus;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -12199,6 +12216,26 @@ declare class ManagementV1SharedSecretSpec {
 	}[];
 	constructor();
 }
+declare class ManagementV1SharedSecretStatus {
+	/**
+	* Conditions holds several conditions the project might be in
+	*/
+	"conditions"?: Array<StorageV1Condition>;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
 declare class ManagementV1SharedSecret {
 	/**
 	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
@@ -12210,10 +12247,7 @@ declare class ManagementV1SharedSecret {
 	"kind"?: string;
 	"metadata"?: V1ObjectMeta;
 	"spec"?: ManagementV1SharedSecretSpec;
-	/**
-	* SharedSecretStatus holds the status
-	*/
-	"status"?: any;
+	"status"?: ManagementV1SharedSecretStatus;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
