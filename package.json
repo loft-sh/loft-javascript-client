@@ -2,9 +2,6 @@
   "name": "@loft-enterprise/client",
   "version": "0.1.0",
   "private": true,
-  "engines": {
-    "node": "16"
-  },
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "module": "lib/index.esm.js",
