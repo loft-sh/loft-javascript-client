@@ -63,7 +63,7 @@ const K8S_WEBSOCKET_PROTOCOLS = [
 
 export function getApiHost(): string {
   // development
-  if (window.location.href.startsWith("http://localhost:3000")) {
+  if (typeof window !== 'undefined' && window.location.href.startsWith("http://localhost:3000")) {
     return "https://localhost:9898"
   }
 
@@ -71,11 +71,15 @@ export function getApiHost(): string {
 }
 
 function getWebSocketHost(): string {
-  if (window.location.host == "localhost:3000") {
+  // Go with the default if nothing is specified to allow SSR
+  if (typeof window === 'undefined') {
+    return `wss://localhost:8080`
+  }
+  if (window.location.host === "localhost:3000") {
     return `wss://localhost:8080`
   }
 
-  const protocol = window.location.protocol == "https:" ? "wss" : "ws"
+  const protocol = window.location.protocol === "https:" ? "wss" : "ws"
 
   return `${protocol}://${window.location.host}`
 }
@@ -154,13 +158,15 @@ class Client {
       return Return.Failed("no user found")
     }
 
-    if (!(window as any).loft) {
-      ;(window as any).loft = {}
-    }
+    if (typeof window !== 'undefined') {
+      if (!(window as any).loft) {
+        ;(window as any).loft = {}
+      }
 
-    ;(window as any).loft.instanceID = selfResult.val.status.instanceID
-    ;(window as any).loft.intercomHash = selfResult.val.status.intercomHash
-    ;(window as any).loft.user = selfResult.val.status.user
+      ;(window as any).loft.instanceID = selfResult.val.status.instanceID
+      ;(window as any).loft.intercomHash = selfResult.val.status.intercomHash
+      ;(window as any).loft.user = selfResult.val.status.user
+    }
 
     return Return.Value(selfResult.val.status.user.name!)
   }
@@ -587,7 +593,9 @@ class Client {
         response.val.message === "invalid bearer token"
       ) {
         this.clearStorage()
-        window.location.href = "/"
+        if (typeof window !== 'undefined') {
+          window.location.href = "/"
+        }
 
         // Never ending promise
         await new Promise(() => {})
