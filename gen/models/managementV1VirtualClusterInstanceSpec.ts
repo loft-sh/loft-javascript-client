@@ -46,6 +46,7 @@ export class ManagementV1VirtualClusterInstanceSpec {
     'parameters'?: string;
     'template'?: StorageV1VirtualClusterTemplateDefinition;
     'templateRef'?: StorageV1TemplateRef;
+    'workloadClusterRef'?: StorageV1VirtualClusterClusterRef;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -102,6 +103,12 @@ export class ManagementV1VirtualClusterInstanceSpec {
             "name": "templateRef",
             "baseName": "templateRef",
             "type": "StorageV1TemplateRef",
+            "format": ""
+        },
+        {
+            "name": "workloadClusterRef",
+            "baseName": "workloadClusterRef",
+            "type": "StorageV1VirtualClusterClusterRef",
             "format": ""
         }    ];
 

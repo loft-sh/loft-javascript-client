@@ -17,6 +17,7 @@ import { StorageV1VirtualClusterAccessPoint } from './agentstorageV1VirtualClust
 import { StorageV1VirtualClusterHelmRelease } from './agentstorageV1VirtualClusterHelmRelease';
 import { StorageV1TemplateMetadata } from './storageV1TemplateMetadata';
 import { StorageV1VirtualClusterSpaceTemplateDefinition } from './storageV1VirtualClusterSpaceTemplateDefinition';
+import { StorageV1WorkloadVirtualClusterTemplateDefinition } from './storageV1WorkloadVirtualClusterTemplateDefinition';
 
 
 export class StorageV1VirtualClusterTemplateDefinition {
@@ -37,6 +38,7 @@ export class StorageV1VirtualClusterTemplateDefinition {
     */
     'objects'?: string;
     'spaceTemplate'?: StorageV1VirtualClusterSpaceTemplateDefinition;
+    'workloadVirtualClusterTemplateDefinition'?: StorageV1WorkloadVirtualClusterTemplateDefinition;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -87,6 +89,12 @@ export class StorageV1VirtualClusterTemplateDefinition {
             "name": "spaceTemplate",
             "baseName": "spaceTemplate",
             "type": "StorageV1VirtualClusterSpaceTemplateDefinition",
+            "format": ""
+        },
+        {
+            "name": "workloadVirtualClusterTemplateDefinition",
+            "baseName": "workloadVirtualClusterTemplateDefinition",
+            "type": "StorageV1WorkloadVirtualClusterTemplateDefinition",
             "format": ""
         }    ];
 

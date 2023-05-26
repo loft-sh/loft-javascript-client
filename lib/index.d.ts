@@ -7857,6 +7857,25 @@ declare class StorageV1VirtualClusterSpaceTemplateDefinition {
 	}[];
 	constructor();
 }
+declare class StorageV1WorkloadVirtualClusterTemplateDefinition {
+	"helmRelease"?: StorageV1VirtualClusterHelmRelease;
+	"metadata"?: StorageV1TemplateMetadata;
+	"spaceTemplate"?: StorageV1VirtualClusterSpaceTemplateDefinition;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
 declare class StorageV1VirtualClusterTemplateDefinition {
 	"access"?: StorageV1InstanceAccess;
 	"accessPoint"?: StorageV1VirtualClusterAccessPoint;
@@ -7875,6 +7894,7 @@ declare class StorageV1VirtualClusterTemplateDefinition {
 	*/
 	"objects"?: string;
 	"spaceTemplate"?: StorageV1VirtualClusterSpaceTemplateDefinition;
+	"workloadVirtualClusterTemplateDefinition"?: StorageV1WorkloadVirtualClusterTemplateDefinition;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -13883,6 +13903,39 @@ declare class ManagementV1VirtualClusterInstanceLog {
 	}[];
 	constructor();
 }
+declare class ManagementV1VirtualClusterInstanceWorkloadKubeConfig {
+	/**
+	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	*/
+	"apiVersion"?: string;
+	/**
+	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	*/
+	"kind"?: string;
+	/**
+	* KubeConfig holds the workload cluster's kubeconfig to access the virtual cluster
+	*/
+	"kubeConfig"?: string;
+	"metadata"?: V1ObjectMeta;
+	/**
+	* Token holds the service account token vcluster should use to connect to the remote cluster
+	*/
+	"token"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
 declare class StorageV1VirtualClusterClusterRef {
 	/**
 	* Cluster is the connected cluster the space will be created in
@@ -13936,6 +13989,7 @@ declare class ManagementV1VirtualClusterInstanceSpec {
 	"parameters"?: string;
 	"template"?: StorageV1VirtualClusterTemplateDefinition;
 	"templateRef"?: StorageV1TemplateRef;
+	"workloadClusterRef"?: StorageV1VirtualClusterClusterRef;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -13984,6 +14038,7 @@ declare class ManagementV1VirtualClusterInstanceStatus {
 	"spaceObjects"?: StorageV1ObjectsStatus;
 	"virtualCluster"?: StorageV1VirtualClusterTemplateDefinition;
 	"virtualClusterObjects"?: StorageV1ObjectsStatus;
+	"workloadSpaceObjects"?: StorageV1ObjectsStatus;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -14084,6 +14139,7 @@ export type TGenResources = {
 	ManagementV1VirtualClusterInstance: GroupVersionResource<ManagementV1VirtualClusterInstance>;
 	ManagementV1VirtualClusterInstanceKubeConfig: GroupVersionResource<ManagementV1VirtualClusterInstanceKubeConfig>;
 	ManagementV1VirtualClusterInstanceLog: GroupVersionResource<ManagementV1VirtualClusterInstanceLog>;
+	ManagementV1VirtualClusterInstanceWorkloadKubeConfig: GroupVersionResource<ManagementV1VirtualClusterInstanceWorkloadKubeConfig>;
 	ManagementV1VirtualClusterTemplate: GroupVersionResource<ManagementV1VirtualClusterTemplate>;
 };
 export declare const Resources: {
