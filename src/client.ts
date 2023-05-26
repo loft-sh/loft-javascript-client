@@ -366,7 +366,7 @@ class Client {
             splitted[2] === "cluster"
           ) {
             return Return.Failed(
-              "Loft-agent seems to be currently unavailable, it is maybe just starting up. Click <a href={`/spaces/${splitted[3]}/loft`}>here</a> for more information</span>",
+              `Loft-agent seems to be currently unavailable, it is maybe just starting up. Click <a href="/spaces/${splitted[3]}/loft">here</a> for more information</span>`,
               "LoftAgentUnavailable",
               ErrorTypeServiceUnavailable
             )
