@@ -7894,7 +7894,7 @@ declare class StorageV1VirtualClusterTemplateDefinition {
 	*/
 	"objects"?: string;
 	"spaceTemplate"?: StorageV1VirtualClusterSpaceTemplateDefinition;
-	"workloadVirtualClusterTemplateDefinition"?: StorageV1WorkloadVirtualClusterTemplateDefinition;
+	"workloadVirtualClusterTemplate"?: StorageV1WorkloadVirtualClusterTemplateDefinition;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -9691,26 +9691,6 @@ declare class StorageV1LocalTeam {
 	}[];
 	constructor();
 }
-declare class UiV1UISettingsStatus {
-	/**
-	* FeatureEnabled indicates if the UI white label feature is enabled or disabled
-	*/
-	"featureEnabled": boolean;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
 declare class UiV1UISettings {
 	/**
 	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
@@ -9722,7 +9702,10 @@ declare class UiV1UISettings {
 	"kind"?: string;
 	"metadata"?: V1ObjectMeta;
 	"spec"?: UiV1UISettingsSpec;
-	"status"?: UiV1UISettingsStatus;
+	/**
+	* UISettingsStatus holds the status
+	*/
+	"status"?: any;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
