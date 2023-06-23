@@ -15,7 +15,7 @@ import { V1ObjectMeta } from './V1ObjectMeta';
 
 
 /**
-* User holds the user information
+* Feature holds the feature information
 */
 export class ManagementV1Feature {
     /**

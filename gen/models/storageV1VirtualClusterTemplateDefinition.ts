@@ -38,7 +38,7 @@ export class StorageV1VirtualClusterTemplateDefinition {
     */
     'objects'?: string;
     'spaceTemplate'?: StorageV1VirtualClusterSpaceTemplateDefinition;
-    'workloadVirtualClusterTemplateDefinition'?: StorageV1WorkloadVirtualClusterTemplateDefinition;
+    'workloadVirtualClusterTemplate'?: StorageV1WorkloadVirtualClusterTemplateDefinition;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -92,8 +92,8 @@ export class StorageV1VirtualClusterTemplateDefinition {
             "format": ""
         },
         {
-            "name": "workloadVirtualClusterTemplateDefinition",
-            "baseName": "workloadVirtualClusterTemplateDefinition",
+            "name": "workloadVirtualClusterTemplate",
+            "baseName": "workloadVirtualClusterTemplate",
             "type": "StorageV1WorkloadVirtualClusterTemplateDefinition",
             "format": ""
         }    ];
