@@ -311,6 +311,7 @@ export interface V1InfoMethodsSSO {
 	id?: string;
 	displayName?: string;
 	loginEndpoint?: string;
+	logoutEndpoint?: string;
 }
 export interface V1InfoMethodsPassword {
 	enabled?: boolean;
