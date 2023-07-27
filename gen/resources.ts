@@ -39,6 +39,7 @@ import {ManagementV1ProjectMigrateVirtualClusterInstance} from "./models/managem
 import {ManagementV1ProjectSecret} from "./models/managementV1ProjectSecret"
 import {ManagementV1ProjectTemplates} from "./models/managementV1ProjectTemplates"
 import {ManagementV1Project} from "./models/managementV1Project"
+import {ManagementV1RedirectToken} from "./models/managementV1RedirectToken"
 import {ManagementV1ResetAccessKey} from "./models/managementV1ResetAccessKey"
 import {ManagementV1RunnerConfig} from "./models/managementV1RunnerConfig"
 import {ManagementV1Runner} from "./models/managementV1Runner"
@@ -105,6 +106,7 @@ export type TGenResources = {
   ManagementV1ProjectMigrateVirtualClusterInstance: GroupVersionResource<ManagementV1ProjectMigrateVirtualClusterInstance>
   ManagementV1ProjectSecret: GroupVersionResource<ManagementV1ProjectSecret>
   ManagementV1ProjectTemplates: GroupVersionResource<ManagementV1ProjectTemplates>
+  ManagementV1RedirectToken: GroupVersionResource<ManagementV1RedirectToken>
   ManagementV1ResetAccessKey: GroupVersionResource<ManagementV1ResetAccessKey>
   ManagementV1Runner: GroupVersionResource<ManagementV1Runner>
   ManagementV1RunnerConfig: GroupVersionResource<ManagementV1RunnerConfig>
@@ -444,6 +446,14 @@ export const GenResources: TGenResources = {
     subResource: "templates",
     namespaced: false,
     kind: "ProjectTemplates",
+  },
+  ManagementV1RedirectToken: {
+    group: "management.loft.sh",
+    version: "v1",
+    resource: "redirecttokens",
+    subResource: "",
+    namespaced: false,
+    kind: "RedirectToken",
   },
   ManagementV1ResetAccessKey: {
     group: "management.loft.sh",
