@@ -10,26 +10,34 @@
  * Do not edit the class manually.
  */
 
+import { StorageV1DevPodProviderOptionFrom } from './storageV1DevPodProviderOptionFrom';
 
 
-export class StorageV1AllowedCluster {
+export class StorageV1DevPodProviderOption {
     /**
-    * Name is the name of the cluster that is allowed to create an environment in.
+    * Value of this option.
     */
-    'name'?: string;
+    'value'?: string;
+    'valueFrom'?: StorageV1DevPodProviderOptionFrom;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "name",
-            "baseName": "name",
+            "name": "value",
+            "baseName": "value",
             "type": "string",
+            "format": ""
+        },
+        {
+            "name": "valueFrom",
+            "baseName": "valueFrom",
+            "type": "StorageV1DevPodProviderOptionFrom",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1AllowedCluster.attributeTypeMap;
+        return StorageV1DevPodProviderOption.attributeTypeMap;
     }
 
     public constructor() {

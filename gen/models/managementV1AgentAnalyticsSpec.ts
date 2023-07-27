@@ -10,26 +10,34 @@
  * Do not edit the class manually.
  */
 
+import { ServerInstanceTokenAuth } from './licenseServerInstanceTokenAuth';
 
 
-export class StorageV1AllowedCluster {
-    /**
-    * Name is the name of the cluster that is allowed to create an environment in.
-    */
-    'name'?: string;
+/**
+* AgentAnalyticsSpec holds info the agent can use to send analytics data to the analytics backend.
+*/
+export class ManagementV1AgentAnalyticsSpec {
+    'analyticsEndpoint'?: string;
+    'instanceTokenAuth'?: ServerInstanceTokenAuth;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "name",
-            "baseName": "name",
+            "name": "analyticsEndpoint",
+            "baseName": "analyticsEndpoint",
             "type": "string",
+            "format": ""
+        },
+        {
+            "name": "instanceTokenAuth",
+            "baseName": "instanceTokenAuth",
+            "type": "ServerInstanceTokenAuth",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1AllowedCluster.attributeTypeMap;
+        return ManagementV1AgentAnalyticsSpec.attributeTypeMap;
     }
 
     public constructor() {

@@ -290,6 +290,7 @@ export interface RequestOptionsProject {
   project: string
   space?: string
   virtualCluster?: string
+  devPodWorkspace?: string
 }
 
 export interface RequestOptionsVCluster {

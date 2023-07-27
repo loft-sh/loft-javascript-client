@@ -13,36 +13,36 @@
 
 
 /**
-* HTTPHeader describes a custom header to be used in HTTP probes
+* ContainerResizePolicy represents resource resize policy for the container.
 */
-export class V1HTTPHeader {
+export class V1ContainerResizePolicy {
     /**
-    * The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.
+    * Name of the resource to which this resource resize policy applies. Supported values: cpu, memory.
     */
-    'name': string;
+    'resourceName': string;
     /**
-    * The header field value
+    * Restart policy to apply when specified resource is resized. If not specified, it defaults to NotRequired.
     */
-    'value': string;
+    'restartPolicy': string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "name",
-            "baseName": "name",
+            "name": "resourceName",
+            "baseName": "resourceName",
             "type": "string",
             "format": ""
         },
         {
-            "name": "value",
-            "baseName": "value",
+            "name": "restartPolicy",
+            "baseName": "restartPolicy",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return V1HTTPHeader.attributeTypeMap;
+        return V1ContainerResizePolicy.attributeTypeMap;
     }
 
     public constructor() {

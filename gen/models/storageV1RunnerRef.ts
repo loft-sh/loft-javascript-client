@@ -12,24 +12,24 @@
 
 
 
-export class StorageV1AllowedCluster {
+export class StorageV1RunnerRef {
     /**
-    * Name is the name of the cluster that is allowed to create an environment in.
+    * Runner is the connected runner the workspace will be created in
     */
-    'name'?: string;
+    'runner'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "name",
-            "baseName": "name",
+            "name": "runner",
+            "baseName": "runner",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1AllowedCluster.attributeTypeMap;
+        return StorageV1RunnerRef.attributeTypeMap;
     }
 
     public constructor() {

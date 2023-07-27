@@ -10,26 +10,31 @@
  * Do not edit the class manually.
  */
 
+import { V1SecretKeySelector } from './V1SecretKeySelector';
 
 
-export class StorageV1AllowedCluster {
-    /**
-    * Name is the name of the cluster that is allowed to create an environment in.
-    */
-    'name'?: string;
+export class StorageV1DevPodProviderOptionFrom {
+    'projectSecretRef'?: V1SecretKeySelector;
+    'sharedSecretRef'?: V1SecretKeySelector;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "name",
-            "baseName": "name",
-            "type": "string",
+            "name": "projectSecretRef",
+            "baseName": "projectSecretRef",
+            "type": "V1SecretKeySelector",
+            "format": ""
+        },
+        {
+            "name": "sharedSecretRef",
+            "baseName": "sharedSecretRef",
+            "type": "V1SecretKeySelector",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1AllowedCluster.attributeTypeMap;
+        return StorageV1DevPodProviderOptionFrom.attributeTypeMap;
     }
 
     public constructor() {

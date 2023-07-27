@@ -4,6 +4,7 @@ import {ManagementV1AgentAuditEvent} from "./models/managementV1AgentAuditEvent"
 import {ManagementV1Announcement} from "./models/managementV1Announcement"
 import {ManagementV1App} from "./models/managementV1App"
 import {ManagementV1ClusterAccess} from "./models/managementV1ClusterAccess"
+import {ManagementV1ClusterAgentConfig} from "./models/managementV1ClusterAgentConfig"
 import {ManagementV1ClusterCharts} from "./models/managementV1ClusterCharts"
 import {ManagementV1ClusterConnect} from "./models/managementV1ClusterConnect"
 import {ManagementV1ClusterDomain} from "./models/managementV1ClusterDomain"
@@ -14,6 +15,8 @@ import {ManagementV1ClusterRoleTemplate} from "./models/managementV1ClusterRoleT
 import {ManagementV1ClusterVirtualClusterDefaults} from "./models/managementV1ClusterVirtualClusterDefaults"
 import {ManagementV1Cluster} from "./models/managementV1Cluster"
 import {ManagementV1Config} from "./models/managementV1Config"
+import {ManagementV1DevPodWorkspaceInstance} from "./models/managementV1DevPodWorkspaceInstance"
+import {ManagementV1DevPodWorkspaceTemplate} from "./models/managementV1DevPodWorkspaceTemplate"
 import {ManagementV1DirectClusterEndpointToken} from "./models/managementV1DirectClusterEndpointToken"
 import {ManagementV1Event} from "./models/managementV1Event"
 import {ManagementV1Feature} from "./models/managementV1Feature"
@@ -37,6 +40,8 @@ import {ManagementV1ProjectSecret} from "./models/managementV1ProjectSecret"
 import {ManagementV1ProjectTemplates} from "./models/managementV1ProjectTemplates"
 import {ManagementV1Project} from "./models/managementV1Project"
 import {ManagementV1ResetAccessKey} from "./models/managementV1ResetAccessKey"
+import {ManagementV1RunnerConfig} from "./models/managementV1RunnerConfig"
+import {ManagementV1Runner} from "./models/managementV1Runner"
 import {ManagementV1SelfSubjectAccessReview} from "./models/managementV1SelfSubjectAccessReview"
 import {ManagementV1Self} from "./models/managementV1Self"
 import {ManagementV1SharedSecret} from "./models/managementV1SharedSecret"
@@ -66,6 +71,7 @@ export type TGenResources = {
   ManagementV1App: GroupVersionResource<ManagementV1App>
   ManagementV1Cluster: GroupVersionResource<ManagementV1Cluster>
   ManagementV1ClusterAccess: GroupVersionResource<ManagementV1ClusterAccess>
+  ManagementV1ClusterAgentConfig: GroupVersionResource<ManagementV1ClusterAgentConfig>
   ManagementV1ClusterCharts: GroupVersionResource<ManagementV1ClusterCharts>
   ManagementV1ClusterConnect: GroupVersionResource<ManagementV1ClusterConnect>
   ManagementV1ClusterDomain: GroupVersionResource<ManagementV1ClusterDomain>
@@ -75,6 +81,8 @@ export type TGenResources = {
   ManagementV1ClusterRoleTemplate: GroupVersionResource<ManagementV1ClusterRoleTemplate>
   ManagementV1ClusterVirtualClusterDefaults: GroupVersionResource<ManagementV1ClusterVirtualClusterDefaults>
   ManagementV1Config: GroupVersionResource<ManagementV1Config>
+  ManagementV1DevPodWorkspaceInstance: GroupVersionResource<ManagementV1DevPodWorkspaceInstance>
+  ManagementV1DevPodWorkspaceTemplate: GroupVersionResource<ManagementV1DevPodWorkspaceTemplate>
   ManagementV1DirectClusterEndpointToken: GroupVersionResource<ManagementV1DirectClusterEndpointToken>
   ManagementV1Event: GroupVersionResource<ManagementV1Event>
   ManagementV1Feature: GroupVersionResource<ManagementV1Feature>
@@ -98,6 +106,8 @@ export type TGenResources = {
   ManagementV1ProjectSecret: GroupVersionResource<ManagementV1ProjectSecret>
   ManagementV1ProjectTemplates: GroupVersionResource<ManagementV1ProjectTemplates>
   ManagementV1ResetAccessKey: GroupVersionResource<ManagementV1ResetAccessKey>
+  ManagementV1Runner: GroupVersionResource<ManagementV1Runner>
+  ManagementV1RunnerConfig: GroupVersionResource<ManagementV1RunnerConfig>
   ManagementV1Self: GroupVersionResource<ManagementV1Self>
   ManagementV1SelfSubjectAccessReview: GroupVersionResource<ManagementV1SelfSubjectAccessReview>
   ManagementV1SharedSecret: GroupVersionResource<ManagementV1SharedSecret>
@@ -162,6 +172,14 @@ export const GenResources: TGenResources = {
     subResource: "",
     namespaced: false,
     kind: "ClusterAccess",
+  },
+  ManagementV1ClusterAgentConfig: {
+    group: "management.loft.sh",
+    version: "v1",
+    resource: "clusters",
+    subResource: "agentconfig",
+    namespaced: false,
+    kind: "ClusterAgentConfig",
   },
   ManagementV1ClusterCharts: {
     group: "management.loft.sh",
@@ -234,6 +252,22 @@ export const GenResources: TGenResources = {
     subResource: "",
     namespaced: false,
     kind: "Config",
+  },
+  ManagementV1DevPodWorkspaceInstance: {
+    group: "management.loft.sh",
+    version: "v1",
+    resource: "devpodworkspaceinstances",
+    subResource: "",
+    namespaced: true,
+    kind: "DevPodWorkspaceInstance",
+  },
+  ManagementV1DevPodWorkspaceTemplate: {
+    group: "management.loft.sh",
+    version: "v1",
+    resource: "devpodworkspacetemplates",
+    subResource: "",
+    namespaced: false,
+    kind: "DevPodWorkspaceTemplate",
   },
   ManagementV1DirectClusterEndpointToken: {
     group: "management.loft.sh",
@@ -418,6 +452,22 @@ export const GenResources: TGenResources = {
     subResource: "",
     namespaced: false,
     kind: "ResetAccessKey",
+  },
+  ManagementV1Runner: {
+    group: "management.loft.sh",
+    version: "v1",
+    resource: "runners",
+    subResource: "",
+    namespaced: false,
+    kind: "Runner",
+  },
+  ManagementV1RunnerConfig: {
+    group: "management.loft.sh",
+    version: "v1",
+    resource: "runners",
+    subResource: "config",
+    namespaced: false,
+    kind: "RunnerConfig",
   },
   ManagementV1Self: {
     group: "management.loft.sh",
