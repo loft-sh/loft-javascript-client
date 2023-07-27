@@ -9212,11 +9212,7 @@ declare class ManagementV1ConfigStatus {
 	"audit"?: ManagementV1Audit;
 	"auth"?: ManagementV1Authentication;
 	/**
-	* DevPodSubDomain holds a subdomain in the following form *.workspace.my-domain.com
-	*/
-	"devPodSubDomain"?: string;
-	/**
-	* LoftHost holds the domain where the loft instance is hosted. This should not include https or http. E.g. loft.my-domain.com
+	* LoftHost holds the domain where the loft instance is hosted
 	*/
 	"loftHost"?: string;
 	"oidc"?: ManagementV1OIDC;
@@ -9535,26 +9531,26 @@ declare class StorageV1DevPodWorkspaceTemplateVersion {
 }
 declare class ManagementV1DevPodWorkspaceTemplateSpec {
 	/**
-	* Access holds the access rights for users and teams
-	*/
+	 * Access holds the access rights for users and teams
+	 */
 	"access"?: Array<StorageV1Access>;
 	/**
-	* Description describes the virtual cluster template
-	*/
+	 * Description describes the virtual cluster template
+	 */
 	"description"?: string;
 	/**
-	* DisplayName is the name that is shown in the UI
-	*/
+	 * DisplayName is the name that is shown in the UI
+	 */
 	"displayName"?: string;
 	"owner"?: StorageV1UserOrTeam;
 	/**
-	* Parameters define additional app parameters that will set provider values
-	*/
+	 * Parameters define additional app parameters that will set provider values
+	 */
 	"parameters"?: Array<StorageV1AppParameter>;
 	"template"?: StorageV1DevPodWorkspaceTemplateDefinition;
 	/**
-	* Versions are different versions of the template that can be referenced as well
-	*/
+	 * Versions are different versions of the template that can be referenced as well
+	 */
 	"versions"?: Array<StorageV1DevPodWorkspaceTemplateVersion>;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
@@ -12335,70 +12331,6 @@ declare class ManagementV1Project {
 	}[];
 	constructor();
 }
-declare class ManagementV1RedirectTokenSpec {
-	/**
-	* Token is the token that includes the redirect request
-	*/
-	"token"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1RedirectTokenStatus {
-	"redirectURL"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1RedirectToken {
-	/**
-	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
-	*/
-	"apiVersion"?: string;
-	/**
-	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-	*/
-	"kind"?: string;
-	"metadata"?: V1ObjectMeta;
-	"spec"?: ManagementV1RedirectTokenSpec;
-	"status"?: ManagementV1RedirectTokenStatus;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
 declare class ManagementV1ResetAccessKeySpec {
 	/**
 	* Description describes an app
@@ -14756,7 +14688,6 @@ export type TGenResources = {
 	ManagementV1ProjectMigrateVirtualClusterInstance: GroupVersionResource<ManagementV1ProjectMigrateVirtualClusterInstance>;
 	ManagementV1ProjectSecret: GroupVersionResource<ManagementV1ProjectSecret>;
 	ManagementV1ProjectTemplates: GroupVersionResource<ManagementV1ProjectTemplates>;
-	ManagementV1RedirectToken: GroupVersionResource<ManagementV1RedirectToken>;
 	ManagementV1ResetAccessKey: GroupVersionResource<ManagementV1ResetAccessKey>;
 	ManagementV1Runner: GroupVersionResource<ManagementV1Runner>;
 	ManagementV1RunnerConfig: GroupVersionResource<ManagementV1RunnerConfig>;

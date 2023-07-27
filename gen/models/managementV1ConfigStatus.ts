@@ -26,11 +26,7 @@ export class ManagementV1ConfigStatus {
     'audit'?: ManagementV1Audit;
     'auth'?: ManagementV1Authentication;
     /**
-    * DevPodSubDomain holds a subdomain in the following form *.workspace.my-domain.com
-    */
-    'devPodSubDomain'?: string;
-    /**
-    * LoftHost holds the domain where the loft instance is hosted. This should not include https or http. E.g. loft.my-domain.com
+    * LoftHost holds the domain where the loft instance is hosted
     */
     'loftHost'?: string;
     'oidc'?: ManagementV1OIDC;
@@ -56,12 +52,6 @@ export class ManagementV1ConfigStatus {
             "name": "auth",
             "baseName": "auth",
             "type": "ManagementV1Authentication",
-            "format": ""
-        },
-        {
-            "name": "devPodSubDomain",
-            "baseName": "devPodSubDomain",
-            "type": "string",
             "format": ""
         },
         {
