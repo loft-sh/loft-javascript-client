@@ -12,9 +12,9 @@
 
 
 
-export class StorageV1AllowedCluster {
+export class StorageV1AllowedRunner {
     /**
-    * Name is the name of the cluster that is allowed to create an environment in.
+    * Name is the name of the runner that is allowed to create an environment in.
     */
     'name'?: string;
 
@@ -29,7 +29,7 @@ export class StorageV1AllowedCluster {
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1AllowedCluster.attributeTypeMap;
+        return StorageV1AllowedRunner.attributeTypeMap;
     }
 
     public constructor() {

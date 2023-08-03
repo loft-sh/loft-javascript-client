@@ -10,6 +10,7 @@
  * Do not edit the class manually.
  */
 
+import { ManagementV1DevPodWorkspaceTemplate } from './managementV1DevPodWorkspaceTemplate';
 import { ManagementV1SpaceTemplate } from './managementV1SpaceTemplate';
 import { ManagementV1VirtualClusterTemplate } from './managementV1VirtualClusterTemplate';
 import { V1ObjectMeta } from './V1ObjectMeta';
@@ -21,6 +22,10 @@ export class ManagementV1ProjectTemplates {
     */
     'apiVersion'?: string;
     /**
+    * DefaultDevPodWorkspaceTemplate
+    */
+    'defaultDevPodWorkspaceTemplate'?: string;
+    /**
     * DefaultSpaceTemplate
     */
     'defaultSpaceTemplate'?: string;
@@ -28,6 +33,10 @@ export class ManagementV1ProjectTemplates {
     * DefaultVirtualClusterTemplate is the default template for the project
     */
     'defaultVirtualClusterTemplate'?: string;
+    /**
+    * DevPodWorkspaceTemplates holds all the allowed space templates
+    */
+    'devPodWorkspaceTemplates'?: Array<ManagementV1DevPodWorkspaceTemplate>;
     /**
     * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
     */
@@ -52,6 +61,12 @@ export class ManagementV1ProjectTemplates {
             "format": ""
         },
         {
+            "name": "defaultDevPodWorkspaceTemplate",
+            "baseName": "defaultDevPodWorkspaceTemplate",
+            "type": "string",
+            "format": ""
+        },
+        {
             "name": "defaultSpaceTemplate",
             "baseName": "defaultSpaceTemplate",
             "type": "string",
@@ -61,6 +76,12 @@ export class ManagementV1ProjectTemplates {
             "name": "defaultVirtualClusterTemplate",
             "baseName": "defaultVirtualClusterTemplate",
             "type": "string",
+            "format": ""
+        },
+        {
+            "name": "devPodWorkspaceTemplates",
+            "baseName": "devPodWorkspaceTemplates",
+            "type": "Array<ManagementV1DevPodWorkspaceTemplate>",
             "format": ""
         },
         {

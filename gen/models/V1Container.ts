@@ -11,6 +11,7 @@
  */
 
 import { V1ContainerPort } from './V1ContainerPort';
+import { V1ContainerResizePolicy } from './V1ContainerResizePolicy';
 import { V1EnvFromSource } from './V1EnvFromSource';
 import { V1EnvVar } from './V1EnvVar';
 import { V1Lifecycle } from './V1Lifecycle';
@@ -60,6 +61,10 @@ export class V1Container {
     */
     'ports'?: Array<V1ContainerPort>;
     'readinessProbe'?: V1Probe;
+    /**
+    * Resources resize policy for the container.
+    */
+    'resizePolicy'?: Array<V1ContainerResizePolicy>;
     'resources'?: V1ResourceRequirements;
     'securityContext'?: V1SecurityContext;
     'startupProbe'?: V1Probe;
@@ -163,6 +168,12 @@ export class V1Container {
             "name": "readinessProbe",
             "baseName": "readinessProbe",
             "type": "V1Probe",
+            "format": ""
+        },
+        {
+            "name": "resizePolicy",
+            "baseName": "resizePolicy",
+            "type": "Array<V1ContainerResizePolicy>",
             "format": ""
         },
         {
