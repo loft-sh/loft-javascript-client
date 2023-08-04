@@ -33,11 +33,11 @@ export class V1OwnerReference {
     */
     'kind': string;
     /**
-    * Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#names
+    * Name of the referent. More info: http://kubernetes.io/docs/user-guide/identifiers#names
     */
     'name': string;
     /**
-    * UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#uids
+    * UID of the referent. More info: http://kubernetes.io/docs/user-guide/identifiers#uids
     */
     'uid': string;
 

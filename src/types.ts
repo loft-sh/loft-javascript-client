@@ -114,7 +114,6 @@ export interface V1InfoMethodsSSO {
   id?: string
   displayName?: string
   loginEndpoint?: string
-  logoutEndpoint?: string
 }
 
 export interface V1InfoMethodsPassword {
@@ -290,7 +289,6 @@ export interface RequestOptionsProject {
   project: string
   space?: string
   virtualCluster?: string
-  devPodWorkspace?: string
 }
 
 export interface RequestOptionsVCluster {
