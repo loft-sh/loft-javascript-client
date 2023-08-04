@@ -24,6 +24,10 @@ export class RuntimeUnknown {
     * ContentType  is serialization method used to serialize 'Raw'. Unspecified means ContentTypeJSON.
     */
     'ContentType': string;
+    /**
+    * Raw will hold the complete serialized object which couldn't be matched with a registered type. Most likely, nothing should be done with this except for passing it through the system.
+    */
+    'Raw': string;
     'apiVersion'?: string;
     'kind'?: string;
 
@@ -41,6 +45,12 @@ export class RuntimeUnknown {
             "baseName": "ContentType",
             "type": "string",
             "format": ""
+        },
+        {
+            "name": "Raw",
+            "baseName": "Raw",
+            "type": "string",
+            "format": "byte"
         },
         {
             "name": "apiVersion",

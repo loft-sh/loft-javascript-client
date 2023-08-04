@@ -14,7 +14,7 @@
 
 export class StorageV1AllowedCluster {
     /**
-    * Name is the name of the cluster that is allowed to create an environment in.
+    * Name is the name of the cluster that is allowed to create an environment in
     */
     'name'?: string;
 
