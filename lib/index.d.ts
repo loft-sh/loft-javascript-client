@@ -595,6 +595,7 @@ declare class Request<T> {
 	Logs(namespace: string, pod: string, options?: LogOptions): Promise<Result<ReadableStreamDefaultReader<Uint8Array>>>;
 	Exec(namespace: string, pod: string, options?: ExecOptions): Promise<Result<WebSocket>>;
 	Path(path: string, init?: RequestInit, headers?: Record<string, string>): Promise<Result<T>>;
+	ResolvePath(name?: string): Result<string>;
 	Get(name: string, options?: GetOptions): Promise<Result<T>>;
 	List(options?: ListOptions): Promise<Result<List<T>>>;
 	ListTable(options?: ListOptions): Promise<Result<V1Table | List<T>>>;

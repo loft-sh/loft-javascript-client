@@ -992,6 +992,14 @@ class Request<T> {
     })
   }
 
+  public ResolvePath(name?: string): Result<string> {
+    if (name) {
+      this.options.name = name
+    }
+
+    return this.buildPath()
+  }
+
   public async Get(name: string, options?: GetOptions): Promise<Result<T>> {
     this.options.name = name
     const path = this.buildPath(options)
