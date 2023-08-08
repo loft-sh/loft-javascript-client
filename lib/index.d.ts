@@ -558,7 +558,7 @@ export declare class Client {
 	private setAccessKey;
 	stream(path: string, init?: RequestInit): Promise<Result<ReadableStreamDefaultReader<Uint8Array>>>;
 	request<E>(path: string, init?: RequestInit): Promise<Result<E>>;
-	socket(path: string): Promise<WebSocket>;
+	socket(path: string, protocols: string[] | string | undefined): Promise<WebSocket>;
 	private parseResponse;
 	management<T>(groupVersionResource: GroupVersionResource<T>): Request<T>;
 	managementNonResource: <T>() => Request<T>;
@@ -570,7 +570,7 @@ export declare class Client {
 	vClusterNonResource<T>(vCluster: RequestOptionsVCluster): Request<T>;
 	auto<T>(cluster: string | undefined, vCluster: RequestOptionsVCluster | undefined, project: RequestOptionsProject | undefined, groupVersionResource: GroupVersionResource<T>): Request<T>;
 	autoNonResource(cluster: string | undefined, vCluster: RequestOptionsVCluster | undefined, project: RequestOptionsProject | undefined): Request<unknown>;
-	doRawSocket(path: string): Promise<Result<WebSocket>>;
+	doRawSocket(path: string, protocols?: string[]): Promise<Result<WebSocket>>;
 	doRawStream(path: string, init?: RequestInit, headers?: Record<string, string>): Promise<Result<ReadableStreamDefaultReader<Uint8Array>>>;
 	doRaw<E>(path: string, init?: RequestInit, headers?: Record<string, string>): Promise<Result<E>>;
 	private doRawInternal;

@@ -324,11 +324,11 @@ class Client {
     }
   }
 
-  public async socket(path: string): Promise<WebSocket> {
+  public async socket(path: string, protocols: string[] | string | undefined): Promise<WebSocket> {
     this.refreshCookie()
 
     return new Promise<WebSocket>((resolve, reject) => {
-      const client = new WebSocket(`${this.wsHost}${path}`, K8S_WEBSOCKET_PROTOCOLS)
+      const client = new WebSocket(`${this.wsHost}${path}`, protocols)
       let resolved = false
       client.onopen = () => {
         resolved = true
@@ -531,9 +531,9 @@ class Client {
       : this.managementNonResource()
   }
 
-  public async doRawSocket(path: string): Promise<Result<WebSocket>> {
+  public async doRawSocket(path: string, protocols?: string[]): Promise<Result<WebSocket>> {
     try {
-      return Return.Value(await this.socket(path))
+      return Return.Value(await this.socket(path, protocols))
     } catch (err) {
       console.error(err)
 
@@ -976,7 +976,7 @@ class Request<T> {
       requestPath += "?" + queryString
     }
 
-    return await this.client.doRawSocket(requestPath)
+    return await this.client.doRawSocket(requestPath, K8S_WEBSOCKET_PROTOCOLS)
   }
 
   public async Path(
