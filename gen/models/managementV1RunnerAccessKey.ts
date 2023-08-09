@@ -10,15 +10,17 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1RedirectTokenSpec } from './managementV1RedirectTokenSpec';
-import { ManagementV1RedirectTokenStatus } from './managementV1RedirectTokenStatus';
 import { V1ObjectMeta } from './V1ObjectMeta';
 
 
 /**
-* RedirectToken holds the object information
+* RunnerAccessKey holds the access key for the runner
 */
-export class ManagementV1RedirectToken {
+export class ManagementV1RunnerAccessKey {
+    /**
+    * AccessKey is the access key used by the runner
+    */
+    'accessKey'?: string;
     /**
     * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
     */
@@ -28,12 +30,16 @@ export class ManagementV1RedirectToken {
     */
     'kind'?: string;
     'metadata'?: V1ObjectMeta;
-    'spec'?: ManagementV1RedirectTokenSpec;
-    'status'?: ManagementV1RedirectTokenStatus;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+        {
+            "name": "accessKey",
+            "baseName": "accessKey",
+            "type": "string",
+            "format": ""
+        },
         {
             "name": "apiVersion",
             "baseName": "apiVersion",
@@ -51,22 +57,10 @@ export class ManagementV1RedirectToken {
             "baseName": "metadata",
             "type": "V1ObjectMeta",
             "format": ""
-        },
-        {
-            "name": "spec",
-            "baseName": "spec",
-            "type": "ManagementV1RedirectTokenSpec",
-            "format": ""
-        },
-        {
-            "name": "status",
-            "baseName": "status",
-            "type": "ManagementV1RedirectTokenStatus",
-            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1RedirectToken.attributeTypeMap;
+        return ManagementV1RunnerAccessKey.attributeTypeMap;
     }
 
     public constructor() {

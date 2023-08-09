@@ -11,6 +11,7 @@
  */
 
 import { ManagementV1RunnerSpec } from './managementV1RunnerSpec';
+import { ManagementV1RunnerStatus } from './managementV1RunnerStatus';
 import { V1ObjectMeta } from './V1ObjectMeta';
 
 
@@ -28,10 +29,7 @@ export class ManagementV1Runner {
     'kind'?: string;
     'metadata'?: V1ObjectMeta;
     'spec'?: ManagementV1RunnerSpec;
-    /**
-    * RunnerStatus holds the status
-    */
-    'status'?: any;
+    'status'?: ManagementV1RunnerStatus;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -63,7 +61,7 @@ export class ManagementV1Runner {
         {
             "name": "status",
             "baseName": "status",
-            "type": "any",
+            "type": "ManagementV1RunnerStatus",
             "format": ""
         }    ];
 

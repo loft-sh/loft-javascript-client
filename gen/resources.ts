@@ -41,6 +41,7 @@ import {ManagementV1ProjectTemplates} from "./models/managementV1ProjectTemplate
 import {ManagementV1Project} from "./models/managementV1Project"
 import {ManagementV1RedirectToken} from "./models/managementV1RedirectToken"
 import {ManagementV1ResetAccessKey} from "./models/managementV1ResetAccessKey"
+import {ManagementV1RunnerAccessKey} from "./models/managementV1RunnerAccessKey"
 import {ManagementV1RunnerConfig} from "./models/managementV1RunnerConfig"
 import {ManagementV1Runner} from "./models/managementV1Runner"
 import {ManagementV1SelfSubjectAccessReview} from "./models/managementV1SelfSubjectAccessReview"
@@ -109,6 +110,7 @@ export type TGenResources = {
   ManagementV1RedirectToken: GroupVersionResource<ManagementV1RedirectToken>
   ManagementV1ResetAccessKey: GroupVersionResource<ManagementV1ResetAccessKey>
   ManagementV1Runner: GroupVersionResource<ManagementV1Runner>
+  ManagementV1RunnerAccessKey: GroupVersionResource<ManagementV1RunnerAccessKey>
   ManagementV1RunnerConfig: GroupVersionResource<ManagementV1RunnerConfig>
   ManagementV1Self: GroupVersionResource<ManagementV1Self>
   ManagementV1SelfSubjectAccessReview: GroupVersionResource<ManagementV1SelfSubjectAccessReview>
@@ -470,6 +472,14 @@ export const GenResources: TGenResources = {
     subResource: "",
     namespaced: false,
     kind: "Runner",
+  },
+  ManagementV1RunnerAccessKey: {
+    group: "management.loft.sh",
+    version: "v1",
+    resource: "runners",
+    subResource: "accesskey",
+    namespaced: false,
+    kind: "RunnerAccessKey",
   },
   ManagementV1RunnerConfig: {
     group: "management.loft.sh",

@@ -11,6 +11,7 @@
  */
 
 import { StorageV1Access } from './storageV1Access';
+import { StorageV1RunnerClusterRef } from './storageV1RunnerClusterRef';
 import { StorageV1UserOrTeam } from './storageV1UserOrTeam';
 
 
@@ -22,6 +23,7 @@ export class ManagementV1RunnerSpec {
     * Access holds the access rights for users and teams
     */
     'access'?: Array<StorageV1Access>;
+    'clusterRef'?: StorageV1RunnerClusterRef;
     /**
     * Description describes a cluster access object
     */
@@ -31,6 +33,10 @@ export class ManagementV1RunnerSpec {
     */
     'displayName'?: string;
     'owner'?: StorageV1UserOrTeam;
+    /**
+    * If unusable is true, no DevPod workspaces can be scheduled on this runner.
+    */
+    'unusable'?: boolean;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -39,6 +45,12 @@ export class ManagementV1RunnerSpec {
             "name": "access",
             "baseName": "access",
             "type": "Array<StorageV1Access>",
+            "format": ""
+        },
+        {
+            "name": "clusterRef",
+            "baseName": "clusterRef",
+            "type": "StorageV1RunnerClusterRef",
             "format": ""
         },
         {
@@ -57,6 +69,12 @@ export class ManagementV1RunnerSpec {
             "name": "owner",
             "baseName": "owner",
             "type": "StorageV1UserOrTeam",
+            "format": ""
+        },
+        {
+            "name": "unusable",
+            "baseName": "unusable",
+            "type": "boolean",
             "format": ""
         }    ];
 
