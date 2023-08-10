@@ -12,7 +12,6 @@
 
 import { StorageV1Access } from './storageV1Access';
 import { StorageV1AllowedCluster } from './storageV1AllowedCluster';
-import { StorageV1AllowedRunner } from './storageV1AllowedRunner';
 import { StorageV1AllowedTemplate } from './storageV1AllowedTemplate';
 import { StorageV1ArgoIntegrationSpec } from './storageV1ArgoIntegrationSpec';
 import { StorageV1Member } from './storageV1Member';
@@ -34,10 +33,6 @@ export class ManagementV1ProjectSpec {
     * AllowedClusters are target clusters that are allowed to target with environments.
     */
     'allowedClusters'?: Array<StorageV1AllowedCluster>;
-    /**
-    * AllowedRunners are target runners that are allowed to target with DevPod environments.
-    */
-    'allowedRunners'?: Array<StorageV1AllowedRunner>;
     /**
     * AllowedTemplates are the templates that are allowed to use in this project.
     */
@@ -73,12 +68,6 @@ export class ManagementV1ProjectSpec {
             "name": "allowedClusters",
             "baseName": "allowedClusters",
             "type": "Array<StorageV1AllowedCluster>",
-            "format": ""
-        },
-        {
-            "name": "allowedRunners",
-            "baseName": "allowedRunners",
-            "type": "Array<StorageV1AllowedRunner>",
             "format": ""
         },
         {
