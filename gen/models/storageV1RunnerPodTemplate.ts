@@ -10,26 +10,32 @@
  * Do not edit the class manually.
  */
 
+import { StorageV1RunnerPodTemplateSpec } from './storageV1RunnerPodTemplateSpec';
+import { StorageV1TemplateMetadata } from './storageV1TemplateMetadata';
 
 
-/**
-* RedirectTokenStatus holds the object status
-*/
-export class ManagementV1RedirectTokenStatus {
-    'redirectURL'?: string;
+export class StorageV1RunnerPodTemplate {
+    'metadata'?: StorageV1TemplateMetadata;
+    'spec'?: StorageV1RunnerPodTemplateSpec;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "redirectURL",
-            "baseName": "redirectURL",
-            "type": "string",
+            "name": "metadata",
+            "baseName": "metadata",
+            "type": "StorageV1TemplateMetadata",
+            "format": ""
+        },
+        {
+            "name": "spec",
+            "baseName": "spec",
+            "type": "StorageV1RunnerPodTemplateSpec",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1RedirectTokenStatus.attributeTypeMap;
+        return StorageV1RunnerPodTemplate.attributeTypeMap;
     }
 
     public constructor() {

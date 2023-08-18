@@ -28,6 +28,10 @@ export class ManagementV1DevPodWorkspaceInstanceStatus {
     'ignoreReconciliation'?: boolean;
     'instance'?: StorageV1DevPodWorkspaceTemplateDefinition;
     /**
+    * LastWorkspaceStatus is the last workspace status reported by the runner.
+    */
+    'lastWorkspaceStatus'?: string;
+    /**
     * Message describes the reason in human-readable form why the DevPod machine is in the current phase
     */
     'message'?: string;
@@ -59,6 +63,12 @@ export class ManagementV1DevPodWorkspaceInstanceStatus {
             "name": "instance",
             "baseName": "instance",
             "type": "StorageV1DevPodWorkspaceTemplateDefinition",
+            "format": ""
+        },
+        {
+            "name": "lastWorkspaceStatus",
+            "baseName": "lastWorkspaceStatus",
+            "type": "string",
             "format": ""
         },
         {

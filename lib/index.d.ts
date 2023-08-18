@@ -558,7 +558,7 @@ export declare class Client {
 	private setAccessKey;
 	stream(path: string, init?: RequestInit): Promise<Result<ReadableStreamDefaultReader<Uint8Array>>>;
 	request<E>(path: string, init?: RequestInit): Promise<Result<E>>;
-	socket(path: string): Promise<WebSocket>;
+	socket(path: string, protocols: string[] | string | undefined): Promise<WebSocket>;
 	private parseResponse;
 	management<T>(groupVersionResource: GroupVersionResource<T>): Request<T>;
 	managementNonResource: <T>() => Request<T>;
@@ -570,7 +570,7 @@ export declare class Client {
 	vClusterNonResource<T>(vCluster: RequestOptionsVCluster): Request<T>;
 	auto<T>(cluster: string | undefined, vCluster: RequestOptionsVCluster | undefined, project: RequestOptionsProject | undefined, groupVersionResource: GroupVersionResource<T>): Request<T>;
 	autoNonResource(cluster: string | undefined, vCluster: RequestOptionsVCluster | undefined, project: RequestOptionsProject | undefined): Request<unknown>;
-	doRawSocket(path: string): Promise<Result<WebSocket>>;
+	doRawSocket(path: string, protocols?: string[]): Promise<Result<WebSocket>>;
 	doRawStream(path: string, init?: RequestInit, headers?: Record<string, string>): Promise<Result<ReadableStreamDefaultReader<Uint8Array>>>;
 	doRaw<E>(path: string, init?: RequestInit, headers?: Record<string, string>): Promise<Result<E>>;
 	private doRawInternal;
@@ -595,6 +595,7 @@ declare class Request<T> {
 	Logs(namespace: string, pod: string, options?: LogOptions): Promise<Result<ReadableStreamDefaultReader<Uint8Array>>>;
 	Exec(namespace: string, pod: string, options?: ExecOptions): Promise<Result<WebSocket>>;
 	Path(path: string, init?: RequestInit, headers?: Record<string, string>): Promise<Result<T>>;
+	ResolvePath(name?: string): Result<string>;
 	Get(name: string, options?: GetOptions): Promise<Result<T>>;
 	List(options?: ListOptions): Promise<Result<List<T>>>;
 	ListTable(options?: ListOptions): Promise<Result<V1Table | List<T>>>;
@@ -7586,6 +7587,10 @@ declare class ManagementV1ClusterSpec {
 	*/
 	"managementNamespace"?: string;
 	"owner"?: StorageV1UserOrTeam;
+	/**
+	* If unusable is true, no spaces or virtual clusters can be scheduled on this cluster.
+	*/
+	"unusable"?: boolean;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -9455,6 +9460,10 @@ declare class ManagementV1DevPodWorkspaceInstanceStatus {
 	"ignoreReconciliation"?: boolean;
 	"instance"?: StorageV1DevPodWorkspaceTemplateDefinition;
 	/**
+	* LastWorkspaceStatus is the last workspace status reported by the runner.
+	*/
+	"lastWorkspaceStatus"?: string;
+	/**
 	* Message describes the reason in human-readable form why the DevPod machine is in the current phase
 	*/
 	"message"?: string;
@@ -10609,6 +10618,10 @@ declare class ServerLicense {
 	*/
 	"buttons"?: Array<ServerButton>;
 	/**
+	* DomainToken holds the JWT with the URL that the Loft instance is publicly available on. (via Loft router)
+	*/
+	"domainToken"?: string;
+	/**
 	* Features is a map of enabled features.
 	*/
 	"features"?: {
@@ -11127,6 +11140,245 @@ declare class ManagementV1ProjectCharts {
 	}[];
 	constructor();
 }
+declare class StorageV1RunnerPersistentVolumeClaimTemplateSpec {
+	/**
+	* accessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
+	*/
+	"accessModes"?: Array<string>;
+	/**
+	* storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1
+	*/
+	"storageClassName"?: string;
+	/**
+	* storageSize is the size of the storage to reserve for the pvc
+	*/
+	"storageSize"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1RunnerPersistentVolumeClaimTemplate {
+	"metadata"?: StorageV1TemplateMetadata;
+	"spec"?: StorageV1RunnerPersistentVolumeClaimTemplateSpec;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1RunnerPodTemplateSpec {
+	"affinity"?: V1Affinity;
+	/**
+	* List of environment variables to set in the container. Cannot be updated.
+	*/
+	"env"?: Array<V1EnvVar>;
+	/**
+	* List of sources to populate environment variables in the container. The keys defined within a source must be a C_IDENTIFIER. All invalid keys will be reported as an event when the container is starting. When a key exists in multiple sources, the value associated with the last source will take precedence. Values defined by an Env with a duplicate key will take precedence. Cannot be updated.
+	*/
+	"envFrom"?: Array<V1EnvFromSource>;
+	/**
+	* Set host aliases for the Runner Pod
+	*/
+	"hostAliases"?: Array<V1HostAlias>;
+	/**
+	* Runner pod image to use other than default
+	*/
+	"image"?: string;
+	/**
+	* Set up Init Containers for the Runner
+	*/
+	"initContainers"?: Array<V1Container>;
+	/**
+	* Set the NodeSelector for the Runner Pod
+	*/
+	"nodeSelector"?: {
+		[key: string]: string;
+	};
+	"resource"?: V1ResourceRequirements;
+	/**
+	* Set the Tolerations for the Runner Pod
+	*/
+	"tolerations"?: Array<V1Toleration>;
+	/**
+	* Set Volume Mounts for the Runner Pod
+	*/
+	"volumeMounts"?: Array<V1VolumeMount>;
+	/**
+	* Set Volumes for the Runner Pod
+	*/
+	"volumes"?: Array<V1Volume>;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1RunnerPodTemplate {
+	"metadata"?: StorageV1TemplateMetadata;
+	"spec"?: StorageV1RunnerPodTemplateSpec;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1RunnerClusterRef {
+	/**
+	* Cluster is the connected cluster the space will be created in
+	*/
+	"cluster"?: string;
+	/**
+	* Namespace is the namespace inside the connected cluster holding the space
+	*/
+	"namespace"?: string;
+	"persistentVolumeClaimTemplate"?: StorageV1RunnerPersistentVolumeClaimTemplate;
+	"podTemplate"?: StorageV1RunnerPodTemplate;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1RunnerSpec {
+	/**
+	* Access holds the access rights for users and teams
+	*/
+	"access"?: Array<StorageV1Access>;
+	"clusterRef"?: StorageV1RunnerClusterRef;
+	/**
+	* Description describes a cluster access object
+	*/
+	"description"?: string;
+	/**
+	* The display name shown in the UI
+	*/
+	"displayName"?: string;
+	"owner"?: StorageV1UserOrTeam;
+	/**
+	* If unusable is true, no DevPod workspaces can be scheduled on this runner.
+	*/
+	"unusable"?: boolean;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1RunnerStatus {
+	/**
+	* Conditions holds several conditions the virtual cluster might be in
+	*/
+	"conditions"?: Array<StorageV1Condition>;
+	/**
+	* Message describes the reason in human-readable form
+	*/
+	"message"?: string;
+	/**
+	* Phase describes the current phase the space instance is in
+	*/
+	"phase"?: string;
+	/**
+	* Reason describes the reason in machine-readable form
+	*/
+	"reason"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1Runner {
+	/**
+	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	*/
+	"apiVersion"?: string;
+	/**
+	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	*/
+	"kind"?: string;
+	"metadata"?: V1ObjectMeta;
+	"spec"?: ManagementV1RunnerSpec;
+	"status"?: ManagementV1RunnerStatus;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
 declare class ManagementV1ProjectClusters {
 	/**
 	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
@@ -11141,6 +11393,10 @@ declare class ManagementV1ProjectClusters {
 	*/
 	"kind"?: string;
 	"metadata"?: V1ObjectMeta;
+	/**
+	* Runners holds all the allowed runners
+	*/
+	"runners"?: Array<ManagementV1Runner>;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -12518,6 +12774,35 @@ declare class ManagementV1ResetAccessKey {
 	}[];
 	constructor();
 }
+declare class ManagementV1RunnerAccessKey {
+	/**
+	* AccessKey is the access key used by the runner
+	*/
+	"accessKey"?: string;
+	/**
+	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	*/
+	"apiVersion"?: string;
+	/**
+	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	*/
+	"kind"?: string;
+	"metadata"?: V1ObjectMeta;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
 declare class ManagementV1RunnerConfig {
 	/**
 	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
@@ -12532,65 +12817,6 @@ declare class ManagementV1RunnerConfig {
 	* TokenCaCert is the certificate authority the Loft tokens will be signed with
 	*/
 	"tokenCaCert"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1RunnerSpec {
-	/**
-	* Access holds the access rights for users and teams
-	*/
-	"access"?: Array<StorageV1Access>;
-	/**
-	* Description describes a cluster access object
-	*/
-	"description"?: string;
-	/**
-	* The display name shown in the UI
-	*/
-	"displayName"?: string;
-	"owner"?: StorageV1UserOrTeam;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1Runner {
-	/**
-	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
-	*/
-	"apiVersion"?: string;
-	/**
-	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-	*/
-	"kind"?: string;
-	"metadata"?: V1ObjectMeta;
-	"spec"?: ManagementV1RunnerSpec;
-	/**
-	* RunnerStatus holds the status
-	*/
-	"status"?: any;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -13750,6 +13976,10 @@ declare class StorageV1ClusterSpec {
 	*/
 	"managementNamespace"?: string;
 	"owner"?: StorageV1UserOrTeam;
+	/**
+	* If unusable is true, no spaces or virtual clusters can be scheduled on this cluster.
+	*/
+	"unusable"?: boolean;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -14759,6 +14989,7 @@ export type TGenResources = {
 	ManagementV1RedirectToken: GroupVersionResource<ManagementV1RedirectToken>;
 	ManagementV1ResetAccessKey: GroupVersionResource<ManagementV1ResetAccessKey>;
 	ManagementV1Runner: GroupVersionResource<ManagementV1Runner>;
+	ManagementV1RunnerAccessKey: GroupVersionResource<ManagementV1RunnerAccessKey>;
 	ManagementV1RunnerConfig: GroupVersionResource<ManagementV1RunnerConfig>;
 	ManagementV1Self: GroupVersionResource<ManagementV1Self>;
 	ManagementV1SelfSubjectAccessReview: GroupVersionResource<ManagementV1SelfSubjectAccessReview>;

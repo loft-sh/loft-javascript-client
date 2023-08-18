@@ -11,6 +11,7 @@
  */
 
 import { ManagementV1Cluster } from './managementV1Cluster';
+import { ManagementV1Runner } from './managementV1Runner';
 import { V1ObjectMeta } from './V1ObjectMeta';
 
 
@@ -28,6 +29,10 @@ export class ManagementV1ProjectClusters {
     */
     'kind'?: string;
     'metadata'?: V1ObjectMeta;
+    /**
+    * Runners holds all the allowed runners
+    */
+    'runners'?: Array<ManagementV1Runner>;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -54,6 +59,12 @@ export class ManagementV1ProjectClusters {
             "name": "metadata",
             "baseName": "metadata",
             "type": "V1ObjectMeta",
+            "format": ""
+        },
+        {
+            "name": "runners",
+            "baseName": "runners",
+            "type": "Array<ManagementV1Runner>",
             "format": ""
         }    ];
 
