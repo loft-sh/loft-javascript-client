@@ -15,7 +15,7 @@ import { ManagementV1Audit } from './managementV1Audit';
 import { ManagementV1Authentication } from './managementV1Authentication';
 import { ManagementV1OIDC } from './managementV1OIDC';
 import { StorageV1VaultIntegrationSpec } from './storageV1VaultIntegrationSpec';
-import { UiV1UISettingsSpec } from './uiV1UISettingsSpec';
+import { UiV1UISettingsConfig } from './uiV1UISettingsConfig';
 
 
 /**
@@ -34,7 +34,7 @@ export class ManagementV1ConfigStatus {
     */
     'loftHost'?: string;
     'oidc'?: ManagementV1OIDC;
-    'uiSettings'?: UiV1UISettingsSpec;
+    'uiSettings'?: UiV1UISettingsConfig;
     'vault'?: StorageV1VaultIntegrationSpec;
 
     static readonly discriminator: string | undefined = undefined;
@@ -79,7 +79,7 @@ export class ManagementV1ConfigStatus {
         {
             "name": "uiSettings",
             "baseName": "uiSettings",
-            "type": "UiV1UISettingsSpec",
+            "type": "UiV1UISettingsConfig",
             "format": ""
         },
         {

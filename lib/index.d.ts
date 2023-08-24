@@ -1227,6 +1227,10 @@ declare class StorageV1VirtualClusterSpec {
 	* Charts are helm charts that should get deployed
 	*/
 	"charts"?: Array<StorageV1TemplateHelmChart>;
+	/**
+	* ForwardToken signals the proxy to pass through the used token to the virtual Kubernetes api server and do a TokenReview there.
+	*/
+	"forwardToken"?: boolean;
 	"helmRelease"?: StorageV1VirtualClusterHelmRelease;
 	"kubeConfigRef"?: StorageV1SecretRef;
 	/**
@@ -2514,6 +2518,10 @@ declare class ClusterV1VirtualClusterSpec {
 	* Charts are helm charts that should get deployed
 	*/
 	"charts"?: Array<StorageV1TemplateHelmChart>;
+	/**
+	* ForwardToken signals the proxy to pass through the used token to the virtual Kubernetes api server and do a TokenReview there.
+	*/
+	"forwardToken"?: boolean;
 	"helmRelease"?: StorageV1VirtualClusterHelmRelease;
 	"kubeConfigRef"?: StorageV1SecretRef;
 	/**
@@ -8151,6 +8159,10 @@ declare class StorageV1VirtualClusterTemplateDefinition {
 	* Charts are helm charts that should get deployed
 	*/
 	"charts"?: Array<StorageV1TemplateHelmChart>;
+	/**
+	* ForwardToken signals the proxy to pass through the used token to the virtual Kubernetes api server and do a TokenReview there.
+	*/
+	"forwardToken"?: boolean;
 	"helmRelease"?: StorageV1VirtualClusterHelmRelease;
 	"metadata"?: StorageV1TemplateMetadata;
 	/**
@@ -9055,6 +9067,10 @@ declare class ManagementV1OIDC {
 	* If true indicates that loft will act as an OIDC server
 	*/
 	"enabled"?: boolean;
+	/**
+	* If true indicates that loft will allow wildcard '*' in client redirectURIs
+	*/
+	"wildcardRedirect"?: boolean;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -9160,7 +9176,7 @@ declare class UiV1NavBarButton {
 	}[];
 	constructor();
 }
-declare class UiV1UISettingsSpec {
+declare class UiV1UISettingsConfig {
 	/**
 	* AccentColor is the color value (ex: \"#12345\") to use for the accent
 	*/
@@ -9182,9 +9198,13 @@ declare class UiV1UISettingsSpec {
 	*/
 	"loftVersion"?: string;
 	/**
-	* LogoURL is url pointing to the logo to use in the Loft UI, this path must be accessible from clients accessing the Loft UI!
+	* LogoURL is url pointing to the logo to use in the Loft UI. This path must be accessible for clients accessing the Loft UI!
 	*/
 	"logoURL"?: string;
+	/**
+	* LogoWithWordmarkURL is url pointing to the logo, including the wordmark, to use in the Loft UI. This path must be accessible for clients accessing the Loft UI!
+	*/
+	"logoWithWordmarkURL"?: string;
 	/**
 	* NavBarButtons holds extra nav bar buttons
 	*/
@@ -9225,7 +9245,7 @@ declare class ManagementV1ConfigStatus {
 	*/
 	"loftHost"?: string;
 	"oidc"?: ManagementV1OIDC;
-	"uiSettings"?: UiV1UISettingsSpec;
+	"uiSettings"?: UiV1UISettingsConfig;
 	"vault"?: StorageV1VaultIntegrationSpec;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
@@ -10181,6 +10201,66 @@ declare class StorageV1LocalTeam {
 	"metadata"?: V1ObjectMeta;
 	"spec"?: any;
 	"status"?: StorageV1LocalTeamStatus;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class UiV1UISettingsSpec {
+	/**
+	* AccentColor is the color value (ex: \"#12345\") to use for the accent
+	*/
+	"accentColor"?: string;
+	/**
+	* CustomCSS holds URLs with custom css files that should be included when loading the UI
+	*/
+	"customCss"?: Array<string>;
+	/**
+	* CustomJavaScript holds URLs with custom js files that should be included when loading the UI
+	*/
+	"customJavaScript"?: Array<string>;
+	/**
+	* LegalTemplate is a text (html) string containing the legal template to prompt to users when authenticating to Loft
+	*/
+	"legalTemplate"?: string;
+	/**
+	* LoftVersion holds the current loft version
+	*/
+	"loftVersion"?: string;
+	/**
+	* LogoURL is url pointing to the logo to use in the Loft UI. This path must be accessible for clients accessing the Loft UI!
+	*/
+	"logoURL"?: string;
+	/**
+	* LogoWithWordmarkURL is url pointing to the logo, including the wordmark, to use in the Loft UI. This path must be accessible for clients accessing the Loft UI!
+	*/
+	"logoWithWordmarkURL"?: string;
+	/**
+	* NavBarButtons holds extra nav bar buttons
+	*/
+	"navBarButtons"?: Array<UiV1NavBarButton>;
+	/**
+	* PrimaryColor is the color value (ex: \"#12345\") to use as the primary color
+	*/
+	"primaryColor"?: string;
+	/**
+	* Name is the name of the product
+	*/
+	"productName"?: string;
+	/**
+	* SidebarColor is the color value (ex: \"#12345\") to use for the sidebar
+	*/
+	"sidebarColor"?: string;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -12977,6 +13057,26 @@ declare class ManagementV1SelfSubjectAccessReview {
 	}[];
 	constructor();
 }
+declare class ManagementV1SelfSpec {
+	/**
+	* AccessKey is an optional access key to use instead of the provided one
+	*/
+	"accessKey"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
 declare class ManagementV1UserInfo {
 	/**
 	* The display name shown in the UI
@@ -13026,6 +13126,7 @@ declare class ManagementV1SelfStatus {
 	* The name of the currently used access key
 	*/
 	"accessKey"?: string;
+	"accessKeyScope"?: StorageV1AccessKeyScope;
 	/**
 	* The type of the currently used access key
 	*/
@@ -13047,6 +13148,10 @@ declare class ManagementV1SelfStatus {
 	*/
 	"subject"?: string;
 	"team"?: ClusterV1EntityInfo;
+	/**
+	* UID is the user uid
+	*/
+	"uid"?: string;
 	"user"?: ManagementV1UserInfo;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
@@ -13073,7 +13178,7 @@ declare class ManagementV1Self {
 	*/
 	"kind"?: string;
 	"metadata"?: V1ObjectMeta;
-	"spec"?: any;
+	"spec"?: ManagementV1SelfSpec;
 	"status"?: ManagementV1SelfStatus;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{

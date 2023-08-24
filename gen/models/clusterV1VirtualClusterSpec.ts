@@ -30,6 +30,10 @@ export class ClusterV1VirtualClusterSpec {
     * Charts are helm charts that should get deployed
     */
     'charts'?: Array<StorageV1TemplateHelmChart>;
+    /**
+    * ForwardToken signals the proxy to pass through the used token to the virtual Kubernetes api server and do a TokenReview there.
+    */
+    'forwardToken'?: boolean;
     'helmRelease'?: StorageV1VirtualClusterHelmRelease;
     'kubeConfigRef'?: StorageV1SecretRef;
     /**
@@ -63,6 +67,12 @@ export class ClusterV1VirtualClusterSpec {
             "name": "charts",
             "baseName": "charts",
             "type": "Array<StorageV1TemplateHelmChart>",
+            "format": ""
+        },
+        {
+            "name": "forwardToken",
+            "baseName": "forwardToken",
+            "type": "boolean",
             "format": ""
         },
         {
