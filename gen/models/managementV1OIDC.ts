@@ -25,6 +25,10 @@ export class ManagementV1OIDC {
     * If true indicates that loft will act as an OIDC server
     */
     'enabled'?: boolean;
+    /**
+    * If true indicates that loft will allow wildcard '*' in client redirectURIs
+    */
+    'wildcardRedirect'?: boolean;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -38,6 +42,12 @@ export class ManagementV1OIDC {
         {
             "name": "enabled",
             "baseName": "enabled",
+            "type": "boolean",
+            "format": ""
+        },
+        {
+            "name": "wildcardRedirect",
+            "baseName": "wildcardRedirect",
             "type": "boolean",
             "format": ""
         }    ];

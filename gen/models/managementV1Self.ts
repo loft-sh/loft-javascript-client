@@ -10,6 +10,7 @@
  * Do not edit the class manually.
  */
 
+import { ManagementV1SelfSpec } from './managementV1SelfSpec';
 import { ManagementV1SelfStatus } from './managementV1SelfStatus';
 import { V1ObjectMeta } from './V1ObjectMeta';
 
@@ -27,7 +28,7 @@ export class ManagementV1Self {
     */
     'kind'?: string;
     'metadata'?: V1ObjectMeta;
-    'spec'?: any;
+    'spec'?: ManagementV1SelfSpec;
     'status'?: ManagementV1SelfStatus;
 
     static readonly discriminator: string | undefined = undefined;
@@ -54,7 +55,7 @@ export class ManagementV1Self {
         {
             "name": "spec",
             "baseName": "spec",
-            "type": "any",
+            "type": "ManagementV1SelfSpec",
             "format": ""
         },
         {

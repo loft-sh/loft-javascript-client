@@ -13,10 +13,7 @@
 import { UiV1NavBarButton } from './uiV1NavBarButton';
 
 
-/**
-* UISettingsSpec holds the specification
-*/
-export class UiV1UISettingsSpec {
+export class UiV1UISettingsConfig {
     /**
     * AccentColor is the color value (ex: \"#12345\") to use for the accent
     */
@@ -53,10 +50,6 @@ export class UiV1UISettingsSpec {
     * PrimaryColor is the color value (ex: \"#12345\") to use as the primary color
     */
     'primaryColor'?: string;
-    /**
-    * Name is the name of the product
-    */
-    'productName'?: string;
     /**
     * SidebarColor is the color value (ex: \"#12345\") to use for the sidebar
     */
@@ -120,12 +113,6 @@ export class UiV1UISettingsSpec {
             "format": ""
         },
         {
-            "name": "productName",
-            "baseName": "productName",
-            "type": "string",
-            "format": ""
-        },
-        {
             "name": "sidebarColor",
             "baseName": "sidebarColor",
             "type": "string",
@@ -133,7 +120,7 @@ export class UiV1UISettingsSpec {
         }    ];
 
     static getAttributeTypeMap() {
-        return UiV1UISettingsSpec.attributeTypeMap;
+        return UiV1UISettingsConfig.attributeTypeMap;
     }
 
     public constructor() {
