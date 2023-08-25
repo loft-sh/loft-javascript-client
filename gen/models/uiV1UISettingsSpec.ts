@@ -38,13 +38,9 @@ export class UiV1UISettingsSpec {
     */
     'loftVersion'?: string;
     /**
-    * LogoURL is url pointing to the logo to use in the Loft UI. This path must be accessible for clients accessing the Loft UI!
+    * LogoURL is url pointing to the logo to use in the Loft UI, this path must be accessible from clients accessing the Loft UI!
     */
     'logoURL'?: string;
-    /**
-    * LogoWithWordmarkURL is url pointing to the logo, including the wordmark, to use in the Loft UI. This path must be accessible for clients accessing the Loft UI!
-    */
-    'logoWithWordmarkURL'?: string;
     /**
     * NavBarButtons holds extra nav bar buttons
     */
@@ -53,10 +49,6 @@ export class UiV1UISettingsSpec {
     * PrimaryColor is the color value (ex: \"#12345\") to use as the primary color
     */
     'primaryColor'?: string;
-    /**
-    * Name is the name of the product
-    */
-    'productName'?: string;
     /**
     * SidebarColor is the color value (ex: \"#12345\") to use for the sidebar
     */
@@ -102,12 +94,6 @@ export class UiV1UISettingsSpec {
             "format": ""
         },
         {
-            "name": "logoWithWordmarkURL",
-            "baseName": "logoWithWordmarkURL",
-            "type": "string",
-            "format": ""
-        },
-        {
             "name": "navBarButtons",
             "baseName": "navBarButtons",
             "type": "Array<UiV1NavBarButton>",
@@ -116,12 +102,6 @@ export class UiV1UISettingsSpec {
         {
             "name": "primaryColor",
             "baseName": "primaryColor",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "productName",
-            "baseName": "productName",
             "type": "string",
             "format": ""
         },

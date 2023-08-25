@@ -41,10 +41,6 @@ export class StorageV1ClusterSpec {
     */
     'managementNamespace'?: string;
     'owner'?: StorageV1UserOrTeam;
-    /**
-    * If unusable is true, no spaces or virtual clusters can be scheduled on this cluster.
-    */
-    'unusable'?: boolean;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -89,12 +85,6 @@ export class StorageV1ClusterSpec {
             "name": "owner",
             "baseName": "owner",
             "type": "StorageV1UserOrTeam",
-            "format": ""
-        },
-        {
-            "name": "unusable",
-            "baseName": "unusable",
-            "type": "boolean",
             "format": ""
         }    ];
 

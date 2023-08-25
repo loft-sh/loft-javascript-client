@@ -10,18 +10,12 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1Access } from './storageV1Access';
-import { StorageV1UserOrTeam } from './storageV1UserOrTeam';
 
 
 /**
 * ProjectSecretSpec holds the specification
 */
 export class ManagementV1ProjectSecretSpec {
-    /**
-    * Access holds the access rights for users and teams
-    */
-    'access'?: Array<StorageV1Access>;
     /**
     * Data contains the secret data. Each key must consist of alphanumeric characters, '-', '_' or '.'. The serialized form of the secret data is a base64 encoded string, representing the arbitrary (possibly non-string) data value here. Described in https://tools.ietf.org/html/rfc4648#section-4
     */
@@ -34,17 +28,10 @@ export class ManagementV1ProjectSecretSpec {
     * DisplayName is the name that should be displayed in the UI
     */
     'displayName'?: string;
-    'owner'?: StorageV1UserOrTeam;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
-        {
-            "name": "access",
-            "baseName": "access",
-            "type": "Array<StorageV1Access>",
-            "format": ""
-        },
         {
             "name": "data",
             "baseName": "data",
@@ -61,12 +48,6 @@ export class ManagementV1ProjectSecretSpec {
             "name": "displayName",
             "baseName": "displayName",
             "type": "string",
-            "format": ""
-        },
-        {
-            "name": "owner",
-            "baseName": "owner",
-            "type": "StorageV1UserOrTeam",
             "format": ""
         }    ];
 

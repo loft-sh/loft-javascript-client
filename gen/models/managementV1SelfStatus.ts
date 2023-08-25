@@ -12,7 +12,6 @@
 
 import { ClusterV1EntityInfo } from './clusterV1EntityInfo';
 import { ManagementV1UserInfo } from './managementV1UserInfo';
-import { StorageV1AccessKeyScope } from './storageV1AccessKeyScope';
 
 
 export class ManagementV1SelfStatus {
@@ -20,7 +19,6 @@ export class ManagementV1SelfStatus {
     * The name of the currently used access key
     */
     'accessKey'?: string;
-    'accessKeyScope'?: StorageV1AccessKeyScope;
     /**
     * The type of the currently used access key
     */
@@ -42,10 +40,6 @@ export class ManagementV1SelfStatus {
     */
     'subject'?: string;
     'team'?: ClusterV1EntityInfo;
-    /**
-    * UID is the user uid
-    */
-    'uid'?: string;
     'user'?: ManagementV1UserInfo;
 
     static readonly discriminator: string | undefined = undefined;
@@ -55,12 +49,6 @@ export class ManagementV1SelfStatus {
             "name": "accessKey",
             "baseName": "accessKey",
             "type": "string",
-            "format": ""
-        },
-        {
-            "name": "accessKeyScope",
-            "baseName": "accessKeyScope",
-            "type": "StorageV1AccessKeyScope",
             "format": ""
         },
         {
@@ -97,12 +85,6 @@ export class ManagementV1SelfStatus {
             "name": "team",
             "baseName": "team",
             "type": "ClusterV1EntityInfo",
-            "format": ""
-        },
-        {
-            "name": "uid",
-            "baseName": "uid",
-            "type": "string",
             "format": ""
         },
         {
