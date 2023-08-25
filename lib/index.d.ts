@@ -11757,6 +11757,10 @@ declare class ManagementV1ProjectMigrateVirtualClusterInstance {
 }
 declare class ManagementV1ProjectSecretSpec {
 	/**
+	* Access holds the access rights for users and teams
+	*/
+	"access"?: Array<StorageV1Access>;
+	/**
 	* Data contains the secret data. Each key must consist of alphanumeric characters, '-', '_' or '.'. The serialized form of the secret data is a base64 encoded string, representing the arbitrary (possibly non-string) data value here. Described in https://tools.ietf.org/html/rfc4648#section-4
 	*/
 	"data"?: {
@@ -11770,6 +11774,7 @@ declare class ManagementV1ProjectSecretSpec {
 	* DisplayName is the name that should be displayed in the UI
 	*/
 	"displayName"?: string;
+	"owner"?: StorageV1UserOrTeam;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
