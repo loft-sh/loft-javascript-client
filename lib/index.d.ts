@@ -9495,6 +9495,7 @@ declare class ManagementV1DevPodWorkspaceInstanceStatus {
 	* Reason describes the reason in machine-readable form why the cluster is in the current phase
 	*/
 	"reason"?: string;
+	"sleepModeConfig"?: ClusterV1SleepModeConfig;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
