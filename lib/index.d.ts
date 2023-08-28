@@ -8100,6 +8100,23 @@ declare class StorageV1TemplateMetadata {
 	}[];
 	constructor();
 }
+declare class StorageV1VirtualClusterInstanceTemplateDefinition {
+	"metadata"?: StorageV1TemplateMetadata;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
 declare class StorageV1VirtualClusterSpaceTemplateDefinition {
 	/**
 	* Apps specifies the apps that should get deployed by this template
@@ -8164,6 +8181,7 @@ declare class StorageV1VirtualClusterTemplateDefinition {
 	*/
 	"forwardToken"?: boolean;
 	"helmRelease"?: StorageV1VirtualClusterHelmRelease;
+	"instanceTemplate"?: StorageV1VirtualClusterInstanceTemplateDefinition;
 	"metadata"?: StorageV1TemplateMetadata;
 	/**
 	* Objects are Kubernetes style yamls that should get deployed into the virtual cluster
@@ -11837,6 +11855,23 @@ declare class ManagementV1ProjectSecret {
 	}[];
 	constructor();
 }
+declare class StorageV1SpaceInstanceTemplateDefinition {
+	"metadata"?: StorageV1TemplateMetadata;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
 declare class StorageV1SpaceTemplateDefinition {
 	"access"?: StorageV1InstanceAccess;
 	/**
@@ -11847,6 +11882,7 @@ declare class StorageV1SpaceTemplateDefinition {
 	* Charts are helm charts that should get deployed
 	*/
 	"charts"?: Array<StorageV1TemplateHelmChart>;
+	"instanceTemplate"?: StorageV1SpaceInstanceTemplateDefinition;
 	"metadata"?: StorageV1TemplateMetadata;
 	/**
 	* Objects are Kubernetes style yamls that should get deployed into the virtual cluster
