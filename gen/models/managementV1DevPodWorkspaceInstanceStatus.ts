@@ -10,6 +10,7 @@
  * Do not edit the class manually.
  */
 
+import { ClusterV1SleepModeConfig } from './clusterV1SleepModeConfig';
 import { StorageV1Condition } from './agentstorageV1Condition';
 import { StorageV1DevPodWorkspaceTemplateDefinition } from './storageV1DevPodWorkspaceTemplateDefinition';
 
@@ -43,6 +44,7 @@ export class ManagementV1DevPodWorkspaceInstanceStatus {
     * Reason describes the reason in machine-readable form why the cluster is in the current phase
     */
     'reason'?: string;
+    'sleepModeConfig'?: ClusterV1SleepModeConfig;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -87,6 +89,12 @@ export class ManagementV1DevPodWorkspaceInstanceStatus {
             "name": "reason",
             "baseName": "reason",
             "type": "string",
+            "format": ""
+        },
+        {
+            "name": "sleepModeConfig",
+            "baseName": "sleepModeConfig",
+            "type": "ClusterV1SleepModeConfig",
             "format": ""
         }    ];
 
