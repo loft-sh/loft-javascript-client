@@ -536,6 +536,7 @@ export declare const ClusterBasePath = "/kubernetes/cluster/";
 export declare const VClusterBasePath = "/kubernetes/virtualcluster/";
 export declare const ProjectBasePath = "/kubernetes/project/";
 export declare function getProjectNamespace(name: string | undefined): string;
+export declare function getProjectFromNamespace(namespace: string | undefined): string | undefined;
 export declare class Client {
 	static getAccessKey(): string | null;
 	static tryCastToStatus(obj: any): Result<V1Status | null>;
