@@ -123,6 +123,14 @@ export function getProjectNamespace(name: string | undefined) {
   return "loft-p-" + name
 }
 
+export function getProjectFromNamespace(namespace: string | undefined): string | undefined {
+  if (!namespace) {
+    return undefined
+  }
+
+  return namespace.replace(/^loft-p-/, "")
+}
+
 class Client {
   static getAccessKey(): string | null {
     return localStorage.getItem(LOFT_ACCESS_KEY_IDENTIFIER)
