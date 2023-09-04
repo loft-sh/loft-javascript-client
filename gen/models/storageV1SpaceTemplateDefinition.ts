@@ -13,7 +13,6 @@
 import { StorageV1AppReference } from './agentstorageV1AppReference';
 import { StorageV1InstanceAccess } from './agentstorageV1InstanceAccess';
 import { StorageV1TemplateHelmChart } from './agentstorageV1TemplateHelmChart';
-import { StorageV1SpaceInstanceTemplateDefinition } from './storageV1SpaceInstanceTemplateDefinition';
 import { StorageV1TemplateMetadata } from './storageV1TemplateMetadata';
 
 
@@ -27,7 +26,6 @@ export class StorageV1SpaceTemplateDefinition {
     * Charts are helm charts that should get deployed
     */
     'charts'?: Array<StorageV1TemplateHelmChart>;
-    'instanceTemplate'?: StorageV1SpaceInstanceTemplateDefinition;
     'metadata'?: StorageV1TemplateMetadata;
     /**
     * Objects are Kubernetes style yamls that should get deployed into the virtual cluster
@@ -53,12 +51,6 @@ export class StorageV1SpaceTemplateDefinition {
             "name": "charts",
             "baseName": "charts",
             "type": "Array<StorageV1TemplateHelmChart>",
-            "format": ""
-        },
-        {
-            "name": "instanceTemplate",
-            "baseName": "instanceTemplate",
-            "type": "StorageV1SpaceInstanceTemplateDefinition",
             "format": ""
         },
         {

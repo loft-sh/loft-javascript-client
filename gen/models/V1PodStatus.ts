@@ -60,17 +60,13 @@ export class V1PodStatus {
     */
     'podIPs'?: Array<V1PodIP>;
     /**
-    * The Quality of Service (QOS) classification assigned to the pod based on resource requirements See PodQOSClass type for available QOS classes More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-qos/#quality-of-service-classes  Possible enum values:  - `\"BestEffort\"` is the BestEffort qos class.  - `\"Burstable\"` is the Burstable qos class.  - `\"Guaranteed\"` is the Guaranteed qos class.
+    * The Quality of Service (QOS) classification assigned to the pod based on resource requirements See PodQOSClass type for available QOS classes More info: https://git.k8s.io/community/contributors/design-proposals/node/resource-qos.md  Possible enum values:  - `\"BestEffort\"` is the BestEffort qos class.  - `\"Burstable\"` is the Burstable qos class.  - `\"Guaranteed\"` is the Guaranteed qos class.
     */
     'qosClass'?: V1PodStatusQosClassEnum;
     /**
     * A brief CamelCase message indicating details about why the pod is in this state. e.g. 'Evicted'
     */
     'reason'?: string;
-    /**
-    * Status of resources resize desired for pod's containers. It is empty if no resources resize is pending. Any changes to container resources will automatically set this to \"Proposed\"
-    */
-    'resize'?: string;
     /**
     * RFC 3339 date and time at which the object was acknowledged by the Kubelet. This is before the Kubelet pulled the container image(s) for the pod.
     */
@@ -148,12 +144,6 @@ export class V1PodStatus {
         {
             "name": "reason",
             "baseName": "reason",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "resize",
-            "baseName": "resize",
             "type": "string",
             "format": ""
         },

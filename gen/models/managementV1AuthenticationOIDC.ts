@@ -68,10 +68,6 @@ export class ManagementV1AuthenticationOIDC {
     */
     'loftUsernameClaim'?: string;
     /**
-    * Loft URI to be redirected to after successful logout by OIDC Provider
-    */
-    'postLogoutRedirectURI'?: string;
-    /**
     * Configurable key which contains the preferred username claims
     */
     'preferredUsername'?: string;
@@ -174,12 +170,6 @@ export class ManagementV1AuthenticationOIDC {
         {
             "name": "loftUsernameClaim",
             "baseName": "loftUsernameClaim",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "postLogoutRedirectURI",
-            "baseName": "postLogoutRedirectURI",
             "type": "string",
             "format": ""
         },

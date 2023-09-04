@@ -34,10 +34,6 @@ export class ServerLicense {
     */
     'buttons'?: Array<ServerButton>;
     /**
-    * DomainToken holds the JWT with the URL that the Loft instance is publicly available on. (via Loft router)
-    */
-    'domainToken'?: string;
-    /**
     * Features is a map of enabled features.
     */
     'features'?: { [key: string]: boolean; };
@@ -75,12 +71,6 @@ export class ServerLicense {
             "name": "buttons",
             "baseName": "buttons",
             "type": "Array<ServerButton>",
-            "format": ""
-        },
-        {
-            "name": "domainToken",
-            "baseName": "domainToken",
-            "type": "string",
             "format": ""
         },
         {

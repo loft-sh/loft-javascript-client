@@ -122,7 +122,7 @@ export class V1PodSpec {
     */
     'resourceClaims'?: Array<V1PodResourceClaim>;
     /**
-    * Restart policy for all containers within the pod. One of Always, OnFailure, Never. In some contexts, only a subset of those values may be permitted. Default to Always. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy  Possible enum values:  - `\"Always\"`  - `\"Never\"`  - `\"OnFailure\"`
+    * Restart policy for all containers within the pod. One of Always, OnFailure, Never. Default to Always. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy  Possible enum values:  - `\"Always\"`  - `\"Never\"`  - `\"OnFailure\"`
     */
     'restartPolicy'?: V1PodSpecRestartPolicyEnum;
     /**
@@ -134,7 +134,7 @@ export class V1PodSpec {
     */
     'schedulerName'?: string;
     /**
-    * SchedulingGates is an opaque list of values that if specified will block scheduling the pod. If schedulingGates is not empty, the pod will stay in the SchedulingGated state and the scheduler will not attempt to schedule the pod.  SchedulingGates can only be set at pod creation time, and be removed only afterwards.  This is a beta feature enabled by the PodSchedulingReadiness feature gate.
+    * SchedulingGates is an opaque list of values that if specified will block scheduling the pod. More info:  https://git.k8s.io/enhancements/keps/sig-scheduling/3521-pod-scheduling-readiness.  This is an alpha-level feature enabled by PodSchedulingReadiness feature gate.
     */
     'schedulingGates'?: Array<V1PodSchedulingGate>;
     'securityContext'?: V1PodSecurityContext;

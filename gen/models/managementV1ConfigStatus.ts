@@ -15,7 +15,7 @@ import { ManagementV1Audit } from './managementV1Audit';
 import { ManagementV1Authentication } from './managementV1Authentication';
 import { ManagementV1OIDC } from './managementV1OIDC';
 import { StorageV1VaultIntegrationSpec } from './storageV1VaultIntegrationSpec';
-import { UiV1UISettingsConfig } from './uiV1UISettingsConfig';
+import { UiV1UISettingsSpec } from './uiV1UISettingsSpec';
 
 
 /**
@@ -26,15 +26,11 @@ export class ManagementV1ConfigStatus {
     'audit'?: ManagementV1Audit;
     'auth'?: ManagementV1Authentication;
     /**
-    * DevPodSubDomain holds a subdomain in the following form *.workspace.my-domain.com
-    */
-    'devPodSubDomain'?: string;
-    /**
-    * LoftHost holds the domain where the loft instance is hosted. This should not include https or http. E.g. loft.my-domain.com
+    * LoftHost holds the domain where the loft instance is hosted
     */
     'loftHost'?: string;
     'oidc'?: ManagementV1OIDC;
-    'uiSettings'?: UiV1UISettingsConfig;
+    'uiSettings'?: UiV1UISettingsSpec;
     'vault'?: StorageV1VaultIntegrationSpec;
 
     static readonly discriminator: string | undefined = undefined;
@@ -59,12 +55,6 @@ export class ManagementV1ConfigStatus {
             "format": ""
         },
         {
-            "name": "devPodSubDomain",
-            "baseName": "devPodSubDomain",
-            "type": "string",
-            "format": ""
-        },
-        {
             "name": "loftHost",
             "baseName": "loftHost",
             "type": "string",
@@ -79,7 +69,7 @@ export class ManagementV1ConfigStatus {
         {
             "name": "uiSettings",
             "baseName": "uiSettings",
-            "type": "UiV1UISettingsConfig",
+            "type": "UiV1UISettingsSpec",
             "format": ""
         },
         {

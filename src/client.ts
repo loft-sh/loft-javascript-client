@@ -123,14 +123,6 @@ export function getProjectNamespace(name: string | undefined) {
   return "loft-p-" + name
 }
 
-export function getProjectFromNamespace(namespace: string | undefined): string | undefined {
-  if (!namespace) {
-    return undefined
-  }
-
-  return namespace.replace(/^loft-p-/, "")
-}
-
 class Client {
   static getAccessKey(): string | null {
     return localStorage.getItem(LOFT_ACCESS_KEY_IDENTIFIER)
@@ -332,11 +324,11 @@ class Client {
     }
   }
 
-  public async socket(path: string, protocols: string[] | string | undefined): Promise<WebSocket> {
+  public async socket(path: string): Promise<WebSocket> {
     this.refreshCookie()
 
     return new Promise<WebSocket>((resolve, reject) => {
-      const client = new WebSocket(`${this.wsHost}${path}`, protocols)
+      const client = new WebSocket(`${this.wsHost}${path}`, K8S_WEBSOCKET_PROTOCOLS)
       let resolved = false
       client.onopen = () => {
         resolved = true
@@ -374,14 +366,14 @@ class Client {
             splitted[2] === "cluster"
           ) {
             return Return.Failed(
-              `Agent seems to be currently unavailable, it is maybe just starting up. Click <a href="/spaces/${splitted[3]}/loft">here</a> for more information</span>`,
+              `Loft-agent seems to be currently unavailable, it is maybe just starting up. Click <a href="/spaces/${splitted[3]}/loft">here</a> for more information</span>`,
               "LoftAgentUnavailable",
               ErrorTypeServiceUnavailable
             )
           }
 
           return Return.Failed(
-            "Agent seems to be currently unavailable, it is maybe just starting up",
+            "loft-agent seems to be currently unavailable, it is maybe just starting up",
             "LoftAgentUnavailable",
             ErrorTypeServiceUnavailable
           )
@@ -539,9 +531,9 @@ class Client {
       : this.managementNonResource()
   }
 
-  public async doRawSocket(path: string, protocols?: string[]): Promise<Result<WebSocket>> {
+  public async doRawSocket(path: string): Promise<Result<WebSocket>> {
     try {
-      return Return.Value(await this.socket(path, protocols))
+      return Return.Value(await this.socket(path))
     } catch (err) {
       console.error(err)
 
@@ -597,7 +589,7 @@ class Client {
     // refetch the token when its expired
     if (response.err && response.val.type === ErrorTypeUnauthorized) {
       if (
-        response.val.message === "Access key not found. Please login again" ||
+        response.val.message === "loft access key not found. Please login again" ||
         response.val.message === "invalid bearer token"
       ) {
         this.clearStorage()
@@ -984,7 +976,7 @@ class Request<T> {
       requestPath += "?" + queryString
     }
 
-    return await this.client.doRawSocket(requestPath, K8S_WEBSOCKET_PROTOCOLS)
+    return await this.client.doRawSocket(requestPath)
   }
 
   public async Path(
@@ -998,14 +990,6 @@ class Request<T> {
       ...headers,
       ...this.options.headers,
     })
-  }
-
-  public ResolvePath(name?: string): Result<string> {
-    if (name) {
-      this.options.name = name
-    }
-
-    return this.buildPath()
   }
 
   public async Get(name: string, options?: GetOptions): Promise<Result<T>> {

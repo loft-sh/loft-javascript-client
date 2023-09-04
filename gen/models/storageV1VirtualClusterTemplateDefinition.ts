@@ -16,7 +16,6 @@ import { StorageV1TemplateHelmChart } from './agentstorageV1TemplateHelmChart';
 import { StorageV1VirtualClusterAccessPoint } from './agentstorageV1VirtualClusterAccessPoint';
 import { StorageV1VirtualClusterHelmRelease } from './agentstorageV1VirtualClusterHelmRelease';
 import { StorageV1TemplateMetadata } from './storageV1TemplateMetadata';
-import { StorageV1VirtualClusterInstanceTemplateDefinition } from './storageV1VirtualClusterInstanceTemplateDefinition';
 import { StorageV1VirtualClusterSpaceTemplateDefinition } from './storageV1VirtualClusterSpaceTemplateDefinition';
 import { StorageV1WorkloadVirtualClusterTemplateDefinition } from './storageV1WorkloadVirtualClusterTemplateDefinition';
 
@@ -32,12 +31,7 @@ export class StorageV1VirtualClusterTemplateDefinition {
     * Charts are helm charts that should get deployed
     */
     'charts'?: Array<StorageV1TemplateHelmChart>;
-    /**
-    * ForwardToken signals the proxy to pass through the used token to the virtual Kubernetes api server and do a TokenReview there.
-    */
-    'forwardToken'?: boolean;
     'helmRelease'?: StorageV1VirtualClusterHelmRelease;
-    'instanceTemplate'?: StorageV1VirtualClusterInstanceTemplateDefinition;
     'metadata'?: StorageV1TemplateMetadata;
     /**
     * Objects are Kubernetes style yamls that should get deployed into the virtual cluster
@@ -74,21 +68,9 @@ export class StorageV1VirtualClusterTemplateDefinition {
             "format": ""
         },
         {
-            "name": "forwardToken",
-            "baseName": "forwardToken",
-            "type": "boolean",
-            "format": ""
-        },
-        {
             "name": "helmRelease",
             "baseName": "helmRelease",
             "type": "StorageV1VirtualClusterHelmRelease",
-            "format": ""
-        },
-        {
-            "name": "instanceTemplate",
-            "baseName": "instanceTemplate",
-            "type": "StorageV1VirtualClusterInstanceTemplateDefinition",
             "format": ""
         },
         {
