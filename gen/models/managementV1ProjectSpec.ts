@@ -18,6 +18,7 @@ import { StorageV1ArgoIntegrationSpec } from './storageV1ArgoIntegrationSpec';
 import { StorageV1Member } from './storageV1Member';
 import { StorageV1NamespacePattern } from './storageV1NamespacePattern';
 import { StorageV1Quotas } from './storageV1Quotas';
+import { StorageV1RequireTemplate } from './storageV1RequireTemplate';
 import { StorageV1UserOrTeam } from './storageV1UserOrTeam';
 import { StorageV1VaultIntegrationSpec } from './storageV1VaultIntegrationSpec';
 
@@ -58,6 +59,7 @@ export class ManagementV1ProjectSpec {
     'namespacePattern'?: StorageV1NamespacePattern;
     'owner'?: StorageV1UserOrTeam;
     'quotas'?: StorageV1Quotas;
+    'requireTemplate'?: StorageV1RequireTemplate;
     'vault'?: StorageV1VaultIntegrationSpec;
 
     static readonly discriminator: string | undefined = undefined;
@@ -127,6 +129,12 @@ export class ManagementV1ProjectSpec {
             "name": "quotas",
             "baseName": "quotas",
             "type": "StorageV1Quotas",
+            "format": ""
+        },
+        {
+            "name": "requireTemplate",
+            "baseName": "requireTemplate",
+            "type": "StorageV1RequireTemplate",
             "format": ""
         },
         {

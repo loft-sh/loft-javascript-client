@@ -12482,6 +12482,26 @@ declare class StorageV1Quotas {
 	}[];
 	constructor();
 }
+declare class StorageV1RequireTemplate {
+	/**
+	* If true, all users within the project will be allowed to create a new instance without a template. By default, only admins are allowed to create a new instance without a template.
+	*/
+	"disabled"?: boolean;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
 declare class ManagementV1ProjectSpec {
 	/**
 	* Access holds the access rights for users and teams
@@ -12515,6 +12535,7 @@ declare class ManagementV1ProjectSpec {
 	"namespacePattern"?: StorageV1NamespacePattern;
 	"owner"?: StorageV1UserOrTeam;
 	"quotas"?: StorageV1Quotas;
+	"requireTemplate"?: StorageV1RequireTemplate;
 	"vault"?: StorageV1VaultIntegrationSpec;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
