@@ -17,6 +17,7 @@ import { StorageV1SecretRef } from './agentstorageV1SecretRef';
 import { StorageV1TemplateHelmChart } from './agentstorageV1TemplateHelmChart';
 import { StorageV1VirtualClusterAccessPoint } from './agentstorageV1VirtualClusterAccessPoint';
 import { StorageV1VirtualClusterHelmRelease } from './agentstorageV1VirtualClusterHelmRelease';
+import { StorageV1VirtualClusterProSpec } from './agentstorageV1VirtualClusterProSpec';
 
 
 export class ClusterV1VirtualClusterSpec {
@@ -41,6 +42,7 @@ export class ClusterV1VirtualClusterSpec {
     */
     'objects'?: string;
     'pod'?: StorageV1PodSelector;
+    'pro'?: StorageV1VirtualClusterProSpec;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -97,6 +99,12 @@ export class ClusterV1VirtualClusterSpec {
             "name": "pod",
             "baseName": "pod",
             "type": "StorageV1PodSelector",
+            "format": ""
+        },
+        {
+            "name": "pro",
+            "baseName": "pro",
+            "type": "StorageV1VirtualClusterProSpec",
             "format": ""
         }    ];
 
