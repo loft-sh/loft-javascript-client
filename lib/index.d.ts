@@ -1217,6 +1217,26 @@ declare class StorageV1VirtualClusterHelmRelease {
 	}[];
 	constructor();
 }
+declare class StorageV1VirtualClusterProSpec {
+	/**
+	* Enabled defines if the virtual cluster is a pro cluster or not
+	*/
+	"enabled"?: boolean;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
 declare class StorageV1VirtualClusterSpec {
 	"access"?: StorageV1InstanceAccess;
 	"accessPoint"?: StorageV1VirtualClusterAccessPoint;
@@ -1239,6 +1259,7 @@ declare class StorageV1VirtualClusterSpec {
 	*/
 	"objects"?: string;
 	"pod"?: StorageV1PodSelector;
+	"pro"?: StorageV1VirtualClusterProSpec;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -2530,6 +2551,7 @@ declare class ClusterV1VirtualClusterSpec {
 	*/
 	"objects"?: string;
 	"pod"?: StorageV1PodSelector;
+	"pro"?: StorageV1VirtualClusterProSpec;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -8188,6 +8210,7 @@ declare class StorageV1VirtualClusterTemplateDefinition {
 	* Objects are Kubernetes style yamls that should get deployed into the virtual cluster
 	*/
 	"objects"?: string;
+	"pro"?: StorageV1VirtualClusterProSpec;
 	"spaceTemplate"?: StorageV1VirtualClusterSpaceTemplateDefinition;
 	"workloadVirtualClusterTemplate"?: StorageV1WorkloadVirtualClusterTemplateDefinition;
 	static readonly discriminator: string | undefined;

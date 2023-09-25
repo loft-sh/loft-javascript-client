@@ -15,6 +15,7 @@ import { StorageV1InstanceAccess } from './agentstorageV1InstanceAccess';
 import { StorageV1TemplateHelmChart } from './agentstorageV1TemplateHelmChart';
 import { StorageV1VirtualClusterAccessPoint } from './agentstorageV1VirtualClusterAccessPoint';
 import { StorageV1VirtualClusterHelmRelease } from './agentstorageV1VirtualClusterHelmRelease';
+import { StorageV1VirtualClusterProSpec } from './agentstorageV1VirtualClusterProSpec';
 import { StorageV1TemplateMetadata } from './storageV1TemplateMetadata';
 import { StorageV1VirtualClusterInstanceTemplateDefinition } from './storageV1VirtualClusterInstanceTemplateDefinition';
 import { StorageV1VirtualClusterSpaceTemplateDefinition } from './storageV1VirtualClusterSpaceTemplateDefinition';
@@ -43,6 +44,7 @@ export class StorageV1VirtualClusterTemplateDefinition {
     * Objects are Kubernetes style yamls that should get deployed into the virtual cluster
     */
     'objects'?: string;
+    'pro'?: StorageV1VirtualClusterProSpec;
     'spaceTemplate'?: StorageV1VirtualClusterSpaceTemplateDefinition;
     'workloadVirtualClusterTemplate'?: StorageV1WorkloadVirtualClusterTemplateDefinition;
 
@@ -101,6 +103,12 @@ export class StorageV1VirtualClusterTemplateDefinition {
             "name": "objects",
             "baseName": "objects",
             "type": "string",
+            "format": ""
+        },
+        {
+            "name": "pro",
+            "baseName": "pro",
+            "type": "StorageV1VirtualClusterProSpec",
             "format": ""
         },
         {
