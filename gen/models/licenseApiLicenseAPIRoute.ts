@@ -10,24 +10,33 @@
  * Do not edit the class manually.
  */
 
-import { LicenseApiAnnouncement } from './licenseApiAnnouncement';
 
 
-export class ManagementV1AnnouncementStatus {
-    'announcement'?: LicenseApiAnnouncement;
+/**
+* LicenseAPIRoute is a single route of the license api
+*/
+export class LicenseApiLicenseAPIRoute {
+    'method'?: string;
+    'url'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "announcement",
-            "baseName": "announcement",
-            "type": "LicenseApiAnnouncement",
+            "name": "method",
+            "baseName": "method",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "url",
+            "baseName": "url",
+            "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1AnnouncementStatus.attributeTypeMap;
+        return LicenseApiLicenseAPIRoute.attributeTypeMap;
     }
 
     public constructor() {

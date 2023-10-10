@@ -12,34 +12,28 @@
 
 
 
-export class ServerInstanceTokenAuth {
-    /**
-    * Certificate is the signing certificate for the token.
-    */
-    'certificate': string;
-    /**
-    * Token is the jwt token identifying the loft instance.
-    */
-    'token': string;
+export class ManagementV1LicenseTokenSpec {
+    'payload'?: string;
+    'url'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "certificate",
-            "baseName": "certificate",
+            "name": "payload",
+            "baseName": "payload",
             "type": "string",
             "format": ""
         },
         {
-            "name": "token",
-            "baseName": "token",
+            "name": "url",
+            "baseName": "url",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ServerInstanceTokenAuth.attributeTypeMap;
+        return ManagementV1LicenseTokenSpec.attributeTypeMap;
     }
 
     public constructor() {

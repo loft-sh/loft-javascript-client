@@ -10,11 +10,11 @@
  * Do not edit the class manually.
  */
 
-import { ServerInstanceTokenAuth } from './licenseServerInstanceTokenAuth';
+import { LicenseApiInstanceTokenAuth } from './licenseApiInstanceTokenAuth';
 
 
 export class ManagementV1LicenseTokenStatus {
-    'token'?: ServerInstanceTokenAuth;
+    'token'?: LicenseApiInstanceTokenAuth;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -22,7 +22,7 @@ export class ManagementV1LicenseTokenStatus {
         {
             "name": "token",
             "baseName": "token",
-            "type": "ServerInstanceTokenAuth",
+            "type": "LicenseApiInstanceTokenAuth",
             "format": ""
         }    ];
 

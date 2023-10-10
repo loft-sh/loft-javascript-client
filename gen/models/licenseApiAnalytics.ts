@@ -10,13 +10,13 @@
  * Do not edit the class manually.
  */
 
-import { ServerRequest } from './licenseServerRequest';
+import { LicenseApiRequest } from './licenseApiRequest';
 
 
 /**
 * Analytics is a struct that represents the analytics server and the requests that should be sent to it. This information is sent to Loft instances when they check in with the license server.
 */
-export class ServerAnalytics {
+export class LicenseApiAnalytics {
     /**
     * Endpoint is the endpoint for the analytics server.
     */
@@ -24,7 +24,7 @@ export class ServerAnalytics {
     /**
     * Requests is a slice of requested resources to return analytics for.
     */
-    'requests'?: Array<ServerRequest>;
+    'requests'?: Array<LicenseApiRequest>;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -38,12 +38,12 @@ export class ServerAnalytics {
         {
             "name": "requests",
             "baseName": "requests",
-            "type": "Array<ServerRequest>",
+            "type": "Array<LicenseApiRequest>",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ServerAnalytics.attributeTypeMap;
+        return LicenseApiAnalytics.attributeTypeMap;
     }
 
     public constructor() {

@@ -10,28 +10,26 @@
  * Do not edit the class manually.
  */
 
+import { LicenseApiResourceCount } from './licenseApiResourceCount';
 
 
 /**
-* ResourceQuantity represents an api resource and a quantity counter for that resource type (used for limits for example).
+* BlockRequest tells the instance to block certain requests due to overages (limit exceeded) the license server.
 */
-export class ServerResourceQuantity {
+export class LicenseApiBlockRequest {
     /**
     * Group is the api group.
     */
     'group'?: string;
+    'overage'?: LicenseApiResourceCount;
     /**
-    * Kind is the resource kind.
+    * Resource is the resource name for the request.
     */
-    'kind'?: string;
+    'resource'?: string;
     /**
-    * Quantity is the quantity for hte limit (for example).
+    * Verbs is the list of verbs for the request.
     */
-    'quantity': number;
-    /**
-    * Version is the api version.
-    */
-    'version'?: string;
+    'verbs'?: Array<string>;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -43,26 +41,26 @@ export class ServerResourceQuantity {
             "format": ""
         },
         {
-            "name": "kind",
-            "baseName": "kind",
+            "name": "overage",
+            "baseName": "overage",
+            "type": "LicenseApiResourceCount",
+            "format": ""
+        },
+        {
+            "name": "resource",
+            "baseName": "resource",
             "type": "string",
             "format": ""
         },
         {
-            "name": "quantity",
-            "baseName": "quantity",
-            "type": "number",
-            "format": "int64"
-        },
-        {
-            "name": "version",
-            "baseName": "version",
-            "type": "string",
+            "name": "verbs",
+            "baseName": "verbs",
+            "type": "Array<string>",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ServerResourceQuantity.attributeTypeMap;
+        return LicenseApiBlockRequest.attributeTypeMap;
     }
 
     public constructor() {

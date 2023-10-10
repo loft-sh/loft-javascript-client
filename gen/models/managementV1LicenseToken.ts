@@ -10,6 +10,7 @@
  * Do not edit the class manually.
  */
 
+import { ManagementV1LicenseTokenSpec } from './managementV1LicenseTokenSpec';
 import { ManagementV1LicenseTokenStatus } from './managementV1LicenseTokenStatus';
 import { V1ObjectMeta } from './V1ObjectMeta';
 
@@ -27,7 +28,7 @@ export class ManagementV1LicenseToken {
     */
     'kind'?: string;
     'metadata'?: V1ObjectMeta;
-    'spec'?: any;
+    'spec'?: ManagementV1LicenseTokenSpec;
     'status'?: ManagementV1LicenseTokenStatus;
 
     static readonly discriminator: string | undefined = undefined;
@@ -54,7 +55,7 @@ export class ManagementV1LicenseToken {
         {
             "name": "spec",
             "baseName": "spec",
-            "type": "any",
+            "type": "ManagementV1LicenseTokenSpec",
             "format": ""
         },
         {

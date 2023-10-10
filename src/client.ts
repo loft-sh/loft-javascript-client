@@ -172,7 +172,7 @@ class Client {
       }
 
       ;(window as any).loft.instanceID = selfResult.val.status.instanceID
-      ;(window as any).loft.intercomHash = selfResult.val.status.intercomHash
+      ;(window as any).loft.chatAuthToken = selfResult.val.status.chatAuthToken
       ;(window as any).loft.user = selfResult.val.status.user
     }
 
