@@ -1174,9 +1174,17 @@ declare class StorageV1VirtualClusterHelmChart {
 	*/
 	"name"?: string;
 	/**
+	* The password that is required for this repository
+	*/
+	"password"?: string;
+	/**
 	* the repo of the helm chart
 	*/
 	"repo"?: string;
+	/**
+	* The username that is required for this repository
+	*/
+	"username"?: string;
 	/**
 	* the version of the helm chart to use
 	*/
@@ -6674,15 +6682,51 @@ declare class ManagementV1AgentAuditEvent {
 	}[];
 	constructor();
 }
-declare class ServerInstanceTokenAuth {
+declare class LicenseApiButton {
 	/**
-	* Certificate is the signing certificate for the token.
+	* Direct indicates if the Loft front end should directly hit this endpoint. If false, it means that the Loft front end will be hitting the license server first to generate a one time token for the operation; this also means that there will be a redirect URL in the response to the request for this and that link should be followed by the front end.
 	*/
-	"certificate": string;
+	"direct"?: boolean;
 	/**
-	* Token is the jwt token identifying the loft instance.
+	* DisplayText is the text to display on the button. If display text is unset the button will never be shown in the loft UI.
 	*/
-	"token": string;
+	"displayText"?: string;
+	/**
+	* URL is the link at the other end of the button.
+	*/
+	"url": string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class LicenseApiAnnouncement {
+	/**
+	* Body contains the main message of the announcement in HTML format.
+	*/
+	"body"?: string;
+	/**
+	* Buttons to show alongside the announcement
+	*/
+	"buttons"?: Array<LicenseApiButton>;
+	/**
+	* Name contains the resource name of the announcement
+	*/
+	"name"?: string;
+	/**
+	* Title contains the title of the announcement in HTML format.
+	*/
+	"title"?: string;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -6699,11 +6743,7 @@ declare class ServerInstanceTokenAuth {
 	constructor();
 }
 declare class ManagementV1AnnouncementStatus {
-	"analyticsToken"?: ServerInstanceTokenAuth;
-	/**
-	* Announcement is the html announcement that should be displayed in the frontend
-	*/
-	"announcement"?: string;
+	"announcement"?: LicenseApiAnnouncement;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -7269,7 +7309,6 @@ declare class ManagementV1ClusterAccess {
 }
 declare class ManagementV1AgentAnalyticsSpec {
 	"analyticsEndpoint"?: string;
-	"instanceTokenAuth"?: ServerInstanceTokenAuth;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -10042,9 +10081,35 @@ declare class ManagementV1Event {
 }
 declare class ManagementV1FeatureStatus {
 	/**
-	* Enabled signals if the feature is currently enabled or disabled
+	* Compatibility contains a series of semver compatibility constraints
 	*/
-	"enabled"?: boolean;
+	"compatibility"?: string;
+	"description"?: string;
+	"displayName"?: string;
+	/**
+	* Internal marks internal features that should not be shown on the license view
+	*/
+	"internal"?: boolean;
+	/**
+	* Labels contains a list of labels to be displayed for this feature (e.g. alpha, beta)
+	*/
+	"labels"?: Array<string>;
+	/**
+	* Name is the name of the feature This cannot be FeatureName because it needs to be downward compatible e.g. older Loft version doesn't know a newer feature but it will still be received and still needs to be rendered in the license view
+	*/
+	"name": string;
+	/**
+	* Packages contains a list of ids of the product packages that contain this feature
+	*/
+	"packages"?: Array<string>;
+	/**
+	* Status shows the status of the feature (see type FeatureStatus)
+	*/
+	"status"?: string;
+	/**
+	* Used marks features that are currently used in the product
+	*/
+	"used"?: boolean;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -10259,6 +10324,370 @@ declare class StorageV1LocalTeam {
 	}[];
 	constructor();
 }
+declare class LicenseApiRequest {
+	/**
+	* Group is the api group.
+	*/
+	"group"?: string;
+	/**
+	* Resource is the resource name for the request.
+	*/
+	"resource"?: string;
+	/**
+	* Verbs is the list of verbs for the request.
+	*/
+	"verbs"?: Array<string>;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class LicenseApiAnalytics {
+	/**
+	* Endpoint is the endpoint for the analytics server.
+	*/
+	"endpoint"?: string;
+	/**
+	* Requests is a slice of requested resources to return analytics for.
+	*/
+	"requests"?: Array<LicenseApiRequest>;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class LicenseApiResourceCount {
+	/**
+	* Active specifies the number of currently active resource (non-sleeping).
+	*/
+	"active"?: number;
+	/**
+	* TotalCreated is a continuous counter of the amount of resources ever created.
+	*/
+	"created"?: number;
+	/**
+	* Total specifies the number of currently existing resources.
+	*/
+	"total"?: number;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class LicenseApiBlockRequest {
+	/**
+	* Group is the api group.
+	*/
+	"group"?: string;
+	"overage"?: LicenseApiResourceCount;
+	/**
+	* Resource is the resource name for the request.
+	*/
+	"resource"?: string;
+	/**
+	* Verbs is the list of verbs for the request.
+	*/
+	"verbs"?: Array<string>;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class LicenseApiLicenseAPIRoute {
+	"method"?: string;
+	"url"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class LicenseApiLicenseAPIRoutes {
+	"chatAuth"?: LicenseApiLicenseAPIRoute;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class LicenseApiFeature {
+	/**
+	* Compatibility contains a series of semver compatibility constraints
+	*/
+	"compatibility"?: string;
+	"description"?: string;
+	"displayName"?: string;
+	/**
+	* Labels contains a list of labels to be displayed for this feature (e.g. alpha, beta)
+	*/
+	"labels"?: Array<string>;
+	/**
+	* Name is the name of the feature This cannot be FeatureName because it needs to be downward compatible e.g. older Loft version doesn't know a newer feature but it will still be received and still needs to be rendered in the license view
+	*/
+	"name": string;
+	/**
+	* Packages contains a list of ids of the product packages that contain this feature
+	*/
+	"packages"?: Array<string>;
+	/**
+	* Status shows the status of the feature (see type FeatureStatus)
+	*/
+	"status"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class LicenseApiLimit {
+	"adjustButton"?: LicenseApiButton;
+	/**
+	* DisplayName is for display purposes.
+	*/
+	"displayName"?: string;
+	/**
+	* Name is the name of the resource.
+	*/
+	"name"?: string;
+	"quantity"?: LicenseApiResourceCount;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class LicenseApiModule {
+	"displayName"?: string;
+	"features"?: Array<LicenseApiFeature>;
+	"limits"?: Array<LicenseApiLimit>;
+	"name": string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class LicenseApiTrial {
+	/**
+	* DisplayName is a display name for the trial
+	*/
+	"displayName"?: string;
+	/**
+	* End is the unix timestamp stating when the trial will end or ended
+	*/
+	"end"?: number;
+	/**
+	* Name is the unique id of this trial
+	*/
+	"name"?: string;
+	/**
+	* Start is the unix timestamp stating when the trial was started
+	*/
+	"start"?: number;
+	/**
+	* Status is the status of this trial
+	*/
+	"status"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class LicenseApiLicense {
+	"analytics"?: LicenseApiAnalytics;
+	/**
+	* Announcements is a map string/string such that we can easily add any additional data without needing to change types. For now, we will use the keys \"name\" and \"content\".
+	*/
+	"announcement"?: Array<LicenseApiAnnouncement>;
+	/**
+	* BlockRequests specifies which requests the product should block when a limit is exceeded.
+	*/
+	"block"?: Array<LicenseApiBlockRequest>;
+	/**
+	* Buttons is a slice of license server endpoints (buttons) that the Loft instance may need to hit. Each Button contains the display text and link for the front end to work with.
+	*/
+	"buttons"?: Array<LicenseApiButton>;
+	/**
+	* DomainToken holds the JWT with the URL that the Loft instance is publicly available on. (via Loft router)
+	*/
+	"domainToken"?: string;
+	/**
+	* InstanceID contains the instance id of the Loft instance
+	*/
+	"instance"?: string;
+	/**
+	* IsOffline indicates if the license is an offline license or not.
+	*/
+	"isOffline"?: boolean;
+	/**
+	* Modules is a list of modules.
+	*/
+	"modules"?: Array<LicenseApiModule>;
+	"routes"?: LicenseApiLicenseAPIRoutes;
+	/**
+	* Trials is a list of trials.
+	*/
+	"trials"?: Array<LicenseApiTrial>;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1LicenseStatus {
+	"license"?: LicenseApiLicense;
+	/**
+	* ResourceUsage shows the current usage of license limit.
+	*/
+	"resourceUsage"?: {
+		[key: string]: LicenseApiResourceCount;
+	};
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1License {
+	/**
+	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	*/
+	"apiVersion"?: string;
+	/**
+	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	*/
+	"kind"?: string;
+	"metadata"?: V1ObjectMeta;
+	"spec"?: any;
+	"status"?: ManagementV1LicenseStatus;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
 declare class UiV1UISettingsSpec {
 	/**
 	* AccentColor is the color value (ex: \"#12345\") to use for the accent
@@ -10404,6 +10833,7 @@ declare class ManagementV1KioskSpec {
 	"jsPolicy"?: PolicyV1beta1JsPolicy;
 	"jsPolicyBundle"?: PolicyV1beta1JsPolicyBundle;
 	"jsPolicyViolations"?: PolicyV1beta1JsPolicyViolations;
+	"license"?: ManagementV1License;
 	"localClusterAccess"?: ClusterV1LocalClusterAccess;
 	"localStorageClusterAccess"?: StorageV1LocalClusterAccess;
 	"localTeam"?: StorageV1LocalTeam;
@@ -10455,9 +10885,13 @@ declare class ManagementV1Kiosk {
 	}[];
 	constructor();
 }
-declare class ServerStandardRequestInputFrontEnd {
+declare class LicenseApiGenericRequestInput {
 	/**
-	* ReturnURL is the url that operations should ultimately return to after their operation is complete. For example, once the license activate process is done, the Loft portal should redirect to this URL.
+	* Payload provides the json encoded payload
+	*/
+	"payload"?: string;
+	/**
+	* ReturnURL is the url from which the request is initiated
 	*/
 	"returnURL"?: string;
 	static readonly discriminator: string | undefined;
@@ -10476,11 +10910,11 @@ declare class ServerStandardRequestInputFrontEnd {
 	constructor();
 }
 declare class ManagementV1LicenseRequestSpec {
-	"input"?: ServerStandardRequestInputFrontEnd;
+	"input"?: LicenseApiGenericRequestInput;
 	/**
-	* Route is the route to make the request to on the license server.
+	* URL is the url for the request.
 	*/
-	"url": string;
+	"url"?: string;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -10496,9 +10930,17 @@ declare class ManagementV1LicenseRequestSpec {
 	}[];
 	constructor();
 }
-declare class ServerStandardRequestOutput {
+declare class LicenseApiGenericRequestOutput {
 	/**
-	* RedirectURL is the URL to redirect to for continuing the license operation (typically stripe or the loft portal).
+	* Buttons to be shown to the user alongside other content (e.g. HTML).
+	*/
+	"buttons"?: Array<LicenseApiButton>;
+	/**
+	* HTML to display to the user.
+	*/
+	"html"?: string;
+	/**
+	* RedirectURL to redirect the user to.
 	*/
 	"redirectURL"?: string;
 	static readonly discriminator: string | undefined;
@@ -10517,11 +10959,7 @@ declare class ServerStandardRequestOutput {
 	constructor();
 }
 declare class ManagementV1LicenseRequestStatus {
-	/**
-	* OK indicates if the license request operation was successful or not. If OK is true, the front end should follow the link in the output.
-	*/
-	"ok"?: boolean;
-	"output"?: ServerStandardRequestOutput;
+	"output"?: LicenseApiGenericRequestOutput;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -10564,8 +11002,50 @@ declare class ManagementV1LicenseRequest {
 	}[];
 	constructor();
 }
+declare class ManagementV1LicenseTokenSpec {
+	"payload"?: string;
+	"url"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class LicenseApiInstanceTokenAuth {
+	/**
+	* Certificate is the signing certificate for the token.
+	*/
+	"certificate": string;
+	/**
+	* Token is the jwt token identifying the loft instance.
+	*/
+	"token": string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
 declare class ManagementV1LicenseTokenStatus {
-	"token"?: ServerInstanceTokenAuth;
+	"token"?: LicenseApiInstanceTokenAuth;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -10591,225 +11071,8 @@ declare class ManagementV1LicenseToken {
 	*/
 	"kind"?: string;
 	"metadata"?: V1ObjectMeta;
-	"spec"?: any;
+	"spec"?: ManagementV1LicenseTokenSpec;
 	"status"?: ManagementV1LicenseTokenStatus;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ServerButton {
-	/**
-	* URL is the link at the other end of the button.
-	*/
-	"URL": string;
-	/**
-	* Direct indicates if the Loft front end should directly hit this endpoint. If false, it means that the Loft front end will be hitting the license server first to generate a one time token for the operation; this also means that there will be a redirect URL in the response to the request for this and that link should be followed by the front end.
-	*/
-	"direct"?: boolean;
-	/**
-	* DisplayText is the text to display on the button. If display text is unset the button will never be shown in the loft UI.
-	*/
-	"displayText"?: string;
-	/**
-	* PayloadType indicates the payload type to set in the request. Typically, this will be \"standard\" -- meaning the standard payload that includes the instance token auth and a return url, however in the future we may add additional types. An unset value is assumed to be \"standard\".
-	*/
-	"payloadType"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ServerRequest {
-	/**
-	* Group is the api group.
-	*/
-	"group"?: string;
-	/**
-	* Resource is the resource name for the request.
-	*/
-	"resource"?: string;
-	/**
-	* Verbs is the list of verbs for the request.
-	*/
-	"verbs"?: Array<string>;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ServerAnalytics {
-	/**
-	* Endpoint is the endpoint for the analytics server.
-	*/
-	"endpoint"?: string;
-	/**
-	* Requests is a slice of requested resources to return analytics for.
-	*/
-	"requests"?: Array<ServerRequest>;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ServerResourceQuantity {
-	/**
-	* Group is the api group.
-	*/
-	"group"?: string;
-	/**
-	* Kind is the resource kind.
-	*/
-	"kind"?: string;
-	/**
-	* Quantity is the quantity for hte limit (for example).
-	*/
-	"quantity": number;
-	/**
-	* Version is the api version.
-	*/
-	"version"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ServerLicense {
-	"analytics"?: ServerAnalytics;
-	/**
-	* Announcements is a map string/string such that we can easily add any additional data without needing to change types. For now, we will use the keys \"name\" and \"content\".
-	*/
-	"announcement"?: {
-		[key: string]: string;
-	};
-	/**
-	* BlockRequests is a slice of Request objects that the Loft instance should block from being created due to license usage overrun.
-	*/
-	"blockRequests"?: Array<ServerRequest>;
-	/**
-	* Buttons is a slice of license server endpoints (buttons) that the Loft instance may need to hit. Each Button contains the display text and link for the front end to work with.
-	*/
-	"buttons"?: Array<ServerButton>;
-	/**
-	* DomainToken holds the JWT with the URL that the Loft instance is publicly available on. (via Loft router)
-	*/
-	"domainToken"?: string;
-	/**
-	* Features is a map of enabled features.
-	*/
-	"features"?: {
-		[key: string]: boolean;
-	};
-	/**
-	* IsOffline indicates if the license is an offline license or not.
-	*/
-	"isOffline"?: boolean;
-	/**
-	* Limits is the number of resources allowed by the current license.
-	*/
-	"limits"?: Array<ServerResourceQuantity>;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1LicenseStatus {
-	/**
-	* Buttons is the selection of routes or endpoints in the license server that are used for license related operations such as updating subscriptions.
-	*/
-	"buttons"?: Array<ServerButton>;
-	"info"?: ServerLicense;
-	/**
-	* InstanceID is the instance ID for the Loft license/instance.
-	*/
-	"instanceID"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1License {
-	/**
-	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
-	*/
-	"apiVersion"?: string;
-	/**
-	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-	*/
-	"kind"?: string;
-	"metadata"?: V1ObjectMeta;
-	"spec"?: any;
-	"status"?: ManagementV1LicenseStatus;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -11632,6 +11895,10 @@ declare class ManagementV1ProjectImportVirtualCluster {
 	"kind"?: string;
 	"metadata"?: V1ObjectMeta;
 	"sourceVirtualCluster": ManagementV1ProjectImportVirtualClusterSource;
+	/**
+	* UpgradeToPro indicates whether we should upgrade to Pro on import
+	*/
+	"upgradeToPro"?: boolean;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -13219,6 +13486,10 @@ declare class ManagementV1SelfStatus {
 	*/
 	"accessKeyType"?: string;
 	/**
+	* ChatAuthToken is the token used to authenticate with the in-product chat widget in the UI
+	*/
+	"chatAuthToken"?: string;
+	/**
 	* The groups of the currently logged in user
 	*/
 	"groups"?: Array<string>;
@@ -13226,10 +13497,6 @@ declare class ManagementV1SelfStatus {
 	* InstanceID is the loft instance id
 	*/
 	"instanceID"?: string;
-	/**
-	* IntercomHash is the hmac used to link a user/instance to intercomm
-	*/
-	"intercomHash"?: string;
 	/**
 	* The subject of the currently logged in user
 	*/

@@ -15,11 +15,7 @@
 /**
 * Button is an object that represents a button in the Loft UI that links to some external service for handling operations for licensing for example.
 */
-export class ServerButton {
-    /**
-    * URL is the link at the other end of the button.
-    */
-    'URL': string;
+export class LicenseApiButton {
     /**
     * Direct indicates if the Loft front end should directly hit this endpoint. If false, it means that the Loft front end will be hitting the license server first to generate a one time token for the operation; this also means that there will be a redirect URL in the response to the request for this and that link should be followed by the front end.
     */
@@ -29,19 +25,13 @@ export class ServerButton {
     */
     'displayText'?: string;
     /**
-    * PayloadType indicates the payload type to set in the request. Typically, this will be \"standard\" -- meaning the standard payload that includes the instance token auth and a return url, however in the future we may add additional types. An unset value is assumed to be \"standard\".
+    * URL is the link at the other end of the button.
     */
-    'payloadType'?: string;
+    'url': string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
-        {
-            "name": "URL",
-            "baseName": "URL",
-            "type": "string",
-            "format": ""
-        },
         {
             "name": "direct",
             "baseName": "direct",
@@ -55,14 +45,14 @@ export class ServerButton {
             "format": ""
         },
         {
-            "name": "payloadType",
-            "baseName": "payloadType",
+            "name": "url",
+            "baseName": "url",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ServerButton.attributeTypeMap;
+        return LicenseApiButton.attributeTypeMap;
     }
 
     public constructor() {

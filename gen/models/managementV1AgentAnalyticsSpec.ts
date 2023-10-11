@@ -10,7 +10,6 @@
  * Do not edit the class manually.
  */
 
-import { ServerInstanceTokenAuth } from './licenseServerInstanceTokenAuth';
 
 
 /**
@@ -18,7 +17,6 @@ import { ServerInstanceTokenAuth } from './licenseServerInstanceTokenAuth';
 */
 export class ManagementV1AgentAnalyticsSpec {
     'analyticsEndpoint'?: string;
-    'instanceTokenAuth'?: ServerInstanceTokenAuth;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -27,12 +25,6 @@ export class ManagementV1AgentAnalyticsSpec {
             "name": "analyticsEndpoint",
             "baseName": "analyticsEndpoint",
             "type": "string",
-            "format": ""
-        },
-        {
-            "name": "instanceTokenAuth",
-            "baseName": "instanceTokenAuth",
-            "type": "ServerInstanceTokenAuth",
             "format": ""
         }    ];
 

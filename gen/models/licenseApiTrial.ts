@@ -12,31 +12,46 @@
 
 
 
-export class StorageV1VirtualClusterHelmChart {
+/**
+* Trial represents a trial
+*/
+export class LicenseApiTrial {
     /**
-    * the name of the helm chart
+    * DisplayName is a display name for the trial
+    */
+    'displayName'?: string;
+    /**
+    * End is the unix timestamp stating when the trial will end or ended
+    */
+    'end'?: number;
+    /**
+    * Name is the unique id of this trial
     */
     'name'?: string;
     /**
-    * The password that is required for this repository
+    * Start is the unix timestamp stating when the trial was started
     */
-    'password'?: string;
+    'start'?: number;
     /**
-    * the repo of the helm chart
+    * Status is the status of this trial
     */
-    'repo'?: string;
-    /**
-    * The username that is required for this repository
-    */
-    'username'?: string;
-    /**
-    * the version of the helm chart to use
-    */
-    'version'?: string;
+    'status'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+        {
+            "name": "displayName",
+            "baseName": "displayName",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "end",
+            "baseName": "end",
+            "type": "number",
+            "format": "int64"
+        },
         {
             "name": "name",
             "baseName": "name",
@@ -44,32 +59,20 @@ export class StorageV1VirtualClusterHelmChart {
             "format": ""
         },
         {
-            "name": "password",
-            "baseName": "password",
-            "type": "string",
-            "format": ""
+            "name": "start",
+            "baseName": "start",
+            "type": "number",
+            "format": "int64"
         },
         {
-            "name": "repo",
-            "baseName": "repo",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "username",
-            "baseName": "username",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "version",
-            "baseName": "version",
+            "name": "status",
+            "baseName": "status",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1VirtualClusterHelmChart.attributeTypeMap;
+        return LicenseApiTrial.attributeTypeMap;
     }
 
     public constructor() {

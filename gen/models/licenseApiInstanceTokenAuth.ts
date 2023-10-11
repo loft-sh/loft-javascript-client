@@ -10,24 +10,36 @@
  * Do not edit the class manually.
  */
 
-import { LicenseApiAnnouncement } from './licenseApiAnnouncement';
 
 
-export class ManagementV1AnnouncementStatus {
-    'announcement'?: LicenseApiAnnouncement;
+export class LicenseApiInstanceTokenAuth {
+    /**
+    * Certificate is the signing certificate for the token.
+    */
+    'certificate': string;
+    /**
+    * Token is the jwt token identifying the loft instance.
+    */
+    'token': string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "announcement",
-            "baseName": "announcement",
-            "type": "LicenseApiAnnouncement",
+            "name": "certificate",
+            "baseName": "certificate",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "token",
+            "baseName": "token",
+            "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1AnnouncementStatus.attributeTypeMap;
+        return LicenseApiInstanceTokenAuth.attributeTypeMap;
     }
 
     public constructor() {

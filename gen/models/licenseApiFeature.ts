@@ -13,19 +13,15 @@
 
 
 /**
-* FeatureStatus holds the status
+* Feature contains information regarding to a feature
 */
-export class ManagementV1FeatureStatus {
+export class LicenseApiFeature {
     /**
     * Compatibility contains a series of semver compatibility constraints
     */
     'compatibility'?: string;
     'description'?: string;
     'displayName'?: string;
-    /**
-    * Internal marks internal features that should not be shown on the license view
-    */
-    'internal'?: boolean;
     /**
     * Labels contains a list of labels to be displayed for this feature (e.g. alpha, beta)
     */
@@ -42,10 +38,6 @@ export class ManagementV1FeatureStatus {
     * Status shows the status of the feature (see type FeatureStatus)
     */
     'status'?: string;
-    /**
-    * Used marks features that are currently used in the product
-    */
-    'used'?: boolean;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -66,12 +58,6 @@ export class ManagementV1FeatureStatus {
             "name": "displayName",
             "baseName": "displayName",
             "type": "string",
-            "format": ""
-        },
-        {
-            "name": "internal",
-            "baseName": "internal",
-            "type": "boolean",
             "format": ""
         },
         {
@@ -97,16 +83,10 @@ export class ManagementV1FeatureStatus {
             "baseName": "status",
             "type": "string",
             "format": ""
-        },
-        {
-            "name": "used",
-            "baseName": "used",
-            "type": "boolean",
-            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1FeatureStatus.attributeTypeMap;
+        return LicenseApiFeature.attributeTypeMap;
     }
 
     public constructor() {
