@@ -10,15 +10,15 @@
  * Do not edit the class manually.
  */
 
-import { ServerStandardRequestInputFrontEnd } from './licenseServerStandardRequestInputFrontEnd';
+import { LicenseApiGenericRequestInput } from './licenseApiGenericRequestInput';
 
 
 export class ManagementV1LicenseRequestSpec {
-    'input'?: ServerStandardRequestInputFrontEnd;
+    'input'?: LicenseApiGenericRequestInput;
     /**
-    * Route is the route to make the request to on the license server.
+    * URL is the url for the request.
     */
-    'url': string;
+    'url'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -26,7 +26,7 @@ export class ManagementV1LicenseRequestSpec {
         {
             "name": "input",
             "baseName": "input",
-            "type": "ServerStandardRequestInputFrontEnd",
+            "type": "LicenseApiGenericRequestInput",
             "format": ""
         },
         {

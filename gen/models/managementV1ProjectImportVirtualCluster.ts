@@ -28,6 +28,10 @@ export class ManagementV1ProjectImportVirtualCluster {
     'kind'?: string;
     'metadata'?: V1ObjectMeta;
     'sourceVirtualCluster': ManagementV1ProjectImportVirtualClusterSource;
+    /**
+    * UpgradeToPro indicates whether we should upgrade to Pro on import
+    */
+    'upgradeToPro'?: boolean;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -54,6 +58,12 @@ export class ManagementV1ProjectImportVirtualCluster {
             "name": "sourceVirtualCluster",
             "baseName": "sourceVirtualCluster",
             "type": "ManagementV1ProjectImportVirtualClusterSource",
+            "format": ""
+        },
+        {
+            "name": "upgradeToPro",
+            "baseName": "upgradeToPro",
+            "type": "boolean",
             "format": ""
         }    ];
 

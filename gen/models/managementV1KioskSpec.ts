@@ -22,6 +22,7 @@ import { StorageV1LocalClusterAccess } from './agentstorageV1LocalClusterAccess'
 import { StorageV1LocalTeam } from './agentstorageV1LocalTeam';
 import { StorageV1LocalUser } from './agentstorageV1LocalUser';
 import { StorageV1VirtualCluster } from './agentstorageV1VirtualCluster';
+import { ManagementV1License } from './managementV1License';
 import { UiV1UISettings } from './uiV1UISettings';
 import { PolicyV1beta1JsPolicy } from './policyV1beta1JsPolicy';
 import { PolicyV1beta1JsPolicyBundle } from './policyV1beta1JsPolicyBundle';
@@ -36,6 +37,7 @@ export class ManagementV1KioskSpec {
     'jsPolicy'?: PolicyV1beta1JsPolicy;
     'jsPolicyBundle'?: PolicyV1beta1JsPolicyBundle;
     'jsPolicyViolations'?: PolicyV1beta1JsPolicyViolations;
+    'license'?: ManagementV1License;
     'localClusterAccess'?: ClusterV1LocalClusterAccess;
     'localStorageClusterAccess'?: StorageV1LocalClusterAccess;
     'localTeam'?: StorageV1LocalTeam;
@@ -89,6 +91,12 @@ export class ManagementV1KioskSpec {
             "name": "jsPolicyViolations",
             "baseName": "jsPolicyViolations",
             "type": "PolicyV1beta1JsPolicyViolations",
+            "format": ""
+        },
+        {
+            "name": "license",
+            "baseName": "license",
+            "type": "ManagementV1License",
             "format": ""
         },
         {

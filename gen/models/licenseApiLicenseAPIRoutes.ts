@@ -10,29 +10,27 @@
  * Do not edit the class manually.
  */
 
+import { LicenseApiLicenseAPIRoute } from './licenseApiLicenseAPIRoute';
 
 
 /**
-* StandardRequestOutput is a standard payload object returned by the Loft admin server, it contains a RedirectURL that encodes a one-time token (if applicable) and a return URL (if applicable) that the front end can then follow to continue the license operation.
+* LicenseAPIRoutes contains all key routes of the license api
 */
-export class ServerStandardRequestOutput {
-    /**
-    * RedirectURL is the URL to redirect to for continuing the license operation (typically stripe or the loft portal).
-    */
-    'redirectURL'?: string;
+export class LicenseApiLicenseAPIRoutes {
+    'chatAuth'?: LicenseApiLicenseAPIRoute;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "redirectURL",
-            "baseName": "redirectURL",
-            "type": "string",
+            "name": "chatAuth",
+            "baseName": "chatAuth",
+            "type": "LicenseApiLicenseAPIRoute",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ServerStandardRequestOutput.attributeTypeMap;
+        return LicenseApiLicenseAPIRoutes.attributeTypeMap;
     }
 
     public constructor() {

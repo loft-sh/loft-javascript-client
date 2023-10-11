@@ -13,46 +13,36 @@
 
 
 /**
-* Request represents a request analytics information for an apigroup/resource and a list of verb actions for that resource.
+* GenericRequestInput defines the payload that needs to be sent to a button's action URL
 */
-export class ServerRequest {
+export class LicenseApiGenericRequestInput {
     /**
-    * Group is the api group.
+    * Payload provides the json encoded payload
     */
-    'group'?: string;
+    'payload'?: string;
     /**
-    * Resource is the resource name for the request.
+    * ReturnURL is the url from which the request is initiated
     */
-    'resource'?: string;
-    /**
-    * Verbs is the list of verbs for the request.
-    */
-    'verbs'?: Array<string>;
+    'returnURL'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "group",
-            "baseName": "group",
+            "name": "payload",
+            "baseName": "payload",
             "type": "string",
             "format": ""
         },
         {
-            "name": "resource",
-            "baseName": "resource",
+            "name": "returnURL",
+            "baseName": "returnURL",
             "type": "string",
-            "format": ""
-        },
-        {
-            "name": "verbs",
-            "baseName": "verbs",
-            "type": "Array<string>",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ServerRequest.attributeTypeMap;
+        return LicenseApiGenericRequestInput.attributeTypeMap;
     }
 
     public constructor() {

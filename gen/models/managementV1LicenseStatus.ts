@@ -10,40 +10,30 @@
  * Do not edit the class manually.
  */
 
-import { ServerButton } from './licenseServerButton';
-import { ServerLicense } from './licenseServerLicense';
+import { LicenseApiLicense } from './licenseApiLicense';
+import { LicenseApiResourceCount } from './licenseApiResourceCount';
 
 
 export class ManagementV1LicenseStatus {
+    'license'?: LicenseApiLicense;
     /**
-    * Buttons is the selection of routes or endpoints in the license server that are used for license related operations such as updating subscriptions.
+    * ResourceUsage shows the current usage of license limit.
     */
-    'buttons'?: Array<ServerButton>;
-    'info'?: ServerLicense;
-    /**
-    * InstanceID is the instance ID for the Loft license/instance.
-    */
-    'instanceID'?: string;
+    'resourceUsage'?: { [key: string]: LicenseApiResourceCount; };
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "buttons",
-            "baseName": "buttons",
-            "type": "Array<ServerButton>",
+            "name": "license",
+            "baseName": "license",
+            "type": "LicenseApiLicense",
             "format": ""
         },
         {
-            "name": "info",
-            "baseName": "info",
-            "type": "ServerLicense",
-            "format": ""
-        },
-        {
-            "name": "instanceID",
-            "baseName": "instanceID",
-            "type": "string",
+            "name": "resourceUsage",
+            "baseName": "resourceUsage",
+            "type": "{ [key: string]: LicenseApiResourceCount; }",
             "format": ""
         }    ];
 

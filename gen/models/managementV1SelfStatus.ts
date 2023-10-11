@@ -26,6 +26,10 @@ export class ManagementV1SelfStatus {
     */
     'accessKeyType'?: string;
     /**
+    * ChatAuthToken is the token used to authenticate with the in-product chat widget in the UI
+    */
+    'chatAuthToken'?: string;
+    /**
     * The groups of the currently logged in user
     */
     'groups'?: Array<string>;
@@ -33,10 +37,6 @@ export class ManagementV1SelfStatus {
     * InstanceID is the loft instance id
     */
     'instanceID'?: string;
-    /**
-    * IntercomHash is the hmac used to link a user/instance to intercomm
-    */
-    'intercomHash'?: string;
     /**
     * The subject of the currently logged in user
     */
@@ -70,6 +70,12 @@ export class ManagementV1SelfStatus {
             "format": ""
         },
         {
+            "name": "chatAuthToken",
+            "baseName": "chatAuthToken",
+            "type": "string",
+            "format": ""
+        },
+        {
             "name": "groups",
             "baseName": "groups",
             "type": "Array<string>",
@@ -78,12 +84,6 @@ export class ManagementV1SelfStatus {
         {
             "name": "instanceID",
             "baseName": "instanceID",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "intercomHash",
-            "baseName": "intercomHash",
             "type": "string",
             "format": ""
         },

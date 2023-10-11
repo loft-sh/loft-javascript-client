@@ -10,29 +10,19 @@
  * Do not edit the class manually.
  */
 
-import { ServerStandardRequestOutput } from './licenseServerStandardRequestOutput';
+import { LicenseApiGenericRequestOutput } from './licenseApiGenericRequestOutput';
 
 
 export class ManagementV1LicenseRequestStatus {
-    /**
-    * OK indicates if the license request operation was successful or not. If OK is true, the front end should follow the link in the output.
-    */
-    'ok'?: boolean;
-    'output'?: ServerStandardRequestOutput;
+    'output'?: LicenseApiGenericRequestOutput;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "ok",
-            "baseName": "ok",
-            "type": "boolean",
-            "format": ""
-        },
-        {
             "name": "output",
             "baseName": "output",
-            "type": "ServerStandardRequestOutput",
+            "type": "LicenseApiGenericRequestOutput",
             "format": ""
         }    ];
 

@@ -10,45 +10,53 @@
  * Do not edit the class manually.
  */
 
-import { ServerAnalytics } from './licenseServerAnalytics';
-import { ServerButton } from './licenseServerButton';
-import { ServerRequest } from './licenseServerRequest';
-import { ServerResourceQuantity } from './licenseServerResourceQuantity';
+import { LicenseApiAnalytics } from './licenseApiAnalytics';
+import { LicenseApiAnnouncement } from './licenseApiAnnouncement';
+import { LicenseApiBlockRequest } from './licenseApiBlockRequest';
+import { LicenseApiButton } from './licenseApiButton';
+import { LicenseApiLicenseAPIRoutes } from './licenseApiLicenseAPIRoutes';
+import { LicenseApiModule } from './licenseApiModule';
+import { LicenseApiTrial } from './licenseApiTrial';
 
 
 /**
 * License is a struct representing the license data sent to a Loft instance after checking in with the license server.
 */
-export class ServerLicense {
-    'analytics'?: ServerAnalytics;
+export class LicenseApiLicense {
+    'analytics'?: LicenseApiAnalytics;
     /**
     * Announcements is a map string/string such that we can easily add any additional data without needing to change types. For now, we will use the keys \"name\" and \"content\".
     */
-    'announcement'?: { [key: string]: string; };
+    'announcement'?: Array<LicenseApiAnnouncement>;
     /**
-    * BlockRequests is a slice of Request objects that the Loft instance should block from being created due to license usage overrun.
+    * BlockRequests specifies which requests the product should block when a limit is exceeded.
     */
-    'blockRequests'?: Array<ServerRequest>;
+    'block'?: Array<LicenseApiBlockRequest>;
     /**
     * Buttons is a slice of license server endpoints (buttons) that the Loft instance may need to hit. Each Button contains the display text and link for the front end to work with.
     */
-    'buttons'?: Array<ServerButton>;
+    'buttons'?: Array<LicenseApiButton>;
     /**
     * DomainToken holds the JWT with the URL that the Loft instance is publicly available on. (via Loft router)
     */
     'domainToken'?: string;
     /**
-    * Features is a map of enabled features.
+    * InstanceID contains the instance id of the Loft instance
     */
-    'features'?: { [key: string]: boolean; };
+    'instance'?: string;
     /**
     * IsOffline indicates if the license is an offline license or not.
     */
     'isOffline'?: boolean;
     /**
-    * Limits is the number of resources allowed by the current license.
+    * Modules is a list of modules.
     */
-    'limits'?: Array<ServerResourceQuantity>;
+    'modules'?: Array<LicenseApiModule>;
+    'routes'?: LicenseApiLicenseAPIRoutes;
+    /**
+    * Trials is a list of trials.
+    */
+    'trials'?: Array<LicenseApiTrial>;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -56,25 +64,25 @@ export class ServerLicense {
         {
             "name": "analytics",
             "baseName": "analytics",
-            "type": "ServerAnalytics",
+            "type": "LicenseApiAnalytics",
             "format": ""
         },
         {
             "name": "announcement",
             "baseName": "announcement",
-            "type": "{ [key: string]: string; }",
+            "type": "Array<LicenseApiAnnouncement>",
             "format": ""
         },
         {
-            "name": "blockRequests",
-            "baseName": "blockRequests",
-            "type": "Array<ServerRequest>",
+            "name": "block",
+            "baseName": "block",
+            "type": "Array<LicenseApiBlockRequest>",
             "format": ""
         },
         {
             "name": "buttons",
             "baseName": "buttons",
-            "type": "Array<ServerButton>",
+            "type": "Array<LicenseApiButton>",
             "format": ""
         },
         {
@@ -84,9 +92,9 @@ export class ServerLicense {
             "format": ""
         },
         {
-            "name": "features",
-            "baseName": "features",
-            "type": "{ [key: string]: boolean; }",
+            "name": "instance",
+            "baseName": "instance",
+            "type": "string",
             "format": ""
         },
         {
@@ -96,14 +104,26 @@ export class ServerLicense {
             "format": ""
         },
         {
-            "name": "limits",
-            "baseName": "limits",
-            "type": "Array<ServerResourceQuantity>",
+            "name": "modules",
+            "baseName": "modules",
+            "type": "Array<LicenseApiModule>",
+            "format": ""
+        },
+        {
+            "name": "routes",
+            "baseName": "routes",
+            "type": "LicenseApiLicenseAPIRoutes",
+            "format": ""
+        },
+        {
+            "name": "trials",
+            "baseName": "trials",
+            "type": "Array<LicenseApiTrial>",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ServerLicense.attributeTypeMap;
+        return LicenseApiLicense.attributeTypeMap;
     }
 
     public constructor() {
