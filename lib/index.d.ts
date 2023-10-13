@@ -12772,6 +12772,109 @@ declare class StorageV1Quotas {
 	}[];
 	constructor();
 }
+declare class StorageV1ImportVirtualClustersSpec {
+	/**
+	* Enabled indicates if virtual clusters created within this project should get synced to Rancher. If projectRef is defined, will also automatically add the created namespace to the Rancher project.
+	*/
+	"enabled"?: boolean;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1RancherProjectRef {
+	/**
+	* Cluster defines the Rancher cluster ID Needs to be the same id within Loft
+	*/
+	"cluster"?: string;
+	/**
+	* Project defines the Rancher project ID
+	*/
+	"project"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1SyncMembersSpec {
+	/**
+	* Enabled indicates whether to sync rancher project members to the loft project.
+	*/
+	"enabled"?: boolean;
+	/**
+	* MemberRole indicates the loft role to use for a rancher project member
+	*/
+	"memberRole"?: string;
+	/**
+	* OwnerRole indicates the loft role to use for a rancher project owner
+	*/
+	"ownerRole"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1RancherIntegrationSpec {
+	/**
+	* Enabled indicates if the Rancher Project Integration is enabled for this project.
+	*/
+	"enabled"?: boolean;
+	"importVirtualClusters"?: StorageV1ImportVirtualClustersSpec;
+	"projectRef"?: StorageV1RancherProjectRef;
+	/**
+	* SkipTLSVerify defines if TLS verification should be skipped when connecting to Rancher.
+	*/
+	"skipTLSVerify"?: boolean;
+	"syncMembers"?: StorageV1SyncMembersSpec;
+	/**
+	* URL defines the address of the Rancher instance to use for this project.
+	*/
+	"url"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
 declare class StorageV1RequireTemplate {
 	/**
 	* If true, all users within the project will be allowed to create a new instance without a template. By default, only admins are allowed to create a new instance without a template.
@@ -12825,6 +12928,7 @@ declare class ManagementV1ProjectSpec {
 	"namespacePattern"?: StorageV1NamespacePattern;
 	"owner"?: StorageV1UserOrTeam;
 	"quotas"?: StorageV1Quotas;
+	"rancher"?: StorageV1RancherIntegrationSpec;
 	"requireTemplate"?: StorageV1RequireTemplate;
 	"vault"?: StorageV1VaultIntegrationSpec;
 	static readonly discriminator: string | undefined;
