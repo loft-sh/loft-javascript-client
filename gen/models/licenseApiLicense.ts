@@ -16,7 +16,7 @@ import { LicenseApiBlockRequest } from './licenseApiBlockRequest';
 import { LicenseApiButton } from './licenseApiButton';
 import { LicenseApiLicenseAPIRoutes } from './licenseApiLicenseAPIRoutes';
 import { LicenseApiModule } from './licenseApiModule';
-import { LicenseApiTrial } from './licenseApiTrial';
+import { LicenseApiPlan } from './licenseApiPlan';
 
 
 /**
@@ -52,11 +52,11 @@ export class LicenseApiLicense {
     * Modules is a list of modules.
     */
     'modules'?: Array<LicenseApiModule>;
-    'routes'?: LicenseApiLicenseAPIRoutes;
     /**
-    * Trials is a list of trials.
+    * Plans contains a list of plans
     */
-    'trials'?: Array<LicenseApiTrial>;
+    'plans'?: Array<LicenseApiPlan>;
+    'routes'?: LicenseApiLicenseAPIRoutes;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -110,15 +110,15 @@ export class LicenseApiLicense {
             "format": ""
         },
         {
-            "name": "routes",
-            "baseName": "routes",
-            "type": "LicenseApiLicenseAPIRoutes",
+            "name": "plans",
+            "baseName": "plans",
+            "type": "Array<LicenseApiPlan>",
             "format": ""
         },
         {
-            "name": "trials",
-            "baseName": "trials",
-            "type": "Array<LicenseApiTrial>",
+            "name": "routes",
+            "baseName": "routes",
+            "type": "LicenseApiLicenseAPIRoutes",
             "format": ""
         }    ];
 

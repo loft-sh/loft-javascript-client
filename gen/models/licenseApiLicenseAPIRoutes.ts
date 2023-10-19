@@ -18,6 +18,10 @@ import { LicenseApiLicenseAPIRoute } from './licenseApiLicenseAPIRoute';
 */
 export class LicenseApiLicenseAPIRoutes {
     'chatAuth'?: LicenseApiLicenseAPIRoute;
+    'checkout'?: LicenseApiLicenseAPIRoute;
+    'featureDetails'?: LicenseApiLicenseAPIRoute;
+    'featureSetup'?: LicenseApiLicenseAPIRoute;
+    'portal'?: LicenseApiLicenseAPIRoute;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -25,6 +29,30 @@ export class LicenseApiLicenseAPIRoutes {
         {
             "name": "chatAuth",
             "baseName": "chatAuth",
+            "type": "LicenseApiLicenseAPIRoute",
+            "format": ""
+        },
+        {
+            "name": "checkout",
+            "baseName": "checkout",
+            "type": "LicenseApiLicenseAPIRoute",
+            "format": ""
+        },
+        {
+            "name": "featureDetails",
+            "baseName": "featureDetails",
+            "type": "LicenseApiLicenseAPIRoute",
+            "format": ""
+        },
+        {
+            "name": "featureSetup",
+            "baseName": "featureSetup",
+            "type": "LicenseApiLicenseAPIRoute",
+            "format": ""
+        },
+        {
+            "name": "portal",
+            "baseName": "portal",
             "type": "LicenseApiLicenseAPIRoute",
             "format": ""
         }    ];

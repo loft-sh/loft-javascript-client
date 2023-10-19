@@ -12,41 +12,34 @@
 
 
 
-/**
-* LicenseAPIRoute is a single route of the license api
-*/
-export class LicenseApiLicenseAPIRoute {
+export class StorageV1SyncMembersSpec {
     /**
-    * Tells the frontend whether to make a direct request or to make it via the backend (via generic license api request)
+    * Enabled indicates whether to sync rancher project members to the loft project.
     */
-    'direct'?: boolean;
-    'method'?: string;
-    'url'?: string;
+    'enabled'?: boolean;
+    /**
+    * RoleMapping indicates an optional role mapping from a rancher role to a loft role.
+    */
+    'roleMapping'?: { [key: string]: string; };
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "direct",
-            "baseName": "direct",
+            "name": "enabled",
+            "baseName": "enabled",
             "type": "boolean",
             "format": ""
         },
         {
-            "name": "method",
-            "baseName": "method",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "url",
-            "baseName": "url",
-            "type": "string",
+            "name": "roleMapping",
+            "baseName": "roleMapping",
+            "type": "{ [key: string]: string; }",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return LicenseApiLicenseAPIRoute.attributeTypeMap;
+        return StorageV1SyncMembersSpec.attributeTypeMap;
     }
 
     public constructor() {

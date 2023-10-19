@@ -12,41 +12,24 @@
 
 
 
-/**
-* LicenseAPIRoute is a single route of the license api
-*/
-export class LicenseApiLicenseAPIRoute {
+export class StorageV1ImportVirtualClustersSpec {
     /**
-    * Tells the frontend whether to make a direct request or to make it via the backend (via generic license api request)
+    * Enabled indicates if virtual clusters created within this project should get synced to Rancher. If projectRef is defined, will also automatically add the created namespace to the Rancher project.
     */
-    'direct'?: boolean;
-    'method'?: string;
-    'url'?: string;
+    'enabled'?: boolean;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "direct",
-            "baseName": "direct",
+            "name": "enabled",
+            "baseName": "enabled",
             "type": "boolean",
-            "format": ""
-        },
-        {
-            "name": "method",
-            "baseName": "method",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "url",
-            "baseName": "url",
-            "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return LicenseApiLicenseAPIRoute.attributeTypeMap;
+        return StorageV1ImportVirtualClustersSpec.attributeTypeMap;
     }
 
     public constructor() {

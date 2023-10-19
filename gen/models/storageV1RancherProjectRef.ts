@@ -12,41 +12,34 @@
 
 
 
-/**
-* LicenseAPIRoute is a single route of the license api
-*/
-export class LicenseApiLicenseAPIRoute {
+export class StorageV1RancherProjectRef {
     /**
-    * Tells the frontend whether to make a direct request or to make it via the backend (via generic license api request)
+    * Cluster defines the Rancher cluster ID Needs to be the same id within Loft
     */
-    'direct'?: boolean;
-    'method'?: string;
-    'url'?: string;
+    'cluster'?: string;
+    /**
+    * Project defines the Rancher project ID
+    */
+    'project'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "direct",
-            "baseName": "direct",
-            "type": "boolean",
-            "format": ""
-        },
-        {
-            "name": "method",
-            "baseName": "method",
+            "name": "cluster",
+            "baseName": "cluster",
             "type": "string",
             "format": ""
         },
         {
-            "name": "url",
-            "baseName": "url",
+            "name": "project",
+            "baseName": "project",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return LicenseApiLicenseAPIRoute.attributeTypeMap;
+        return StorageV1RancherProjectRef.attributeTypeMap;
     }
 
     public constructor() {

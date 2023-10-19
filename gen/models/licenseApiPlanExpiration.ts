@@ -13,40 +13,36 @@
 
 
 /**
-* LicenseAPIRoute is a single route of the license api
+* PlanExpiration provides details about the expiration of a plan
 */
-export class LicenseApiLicenseAPIRoute {
+export class LicenseApiPlanExpiration {
     /**
-    * Tells the frontend whether to make a direct request or to make it via the backend (via generic license api request)
+    * ExpiresAt is the unix timestamp of when the plan expires
     */
-    'direct'?: boolean;
-    'method'?: string;
-    'url'?: string;
+    'expiresAt'?: number;
+    /**
+    * UpgradesTo states the name of the plan that is replacing the current one upon its expiration If this is nil, then this plan just expires (i.e. the subscription may be canceled, paused, etc.)
+    */
+    'upgradesTo'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "direct",
-            "baseName": "direct",
-            "type": "boolean",
-            "format": ""
+            "name": "expiresAt",
+            "baseName": "expiresAt",
+            "type": "number",
+            "format": "int64"
         },
         {
-            "name": "method",
-            "baseName": "method",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "url",
-            "baseName": "url",
+            "name": "upgradesTo",
+            "baseName": "upgradesTo",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return LicenseApiLicenseAPIRoute.attributeTypeMap;
+        return LicenseApiPlanExpiration.attributeTypeMap;
     }
 
     public constructor() {

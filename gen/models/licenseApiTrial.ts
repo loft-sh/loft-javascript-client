@@ -21,19 +21,23 @@ export class LicenseApiTrial {
     */
     'displayName'?: string;
     /**
+    * DowngradesTo states the name of the plan that is replacing the current one once the trial expires If this is nil, then this plan just expires (i.e. the subscription may be canceled, paused, etc.)
+    */
+    'downgradesTo'?: string;
+    /**
     * End is the unix timestamp stating when the trial will end or ended
     */
     'end'?: number;
     /**
-    * Name is the unique id of this trial
+    * ID is the unique id of this trial
     */
-    'name'?: string;
+    'id'?: string;
     /**
     * Start is the unix timestamp stating when the trial was started
     */
     'start'?: number;
     /**
-    * Status is the status of this trial
+    * Status is the status of this trial (TrialStatus)
     */
     'status'?: string;
 
@@ -47,14 +51,20 @@ export class LicenseApiTrial {
             "format": ""
         },
         {
+            "name": "downgradesTo",
+            "baseName": "downgradesTo",
+            "type": "string",
+            "format": ""
+        },
+        {
             "name": "end",
             "baseName": "end",
             "type": "number",
             "format": "int64"
         },
         {
-            "name": "name",
-            "baseName": "name",
+            "name": "id",
+            "baseName": "id",
             "type": "string",
             "format": ""
         },

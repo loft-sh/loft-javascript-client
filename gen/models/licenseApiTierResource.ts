@@ -10,44 +10,24 @@
  * Do not edit the class manually.
  */
 
-import { LicenseApiFeature } from './licenseApiFeature';
-import { LicenseApiLimit } from './licenseApiLimit';
 
 
 /**
-* Module is a struct representing a module of the product
+* TierResource provides details about the main resource the tier quantity relates to
 */
-export class LicenseApiModule {
-    'displayName'?: string;
-    'features'?: Array<LicenseApiFeature>;
-    'limits'?: Array<LicenseApiLimit>;
+export class LicenseApiTierResource {
     /**
-    * Name of the module (ModuleName)
+    * Name of the resource (ResourceName)
     */
-    'name': string;
+    'name'?: string;
+    /**
+    * Status defines which resources will be counted towards the limit (e.g. active, total, total created etc.)
+    */
     'status'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
-        {
-            "name": "displayName",
-            "baseName": "displayName",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "features",
-            "baseName": "features",
-            "type": "Array<LicenseApiFeature>",
-            "format": ""
-        },
-        {
-            "name": "limits",
-            "baseName": "limits",
-            "type": "Array<LicenseApiLimit>",
-            "format": ""
-        },
         {
             "name": "name",
             "baseName": "name",
@@ -62,7 +42,7 @@ export class LicenseApiModule {
         }    ];
 
     static getAttributeTypeMap() {
-        return LicenseApiModule.attributeTypeMap;
+        return LicenseApiTierResource.attributeTypeMap;
     }
 
     public constructor() {

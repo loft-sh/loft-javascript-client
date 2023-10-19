@@ -12,41 +12,44 @@
 
 
 
-/**
-* LicenseAPIRoute is a single route of the license api
-*/
-export class LicenseApiLicenseAPIRoute {
+export class ManagementV1AuthenticationRancher {
     /**
-    * Tells the frontend whether to make a direct request or to make it via the backend (via generic license api request)
+    * BearerToken holds the rancher API key in token username and password form. E.g. my-token:my-secret
     */
-    'direct'?: boolean;
-    'method'?: string;
-    'url'?: string;
+    'bearerToken'?: string;
+    /**
+    * Host holds the rancher host, e.g. my-domain.com
+    */
+    'host'?: string;
+    /**
+    * Insecure tells Loft if the Rancher endpoint is insecure.
+    */
+    'insecure'?: boolean;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "direct",
-            "baseName": "direct",
+            "name": "bearerToken",
+            "baseName": "bearerToken",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "host",
+            "baseName": "host",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "insecure",
+            "baseName": "insecure",
             "type": "boolean",
-            "format": ""
-        },
-        {
-            "name": "method",
-            "baseName": "method",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "url",
-            "baseName": "url",
-            "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return LicenseApiLicenseAPIRoute.attributeTypeMap;
+        return ManagementV1AuthenticationRancher.attributeTypeMap;
     }
 
     public constructor() {

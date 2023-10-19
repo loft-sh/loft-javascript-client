@@ -8960,6 +8960,34 @@ declare class ManagementV1AuthenticationPassword {
 	}[];
 	constructor();
 }
+declare class ManagementV1AuthenticationRancher {
+	/**
+	* BearerToken holds the rancher API key in token username and password form. E.g. my-token:my-secret
+	*/
+	"bearerToken"?: string;
+	/**
+	* Host holds the rancher host, e.g. my-domain.com
+	*/
+	"host"?: string;
+	/**
+	* Insecure tells Loft if the Rancher endpoint is insecure.
+	*/
+	"insecure"?: boolean;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
 declare class ManagementV1AuthenticationSAML {
 	/**
 	* List of groups to filter access based on membership
@@ -9091,6 +9119,7 @@ declare class ManagementV1Authentication {
 	"microsoft"?: ManagementV1AuthenticationMicrosoft;
 	"oidc"?: ManagementV1AuthenticationOIDC;
 	"password"?: ManagementV1AuthenticationPassword;
+	"rancher"?: ManagementV1AuthenticationRancher;
 	"saml"?: ManagementV1AuthenticationSAML;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
@@ -10095,13 +10124,9 @@ declare class ManagementV1FeatureStatus {
 	*/
 	"labels"?: Array<string>;
 	/**
-	* Name is the name of the feature This cannot be FeatureName because it needs to be downward compatible e.g. older Loft version doesn't know a newer feature but it will still be received and still needs to be rendered in the license view
+	* Name is the name of the feature (FeatureName) This cannot be FeatureName because it needs to be downward compatible e.g. older Loft version doesn't know a newer feature but it will still be received and still needs to be rendered in the license view
 	*/
 	"name": string;
-	/**
-	* Packages contains a list of ids of the product packages that contain this feature
-	*/
-	"packages"?: Array<string>;
 	/**
 	* Status shows the status of the feature (see type FeatureStatus)
 	*/
@@ -10434,6 +10459,10 @@ declare class LicenseApiBlockRequest {
 	constructor();
 }
 declare class LicenseApiLicenseAPIRoute {
+	/**
+	* Tells the frontend whether to make a direct request or to make it via the backend (via generic license api request)
+	*/
+	"direct"?: boolean;
 	"method"?: string;
 	"url"?: string;
 	static readonly discriminator: string | undefined;
@@ -10453,6 +10482,10 @@ declare class LicenseApiLicenseAPIRoute {
 }
 declare class LicenseApiLicenseAPIRoutes {
 	"chatAuth"?: LicenseApiLicenseAPIRoute;
+	"checkout"?: LicenseApiLicenseAPIRoute;
+	"featureDetails"?: LicenseApiLicenseAPIRoute;
+	"featureSetup"?: LicenseApiLicenseAPIRoute;
+	"portal"?: LicenseApiLicenseAPIRoute;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -10480,13 +10513,9 @@ declare class LicenseApiFeature {
 	*/
 	"labels"?: Array<string>;
 	/**
-	* Name is the name of the feature This cannot be FeatureName because it needs to be downward compatible e.g. older Loft version doesn't know a newer feature but it will still be received and still needs to be rendered in the license view
+	* Name is the name of the feature (FeatureName) This cannot be FeatureName because it needs to be downward compatible e.g. older Loft version doesn't know a newer feature but it will still be received and still needs to be rendered in the license view
 	*/
 	"name": string;
-	/**
-	* Packages contains a list of ids of the product packages that contain this feature
-	*/
-	"packages"?: Array<string>;
 	/**
 	* Status shows the status of the feature (see type FeatureStatus)
 	*/
@@ -10507,13 +10536,12 @@ declare class LicenseApiFeature {
 	constructor();
 }
 declare class LicenseApiLimit {
-	"adjustButton"?: LicenseApiButton;
 	/**
 	* DisplayName is for display purposes.
 	*/
 	"displayName"?: string;
 	/**
-	* Name is the name of the resource.
+	* Name is the name of the resource (ResourceName)
 	*/
 	"name"?: string;
 	"quantity"?: LicenseApiResourceCount;
@@ -10536,7 +10564,193 @@ declare class LicenseApiModule {
 	"displayName"?: string;
 	"features"?: Array<LicenseApiFeature>;
 	"limits"?: Array<LicenseApiLimit>;
+	/**
+	* Name of the module (ModuleName)
+	*/
 	"name": string;
+	"status"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class LicenseApiInvoice {
+	/**
+	* Currency specifies the currency of Total in 3-character ISO 4217 code Default is: \"\" (representing USD)
+	*/
+	"currency"?: string;
+	/**
+	* Date contains the unix timestamp marking the date this invoices was or will be created
+	*/
+	"date"?: number;
+	/**
+	* Total is the total of the invoice
+	*/
+	"total"?: number;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class LicenseApiPlanPeriod {
+	/**
+	* CurrentPeriodEnd contains the unix timestamp marking the end of the current period
+	*/
+	"end"?: number;
+	/**
+	* CurrentPeriodStart contains the unix timestamp marking the start of the current period
+	*/
+	"start"?: number;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class LicenseApiPlanExpiration {
+	/**
+	* ExpiresAt is the unix timestamp of when the plan expires
+	*/
+	"expiresAt"?: number;
+	/**
+	* UpgradesTo states the name of the plan that is replacing the current one upon its expiration If this is nil, then this plan just expires (i.e. the subscription may be canceled, paused, etc.)
+	*/
+	"upgradesTo"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class LicenseApiPriceTier {
+	/**
+	* Currency specifies the currency of UnitPrice and FlatFee in 3-character ISO 4217 code Default is: \"\" (representing USD)
+	*/
+	"currency"?: string;
+	/**
+	* FlatFee is the flat fee for this tier
+	*/
+	"flatFee"?: number;
+	/**
+	* MaxQuantity is the max quantity that can be purchased
+	*/
+	"max"?: number;
+	/**
+	* MinQuantity is the quantity included in this plan
+	*/
+	"min"?: number;
+	/**
+	* UnitPrice is the price per unit in this tier
+	*/
+	"unitPrice"?: number;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class LicenseApiTierResource {
+	/**
+	* Name of the resource (ResourceName)
+	*/
+	"name"?: string;
+	/**
+	* Status defines which resources will be counted towards the limit (e.g. active, total, total created etc.)
+	*/
+	"status"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class LicenseApiPlanPrice {
+	"exp"?: LicenseApiPlanExpiration;
+	/**
+	* ID of the price
+	*/
+	"id"?: string;
+	/**
+	* Interval contains the time span of each period (e.g. month, year)
+	*/
+	"interval"?: string;
+	/**
+	* IntervalCount specifies if the number of intervals (e.g. 3 [months])
+	*/
+	"intervalCount"?: number;
+	/**
+	* Quantity sets the quantity the TierResource is supposed to be at If this is the active price, then this is the subscription quantity (currently purchased quantity)
+	*/
+	"quantity"?: number;
+	"resource"?: LicenseApiTierResource;
+	/**
+	* Status is the status of the price (PlanStatus) If the plan is active, one of its prices must be active as well
+	*/
+	"status"?: string;
+	/**
+	* TierMode defines how tiers should be used
+	*/
+	"tierMode"?: string;
+	/**
+	* Tiers is a list of tiers in this plan
+	*/
+	"tiers"?: Array<LicenseApiPriceTier>;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -10558,21 +10772,68 @@ declare class LicenseApiTrial {
 	*/
 	"displayName"?: string;
 	/**
+	* DowngradesTo states the name of the plan that is replacing the current one once the trial expires If this is nil, then this plan just expires (i.e. the subscription may be canceled, paused, etc.)
+	*/
+	"downgradesTo"?: string;
+	/**
 	* End is the unix timestamp stating when the trial will end or ended
 	*/
 	"end"?: number;
 	/**
-	* Name is the unique id of this trial
+	* ID is the unique id of this trial
 	*/
-	"name"?: string;
+	"id"?: string;
 	/**
 	* Start is the unix timestamp stating when the trial was started
 	*/
 	"start"?: number;
 	/**
-	* Status is the status of this trial
+	* Status is the status of this trial (TrialStatus)
 	*/
 	"status"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class LicenseApiPlan {
+	/**
+	* AddOns are plans that can be added to this plan
+	*/
+	"addons"?: Array<LicenseApiPlan>;
+	/**
+	* DisplayName is the display name of the plan
+	*/
+	"displayName"?: string;
+	/**
+	* Features is a list of features included in the plan
+	*/
+	"features"?: Array<string>;
+	"invoice"?: LicenseApiInvoice;
+	/**
+	* Limits is a list of resources included in the plan and their limits
+	*/
+	"limits"?: Array<LicenseApiLimit>;
+	"period"?: LicenseApiPlanPeriod;
+	/**
+	* Prices provides details about the available prices (depending on the interval, for example)
+	*/
+	"prices"?: Array<LicenseApiPlanPrice>;
+	/**
+	* Status is the status of the plan There should only be 1 active plan at the top-level (not including AddOns) The respective price in Prices will have the active status as well
+	*/
+	"status"?: string;
+	"trial"?: LicenseApiTrial;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -10618,11 +10879,11 @@ declare class LicenseApiLicense {
 	* Modules is a list of modules.
 	*/
 	"modules"?: Array<LicenseApiModule>;
-	"routes"?: LicenseApiLicenseAPIRoutes;
 	/**
-	* Trials is a list of trials.
+	* Plans contains a list of plans
 	*/
-	"trials"?: Array<LicenseApiTrial>;
+	"plans"?: Array<LicenseApiPlan>;
+	"routes"?: LicenseApiLicenseAPIRoutes;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -12772,6 +13033,99 @@ declare class StorageV1Quotas {
 	}[];
 	constructor();
 }
+declare class StorageV1ImportVirtualClustersSpec {
+	/**
+	* Enabled indicates if virtual clusters created within this project should get synced to Rancher. If projectRef is defined, will also automatically add the created namespace to the Rancher project.
+	*/
+	"enabled"?: boolean;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1RancherProjectRef {
+	/**
+	* Cluster defines the Rancher cluster ID Needs to be the same id within Loft
+	*/
+	"cluster"?: string;
+	/**
+	* Project defines the Rancher project ID
+	*/
+	"project"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1SyncMembersSpec {
+	/**
+	* Enabled indicates whether to sync rancher project members to the loft project.
+	*/
+	"enabled"?: boolean;
+	/**
+	* RoleMapping indicates an optional role mapping from a rancher role to a loft role.
+	*/
+	"roleMapping"?: {
+		[key: string]: string;
+	};
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1RancherIntegrationSpec {
+	/**
+	* Enabled indicates if the Rancher Project Integration is enabled for this project.
+	*/
+	"enabled"?: boolean;
+	"importVirtualClusters"?: StorageV1ImportVirtualClustersSpec;
+	"projectRef"?: StorageV1RancherProjectRef;
+	"syncMembers"?: StorageV1SyncMembersSpec;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
 declare class StorageV1RequireTemplate {
 	/**
 	* If true, all users within the project will be allowed to create a new instance without a template. By default, only admins are allowed to create a new instance without a template.
@@ -12825,6 +13179,7 @@ declare class ManagementV1ProjectSpec {
 	"namespacePattern"?: StorageV1NamespacePattern;
 	"owner"?: StorageV1UserOrTeam;
 	"quotas"?: StorageV1Quotas;
+	"rancher"?: StorageV1RancherIntegrationSpec;
 	"requireTemplate"?: StorageV1RequireTemplate;
 	"vault"?: StorageV1VaultIntegrationSpec;
 	static readonly discriminator: string | undefined;

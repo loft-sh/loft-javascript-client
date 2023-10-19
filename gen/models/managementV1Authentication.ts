@@ -16,6 +16,7 @@ import { ManagementV1AuthenticationGoogle } from './managementV1AuthenticationGo
 import { ManagementV1AuthenticationMicrosoft } from './managementV1AuthenticationMicrosoft';
 import { ManagementV1AuthenticationOIDC } from './managementV1AuthenticationOIDC';
 import { ManagementV1AuthenticationPassword } from './managementV1AuthenticationPassword';
+import { ManagementV1AuthenticationRancher } from './managementV1AuthenticationRancher';
 import { ManagementV1AuthenticationSAML } from './managementV1AuthenticationSAML';
 import { ManagementV1ConnectorWithName } from './managementV1ConnectorWithName';
 
@@ -50,6 +51,7 @@ export class ManagementV1Authentication {
     'microsoft'?: ManagementV1AuthenticationMicrosoft;
     'oidc'?: ManagementV1AuthenticationOIDC;
     'password'?: ManagementV1AuthenticationPassword;
+    'rancher'?: ManagementV1AuthenticationRancher;
     'saml'?: ManagementV1AuthenticationSAML;
 
     static readonly discriminator: string | undefined = undefined;
@@ -119,6 +121,12 @@ export class ManagementV1Authentication {
             "name": "password",
             "baseName": "password",
             "type": "ManagementV1AuthenticationPassword",
+            "format": ""
+        },
+        {
+            "name": "rancher",
+            "baseName": "rancher",
+            "type": "ManagementV1AuthenticationRancher",
             "format": ""
         },
         {

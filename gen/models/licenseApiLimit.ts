@@ -10,7 +10,6 @@
  * Do not edit the class manually.
  */
 
-import { LicenseApiButton } from './licenseApiButton';
 import { LicenseApiResourceCount } from './licenseApiResourceCount';
 
 
@@ -18,13 +17,12 @@ import { LicenseApiResourceCount } from './licenseApiResourceCount';
 * Limit defines a limit set in the license
 */
 export class LicenseApiLimit {
-    'adjustButton'?: LicenseApiButton;
     /**
     * DisplayName is for display purposes.
     */
     'displayName'?: string;
     /**
-    * Name is the name of the resource.
+    * Name is the name of the resource (ResourceName)
     */
     'name'?: string;
     'quantity'?: LicenseApiResourceCount;
@@ -32,12 +30,6 @@ export class LicenseApiLimit {
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
-        {
-            "name": "adjustButton",
-            "baseName": "adjustButton",
-            "type": "LicenseApiButton",
-            "format": ""
-        },
         {
             "name": "displayName",
             "baseName": "displayName",
