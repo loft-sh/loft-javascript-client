@@ -27,13 +27,9 @@ export class LicenseApiFeature {
     */
     'labels'?: Array<string>;
     /**
-    * Name is the name of the feature This cannot be FeatureName because it needs to be downward compatible e.g. older Loft version doesn't know a newer feature but it will still be received and still needs to be rendered in the license view
+    * Name is the name of the feature (FeatureName) This cannot be FeatureName because it needs to be downward compatible e.g. older Loft version doesn't know a newer feature but it will still be received and still needs to be rendered in the license view
     */
     'name': string;
-    /**
-    * Packages contains a list of ids of the product packages that contain this feature
-    */
-    'packages'?: Array<string>;
     /**
     * Status shows the status of the feature (see type FeatureStatus)
     */
@@ -70,12 +66,6 @@ export class LicenseApiFeature {
             "name": "name",
             "baseName": "name",
             "type": "string",
-            "format": ""
-        },
-        {
-            "name": "packages",
-            "baseName": "packages",
-            "type": "Array<string>",
             "format": ""
         },
         {

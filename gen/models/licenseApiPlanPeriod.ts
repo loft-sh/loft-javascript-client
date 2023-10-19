@@ -12,34 +12,37 @@
 
 
 
-export class StorageV1SyncMembersSpec {
+/**
+* PlanPeriod provides details about the period of the plan
+*/
+export class LicenseApiPlanPeriod {
     /**
-    * Enabled indicates whether to sync rancher project members to the loft project.
+    * CurrentPeriodEnd contains the unix timestamp marking the end of the current period
     */
-    'enabled'?: boolean;
+    'end'?: number;
     /**
-    * RoleMapping indicates an optional role mapping from a rancher role to a loft role.
+    * CurrentPeriodStart contains the unix timestamp marking the start of the current period
     */
-    'roleMapping'?: { [key: string]: string; };
+    'start'?: number;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "enabled",
-            "baseName": "enabled",
-            "type": "boolean",
-            "format": ""
+            "name": "end",
+            "baseName": "end",
+            "type": "number",
+            "format": "int64"
         },
         {
-            "name": "roleMapping",
-            "baseName": "roleMapping",
-            "type": "{ [key: string]: string; }",
-            "format": ""
+            "name": "start",
+            "baseName": "start",
+            "type": "number",
+            "format": "int64"
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1SyncMembersSpec.attributeTypeMap;
+        return LicenseApiPlanPeriod.attributeTypeMap;
     }
 
     public constructor() {

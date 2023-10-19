@@ -22,15 +22,7 @@ export class StorageV1RancherIntegrationSpec {
     'enabled'?: boolean;
     'importVirtualClusters'?: StorageV1ImportVirtualClustersSpec;
     'projectRef'?: StorageV1RancherProjectRef;
-    /**
-    * SkipTLSVerify defines if TLS verification should be skipped when connecting to Rancher.
-    */
-    'skipTLSVerify'?: boolean;
     'syncMembers'?: StorageV1SyncMembersSpec;
-    /**
-    * URL defines the address of the Rancher instance to use for this project.
-    */
-    'url'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -54,21 +46,9 @@ export class StorageV1RancherIntegrationSpec {
             "format": ""
         },
         {
-            "name": "skipTLSVerify",
-            "baseName": "skipTLSVerify",
-            "type": "boolean",
-            "format": ""
-        },
-        {
             "name": "syncMembers",
             "baseName": "syncMembers",
             "type": "StorageV1SyncMembersSpec",
-            "format": ""
-        },
-        {
-            "name": "url",
-            "baseName": "url",
-            "type": "string",
             "format": ""
         }    ];
 
