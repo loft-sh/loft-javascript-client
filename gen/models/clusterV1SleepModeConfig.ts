@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { ClusterV1SleepModeConfigSpec } from './clusterV1SleepModeConfigSpec';
-import { ClusterV1SleepModeConfigStatus } from './clusterV1SleepModeConfigStatus';
-import { V1ObjectMeta } from './V1ObjectMeta';
+import { ClusterV1SleepModeConfigSpec } from '../models/clusterV1SleepModeConfigSpec';
+import { ClusterV1SleepModeConfigStatus } from '../models/clusterV1SleepModeConfigStatus';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
 /**

@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { LicenseApiGenericRequestOutput } from './licenseApiGenericRequestOutput';
+import { LicenseApiGenericRequestOutput } from '../models/licenseApiGenericRequestOutput';
 
 
 export class ManagementV1LicenseRequestStatus {

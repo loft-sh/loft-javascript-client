@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { ClusterV1LocalClusterAccessSpec } from './clusterV1LocalClusterAccessSpec';
-import { ClusterV1LocalClusterAccessStatus } from './clusterV1LocalClusterAccessStatus';
-import { V1ObjectMeta } from './V1ObjectMeta';
+import { ClusterV1LocalClusterAccessSpec } from '../models/clusterV1LocalClusterAccessSpec';
+import { ClusterV1LocalClusterAccessStatus } from '../models/clusterV1LocalClusterAccessStatus';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
 /**

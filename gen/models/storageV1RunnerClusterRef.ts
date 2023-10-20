@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1RunnerPersistentVolumeClaimTemplate } from './storageV1RunnerPersistentVolumeClaimTemplate';
-import { StorageV1RunnerPodTemplate } from './storageV1RunnerPodTemplate';
+import { StorageV1RunnerPersistentVolumeClaimTemplate } from '../models/storageV1RunnerPersistentVolumeClaimTemplate';
+import { StorageV1RunnerPodTemplate } from '../models/storageV1RunnerPodTemplate';
 
 
 export class StorageV1RunnerClusterRef {

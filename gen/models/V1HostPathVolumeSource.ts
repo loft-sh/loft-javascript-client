@@ -50,5 +50,14 @@ export class V1HostPathVolumeSource {
 }
 
 
-export type V1HostPathVolumeSourceTypeEnum = "" | "BlockDevice" | "CharDevice" | "Directory" | "DirectoryOrCreate" | "File" | "FileOrCreate" | "Socket" ;
+export enum V1HostPathVolumeSourceTypeEnum {
+    Empty = '',
+    BlockDevice = 'BlockDevice',
+    CharDevice = 'CharDevice',
+    Directory = 'Directory',
+    DirectoryOrCreate = 'DirectoryOrCreate',
+    File = 'File',
+    FileOrCreate = 'FileOrCreate',
+    Socket = 'Socket'
+}
 

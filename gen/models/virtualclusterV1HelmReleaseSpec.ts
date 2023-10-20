@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { ClusterV1Bash } from './clusterV1Bash';
-import { StorageV1Chart } from './agentstorageV1Chart';
+import { ClusterV1Bash } from '../models/clusterV1Bash';
+import { StorageV1Chart } from '../models/agentstorageV1Chart';
 
 
 export class VirtualclusterV1HelmReleaseSpec {

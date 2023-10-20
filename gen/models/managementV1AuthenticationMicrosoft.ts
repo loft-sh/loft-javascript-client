@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1AuthenticationGroupClusterAccountTemplate } from './managementV1AuthenticationGroupClusterAccountTemplate';
-import { StorageV1UserClusterAccountTemplate } from './storageV1UserClusterAccountTemplate';
+import { ManagementV1AuthenticationGroupClusterAccountTemplate } from '../models/managementV1AuthenticationGroupClusterAccountTemplate';
+import { StorageV1UserClusterAccountTemplate } from '../models/storageV1UserClusterAccountTemplate';
 
 
 export class ManagementV1AuthenticationMicrosoft {

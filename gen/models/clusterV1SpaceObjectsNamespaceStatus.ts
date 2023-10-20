@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { ClusterV1AppliedObject } from './clusterV1AppliedObject';
+import { ClusterV1AppliedObject } from '../models/clusterV1AppliedObject';
 
 
 export class ClusterV1SpaceObjectsNamespaceStatus {

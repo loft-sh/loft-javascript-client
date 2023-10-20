@@ -13,7 +13,7 @@
 
 
 /**
-* GenericRequestInput defines the payload that needs to be sent to a button's action URL
+* GenericRequestInput defines the payload that needs to be sent to a button\'s action URL
 */
 export class LicenseApiGenericRequestInput {
     /**

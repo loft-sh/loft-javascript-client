@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { ClusterV1EntityInfo } from './clusterV1EntityInfo';
-import { ManagementV1UserInfo } from './managementV1UserInfo';
-import { StorageV1AccessKeyScope } from './storageV1AccessKeyScope';
+import { ClusterV1EntityInfo } from '../models/clusterV1EntityInfo';
+import { ManagementV1UserInfo } from '../models/managementV1UserInfo';
+import { StorageV1AccessKeyScope } from '../models/storageV1AccessKeyScope';
 
 
 export class ManagementV1SelfStatus {

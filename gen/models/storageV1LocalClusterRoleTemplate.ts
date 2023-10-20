@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1LocalClusterRoleTemplateSpec } from './storageV1LocalClusterRoleTemplateSpec';
-import { V1ObjectMeta } from './V1ObjectMeta';
+import { StorageV1LocalClusterRoleTemplateSpec } from '../models/storageV1LocalClusterRoleTemplateSpec';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
 export class StorageV1LocalClusterRoleTemplate {

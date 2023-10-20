@@ -50,7 +50,7 @@ export class ManagementV1AuthenticationSAML {
     */
     'insecureSkipSignatureValidation'?: boolean;
     /**
-    * Requested format of the NameID. The NameID value is is mapped to the ID Token 'sub' claim.  This can be an abbreviated form of the full URI with just the last component. For example, if this value is set to \"emailAddress\" the format will resolve to:    urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress  If no value is specified, this value defaults to:    urn:oasis:names:tc:SAML:2.0:nameid-format:persistent
+    * Requested format of the NameID. The NameID value is is mapped to the ID Token \'sub\' claim.  This can be an abbreviated form of the full URI with just the last component. For example, if this value is set to \"emailAddress\" the format will resolve to:    urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress  If no value is specified, this value defaults to:    urn:oasis:names:tc:SAML:2.0:nameid-format:persistent
     */
     'nameIDPolicyFormat'?: string;
     /**

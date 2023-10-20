@@ -10,15 +10,15 @@
  * Do not edit the class manually.
  */
 
-import { V1Affinity } from './V1Affinity';
-import { V1Container } from './V1Container';
-import { V1EnvFromSource } from './V1EnvFromSource';
-import { V1EnvVar } from './V1EnvVar';
-import { V1HostAlias } from './V1HostAlias';
-import { V1ResourceRequirements } from './V1ResourceRequirements';
-import { V1Toleration } from './V1Toleration';
-import { V1Volume } from './V1Volume';
-import { V1VolumeMount } from './V1VolumeMount';
+import { V1Affinity } from '../models/V1Affinity';
+import { V1Container } from '../models/V1Container';
+import { V1EnvFromSource } from '../models/V1EnvFromSource';
+import { V1EnvVar } from '../models/V1EnvVar';
+import { V1HostAlias } from '../models/V1HostAlias';
+import { V1ResourceRequirements } from '../models/V1ResourceRequirements';
+import { V1Toleration } from '../models/V1Toleration';
+import { V1Volume } from '../models/V1Volume';
+import { V1VolumeMount } from '../models/V1VolumeMount';
 
 
 export class StorageV1RunnerPodTemplateSpec {

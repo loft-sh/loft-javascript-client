@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1LocalObjectReference } from './V1LocalObjectReference';
+import { V1LocalObjectReference } from '../models/V1LocalObjectReference';
 
 
 /**
@@ -38,7 +38,7 @@ export class V1ISCSIVolumeSource {
     */
     'iqn': string;
     /**
-    * iscsiInterface is the interface Name that uses an iSCSI transport. Defaults to 'default' (tcp).
+    * iscsiInterface is the interface Name that uses an iSCSI transport. Defaults to \'default\' (tcp).
     */
     'iscsiInterface'?: string;
     /**

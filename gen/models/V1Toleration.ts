@@ -25,7 +25,7 @@ export class V1Toleration {
     */
     'key'?: string;
     /**
-    * Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.  Possible enum values:  - `\"Equal\"`  - `\"Exists\"`
+    * Operator represents a key\'s relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.  Possible enum values:  - `\"Equal\"`  - `\"Exists\"`
     */
     'operator'?: V1TolerationOperatorEnum;
     /**
@@ -80,6 +80,13 @@ export class V1Toleration {
 }
 
 
-export type V1TolerationEffectEnum = "NoExecute" | "NoSchedule" | "PreferNoSchedule" ;
-export type V1TolerationOperatorEnum = "Equal" | "Exists" ;
+export enum V1TolerationEffectEnum {
+    NoExecute = 'NoExecute',
+    NoSchedule = 'NoSchedule',
+    PreferNoSchedule = 'PreferNoSchedule'
+}
+export enum V1TolerationOperatorEnum {
+    Equal = 'Equal',
+    Exists = 'Exists'
+}
 

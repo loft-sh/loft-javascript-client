@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1VirtualClusterInstanceKubeConfigSpec } from './managementV1VirtualClusterInstanceKubeConfigSpec';
-import { ManagementV1VirtualClusterInstanceKubeConfigStatus } from './managementV1VirtualClusterInstanceKubeConfigStatus';
-import { V1ObjectMeta } from './V1ObjectMeta';
+import { ManagementV1VirtualClusterInstanceKubeConfigSpec } from '../models/managementV1VirtualClusterInstanceKubeConfigSpec';
+import { ManagementV1VirtualClusterInstanceKubeConfigStatus } from '../models/managementV1VirtualClusterInstanceKubeConfigStatus';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
 /**

@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { UiV1UISettingsSpec } from './uiV1UISettingsSpec';
-import { V1ObjectMeta } from './V1ObjectMeta';
+import { UiV1UISettingsSpec } from '../models/uiV1UISettingsSpec';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
 /**

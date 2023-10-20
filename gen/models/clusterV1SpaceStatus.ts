@@ -10,10 +10,10 @@
  * Do not edit the class manually.
  */
 
-import { ClusterV1SleepModeConfig } from './clusterV1SleepModeConfig';
-import { ClusterV1SpaceObjectsNamespaceStatus } from './clusterV1SpaceObjectsNamespaceStatus';
-import { ClusterV1TemplateSyncStatus } from './clusterV1TemplateSyncStatus';
-import { ClusterV1UserOrTeam } from './clusterV1UserOrTeam';
+import { ClusterV1SleepModeConfig } from '../models/clusterV1SleepModeConfig';
+import { ClusterV1SpaceObjectsNamespaceStatus } from '../models/clusterV1SpaceObjectsNamespaceStatus';
+import { ClusterV1TemplateSyncStatus } from '../models/clusterV1TemplateSyncStatus';
+import { ClusterV1UserOrTeam } from '../models/clusterV1UserOrTeam';
 
 
 /**
@@ -72,5 +72,8 @@ export class ClusterV1SpaceStatus {
 }
 
 
-export type ClusterV1SpaceStatusPhaseEnum = "Active" | "Terminating" ;
+export enum ClusterV1SpaceStatusPhaseEnum {
+    Active = 'Active',
+    Terminating = 'Terminating'
+}
 

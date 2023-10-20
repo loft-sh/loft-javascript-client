@@ -10,10 +10,10 @@
  * Do not edit the class manually.
  */
 
-import { V1LabelSelector } from './V1LabelSelector';
-import { V1ResourceRequirements } from './V1ResourceRequirements';
-import { V1TypedLocalObjectReference } from './V1TypedLocalObjectReference';
-import { V1TypedObjectReference } from './V1TypedObjectReference';
+import { V1LabelSelector } from '../models/V1LabelSelector';
+import { V1ResourceRequirements } from '../models/V1ResourceRequirements';
+import { V1TypedLocalObjectReference } from '../models/V1TypedLocalObjectReference';
+import { V1TypedObjectReference } from '../models/V1TypedObjectReference';
 
 
 /**
@@ -102,5 +102,8 @@ export class V1PersistentVolumeClaimSpec {
 }
 
 
-export type V1PersistentVolumeClaimSpecVolumeModeEnum = "Block" | "Filesystem" ;
+export enum V1PersistentVolumeClaimSpecVolumeModeEnum {
+    Block = 'Block',
+    Filesystem = 'Filesystem'
+}
 

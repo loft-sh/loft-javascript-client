@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1VirtualClusterHelmRelease } from './agentstorageV1VirtualClusterHelmRelease';
-import { StorageV1TemplateMetadata } from './storageV1TemplateMetadata';
-import { StorageV1VirtualClusterSpaceTemplateDefinition } from './storageV1VirtualClusterSpaceTemplateDefinition';
+import { StorageV1VirtualClusterHelmRelease } from '../models/agentstorageV1VirtualClusterHelmRelease';
+import { StorageV1TemplateMetadata } from '../models/storageV1TemplateMetadata';
+import { StorageV1VirtualClusterSpaceTemplateDefinition } from '../models/storageV1VirtualClusterSpaceTemplateDefinition';
 
 
 export class StorageV1WorkloadVirtualClusterTemplateDefinition {

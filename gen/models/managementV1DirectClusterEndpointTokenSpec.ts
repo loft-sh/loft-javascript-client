@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1AccessKeyScope } from './storageV1AccessKeyScope';
+import { StorageV1AccessKeyScope } from '../models/storageV1AccessKeyScope';
 
 
 /**

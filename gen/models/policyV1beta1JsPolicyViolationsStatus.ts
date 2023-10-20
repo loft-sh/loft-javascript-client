@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { PolicyV1beta1PolicyViolation } from './policyV1beta1PolicyViolation';
+import { PolicyV1beta1PolicyViolation } from '../models/policyV1beta1PolicyViolation';
 
 
 export class PolicyV1beta1JsPolicyViolationsStatus {

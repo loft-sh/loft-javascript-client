@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1ObjectMeta } from './V1ObjectMeta';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
 /**
@@ -26,7 +26,7 @@ export class ManagementV1VirtualClusterInstanceWorkloadKubeConfig {
     */
     'kind'?: string;
     /**
-    * KubeConfig holds the workload cluster's kubeconfig to access the virtual cluster
+    * KubeConfig holds the workload cluster\'s kubeconfig to access the virtual cluster
     */
     'kubeConfig'?: string;
     'metadata'?: V1ObjectMeta;

@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1AccessQuota } from './agentstorageV1AccessQuota';
-import { StorageV1ClusterRoleRef } from './agentstorageV1ClusterRoleRef';
-import { StorageV1UserOrTeam } from './agentstorageV1UserOrTeam';
+import { StorageV1AccessQuota } from '../models/agentstorageV1AccessQuota';
+import { StorageV1ClusterRoleRef } from '../models/agentstorageV1ClusterRoleRef';
+import { StorageV1UserOrTeam } from '../models/agentstorageV1UserOrTeam';
 
 
 export class ClusterV1LocalClusterAccessSpec {

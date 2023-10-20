@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1SpaceTemplateSpec } from './managementV1SpaceTemplateSpec';
-import { ManagementV1SpaceTemplateStatus } from './managementV1SpaceTemplateStatus';
-import { V1ObjectMeta } from './V1ObjectMeta';
+import { ManagementV1SpaceTemplateSpec } from '../models/managementV1SpaceTemplateSpec';
+import { ManagementV1SpaceTemplateStatus } from '../models/managementV1SpaceTemplateStatus';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
 /**

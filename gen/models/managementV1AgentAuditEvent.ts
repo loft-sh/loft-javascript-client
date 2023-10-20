@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1AgentAuditEventSpec } from './managementV1AgentAuditEventSpec';
-import { V1ObjectMeta } from './V1ObjectMeta';
+import { ManagementV1AgentAuditEventSpec } from '../models/managementV1AgentAuditEventSpec';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
 /**

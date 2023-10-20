@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1UserPermissionsRole } from './managementV1UserPermissionsRole';
-import { V1ObjectMeta } from './V1ObjectMeta';
+import { ManagementV1UserPermissionsRole } from '../models/managementV1UserPermissionsRole';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
 export class ManagementV1UserPermissions {

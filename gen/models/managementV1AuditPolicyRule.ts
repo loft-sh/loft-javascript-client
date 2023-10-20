@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1GroupResources } from './managementV1GroupResources';
+import { ManagementV1GroupResources } from '../models/managementV1GroupResources';
 
 
 /**

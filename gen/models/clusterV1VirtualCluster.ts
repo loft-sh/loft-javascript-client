@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { ClusterV1VirtualClusterSpec } from './clusterV1VirtualClusterSpec';
-import { ClusterV1VirtualClusterStatus } from './clusterV1VirtualClusterStatus';
-import { V1ObjectMeta } from './V1ObjectMeta';
+import { ClusterV1VirtualClusterSpec } from '../models/clusterV1VirtualClusterSpec';
+import { ClusterV1VirtualClusterStatus } from '../models/clusterV1VirtualClusterStatus';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
 /**

@@ -18,11 +18,11 @@ export class StorageV1TemplateRef {
     */
     'name'?: string;
     /**
-    * SyncOnce tells the controller to sync the instance once with the template. This is useful if you want to sync an instance after a template was changed. To automatically sync an instance with a template, use 'x.x.x' as version instead.
+    * SyncOnce tells the controller to sync the instance once with the template. This is useful if you want to sync an instance after a template was changed. To automatically sync an instance with a template, use \'x.x.x\' as version instead.
     */
     'syncOnce'?: boolean;
     /**
-    * Version holds the template version to use. Version is expected to be in semantic versioning format. Alternatively, you can also exchange major, minor or patch with an 'x' to tell Loft to automatically select the latest major, minor or patch version.
+    * Version holds the template version to use. Version is expected to be in semantic versioning format. Alternatively, you can also exchange major, minor or patch with an \'x\' to tell Loft to automatically select the latest major, minor or patch version.
     */
     'version'?: string;
 

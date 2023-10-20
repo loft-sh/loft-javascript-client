@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1OIDCClient } from './managementV1OIDCClient';
+import { ManagementV1OIDCClient } from '../models/managementV1OIDCClient';
 
 
 /**
@@ -26,7 +26,7 @@ export class ManagementV1OIDC {
     */
     'enabled'?: boolean;
     /**
-    * If true indicates that loft will allow wildcard '*' in client redirectURIs
+    * If true indicates that loft will allow wildcard \'*\' in client redirectURIs
     */
     'wildcardRedirect'?: boolean;
 

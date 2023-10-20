@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1TaskSpec } from './managementV1TaskSpec';
-import { ManagementV1TaskStatus } from './managementV1TaskStatus';
-import { V1ObjectMeta } from './V1ObjectMeta';
+import { ManagementV1TaskSpec } from '../models/managementV1TaskSpec';
+import { ManagementV1TaskStatus } from '../models/managementV1TaskStatus';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
 /**

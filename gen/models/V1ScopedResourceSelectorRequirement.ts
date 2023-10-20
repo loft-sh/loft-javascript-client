@@ -17,7 +17,7 @@
 */
 export class V1ScopedResourceSelectorRequirement {
     /**
-    * Represents a scope's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist.  Possible enum values:  - `\"DoesNotExist\"`  - `\"Exists\"`  - `\"In\"`  - `\"NotIn\"`
+    * Represents a scope\'s relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist.  Possible enum values:  - `\"DoesNotExist\"`  - `\"Exists\"`  - `\"In\"`  - `\"NotIn\"`
     */
     'operator': V1ScopedResourceSelectorRequirementOperatorEnum;
     /**
@@ -60,6 +60,18 @@ export class V1ScopedResourceSelectorRequirement {
 }
 
 
-export type V1ScopedResourceSelectorRequirementOperatorEnum = "DoesNotExist" | "Exists" | "In" | "NotIn" ;
-export type V1ScopedResourceSelectorRequirementScopeNameEnum = "BestEffort" | "CrossNamespacePodAffinity" | "NotBestEffort" | "NotTerminating" | "PriorityClass" | "Terminating" ;
+export enum V1ScopedResourceSelectorRequirementOperatorEnum {
+    DoesNotExist = 'DoesNotExist',
+    Exists = 'Exists',
+    In = 'In',
+    NotIn = 'NotIn'
+}
+export enum V1ScopedResourceSelectorRequirementScopeNameEnum {
+    BestEffort = 'BestEffort',
+    CrossNamespacePodAffinity = 'CrossNamespacePodAffinity',
+    NotBestEffort = 'NotBestEffort',
+    NotTerminating = 'NotTerminating',
+    PriorityClass = 'PriorityClass',
+    Terminating = 'Terminating'
+}
 

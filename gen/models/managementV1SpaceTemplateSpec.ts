@@ -10,11 +10,11 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1Access } from './storageV1Access';
-import { StorageV1AppParameter } from './storageV1AppParameter';
-import { StorageV1SpaceTemplateDefinition } from './storageV1SpaceTemplateDefinition';
-import { StorageV1SpaceTemplateVersion } from './storageV1SpaceTemplateVersion';
-import { StorageV1UserOrTeam } from './storageV1UserOrTeam';
+import { StorageV1Access } from '../models/storageV1Access';
+import { StorageV1AppParameter } from '../models/storageV1AppParameter';
+import { StorageV1SpaceTemplateDefinition } from '../models/storageV1SpaceTemplateDefinition';
+import { StorageV1SpaceTemplateVersion } from '../models/storageV1SpaceTemplateVersion';
+import { StorageV1UserOrTeam } from '../models/storageV1UserOrTeam';
 
 
 /**

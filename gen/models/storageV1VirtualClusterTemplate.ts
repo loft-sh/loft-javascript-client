@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1VirtualClusterTemplateSpec } from './storageV1VirtualClusterTemplateSpec';
-import { V1ObjectMeta } from './V1ObjectMeta';
+import { StorageV1VirtualClusterTemplateSpec } from '../models/storageV1VirtualClusterTemplateSpec';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
 /**

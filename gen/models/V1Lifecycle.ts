@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1LifecycleHandler } from './V1LifecycleHandler';
+import { V1LifecycleHandler } from '../models/V1LifecycleHandler';
 
 
 /**

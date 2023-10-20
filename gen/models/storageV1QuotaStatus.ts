@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1QuotaStatusProject } from './storageV1QuotaStatusProject';
-import { StorageV1QuotaStatusUser } from './storageV1QuotaStatusUser';
+import { StorageV1QuotaStatusProject } from '../models/storageV1QuotaStatusProject';
+import { StorageV1QuotaStatusUser } from '../models/storageV1QuotaStatusUser';
 
 
 export class StorageV1QuotaStatus {

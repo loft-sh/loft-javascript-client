@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1DevPodProviderOption } from './storageV1DevPodProviderOption';
-import { StorageV1DevPodWorkspaceProvider } from './storageV1DevPodWorkspaceProvider';
-import { StorageV1TemplateRef } from './storageV1TemplateRef';
+import { StorageV1DevPodProviderOption } from '../models/storageV1DevPodProviderOption';
+import { StorageV1DevPodWorkspaceProvider } from '../models/storageV1DevPodWorkspaceProvider';
+import { StorageV1TemplateRef } from '../models/storageV1TemplateRef';
 
 
 export class StorageV1DevPodWorkspaceTemplateDefinition {

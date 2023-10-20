@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { ClusterV1SpaceSpec } from './clusterV1SpaceSpec';
-import { ClusterV1SpaceStatus } from './clusterV1SpaceStatus';
-import { V1ObjectMeta } from './V1ObjectMeta';
+import { ClusterV1SpaceSpec } from '../models/clusterV1SpaceSpec';
+import { ClusterV1SpaceStatus } from '../models/clusterV1SpaceStatus';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
 /**

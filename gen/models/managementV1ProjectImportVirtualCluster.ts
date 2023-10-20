@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1ProjectImportVirtualClusterSource } from './managementV1ProjectImportVirtualClusterSource';
-import { V1ObjectMeta } from './V1ObjectMeta';
+import { ManagementV1ProjectImportVirtualClusterSource } from '../models/managementV1ProjectImportVirtualClusterSource';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
 /**

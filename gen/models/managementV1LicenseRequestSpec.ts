@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { LicenseApiGenericRequestInput } from './licenseApiGenericRequestInput';
+import { LicenseApiGenericRequestInput } from '../models/licenseApiGenericRequestInput';
 
 
 export class ManagementV1LicenseRequestSpec {

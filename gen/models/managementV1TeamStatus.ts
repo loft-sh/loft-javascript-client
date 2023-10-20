@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1AccountClusterStatus } from './storageV1AccountClusterStatus';
-import { StorageV1UserClusterAccountTemplateStatus } from './storageV1UserClusterAccountTemplateStatus';
+import { StorageV1AccountClusterStatus } from '../models/storageV1AccountClusterStatus';
+import { StorageV1UserClusterAccountTemplateStatus } from '../models/storageV1UserClusterAccountTemplateStatus';
 
 
 export class ManagementV1TeamStatus {

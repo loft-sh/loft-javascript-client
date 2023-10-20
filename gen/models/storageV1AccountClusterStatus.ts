@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1AccountClusterTemplateStatus } from './storageV1AccountClusterTemplateStatus';
+import { StorageV1AccountClusterTemplateStatus } from '../models/storageV1AccountClusterTemplateStatus';
 
 
 /**
@@ -30,7 +30,7 @@ export class StorageV1AccountClusterStatus {
     */
     'cluster'?: string;
     /**
-    * Message describes why loft couldn't sync the account in human language
+    * Message describes why loft couldn\'t sync the account in human language
     */
     'message'?: string;
     /**
@@ -38,7 +38,7 @@ export class StorageV1AccountClusterStatus {
     */
     'phase'?: string;
     /**
-    * Reason describes why loft couldn't sync the account with a machine readable identifier
+    * Reason describes why loft couldn\'t sync the account with a machine readable identifier
     */
     'reason'?: string;
 

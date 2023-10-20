@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1QuotaStatusProjectCluster } from './storageV1QuotaStatusProjectCluster';
+import { StorageV1QuotaStatusProjectCluster } from '../models/storageV1QuotaStatusProjectCluster';
 
 
 export class StorageV1QuotaStatusProject {

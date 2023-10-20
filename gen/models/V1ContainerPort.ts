@@ -17,7 +17,7 @@
 */
 export class V1ContainerPort {
     /**
-    * Number of port to expose on the pod's IP address. This must be a valid port number, 0 < x < 65536.
+    * Number of port to expose on the pod\'s IP address. This must be a valid port number, 0 < x < 65536.
     */
     'containerPort': number;
     /**
@@ -80,5 +80,9 @@ export class V1ContainerPort {
 }
 
 
-export type V1ContainerPortProtocolEnum = "SCTP" | "TCP" | "UDP" ;
+export enum V1ContainerPortProtocolEnum {
+    Sctp = 'SCTP',
+    Tcp = 'TCP',
+    Udp = 'UDP'
+}
 

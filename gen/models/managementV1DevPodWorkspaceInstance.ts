@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1DevPodWorkspaceInstanceSpec } from './managementV1DevPodWorkspaceInstanceSpec';
-import { ManagementV1DevPodWorkspaceInstanceStatus } from './managementV1DevPodWorkspaceInstanceStatus';
-import { V1ObjectMeta } from './V1ObjectMeta';
+import { ManagementV1DevPodWorkspaceInstanceSpec } from '../models/managementV1DevPodWorkspaceInstanceSpec';
+import { ManagementV1DevPodWorkspaceInstanceStatus } from '../models/managementV1DevPodWorkspaceInstanceStatus';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
 /**

@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1EventStatus } from './managementV1EventStatus';
-import { V1ObjectMeta } from './V1ObjectMeta';
+import { ManagementV1EventStatus } from '../models/managementV1EventStatus';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
 /**

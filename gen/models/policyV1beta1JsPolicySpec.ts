@@ -10,16 +10,16 @@
  * Do not edit the class manually.
  */
 
-import { V1LabelSelector } from './V1LabelSelector';
+import { V1LabelSelector } from '../models/V1LabelSelector';
 
 
 export class PolicyV1beta1JsPolicySpec {
     /**
-    * APIGroups is the API groups the resources belong to. '*' is all groups. If '*' is present, the length of the slice must be one.
+    * APIGroups is the API groups the resources belong to. \'*\' is all groups. If \'*\' is present, the length of the slice must be one.
     */
     'apiGroups'?: Array<string>;
     /**
-    * APIVersions is the API versions the resources belong to. '*' is all versions. If '*' is present, the length of the slice must be one.
+    * APIVersions is the API versions the resources belong to. \'*\' is all versions. If \'*\' is present, the length of the slice must be one.
     */
     'apiVersions'?: Array<string>;
     /**
@@ -49,11 +49,11 @@ export class PolicyV1beta1JsPolicySpec {
     'namespaceSelector'?: V1LabelSelector;
     'objectSelector'?: V1LabelSelector;
     /**
-    * Operations is the operations the admission hook cares about - CREATE, UPDATE, DELETE, CONNECT or * for all of those operations and any future admission operations that are added. If '*' is present, the length of the slice must be one. Required.
+    * Operations is the operations the admission hook cares about - CREATE, UPDATE, DELETE, CONNECT or * for all of those operations and any future admission operations that are added. If \'*\' is present, the length of the slice must be one. Required.
     */
     'operations'?: Array<string>;
     /**
-    * Resources is a list of resources this rule applies to.  For example: 'pods' means pods. 'pods/log' means the log subresource of pods. '*' means all resources, but not subresources. 'pods/_*' means all subresources of pods. '*_/scale' means all scale subresources. '*_/_*' means all resources and their subresources.  If wildcard is present, the validation rule will ensure resources do not overlap with each other.  Depending on the enclosing object, subresources might not be allowed. Required.
+    * Resources is a list of resources this rule applies to.  For example: \'pods\' means pods. \'pods/log\' means the log subresource of pods. \'*\' means all resources, but not subresources. \'pods/_*\' means all subresources of pods. \'*_/scale\' means all scale subresources. \'*_/_*\' means all resources and their subresources.  If wildcard is present, the validation rule will ensure resources do not overlap with each other.  Depending on the enclosing object, subresources might not be allowed. Required.
     */
     'resources'?: Array<string>;
     /**
@@ -182,6 +182,12 @@ export class PolicyV1beta1JsPolicySpec {
 }
 
 
-export type PolicyV1beta1JsPolicySpecFailurePolicyEnum = "Fail" | "Ignore" ;
-export type PolicyV1beta1JsPolicySpecMatchPolicyEnum = "Equivalent" | "Exact" ;
+export enum PolicyV1beta1JsPolicySpecFailurePolicyEnum {
+    Fail = 'Fail',
+    Ignore = 'Ignore'
+}
+export enum PolicyV1beta1JsPolicySpecMatchPolicyEnum {
+    Equivalent = 'Equivalent',
+    Exact = 'Exact'
+}
 

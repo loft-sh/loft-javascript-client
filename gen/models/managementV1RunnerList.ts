@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1Runner } from './managementV1Runner';
-import { V1ListMeta } from './V1ListMeta';
+import { ManagementV1Runner } from '../models/managementV1Runner';
+import { V1ListMeta } from '../models/V1ListMeta';
 
 
 export class ManagementV1RunnerList {

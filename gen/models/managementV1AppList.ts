@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1App } from './managementV1App';
-import { V1ListMeta } from './V1ListMeta';
+import { ManagementV1App } from '../models/managementV1App';
+import { V1ListMeta } from '../models/V1ListMeta';
 
 
 export class ManagementV1AppList {

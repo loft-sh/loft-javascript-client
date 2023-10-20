@@ -10,11 +10,11 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1ClusterRoleRef } from './agentstorageV1ClusterRoleRef';
-import { StorageV1Access } from './storageV1Access';
-import { StorageV1KindSecretRef } from './storageV1KindSecretRef';
-import { StorageV1UserClusterAccountTemplate } from './storageV1UserClusterAccountTemplate';
-import { StorageV1UserOrTeam } from './storageV1UserOrTeam';
+import { StorageV1ClusterRoleRef } from '../models/agentstorageV1ClusterRoleRef';
+import { StorageV1Access } from '../models/storageV1Access';
+import { StorageV1KindSecretRef } from '../models/storageV1KindSecretRef';
+import { StorageV1UserClusterAccountTemplate } from '../models/storageV1UserClusterAccountTemplate';
+import { StorageV1UserOrTeam } from '../models/storageV1UserOrTeam';
 
 
 export class ManagementV1TeamSpec {

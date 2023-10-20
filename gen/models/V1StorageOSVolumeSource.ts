@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1LocalObjectReference } from './V1LocalObjectReference';
+import { V1LocalObjectReference } from '../models/V1LocalObjectReference';
 
 
 /**
@@ -31,7 +31,7 @@ export class V1StorageOSVolumeSource {
     */
     'volumeName'?: string;
     /**
-    * volumeNamespace specifies the scope of the volume within StorageOS.  If no namespace is specified then the Pod's namespace will be used.  This allows the Kubernetes name scoping to be mirrored within StorageOS for tighter integration. Set VolumeName to any name to override the default behaviour. Set to \"default\" if you are not using namespaces within StorageOS. Namespaces that do not pre-exist within StorageOS will be created.
+    * volumeNamespace specifies the scope of the volume within StorageOS.  If no namespace is specified then the Pod\'s namespace will be used.  This allows the Kubernetes name scoping to be mirrored within StorageOS for tighter integration. Set VolumeName to any name to override the default behaviour. Set to \"default\" if you are not using namespaces within StorageOS. Namespaces that do not pre-exist within StorageOS will be created.
     */
     'volumeNamespace'?: string;
 

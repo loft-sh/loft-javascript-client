@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1ContainerState } from './V1ContainerState';
-import { V1ResourceRequirements } from './V1ResourceRequirements';
+import { V1ContainerState } from '../models/V1ContainerState';
+import { V1ResourceRequirements } from '../models/V1ResourceRequirements';
 
 
 /**
@@ -23,7 +23,7 @@ export class V1ContainerStatus {
     */
     'allocatedResources'?: { [key: string]: string; };
     /**
-    * ContainerID is the ID of the container in the format '<type>://<container_id>'. Where type is a container runtime identifier, returned from Version call of CRI API (for example \"containerd\").
+    * ContainerID is the ID of the container in the format \'<type>://<container_id>\'. Where type is a container runtime identifier, returned from Version call of CRI API (for example \"containerd\").
     */
     'containerID'?: string;
     /**
@@ -31,7 +31,7 @@ export class V1ContainerStatus {
     */
     'image': string;
     /**
-    * ImageID is the image ID of the container's image. The image ID may not match the image ID of the image used in the PodSpec, as it may have been resolved by the runtime.
+    * ImageID is the image ID of the container\'s image. The image ID may not match the image ID of the image used in the PodSpec, as it may have been resolved by the runtime.
     */
     'imageID': string;
     'lastState'?: V1ContainerState;

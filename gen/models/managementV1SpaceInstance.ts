@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1SpaceInstanceSpec } from './managementV1SpaceInstanceSpec';
-import { ManagementV1SpaceInstanceStatus } from './managementV1SpaceInstanceStatus';
-import { V1ObjectMeta } from './V1ObjectMeta';
+import { ManagementV1SpaceInstanceSpec } from '../models/managementV1SpaceInstanceSpec';
+import { ManagementV1SpaceInstanceStatus } from '../models/managementV1SpaceInstanceStatus';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
 /**

@@ -26,7 +26,7 @@ export class StorageV1AccountClusterTemplateStatus {
     */
     'lastTransitionTime'?: Date;
     /**
-    * Message describes why loft couldn't sync the account in human language
+    * Message describes why loft couldn\'t sync the account in human language
     */
     'message'?: string;
     /**
@@ -42,7 +42,7 @@ export class StorageV1AccountClusterTemplateStatus {
     */
     'phase'?: string;
     /**
-    * Reason describes why loft couldn't sync the account with a machine readable identifier
+    * Reason describes why loft couldn\'t sync the account with a machine readable identifier
     */
     'reason'?: string;
 

@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1LocalObjectReference } from './V1LocalObjectReference';
+import { V1LocalObjectReference } from '../models/V1LocalObjectReference';
 
 
 /**
@@ -31,7 +31,7 @@ export class V1CSIVolumeSource {
     */
     'readOnly'?: boolean;
     /**
-    * volumeAttributes stores driver-specific properties that are passed to the CSI driver. Consult your driver's documentation for supported values.
+    * volumeAttributes stores driver-specific properties that are passed to the CSI driver. Consult your driver\'s documentation for supported values.
     */
     'volumeAttributes'?: { [key: string]: string; };
 

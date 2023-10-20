@@ -10,11 +10,11 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1Access } from './storageV1Access';
-import { StorageV1AccessKeyScope } from './storageV1AccessKeyScope';
-import { StorageV1Target } from './storageV1Target';
-import { StorageV1TaskDefinition } from './storageV1TaskDefinition';
-import { StorageV1UserOrTeam } from './storageV1UserOrTeam';
+import { StorageV1Access } from '../models/storageV1Access';
+import { StorageV1AccessKeyScope } from '../models/storageV1AccessKeyScope';
+import { StorageV1Target } from '../models/storageV1Target';
+import { StorageV1TaskDefinition } from '../models/storageV1TaskDefinition';
+import { StorageV1UserOrTeam } from '../models/storageV1UserOrTeam';
 
 
 /**

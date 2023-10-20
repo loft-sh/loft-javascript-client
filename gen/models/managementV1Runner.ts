@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1RunnerSpec } from './managementV1RunnerSpec';
-import { ManagementV1RunnerStatus } from './managementV1RunnerStatus';
-import { V1ObjectMeta } from './V1ObjectMeta';
+import { ManagementV1RunnerSpec } from '../models/managementV1RunnerSpec';
+import { ManagementV1RunnerStatus } from '../models/managementV1RunnerStatus';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
 /**

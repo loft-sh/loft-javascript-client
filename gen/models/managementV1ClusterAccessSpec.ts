@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1Access } from './storageV1Access';
-import { StorageV1LocalClusterAccessTemplate } from './storageV1LocalClusterAccessTemplate';
-import { StorageV1UserOrTeam } from './storageV1UserOrTeam';
+import { StorageV1Access } from '../models/storageV1Access';
+import { StorageV1LocalClusterAccessTemplate } from '../models/storageV1LocalClusterAccessTemplate';
+import { StorageV1UserOrTeam } from '../models/storageV1UserOrTeam';
 
 
 /**

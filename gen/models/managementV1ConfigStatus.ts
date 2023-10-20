@@ -10,12 +10,12 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1Apps } from './managementV1Apps';
-import { ManagementV1Audit } from './managementV1Audit';
-import { ManagementV1Authentication } from './managementV1Authentication';
-import { ManagementV1OIDC } from './managementV1OIDC';
-import { StorageV1VaultIntegrationSpec } from './storageV1VaultIntegrationSpec';
-import { UiV1UISettingsConfig } from './uiV1UISettingsConfig';
+import { ManagementV1Apps } from '../models/managementV1Apps';
+import { ManagementV1Audit } from '../models/managementV1Audit';
+import { ManagementV1Authentication } from '../models/managementV1Authentication';
+import { ManagementV1OIDC } from '../models/managementV1OIDC';
+import { StorageV1VaultIntegrationSpec } from '../models/storageV1VaultIntegrationSpec';
+import { UiV1UISettingsConfig } from '../models/uiV1UISettingsConfig';
 
 
 /**

@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1DevPodWorkspaceTemplate } from './managementV1DevPodWorkspaceTemplate';
-import { V1ListMeta } from './V1ListMeta';
+import { ManagementV1DevPodWorkspaceTemplate } from '../models/managementV1DevPodWorkspaceTemplate';
+import { V1ListMeta } from '../models/V1ListMeta';
 
 
 export class ManagementV1DevPodWorkspaceTemplateList {

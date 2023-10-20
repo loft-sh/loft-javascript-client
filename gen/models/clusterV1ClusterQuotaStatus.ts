@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { ClusterV1UserOrTeam } from './clusterV1UserOrTeam';
-import { StorageV1ClusterQuotaStatusByNamespace } from './agentstorageV1ClusterQuotaStatusByNamespace';
-import { V1ResourceQuotaStatus } from './V1ResourceQuotaStatus';
+import { ClusterV1UserOrTeam } from '../models/clusterV1UserOrTeam';
+import { StorageV1ClusterQuotaStatusByNamespace } from '../models/agentstorageV1ClusterQuotaStatusByNamespace';
+import { V1ResourceQuotaStatus } from '../models/V1ResourceQuotaStatus';
 
 
 export class ClusterV1ClusterQuotaStatus {

@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { ClusterV1EpochInfo } from './clusterV1EpochInfo';
-import { ClusterV1LastActivityInfo } from './clusterV1LastActivityInfo';
+import { ClusterV1EpochInfo } from '../models/clusterV1EpochInfo';
+import { ClusterV1LastActivityInfo } from '../models/clusterV1LastActivityInfo';
 
 
 export class ClusterV1SleepModeConfigStatus {

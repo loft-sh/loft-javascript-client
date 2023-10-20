@@ -64,7 +64,7 @@ declare class V1ManagedFieldsEntry {
 	*/
 	"manager"?: string;
 	/**
-	* Operation is the type of operation which lead to this ManagedFieldsEntry being created. The only valid values for this field are 'Apply' and 'Update'.
+	* Operation is the type of operation which lead to this ManagedFieldsEntry being created. The only valid values for this field are \'Apply\' and \'Update\'.
 	*/
 	"operation"?: string;
 	/**
@@ -168,7 +168,7 @@ declare class V1ObjectMeta {
 		[key: string]: string;
 	};
 	/**
-	* ManagedFields maps workflow-id and version to the set of fields that are managed by that workflow. This is mostly for internal housekeeping, and users typically shouldn't need to set or understand this field. A workflow can be the user's name, a controller's name, or the name of a specific apply path like \"ci-cd\". The set of fields is always in the version that the workflow used when modifying the object.
+	* ManagedFields maps workflow-id and version to the set of fields that are managed by that workflow. This is mostly for internal housekeeping, and users typically shouldn\'t need to set or understand this field. A workflow can be the user\'s name, a controller\'s name, or the name of a specific apply path like \"ci-cd\". The set of fields is always in the version that the workflow used when modifying the object.
 	*/
 	"managedFields"?: Array<V1ManagedFieldsEntry>;
 	/**
@@ -609,7 +609,7 @@ declare class Request<T> {
 }
 declare class V1ScopedResourceSelectorRequirement {
 	/**
-	* Represents a scope's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist.  Possible enum values:  - `\"DoesNotExist\"`  - `\"Exists\"`  - `\"In\"`  - `\"NotIn\"`
+	* Represents a scope\'s relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist.  Possible enum values:  - `\"DoesNotExist\"`  - `\"Exists\"`  - `\"In\"`  - `\"NotIn\"`
 	*/
 	"operator": V1ScopedResourceSelectorRequirementOperatorEnum;
 	/**
@@ -635,8 +635,20 @@ declare class V1ScopedResourceSelectorRequirement {
 	}[];
 	constructor();
 }
-export type V1ScopedResourceSelectorRequirementOperatorEnum = "DoesNotExist" | "Exists" | "In" | "NotIn";
-export type V1ScopedResourceSelectorRequirementScopeNameEnum = "BestEffort" | "CrossNamespacePodAffinity" | "NotBestEffort" | "NotTerminating" | "PriorityClass" | "Terminating";
+declare enum V1ScopedResourceSelectorRequirementOperatorEnum {
+	DoesNotExist = "DoesNotExist",
+	Exists = "Exists",
+	In = "In",
+	NotIn = "NotIn"
+}
+declare enum V1ScopedResourceSelectorRequirementScopeNameEnum {
+	BestEffort = "BestEffort",
+	CrossNamespacePodAffinity = "CrossNamespacePodAffinity",
+	NotBestEffort = "NotBestEffort",
+	NotTerminating = "NotTerminating",
+	PriorityClass = "PriorityClass",
+	Terminating = "Terminating"
+}
 declare class V1ScopeSelector {
 	/**
 	* A list of scope selector requirements by scope of the resources.
@@ -983,7 +995,7 @@ declare class V1LabelSelectorRequirement {
 	*/
 	"key": string;
 	/**
-	* operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+	* operator represents a key\'s relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
 	*/
 	"operator": string;
 	/**
@@ -1293,7 +1305,7 @@ declare class StorageV1Condition {
 	*/
 	"message"?: string;
 	/**
-	* The reason for the condition's last transition in CamelCase. The specific API may choose whether this field is considered a guaranteed API. This field may not be empty.
+	* The reason for the condition\'s last transition in CamelCase. The specific API may choose whether this field is considered a guaranteed API. This field may not be empty.
 	*/
 	"reason"?: string;
 	/**
@@ -2509,7 +2521,10 @@ declare class ClusterV1SpaceStatus {
 	}[];
 	constructor();
 }
-export type ClusterV1SpaceStatusPhaseEnum = "Active" | "Terminating";
+declare enum ClusterV1SpaceStatusPhaseEnum {
+	Active = "Active",
+	Terminating = "Terminating"
+}
 declare class ClusterV1Space {
 	/**
 	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
@@ -2581,7 +2596,7 @@ declare class V1NodeSelectorRequirement {
 	*/
 	"key": string;
 	/**
-	* Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.  Possible enum values:  - `\"DoesNotExist\"`  - `\"Exists\"`  - `\"Gt\"`  - `\"In\"`  - `\"Lt\"`  - `\"NotIn\"`
+	* Represents a key\'s relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.  Possible enum values:  - `\"DoesNotExist\"`  - `\"Exists\"`  - `\"Gt\"`  - `\"In\"`  - `\"Lt\"`  - `\"NotIn\"`
 	*/
 	"operator": V1NodeSelectorRequirementOperatorEnum;
 	/**
@@ -2603,14 +2618,21 @@ declare class V1NodeSelectorRequirement {
 	}[];
 	constructor();
 }
-export type V1NodeSelectorRequirementOperatorEnum = "DoesNotExist" | "Exists" | "Gt" | "In" | "Lt" | "NotIn";
+declare enum V1NodeSelectorRequirementOperatorEnum {
+	DoesNotExist = "DoesNotExist",
+	Exists = "Exists",
+	Gt = "Gt",
+	In = "In",
+	Lt = "Lt",
+	NotIn = "NotIn"
+}
 declare class V1NodeSelectorTerm {
 	/**
-	* A list of node selector requirements by node's labels.
+	* A list of node selector requirements by node\'s labels.
 	*/
 	"matchExpressions"?: Array<V1NodeSelectorRequirement>;
 	/**
-	* A list of node selector requirements by node's fields.
+	* A list of node selector requirements by node\'s fields.
 	*/
 	"matchFields"?: Array<V1NodeSelectorRequirement>;
 	static readonly discriminator: string | undefined;
@@ -2694,7 +2716,7 @@ declare class V1PodAffinityTerm {
 	"labelSelector"?: V1LabelSelector;
 	"namespaceSelector"?: V1LabelSelector;
 	/**
-	* namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means \"this pod's namespace\".
+	* namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means \"this pod\'s namespace\".
 	*/
 	"namespaces"?: Array<string>;
 	/**
@@ -2806,7 +2828,7 @@ declare class V1Affinity {
 }
 declare class V1ContainerPort {
 	/**
-	* Number of port to expose on the pod's IP address. This must be a valid port number, 0 < x < 65536.
+	* Number of port to expose on the pod\'s IP address. This must be a valid port number, 0 < x < 65536.
 	*/
 	"containerPort": number;
 	/**
@@ -2840,7 +2862,11 @@ declare class V1ContainerPort {
 	}[];
 	constructor();
 }
-export type V1ContainerPortProtocolEnum = "SCTP" | "TCP" | "UDP";
+declare enum V1ContainerPortProtocolEnum {
+	Sctp = "SCTP",
+	Tcp = "TCP",
+	Udp = "UDP"
+}
 declare class V1ContainerResizePolicy {
 	/**
 	* Name of the resource to which this resource resize policy applies. Supported values: cpu, memory.
@@ -3090,7 +3116,7 @@ declare class V1EnvVar {
 }
 declare class V1ExecAction {
 	/**
-	* Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.
+	* Command is the command line to execute inside the container, the working directory for the command  is root (\'/\') in the container\'s filesystem. The command is simply exec\'d, it is not run inside a shell, so traditional shell instructions (\'|\', etc) won\'t work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.
 	*/
 	"command"?: Array<string>;
 	static readonly discriminator: string | undefined;
@@ -3169,7 +3195,10 @@ declare class V1HTTPGetAction {
 	}[];
 	constructor();
 }
-export type V1HTTPGetActionSchemeEnum = "HTTP" | "HTTPS";
+declare enum V1HTTPGetActionSchemeEnum {
+	Http = "HTTP",
+	Https = "HTTPS"
+}
 declare class V1TCPSocketAction {
 	/**
 	* Optional: Host name to connect to, defaults to the pod IP.
@@ -3277,7 +3306,7 @@ declare class V1Probe {
 	"successThreshold"?: number;
 	"tcpSocket"?: V1TCPSocketAction;
 	/**
-	* Optional duration in seconds the pod needs to terminate gracefully upon probe failure. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, this value overrides the value provided by the pod spec. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate. Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.
+	* Optional duration in seconds the pod needs to terminate gracefully upon probe failure. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. If this value is nil, the pod\'s terminationGracePeriodSeconds will be used. Otherwise, this value overrides the value provided by the pod spec. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate. Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.
 	*/
 	"terminationGracePeriodSeconds"?: number;
 	/**
@@ -3409,11 +3438,11 @@ declare class V1SELinuxOptions {
 }
 declare class V1SeccompProfile {
 	/**
-	* localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is \"Localhost\".
+	* localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet\'s configured seccomp profile location. Must be set if type is \"Localhost\". Must NOT be set for any other type.
 	*/
 	"localhostProfile"?: string;
 	/**
-	* type indicates which kind of seccomp profile will be applied. Valid options are:  Localhost - a profile defined in a file on the node should be used. RuntimeDefault - the container runtime default profile should be used. Unconfined - no profile should be applied.  Possible enum values:  - `\"Localhost\"` indicates a profile defined in a file on the node should be used. The file's location relative to <kubelet-root-dir>/seccomp.  - `\"RuntimeDefault\"` represents the default container runtime seccomp profile.  - `\"Unconfined\"` indicates no seccomp profile is applied (A.K.A. unconfined).
+	* type indicates which kind of seccomp profile will be applied. Valid options are:  Localhost - a profile defined in a file on the node should be used. RuntimeDefault - the container runtime default profile should be used. Unconfined - no profile should be applied.  Possible enum values:  - `\"Localhost\"` indicates a profile defined in a file on the node should be used. The file\'s location relative to <kubelet-root-dir>/seccomp.  - `\"RuntimeDefault\"` represents the default container runtime seccomp profile.  - `\"Unconfined\"` indicates no seccomp profile is applied (A.K.A. unconfined).
 	*/
 	"type": V1SeccompProfileTypeEnum;
 	static readonly discriminator: string | undefined;
@@ -3431,7 +3460,11 @@ declare class V1SeccompProfile {
 	}[];
 	constructor();
 }
-export type V1SeccompProfileTypeEnum = "Localhost" | "RuntimeDefault" | "Unconfined";
+declare enum V1SeccompProfileTypeEnum {
+	Localhost = "Localhost",
+	RuntimeDefault = "RuntimeDefault",
+	Unconfined = "Unconfined"
+}
 declare class V1WindowsSecurityContextOptions {
 	/**
 	* GMSACredentialSpec is where the GMSA admission webhook (https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field.
@@ -3442,7 +3475,7 @@ declare class V1WindowsSecurityContextOptions {
 	*/
 	"gmsaCredentialSpecName"?: string;
 	/**
-	* HostProcess determines if a container should be run as a 'Host Process' container. This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).  In addition, if HostProcess is true then HostNetwork must also be set to true.
+	* HostProcess determines if a container should be run as a \'Host Process\' container. All of a Pod\'s containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.
 	*/
 	"hostProcess"?: boolean;
 	/**
@@ -3512,7 +3545,10 @@ declare class V1SecurityContext {
 	}[];
 	constructor();
 }
-export type V1SecurityContextProcMountEnum = "Default" | "Unmasked";
+declare enum V1SecurityContextProcMountEnum {
+	Default = "Default",
+	Unmasked = "Unmasked"
+}
 declare class V1VolumeDevice {
 	/**
 	* devicePath is the path inside of the container that the device will be mapped to.
@@ -3539,11 +3575,11 @@ declare class V1VolumeDevice {
 }
 declare class V1VolumeMount {
 	/**
-	* Path within the container at which the volume should be mounted.  Must not contain ':'.
+	* Path within the container at which the volume should be mounted.  Must not contain \':\'.
 	*/
 	"mountPath": string;
 	/**
-	* mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.  Possible enum values:  - `\"Bidirectional\"` means that the volume in a container will receive new mounts from the host or other containers, and its own mounts will be propagated from the container to the host or other containers. Note that this mode is recursively applied to all mounts in the volume (\"rshared\" in Linux terminology).  - `\"HostToContainer\"` means that the volume in a container will receive new mounts from the host or other containers, but filesystems mounted inside the container won't be propagated to the host or other containers. Note that this mode is recursively applied to all mounts in the volume (\"rslave\" in Linux terminology).  - `\"None\"` means that the volume in a container will not receive new mounts from the host or other containers, and filesystems mounted inside the container won't be propagated to the host or other containers. Note that this mode corresponds to \"private\" in Linux terminology.
+	* mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.  Possible enum values:  - `\"Bidirectional\"` means that the volume in a container will receive new mounts from the host or other containers, and its own mounts will be propagated from the container to the host or other containers. Note that this mode is recursively applied to all mounts in the volume (\"rshared\" in Linux terminology).  - `\"HostToContainer\"` means that the volume in a container will receive new mounts from the host or other containers, but filesystems mounted inside the container won\'t be propagated to the host or other containers. Note that this mode is recursively applied to all mounts in the volume (\"rslave\" in Linux terminology).  - `\"None\"` means that the volume in a container will not receive new mounts from the host or other containers, and filesystems mounted inside the container won\'t be propagated to the host or other containers. Note that this mode corresponds to \"private\" in Linux terminology.
 	*/
 	"mountPropagation"?: V1VolumeMountMountPropagationEnum;
 	/**
@@ -3555,11 +3591,11 @@ declare class V1VolumeMount {
 	*/
 	"readOnly"?: boolean;
 	/**
-	* Path within the volume from which the container's volume should be mounted. Defaults to \"\" (volume's root).
+	* Path within the volume from which the container\'s volume should be mounted. Defaults to \"\" (volume\'s root).
 	*/
 	"subPath"?: string;
 	/**
-	* Expanded path within the volume from which the container's volume should be mounted. Behaves similarly to SubPath but environment variable references $(VAR_NAME) are expanded using the container's environment. Defaults to \"\" (volume's root). SubPathExpr and SubPath are mutually exclusive.
+	* Expanded path within the volume from which the container\'s volume should be mounted. Behaves similarly to SubPath but environment variable references $(VAR_NAME) are expanded using the container\'s environment. Defaults to \"\" (volume\'s root). SubPathExpr and SubPath are mutually exclusive.
 	*/
 	"subPathExpr"?: string;
 	static readonly discriminator: string | undefined;
@@ -3577,14 +3613,18 @@ declare class V1VolumeMount {
 	}[];
 	constructor();
 }
-export type V1VolumeMountMountPropagationEnum = "Bidirectional" | "HostToContainer" | "None";
+declare enum V1VolumeMountMountPropagationEnum {
+	Bidirectional = "Bidirectional",
+	HostToContainer = "HostToContainer",
+	None = "None"
+}
 declare class V1Container {
 	/**
-	* Arguments to the entrypoint. The container image's CMD is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. \"$$(VAR_NAME)\" will produce the string literal \"$(VAR_NAME)\". Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell
+	* Arguments to the entrypoint. The container image\'s CMD is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container\'s environment. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. \"$$(VAR_NAME)\" will produce the string literal \"$(VAR_NAME)\". Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell
 	*/
 	"args"?: Array<string>;
 	/**
-	* Entrypoint array. Not executed within a shell. The container image's ENTRYPOINT is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. \"$$(VAR_NAME)\" will produce the string literal \"$(VAR_NAME)\". Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell
+	* Entrypoint array. Not executed within a shell. The container image\'s ENTRYPOINT is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container\'s environment. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. \"$$(VAR_NAME)\" will produce the string literal \"$(VAR_NAME)\". Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell
 	*/
 	"command"?: Array<string>;
 	/**
@@ -3600,7 +3640,7 @@ declare class V1Container {
 	*/
 	"image"?: string;
 	/**
-	* Image pull policy. One of Always, Never, IfNotPresent. Defaults to Always if :latest tag is specified, or IfNotPresent otherwise. Cannot be updated. More info: https://kubernetes.io/docs/concepts/containers/images#updating-images  Possible enum values:  - `\"Always\"` means that kubelet always attempts to pull the latest image. Container will fail If the pull fails.  - `\"IfNotPresent\"` means that kubelet pulls if the image isn't present on disk. Container will fail if the image isn't present and the pull fails.  - `\"Never\"` means that kubelet never pulls an image, but only uses a local image. Container will fail if the image isn't present
+	* Image pull policy. One of Always, Never, IfNotPresent. Defaults to Always if :latest tag is specified, or IfNotPresent otherwise. Cannot be updated. More info: https://kubernetes.io/docs/concepts/containers/images#updating-images  Possible enum values:  - `\"Always\"` means that kubelet always attempts to pull the latest image. Container will fail If the pull fails.  - `\"IfNotPresent\"` means that kubelet pulls if the image isn\'t present on disk. Container will fail if the image isn\'t present and the pull fails.  - `\"Never\"` means that kubelet never pulls an image, but only uses a local image. Container will fail if the image isn\'t present
 	*/
 	"imagePullPolicy"?: V1ContainerImagePullPolicyEnum;
 	"lifecycle"?: V1Lifecycle;
@@ -3619,6 +3659,10 @@ declare class V1Container {
 	*/
 	"resizePolicy"?: Array<V1ContainerResizePolicy>;
 	"resources"?: V1ResourceRequirements;
+	/**
+	* RestartPolicy defines the restart behavior of individual containers in a pod. This field may only be set for init containers, and the only allowed value is \"Always\". For non-init containers or when this field is not specified, the restart behavior is defined by the Pod\'s restart policy and the container type. Setting the RestartPolicy as \"Always\" for the init container will have the following effect: this init container will be continually restarted on exit until all regular containers have terminated. Once all regular containers have completed, all init containers with restartPolicy \"Always\" will be shut down. This lifecycle differs from normal init containers and is often referred to as a \"sidecar\" container. Although this init container still starts in the init container sequence, it does not wait for the container to complete before proceeding to the next init container. Instead, the next init container starts immediately after this init container is started, or after any startupProbe has successfully completed.
+	*/
+	"restartPolicy"?: string;
 	"securityContext"?: V1SecurityContext;
 	"startupProbe"?: V1Probe;
 	/**
@@ -3630,15 +3674,15 @@ declare class V1Container {
 	*/
 	"stdinOnce"?: boolean;
 	/**
-	* Optional: Path at which the file to which the container's termination message will be written is mounted into the container's filesystem. Message written is intended to be brief final status, such as an assertion failure message. Will be truncated by the node if greater than 4096 bytes. The total message length across all containers will be limited to 12kb. Defaults to /dev/termination-log. Cannot be updated.
+	* Optional: Path at which the file to which the container\'s termination message will be written is mounted into the container\'s filesystem. Message written is intended to be brief final status, such as an assertion failure message. Will be truncated by the node if greater than 4096 bytes. The total message length across all containers will be limited to 12kb. Defaults to /dev/termination-log. Cannot be updated.
 	*/
 	"terminationMessagePath"?: string;
 	/**
-	* Indicate how the termination message should be populated. File will use the contents of terminationMessagePath to populate the container status message on both success and failure. FallbackToLogsOnError will use the last chunk of container log output if the termination message file is empty and the container exited with an error. The log output is limited to 2048 bytes or 80 lines, whichever is smaller. Defaults to File. Cannot be updated.  Possible enum values:  - `\"FallbackToLogsOnError\"` will read the most recent contents of the container logs for the container status message when the container exits with an error and the terminationMessagePath has no contents.  - `\"File\"` is the default behavior and will set the container status message to the contents of the container's terminationMessagePath when the container exits.
+	* Indicate how the termination message should be populated. File will use the contents of terminationMessagePath to populate the container status message on both success and failure. FallbackToLogsOnError will use the last chunk of container log output if the termination message file is empty and the container exited with an error. The log output is limited to 2048 bytes or 80 lines, whichever is smaller. Defaults to File. Cannot be updated.  Possible enum values:  - `\"FallbackToLogsOnError\"` will read the most recent contents of the container logs for the container status message when the container exits with an error and the terminationMessagePath has no contents.  - `\"File\"` is the default behavior and will set the container status message to the contents of the container\'s terminationMessagePath when the container exits.
 	*/
 	"terminationMessagePolicy"?: V1ContainerTerminationMessagePolicyEnum;
 	/**
-	* Whether this container should allocate a TTY for itself, also requires 'stdin' to be true. Default is false.
+	* Whether this container should allocate a TTY for itself, also requires \'stdin\' to be true. Default is false.
 	*/
 	"tty"?: boolean;
 	/**
@@ -3646,11 +3690,11 @@ declare class V1Container {
 	*/
 	"volumeDevices"?: Array<V1VolumeDevice>;
 	/**
-	* Pod volumes to mount into the container's filesystem. Cannot be updated.
+	* Pod volumes to mount into the container\'s filesystem. Cannot be updated.
 	*/
 	"volumeMounts"?: Array<V1VolumeMount>;
 	/**
-	* Container's working directory. If not specified, the container runtime's default will be used, which might be configured in the container image. Cannot be updated.
+	* Container\'s working directory. If not specified, the container runtime\'s default will be used, which might be configured in the container image. Cannot be updated.
 	*/
 	"workingDir"?: string;
 	static readonly discriminator: string | undefined;
@@ -3668,15 +3712,22 @@ declare class V1Container {
 	}[];
 	constructor();
 }
-export type V1ContainerImagePullPolicyEnum = "Always" | "IfNotPresent" | "Never";
-export type V1ContainerTerminationMessagePolicyEnum = "FallbackToLogsOnError" | "File";
+declare enum V1ContainerImagePullPolicyEnum {
+	Always = "Always",
+	IfNotPresent = "IfNotPresent",
+	Never = "Never"
+}
+declare enum V1ContainerTerminationMessagePolicyEnum {
+	FallbackToLogsOnError = "FallbackToLogsOnError",
+	File = "File"
+}
 declare class V1EphemeralContainer {
 	/**
-	* Arguments to the entrypoint. The image's CMD is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. \"$$(VAR_NAME)\" will produce the string literal \"$(VAR_NAME)\". Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell
+	* Arguments to the entrypoint. The image\'s CMD is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container\'s environment. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. \"$$(VAR_NAME)\" will produce the string literal \"$(VAR_NAME)\". Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell
 	*/
 	"args"?: Array<string>;
 	/**
-	* Entrypoint array. Not executed within a shell. The image's ENTRYPOINT is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. \"$$(VAR_NAME)\" will produce the string literal \"$(VAR_NAME)\". Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell
+	* Entrypoint array. Not executed within a shell. The image\'s ENTRYPOINT is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container\'s environment. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. \"$$(VAR_NAME)\" will produce the string literal \"$(VAR_NAME)\". Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell
 	*/
 	"command"?: Array<string>;
 	/**
@@ -3692,7 +3743,7 @@ declare class V1EphemeralContainer {
 	*/
 	"image"?: string;
 	/**
-	* Image pull policy. One of Always, Never, IfNotPresent. Defaults to Always if :latest tag is specified, or IfNotPresent otherwise. Cannot be updated. More info: https://kubernetes.io/docs/concepts/containers/images#updating-images  Possible enum values:  - `\"Always\"` means that kubelet always attempts to pull the latest image. Container will fail If the pull fails.  - `\"IfNotPresent\"` means that kubelet pulls if the image isn't present on disk. Container will fail if the image isn't present and the pull fails.  - `\"Never\"` means that kubelet never pulls an image, but only uses a local image. Container will fail if the image isn't present
+	* Image pull policy. One of Always, Never, IfNotPresent. Defaults to Always if :latest tag is specified, or IfNotPresent otherwise. Cannot be updated. More info: https://kubernetes.io/docs/concepts/containers/images#updating-images  Possible enum values:  - `\"Always\"` means that kubelet always attempts to pull the latest image. Container will fail If the pull fails.  - `\"IfNotPresent\"` means that kubelet pulls if the image isn\'t present on disk. Container will fail if the image isn\'t present and the pull fails.  - `\"Never\"` means that kubelet never pulls an image, but only uses a local image. Container will fail if the image isn\'t present
 	*/
 	"imagePullPolicy"?: V1EphemeralContainerImagePullPolicyEnum;
 	"lifecycle"?: V1Lifecycle;
@@ -3711,6 +3762,10 @@ declare class V1EphemeralContainer {
 	*/
 	"resizePolicy"?: Array<V1ContainerResizePolicy>;
 	"resources"?: V1ResourceRequirements;
+	/**
+	* Restart policy for the container to manage the restart behavior of each container within a pod. This may only be set for init containers. You cannot set this field on ephemeral containers.
+	*/
+	"restartPolicy"?: string;
 	"securityContext"?: V1SecurityContext;
 	"startupProbe"?: V1Probe;
 	/**
@@ -3726,15 +3781,15 @@ declare class V1EphemeralContainer {
 	*/
 	"targetContainerName"?: string;
 	/**
-	* Optional: Path at which the file to which the container's termination message will be written is mounted into the container's filesystem. Message written is intended to be brief final status, such as an assertion failure message. Will be truncated by the node if greater than 4096 bytes. The total message length across all containers will be limited to 12kb. Defaults to /dev/termination-log. Cannot be updated.
+	* Optional: Path at which the file to which the container\'s termination message will be written is mounted into the container\'s filesystem. Message written is intended to be brief final status, such as an assertion failure message. Will be truncated by the node if greater than 4096 bytes. The total message length across all containers will be limited to 12kb. Defaults to /dev/termination-log. Cannot be updated.
 	*/
 	"terminationMessagePath"?: string;
 	/**
-	* Indicate how the termination message should be populated. File will use the contents of terminationMessagePath to populate the container status message on both success and failure. FallbackToLogsOnError will use the last chunk of container log output if the termination message file is empty and the container exited with an error. The log output is limited to 2048 bytes or 80 lines, whichever is smaller. Defaults to File. Cannot be updated.  Possible enum values:  - `\"FallbackToLogsOnError\"` will read the most recent contents of the container logs for the container status message when the container exits with an error and the terminationMessagePath has no contents.  - `\"File\"` is the default behavior and will set the container status message to the contents of the container's terminationMessagePath when the container exits.
+	* Indicate how the termination message should be populated. File will use the contents of terminationMessagePath to populate the container status message on both success and failure. FallbackToLogsOnError will use the last chunk of container log output if the termination message file is empty and the container exited with an error. The log output is limited to 2048 bytes or 80 lines, whichever is smaller. Defaults to File. Cannot be updated.  Possible enum values:  - `\"FallbackToLogsOnError\"` will read the most recent contents of the container logs for the container status message when the container exits with an error and the terminationMessagePath has no contents.  - `\"File\"` is the default behavior and will set the container status message to the contents of the container\'s terminationMessagePath when the container exits.
 	*/
 	"terminationMessagePolicy"?: V1EphemeralContainerTerminationMessagePolicyEnum;
 	/**
-	* Whether this container should allocate a TTY for itself, also requires 'stdin' to be true. Default is false.
+	* Whether this container should allocate a TTY for itself, also requires \'stdin\' to be true. Default is false.
 	*/
 	"tty"?: boolean;
 	/**
@@ -3742,11 +3797,11 @@ declare class V1EphemeralContainer {
 	*/
 	"volumeDevices"?: Array<V1VolumeDevice>;
 	/**
-	* Pod volumes to mount into the container's filesystem. Subpath mounts are not allowed for ephemeral containers. Cannot be updated.
+	* Pod volumes to mount into the container\'s filesystem. Subpath mounts are not allowed for ephemeral containers. Cannot be updated.
 	*/
 	"volumeMounts"?: Array<V1VolumeMount>;
 	/**
-	* Container's working directory. If not specified, the container runtime's default will be used, which might be configured in the container image. Cannot be updated.
+	* Container\'s working directory. If not specified, the container runtime\'s default will be used, which might be configured in the container image. Cannot be updated.
 	*/
 	"workingDir"?: string;
 	static readonly discriminator: string | undefined;
@@ -3764,8 +3819,15 @@ declare class V1EphemeralContainer {
 	}[];
 	constructor();
 }
-export type V1EphemeralContainerImagePullPolicyEnum = "Always" | "IfNotPresent" | "Never";
-export type V1EphemeralContainerTerminationMessagePolicyEnum = "FallbackToLogsOnError" | "File";
+declare enum V1EphemeralContainerImagePullPolicyEnum {
+	Always = "Always",
+	IfNotPresent = "IfNotPresent",
+	Never = "Never"
+}
+declare enum V1EphemeralContainerTerminationMessagePolicyEnum {
+	FallbackToLogsOnError = "FallbackToLogsOnError",
+	File = "File"
+}
 declare class V1HostAlias {
 	/**
 	* Hostnames for the above IP address.
@@ -3881,7 +3943,7 @@ declare class V1PodOS {
 }
 declare class V1PodReadinessGate {
 	/**
-	* ConditionType refers to a condition in the pod's condition list with matching type.
+	* ConditionType refers to a condition in the pod\'s condition list with matching type.
 	*/
 	"conditionType": string;
 	static readonly discriminator: string | undefined;
@@ -3905,7 +3967,7 @@ declare class V1ClaimSource {
 	*/
 	"resourceClaimName"?: string;
 	/**
-	* ResourceClaimTemplateName is the name of a ResourceClaimTemplate object in the same namespace as this pod.  The template will be used to create a new ResourceClaim, which will be bound to this pod. When this pod is deleted, the ResourceClaim will also be deleted. The name of the ResourceClaim will be <pod name>-<resource name>, where <resource name> is the PodResourceClaim.Name. Pod validation will reject the pod if the concatenated name is not valid for a ResourceClaim (e.g. too long).  An existing ResourceClaim with that name that is not owned by the pod will not be used for the pod to avoid using an unrelated resource by mistake. Scheduling and pod startup are then blocked until the unrelated ResourceClaim is removed.  This field is immutable and no changes will be made to the corresponding ResourceClaim by the control plane after creating the ResourceClaim.
+	* ResourceClaimTemplateName is the name of a ResourceClaimTemplate object in the same namespace as this pod.  The template will be used to create a new ResourceClaim, which will be bound to this pod. When this pod is deleted, the ResourceClaim will also be deleted. The pod name and resource name, along with a generated component, will be used to form a unique name for the ResourceClaim, which will be recorded in pod.status.resourceClaimStatuses.  This field is immutable and no changes will be made to the corresponding ResourceClaim by the control plane after creating the ResourceClaim.
 	*/
 	"resourceClaimTemplateName"?: string;
 	static readonly discriminator: string | undefined;
@@ -3990,11 +4052,11 @@ declare class V1Sysctl {
 }
 declare class V1PodSecurityContext {
 	/**
-	* A special supplemental group that applies to all containers in a pod. Some volume types allow the Kubelet to change the ownership of that volume to be owned by the pod:  1. The owning GID will be the FSGroup 2. The setgid bit is set (new files created in the volume will be owned by FSGroup) 3. The permission bits are OR'd with rw-rw----  If unset, the Kubelet will not modify the ownership and permissions of any volume. Note that this field cannot be set when spec.os.name is windows.
+	* A special supplemental group that applies to all containers in a pod. Some volume types allow the Kubelet to change the ownership of that volume to be owned by the pod:  1. The owning GID will be the FSGroup 2. The setgid bit is set (new files created in the volume will be owned by FSGroup) 3. The permission bits are OR\'d with rw-rw----  If unset, the Kubelet will not modify the ownership and permissions of any volume. Note that this field cannot be set when spec.os.name is windows.
 	*/
 	"fsGroup"?: number;
 	/**
-	* fsGroupChangePolicy defines behavior of changing ownership and permission of the volume before being exposed inside Pod. This field will only apply to volume types which support fsGroup based ownership(and permissions). It will have no effect on ephemeral volume types such as: secret, configmaps and emptydir. Valid values are \"OnRootMismatch\" and \"Always\". If not specified, \"Always\" is used. Note that this field cannot be set when spec.os.name is windows.  Possible enum values:  - `\"Always\"` indicates that volume's ownership and permissions should always be changed whenever volume is mounted inside a Pod. This the default behavior.  - `\"OnRootMismatch\"` indicates that volume's ownership and permissions will be changed only when permission and ownership of root directory does not match with expected permissions on the volume. This can help shorten the time it takes to change ownership and permissions of a volume.
+	* fsGroupChangePolicy defines behavior of changing ownership and permission of the volume before being exposed inside Pod. This field will only apply to volume types which support fsGroup based ownership(and permissions). It will have no effect on ephemeral volume types such as: secret, configmaps and emptydir. Valid values are \"OnRootMismatch\" and \"Always\". If not specified, \"Always\" is used. Note that this field cannot be set when spec.os.name is windows.  Possible enum values:  - `\"Always\"` indicates that volume\'s ownership and permissions should always be changed whenever volume is mounted inside a Pod. This the default behavior.  - `\"OnRootMismatch\"` indicates that volume\'s ownership and permissions will be changed only when permission and ownership of root directory does not match with expected permissions on the volume. This can help shorten the time it takes to change ownership and permissions of a volume.
 	*/
 	"fsGroupChangePolicy"?: V1PodSecurityContextFsGroupChangePolicyEnum;
 	/**
@@ -4012,7 +4074,7 @@ declare class V1PodSecurityContext {
 	"seLinuxOptions"?: V1SELinuxOptions;
 	"seccompProfile"?: V1SeccompProfile;
 	/**
-	* A list of groups applied to the first process run in each container, in addition to the container's primary GID, the fsGroup (if specified), and group memberships defined in the container image for the uid of the container process. If unspecified, no additional groups are added to any container. Note that group memberships defined in the container image for the uid of the container process are still effective, even if they are not included in this list. Note that this field cannot be set when spec.os.name is windows.
+	* A list of groups applied to the first process run in each container, in addition to the container\'s primary GID, the fsGroup (if specified), and group memberships defined in the container image for the uid of the container process. If unspecified, no additional groups are added to any container. Note that group memberships defined in the container image for the uid of the container process are still effective, even if they are not included in this list. Note that this field cannot be set when spec.os.name is windows.
 	*/
 	"supplementalGroups"?: Array<number>;
 	/**
@@ -4035,7 +4097,10 @@ declare class V1PodSecurityContext {
 	}[];
 	constructor();
 }
-export type V1PodSecurityContextFsGroupChangePolicyEnum = "Always" | "OnRootMismatch";
+declare enum V1PodSecurityContextFsGroupChangePolicyEnum {
+	Always = "Always",
+	OnRootMismatch = "OnRootMismatch"
+}
 declare class V1Toleration {
 	/**
 	* Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.  Possible enum values:  - `\"NoExecute\"` Evict any already-running pods that do not tolerate the taint. Currently enforced by NodeController.  - `\"NoSchedule\"` Do not allow new pods to schedule onto the node unless they tolerate the taint, but allow all pods submitted to Kubelet without going through the scheduler to start, and allow all already-running pods to continue running. Enforced by the scheduler.  - `\"PreferNoSchedule\"` Like TaintEffectNoSchedule, but the scheduler tries not to schedule new pods onto the node, rather than prohibiting new pods from scheduling onto the node entirely. Enforced by the scheduler.
@@ -4046,7 +4111,7 @@ declare class V1Toleration {
 	*/
 	"key"?: string;
 	/**
-	* Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.  Possible enum values:  - `\"Equal\"`  - `\"Exists\"`
+	* Operator represents a key\'s relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.  Possible enum values:  - `\"Equal\"`  - `\"Exists\"`
 	*/
 	"operator"?: V1TolerationOperatorEnum;
 	/**
@@ -4072,24 +4137,31 @@ declare class V1Toleration {
 	}[];
 	constructor();
 }
-export type V1TolerationEffectEnum = "NoExecute" | "NoSchedule" | "PreferNoSchedule";
-export type V1TolerationOperatorEnum = "Equal" | "Exists";
+declare enum V1TolerationEffectEnum {
+	NoExecute = "NoExecute",
+	NoSchedule = "NoSchedule",
+	PreferNoSchedule = "PreferNoSchedule"
+}
+declare enum V1TolerationOperatorEnum {
+	Equal = "Equal",
+	Exists = "Exists"
+}
 declare class V1TopologySpreadConstraint {
 	"labelSelector"?: V1LabelSelector;
 	/**
-	* MatchLabelKeys is a set of pod label keys to select the pods over which spreading will be calculated. The keys are used to lookup values from the incoming pod labels, those key-value labels are ANDed with labelSelector to select the group of existing pods over which spreading will be calculated for the incoming pod. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. MatchLabelKeys cannot be set when LabelSelector isn't set. Keys that don't exist in the incoming pod labels will be ignored. A null or empty list means only match against labelSelector.  This is a beta field and requires the MatchLabelKeysInPodTopologySpread feature gate to be enabled (enabled by default).
+	* MatchLabelKeys is a set of pod label keys to select the pods over which spreading will be calculated. The keys are used to lookup values from the incoming pod labels, those key-value labels are ANDed with labelSelector to select the group of existing pods over which spreading will be calculated for the incoming pod. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. MatchLabelKeys cannot be set when LabelSelector isn\'t set. Keys that don\'t exist in the incoming pod labels will be ignored. A null or empty list means only match against labelSelector.  This is a beta field and requires the MatchLabelKeysInPodTopologySpread feature gate to be enabled (enabled by default).
 	*/
 	"matchLabelKeys"?: Array<string>;
 	/**
-	* MaxSkew describes the degree to which pods may be unevenly distributed. When `whenUnsatisfiable=DoNotSchedule`, it is the maximum permitted difference between the number of matching pods in the target topology and the global minimum. The global minimum is the minimum number of matching pods in an eligible domain or zero if the number of eligible domains is less than MinDomains. For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 2/2/1: In this case, the global minimum is 1. | zone1 | zone2 | zone3 | |  P P  |  P P  |   P   | - if MaxSkew is 1, incoming pod can only be scheduled to zone3 to become 2/2/2; scheduling it onto zone1(zone2) would make the ActualSkew(3-1) on zone1(zone2) violate MaxSkew(1). - if MaxSkew is 2, incoming pod can be scheduled onto any zone. When `whenUnsatisfiable=ScheduleAnyway`, it is used to give higher precedence to topologies that satisfy it. It's a required field. Default value is 1 and 0 is not allowed.
+	* MaxSkew describes the degree to which pods may be unevenly distributed. When `whenUnsatisfiable=DoNotSchedule`, it is the maximum permitted difference between the number of matching pods in the target topology and the global minimum. The global minimum is the minimum number of matching pods in an eligible domain or zero if the number of eligible domains is less than MinDomains. For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 2/2/1: In this case, the global minimum is 1. | zone1 | zone2 | zone3 | |  P P  |  P P  |   P   | - if MaxSkew is 1, incoming pod can only be scheduled to zone3 to become 2/2/2; scheduling it onto zone1(zone2) would make the ActualSkew(3-1) on zone1(zone2) violate MaxSkew(1). - if MaxSkew is 2, incoming pod can be scheduled onto any zone. When `whenUnsatisfiable=ScheduleAnyway`, it is used to give higher precedence to topologies that satisfy it. It\'s a required field. Default value is 1 and 0 is not allowed.
 	*/
 	"maxSkew": number;
 	/**
-	* MinDomains indicates a minimum number of eligible domains. When the number of eligible domains with matching topology keys is less than minDomains, Pod Topology Spread treats \"global minimum\" as 0, and then the calculation of Skew is performed. And when the number of eligible domains with matching topology keys equals or greater than minDomains, this value has no effect on scheduling. As a result, when the number of eligible domains is less than minDomains, scheduler won't schedule more than maxSkew Pods to those domains. If value is nil, the constraint behaves as if MinDomains is equal to 1. Valid values are integers greater than 0. When value is not nil, WhenUnsatisfiable must be DoNotSchedule.  For example, in a 3-zone cluster, MaxSkew is set to 2, MinDomains is set to 5 and pods with the same labelSelector spread as 2/2/2: | zone1 | zone2 | zone3 | |  P P  |  P P  |  P P  | The number of domains is less than 5(MinDomains), so \"global minimum\" is treated as 0. In this situation, new pod with the same labelSelector cannot be scheduled, because computed skew will be 3(3 - 0) if new Pod is scheduled to any of the three zones, it will violate MaxSkew.  This is a beta field and requires the MinDomainsInPodTopologySpread feature gate to be enabled (enabled by default).
+	* MinDomains indicates a minimum number of eligible domains. When the number of eligible domains with matching topology keys is less than minDomains, Pod Topology Spread treats \"global minimum\" as 0, and then the calculation of Skew is performed. And when the number of eligible domains with matching topology keys equals or greater than minDomains, this value has no effect on scheduling. As a result, when the number of eligible domains is less than minDomains, scheduler won\'t schedule more than maxSkew Pods to those domains. If value is nil, the constraint behaves as if MinDomains is equal to 1. Valid values are integers greater than 0. When value is not nil, WhenUnsatisfiable must be DoNotSchedule.  For example, in a 3-zone cluster, MaxSkew is set to 2, MinDomains is set to 5 and pods with the same labelSelector spread as 2/2/2: | zone1 | zone2 | zone3 | |  P P  |  P P  |  P P  | The number of domains is less than 5(MinDomains), so \"global minimum\" is treated as 0. In this situation, new pod with the same labelSelector cannot be scheduled, because computed skew will be 3(3 - 0) if new Pod is scheduled to any of the three zones, it will violate MaxSkew.  This is a beta field and requires the MinDomainsInPodTopologySpread feature gate to be enabled (enabled by default).
 	*/
 	"minDomains"?: number;
 	/**
-	* NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelector when calculating pod topology spread skew. Options are: - Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations. - Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations.  If this value is nil, the behavior is equivalent to the Honor policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.  Possible enum values:  - `\"Honor\"` means use this scheduling directive when calculating pod topology spread skew.  - `\"Ignore\"` means ignore this scheduling directive when calculating pod topology spread skew.
+	* NodeAffinityPolicy indicates how we will treat Pod\'s nodeAffinity/nodeSelector when calculating pod topology spread skew. Options are: - Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations. - Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations.  If this value is nil, the behavior is equivalent to the Honor policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.  Possible enum values:  - `\"Honor\"` means use this scheduling directive when calculating pod topology spread skew.  - `\"Ignore\"` means ignore this scheduling directive when calculating pod topology spread skew.
 	*/
 	"nodeAffinityPolicy"?: V1TopologySpreadConstraintNodeAffinityPolicyEnum;
 	/**
@@ -4097,11 +4169,11 @@ declare class V1TopologySpreadConstraint {
 	*/
 	"nodeTaintsPolicy"?: V1TopologySpreadConstraintNodeTaintsPolicyEnum;
 	/**
-	* TopologyKey is the key of node labels. Nodes that have a label with this key and identical values are considered to be in the same topology. We consider each <key, value> as a \"bucket\", and try to put balanced number of pods into each bucket. We define a domain as a particular instance of a topology. Also, we define an eligible domain as a domain whose nodes meet the requirements of nodeAffinityPolicy and nodeTaintsPolicy. e.g. If TopologyKey is \"kubernetes.io/hostname\", each Node is a domain of that topology. And, if TopologyKey is \"topology.kubernetes.io/zone\", each zone is a domain of that topology. It's a required field.
+	* TopologyKey is the key of node labels. Nodes that have a label with this key and identical values are considered to be in the same topology. We consider each <key, value> as a \"bucket\", and try to put balanced number of pods into each bucket. We define a domain as a particular instance of a topology. Also, we define an eligible domain as a domain whose nodes meet the requirements of nodeAffinityPolicy and nodeTaintsPolicy. e.g. If TopologyKey is \"kubernetes.io/hostname\", each Node is a domain of that topology. And, if TopologyKey is \"topology.kubernetes.io/zone\", each zone is a domain of that topology. It\'s a required field.
 	*/
 	"topologyKey": string;
 	/**
-	* WhenUnsatisfiable indicates how to deal with a pod if it doesn't satisfy the spread constraint. - DoNotSchedule (default) tells the scheduler not to schedule it. - ScheduleAnyway tells the scheduler to schedule the pod in any location,   but giving higher precedence to topologies that would help reduce the   skew. A constraint is considered \"Unsatisfiable\" for an incoming pod if and only if every possible node assignment for that pod would violate \"MaxSkew\" on some topology. For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 3/1/1: | zone1 | zone2 | zone3 | | P P P |   P   |   P   | If WhenUnsatisfiable is set to DoNotSchedule, incoming pod can only be scheduled to zone2(zone3) to become 3/2/1(3/1/2) as ActualSkew(2-1) on zone2(zone3) satisfies MaxSkew(1). In other words, the cluster can still be imbalanced, but scheduler won't make it *more* imbalanced. It's a required field.  Possible enum values:  - `\"DoNotSchedule\"` instructs the scheduler not to schedule the pod when constraints are not satisfied.  - `\"ScheduleAnyway\"` instructs the scheduler to schedule the pod even if constraints are not satisfied.
+	* WhenUnsatisfiable indicates how to deal with a pod if it doesn\'t satisfy the spread constraint. - DoNotSchedule (default) tells the scheduler not to schedule it. - ScheduleAnyway tells the scheduler to schedule the pod in any location,   but giving higher precedence to topologies that would help reduce the   skew. A constraint is considered \"Unsatisfiable\" for an incoming pod if and only if every possible node assignment for that pod would violate \"MaxSkew\" on some topology. For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 3/1/1: | zone1 | zone2 | zone3 | | P P P |   P   |   P   | If WhenUnsatisfiable is set to DoNotSchedule, incoming pod can only be scheduled to zone2(zone3) to become 3/2/1(3/1/2) as ActualSkew(2-1) on zone2(zone3) satisfies MaxSkew(1). In other words, the cluster can still be imbalanced, but scheduler won\'t make it *more* imbalanced. It\'s a required field.  Possible enum values:  - `\"DoNotSchedule\"` instructs the scheduler not to schedule the pod when constraints are not satisfied.  - `\"ScheduleAnyway\"` instructs the scheduler to schedule the pod even if constraints are not satisfied.
 	*/
 	"whenUnsatisfiable": V1TopologySpreadConstraintWhenUnsatisfiableEnum;
 	static readonly discriminator: string | undefined;
@@ -4119,9 +4191,18 @@ declare class V1TopologySpreadConstraint {
 	}[];
 	constructor();
 }
-export type V1TopologySpreadConstraintNodeAffinityPolicyEnum = "Honor" | "Ignore";
-export type V1TopologySpreadConstraintNodeTaintsPolicyEnum = "Honor" | "Ignore";
-export type V1TopologySpreadConstraintWhenUnsatisfiableEnum = "DoNotSchedule" | "ScheduleAnyway";
+declare enum V1TopologySpreadConstraintNodeAffinityPolicyEnum {
+	Honor = "Honor",
+	Ignore = "Ignore"
+}
+declare enum V1TopologySpreadConstraintNodeTaintsPolicyEnum {
+	Honor = "Honor",
+	Ignore = "Ignore"
+}
+declare enum V1TopologySpreadConstraintWhenUnsatisfiableEnum {
+	DoNotSchedule = "DoNotSchedule",
+	ScheduleAnyway = "ScheduleAnyway"
+}
 declare class V1AWSElasticBlockStoreVolumeSource {
 	/**
 	* fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: \"ext4\", \"xfs\", \"ntfs\". Implicitly inferred to be \"ext4\" if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore
@@ -4194,8 +4275,16 @@ declare class V1AzureDiskVolumeSource {
 	}[];
 	constructor();
 }
-export type V1AzureDiskVolumeSourceCachingModeEnum = "None" | "ReadOnly" | "ReadWrite";
-export type V1AzureDiskVolumeSourceKindEnum = "Dedicated" | "Managed" | "Shared";
+declare enum V1AzureDiskVolumeSourceCachingModeEnum {
+	None = "None",
+	ReadOnly = "ReadOnly",
+	ReadWrite = "ReadWrite"
+}
+declare enum V1AzureDiskVolumeSourceKindEnum {
+	Dedicated = "Dedicated",
+	Managed = "Managed",
+	Shared = "Shared"
+}
 declare class V1AzureFileVolumeSource {
 	/**
 	* readOnly defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
@@ -4239,7 +4328,7 @@ declare class V1CSIVolumeSource {
 	*/
 	"readOnly"?: boolean;
 	/**
-	* volumeAttributes stores driver-specific properties that are passed to the CSI driver. Consult your driver's documentation for supported values.
+	* volumeAttributes stores driver-specific properties that are passed to the CSI driver. Consult your driver\'s documentation for supported values.
 	*/
 	"volumeAttributes"?: {
 		[key: string]: string;
@@ -4335,7 +4424,7 @@ declare class V1KeyToPath {
 	*/
 	"mode"?: number;
 	/**
-	* path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.
+	* path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element \'..\'. May not start with the string \'..\'.
 	*/
 	"path": string;
 	static readonly discriminator: string | undefined;
@@ -4359,7 +4448,7 @@ declare class V1ConfigMapVolumeSource {
 	*/
 	"defaultMode"?: number;
 	/**
-	* items if unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.
+	* items if unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the \'..\' path or start with \'..\'.
 	*/
 	"items"?: Array<V1KeyToPath>;
 	/**
@@ -4392,7 +4481,7 @@ declare class V1DownwardAPIVolumeFile {
 	*/
 	"mode"?: number;
 	/**
-	* Required: Path is  the relative path name of the file to be created. Must not be absolute or contain the '..' path. Must be utf-8 encoded. The first item of the relative path must not start with '..'
+	* Required: Path is  the relative path name of the file to be created. Must not be absolute or contain the \'..\' path. Must be utf-8 encoded. The first item of the relative path must not start with \'..\'
 	*/
 	"path": string;
 	"resourceFieldRef"?: V1ResourceFieldSelector;
@@ -4437,7 +4526,7 @@ declare class V1DownwardAPIVolumeSource {
 }
 declare class V1EmptyDirVolumeSource {
 	/**
-	* medium represents what type of storage medium should back this directory. The default is \"\" which means to use the node's default medium. Must be an empty string (default) or Memory. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir
+	* medium represents what type of storage medium should back this directory. The default is \"\" which means to use the node\'s default medium. Must be an empty string (default) or Memory. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir
 	*/
 	"medium"?: string;
 	/**
@@ -4501,7 +4590,7 @@ declare class V1TypedObjectReference {
 	*/
 	"name": string;
 	/**
-	* Namespace is the namespace of resource being referenced Note that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details. (Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled.
+	* Namespace is the namespace of resource being referenced Note that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace\'s owner to accept the reference. See the ReferenceGrant documentation for details. (Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled.
 	*/
 	"namespace"?: string;
 	static readonly discriminator: string | undefined;
@@ -4555,7 +4644,10 @@ declare class V1PersistentVolumeClaimSpec {
 	}[];
 	constructor();
 }
-export type V1PersistentVolumeClaimSpecVolumeModeEnum = "Block" | "Filesystem";
+declare enum V1PersistentVolumeClaimSpecVolumeModeEnum {
+	Block = "Block",
+	Filesystem = "Filesystem"
+}
 declare class V1PersistentVolumeClaimTemplate {
 	"metadata"?: V1ObjectMeta;
 	"spec": V1PersistentVolumeClaimSpec;
@@ -4720,7 +4812,7 @@ declare class V1GCEPersistentDiskVolumeSource {
 }
 declare class V1GitRepoVolumeSource {
 	/**
-	* directory is the target directory name. Must not contain or start with '..'.  If '.' is supplied, the volume directory will be the git repository.  Otherwise, if specified, the volume will contain the git repository in the subdirectory with the given name.
+	* directory is the target directory name. Must not contain or start with \'..\'.  If \'.\' is supplied, the volume directory will be the git repository.  Otherwise, if specified, the volume will contain the git repository in the subdirectory with the given name.
 	*/
 	"directory"?: string;
 	/**
@@ -4798,7 +4890,16 @@ declare class V1HostPathVolumeSource {
 	}[];
 	constructor();
 }
-export type V1HostPathVolumeSourceTypeEnum = "" | "BlockDevice" | "CharDevice" | "Directory" | "DirectoryOrCreate" | "File" | "FileOrCreate" | "Socket";
+declare enum V1HostPathVolumeSourceTypeEnum {
+	Empty = "",
+	BlockDevice = "BlockDevice",
+	CharDevice = "CharDevice",
+	Directory = "Directory",
+	DirectoryOrCreate = "DirectoryOrCreate",
+	File = "File",
+	FileOrCreate = "FileOrCreate",
+	Socket = "Socket"
+}
 declare class V1ISCSIVolumeSource {
 	/**
 	* chapAuthDiscovery defines whether support iSCSI Discovery CHAP authentication
@@ -4821,7 +4922,7 @@ declare class V1ISCSIVolumeSource {
 	*/
 	"iqn": string;
 	/**
-	* iscsiInterface is the interface Name that uses an iSCSI transport. Defaults to 'default' (tcp).
+	* iscsiInterface is the interface Name that uses an iSCSI transport. Defaults to \'default\' (tcp).
 	*/
 	"iscsiInterface"?: string;
 	/**
@@ -4962,7 +5063,7 @@ declare class V1PortworxVolumeSource {
 }
 declare class V1ConfigMapProjection {
 	/**
-	* items if unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.
+	* items if unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the \'..\' path or start with \'..\'.
 	*/
 	"items"?: Array<V1KeyToPath>;
 	/**
@@ -5010,7 +5111,7 @@ declare class V1DownwardAPIProjection {
 }
 declare class V1SecretProjection {
 	/**
-	* items if unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.
+	* items if unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the \'..\' path or start with \'..\'.
 	*/
 	"items"?: Array<V1KeyToPath>;
 	/**
@@ -5252,7 +5353,7 @@ declare class V1SecretVolumeSource {
 	*/
 	"defaultMode"?: number;
 	/**
-	* items If unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.
+	* items If unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the \'..\' path or start with \'..\'.
 	*/
 	"items"?: Array<V1KeyToPath>;
 	/**
@@ -5260,7 +5361,7 @@ declare class V1SecretVolumeSource {
 	*/
 	"optional"?: boolean;
 	/**
-	* secretName is the name of the secret in the pod's namespace to use. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret
+	* secretName is the name of the secret in the pod\'s namespace to use. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret
 	*/
 	"secretName"?: string;
 	static readonly discriminator: string | undefined;
@@ -5293,7 +5394,7 @@ declare class V1StorageOSVolumeSource {
 	*/
 	"volumeName"?: string;
 	/**
-	* volumeNamespace specifies the scope of the volume within StorageOS.  If no namespace is specified then the Pod's namespace will be used.  This allows the Kubernetes name scoping to be mirrored within StorageOS for tighter integration. Set VolumeName to any name to override the default behaviour. Set to \"default\" if you are not using namespaces within StorageOS. Namespaces that do not pre-exist within StorageOS will be created.
+	* volumeNamespace specifies the scope of the volume within StorageOS.  If no namespace is specified then the Pod\'s namespace will be used.  This allows the Kubernetes name scoping to be mirrored within StorageOS for tighter integration. Set VolumeName to any name to override the default behaviour. Set to \"default\" if you are not using namespaces within StorageOS. Namespaces that do not pre-exist within StorageOS will be created.
 	*/
 	"volumeNamespace"?: string;
 	static readonly discriminator: string | undefined;
@@ -5408,39 +5509,39 @@ declare class V1PodSpec {
 	"containers": Array<V1Container>;
 	"dnsConfig"?: V1PodDNSConfig;
 	/**
-	* Set DNS policy for the pod. Defaults to \"ClusterFirst\". Valid values are 'ClusterFirstWithHostNet', 'ClusterFirst', 'Default' or 'None'. DNS parameters given in DNSConfig will be merged with the policy selected with DNSPolicy. To have DNS options set along with hostNetwork, you have to specify DNS policy explicitly to 'ClusterFirstWithHostNet'.  Possible enum values:  - `\"ClusterFirst\"` indicates that the pod should use cluster DNS first unless hostNetwork is true, if it is available, then fall back on the default (as determined by kubelet) DNS settings.  - `\"ClusterFirstWithHostNet\"` indicates that the pod should use cluster DNS first, if it is available, then fall back on the default (as determined by kubelet) DNS settings.  - `\"Default\"` indicates that the pod should use the default (as determined by kubelet) DNS settings.  - `\"None\"` indicates that the pod should use empty DNS settings. DNS parameters such as nameservers and search paths should be defined via DNSConfig.
+	* Set DNS policy for the pod. Defaults to \"ClusterFirst\". Valid values are \'ClusterFirstWithHostNet\', \'ClusterFirst\', \'Default\' or \'None\'. DNS parameters given in DNSConfig will be merged with the policy selected with DNSPolicy. To have DNS options set along with hostNetwork, you have to specify DNS policy explicitly to \'ClusterFirstWithHostNet\'.  Possible enum values:  - `\"ClusterFirst\"` indicates that the pod should use cluster DNS first unless hostNetwork is true, if it is available, then fall back on the default (as determined by kubelet) DNS settings.  - `\"ClusterFirstWithHostNet\"` indicates that the pod should use cluster DNS first, if it is available, then fall back on the default (as determined by kubelet) DNS settings.  - `\"Default\"` indicates that the pod should use the default (as determined by kubelet) DNS settings.  - `\"None\"` indicates that the pod should use empty DNS settings. DNS parameters such as nameservers and search paths should be defined via DNSConfig.
 	*/
 	"dnsPolicy"?: V1PodSpecDnsPolicyEnum;
 	/**
-	* EnableServiceLinks indicates whether information about services should be injected into pod's environment variables, matching the syntax of Docker links. Optional: Defaults to true.
+	* EnableServiceLinks indicates whether information about services should be injected into pod\'s environment variables, matching the syntax of Docker links. Optional: Defaults to true.
 	*/
 	"enableServiceLinks"?: boolean;
 	/**
-	* List of ephemeral containers run in this pod. Ephemeral containers may be run in an existing pod to perform user-initiated actions such as debugging. This list cannot be specified when creating a pod, and it cannot be modified by updating the pod spec. In order to add an ephemeral container to an existing pod, use the pod's ephemeralcontainers subresource.
+	* List of ephemeral containers run in this pod. Ephemeral containers may be run in an existing pod to perform user-initiated actions such as debugging. This list cannot be specified when creating a pod, and it cannot be modified by updating the pod spec. In order to add an ephemeral container to an existing pod, use the pod\'s ephemeralcontainers subresource.
 	*/
 	"ephemeralContainers"?: Array<V1EphemeralContainer>;
 	/**
-	* HostAliases is an optional list of hosts and IPs that will be injected into the pod's hosts file if specified. This is only valid for non-hostNetwork pods.
+	* HostAliases is an optional list of hosts and IPs that will be injected into the pod\'s hosts file if specified. This is only valid for non-hostNetwork pods.
 	*/
 	"hostAliases"?: Array<V1HostAlias>;
 	/**
-	* Use the host's ipc namespace. Optional: Default to false.
+	* Use the host\'s ipc namespace. Optional: Default to false.
 	*/
 	"hostIPC"?: boolean;
 	/**
-	* Host networking requested for this pod. Use the host's network namespace. If this option is set, the ports that will be used must be specified. Default to false.
+	* Host networking requested for this pod. Use the host\'s network namespace. If this option is set, the ports that will be used must be specified. Default to false.
 	*/
 	"hostNetwork"?: boolean;
 	/**
-	* Use the host's pid namespace. Optional: Default to false.
+	* Use the host\'s pid namespace. Optional: Default to false.
 	*/
 	"hostPID"?: boolean;
 	/**
-	* Use the host's user namespace. Optional: Default to true. If set to true or not present, the pod will be run in the host user namespace, useful for when the pod needs a feature only available to the host user namespace, such as loading a kernel module with CAP_SYS_MODULE. When set to false, a new userns is created for the pod. Setting false is useful for mitigating container breakout vulnerabilities even allowing users to run their containers as root without actually having root privileges on the host. This field is alpha-level and is only honored by servers that enable the UserNamespacesSupport feature.
+	* Use the host\'s user namespace. Optional: Default to true. If set to true or not present, the pod will be run in the host user namespace, useful for when the pod needs a feature only available to the host user namespace, such as loading a kernel module with CAP_SYS_MODULE. When set to false, a new userns is created for the pod. Setting false is useful for mitigating container breakout vulnerabilities even allowing users to run their containers as root without actually having root privileges on the host. This field is alpha-level and is only honored by servers that enable the UserNamespacesSupport feature.
 	*/
 	"hostUsers"?: boolean;
 	/**
-	* Specifies the hostname of the Pod If not specified, the pod's hostname will be set to a system-defined value.
+	* Specifies the hostname of the Pod If not specified, the pod\'s hostname will be set to a system-defined value.
 	*/
 	"hostname"?: string;
 	/**
@@ -5456,7 +5557,7 @@ declare class V1PodSpec {
 	*/
 	"nodeName"?: string;
 	/**
-	* NodeSelector is a selector which must be true for the pod to fit on a node. Selector which must match a node's labels for the pod to be scheduled on that node. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/
+	* NodeSelector is a selector which must be true for the pod to fit on a node. Selector which must match a node\'s labels for the pod to be scheduled on that node. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/
 	*/
 	"nodeSelector"?: {
 		[key: string]: string;
@@ -5477,7 +5578,7 @@ declare class V1PodSpec {
 	*/
 	"priority"?: number;
 	/**
-	* If specified, indicates the pod's priority. \"system-node-critical\" and \"system-cluster-critical\" are two special keywords which indicate the highest priorities with the former being the highest priority. Any other name must be defined by creating a PriorityClass object with that name. If not specified, the pod priority will be default or zero if there is no default.
+	* If specified, indicates the pod\'s priority. \"system-node-critical\" and \"system-cluster-critical\" are two special keywords which indicate the highest priorities with the former being the highest priority. Any other name must be defined by creating a PriorityClass object with that name. If not specified, the pod priority will be default or zero if there is no default.
 	*/
 	"priorityClassName"?: string;
 	/**
@@ -5514,7 +5615,7 @@ declare class V1PodSpec {
 	*/
 	"serviceAccountName"?: string;
 	/**
-	* If true the pod's hostname will be configured as the pod's FQDN, rather than the leaf name (the default). In Linux containers, this means setting the FQDN in the hostname field of the kernel (the nodename field of struct utsname). In Windows containers, this means setting the registry value of hostname for the registry key HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters to FQDN. If a pod does not have FQDN, this has no effect. Default to false.
+	* If true the pod\'s hostname will be configured as the pod\'s FQDN, rather than the leaf name (the default). In Linux containers, this means setting the FQDN in the hostname field of the kernel (the nodename field of struct utsname). In Windows containers, this means setting the registry value of hostname for the registry key HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters to FQDN. If a pod does not have FQDN, this has no effect. Default to false.
 	*/
 	"setHostnameAsFQDN"?: boolean;
 	/**
@@ -5530,7 +5631,7 @@ declare class V1PodSpec {
 	*/
 	"terminationGracePeriodSeconds"?: number;
 	/**
-	* If specified, the pod's tolerations.
+	* If specified, the pod\'s tolerations.
 	*/
 	"tolerations"?: Array<V1Toleration>;
 	/**
@@ -5556,9 +5657,21 @@ declare class V1PodSpec {
 	}[];
 	constructor();
 }
-export type V1PodSpecDnsPolicyEnum = "ClusterFirst" | "ClusterFirstWithHostNet" | "Default" | "None";
-export type V1PodSpecPreemptionPolicyEnum = "Never" | "PreemptLowerPriority";
-export type V1PodSpecRestartPolicyEnum = "Always" | "Never" | "OnFailure";
+declare enum V1PodSpecDnsPolicyEnum {
+	ClusterFirst = "ClusterFirst",
+	ClusterFirstWithHostNet = "ClusterFirstWithHostNet",
+	Default = "Default",
+	None = "None"
+}
+declare enum V1PodSpecPreemptionPolicyEnum {
+	Never = "Never",
+	PreemptLowerPriority = "PreemptLowerPriority"
+}
+declare enum V1PodSpecRestartPolicyEnum {
+	Always = "Always",
+	Never = "Never",
+	OnFailure = "OnFailure"
+}
 declare class V1ContainerStateRunning {
 	/**
 	* Time at which the container was last (re-)started
@@ -5581,7 +5694,7 @@ declare class V1ContainerStateRunning {
 }
 declare class V1ContainerStateTerminated {
 	/**
-	* Container's ID in the format '<type>://<container_id>'
+	* Container\'s ID in the format \'<type>://<container_id>\'
 	*/
 	"containerID"?: string;
 	/**
@@ -5674,7 +5787,7 @@ declare class V1ContainerStatus {
 		[key: string]: string;
 	};
 	/**
-	* ContainerID is the ID of the container in the format '<type>://<container_id>'. Where type is a container runtime identifier, returned from Version call of CRI API (for example \"containerd\").
+	* ContainerID is the ID of the container in the format \'<type>://<container_id>\'. Where type is a container runtime identifier, returned from Version call of CRI API (for example \"containerd\").
 	*/
 	"containerID"?: string;
 	/**
@@ -5682,7 +5795,7 @@ declare class V1ContainerStatus {
 	*/
 	"image": string;
 	/**
-	* ImageID is the image ID of the container's image. The image ID may not match the image ID of the image used in the PodSpec, as it may have been resolved by the runtime.
+	* ImageID is the image ID of the container\'s image. The image ID may not match the image ID of the image used in the PodSpec, as it may have been resolved by the runtime.
 	*/
 	"imageID": string;
 	"lastState"?: V1ContainerState;
@@ -5719,6 +5832,26 @@ declare class V1ContainerStatus {
 	}[];
 	constructor();
 }
+declare class V1HostIP {
+	/**
+	* IP is the IP address assigned to the host
+	*/
+	"ip"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
 declare class V1PodCondition {
 	/**
 	* Last time we probed the condition.
@@ -5733,7 +5866,7 @@ declare class V1PodCondition {
 	*/
 	"message"?: string;
 	/**
-	* Unique, one-word, CamelCase reason for the condition's last transition.
+	* Unique, one-word, CamelCase reason for the condition\'s last transition.
 	*/
 	"reason"?: string;
 	/**
@@ -5761,9 +5894,33 @@ declare class V1PodCondition {
 }
 declare class V1PodIP {
 	/**
-	* ip is an IP address (IPv4 or IPv6) assigned to the pod
+	* IP is the IP address assigned to the pod
 	*/
 	"ip"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class V1PodResourceClaimStatus {
+	/**
+	* Name uniquely identifies this resource claim inside the pod. This must match the name of an entry in pod.spec.resourceClaims, which implies that the string must be a DNS_LABEL.
+	*/
+	"name": string;
+	/**
+	* ResourceClaimName is the name of the ResourceClaim that was generated for the Pod in the namespace of the Pod. It this is unset, then generating a ResourceClaim was not necessary. The pod.spec.resourceClaims entry can be ignored in this case.
+	*/
+	"resourceClaimName"?: string;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -5793,9 +5950,13 @@ declare class V1PodStatus {
 	*/
 	"ephemeralContainerStatuses"?: Array<V1ContainerStatus>;
 	/**
-	* IP address of the host to which the pod is assigned. Empty if not yet scheduled.
+	* hostIP holds the IP address of the host to which the pod is assigned. Empty if the pod has not started yet. A pod can be assigned to a node that has a problem in kubelet which in turns mean that HostIP will not be updated even if there is a node is assigned to pod
 	*/
 	"hostIP"?: string;
+	/**
+	* hostIPs holds the IP addresses allocated to the host. If this field is specified, the first entry must match the hostIP field. This list is empty if the pod has not started yet. A pod can be assigned to a node that has a problem in kubelet which in turns means that HostIPs will not be updated even if there is a node is assigned to this pod.
+	*/
+	"hostIPs"?: Array<V1HostIP>;
 	/**
 	* The list has one entry per init container in the manifest. The most recent successful init container will have ready = true, the most recently started container will have startTime set. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#pod-and-container-status
 	*/
@@ -5809,11 +5970,11 @@ declare class V1PodStatus {
 	*/
 	"nominatedNodeName"?: string;
 	/**
-	* The phase of a Pod is a simple, high-level summary of where the Pod is in its lifecycle. The conditions array, the reason and message fields, and the individual container status arrays contain more detail about the pod's status. There are five possible phase values:  Pending: The pod has been accepted by the Kubernetes system, but one or more of the container images has not been created. This includes time before being scheduled as well as time spent downloading images over the network, which could take a while. Running: The pod has been bound to a node, and all of the containers have been created. At least one container is still running, or is in the process of starting or restarting. Succeeded: All containers in the pod have terminated in success, and will not be restarted. Failed: All containers in the pod have terminated, and at least one container has terminated in failure. The container either exited with non-zero status or was terminated by the system. Unknown: For some reason the state of the pod could not be obtained, typically due to an error in communicating with the host of the pod.  More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#pod-phase  Possible enum values:  - `\"Failed\"` means that all containers in the pod have terminated, and at least one container has terminated in a failure (exited with a non-zero exit code or was stopped by the system).  - `\"Pending\"` means the pod has been accepted by the system, but one or more of the containers has not been started. This includes time before being bound to a node, as well as time spent pulling images onto the host.  - `\"Running\"` means the pod has been bound to a node and all of the containers have been started. At least one container is still running or is in the process of being restarted.  - `\"Succeeded\"` means that all containers in the pod have voluntarily terminated with a container exit code of 0, and the system is not going to restart any of these containers.  - `\"Unknown\"` means that for some reason the state of the pod could not be obtained, typically due to an error in communicating with the host of the pod. Deprecated: It isn't being set since 2015 (74da3b14b0c0f658b3bb8d2def5094686d0e9095)
+	* The phase of a Pod is a simple, high-level summary of where the Pod is in its lifecycle. The conditions array, the reason and message fields, and the individual container status arrays contain more detail about the pod\'s status. There are five possible phase values:  Pending: The pod has been accepted by the Kubernetes system, but one or more of the container images has not been created. This includes time before being scheduled as well as time spent downloading images over the network, which could take a while. Running: The pod has been bound to a node, and all of the containers have been created. At least one container is still running, or is in the process of starting or restarting. Succeeded: All containers in the pod have terminated in success, and will not be restarted. Failed: All containers in the pod have terminated, and at least one container has terminated in failure. The container either exited with non-zero status or was terminated by the system. Unknown: For some reason the state of the pod could not be obtained, typically due to an error in communicating with the host of the pod.  More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#pod-phase  Possible enum values:  - `\"Failed\"` means that all containers in the pod have terminated, and at least one container has terminated in a failure (exited with a non-zero exit code or was stopped by the system).  - `\"Pending\"` means the pod has been accepted by the system, but one or more of the containers has not been started. This includes time before being bound to a node, as well as time spent pulling images onto the host.  - `\"Running\"` means the pod has been bound to a node and all of the containers have been started. At least one container is still running or is in the process of being restarted.  - `\"Succeeded\"` means that all containers in the pod have voluntarily terminated with a container exit code of 0, and the system is not going to restart any of these containers.  - `\"Unknown\"` means that for some reason the state of the pod could not be obtained, typically due to an error in communicating with the host of the pod. Deprecated: It isn\'t being set since 2015 (74da3b14b0c0f658b3bb8d2def5094686d0e9095)
 	*/
 	"phase"?: V1PodStatusPhaseEnum;
 	/**
-	* IP address allocated to the pod. Routable at least within the cluster. Empty if not yet allocated.
+	* podIP address allocated to the pod. Routable at least within the cluster. Empty if not yet allocated.
 	*/
 	"podIP"?: string;
 	/**
@@ -5825,13 +5986,17 @@ declare class V1PodStatus {
 	*/
 	"qosClass"?: V1PodStatusQosClassEnum;
 	/**
-	* A brief CamelCase message indicating details about why the pod is in this state. e.g. 'Evicted'
+	* A brief CamelCase message indicating details about why the pod is in this state. e.g. \'Evicted\'
 	*/
 	"reason"?: string;
 	/**
-	* Status of resources resize desired for pod's containers. It is empty if no resources resize is pending. Any changes to container resources will automatically set this to \"Proposed\"
+	* Status of resources resize desired for pod\'s containers. It is empty if no resources resize is pending. Any changes to container resources will automatically set this to \"Proposed\"
 	*/
 	"resize"?: string;
+	/**
+	* Status of resource claims.
+	*/
+	"resourceClaimStatuses"?: Array<V1PodResourceClaimStatus>;
 	/**
 	* RFC 3339 date and time at which the object was acknowledged by the Kubelet. This is before the Kubelet pulled the container image(s) for the pod.
 	*/
@@ -5851,8 +6016,18 @@ declare class V1PodStatus {
 	}[];
 	constructor();
 }
-export type V1PodStatusPhaseEnum = "Failed" | "Pending" | "Running" | "Succeeded" | "Unknown";
-export type V1PodStatusQosClassEnum = "BestEffort" | "Burstable" | "Guaranteed";
+declare enum V1PodStatusPhaseEnum {
+	Failed = "Failed",
+	Pending = "Pending",
+	Running = "Running",
+	Succeeded = "Succeeded",
+	Unknown = "Unknown"
+}
+declare enum V1PodStatusQosClassEnum {
+	BestEffort = "BestEffort",
+	Burstable = "Burstable",
+	Guaranteed = "Guaranteed"
+}
 declare class V1Pod {
 	/**
 	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
@@ -5963,11 +6138,11 @@ declare class ClusterV1VirtualCluster {
 }
 declare class PolicyV1beta1JsPolicySpec {
 	/**
-	* APIGroups is the API groups the resources belong to. '*' is all groups. If '*' is present, the length of the slice must be one.
+	* APIGroups is the API groups the resources belong to. \'*\' is all groups. If \'*\' is present, the length of the slice must be one.
 	*/
 	"apiGroups"?: Array<string>;
 	/**
-	* APIVersions is the API versions the resources belong to. '*' is all versions. If '*' is present, the length of the slice must be one.
+	* APIVersions is the API versions the resources belong to. \'*\' is all versions. If \'*\' is present, the length of the slice must be one.
 	*/
 	"apiVersions"?: Array<string>;
 	/**
@@ -5999,11 +6174,11 @@ declare class PolicyV1beta1JsPolicySpec {
 	"namespaceSelector"?: V1LabelSelector;
 	"objectSelector"?: V1LabelSelector;
 	/**
-	* Operations is the operations the admission hook cares about - CREATE, UPDATE, DELETE, CONNECT or * for all of those operations and any future admission operations that are added. If '*' is present, the length of the slice must be one. Required.
+	* Operations is the operations the admission hook cares about - CREATE, UPDATE, DELETE, CONNECT or * for all of those operations and any future admission operations that are added. If \'*\' is present, the length of the slice must be one. Required.
 	*/
 	"operations"?: Array<string>;
 	/**
-	* Resources is a list of resources this rule applies to.  For example: 'pods' means pods. 'pods/log' means the log subresource of pods. '*' means all resources, but not subresources. 'pods/_*' means all subresources of pods. '*_/scale' means all scale subresources. '*_/_*' means all resources and their subresources.  If wildcard is present, the validation rule will ensure resources do not overlap with each other.  Depending on the enclosing object, subresources might not be allowed. Required.
+	* Resources is a list of resources this rule applies to.  For example: \'pods\' means pods. \'pods/log\' means the log subresource of pods. \'*\' means all resources, but not subresources. \'pods/_*\' means all subresources of pods. \'*_/scale\' means all scale subresources. \'*_/_*\' means all resources and their subresources.  If wildcard is present, the validation rule will ensure resources do not overlap with each other.  Depending on the enclosing object, subresources might not be allowed. Required.
 	*/
 	"resources"?: Array<string>;
 	/**
@@ -6037,8 +6212,14 @@ declare class PolicyV1beta1JsPolicySpec {
 	}[];
 	constructor();
 }
-export type PolicyV1beta1JsPolicySpecFailurePolicyEnum = "Fail" | "Ignore";
-export type PolicyV1beta1JsPolicySpecMatchPolicyEnum = "Equivalent" | "Exact";
+declare enum PolicyV1beta1JsPolicySpecFailurePolicyEnum {
+	Fail = "Fail",
+	Ignore = "Ignore"
+}
+declare enum PolicyV1beta1JsPolicySpecMatchPolicyEnum {
+	Equivalent = "Equivalent",
+	Exact = "Exact"
+}
 declare class PolicyV1beta1JsPolicyStatus {
 	/**
 	* BundleHash is used to determine if we have to re-bundle the javascript
@@ -6360,11 +6541,11 @@ declare class AuditV1ObjectReference {
 }
 declare class RuntimeUnknown {
 	/**
-	* ContentEncoding is encoding used to encode 'Raw' data. Unspecified means no encoding.
+	* ContentEncoding is encoding used to encode \'Raw\' data. Unspecified means no encoding.
 	*/
 	"ContentEncoding": string;
 	/**
-	* ContentType  is serialization method used to serialize 'Raw'. Unspecified means ContentTypeJSON.
+	* ContentType  is serialization method used to serialize \'Raw\'. Unspecified means ContentTypeJSON.
 	*/
 	"ContentType": string;
 	"apiVersion"?: string;
@@ -6394,7 +6575,7 @@ declare class V1ListMeta {
 	*/
 	"remainingItemCount"?: number;
 	/**
-	* String that identifies the server's internal version of this object that can be used by clients to determine when objects have changed. Value must be treated as opaque by clients and passed unmodified back to the server. Populated by the system. Read-only. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency
+	* String that identifies the server\'s internal version of this object that can be used by clients to determine when objects have changed. Value must be treated as opaque by clients and passed unmodified back to the server. Populated by the system. Read-only. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency
 	*/
 	"resourceVersion"?: string;
 	/**
@@ -7334,7 +7515,7 @@ declare class ManagementV1GroupResources {
 	*/
 	"resourceNames"?: Array<string>;
 	/**
-	* Resources is a list of resources this rule applies to.  For example: 'pods' matches pods. 'pods/log' matches the log subresource of pods. '*' matches all resources and their subresources. 'pods/_*' matches all subresources of pods. '*_/scale' matches all scale subresources.  If wildcard is present, the validation rule will ensure resources do not overlap with each other.  An empty list implies all resources and subresources in this API groups apply.
+	* Resources is a list of resources this rule applies to.  For example: \'pods\' matches pods. \'pods/log\' matches the log subresource of pods. \'*\' matches all resources and their subresources. \'pods/_*\' matches all subresources of pods. \'*_/scale\' matches all scale subresources.  If wildcard is present, the validation rule will ensure resources do not overlap with each other.  An empty list implies all resources and subresources in this API groups apply.
 	*/
 	"resources"?: Array<string>;
 	static readonly discriminator: string | undefined;
@@ -7501,7 +7682,7 @@ declare class ManagementV1ClusterAgentConfig {
 	*/
 	"kind"?: string;
 	/**
-	* LoftHost defines the host for the agent's loft instance
+	* LoftHost defines the host for the agent\'s loft instance
 	*/
 	"loftHost"?: string;
 	"metadata"?: V1ObjectMeta;
@@ -7932,7 +8113,7 @@ declare class ManagementV1ClusterReset {
 }
 declare class V1AggregationRule {
 	/**
-	* ClusterRoleSelectors holds a list of selectors which will be used to find ClusterRoles and create the rules. If any of the selectors match, then the ClusterRole's permissions will be added
+	* ClusterRoleSelectors holds a list of selectors which will be used to find ClusterRoles and create the rules. If any of the selectors match, then the ClusterRole\'s permissions will be added
 	*/
 	"clusterRoleSelectors"?: Array<V1LabelSelector>;
 	static readonly discriminator: string | undefined;
@@ -7964,11 +8145,11 @@ declare class V1PolicyRule {
 	*/
 	"resourceNames"?: Array<string>;
 	/**
-	* Resources is a list of resources this rule applies to. '*' represents all resources.
+	* Resources is a list of resources this rule applies to. \'*\' represents all resources.
 	*/
 	"resources"?: Array<string>;
 	/**
-	* Verbs is a list of Verbs that apply to ALL the ResourceKinds contained in this rule. '*' represents all verbs.
+	* Verbs is a list of Verbs that apply to ALL the ResourceKinds contained in this rule. \'*\' represents all verbs.
 	*/
 	"verbs": Array<string>;
 	static readonly discriminator: string | undefined;
@@ -8714,7 +8895,7 @@ declare class ManagementV1AuthenticationGitlab {
 	*/
 	"groupClusterAccountTemplates"?: Array<ManagementV1AuthenticationGroupClusterAccountTemplate>;
 	/**
-	* Optional groups whitelist, communicated through the \"groups\" scope. If `groups` is omitted, all of the user's GitLab groups are returned. If `groups` is provided, this acts as a whitelist - only the user's GitLab groups that are in the configured `groups` below will go into the groups claim. Conversely, if the user is not in any of the configured `groups`, the user will not be authenticated.
+	* Optional groups whitelist, communicated through the \"groups\" scope. If `groups` is omitted, all of the user\'s GitLab groups are returned. If `groups` is provided, this acts as a whitelist - only the user\'s GitLab groups that are in the configured `groups` below will go into the groups claim. Conversely, if the user is not in any of the configured `groups`, the user will not be authenticated.
 	*/
 	"groups"?: Array<string>;
 	/**
@@ -8862,11 +9043,11 @@ declare class ManagementV1AuthenticationOIDC {
 	*/
 	"clusterAccountTemplates"?: Array<StorageV1UserClusterAccountTemplate>;
 	/**
-	* EmailClaim is the JWT field to use as the user's email.
+	* EmailClaim is the JWT field to use as the user\'s email.
 	*/
 	"emailClaim"?: string;
 	/**
-	* GetUserInfo, if specified, tells the OIDCAuthenticator to try to populate the user's information from the UserInfo.
+	* GetUserInfo, if specified, tells the OIDCAuthenticator to try to populate the user\'s information from the UserInfo.
 	*/
 	"getUserInfo"?: boolean;
 	/**
@@ -8878,7 +9059,7 @@ declare class ManagementV1AuthenticationOIDC {
 	*/
 	"groups"?: Array<string>;
 	/**
-	* GroupsClaim, if specified, causes the OIDCAuthenticator to try to populate the user's groups with an ID Token field. If the GroupsClaim field is present in an ID Token the value must be a string or list of strings.
+	* GroupsClaim, if specified, causes the OIDCAuthenticator to try to populate the user\'s groups with an ID Token field. If the GroupsClaim field is present in an ID Token the value must be a string or list of strings.
 	*/
 	"groupsClaim"?: string;
 	/**
@@ -8890,11 +9071,11 @@ declare class ManagementV1AuthenticationOIDC {
 	*/
 	"insecureCa"?: boolean;
 	/**
-	* IssuerURL is the URL the provider signs ID Tokens as. This will be the \"iss\" field of all tokens produced by the provider and is used for configuration discovery.  The URL is usually the provider's URL without a path, for example \"https://accounts.google.com\" or \"https://login.salesforce.com\".  The provider must implement configuration discovery. See: https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderConfig
+	* IssuerURL is the URL the provider signs ID Tokens as. This will be the \"iss\" field of all tokens produced by the provider and is used for configuration discovery.  The URL is usually the provider\'s URL without a path, for example \"https://accounts.google.com\" or \"https://login.salesforce.com\".  The provider must implement configuration discovery. See: https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderConfig
 	*/
 	"issuerUrl"?: string;
 	/**
-	* LoftUsernameClaim is the JWT field to use as the user's username.
+	* LoftUsernameClaim is the JWT field to use as the user\'s username.
 	*/
 	"loftUsernameClaim"?: string;
 	/**
@@ -8918,7 +9099,7 @@ declare class ManagementV1AuthenticationOIDC {
 	*/
 	"type"?: string;
 	/**
-	* UsernameClaim is the JWT field to use as the user's id.
+	* UsernameClaim is the JWT field to use as the user\'s id.
 	*/
 	"usernameClaim"?: string;
 	/**
@@ -9026,7 +9207,7 @@ declare class ManagementV1AuthenticationSAML {
 	*/
 	"insecureSkipSignatureValidation"?: boolean;
 	/**
-	* Requested format of the NameID. The NameID value is is mapped to the ID Token 'sub' claim.  This can be an abbreviated form of the full URI with just the last component. For example, if this value is set to \"emailAddress\" the format will resolve to:    urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress  If no value is specified, this value defaults to:    urn:oasis:names:tc:SAML:2.0:nameid-format:persistent
+	* Requested format of the NameID. The NameID value is is mapped to the ID Token \'sub\' claim.  This can be an abbreviated form of the full URI with just the last component. For example, if this value is set to \"emailAddress\" the format will resolve to:    urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress  If no value is specified, this value defaults to:    urn:oasis:names:tc:SAML:2.0:nameid-format:persistent
 	*/
 	"nameIDPolicyFormat"?: string;
 	/**
@@ -9178,7 +9359,7 @@ declare class ManagementV1OIDC {
 	*/
 	"enabled"?: boolean;
 	/**
-	* If true indicates that loft will allow wildcard '*' in client redirectURIs
+	* If true indicates that loft will allow wildcard \'*\' in client redirectURIs
 	*/
 	"wildcardRedirect"?: boolean;
 	static readonly discriminator: string | undefined;
@@ -9476,11 +9657,11 @@ declare class StorageV1TemplateRef {
 	*/
 	"name"?: string;
 	/**
-	* SyncOnce tells the controller to sync the instance once with the template. This is useful if you want to sync an instance after a template was changed. To automatically sync an instance with a template, use 'x.x.x' as version instead.
+	* SyncOnce tells the controller to sync the instance once with the template. This is useful if you want to sync an instance after a template was changed. To automatically sync an instance with a template, use \'x.x.x\' as version instead.
 	*/
 	"syncOnce"?: boolean;
 	/**
-	* Version holds the template version to use. Version is expected to be in semantic versioning format. Alternatively, you can also exchange major, minor or patch with an 'x' to tell Loft to automatically select the latest major, minor or patch version.
+	* Version holds the template version to use. Version is expected to be in semantic versioning format. Alternatively, you can also exchange major, minor or patch with an \'x\' to tell Loft to automatically select the latest major, minor or patch version.
 	*/
 	"version"?: string;
 	static readonly discriminator: string | undefined;
@@ -9795,7 +9976,7 @@ declare class StorageV1GroupResources {
 	*/
 	"resourceNames"?: Array<string>;
 	/**
-	* Resources is a list of resources this rule applies to.  For example: 'pods' matches pods. 'pods/log' matches the log subresource of pods. '*' matches all resources and their subresources. 'pods/_*' matches all subresources of pods. '*_/scale' matches all scale subresources.  If wildcard is present, the validation rule will ensure resources do not overlap with each other.  An empty list implies all resources and subresources in this API groups apply.
+	* Resources is a list of resources this rule applies to.  For example: \'pods\' matches pods. \'pods/log\' matches the log subresource of pods. \'*\' matches all resources and their subresources. \'pods/_*\' matches all subresources of pods. \'*_/scale\' matches all scale subresources.  If wildcard is present, the validation rule will ensure resources do not overlap with each other.  An empty list implies all resources and subresources in this API groups apply.
 	*/
 	"resources"?: Array<string>;
 	static readonly discriminator: string | undefined;
@@ -10124,7 +10305,7 @@ declare class ManagementV1FeatureStatus {
 	*/
 	"labels"?: Array<string>;
 	/**
-	* Name is the name of the feature (FeatureName) This cannot be FeatureName because it needs to be downward compatible e.g. older Loft version doesn't know a newer feature but it will still be received and still needs to be rendered in the license view
+	* Name is the name of the feature (FeatureName) This cannot be FeatureName because it needs to be downward compatible e.g. older Loft version doesn\'t know a newer feature but it will still be received and still needs to be rendered in the license view
 	*/
 	"name": string;
 	/**
@@ -10513,7 +10694,7 @@ declare class LicenseApiFeature {
 	*/
 	"labels"?: Array<string>;
 	/**
-	* Name is the name of the feature (FeatureName) This cannot be FeatureName because it needs to be downward compatible e.g. older Loft version doesn't know a newer feature but it will still be received and still needs to be rendered in the license view
+	* Name is the name of the feature (FeatureName) This cannot be FeatureName because it needs to be downward compatible e.g. older Loft version doesn\'t know a newer feature but it will still be received and still needs to be rendered in the license view
 	*/
 	"name": string;
 	/**
@@ -12331,7 +12512,7 @@ declare class ManagementV1ProjectSecretSpec {
 	*/
 	"access"?: Array<StorageV1Access>;
 	/**
-	* Data contains the secret data. Each key must consist of alphanumeric characters, '-', '_' or '.'. The serialized form of the secret data is a base64 encoded string, representing the arbitrary (possibly non-string) data value here. Described in https://tools.ietf.org/html/rfc4648#section-4
+	* Data contains the secret data. Each key must consist of alphanumeric characters, \'-\', \'_\' or \'.\'. The serialized form of the secret data is a base64 encoded string, representing the arbitrary (possibly non-string) data value here. Described in https://tools.ietf.org/html/rfc4648#section-4
 	*/
 	"data"?: {
 		[key: string]: string;
@@ -12893,7 +13074,7 @@ declare class StorageV1ArgoSSOSpec {
 	*/
 	"assignedRoles"?: Array<string>;
 	/**
-	* Enabled indicates if the ArgoCD SSO Integration is enabled for this project. Enabling this will cause Loft to configure SSO authentication via Loft in ArgoCD. If Projects are *not* enabled, all users associated with this Project will be assigned either the 'read-only' (default) role, *or* the roles set under the AssignedRoles field.
+	* Enabled indicates if the ArgoCD SSO Integration is enabled for this project. Enabling this will cause Loft to configure SSO authentication via Loft in ArgoCD. If Projects are *not* enabled, all users associated with this Project will be assigned either the \'read-only\' (default) role, *or* the roles set under the AssignedRoles field.
 	*/
 	"enabled"?: boolean;
 	/**
@@ -12917,7 +13098,7 @@ declare class StorageV1ArgoSSOSpec {
 }
 declare class StorageV1ArgoIntegrationSpec {
 	/**
-	* Cluster defines the name of the cluster that ArgoCD is deployed into -- if not provided this will default to 'loft-cluster'.
+	* Cluster defines the name of the cluster that ArgoCD is deployed into -- if not provided this will default to \'loft-cluster\'.
 	*/
 	"cluster"?: string;
 	/**
@@ -13910,7 +14091,7 @@ declare class ManagementV1SharedSecretSpec {
 	*/
 	"access"?: Array<StorageV1Access>;
 	/**
-	* Data contains the secret data. Each key must consist of alphanumeric characters, '-', '_' or '.'. The serialized form of the secret data is a base64 encoded string, representing the arbitrary (possibly non-string) data value here. Described in https://tools.ietf.org/html/rfc4648#section-4
+	* Data contains the secret data. Each key must consist of alphanumeric characters, \'-\', \'_\' or \'.\'. The serialized form of the secret data is a base64 encoded string, representing the arbitrary (possibly non-string) data value here. Described in https://tools.ietf.org/html/rfc4648#section-4
 	*/
 	"data"?: {
 		[key: string]: string;
@@ -14283,7 +14464,7 @@ declare class ManagementV1SubjectAccessReviewSpec {
 		[key: string]: Array<string>;
 	};
 	/**
-	* Groups is the groups you're testing for.
+	* Groups is the groups you\'re testing for.
 	*/
 	"groups"?: Array<string>;
 	"nonResourceAttributes"?: V1NonResourceAttributes;
@@ -14293,7 +14474,7 @@ declare class ManagementV1SubjectAccessReviewSpec {
 	*/
 	"uid"?: string;
 	/**
-	* User is the user you're testing for. If you specify \"User\" but not \"Groups\", then is it interpreted as \"What if User were not a member of any groups
+	* User is the user you\'re testing for. If you specify \"User\" but not \"Groups\", then is it interpreted as \"What if User were not a member of any groups
 	*/
 	"user"?: string;
 	static readonly discriminator: string | undefined;
@@ -14691,7 +14872,7 @@ declare class ManagementV1TaskStatus {
 	"observedGeneration"?: number;
 	"owner"?: ClusterV1UserOrTeam;
 	/**
-	* PodPhase describes the phase this task is in  Possible enum values:  - `\"Failed\"` means that all containers in the pod have terminated, and at least one container has terminated in a failure (exited with a non-zero exit code or was stopped by the system).  - `\"Pending\"` means the pod has been accepted by the system, but one or more of the containers has not been started. This includes time before being bound to a node, as well as time spent pulling images onto the host.  - `\"Running\"` means the pod has been bound to a node and all of the containers have been started. At least one container is still running or is in the process of being restarted.  - `\"Succeeded\"` means that all containers in the pod have voluntarily terminated with a container exit code of 0, and the system is not going to restart any of these containers.  - `\"Unknown\"` means that for some reason the state of the pod could not be obtained, typically due to an error in communicating with the host of the pod. Deprecated: It isn't being set since 2015 (74da3b14b0c0f658b3bb8d2def5094686d0e9095)
+	* PodPhase describes the phase this task is in  Possible enum values:  - `\"Failed\"` means that all containers in the pod have terminated, and at least one container has terminated in a failure (exited with a non-zero exit code or was stopped by the system).  - `\"Pending\"` means the pod has been accepted by the system, but one or more of the containers has not been started. This includes time before being bound to a node, as well as time spent pulling images onto the host.  - `\"Running\"` means the pod has been bound to a node and all of the containers have been started. At least one container is still running or is in the process of being restarted.  - `\"Succeeded\"` means that all containers in the pod have voluntarily terminated with a container exit code of 0, and the system is not going to restart any of these containers.  - `\"Unknown\"` means that for some reason the state of the pod could not be obtained, typically due to an error in communicating with the host of the pod. Deprecated: It isn\'t being set since 2015 (74da3b14b0c0f658b3bb8d2def5094686d0e9095)
 	*/
 	"podPhase"?: ManagementV1TaskStatusPodPhaseEnum;
 	/**
@@ -14713,7 +14894,13 @@ declare class ManagementV1TaskStatus {
 	}[];
 	constructor();
 }
-export type ManagementV1TaskStatusPodPhaseEnum = "Failed" | "Pending" | "Running" | "Succeeded" | "Unknown";
+declare enum ManagementV1TaskStatusPodPhaseEnum {
+	Failed = "Failed",
+	Pending = "Pending",
+	Running = "Running",
+	Succeeded = "Succeeded",
+	Unknown = "Unknown"
+}
 declare class ManagementV1Task {
 	/**
 	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
@@ -14996,7 +15183,7 @@ declare class StorageV1AccountClusterTemplateStatus {
 	*/
 	"lastTransitionTime"?: Date;
 	/**
-	* Message describes why loft couldn't sync the account in human language
+	* Message describes why loft couldn\'t sync the account in human language
 	*/
 	"message"?: string;
 	/**
@@ -15012,7 +15199,7 @@ declare class StorageV1AccountClusterTemplateStatus {
 	*/
 	"phase"?: string;
 	/**
-	* Reason describes why loft couldn't sync the account with a machine readable identifier
+	* Reason describes why loft couldn\'t sync the account with a machine readable identifier
 	*/
 	"reason"?: string;
 	static readonly discriminator: string | undefined;
@@ -15044,7 +15231,7 @@ declare class StorageV1AccountClusterStatus {
 	*/
 	"cluster"?: string;
 	/**
-	* Message describes why loft couldn't sync the account in human language
+	* Message describes why loft couldn\'t sync the account in human language
 	*/
 	"message"?: string;
 	/**
@@ -15052,7 +15239,7 @@ declare class StorageV1AccountClusterStatus {
 	*/
 	"phase"?: string;
 	/**
-	* Reason describes why loft couldn't sync the account with a machine readable identifier
+	* Reason describes why loft couldn\'t sync the account with a machine readable identifier
 	*/
 	"reason"?: string;
 	static readonly discriminator: string | undefined;
@@ -15072,7 +15259,7 @@ declare class StorageV1AccountClusterStatus {
 }
 declare class StorageV1ClusterAccountTemplateClusterStatus {
 	/**
-	* Message describes why loft couldn't sync the account in human language
+	* Message describes why loft couldn\'t sync the account in human language
 	*/
 	"message"?: string;
 	/**
@@ -15084,7 +15271,7 @@ declare class StorageV1ClusterAccountTemplateClusterStatus {
 	*/
 	"phase"?: string;
 	/**
-	* Reason describes why loft couldn't sync the account with a machine readable identifier
+	* Reason describes why loft couldn\'t sync the account with a machine readable identifier
 	*/
 	"reason"?: string;
 	static readonly discriminator: string | undefined;
@@ -15108,7 +15295,7 @@ declare class StorageV1UserClusterAccountTemplateStatus {
 	*/
 	"clusters"?: Array<StorageV1ClusterAccountTemplateClusterStatus>;
 	/**
-	* Message describes why loft couldn't sync the account in human language
+	* Message describes why loft couldn\'t sync the account in human language
 	*/
 	"message"?: string;
 	/**
@@ -15120,7 +15307,7 @@ declare class StorageV1UserClusterAccountTemplateStatus {
 	*/
 	"phase"?: string;
 	/**
-	* Reason describes why loft couldn't sync the account with a machine readable identifier
+	* Reason describes why loft couldn\'t sync the account with a machine readable identifier
 	*/
 	"reason"?: string;
 	static readonly discriminator: string | undefined;
@@ -15592,7 +15779,7 @@ declare class ManagementV1VirtualClusterInstanceWorkloadKubeConfig {
 	*/
 	"kind"?: string;
 	/**
-	* KubeConfig holds the workload cluster's kubeconfig to access the virtual cluster
+	* KubeConfig holds the workload cluster\'s kubeconfig to access the virtual cluster
 	*/
 	"kubeConfig"?: string;
 	"metadata"?: V1ObjectMeta;

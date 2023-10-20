@@ -10,12 +10,12 @@
  * Do not edit the class manually.
  */
 
-import { ClusterV1SleepModeConfig } from './clusterV1SleepModeConfig';
-import { ClusterV1TemplateSyncStatus } from './clusterV1TemplateSyncStatus';
-import { StorageV1Condition } from './agentstorageV1Condition';
-import { StorageV1ObjectsStatus } from './agentstorageV1ObjectsStatus';
-import { StorageV1VirtualClusterHelmReleaseStatus } from './agentstorageV1VirtualClusterHelmReleaseStatus';
-import { V1Pod } from './V1Pod';
+import { ClusterV1SleepModeConfig } from '../models/clusterV1SleepModeConfig';
+import { ClusterV1TemplateSyncStatus } from '../models/clusterV1TemplateSyncStatus';
+import { StorageV1Condition } from '../models/agentstorageV1Condition';
+import { StorageV1ObjectsStatus } from '../models/agentstorageV1ObjectsStatus';
+import { StorageV1VirtualClusterHelmReleaseStatus } from '../models/agentstorageV1VirtualClusterHelmReleaseStatus';
+import { V1Pod } from '../models/V1Pod';
 
 
 export class ClusterV1VirtualClusterStatus {

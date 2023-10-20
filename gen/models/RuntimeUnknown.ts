@@ -17,11 +17,11 @@
 */
 export class RuntimeUnknown {
     /**
-    * ContentEncoding is encoding used to encode 'Raw' data. Unspecified means no encoding.
+    * ContentEncoding is encoding used to encode \'Raw\' data. Unspecified means no encoding.
     */
     'ContentEncoding': string;
     /**
-    * ContentType  is serialization method used to serialize 'Raw'. Unspecified means ContentTypeJSON.
+    * ContentType  is serialization method used to serialize \'Raw\'. Unspecified means ContentTypeJSON.
     */
     'ContentType': string;
     'apiVersion'?: string;

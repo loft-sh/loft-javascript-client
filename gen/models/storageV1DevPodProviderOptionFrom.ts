@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1SecretKeySelector } from './V1SecretKeySelector';
+import { V1SecretKeySelector } from '../models/V1SecretKeySelector';
 
 
 export class StorageV1DevPodProviderOptionFrom {

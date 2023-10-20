@@ -13,11 +13,11 @@
 
 
 /**
-* IP address information for entries in the (plural) PodIPs field. Each entry includes:   IP: An IP address allocated to the pod. Routable at least within the cluster.
+* PodIP represents a single IP address allocated to the pod.
 */
 export class V1PodIP {
     /**
-    * ip is an IP address (IPv4 or IPv6) assigned to the pod
+    * IP is the IP address assigned to the pod
     */
     'ip'?: string;
 

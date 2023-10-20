@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1AppReference } from './agentstorageV1AppReference';
-import { StorageV1UserOrTeam } from './storageV1UserOrTeam';
-import { V1ObjectMeta } from './V1ObjectMeta';
+import { StorageV1AppReference } from '../models/agentstorageV1AppReference';
+import { StorageV1UserOrTeam } from '../models/storageV1UserOrTeam';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
 export class StorageV1SpaceCreationTask {

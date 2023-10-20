@@ -10,11 +10,11 @@
  * Do not edit the class manually.
  */
 
-import { LicenseApiInvoice } from './licenseApiInvoice';
-import { LicenseApiLimit } from './licenseApiLimit';
-import { LicenseApiPlanPeriod } from './licenseApiPlanPeriod';
-import { LicenseApiPlanPrice } from './licenseApiPlanPrice';
-import { LicenseApiTrial } from './licenseApiTrial';
+import { LicenseApiInvoice } from '../models/licenseApiInvoice';
+import { LicenseApiLimit } from '../models/licenseApiLimit';
+import { LicenseApiPlanPeriod } from '../models/licenseApiPlanPeriod';
+import { LicenseApiPlanPrice } from '../models/licenseApiPlanPrice';
+import { LicenseApiTrial } from '../models/licenseApiTrial';
 
 
 /**

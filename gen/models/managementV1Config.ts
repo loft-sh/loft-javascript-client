@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1ConfigSpec } from './managementV1ConfigSpec';
-import { ManagementV1ConfigStatus } from './managementV1ConfigStatus';
-import { V1ObjectMeta } from './V1ObjectMeta';
+import { ManagementV1ConfigSpec } from '../models/managementV1ConfigSpec';
+import { ManagementV1ConfigStatus } from '../models/managementV1ConfigStatus';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
 /**

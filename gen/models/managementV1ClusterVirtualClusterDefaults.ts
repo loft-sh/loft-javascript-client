@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1VirtualClusterTemplate } from './storageV1VirtualClusterTemplate';
-import { V1ObjectMeta } from './V1ObjectMeta';
+import { StorageV1VirtualClusterTemplate } from '../models/storageV1VirtualClusterTemplate';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
 export class ManagementV1ClusterVirtualClusterDefaults {

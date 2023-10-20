@@ -10,10 +10,10 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1AppTask } from './storageV1AppTask';
-import { StorageV1HelmTask } from './storageV1HelmTask';
-import { StorageV1SpaceCreationTask } from './storageV1SpaceCreationTask';
-import { StorageV1VirtualClusterCreationTask } from './storageV1VirtualClusterCreationTask';
+import { StorageV1AppTask } from '../models/storageV1AppTask';
+import { StorageV1HelmTask } from '../models/storageV1HelmTask';
+import { StorageV1SpaceCreationTask } from '../models/storageV1SpaceCreationTask';
+import { StorageV1VirtualClusterCreationTask } from '../models/storageV1VirtualClusterCreationTask';
 
 
 export class StorageV1TaskDefinition {

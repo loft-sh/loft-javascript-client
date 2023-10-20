@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { LicenseApiPlanExpiration } from './licenseApiPlanExpiration';
-import { LicenseApiPriceTier } from './licenseApiPriceTier';
-import { LicenseApiTierResource } from './licenseApiTierResource';
+import { LicenseApiPlanExpiration } from '../models/licenseApiPlanExpiration';
+import { LicenseApiPriceTier } from '../models/licenseApiPriceTier';
+import { LicenseApiTierResource } from '../models/licenseApiTierResource';
 
 
 /**

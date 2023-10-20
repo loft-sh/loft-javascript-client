@@ -25,7 +25,7 @@ export class StorageV1Condition {
     */
     'message'?: string;
     /**
-    * The reason for the condition's last transition in CamelCase. The specific API may choose whether this field is considered a guaranteed API. This field may not be empty.
+    * The reason for the condition\'s last transition in CamelCase. The specific API may choose whether this field is considered a guaranteed API. This field may not be empty.
     */
     'reason'?: string;
     /**

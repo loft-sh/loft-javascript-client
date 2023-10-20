@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1Condition } from './agentstorageV1Condition';
-import { StorageV1ObjectsStatus } from './agentstorageV1ObjectsStatus';
-import { StorageV1VirtualClusterHelmReleaseStatus } from './agentstorageV1VirtualClusterHelmReleaseStatus';
+import { StorageV1Condition } from '../models/agentstorageV1Condition';
+import { StorageV1ObjectsStatus } from '../models/agentstorageV1ObjectsStatus';
+import { StorageV1VirtualClusterHelmReleaseStatus } from '../models/agentstorageV1VirtualClusterHelmReleaseStatus';
 
 
 /**

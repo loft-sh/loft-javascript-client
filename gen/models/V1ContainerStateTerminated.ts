@@ -17,7 +17,7 @@
 */
 export class V1ContainerStateTerminated {
     /**
-    * Container's ID in the format '<type>://<container_id>'
+    * Container\'s ID in the format \'<type>://<container_id>\'
     */
     'containerID'?: string;
     /**

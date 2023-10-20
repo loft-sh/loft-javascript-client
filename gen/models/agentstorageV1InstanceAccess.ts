@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1InstanceAccessRule } from './agentstorageV1InstanceAccessRule';
+import { StorageV1InstanceAccessRule } from '../models/agentstorageV1InstanceAccessRule';
 
 
 export class StorageV1InstanceAccess {

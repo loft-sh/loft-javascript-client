@@ -10,11 +10,11 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1Access } from './storageV1Access';
-import { StorageV1AppParameter } from './storageV1AppParameter';
-import { StorageV1DevPodWorkspaceTemplateDefinition } from './storageV1DevPodWorkspaceTemplateDefinition';
-import { StorageV1DevPodWorkspaceTemplateVersion } from './storageV1DevPodWorkspaceTemplateVersion';
-import { StorageV1UserOrTeam } from './storageV1UserOrTeam';
+import { StorageV1Access } from '../models/storageV1Access';
+import { StorageV1AppParameter } from '../models/storageV1AppParameter';
+import { StorageV1DevPodWorkspaceTemplateDefinition } from '../models/storageV1DevPodWorkspaceTemplateDefinition';
+import { StorageV1DevPodWorkspaceTemplateVersion } from '../models/storageV1DevPodWorkspaceTemplateVersion';
+import { StorageV1UserOrTeam } from '../models/storageV1UserOrTeam';
 
 
 /**

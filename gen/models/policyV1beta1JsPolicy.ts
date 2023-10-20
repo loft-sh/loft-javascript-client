@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { PolicyV1beta1JsPolicySpec } from './policyV1beta1JsPolicySpec';
-import { PolicyV1beta1JsPolicyStatus } from './policyV1beta1JsPolicyStatus';
-import { V1ObjectMeta } from './V1ObjectMeta';
+import { PolicyV1beta1JsPolicySpec } from '../models/policyV1beta1JsPolicySpec';
+import { PolicyV1beta1JsPolicyStatus } from '../models/policyV1beta1JsPolicyStatus';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
 /**

@@ -10,10 +10,10 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1DevPodWorkspaceTemplate } from './managementV1DevPodWorkspaceTemplate';
-import { ManagementV1SpaceTemplate } from './managementV1SpaceTemplate';
-import { ManagementV1VirtualClusterTemplate } from './managementV1VirtualClusterTemplate';
-import { V1ObjectMeta } from './V1ObjectMeta';
+import { ManagementV1DevPodWorkspaceTemplate } from '../models/managementV1DevPodWorkspaceTemplate';
+import { ManagementV1SpaceTemplate } from '../models/managementV1SpaceTemplate';
+import { ManagementV1VirtualClusterTemplate } from '../models/managementV1VirtualClusterTemplate';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
 export class ManagementV1ProjectTemplates {

@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1AuthenticationGroupClusterAccountTemplate } from './managementV1AuthenticationGroupClusterAccountTemplate';
-import { StorageV1UserClusterAccountTemplate } from './storageV1UserClusterAccountTemplate';
+import { ManagementV1AuthenticationGroupClusterAccountTemplate } from '../models/managementV1AuthenticationGroupClusterAccountTemplate';
+import { StorageV1UserClusterAccountTemplate } from '../models/storageV1UserClusterAccountTemplate';
 
 
 export class ManagementV1AuthenticationOIDC {
@@ -32,11 +32,11 @@ export class ManagementV1AuthenticationOIDC {
     */
     'clusterAccountTemplates'?: Array<StorageV1UserClusterAccountTemplate>;
     /**
-    * EmailClaim is the JWT field to use as the user's email.
+    * EmailClaim is the JWT field to use as the user\'s email.
     */
     'emailClaim'?: string;
     /**
-    * GetUserInfo, if specified, tells the OIDCAuthenticator to try to populate the user's information from the UserInfo.
+    * GetUserInfo, if specified, tells the OIDCAuthenticator to try to populate the user\'s information from the UserInfo.
     */
     'getUserInfo'?: boolean;
     /**
@@ -48,7 +48,7 @@ export class ManagementV1AuthenticationOIDC {
     */
     'groups'?: Array<string>;
     /**
-    * GroupsClaim, if specified, causes the OIDCAuthenticator to try to populate the user's groups with an ID Token field. If the GroupsClaim field is present in an ID Token the value must be a string or list of strings.
+    * GroupsClaim, if specified, causes the OIDCAuthenticator to try to populate the user\'s groups with an ID Token field. If the GroupsClaim field is present in an ID Token the value must be a string or list of strings.
     */
     'groupsClaim'?: string;
     /**
@@ -60,11 +60,11 @@ export class ManagementV1AuthenticationOIDC {
     */
     'insecureCa'?: boolean;
     /**
-    * IssuerURL is the URL the provider signs ID Tokens as. This will be the \"iss\" field of all tokens produced by the provider and is used for configuration discovery.  The URL is usually the provider's URL without a path, for example \"https://accounts.google.com\" or \"https://login.salesforce.com\".  The provider must implement configuration discovery. See: https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderConfig
+    * IssuerURL is the URL the provider signs ID Tokens as. This will be the \"iss\" field of all tokens produced by the provider and is used for configuration discovery.  The URL is usually the provider\'s URL without a path, for example \"https://accounts.google.com\" or \"https://login.salesforce.com\".  The provider must implement configuration discovery. See: https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderConfig
     */
     'issuerUrl'?: string;
     /**
-    * LoftUsernameClaim is the JWT field to use as the user's username.
+    * LoftUsernameClaim is the JWT field to use as the user\'s username.
     */
     'loftUsernameClaim'?: string;
     /**
@@ -88,7 +88,7 @@ export class ManagementV1AuthenticationOIDC {
     */
     'type'?: string;
     /**
-    * UsernameClaim is the JWT field to use as the user's id.
+    * UsernameClaim is the JWT field to use as the user\'s id.
     */
     'usernameClaim'?: string;
     /**

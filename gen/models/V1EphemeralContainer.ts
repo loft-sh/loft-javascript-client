@@ -10,16 +10,16 @@
  * Do not edit the class manually.
  */
 
-import { V1ContainerPort } from './V1ContainerPort';
-import { V1ContainerResizePolicy } from './V1ContainerResizePolicy';
-import { V1EnvFromSource } from './V1EnvFromSource';
-import { V1EnvVar } from './V1EnvVar';
-import { V1Lifecycle } from './V1Lifecycle';
-import { V1Probe } from './V1Probe';
-import { V1ResourceRequirements } from './V1ResourceRequirements';
-import { V1SecurityContext } from './V1SecurityContext';
-import { V1VolumeDevice } from './V1VolumeDevice';
-import { V1VolumeMount } from './V1VolumeMount';
+import { V1ContainerPort } from '../models/V1ContainerPort';
+import { V1ContainerResizePolicy } from '../models/V1ContainerResizePolicy';
+import { V1EnvFromSource } from '../models/V1EnvFromSource';
+import { V1EnvVar } from '../models/V1EnvVar';
+import { V1Lifecycle } from '../models/V1Lifecycle';
+import { V1Probe } from '../models/V1Probe';
+import { V1ResourceRequirements } from '../models/V1ResourceRequirements';
+import { V1SecurityContext } from '../models/V1SecurityContext';
+import { V1VolumeDevice } from '../models/V1VolumeDevice';
+import { V1VolumeMount } from '../models/V1VolumeMount';
 
 
 /**
@@ -27,11 +27,11 @@ import { V1VolumeMount } from './V1VolumeMount';
 */
 export class V1EphemeralContainer {
     /**
-    * Arguments to the entrypoint. The image's CMD is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. \"$$(VAR_NAME)\" will produce the string literal \"$(VAR_NAME)\". Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell
+    * Arguments to the entrypoint. The image\'s CMD is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container\'s environment. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. \"$$(VAR_NAME)\" will produce the string literal \"$(VAR_NAME)\". Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell
     */
     'args'?: Array<string>;
     /**
-    * Entrypoint array. Not executed within a shell. The image's ENTRYPOINT is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. \"$$(VAR_NAME)\" will produce the string literal \"$(VAR_NAME)\". Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell
+    * Entrypoint array. Not executed within a shell. The image\'s ENTRYPOINT is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container\'s environment. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. \"$$(VAR_NAME)\" will produce the string literal \"$(VAR_NAME)\". Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell
     */
     'command'?: Array<string>;
     /**
@@ -47,7 +47,7 @@ export class V1EphemeralContainer {
     */
     'image'?: string;
     /**
-    * Image pull policy. One of Always, Never, IfNotPresent. Defaults to Always if :latest tag is specified, or IfNotPresent otherwise. Cannot be updated. More info: https://kubernetes.io/docs/concepts/containers/images#updating-images  Possible enum values:  - `\"Always\"` means that kubelet always attempts to pull the latest image. Container will fail If the pull fails.  - `\"IfNotPresent\"` means that kubelet pulls if the image isn't present on disk. Container will fail if the image isn't present and the pull fails.  - `\"Never\"` means that kubelet never pulls an image, but only uses a local image. Container will fail if the image isn't present
+    * Image pull policy. One of Always, Never, IfNotPresent. Defaults to Always if :latest tag is specified, or IfNotPresent otherwise. Cannot be updated. More info: https://kubernetes.io/docs/concepts/containers/images#updating-images  Possible enum values:  - `\"Always\"` means that kubelet always attempts to pull the latest image. Container will fail If the pull fails.  - `\"IfNotPresent\"` means that kubelet pulls if the image isn\'t present on disk. Container will fail if the image isn\'t present and the pull fails.  - `\"Never\"` means that kubelet never pulls an image, but only uses a local image. Container will fail if the image isn\'t present
     */
     'imagePullPolicy'?: V1EphemeralContainerImagePullPolicyEnum;
     'lifecycle'?: V1Lifecycle;
@@ -66,6 +66,10 @@ export class V1EphemeralContainer {
     */
     'resizePolicy'?: Array<V1ContainerResizePolicy>;
     'resources'?: V1ResourceRequirements;
+    /**
+    * Restart policy for the container to manage the restart behavior of each container within a pod. This may only be set for init containers. You cannot set this field on ephemeral containers.
+    */
+    'restartPolicy'?: string;
     'securityContext'?: V1SecurityContext;
     'startupProbe'?: V1Probe;
     /**
@@ -81,15 +85,15 @@ export class V1EphemeralContainer {
     */
     'targetContainerName'?: string;
     /**
-    * Optional: Path at which the file to which the container's termination message will be written is mounted into the container's filesystem. Message written is intended to be brief final status, such as an assertion failure message. Will be truncated by the node if greater than 4096 bytes. The total message length across all containers will be limited to 12kb. Defaults to /dev/termination-log. Cannot be updated.
+    * Optional: Path at which the file to which the container\'s termination message will be written is mounted into the container\'s filesystem. Message written is intended to be brief final status, such as an assertion failure message. Will be truncated by the node if greater than 4096 bytes. The total message length across all containers will be limited to 12kb. Defaults to /dev/termination-log. Cannot be updated.
     */
     'terminationMessagePath'?: string;
     /**
-    * Indicate how the termination message should be populated. File will use the contents of terminationMessagePath to populate the container status message on both success and failure. FallbackToLogsOnError will use the last chunk of container log output if the termination message file is empty and the container exited with an error. The log output is limited to 2048 bytes or 80 lines, whichever is smaller. Defaults to File. Cannot be updated.  Possible enum values:  - `\"FallbackToLogsOnError\"` will read the most recent contents of the container logs for the container status message when the container exits with an error and the terminationMessagePath has no contents.  - `\"File\"` is the default behavior and will set the container status message to the contents of the container's terminationMessagePath when the container exits.
+    * Indicate how the termination message should be populated. File will use the contents of terminationMessagePath to populate the container status message on both success and failure. FallbackToLogsOnError will use the last chunk of container log output if the termination message file is empty and the container exited with an error. The log output is limited to 2048 bytes or 80 lines, whichever is smaller. Defaults to File. Cannot be updated.  Possible enum values:  - `\"FallbackToLogsOnError\"` will read the most recent contents of the container logs for the container status message when the container exits with an error and the terminationMessagePath has no contents.  - `\"File\"` is the default behavior and will set the container status message to the contents of the container\'s terminationMessagePath when the container exits.
     */
     'terminationMessagePolicy'?: V1EphemeralContainerTerminationMessagePolicyEnum;
     /**
-    * Whether this container should allocate a TTY for itself, also requires 'stdin' to be true. Default is false.
+    * Whether this container should allocate a TTY for itself, also requires \'stdin\' to be true. Default is false.
     */
     'tty'?: boolean;
     /**
@@ -97,11 +101,11 @@ export class V1EphemeralContainer {
     */
     'volumeDevices'?: Array<V1VolumeDevice>;
     /**
-    * Pod volumes to mount into the container's filesystem. Subpath mounts are not allowed for ephemeral containers. Cannot be updated.
+    * Pod volumes to mount into the container\'s filesystem. Subpath mounts are not allowed for ephemeral containers. Cannot be updated.
     */
     'volumeMounts'?: Array<V1VolumeMount>;
     /**
-    * Container's working directory. If not specified, the container runtime's default will be used, which might be configured in the container image. Cannot be updated.
+    * Container\'s working directory. If not specified, the container runtime\'s default will be used, which might be configured in the container image. Cannot be updated.
     */
     'workingDir'?: string;
 
@@ -187,6 +191,12 @@ export class V1EphemeralContainer {
             "format": ""
         },
         {
+            "name": "restartPolicy",
+            "baseName": "restartPolicy",
+            "type": "string",
+            "format": ""
+        },
+        {
             "name": "securityContext",
             "baseName": "securityContext",
             "type": "V1SecurityContext",
@@ -262,6 +272,13 @@ export class V1EphemeralContainer {
 }
 
 
-export type V1EphemeralContainerImagePullPolicyEnum = "Always" | "IfNotPresent" | "Never" ;
-export type V1EphemeralContainerTerminationMessagePolicyEnum = "FallbackToLogsOnError" | "File" ;
+export enum V1EphemeralContainerImagePullPolicyEnum {
+    Always = 'Always',
+    IfNotPresent = 'IfNotPresent',
+    Never = 'Never'
+}
+export enum V1EphemeralContainerTerminationMessagePolicyEnum {
+    FallbackToLogsOnError = 'FallbackToLogsOnError',
+    File = 'File'
+}
 

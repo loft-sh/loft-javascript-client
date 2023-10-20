@@ -33,7 +33,7 @@ export class V1ManagedFieldsEntry {
     */
     'manager'?: string;
     /**
-    * Operation is the type of operation which lead to this ManagedFieldsEntry being created. The only valid values for this field are 'Apply' and 'Update'.
+    * Operation is the type of operation which lead to this ManagedFieldsEntry being created. The only valid values for this field are \'Apply\' and \'Update\'.
     */
     'operation'?: string;
     /**

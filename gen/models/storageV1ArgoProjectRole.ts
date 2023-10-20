@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1ArgoProjectPolicyRule } from './storageV1ArgoProjectPolicyRule';
+import { StorageV1ArgoProjectPolicyRule } from '../models/storageV1ArgoProjectPolicyRule';
 
 
 export class StorageV1ArgoProjectRole {

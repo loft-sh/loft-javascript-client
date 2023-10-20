@@ -10,16 +10,16 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1AppReference } from './agentstorageV1AppReference';
-import { StorageV1InstanceAccess } from './agentstorageV1InstanceAccess';
-import { StorageV1TemplateHelmChart } from './agentstorageV1TemplateHelmChart';
-import { StorageV1VirtualClusterAccessPoint } from './agentstorageV1VirtualClusterAccessPoint';
-import { StorageV1VirtualClusterHelmRelease } from './agentstorageV1VirtualClusterHelmRelease';
-import { StorageV1VirtualClusterProSpec } from './agentstorageV1VirtualClusterProSpec';
-import { StorageV1TemplateMetadata } from './storageV1TemplateMetadata';
-import { StorageV1VirtualClusterInstanceTemplateDefinition } from './storageV1VirtualClusterInstanceTemplateDefinition';
-import { StorageV1VirtualClusterSpaceTemplateDefinition } from './storageV1VirtualClusterSpaceTemplateDefinition';
-import { StorageV1WorkloadVirtualClusterTemplateDefinition } from './storageV1WorkloadVirtualClusterTemplateDefinition';
+import { StorageV1AppReference } from '../models/agentstorageV1AppReference';
+import { StorageV1InstanceAccess } from '../models/agentstorageV1InstanceAccess';
+import { StorageV1TemplateHelmChart } from '../models/agentstorageV1TemplateHelmChart';
+import { StorageV1VirtualClusterAccessPoint } from '../models/agentstorageV1VirtualClusterAccessPoint';
+import { StorageV1VirtualClusterHelmRelease } from '../models/agentstorageV1VirtualClusterHelmRelease';
+import { StorageV1VirtualClusterProSpec } from '../models/agentstorageV1VirtualClusterProSpec';
+import { StorageV1TemplateMetadata } from '../models/storageV1TemplateMetadata';
+import { StorageV1VirtualClusterInstanceTemplateDefinition } from '../models/storageV1VirtualClusterInstanceTemplateDefinition';
+import { StorageV1VirtualClusterSpaceTemplateDefinition } from '../models/storageV1VirtualClusterSpaceTemplateDefinition';
+import { StorageV1WorkloadVirtualClusterTemplateDefinition } from '../models/storageV1WorkloadVirtualClusterTemplateDefinition';
 
 
 export class StorageV1VirtualClusterTemplateDefinition {

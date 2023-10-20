@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1ClusterAccessSpec } from './managementV1ClusterAccessSpec';
-import { ManagementV1ClusterAccessStatus } from './managementV1ClusterAccessStatus';
-import { V1ObjectMeta } from './V1ObjectMeta';
+import { ManagementV1ClusterAccessSpec } from '../models/managementV1ClusterAccessSpec';
+import { ManagementV1ClusterAccessStatus } from '../models/managementV1ClusterAccessStatus';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
 /**

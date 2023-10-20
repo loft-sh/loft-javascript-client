@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1ObjectMeta } from './V1ObjectMeta';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
 export class ManagementV1VirtualClusterInstanceLog {

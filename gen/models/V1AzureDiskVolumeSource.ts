@@ -90,6 +90,14 @@ export class V1AzureDiskVolumeSource {
 }
 
 
-export type V1AzureDiskVolumeSourceCachingModeEnum = "None" | "ReadOnly" | "ReadWrite" ;
-export type V1AzureDiskVolumeSourceKindEnum = "Dedicated" | "Managed" | "Shared" ;
+export enum V1AzureDiskVolumeSourceCachingModeEnum {
+    None = 'None',
+    ReadOnly = 'ReadOnly',
+    ReadWrite = 'ReadWrite'
+}
+export enum V1AzureDiskVolumeSourceKindEnum {
+    Dedicated = 'Dedicated',
+    Managed = 'Managed',
+    Shared = 'Shared'
+}
 

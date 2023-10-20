@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1ProjectImportSpaceSource } from './managementV1ProjectImportSpaceSource';
-import { V1ObjectMeta } from './V1ObjectMeta';
+import { ManagementV1ProjectImportSpaceSource } from '../models/managementV1ProjectImportSpaceSource';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
 /**

@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1ImportVirtualClustersSpec } from './storageV1ImportVirtualClustersSpec';
-import { StorageV1RancherProjectRef } from './storageV1RancherProjectRef';
-import { StorageV1SyncMembersSpec } from './storageV1SyncMembersSpec';
+import { StorageV1ImportVirtualClustersSpec } from '../models/storageV1ImportVirtualClustersSpec';
+import { StorageV1RancherProjectRef } from '../models/storageV1RancherProjectRef';
+import { StorageV1SyncMembersSpec } from '../models/storageV1SyncMembersSpec';
 
 
 export class StorageV1RancherIntegrationSpec {

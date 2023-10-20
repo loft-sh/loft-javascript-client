@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1AuditPolicy } from './managementV1AuditPolicy';
+import { ManagementV1AuditPolicy } from '../models/managementV1AuditPolicy';
 
 
 export class ManagementV1AgentAuditConfig {

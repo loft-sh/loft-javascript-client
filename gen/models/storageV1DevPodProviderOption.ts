@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1DevPodProviderOptionFrom } from './storageV1DevPodProviderOptionFrom';
+import { StorageV1DevPodProviderOptionFrom } from '../models/storageV1DevPodProviderOptionFrom';
 
 
 export class StorageV1DevPodProviderOption {
