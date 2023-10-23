@@ -18,7 +18,7 @@ export class StorageV1SyncMembersSpec {
     */
     'enabled'?: boolean;
     /**
-    * RoleMapping indicates an optional role mapping from a rancher role to a loft role.
+    * RoleMapping indicates an optional role mapping from a rancher role to a loft role. Map to an empty role to exclude users and groups with that role from being synced.
     */
     'roleMapping'?: { [key: string]: string; };
 

@@ -9739,7 +9739,7 @@ declare class ManagementV1DevPodWorkspaceInstanceSpec {
 	"displayName"?: string;
 	"owner"?: StorageV1UserOrTeam;
 	/**
-	* Parameters are values to pass to the template
+	* Parameters are values to pass to the template. The values should be encoded as YAML string where each parameter is represented as a top-level field key.
 	*/
 	"parameters"?: string;
 	"runnerRef"?: StorageV1RunnerRef;
@@ -13219,6 +13219,12 @@ declare class StorageV1ImportVirtualClustersSpec {
 	* Enabled indicates if virtual clusters created within this project should get synced to Rancher. If projectRef is defined, will also automatically add the created namespace to the Rancher project.
 	*/
 	"enabled"?: boolean;
+	/**
+	* RoleMapping indicates an optional role mapping from a rancher project role to a rancher cluster role. Map to an empty role to exclude users and groups with that role from being synced.
+	*/
+	"roleMapping"?: {
+		[key: string]: string;
+	};
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -13264,7 +13270,7 @@ declare class StorageV1SyncMembersSpec {
 	*/
 	"enabled"?: boolean;
 	/**
-	* RoleMapping indicates an optional role mapping from a rancher role to a loft role.
+	* RoleMapping indicates an optional role mapping from a rancher role to a loft role. Map to an empty role to exclude users and groups with that role from being synced.
 	*/
 	"roleMapping"?: {
 		[key: string]: string;
@@ -14362,7 +14368,7 @@ declare class ManagementV1SpaceInstanceSpec {
 	"extraAccessRules"?: Array<StorageV1InstanceAccessRule>;
 	"owner"?: StorageV1UserOrTeam;
 	/**
-	* Parameters are values to pass to the template
+	* Parameters are values to pass to the template. The values should be encoded as YAML string where each parameter is represented as a top-level field key.
 	*/
 	"parameters"?: string;
 	"template"?: StorageV1SpaceTemplateDefinition;
@@ -15850,7 +15856,7 @@ declare class ManagementV1VirtualClusterInstanceSpec {
 	"extraAccessRules"?: Array<StorageV1InstanceAccessRule>;
 	"owner"?: StorageV1UserOrTeam;
 	/**
-	* Parameters are values to pass to the template
+	* Parameters are values to pass to the template. The values should be encoded as YAML string where each parameter is represented as a top-level field key.
 	*/
 	"parameters"?: string;
 	"template"?: StorageV1VirtualClusterTemplateDefinition;
