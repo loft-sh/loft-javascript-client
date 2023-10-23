@@ -11,7 +11,7 @@
  */
 
 import { IntOrString } from './IntOrString';
-import { V1HTTPHeader } from './V1HTTPHeader';
+import { V1HTTPHeader } from '../models/V1HTTPHeader';
 
 
 /**
@@ -82,5 +82,8 @@ export class V1HTTPGetAction {
 }
 
 
-export type V1HTTPGetActionSchemeEnum = "HTTP" | "HTTPS" ;
+export enum V1HTTPGetActionSchemeEnum {
+    Http = 'HTTP',
+    Https = 'HTTPS'
+}
 

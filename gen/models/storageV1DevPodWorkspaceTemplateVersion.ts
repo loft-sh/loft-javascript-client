@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1AppParameter } from './storageV1AppParameter';
-import { StorageV1DevPodWorkspaceTemplateDefinition } from './storageV1DevPodWorkspaceTemplateDefinition';
+import { StorageV1AppParameter } from '../models/storageV1AppParameter';
+import { StorageV1DevPodWorkspaceTemplateDefinition } from '../models/storageV1DevPodWorkspaceTemplateDefinition';
 
 
 export class StorageV1DevPodWorkspaceTemplateVersion {

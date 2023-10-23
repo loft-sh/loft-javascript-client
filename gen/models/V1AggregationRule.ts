@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1LabelSelector } from './V1LabelSelector';
+import { V1LabelSelector } from '../models/V1LabelSelector';
 
 
 /**
@@ -18,7 +18,7 @@ import { V1LabelSelector } from './V1LabelSelector';
 */
 export class V1AggregationRule {
     /**
-    * ClusterRoleSelectors holds a list of selectors which will be used to find ClusterRoles and create the rules. If any of the selectors match, then the ClusterRole's permissions will be added
+    * ClusterRoleSelectors holds a list of selectors which will be used to find ClusterRoles and create the rules. If any of the selectors match, then the ClusterRole\'s permissions will be added
     */
     'clusterRoleSelectors'?: Array<V1LabelSelector>;
 

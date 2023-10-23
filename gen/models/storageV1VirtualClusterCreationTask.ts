@@ -10,11 +10,11 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1AppReference } from './agentstorageV1AppReference';
-import { StorageV1InstanceAccess } from './agentstorageV1InstanceAccess';
-import { StorageV1VirtualClusterHelmRelease } from './agentstorageV1VirtualClusterHelmRelease';
-import { StorageV1SpaceCreationTask } from './storageV1SpaceCreationTask';
-import { V1ObjectMeta } from './V1ObjectMeta';
+import { StorageV1AppReference } from '../models/agentstorageV1AppReference';
+import { StorageV1InstanceAccess } from '../models/agentstorageV1InstanceAccess';
+import { StorageV1VirtualClusterHelmRelease } from '../models/agentstorageV1VirtualClusterHelmRelease';
+import { StorageV1SpaceCreationTask } from '../models/storageV1SpaceCreationTask';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
 export class StorageV1VirtualClusterCreationTask {

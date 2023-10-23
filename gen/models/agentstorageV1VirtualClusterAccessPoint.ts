@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1VirtualClusterAccessPointIngressSpec } from './agentstorageV1VirtualClusterAccessPointIngressSpec';
+import { StorageV1VirtualClusterAccessPointIngressSpec } from '../models/agentstorageV1VirtualClusterAccessPointIngressSpec';
 
 
 export class StorageV1VirtualClusterAccessPoint {

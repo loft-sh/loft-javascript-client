@@ -10,13 +10,13 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1ArgoProjectSpec } from './storageV1ArgoProjectSpec';
-import { StorageV1ArgoSSOSpec } from './storageV1ArgoSSOSpec';
+import { StorageV1ArgoProjectSpec } from '../models/storageV1ArgoProjectSpec';
+import { StorageV1ArgoSSOSpec } from '../models/storageV1ArgoSSOSpec';
 
 
 export class StorageV1ArgoIntegrationSpec {
     /**
-    * Cluster defines the name of the cluster that ArgoCD is deployed into -- if not provided this will default to 'loft-cluster'.
+    * Cluster defines the name of the cluster that ArgoCD is deployed into -- if not provided this will default to \'loft-cluster\'.
     */
     'cluster'?: string;
     /**

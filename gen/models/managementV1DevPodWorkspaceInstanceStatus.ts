@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { ClusterV1SleepModeConfig } from './clusterV1SleepModeConfig';
-import { StorageV1Condition } from './agentstorageV1Condition';
-import { StorageV1DevPodWorkspaceTemplateDefinition } from './storageV1DevPodWorkspaceTemplateDefinition';
+import { ClusterV1SleepModeConfig } from '../models/clusterV1SleepModeConfig';
+import { StorageV1Condition } from '../models/agentstorageV1Condition';
+import { StorageV1DevPodWorkspaceTemplateDefinition } from '../models/storageV1DevPodWorkspaceTemplateDefinition';
 
 
 /**

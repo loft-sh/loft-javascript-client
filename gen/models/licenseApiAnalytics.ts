@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { LicenseApiRequest } from './licenseApiRequest';
+import { LicenseApiRequest } from '../models/licenseApiRequest';
 
 
 /**

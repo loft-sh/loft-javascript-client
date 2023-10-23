@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1LocalSpaceConstraintSpec } from './storageV1LocalSpaceConstraintSpec';
-import { V1ObjectMeta } from './V1ObjectMeta';
+import { StorageV1LocalSpaceConstraintSpec } from '../models/storageV1LocalSpaceConstraintSpec';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
 export class StorageV1LocalSpaceConstraintTemplate {

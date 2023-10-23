@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1SpaceConstraintSpec } from './managementV1SpaceConstraintSpec';
-import { ManagementV1SpaceConstraintStatus } from './managementV1SpaceConstraintStatus';
-import { V1ObjectMeta } from './V1ObjectMeta';
+import { ManagementV1SpaceConstraintSpec } from '../models/managementV1SpaceConstraintSpec';
+import { ManagementV1SpaceConstraintStatus } from '../models/managementV1SpaceConstraintStatus';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
 /**

@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { LicenseApiResourceCount } from './licenseApiResourceCount';
+import { LicenseApiResourceCount } from '../models/licenseApiResourceCount';
 
 
 /**

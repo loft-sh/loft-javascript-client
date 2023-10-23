@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1OwnedAccessKeySpec } from './managementV1OwnedAccessKeySpec';
-import { ManagementV1OwnedAccessKeyStatus } from './managementV1OwnedAccessKeyStatus';
-import { V1ObjectMeta } from './V1ObjectMeta';
+import { ManagementV1OwnedAccessKeySpec } from '../models/managementV1OwnedAccessKeySpec';
+import { ManagementV1OwnedAccessKeyStatus } from '../models/managementV1OwnedAccessKeyStatus';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
 /**

@@ -10,10 +10,10 @@
  * Do not edit the class manually.
  */
 
-import { V1SELinuxOptions } from './V1SELinuxOptions';
-import { V1SeccompProfile } from './V1SeccompProfile';
-import { V1Sysctl } from './V1Sysctl';
-import { V1WindowsSecurityContextOptions } from './V1WindowsSecurityContextOptions';
+import { V1SELinuxOptions } from '../models/V1SELinuxOptions';
+import { V1SeccompProfile } from '../models/V1SeccompProfile';
+import { V1Sysctl } from '../models/V1Sysctl';
+import { V1WindowsSecurityContextOptions } from '../models/V1WindowsSecurityContextOptions';
 
 
 /**
@@ -21,11 +21,11 @@ import { V1WindowsSecurityContextOptions } from './V1WindowsSecurityContextOptio
 */
 export class V1PodSecurityContext {
     /**
-    * A special supplemental group that applies to all containers in a pod. Some volume types allow the Kubelet to change the ownership of that volume to be owned by the pod:  1. The owning GID will be the FSGroup 2. The setgid bit is set (new files created in the volume will be owned by FSGroup) 3. The permission bits are OR'd with rw-rw----  If unset, the Kubelet will not modify the ownership and permissions of any volume. Note that this field cannot be set when spec.os.name is windows.
+    * A special supplemental group that applies to all containers in a pod. Some volume types allow the Kubelet to change the ownership of that volume to be owned by the pod:  1. The owning GID will be the FSGroup 2. The setgid bit is set (new files created in the volume will be owned by FSGroup) 3. The permission bits are OR\'d with rw-rw----  If unset, the Kubelet will not modify the ownership and permissions of any volume. Note that this field cannot be set when spec.os.name is windows.
     */
     'fsGroup'?: number;
     /**
-    * fsGroupChangePolicy defines behavior of changing ownership and permission of the volume before being exposed inside Pod. This field will only apply to volume types which support fsGroup based ownership(and permissions). It will have no effect on ephemeral volume types such as: secret, configmaps and emptydir. Valid values are \"OnRootMismatch\" and \"Always\". If not specified, \"Always\" is used. Note that this field cannot be set when spec.os.name is windows.  Possible enum values:  - `\"Always\"` indicates that volume's ownership and permissions should always be changed whenever volume is mounted inside a Pod. This the default behavior.  - `\"OnRootMismatch\"` indicates that volume's ownership and permissions will be changed only when permission and ownership of root directory does not match with expected permissions on the volume. This can help shorten the time it takes to change ownership and permissions of a volume.
+    * fsGroupChangePolicy defines behavior of changing ownership and permission of the volume before being exposed inside Pod. This field will only apply to volume types which support fsGroup based ownership(and permissions). It will have no effect on ephemeral volume types such as: secret, configmaps and emptydir. Valid values are \"OnRootMismatch\" and \"Always\". If not specified, \"Always\" is used. Note that this field cannot be set when spec.os.name is windows.  Possible enum values:  - `\"Always\"` indicates that volume\'s ownership and permissions should always be changed whenever volume is mounted inside a Pod. This the default behavior.  - `\"OnRootMismatch\"` indicates that volume\'s ownership and permissions will be changed only when permission and ownership of root directory does not match with expected permissions on the volume. This can help shorten the time it takes to change ownership and permissions of a volume.
     */
     'fsGroupChangePolicy'?: V1PodSecurityContextFsGroupChangePolicyEnum;
     /**
@@ -43,7 +43,7 @@ export class V1PodSecurityContext {
     'seLinuxOptions'?: V1SELinuxOptions;
     'seccompProfile'?: V1SeccompProfile;
     /**
-    * A list of groups applied to the first process run in each container, in addition to the container's primary GID, the fsGroup (if specified), and group memberships defined in the container image for the uid of the container process. If unspecified, no additional groups are added to any container. Note that group memberships defined in the container image for the uid of the container process are still effective, even if they are not included in this list. Note that this field cannot be set when spec.os.name is windows.
+    * A list of groups applied to the first process run in each container, in addition to the container\'s primary GID, the fsGroup (if specified), and group memberships defined in the container image for the uid of the container process. If unspecified, no additional groups are added to any container. Note that group memberships defined in the container image for the uid of the container process are still effective, even if they are not included in this list. Note that this field cannot be set when spec.os.name is windows.
     */
     'supplementalGroups'?: Array<number>;
     /**
@@ -125,5 +125,8 @@ export class V1PodSecurityContext {
 }
 
 
-export type V1PodSecurityContextFsGroupChangePolicyEnum = "Always" | "OnRootMismatch" ;
+export enum V1PodSecurityContextFsGroupChangePolicyEnum {
+    Always = 'Always',
+    OnRootMismatch = 'OnRootMismatch'
+}
 

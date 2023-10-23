@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1VirtualClusterInstance } from './managementV1VirtualClusterInstance';
-import { V1ListMeta } from './V1ListMeta';
+import { ManagementV1VirtualClusterInstance } from '../models/managementV1VirtualClusterInstance';
+import { V1ListMeta } from '../models/V1ListMeta';
 
 
 export class ManagementV1VirtualClusterInstanceList {

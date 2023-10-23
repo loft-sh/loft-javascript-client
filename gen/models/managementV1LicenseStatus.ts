@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { LicenseApiLicense } from './licenseApiLicense';
-import { LicenseApiResourceCount } from './licenseApiResourceCount';
+import { LicenseApiLicense } from '../models/licenseApiLicense';
+import { LicenseApiResourceCount } from '../models/licenseApiResourceCount';
 
 
 export class ManagementV1LicenseStatus {

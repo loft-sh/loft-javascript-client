@@ -10,23 +10,23 @@
  * Do not edit the class manually.
  */
 
-import { ClusterV1ChartInfo } from './clusterV1ChartInfo';
-import { ClusterV1ClusterQuota } from './clusterV1ClusterQuota';
-import { ClusterV1HelmRelease } from './clusterV1HelmRelease';
-import { ClusterV1LocalClusterAccess } from './clusterV1LocalClusterAccess';
-import { ClusterV1SleepModeConfig } from './clusterV1SleepModeConfig';
-import { ClusterV1Space } from './clusterV1Space';
-import { ClusterV1VirtualCluster } from './clusterV1VirtualCluster';
-import { StorageV1ClusterQuota } from './agentstorageV1ClusterQuota';
-import { StorageV1LocalClusterAccess } from './agentstorageV1LocalClusterAccess';
-import { StorageV1LocalTeam } from './agentstorageV1LocalTeam';
-import { StorageV1LocalUser } from './agentstorageV1LocalUser';
-import { StorageV1VirtualCluster } from './agentstorageV1VirtualCluster';
-import { ManagementV1License } from './managementV1License';
-import { UiV1UISettings } from './uiV1UISettings';
-import { PolicyV1beta1JsPolicy } from './policyV1beta1JsPolicy';
-import { PolicyV1beta1JsPolicyBundle } from './policyV1beta1JsPolicyBundle';
-import { PolicyV1beta1JsPolicyViolations } from './policyV1beta1JsPolicyViolations';
+import { ClusterV1ChartInfo } from '../models/clusterV1ChartInfo';
+import { ClusterV1ClusterQuota } from '../models/clusterV1ClusterQuota';
+import { ClusterV1HelmRelease } from '../models/clusterV1HelmRelease';
+import { ClusterV1LocalClusterAccess } from '../models/clusterV1LocalClusterAccess';
+import { ClusterV1SleepModeConfig } from '../models/clusterV1SleepModeConfig';
+import { ClusterV1Space } from '../models/clusterV1Space';
+import { ClusterV1VirtualCluster } from '../models/clusterV1VirtualCluster';
+import { StorageV1ClusterQuota } from '../models/agentstorageV1ClusterQuota';
+import { StorageV1LocalClusterAccess } from '../models/agentstorageV1LocalClusterAccess';
+import { StorageV1LocalTeam } from '../models/agentstorageV1LocalTeam';
+import { StorageV1LocalUser } from '../models/agentstorageV1LocalUser';
+import { StorageV1VirtualCluster } from '../models/agentstorageV1VirtualCluster';
+import { ManagementV1License } from '../models/managementV1License';
+import { UiV1UISettings } from '../models/uiV1UISettings';
+import { PolicyV1beta1JsPolicy } from '../models/policyV1beta1JsPolicy';
+import { PolicyV1beta1JsPolicyBundle } from '../models/policyV1beta1JsPolicyBundle';
+import { PolicyV1beta1JsPolicyViolations } from '../models/policyV1beta1JsPolicyViolations';
 
 
 export class ManagementV1KioskSpec {

@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1LocalTeamStatus } from './agentstorageV1LocalTeamStatus';
-import { V1ObjectMeta } from './V1ObjectMeta';
+import { StorageV1LocalTeamStatus } from '../models/agentstorageV1LocalTeamStatus';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
 /**

@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { ClusterV1HelmReleaseSpec } from './clusterV1HelmReleaseSpec';
-import { ClusterV1HelmReleaseStatus } from './clusterV1HelmReleaseStatus';
-import { V1ObjectMeta } from './V1ObjectMeta';
+import { ClusterV1HelmReleaseSpec } from '../models/clusterV1HelmReleaseSpec';
+import { ClusterV1HelmReleaseStatus } from '../models/clusterV1HelmReleaseStatus';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
 export class ClusterV1HelmRelease {

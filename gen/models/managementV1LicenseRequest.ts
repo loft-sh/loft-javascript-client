@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1LicenseRequestSpec } from './managementV1LicenseRequestSpec';
-import { ManagementV1LicenseRequestStatus } from './managementV1LicenseRequestStatus';
-import { V1ObjectMeta } from './V1ObjectMeta';
+import { ManagementV1LicenseRequestSpec } from '../models/managementV1LicenseRequestSpec';
+import { ManagementV1LicenseRequestStatus } from '../models/managementV1LicenseRequestStatus';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
 /**

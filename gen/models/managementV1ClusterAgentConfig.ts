@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1AgentAnalyticsSpec } from './managementV1AgentAnalyticsSpec';
-import { ManagementV1AgentAuditConfig } from './managementV1AgentAuditConfig';
-import { V1ObjectMeta } from './V1ObjectMeta';
+import { ManagementV1AgentAnalyticsSpec } from '../models/managementV1AgentAnalyticsSpec';
+import { ManagementV1AgentAuditConfig } from '../models/managementV1AgentAuditConfig';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
 /**
@@ -38,7 +38,7 @@ export class ManagementV1ClusterAgentConfig {
     */
     'kind'?: string;
     /**
-    * LoftHost defines the host for the agent's loft instance
+    * LoftHost defines the host for the agent\'s loft instance
     */
     'loftHost'?: string;
     'metadata'?: V1ObjectMeta;

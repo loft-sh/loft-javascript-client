@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { UiV1NavBarButton } from './uiV1NavBarButton';
+import { UiV1NavBarButton } from '../models/uiV1NavBarButton';
 
 
 export class UiV1UISettingsConfig {

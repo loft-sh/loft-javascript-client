@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1SharedSecretSpec } from './managementV1SharedSecretSpec';
-import { ManagementV1SharedSecretStatus } from './managementV1SharedSecretStatus';
-import { V1ObjectMeta } from './V1ObjectMeta';
+import { ManagementV1SharedSecretSpec } from '../models/managementV1SharedSecretSpec';
+import { ManagementV1SharedSecretStatus } from '../models/managementV1SharedSecretStatus';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
 /**

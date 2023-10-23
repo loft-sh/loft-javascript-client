@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1PolicyViolationStatus } from './managementV1PolicyViolationStatus';
-import { V1ObjectMeta } from './V1ObjectMeta';
+import { ManagementV1PolicyViolationStatus } from '../models/managementV1PolicyViolationStatus';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
 /**

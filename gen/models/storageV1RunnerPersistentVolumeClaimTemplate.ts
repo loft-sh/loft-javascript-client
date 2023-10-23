@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1RunnerPersistentVolumeClaimTemplateSpec } from './storageV1RunnerPersistentVolumeClaimTemplateSpec';
-import { StorageV1TemplateMetadata } from './storageV1TemplateMetadata';
+import { StorageV1RunnerPersistentVolumeClaimTemplateSpec } from '../models/storageV1RunnerPersistentVolumeClaimTemplateSpec';
+import { StorageV1TemplateMetadata } from '../models/storageV1TemplateMetadata';
 
 
 export class StorageV1RunnerPersistentVolumeClaimTemplate {

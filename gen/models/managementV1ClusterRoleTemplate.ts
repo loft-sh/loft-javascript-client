@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1ClusterRoleTemplateSpec } from './managementV1ClusterRoleTemplateSpec';
-import { ManagementV1ClusterRoleTemplateStatus } from './managementV1ClusterRoleTemplateStatus';
-import { V1ObjectMeta } from './V1ObjectMeta';
+import { ManagementV1ClusterRoleTemplateSpec } from '../models/managementV1ClusterRoleTemplateSpec';
+import { ManagementV1ClusterRoleTemplateStatus } from '../models/managementV1ClusterRoleTemplateStatus';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
 /**

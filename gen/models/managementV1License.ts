@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1LicenseStatus } from './managementV1LicenseStatus';
-import { V1ObjectMeta } from './V1ObjectMeta';
+import { ManagementV1LicenseStatus } from '../models/managementV1LicenseStatus';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
 /**

@@ -21,7 +21,7 @@ export class V1NodeSelectorRequirement {
     */
     'key': string;
     /**
-    * Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.  Possible enum values:  - `\"DoesNotExist\"`  - `\"Exists\"`  - `\"Gt\"`  - `\"In\"`  - `\"Lt\"`  - `\"NotIn\"`
+    * Represents a key\'s relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.  Possible enum values:  - `\"DoesNotExist\"`  - `\"Exists\"`  - `\"Gt\"`  - `\"In\"`  - `\"Lt\"`  - `\"NotIn\"`
     */
     'operator': V1NodeSelectorRequirementOperatorEnum;
     /**
@@ -60,5 +60,12 @@ export class V1NodeSelectorRequirement {
 }
 
 
-export type V1NodeSelectorRequirementOperatorEnum = "DoesNotExist" | "Exists" | "Gt" | "In" | "Lt" | "NotIn" ;
+export enum V1NodeSelectorRequirementOperatorEnum {
+    DoesNotExist = 'DoesNotExist',
+    Exists = 'Exists',
+    Gt = 'Gt',
+    In = 'In',
+    Lt = 'Lt',
+    NotIn = 'NotIn'
+}
 

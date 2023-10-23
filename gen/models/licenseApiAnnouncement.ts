@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { LicenseApiButton } from './licenseApiButton';
+import { LicenseApiButton } from '../models/licenseApiButton';
 
 
 /**

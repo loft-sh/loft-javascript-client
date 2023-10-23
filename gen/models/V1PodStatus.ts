@@ -10,9 +10,11 @@
  * Do not edit the class manually.
  */
 
-import { V1ContainerStatus } from './V1ContainerStatus';
-import { V1PodCondition } from './V1PodCondition';
-import { V1PodIP } from './V1PodIP';
+import { V1ContainerStatus } from '../models/V1ContainerStatus';
+import { V1HostIP } from '../models/V1HostIP';
+import { V1PodCondition } from '../models/V1PodCondition';
+import { V1PodIP } from '../models/V1PodIP';
+import { V1PodResourceClaimStatus } from '../models/V1PodResourceClaimStatus';
 
 
 /**
@@ -32,9 +34,13 @@ export class V1PodStatus {
     */
     'ephemeralContainerStatuses'?: Array<V1ContainerStatus>;
     /**
-    * IP address of the host to which the pod is assigned. Empty if not yet scheduled.
+    * hostIP holds the IP address of the host to which the pod is assigned. Empty if the pod has not started yet. A pod can be assigned to a node that has a problem in kubelet which in turns mean that HostIP will not be updated even if there is a node is assigned to pod
     */
     'hostIP'?: string;
+    /**
+    * hostIPs holds the IP addresses allocated to the host. If this field is specified, the first entry must match the hostIP field. This list is empty if the pod has not started yet. A pod can be assigned to a node that has a problem in kubelet which in turns means that HostIPs will not be updated even if there is a node is assigned to this pod.
+    */
+    'hostIPs'?: Array<V1HostIP>;
     /**
     * The list has one entry per init container in the manifest. The most recent successful init container will have ready = true, the most recently started container will have startTime set. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#pod-and-container-status
     */
@@ -48,11 +54,11 @@ export class V1PodStatus {
     */
     'nominatedNodeName'?: string;
     /**
-    * The phase of a Pod is a simple, high-level summary of where the Pod is in its lifecycle. The conditions array, the reason and message fields, and the individual container status arrays contain more detail about the pod's status. There are five possible phase values:  Pending: The pod has been accepted by the Kubernetes system, but one or more of the container images has not been created. This includes time before being scheduled as well as time spent downloading images over the network, which could take a while. Running: The pod has been bound to a node, and all of the containers have been created. At least one container is still running, or is in the process of starting or restarting. Succeeded: All containers in the pod have terminated in success, and will not be restarted. Failed: All containers in the pod have terminated, and at least one container has terminated in failure. The container either exited with non-zero status or was terminated by the system. Unknown: For some reason the state of the pod could not be obtained, typically due to an error in communicating with the host of the pod.  More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#pod-phase  Possible enum values:  - `\"Failed\"` means that all containers in the pod have terminated, and at least one container has terminated in a failure (exited with a non-zero exit code or was stopped by the system).  - `\"Pending\"` means the pod has been accepted by the system, but one or more of the containers has not been started. This includes time before being bound to a node, as well as time spent pulling images onto the host.  - `\"Running\"` means the pod has been bound to a node and all of the containers have been started. At least one container is still running or is in the process of being restarted.  - `\"Succeeded\"` means that all containers in the pod have voluntarily terminated with a container exit code of 0, and the system is not going to restart any of these containers.  - `\"Unknown\"` means that for some reason the state of the pod could not be obtained, typically due to an error in communicating with the host of the pod. Deprecated: It isn't being set since 2015 (74da3b14b0c0f658b3bb8d2def5094686d0e9095)
+    * The phase of a Pod is a simple, high-level summary of where the Pod is in its lifecycle. The conditions array, the reason and message fields, and the individual container status arrays contain more detail about the pod\'s status. There are five possible phase values:  Pending: The pod has been accepted by the Kubernetes system, but one or more of the container images has not been created. This includes time before being scheduled as well as time spent downloading images over the network, which could take a while. Running: The pod has been bound to a node, and all of the containers have been created. At least one container is still running, or is in the process of starting or restarting. Succeeded: All containers in the pod have terminated in success, and will not be restarted. Failed: All containers in the pod have terminated, and at least one container has terminated in failure. The container either exited with non-zero status or was terminated by the system. Unknown: For some reason the state of the pod could not be obtained, typically due to an error in communicating with the host of the pod.  More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#pod-phase  Possible enum values:  - `\"Failed\"` means that all containers in the pod have terminated, and at least one container has terminated in a failure (exited with a non-zero exit code or was stopped by the system).  - `\"Pending\"` means the pod has been accepted by the system, but one or more of the containers has not been started. This includes time before being bound to a node, as well as time spent pulling images onto the host.  - `\"Running\"` means the pod has been bound to a node and all of the containers have been started. At least one container is still running or is in the process of being restarted.  - `\"Succeeded\"` means that all containers in the pod have voluntarily terminated with a container exit code of 0, and the system is not going to restart any of these containers.  - `\"Unknown\"` means that for some reason the state of the pod could not be obtained, typically due to an error in communicating with the host of the pod. Deprecated: It isn\'t being set since 2015 (74da3b14b0c0f658b3bb8d2def5094686d0e9095)
     */
     'phase'?: V1PodStatusPhaseEnum;
     /**
-    * IP address allocated to the pod. Routable at least within the cluster. Empty if not yet allocated.
+    * podIP address allocated to the pod. Routable at least within the cluster. Empty if not yet allocated.
     */
     'podIP'?: string;
     /**
@@ -64,13 +70,17 @@ export class V1PodStatus {
     */
     'qosClass'?: V1PodStatusQosClassEnum;
     /**
-    * A brief CamelCase message indicating details about why the pod is in this state. e.g. 'Evicted'
+    * A brief CamelCase message indicating details about why the pod is in this state. e.g. \'Evicted\'
     */
     'reason'?: string;
     /**
-    * Status of resources resize desired for pod's containers. It is empty if no resources resize is pending. Any changes to container resources will automatically set this to \"Proposed\"
+    * Status of resources resize desired for pod\'s containers. It is empty if no resources resize is pending. Any changes to container resources will automatically set this to \"Proposed\"
     */
     'resize'?: string;
+    /**
+    * Status of resource claims.
+    */
+    'resourceClaimStatuses'?: Array<V1PodResourceClaimStatus>;
     /**
     * RFC 3339 date and time at which the object was acknowledged by the Kubelet. This is before the Kubelet pulled the container image(s) for the pod.
     */
@@ -101,6 +111,12 @@ export class V1PodStatus {
             "name": "hostIP",
             "baseName": "hostIP",
             "type": "string",
+            "format": ""
+        },
+        {
+            "name": "hostIPs",
+            "baseName": "hostIPs",
+            "type": "Array<V1HostIP>",
             "format": ""
         },
         {
@@ -158,6 +174,12 @@ export class V1PodStatus {
             "format": ""
         },
         {
+            "name": "resourceClaimStatuses",
+            "baseName": "resourceClaimStatuses",
+            "type": "Array<V1PodResourceClaimStatus>",
+            "format": ""
+        },
+        {
             "name": "startTime",
             "baseName": "startTime",
             "type": "Date",
@@ -173,6 +195,16 @@ export class V1PodStatus {
 }
 
 
-export type V1PodStatusPhaseEnum = "Failed" | "Pending" | "Running" | "Succeeded" | "Unknown" ;
-export type V1PodStatusQosClassEnum = "BestEffort" | "Burstable" | "Guaranteed" ;
+export enum V1PodStatusPhaseEnum {
+    Failed = 'Failed',
+    Pending = 'Pending',
+    Running = 'Running',
+    Succeeded = 'Succeeded',
+    Unknown = 'Unknown'
+}
+export enum V1PodStatusQosClassEnum {
+    BestEffort = 'BestEffort',
+    Burstable = 'Burstable',
+    Guaranteed = 'Guaranteed'
+}
 

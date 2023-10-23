@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1SharedSecret } from './managementV1SharedSecret';
-import { V1ListMeta } from './V1ListMeta';
+import { ManagementV1SharedSecret } from '../models/managementV1SharedSecret';
+import { V1ListMeta } from '../models/V1ListMeta';
 
 
 export class ManagementV1SharedSecretList {

@@ -10,12 +10,12 @@
  * Do not edit the class manually.
  */
 
-import { V1ListMeta } from './V1ListMeta';
-import { V1StatusDetails } from './V1StatusDetails';
+import { V1ListMeta } from '../models/V1ListMeta';
+import { V1StatusDetails } from '../models/V1StatusDetails';
 
 
 /**
-* Status is a return value for calls that don't return other objects.
+* Status is a return value for calls that don\'t return other objects.
 */
 export class V1Status {
     /**

@@ -10,14 +10,14 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1AppReference } from './agentstorageV1AppReference';
-import { StorageV1InstanceAccess } from './agentstorageV1InstanceAccess';
-import { StorageV1PodSelector } from './agentstorageV1PodSelector';
-import { StorageV1SecretRef } from './agentstorageV1SecretRef';
-import { StorageV1TemplateHelmChart } from './agentstorageV1TemplateHelmChart';
-import { StorageV1VirtualClusterAccessPoint } from './agentstorageV1VirtualClusterAccessPoint';
-import { StorageV1VirtualClusterHelmRelease } from './agentstorageV1VirtualClusterHelmRelease';
-import { StorageV1VirtualClusterProSpec } from './agentstorageV1VirtualClusterProSpec';
+import { StorageV1AppReference } from '../models/agentstorageV1AppReference';
+import { StorageV1InstanceAccess } from '../models/agentstorageV1InstanceAccess';
+import { StorageV1PodSelector } from '../models/agentstorageV1PodSelector';
+import { StorageV1SecretRef } from '../models/agentstorageV1SecretRef';
+import { StorageV1TemplateHelmChart } from '../models/agentstorageV1TemplateHelmChart';
+import { StorageV1VirtualClusterAccessPoint } from '../models/agentstorageV1VirtualClusterAccessPoint';
+import { StorageV1VirtualClusterHelmRelease } from '../models/agentstorageV1VirtualClusterHelmRelease';
+import { StorageV1VirtualClusterProSpec } from '../models/agentstorageV1VirtualClusterProSpec';
 
 
 export class ClusterV1VirtualClusterSpec {

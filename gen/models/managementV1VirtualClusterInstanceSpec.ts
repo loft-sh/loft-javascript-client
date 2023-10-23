@@ -10,12 +10,12 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1InstanceAccessRule } from './agentstorageV1InstanceAccessRule';
-import { StorageV1Access } from './storageV1Access';
-import { StorageV1TemplateRef } from './storageV1TemplateRef';
-import { StorageV1UserOrTeam } from './storageV1UserOrTeam';
-import { StorageV1VirtualClusterClusterRef } from './storageV1VirtualClusterClusterRef';
-import { StorageV1VirtualClusterTemplateDefinition } from './storageV1VirtualClusterTemplateDefinition';
+import { StorageV1InstanceAccessRule } from '../models/agentstorageV1InstanceAccessRule';
+import { StorageV1Access } from '../models/storageV1Access';
+import { StorageV1TemplateRef } from '../models/storageV1TemplateRef';
+import { StorageV1UserOrTeam } from '../models/storageV1UserOrTeam';
+import { StorageV1VirtualClusterClusterRef } from '../models/storageV1VirtualClusterClusterRef';
+import { StorageV1VirtualClusterTemplateDefinition } from '../models/storageV1VirtualClusterTemplateDefinition';
 
 
 /**
@@ -41,7 +41,7 @@ export class ManagementV1VirtualClusterInstanceSpec {
     'extraAccessRules'?: Array<StorageV1InstanceAccessRule>;
     'owner'?: StorageV1UserOrTeam;
     /**
-    * Parameters are values to pass to the template
+    * Parameters are values to pass to the template. The values should be encoded as YAML string where each parameter is represented as a top-level field key.
     */
     'parameters'?: string;
     'template'?: StorageV1VirtualClusterTemplateDefinition;

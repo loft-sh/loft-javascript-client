@@ -10,34 +10,29 @@
  * Do not edit the class manually.
  */
 
-import { V1LabelSelector } from '../models/V1LabelSelector';
 
 
-export class StorageV1StreamContainer {
+/**
+* HostIP represents a single IP address allocated to the host.
+*/
+export class V1HostIP {
     /**
-    * Container is the container name to use
+    * IP is the IP address assigned to the host
     */
-    'container'?: string;
-    'selector'?: V1LabelSelector;
+    'ip'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "container",
-            "baseName": "container",
+            "name": "ip",
+            "baseName": "ip",
             "type": "string",
-            "format": ""
-        },
-        {
-            "name": "selector",
-            "baseName": "selector",
-            "type": "V1LabelSelector",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1StreamContainer.attributeTypeMap;
+        return V1HostIP.attributeTypeMap;
     }
 
     public constructor() {

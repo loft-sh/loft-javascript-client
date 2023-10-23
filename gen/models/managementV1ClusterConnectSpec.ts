@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1Cluster } from './managementV1Cluster';
+import { ManagementV1Cluster } from '../models/managementV1Cluster';
 
 
 export class ManagementV1ClusterConnectSpec {

@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { PolicyV1beta1RequestInfo } from './policyV1beta1RequestInfo';
-import { PolicyV1beta1UserInfo } from './policyV1beta1UserInfo';
+import { PolicyV1beta1RequestInfo } from '../models/policyV1beta1RequestInfo';
+import { PolicyV1beta1UserInfo } from '../models/policyV1beta1UserInfo';
 
 
 export class PolicyV1beta1PolicyViolation {

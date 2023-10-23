@@ -10,10 +10,10 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1AccessKeyScopeProject } from './storageV1AccessKeyScopeProject';
-import { StorageV1AccessKeyScopeRule } from './storageV1AccessKeyScopeRule';
-import { StorageV1AccessKeyScopeSpace } from './storageV1AccessKeyScopeSpace';
-import { StorageV1AccessKeyScopeVirtualCluster } from './storageV1AccessKeyScopeVirtualCluster';
+import { StorageV1AccessKeyScopeProject } from '../models/storageV1AccessKeyScopeProject';
+import { StorageV1AccessKeyScopeRule } from '../models/storageV1AccessKeyScopeRule';
+import { StorageV1AccessKeyScopeSpace } from '../models/storageV1AccessKeyScopeSpace';
+import { StorageV1AccessKeyScopeVirtualCluster } from '../models/storageV1AccessKeyScopeVirtualCluster';
 
 
 export class StorageV1AccessKeyScope {

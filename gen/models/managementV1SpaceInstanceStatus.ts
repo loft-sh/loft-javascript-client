@@ -10,10 +10,10 @@
  * Do not edit the class manually.
  */
 
-import { ClusterV1SleepModeConfig } from './clusterV1SleepModeConfig';
-import { StorageV1Condition } from './agentstorageV1Condition';
-import { StorageV1ObjectsStatus } from './agentstorageV1ObjectsStatus';
-import { StorageV1SpaceTemplateDefinition } from './storageV1SpaceTemplateDefinition';
+import { ClusterV1SleepModeConfig } from '../models/clusterV1SleepModeConfig';
+import { StorageV1Condition } from '../models/agentstorageV1Condition';
+import { StorageV1ObjectsStatus } from '../models/agentstorageV1ObjectsStatus';
+import { StorageV1SpaceTemplateDefinition } from '../models/storageV1SpaceTemplateDefinition';
 
 
 /**

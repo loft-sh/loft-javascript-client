@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { ClusterV1HelmReleaseConfig } from './clusterV1HelmReleaseConfig';
+import { ClusterV1HelmReleaseConfig } from '../models/clusterV1HelmReleaseConfig';
 
 
 export class StorageV1HelmTaskRelease {

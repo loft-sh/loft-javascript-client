@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { LicenseApiInstanceTokenAuth } from './licenseApiInstanceTokenAuth';
+import { LicenseApiInstanceTokenAuth } from '../models/licenseApiInstanceTokenAuth';
 
 
 export class ManagementV1LicenseTokenStatus {

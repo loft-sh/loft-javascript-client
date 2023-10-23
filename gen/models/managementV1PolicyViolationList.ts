@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1PolicyViolation } from './managementV1PolicyViolation';
-import { V1ListMeta } from './V1ListMeta';
+import { ManagementV1PolicyViolation } from '../models/managementV1PolicyViolation';
+import { V1ListMeta } from '../models/V1ListMeta';
 
 
 export class ManagementV1PolicyViolationList {

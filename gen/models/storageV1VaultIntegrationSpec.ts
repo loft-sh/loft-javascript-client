@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1VaultAuthSpec } from './storageV1VaultAuthSpec';
+import { StorageV1VaultAuthSpec } from '../models/storageV1VaultAuthSpec';
 
 
 export class StorageV1VaultIntegrationSpec {

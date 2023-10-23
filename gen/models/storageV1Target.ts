@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1TargetCluster } from './storageV1TargetCluster';
-import { StorageV1TargetInstance } from './storageV1TargetInstance';
-import { StorageV1TargetVirtualCluster } from './storageV1TargetVirtualCluster';
+import { StorageV1TargetCluster } from '../models/storageV1TargetCluster';
+import { StorageV1TargetInstance } from '../models/storageV1TargetInstance';
+import { StorageV1TargetVirtualCluster } from '../models/storageV1TargetVirtualCluster';
 
 
 export class StorageV1Target {

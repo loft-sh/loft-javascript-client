@@ -10,18 +10,18 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1Access } from './storageV1Access';
-import { StorageV1AllowedCluster } from './storageV1AllowedCluster';
-import { StorageV1AllowedRunner } from './storageV1AllowedRunner';
-import { StorageV1AllowedTemplate } from './storageV1AllowedTemplate';
-import { StorageV1ArgoIntegrationSpec } from './storageV1ArgoIntegrationSpec';
-import { StorageV1Member } from './storageV1Member';
-import { StorageV1NamespacePattern } from './storageV1NamespacePattern';
-import { StorageV1Quotas } from './storageV1Quotas';
-import { StorageV1RancherIntegrationSpec } from './storageV1RancherIntegrationSpec';
-import { StorageV1RequireTemplate } from './storageV1RequireTemplate';
-import { StorageV1UserOrTeam } from './storageV1UserOrTeam';
-import { StorageV1VaultIntegrationSpec } from './storageV1VaultIntegrationSpec';
+import { StorageV1Access } from '../models/storageV1Access';
+import { StorageV1AllowedCluster } from '../models/storageV1AllowedCluster';
+import { StorageV1AllowedRunner } from '../models/storageV1AllowedRunner';
+import { StorageV1AllowedTemplate } from '../models/storageV1AllowedTemplate';
+import { StorageV1ArgoIntegrationSpec } from '../models/storageV1ArgoIntegrationSpec';
+import { StorageV1Member } from '../models/storageV1Member';
+import { StorageV1NamespacePattern } from '../models/storageV1NamespacePattern';
+import { StorageV1Quotas } from '../models/storageV1Quotas';
+import { StorageV1RancherIntegrationSpec } from '../models/storageV1RancherIntegrationSpec';
+import { StorageV1RequireTemplate } from '../models/storageV1RequireTemplate';
+import { StorageV1UserOrTeam } from '../models/storageV1UserOrTeam';
+import { StorageV1VaultIntegrationSpec } from '../models/storageV1VaultIntegrationSpec';
 
 
 /**

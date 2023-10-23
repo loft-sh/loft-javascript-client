@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1ClaimSource } from './V1ClaimSource';
+import { V1ClaimSource } from '../models/V1ClaimSource';
 
 
 /**

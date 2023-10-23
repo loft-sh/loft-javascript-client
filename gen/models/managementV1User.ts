@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1UserSpec } from './managementV1UserSpec';
-import { ManagementV1UserStatus } from './managementV1UserStatus';
-import { V1ObjectMeta } from './V1ObjectMeta';
+import { ManagementV1UserSpec } from '../models/managementV1UserSpec';
+import { ManagementV1UserStatus } from '../models/managementV1UserStatus';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
 /**

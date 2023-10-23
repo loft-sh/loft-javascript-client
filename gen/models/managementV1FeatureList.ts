@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1Feature } from './managementV1Feature';
-import { V1ListMeta } from './V1ListMeta';
+import { ManagementV1Feature } from '../models/managementV1Feature';
+import { V1ListMeta } from '../models/V1ListMeta';
 
 
 export class ManagementV1FeatureList {

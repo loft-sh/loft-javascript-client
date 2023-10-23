@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1PredefinedApp } from './managementV1PredefinedApp';
-import { StorageV1HelmChartRepository } from './storageV1HelmChartRepository';
+import { ManagementV1PredefinedApp } from '../models/managementV1PredefinedApp';
+import { StorageV1HelmChartRepository } from '../models/storageV1HelmChartRepository';
 
 
 /**

@@ -10,10 +10,10 @@
  * Do not edit the class manually.
  */
 
-import { ClusterV1EntityInfo } from './clusterV1EntityInfo';
-import { ClusterV1UserOrTeam } from './clusterV1UserOrTeam';
-import { StorageV1Condition } from './agentstorageV1Condition';
-import { V1ContainerStatus } from './V1ContainerStatus';
+import { ClusterV1EntityInfo } from '../models/clusterV1EntityInfo';
+import { ClusterV1UserOrTeam } from '../models/clusterV1UserOrTeam';
+import { StorageV1Condition } from '../models/agentstorageV1Condition';
+import { V1ContainerStatus } from '../models/V1ContainerStatus';
 
 
 /**
@@ -32,7 +32,7 @@ export class ManagementV1TaskStatus {
     'observedGeneration'?: number;
     'owner'?: ClusterV1UserOrTeam;
     /**
-    * PodPhase describes the phase this task is in  Possible enum values:  - `\"Failed\"` means that all containers in the pod have terminated, and at least one container has terminated in a failure (exited with a non-zero exit code or was stopped by the system).  - `\"Pending\"` means the pod has been accepted by the system, but one or more of the containers has not been started. This includes time before being bound to a node, as well as time spent pulling images onto the host.  - `\"Running\"` means the pod has been bound to a node and all of the containers have been started. At least one container is still running or is in the process of being restarted.  - `\"Succeeded\"` means that all containers in the pod have voluntarily terminated with a container exit code of 0, and the system is not going to restart any of these containers.  - `\"Unknown\"` means that for some reason the state of the pod could not be obtained, typically due to an error in communicating with the host of the pod. Deprecated: It isn't being set since 2015 (74da3b14b0c0f658b3bb8d2def5094686d0e9095)
+    * PodPhase describes the phase this task is in  Possible enum values:  - `\"Failed\"` means that all containers in the pod have terminated, and at least one container has terminated in a failure (exited with a non-zero exit code or was stopped by the system).  - `\"Pending\"` means the pod has been accepted by the system, but one or more of the containers has not been started. This includes time before being bound to a node, as well as time spent pulling images onto the host.  - `\"Running\"` means the pod has been bound to a node and all of the containers have been started. At least one container is still running or is in the process of being restarted.  - `\"Succeeded\"` means that all containers in the pod have voluntarily terminated with a container exit code of 0, and the system is not going to restart any of these containers.  - `\"Unknown\"` means that for some reason the state of the pod could not be obtained, typically due to an error in communicating with the host of the pod. Deprecated: It isn\'t being set since 2015 (74da3b14b0c0f658b3bb8d2def5094686d0e9095)
     */
     'podPhase'?: ManagementV1TaskStatusPodPhaseEnum;
     /**
@@ -95,5 +95,11 @@ export class ManagementV1TaskStatus {
 }
 
 
-export type ManagementV1TaskStatusPodPhaseEnum = "Failed" | "Pending" | "Running" | "Succeeded" | "Unknown" ;
+export enum ManagementV1TaskStatusPodPhaseEnum {
+    Failed = 'Failed',
+    Pending = 'Pending',
+    Running = 'Running',
+    Succeeded = 'Succeeded',
+    Unknown = 'Unknown'
+}
 

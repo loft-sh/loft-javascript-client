@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1VirtualClusterSpec } from './agentstorageV1VirtualClusterSpec';
-import { StorageV1VirtualClusterStatus } from './agentstorageV1VirtualClusterStatus';
-import { V1ObjectMeta } from './V1ObjectMeta';
+import { StorageV1VirtualClusterSpec } from '../models/agentstorageV1VirtualClusterSpec';
+import { StorageV1VirtualClusterStatus } from '../models/agentstorageV1VirtualClusterStatus';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
 /**

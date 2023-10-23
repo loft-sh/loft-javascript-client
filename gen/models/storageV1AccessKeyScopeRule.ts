@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1AccessKeyVirtualCluster } from './storageV1AccessKeyVirtualCluster';
-import { StorageV1GroupResources } from './storageV1GroupResources';
+import { StorageV1AccessKeyVirtualCluster } from '../models/storageV1AccessKeyVirtualCluster';
+import { StorageV1GroupResources } from '../models/storageV1GroupResources';
 
 
 /**

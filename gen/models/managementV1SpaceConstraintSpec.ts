@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1Access } from './storageV1Access';
-import { StorageV1LocalSpaceConstraintTemplate } from './storageV1LocalSpaceConstraintTemplate';
-import { StorageV1UserOrTeam } from './storageV1UserOrTeam';
+import { StorageV1Access } from '../models/storageV1Access';
+import { StorageV1LocalSpaceConstraintTemplate } from '../models/storageV1LocalSpaceConstraintTemplate';
+import { StorageV1UserOrTeam } from '../models/storageV1UserOrTeam';
 
 
 /**

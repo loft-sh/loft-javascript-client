@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1ConstraintSpaceTemplate } from './storageV1ConstraintSpaceTemplate';
+import { StorageV1ConstraintSpaceTemplate } from '../models/storageV1ConstraintSpaceTemplate';
 
 
 export class StorageV1LocalSpaceConstraintSpec {

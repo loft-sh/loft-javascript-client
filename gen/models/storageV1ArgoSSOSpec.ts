@@ -18,7 +18,7 @@ export class StorageV1ArgoSSOSpec {
     */
     'assignedRoles'?: Array<string>;
     /**
-    * Enabled indicates if the ArgoCD SSO Integration is enabled for this project. Enabling this will cause Loft to configure SSO authentication via Loft in ArgoCD. If Projects are *not* enabled, all users associated with this Project will be assigned either the 'read-only' (default) role, *or* the roles set under the AssignedRoles field.
+    * Enabled indicates if the ArgoCD SSO Integration is enabled for this project. Enabling this will cause Loft to configure SSO authentication via Loft in ArgoCD. If Projects are *not* enabled, all users associated with this Project will be assigned either the \'read-only\' (default) role, *or* the roles set under the AssignedRoles field.
     */
     'enabled'?: boolean;
     /**

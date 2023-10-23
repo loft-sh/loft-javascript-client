@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1Chart } from './agentstorageV1Chart';
+import { StorageV1Chart } from '../models/agentstorageV1Chart';
 
 
 export class ClusterV1ChartInfoSpec {

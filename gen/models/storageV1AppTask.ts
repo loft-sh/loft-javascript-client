@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1AppReference } from './agentstorageV1AppReference';
+import { StorageV1AppReference } from '../models/agentstorageV1AppReference';
 
 
 export class StorageV1AppTask {

@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { LicenseApiLicenseAPIRoute } from './licenseApiLicenseAPIRoute';
+import { LicenseApiLicenseAPIRoute } from '../models/licenseApiLicenseAPIRoute';
 
 
 /**

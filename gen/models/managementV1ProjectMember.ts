@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { ClusterV1EntityInfo } from './clusterV1EntityInfo';
+import { ClusterV1EntityInfo } from '../models/clusterV1EntityInfo';
 
 
 export class ManagementV1ProjectMember {

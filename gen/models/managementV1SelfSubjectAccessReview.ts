@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1SelfSubjectAccessReviewSpec } from './managementV1SelfSubjectAccessReviewSpec';
-import { ManagementV1SelfSubjectAccessReviewStatus } from './managementV1SelfSubjectAccessReviewStatus';
-import { V1ObjectMeta } from './V1ObjectMeta';
+import { ManagementV1SelfSubjectAccessReviewSpec } from '../models/managementV1SelfSubjectAccessReviewSpec';
+import { ManagementV1SelfSubjectAccessReviewStatus } from '../models/managementV1SelfSubjectAccessReviewStatus';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
 /**

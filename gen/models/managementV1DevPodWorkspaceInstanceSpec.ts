@@ -10,11 +10,11 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1Access } from './storageV1Access';
-import { StorageV1DevPodWorkspaceTemplateDefinition } from './storageV1DevPodWorkspaceTemplateDefinition';
-import { StorageV1RunnerRef } from './storageV1RunnerRef';
-import { StorageV1TemplateRef } from './storageV1TemplateRef';
-import { StorageV1UserOrTeam } from './storageV1UserOrTeam';
+import { StorageV1Access } from '../models/storageV1Access';
+import { StorageV1DevPodWorkspaceTemplateDefinition } from '../models/storageV1DevPodWorkspaceTemplateDefinition';
+import { StorageV1RunnerRef } from '../models/storageV1RunnerRef';
+import { StorageV1TemplateRef } from '../models/storageV1TemplateRef';
+import { StorageV1UserOrTeam } from '../models/storageV1UserOrTeam';
 
 
 /**
@@ -35,7 +35,7 @@ export class ManagementV1DevPodWorkspaceInstanceSpec {
     'displayName'?: string;
     'owner'?: StorageV1UserOrTeam;
     /**
-    * Parameters are values to pass to the template
+    * Parameters are values to pass to the template. The values should be encoded as YAML string where each parameter is represented as a top-level field key.
     */
     'parameters'?: string;
     'runnerRef'?: StorageV1RunnerRef;

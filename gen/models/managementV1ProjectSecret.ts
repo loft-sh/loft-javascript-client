@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1ProjectSecretSpec } from './managementV1ProjectSecretSpec';
-import { ManagementV1ProjectSecretStatus } from './managementV1ProjectSecretStatus';
-import { V1ObjectMeta } from './V1ObjectMeta';
+import { ManagementV1ProjectSecretSpec } from '../models/managementV1ProjectSecretSpec';
+import { ManagementV1ProjectSecretStatus } from '../models/managementV1ProjectSecretStatus';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
 /**

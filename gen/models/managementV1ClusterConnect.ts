@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1ClusterConnectSpec } from './managementV1ClusterConnectSpec';
-import { ManagementV1ClusterConnectStatus } from './managementV1ClusterConnectStatus';
-import { V1ObjectMeta } from './V1ObjectMeta';
+import { ManagementV1ClusterConnectSpec } from '../models/managementV1ClusterConnectSpec';
+import { ManagementV1ClusterConnectStatus } from '../models/managementV1ClusterConnectStatus';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
 /**

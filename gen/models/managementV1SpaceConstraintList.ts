@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1SpaceConstraint } from './managementV1SpaceConstraint';
-import { V1ListMeta } from './V1ListMeta';
+import { ManagementV1SpaceConstraint } from '../models/managementV1SpaceConstraint';
+import { V1ListMeta } from '../models/V1ListMeta';
 
 
 export class ManagementV1SpaceConstraintList {

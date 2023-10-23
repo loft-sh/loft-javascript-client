@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1DirectClusterEndpointTokenSpec } from './managementV1DirectClusterEndpointTokenSpec';
-import { ManagementV1DirectClusterEndpointTokenStatus } from './managementV1DirectClusterEndpointTokenStatus';
-import { V1ObjectMeta } from './V1ObjectMeta';
+import { ManagementV1DirectClusterEndpointTokenSpec } from '../models/managementV1DirectClusterEndpointTokenSpec';
+import { ManagementV1DirectClusterEndpointTokenStatus } from '../models/managementV1DirectClusterEndpointTokenStatus';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
 /**

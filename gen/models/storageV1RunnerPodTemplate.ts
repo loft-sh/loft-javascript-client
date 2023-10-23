@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1RunnerPodTemplateSpec } from './storageV1RunnerPodTemplateSpec';
-import { StorageV1TemplateMetadata } from './storageV1TemplateMetadata';
+import { StorageV1RunnerPodTemplateSpec } from '../models/storageV1RunnerPodTemplateSpec';
+import { StorageV1TemplateMetadata } from '../models/storageV1TemplateMetadata';
 
 
 export class StorageV1RunnerPodTemplate {

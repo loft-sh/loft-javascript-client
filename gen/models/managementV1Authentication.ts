@@ -10,15 +10,15 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1AuthenticationGithub } from './managementV1AuthenticationGithub';
-import { ManagementV1AuthenticationGitlab } from './managementV1AuthenticationGitlab';
-import { ManagementV1AuthenticationGoogle } from './managementV1AuthenticationGoogle';
-import { ManagementV1AuthenticationMicrosoft } from './managementV1AuthenticationMicrosoft';
-import { ManagementV1AuthenticationOIDC } from './managementV1AuthenticationOIDC';
-import { ManagementV1AuthenticationPassword } from './managementV1AuthenticationPassword';
-import { ManagementV1AuthenticationRancher } from './managementV1AuthenticationRancher';
-import { ManagementV1AuthenticationSAML } from './managementV1AuthenticationSAML';
-import { ManagementV1ConnectorWithName } from './managementV1ConnectorWithName';
+import { ManagementV1AuthenticationGithub } from '../models/managementV1AuthenticationGithub';
+import { ManagementV1AuthenticationGitlab } from '../models/managementV1AuthenticationGitlab';
+import { ManagementV1AuthenticationGoogle } from '../models/managementV1AuthenticationGoogle';
+import { ManagementV1AuthenticationMicrosoft } from '../models/managementV1AuthenticationMicrosoft';
+import { ManagementV1AuthenticationOIDC } from '../models/managementV1AuthenticationOIDC';
+import { ManagementV1AuthenticationPassword } from '../models/managementV1AuthenticationPassword';
+import { ManagementV1AuthenticationRancher } from '../models/managementV1AuthenticationRancher';
+import { ManagementV1AuthenticationSAML } from '../models/managementV1AuthenticationSAML';
+import { ManagementV1ConnectorWithName } from '../models/managementV1ConnectorWithName';
 
 
 /**

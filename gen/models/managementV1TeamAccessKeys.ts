@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1OwnedAccessKey } from './managementV1OwnedAccessKey';
-import { V1ObjectMeta } from './V1ObjectMeta';
+import { ManagementV1OwnedAccessKey } from '../models/managementV1OwnedAccessKey';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
 export class ManagementV1TeamAccessKeys {

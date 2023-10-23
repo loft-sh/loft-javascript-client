@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1VirtualClusterHelmRelease } from './agentstorageV1VirtualClusterHelmRelease';
+import { StorageV1VirtualClusterHelmRelease } from '../models/agentstorageV1VirtualClusterHelmRelease';
 
 
 export class StorageV1VirtualClusterHelmReleaseStatus {

@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { ClusterV1EntityInfo } from './clusterV1EntityInfo';
-import { ClusterV1UserOrTeam } from './clusterV1UserOrTeam';
+import { ClusterV1EntityInfo } from '../models/clusterV1EntityInfo';
+import { ClusterV1UserOrTeam } from '../models/clusterV1UserOrTeam';
 
 
 export class ClusterV1LocalClusterAccessStatus {

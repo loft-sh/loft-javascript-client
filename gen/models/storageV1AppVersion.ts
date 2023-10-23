@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { ClusterV1HelmReleaseConfig } from './clusterV1HelmReleaseConfig';
-import { StorageV1AppParameter } from './storageV1AppParameter';
-import { StorageV1StreamContainer } from './storageV1StreamContainer';
+import { ClusterV1HelmReleaseConfig } from '../models/clusterV1HelmReleaseConfig';
+import { StorageV1AppParameter } from '../models/storageV1AppParameter';
+import { StorageV1StreamContainer } from '../models/storageV1StreamContainer';
 
 
 export class StorageV1AppVersion {

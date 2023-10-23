@@ -10,13 +10,13 @@
  * Do not edit the class manually.
  */
 
-import { LicenseApiAnalytics } from './licenseApiAnalytics';
-import { LicenseApiAnnouncement } from './licenseApiAnnouncement';
-import { LicenseApiBlockRequest } from './licenseApiBlockRequest';
-import { LicenseApiButton } from './licenseApiButton';
-import { LicenseApiLicenseAPIRoutes } from './licenseApiLicenseAPIRoutes';
-import { LicenseApiModule } from './licenseApiModule';
-import { LicenseApiPlan } from './licenseApiPlan';
+import { LicenseApiAnalytics } from '../models/licenseApiAnalytics';
+import { LicenseApiAnnouncement } from '../models/licenseApiAnnouncement';
+import { LicenseApiBlockRequest } from '../models/licenseApiBlockRequest';
+import { LicenseApiButton } from '../models/licenseApiButton';
+import { LicenseApiLicenseAPIRoutes } from '../models/licenseApiLicenseAPIRoutes';
+import { LicenseApiModule } from '../models/licenseApiModule';
+import { LicenseApiPlan } from '../models/licenseApiPlan';
 
 
 /**

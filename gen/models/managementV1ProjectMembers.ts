@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1ProjectMember } from './managementV1ProjectMember';
-import { V1ObjectMeta } from './V1ObjectMeta';
+import { ManagementV1ProjectMember } from '../models/managementV1ProjectMember';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
 export class ManagementV1ProjectMembers {

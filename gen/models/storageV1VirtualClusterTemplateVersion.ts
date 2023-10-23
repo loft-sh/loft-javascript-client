@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1AppParameter } from './storageV1AppParameter';
-import { StorageV1VirtualClusterTemplateDefinition } from './storageV1VirtualClusterTemplateDefinition';
+import { StorageV1AppParameter } from '../models/storageV1AppParameter';
+import { StorageV1VirtualClusterTemplateDefinition } from '../models/storageV1VirtualClusterTemplateDefinition';
 
 
 export class StorageV1VirtualClusterTemplateVersion {

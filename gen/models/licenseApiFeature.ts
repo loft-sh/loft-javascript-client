@@ -27,7 +27,7 @@ export class LicenseApiFeature {
     */
     'labels'?: Array<string>;
     /**
-    * Name is the name of the feature (FeatureName) This cannot be FeatureName because it needs to be downward compatible e.g. older Loft version doesn't know a newer feature but it will still be received and still needs to be rendered in the license view
+    * Name is the name of the feature (FeatureName) This cannot be FeatureName because it needs to be downward compatible e.g. older Loft version doesn\'t know a newer feature but it will still be received and still needs to be rendered in the license view
     */
     'name': string;
     /**

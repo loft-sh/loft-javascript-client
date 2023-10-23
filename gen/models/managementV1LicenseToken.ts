@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1LicenseTokenSpec } from './managementV1LicenseTokenSpec';
-import { ManagementV1LicenseTokenStatus } from './managementV1LicenseTokenStatus';
-import { V1ObjectMeta } from './V1ObjectMeta';
+import { ManagementV1LicenseTokenSpec } from '../models/managementV1LicenseTokenSpec';
+import { ManagementV1LicenseTokenStatus } from '../models/managementV1LicenseTokenStatus';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
 /**
