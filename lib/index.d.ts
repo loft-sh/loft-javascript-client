@@ -2,21 +2,21 @@
 
 import { CoreV1Event, NetworkingV1beta1Ingress, V1ClusterRole, V1ClusterRoleBinding, V1ConfigMap, V1CustomResourceDefinition, V1Deployment, V1Ingress, V1Namespace, V1Node, V1Pod, V1Role, V1RoleBinding, V1Secret, V1SelfSubjectAccessReview, V1Service, V1StatefulSet, V1Status, V1StorageClassList, VersionInfo } from '@kubernetes/client-node';
 
-export declare class Err<E> {
+export declare class Err<E, Extra = any> {
 	readonly val: E;
-	extra: any;
+	extra: Extra | undefined;
 	readonly ok = false;
 	readonly err = true;
-	constructor(val: E, extra?: any);
+	constructor(val: E, extra?: Extra | undefined);
 }
-export declare class Ok<T> {
+export declare class Ok<T, Extra = any> {
 	readonly val: T;
-	extra: any;
+	extra: Extra | undefined;
 	readonly ok = true;
 	readonly err = false;
-	constructor(val: T, extra?: any);
+	constructor(val: T, extra?: Extra | undefined);
 }
-export type ResultError = Ok<undefined> | Err<Failed>;
+export type ResultError<Extra = any> = Ok<undefined, Extra> | Err<Failed, Extra>;
 export type Result<T> = Ok<T> | Err<Failed>;
 export declare function isResult<T>(arg: object): arg is Result<T>;
 export type ErrorType = string;
@@ -34,11 +34,11 @@ export declare const ErrorTypeServiceUnavailable: ErrorType;
 export declare const ErrorTypeGatewayTimeout: ErrorType;
 export declare const MapErrorCode: (code: number) => ErrorType;
 export declare class Return {
-	static Ok(): Ok<undefined>;
-	static Value<E>(val: E): Ok<E>;
-	static Failed(message: string, reason?: string, type?: ErrorType, extra?: any): Err<Failed>;
+	static Ok(): Ok<undefined, any>;
+	static Value<E>(val: E): Ok<E, any>;
+	static Failed(message: string, reason?: string, type?: ErrorType, extra?: any): Err<Failed, any>;
 	static Error<E>(val: E): Err<E>;
-	static WithExtra<T>(result: Result<T>, extra?: any): Result<T>;
+	static WithExtra<T, K = any>(result: Result<T>, extra?: K | undefined): Result<T>;
 }
 export declare class Failed {
 	readonly message: string;
