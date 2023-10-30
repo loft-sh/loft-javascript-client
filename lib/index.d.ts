@@ -306,6 +306,7 @@ export interface V1Info {
 export interface V1InfoMethods {
 	sso?: V1InfoMethodsSSO[];
 	password?: V1InfoMethodsPassword;
+	rancher?: V1InfoMethodsRancher;
 }
 export interface V1InfoMethodsSSO {
 	id?: string;
@@ -315,6 +316,10 @@ export interface V1InfoMethodsSSO {
 }
 export interface V1InfoMethodsPassword {
 	enabled?: boolean;
+}
+export interface V1InfoMethodsRancher {
+	enabled?: boolean;
+	host?: string;
 }
 export interface V1OIDCRedirect {
 	/**
@@ -13215,10 +13220,6 @@ declare class StorageV1Quotas {
 	constructor();
 }
 declare class StorageV1ImportVirtualClustersSpec {
-	/**
-	* Enabled indicates if virtual clusters created within this project should get synced to Rancher. If projectRef is defined, will also automatically add the created namespace to the Rancher project.
-	*/
-	"enabled"?: boolean;
 	/**
 	* RoleMapping indicates an optional role mapping from a rancher project role to a rancher cluster role. Map to an empty role to exclude users and groups with that role from being synced.
 	*/

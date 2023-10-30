@@ -14,10 +14,6 @@
 
 export class StorageV1ImportVirtualClustersSpec {
     /**
-    * Enabled indicates if virtual clusters created within this project should get synced to Rancher. If projectRef is defined, will also automatically add the created namespace to the Rancher project.
-    */
-    'enabled'?: boolean;
-    /**
     * RoleMapping indicates an optional role mapping from a rancher project role to a rancher cluster role. Map to an empty role to exclude users and groups with that role from being synced.
     */
     'roleMapping'?: { [key: string]: string; };
@@ -25,12 +21,6 @@ export class StorageV1ImportVirtualClustersSpec {
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
-        {
-            "name": "enabled",
-            "baseName": "enabled",
-            "type": "boolean",
-            "format": ""
-        },
         {
             "name": "roleMapping",
             "baseName": "roleMapping",
