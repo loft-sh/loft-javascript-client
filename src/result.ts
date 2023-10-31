@@ -1,18 +1,18 @@
-export class Err<E> {
+export class Err<E, Extra = any> {
   readonly ok = false
   readonly err = true
 
-  constructor(public readonly val: E, public extra: any = undefined) {}
+  constructor(public readonly val: E, public extra: Extra | undefined = undefined) {}
 }
 
-export class Ok<T> {
+export class Ok<T, Extra = any> {
   readonly ok = true
   readonly err = false
 
-  constructor(public readonly val: T, public extra: any = undefined) {}
+  constructor(public readonly val: T, public extra: Extra | undefined = undefined) {}
 }
 
-export type ResultError = Ok<undefined> | Err<Failed>
+export type ResultError<Extra = any> = Ok<undefined, Extra> | Err<Failed, Extra>
 export type Result<T> = Ok<T> | Err<Failed>
 export function isResult<T>(arg: object): arg is Result<T> {
   return "ok" in arg && typeof arg.ok === "boolean" && "err" in arg && typeof arg.err === "boolean"
@@ -82,7 +82,7 @@ export class Return {
     return new Err<E>(val)
   }
 
-  static WithExtra<T>(result: Result<T>, extra: any = undefined): Result<T> {
+  static WithExtra<T, K = any>(result: Result<T>, extra: K | undefined = undefined): Result<T> {
     result.extra = extra
 
     return result
