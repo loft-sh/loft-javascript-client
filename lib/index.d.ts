@@ -12133,6 +12133,10 @@ declare class ManagementV1RunnerSpec {
 	* The display name shown in the UI
 	*/
 	"displayName"?: string;
+	/**
+	* Endpoint is the hostname used to connect directly to the runner
+	*/
+	"endpoint"?: string;
 	"owner"?: StorageV1UserOrTeam;
 	/**
 	* If unusable is true, no DevPod workspaces can be scheduled on this runner.
