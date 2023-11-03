@@ -58,6 +58,10 @@ export class ClusterV1SleepModeConfigSpec {
     */
     'ignoreResources'?: string;
     /**
+    * IgnoreUseragents are ignored user agents with trailing wildcards \'*\' allowed. comma separated
+    */
+    'ignoreUserAgents'?: string;
+    /**
     * IgnoreVClusters ignores vcluster requests
     */
     'ignoreVClusters'?: boolean;
@@ -148,6 +152,12 @@ export class ClusterV1SleepModeConfigSpec {
         {
             "name": "ignoreResources",
             "baseName": "ignoreResources",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "ignoreUserAgents",
+            "baseName": "ignoreUserAgents",
             "type": "string",
             "format": ""
         },

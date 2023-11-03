@@ -2211,6 +2211,10 @@ declare class ClusterV1SleepModeConfigSpec {
 	*/
 	"ignoreResources"?: string;
 	/**
+	* IgnoreUseragents are ignored user agents with trailing wildcards \'*\' allowed. comma separated
+	*/
+	"ignoreUserAgents"?: string;
+	/**
 	* IgnoreVClusters ignores vcluster requests
 	*/
 	"ignoreVClusters"?: boolean;
@@ -11005,6 +11009,10 @@ declare class LicenseApiPlan {
 	* Features is a list of features included in the plan
 	*/
 	"features"?: Array<string>;
+	/**
+	* ID of the plan
+	*/
+	"id"?: string;
 	"invoice"?: LicenseApiInvoice;
 	/**
 	* Limits is a list of resources included in the plan and their limits
