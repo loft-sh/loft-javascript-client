@@ -33,6 +33,10 @@ export class LicenseApiPlan {
     * Features is a list of features included in the plan
     */
     'features'?: Array<string>;
+    /**
+    * ID of the plan
+    */
+    'id'?: string;
     'invoice'?: LicenseApiInvoice;
     /**
     * Limits is a list of resources included in the plan and their limits
@@ -68,6 +72,12 @@ export class LicenseApiPlan {
             "name": "features",
             "baseName": "features",
             "type": "Array<string>",
+            "format": ""
+        },
+        {
+            "name": "id",
+            "baseName": "id",
+            "type": "string",
             "format": ""
         },
         {
