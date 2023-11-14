@@ -40,6 +40,10 @@ export class ManagementV1ClusterSpec {
     * The namespace where the cluster components will be installed in
     */
     'managementNamespace'?: string;
+    /**
+    * NetworkPeer specifies if the cluster is connected via tailscale, when this is specified, config is optional
+    */
+    'networkPeer'?: boolean;
     'owner'?: StorageV1UserOrTeam;
     /**
     * If unusable is true, no spaces or virtual clusters can be scheduled on this cluster.
@@ -83,6 +87,12 @@ export class ManagementV1ClusterSpec {
             "name": "managementNamespace",
             "baseName": "managementNamespace",
             "type": "string",
+            "format": ""
+        },
+        {
+            "name": "networkPeer",
+            "baseName": "networkPeer",
+            "type": "boolean",
             "format": ""
         },
         {

@@ -20,7 +20,10 @@ export class LicenseApiLicenseAPIRoutes {
     'chatAuth'?: LicenseApiLicenseAPIRoute;
     'checkout'?: LicenseApiLicenseAPIRoute;
     'featureDetails'?: LicenseApiLicenseAPIRoute;
+    'featurePreview'?: LicenseApiLicenseAPIRoute;
     'featureSetup'?: LicenseApiLicenseAPIRoute;
+    'moduleActivation'?: LicenseApiLicenseAPIRoute;
+    'modulePreview'?: LicenseApiLicenseAPIRoute;
     'portal'?: LicenseApiLicenseAPIRoute;
 
     static readonly discriminator: string | undefined = undefined;
@@ -45,8 +48,26 @@ export class LicenseApiLicenseAPIRoutes {
             "format": ""
         },
         {
+            "name": "featurePreview",
+            "baseName": "featurePreview",
+            "type": "LicenseApiLicenseAPIRoute",
+            "format": ""
+        },
+        {
             "name": "featureSetup",
             "baseName": "featureSetup",
+            "type": "LicenseApiLicenseAPIRoute",
+            "format": ""
+        },
+        {
+            "name": "moduleActivation",
+            "baseName": "moduleActivation",
+            "type": "LicenseApiLicenseAPIRoute",
+            "format": ""
+        },
+        {
+            "name": "modulePreview",
+            "baseName": "modulePreview",
             "type": "LicenseApiLicenseAPIRoute",
             "format": ""
         },
