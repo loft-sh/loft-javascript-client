@@ -7846,10 +7846,6 @@ declare class ManagementV1ClusterSpec {
 	* The namespace where the cluster components will be installed in
 	*/
 	"managementNamespace"?: string;
-	/**
-	* NetworkPeer specifies if the cluster is connected via tailscale, when this is specified, config is optional
-	*/
-	"networkPeer"?: boolean;
 	"owner"?: StorageV1UserOrTeam;
 	/**
 	* If unusable is true, no spaces or virtual clusters can be scheduled on this cluster.
@@ -10678,10 +10674,7 @@ declare class LicenseApiLicenseAPIRoutes {
 	"chatAuth"?: LicenseApiLicenseAPIRoute;
 	"checkout"?: LicenseApiLicenseAPIRoute;
 	"featureDetails"?: LicenseApiLicenseAPIRoute;
-	"featurePreview"?: LicenseApiLicenseAPIRoute;
 	"featureSetup"?: LicenseApiLicenseAPIRoute;
-	"moduleActivation"?: LicenseApiLicenseAPIRoute;
-	"modulePreview"?: LicenseApiLicenseAPIRoute;
 	"portal"?: LicenseApiLicenseAPIRoute;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
@@ -15002,10 +14995,6 @@ declare class StorageV1ClusterSpec {
 	* The namespace where the cluster components will be installed in
 	*/
 	"managementNamespace"?: string;
-	/**
-	* NetworkPeer specifies if the cluster is connected via tailscale, when this is specified, config is optional
-	*/
-	"networkPeer"?: boolean;
 	"owner"?: StorageV1UserOrTeam;
 	/**
 	* If unusable is true, no spaces or virtual clusters can be scheduled on this cluster.
