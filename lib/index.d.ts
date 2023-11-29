@@ -2171,10 +2171,6 @@ declare class ClusterV1SleepModeConfigSpec {
 	*/
 	"deleteAfter"?: number;
 	/**
-	* If true will delete all pods on sleep in the space regardless of if they have a parent set
-	*/
-	"deleteAllPods"?: boolean;
-	/**
 	* If force sleep is true the space will sleep
 	*/
 	"forceSleep"?: boolean;
