@@ -41,6 +41,10 @@ export class ManagementV1ClusterAgentConfig {
     * LoftHost defines the host for the agent\'s loft instance
     */
     'loftHost'?: string;
+    /**
+    * LoftInstanceID defines the instance id from the loft instance
+    */
+    'loftInstanceID'?: string;
     'metadata'?: V1ObjectMeta;
     /**
     * TokenCaCert is the certificate authority the Loft tokens will be signed with
@@ -89,6 +93,12 @@ export class ManagementV1ClusterAgentConfig {
         {
             "name": "loftHost",
             "baseName": "loftHost",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "loftInstanceID",
+            "baseName": "loftInstanceID",
             "type": "string",
             "format": ""
         },

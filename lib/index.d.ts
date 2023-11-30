@@ -7349,6 +7349,99 @@ declare class ManagementV1App {
 	}[];
 	constructor();
 }
+declare class ManagementV1BackupApplySpec {
+	/**
+	* Raw is the raw backup to apply
+	*/
+	"raw"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1BackupApply {
+	/**
+	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	*/
+	"apiVersion"?: string;
+	/**
+	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	*/
+	"kind"?: string;
+	"metadata"?: V1ObjectMeta;
+	"spec"?: ManagementV1BackupApplySpec;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1BackupStatus {
+	"rawBackup"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1Backup {
+	/**
+	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	*/
+	"apiVersion"?: string;
+	/**
+	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	*/
+	"kind"?: string;
+	"metadata"?: V1ObjectMeta;
+	/**
+	* BackupSpec holds the spec
+	*/
+	"spec"?: any;
+	"status"?: ManagementV1BackupStatus;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
 declare class StorageV1LocalClusterAccessSpec {
 	/**
 	* ClusterRoles define the cluster roles that the users should have assigned in the cluster.
@@ -7690,6 +7783,10 @@ declare class ManagementV1ClusterAgentConfig {
 	* LoftHost defines the host for the agent\'s loft instance
 	*/
 	"loftHost"?: string;
+	/**
+	* LoftInstanceID defines the instance id from the loft instance
+	*/
+	"loftInstanceID"?: string;
 	"metadata"?: V1ObjectMeta;
 	/**
 	* TokenCaCert is the certificate authority the Loft tokens will be signed with
@@ -15977,6 +16074,8 @@ export type TGenResources = {
 	ManagementV1AgentAuditEvent: GroupVersionResource<ManagementV1AgentAuditEvent>;
 	ManagementV1Announcement: GroupVersionResource<ManagementV1Announcement>;
 	ManagementV1App: GroupVersionResource<ManagementV1App>;
+	ManagementV1Backup: GroupVersionResource<ManagementV1Backup>;
+	ManagementV1BackupApply: GroupVersionResource<ManagementV1BackupApply>;
 	ManagementV1Cluster: GroupVersionResource<ManagementV1Cluster>;
 	ManagementV1ClusterAccess: GroupVersionResource<ManagementV1ClusterAccess>;
 	ManagementV1ClusterAgentConfig: GroupVersionResource<ManagementV1ClusterAgentConfig>;

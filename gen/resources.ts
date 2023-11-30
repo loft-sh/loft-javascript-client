@@ -3,6 +3,8 @@ import {GroupVersionResource} from "../src"
 import {ManagementV1AgentAuditEvent} from "./models/managementV1AgentAuditEvent"
 import {ManagementV1Announcement} from "./models/managementV1Announcement"
 import {ManagementV1App} from "./models/managementV1App"
+import {ManagementV1BackupApply} from "./models/managementV1BackupApply"
+import {ManagementV1Backup} from "./models/managementV1Backup"
 import {ManagementV1ClusterAccess} from "./models/managementV1ClusterAccess"
 import {ManagementV1ClusterAgentConfig} from "./models/managementV1ClusterAgentConfig"
 import {ManagementV1ClusterCharts} from "./models/managementV1ClusterCharts"
@@ -71,6 +73,8 @@ export type TGenResources = {
   ManagementV1AgentAuditEvent: GroupVersionResource<ManagementV1AgentAuditEvent>
   ManagementV1Announcement: GroupVersionResource<ManagementV1Announcement>
   ManagementV1App: GroupVersionResource<ManagementV1App>
+  ManagementV1Backup: GroupVersionResource<ManagementV1Backup>
+  ManagementV1BackupApply: GroupVersionResource<ManagementV1BackupApply>
   ManagementV1Cluster: GroupVersionResource<ManagementV1Cluster>
   ManagementV1ClusterAccess: GroupVersionResource<ManagementV1ClusterAccess>
   ManagementV1ClusterAgentConfig: GroupVersionResource<ManagementV1ClusterAgentConfig>
@@ -160,6 +164,22 @@ export const GenResources: TGenResources = {
     subResource: "",
     namespaced: false,
     kind: "App",
+  },
+  ManagementV1Backup: {
+    group: "management.loft.sh",
+    version: "v1",
+    resource: "backups",
+    subResource: "",
+    namespaced: false,
+    kind: "Backup",
+  },
+  ManagementV1BackupApply: {
+    group: "management.loft.sh",
+    version: "v1",
+    resource: "backups",
+    subResource: "apply",
+    namespaced: false,
+    kind: "BackupApply",
   },
   ManagementV1Cluster: {
     group: "management.loft.sh",
