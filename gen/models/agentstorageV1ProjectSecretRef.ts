@@ -12,48 +12,44 @@
 
 
 
-/**
-* ClusterStatus holds the status
-*/
-export class ManagementV1ClusterStatus {
-    'message'?: string;
+export class StorageV1ProjectSecretRef {
     /**
-    * Online is whether the cluster is currently connected to the coordination server.
+    * Key of the project secret to use.
     */
-    'online'?: boolean;
-    'phase'?: string;
-    'reason'?: string;
+    'key'?: string;
+    /**
+    * Name of the project secret to use.
+    */
+    'name'?: string;
+    /**
+    * Project is the project name where the secret is located in.
+    */
+    'project'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "message",
-            "baseName": "message",
+            "name": "key",
+            "baseName": "key",
             "type": "string",
             "format": ""
         },
         {
-            "name": "online",
-            "baseName": "online",
-            "type": "boolean",
-            "format": ""
-        },
-        {
-            "name": "phase",
-            "baseName": "phase",
+            "name": "name",
+            "baseName": "name",
             "type": "string",
             "format": ""
         },
         {
-            "name": "reason",
-            "baseName": "reason",
+            "name": "project",
+            "baseName": "project",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1ClusterStatus.attributeTypeMap;
+        return StorageV1ProjectSecretRef.attributeTypeMap;
     }
 
     public constructor() {

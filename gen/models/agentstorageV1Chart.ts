@@ -10,6 +10,7 @@
  * Do not edit the class manually.
  */
 
+import { StorageV1ChartSecretRef } from '../models/agentstorageV1ChartSecretRef';
 
 
 /**
@@ -28,6 +29,7 @@ export class StorageV1Chart {
     * The password that is required for this repository
     */
     'password'?: string;
+    'passwordRef'?: StorageV1ChartSecretRef;
     /**
     * RepoURL is the repo url where the chart can be found
     */
@@ -36,6 +38,7 @@ export class StorageV1Chart {
     * The username that is required for this repository
     */
     'username'?: string;
+    'usernameRef'?: StorageV1ChartSecretRef;
     /**
     * Version is the chart version in the repository
     */
@@ -63,6 +66,12 @@ export class StorageV1Chart {
             "format": ""
         },
         {
+            "name": "passwordRef",
+            "baseName": "passwordRef",
+            "type": "StorageV1ChartSecretRef",
+            "format": ""
+        },
+        {
             "name": "repoURL",
             "baseName": "repoURL",
             "type": "string",
@@ -72,6 +81,12 @@ export class StorageV1Chart {
             "name": "username",
             "baseName": "username",
             "type": "string",
+            "format": ""
+        },
+        {
+            "name": "usernameRef",
+            "baseName": "usernameRef",
+            "type": "StorageV1ChartSecretRef",
             "format": ""
         },
         {

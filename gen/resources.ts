@@ -2,9 +2,11 @@
 import {GroupVersionResource} from "../src"
 import {ManagementV1AgentAuditEvent} from "./models/managementV1AgentAuditEvent"
 import {ManagementV1Announcement} from "./models/managementV1Announcement"
+import {ManagementV1AppCredentials} from "./models/managementV1AppCredentials"
 import {ManagementV1App} from "./models/managementV1App"
 import {ManagementV1BackupApply} from "./models/managementV1BackupApply"
 import {ManagementV1Backup} from "./models/managementV1Backup"
+import {ManagementV1ClusterAccessKey} from "./models/managementV1ClusterAccessKey"
 import {ManagementV1ClusterAccess} from "./models/managementV1ClusterAccess"
 import {ManagementV1ClusterAgentConfig} from "./models/managementV1ClusterAgentConfig"
 import {ManagementV1ClusterCharts} from "./models/managementV1ClusterCharts"
@@ -17,6 +19,7 @@ import {ManagementV1ClusterRoleTemplate} from "./models/managementV1ClusterRoleT
 import {ManagementV1ClusterVirtualClusterDefaults} from "./models/managementV1ClusterVirtualClusterDefaults"
 import {ManagementV1Cluster} from "./models/managementV1Cluster"
 import {ManagementV1Config} from "./models/managementV1Config"
+import {ManagementV1DevPodWorkspaceInstanceState} from "./models/managementV1DevPodWorkspaceInstanceState"
 import {ManagementV1DevPodWorkspaceInstance} from "./models/managementV1DevPodWorkspaceInstance"
 import {ManagementV1DevPodWorkspaceTemplate} from "./models/managementV1DevPodWorkspaceTemplate"
 import {ManagementV1DirectClusterEndpointToken} from "./models/managementV1DirectClusterEndpointToken"
@@ -73,10 +76,12 @@ export type TGenResources = {
   ManagementV1AgentAuditEvent: GroupVersionResource<ManagementV1AgentAuditEvent>
   ManagementV1Announcement: GroupVersionResource<ManagementV1Announcement>
   ManagementV1App: GroupVersionResource<ManagementV1App>
+  ManagementV1AppCredentials: GroupVersionResource<ManagementV1AppCredentials>
   ManagementV1Backup: GroupVersionResource<ManagementV1Backup>
   ManagementV1BackupApply: GroupVersionResource<ManagementV1BackupApply>
   ManagementV1Cluster: GroupVersionResource<ManagementV1Cluster>
   ManagementV1ClusterAccess: GroupVersionResource<ManagementV1ClusterAccess>
+  ManagementV1ClusterAccessKey: GroupVersionResource<ManagementV1ClusterAccessKey>
   ManagementV1ClusterAgentConfig: GroupVersionResource<ManagementV1ClusterAgentConfig>
   ManagementV1ClusterCharts: GroupVersionResource<ManagementV1ClusterCharts>
   ManagementV1ClusterConnect: GroupVersionResource<ManagementV1ClusterConnect>
@@ -88,6 +93,7 @@ export type TGenResources = {
   ManagementV1ClusterVirtualClusterDefaults: GroupVersionResource<ManagementV1ClusterVirtualClusterDefaults>
   ManagementV1Config: GroupVersionResource<ManagementV1Config>
   ManagementV1DevPodWorkspaceInstance: GroupVersionResource<ManagementV1DevPodWorkspaceInstance>
+  ManagementV1DevPodWorkspaceInstanceState: GroupVersionResource<ManagementV1DevPodWorkspaceInstanceState>
   ManagementV1DevPodWorkspaceTemplate: GroupVersionResource<ManagementV1DevPodWorkspaceTemplate>
   ManagementV1DirectClusterEndpointToken: GroupVersionResource<ManagementV1DirectClusterEndpointToken>
   ManagementV1Event: GroupVersionResource<ManagementV1Event>
@@ -165,6 +171,14 @@ export const GenResources: TGenResources = {
     namespaced: false,
     kind: "App",
   },
+  ManagementV1AppCredentials: {
+    group: "management.loft.sh",
+    version: "v1",
+    resource: "apps",
+    subResource: "credentials",
+    namespaced: false,
+    kind: "AppCredentials",
+  },
   ManagementV1Backup: {
     group: "management.loft.sh",
     version: "v1",
@@ -196,6 +210,14 @@ export const GenResources: TGenResources = {
     subResource: "",
     namespaced: false,
     kind: "ClusterAccess",
+  },
+  ManagementV1ClusterAccessKey: {
+    group: "management.loft.sh",
+    version: "v1",
+    resource: "clusters",
+    subResource: "accesskey",
+    namespaced: false,
+    kind: "ClusterAccessKey",
   },
   ManagementV1ClusterAgentConfig: {
     group: "management.loft.sh",
@@ -284,6 +306,14 @@ export const GenResources: TGenResources = {
     subResource: "",
     namespaced: true,
     kind: "DevPodWorkspaceInstance",
+  },
+  ManagementV1DevPodWorkspaceInstanceState: {
+    group: "management.loft.sh",
+    version: "v1",
+    resource: "devpodworkspaceinstances",
+    subResource: "state",
+    namespaced: true,
+    kind: "DevPodWorkspaceInstanceState",
   },
   ManagementV1DevPodWorkspaceTemplate: {
     group: "management.loft.sh",

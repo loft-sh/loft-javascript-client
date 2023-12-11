@@ -10,6 +10,7 @@
  * Do not edit the class manually.
  */
 
+import { PolicyV1beta1Condition } from '../models/policyV1beta1Condition';
 
 
 export class PolicyV1beta1JsPolicyStatus {
@@ -18,15 +19,23 @@ export class PolicyV1beta1JsPolicyStatus {
     */
     'bundleHash'?: string;
     /**
-    * Message describes the error in human readable language if the webhook is in a failed state
+    * Conditions holds several conditions the virtual cluster might be in
+    */
+    'conditions'?: Array<PolicyV1beta1Condition>;
+    /**
+    * Message describes the error in human-readable language if the webhook is in a failed state
     */
     'message'?: string;
+    /**
+    * ObservedGeneration is the latest generation observed by the controller.
+    */
+    'observedGeneration'?: number;
     /**
     * Phase describes how the syncing status of the webhook is
     */
     'phase'?: string;
     /**
-    * Reason holds the error in machine readable language if the webhook is in a failed state
+    * Reason holds the error in machine-readable language if the webhook is in a failed state
     */
     'reason'?: string;
 
@@ -40,10 +49,22 @@ export class PolicyV1beta1JsPolicyStatus {
             "format": ""
         },
         {
+            "name": "conditions",
+            "baseName": "conditions",
+            "type": "Array<PolicyV1beta1Condition>",
+            "format": ""
+        },
+        {
             "name": "message",
             "baseName": "message",
             "type": "string",
             "format": ""
+        },
+        {
+            "name": "observedGeneration",
+            "baseName": "observedGeneration",
+            "type": "number",
+            "format": "int64"
         },
         {
             "name": "phase",
