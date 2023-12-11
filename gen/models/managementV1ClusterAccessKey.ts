@@ -10,54 +10,46 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1AgentAnalyticsSpec } from '../models/managementV1AgentAnalyticsSpec';
-import { ManagementV1AgentAuditConfig } from '../models/managementV1AgentAuditConfig';
 import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
 /**
-* ClusterAgentConfig holds the loft agent configuration
+* ClusterAccessKey holds the access key for the cluster
 */
-export class ManagementV1ClusterAgentConfig {
-    'analyticsSpec': ManagementV1AgentAnalyticsSpec;
+export class ManagementV1ClusterAccessKey {
+    /**
+    * AccessKey is the access key used by the agent
+    */
+    'accessKey'?: string;
     /**
     * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
     */
     'apiVersion'?: string;
-    'audit'?: ManagementV1AgentAuditConfig;
     /**
-    * Cluster is the cluster the agent is running in.
+    * CaCert is an optional ca cert to use for the loft host connection
     */
-    'cluster'?: string;
+    'caCert'?: string;
     /**
-    * DefaultImageRegistry defines if we should prefix the virtual cluster image
+    * Insecure signals if the loft host is insecure
     */
-    'defaultImageRegistry'?: string;
+    'insecure'?: boolean;
     /**
     * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
     */
     'kind'?: string;
     /**
-    * LoftHost defines the host for the agent\'s loft instance
+    * LoftHost is the loft host used by the agent
     */
     'loftHost'?: string;
-    /**
-    * LoftInstanceID defines the instance id from the loft instance
-    */
-    'loftInstanceID'?: string;
     'metadata'?: V1ObjectMeta;
-    /**
-    * TokenCaCert is the certificate authority the Loft tokens will be signed with
-    */
-    'tokenCaCert'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "analyticsSpec",
-            "baseName": "analyticsSpec",
-            "type": "ManagementV1AgentAnalyticsSpec",
+            "name": "accessKey",
+            "baseName": "accessKey",
+            "type": "string",
             "format": ""
         },
         {
@@ -67,21 +59,15 @@ export class ManagementV1ClusterAgentConfig {
             "format": ""
         },
         {
-            "name": "audit",
-            "baseName": "audit",
-            "type": "ManagementV1AgentAuditConfig",
-            "format": ""
-        },
-        {
-            "name": "cluster",
-            "baseName": "cluster",
+            "name": "caCert",
+            "baseName": "caCert",
             "type": "string",
             "format": ""
         },
         {
-            "name": "defaultImageRegistry",
-            "baseName": "defaultImageRegistry",
-            "type": "string",
+            "name": "insecure",
+            "baseName": "insecure",
+            "type": "boolean",
             "format": ""
         },
         {
@@ -97,26 +83,14 @@ export class ManagementV1ClusterAgentConfig {
             "format": ""
         },
         {
-            "name": "loftInstanceID",
-            "baseName": "loftInstanceID",
-            "type": "string",
-            "format": ""
-        },
-        {
             "name": "metadata",
             "baseName": "metadata",
             "type": "V1ObjectMeta",
             "format": ""
-        },
-        {
-            "name": "tokenCaCert",
-            "baseName": "tokenCaCert",
-            "type": "string",
-            "format": "byte"
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1ClusterAgentConfig.attributeTypeMap;
+        return ManagementV1ClusterAccessKey.attributeTypeMap;
     }
 
     public constructor() {

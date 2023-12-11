@@ -1088,6 +1088,51 @@ declare class StorageV1SecretRef {
 	}[];
 	constructor();
 }
+declare class StorageV1ProjectSecretRef {
+	/**
+	* Key of the project secret to use.
+	*/
+	"key"?: string;
+	/**
+	* Name of the project secret to use.
+	*/
+	"name"?: string;
+	/**
+	* Project is the project name where the secret is located in.
+	*/
+	"project"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1ChartSecretRef {
+	"projectSecretRef"?: StorageV1ProjectSecretRef;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
 declare class StorageV1TemplateHelmChart {
 	/**
 	* If tls certificate checks for the chart download should be skipped
@@ -1101,6 +1146,7 @@ declare class StorageV1TemplateHelmChart {
 	* The password that is required for this repository
 	*/
 	"password"?: string;
+	"passwordRef"?: StorageV1ChartSecretRef;
 	/**
 	* ReleaseName is the preferred release name of the app
 	*/
@@ -1121,6 +1167,7 @@ declare class StorageV1TemplateHelmChart {
 	* The username that is required for this repository
 	*/
 	"username"?: string;
+	"usernameRef"?: StorageV1ChartSecretRef;
 	/**
 	* Values are the values that should get passed to the chart
 	*/
@@ -1510,6 +1557,7 @@ declare class StorageV1Chart {
 	* The password that is required for this repository
 	*/
 	"password"?: string;
+	"passwordRef"?: StorageV1ChartSecretRef;
 	/**
 	* RepoURL is the repo url where the chart can be found
 	*/
@@ -1518,6 +1566,7 @@ declare class StorageV1Chart {
 	* The username that is required for this repository
 	*/
 	"username"?: string;
+	"usernameRef"?: StorageV1ChartSecretRef;
 	/**
 	* Version is the chart version in the repository
 	*/
@@ -2170,10 +2219,6 @@ declare class ClusterV1SleepModeConfigSpec {
 	* DeleteAfter specifies after how many seconds of inactivity the space should be deleted
 	*/
 	"deleteAfter"?: number;
-	/**
-	* If true will delete all pods on sleep in the space regardless of if they have a parent set
-	*/
-	"deleteAllPods"?: boolean;
 	/**
 	* If force sleep is true the space will sleep
 	*/
@@ -6229,21 +6274,69 @@ declare enum PolicyV1beta1JsPolicySpecMatchPolicyEnum {
 	Equivalent = "Equivalent",
 	Exact = "Exact"
 }
+declare class PolicyV1beta1Condition {
+	/**
+	* Last time the condition transitioned from one status to another. This should be when the underlying condition changed. If that is not known, then using the time when the API field changed is acceptable.
+	*/
+	"lastTransitionTime"?: Date;
+	/**
+	* A human readable message indicating details about the transition. This field may be empty.
+	*/
+	"message"?: string;
+	/**
+	* The reason for the condition\'s last transition in CamelCase. The specific API may choose whether this field is considered a guaranteed API. This field may not be empty.
+	*/
+	"reason"?: string;
+	/**
+	* Severity provides an explicit classification of Reason code, so the users or machines can immediately understand the current situation and act accordingly. The Severity field MUST be set only when Status=False.
+	*/
+	"severity"?: string;
+	/**
+	* Status of the condition, one of True, False, Unknown.
+	*/
+	"status": string;
+	/**
+	* Type of condition in CamelCase or in foo.example.com/CamelCase. Many .condition.type values are consistent across resources like Available, but because arbitrary conditions can be useful (see .node.status.conditions), the ability to deconflict is important.
+	*/
+	"type": string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
 declare class PolicyV1beta1JsPolicyStatus {
 	/**
 	* BundleHash is used to determine if we have to re-bundle the javascript
 	*/
 	"bundleHash"?: string;
 	/**
-	* Message describes the error in human readable language if the webhook is in a failed state
+	* Conditions holds several conditions the virtual cluster might be in
+	*/
+	"conditions"?: Array<PolicyV1beta1Condition>;
+	/**
+	* Message describes the error in human-readable language if the webhook is in a failed state
 	*/
 	"message"?: string;
+	/**
+	* ObservedGeneration is the latest generation observed by the controller.
+	*/
+	"observedGeneration"?: number;
 	/**
 	* Phase describes how the syncing status of the webhook is
 	*/
 	"phase"?: string;
 	/**
-	* Reason holds the error in machine readable language if the webhook is in a failed state
+	* Reason holds the error in machine-readable language if the webhook is in a failed state
 	*/
 	"reason"?: string;
 	static readonly discriminator: string | undefined;
@@ -6976,6 +7069,37 @@ declare class ManagementV1Announcement {
 	}[];
 	constructor();
 }
+declare class ManagementV1AppCredentials {
+	/**
+	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	*/
+	"apiVersion"?: string;
+	/**
+	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	*/
+	"kind"?: string;
+	"metadata"?: V1ObjectMeta;
+	/**
+	* ProjectSecretRefs holds the resolved secret values for the project secret refs.
+	*/
+	"projectSecretRefs"?: {
+		[key: string]: string;
+	};
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
 declare class ClusterV1HelmReleaseConfig {
 	/**
 	* Annotations are extra annotations for this helm release
@@ -7353,6 +7477,140 @@ declare class ManagementV1App {
 	}[];
 	constructor();
 }
+declare class ManagementV1BackupApplySpec {
+	/**
+	* Raw is the raw backup to apply
+	*/
+	"raw"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1BackupApply {
+	/**
+	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	*/
+	"apiVersion"?: string;
+	/**
+	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	*/
+	"kind"?: string;
+	"metadata"?: V1ObjectMeta;
+	"spec"?: ManagementV1BackupApplySpec;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1BackupStatus {
+	"rawBackup"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1Backup {
+	/**
+	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	*/
+	"apiVersion"?: string;
+	/**
+	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	*/
+	"kind"?: string;
+	"metadata"?: V1ObjectMeta;
+	/**
+	* BackupSpec holds the spec
+	*/
+	"spec"?: any;
+	"status"?: ManagementV1BackupStatus;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1ClusterAccessKey {
+	/**
+	* AccessKey is the access key used by the agent
+	*/
+	"accessKey"?: string;
+	/**
+	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	*/
+	"apiVersion"?: string;
+	/**
+	* CaCert is an optional ca cert to use for the loft host connection
+	*/
+	"caCert"?: string;
+	/**
+	* Insecure signals if the loft host is insecure
+	*/
+	"insecure"?: boolean;
+	/**
+	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	*/
+	"kind"?: string;
+	/**
+	* LoftHost is the loft host used by the agent
+	*/
+	"loftHost"?: string;
+	"metadata"?: V1ObjectMeta;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
 declare class StorageV1LocalClusterAccessSpec {
 	/**
 	* ClusterRoles define the cluster roles that the users should have assigned in the cluster.
@@ -7694,6 +7952,10 @@ declare class ManagementV1ClusterAgentConfig {
 	* LoftHost defines the host for the agent\'s loft instance
 	*/
 	"loftHost"?: string;
+	/**
+	* LoftInstanceID defines the instance id from the loft instance
+	*/
+	"loftInstanceID"?: string;
 	"metadata"?: V1ObjectMeta;
 	/**
 	* TokenCaCert is the certificate authority the Loft tokens will be signed with
@@ -7872,6 +8134,10 @@ declare class ManagementV1ClusterSpec {
 }
 declare class ManagementV1ClusterStatus {
 	"message"?: string;
+	/**
+	* Online is whether the cluster is currently connected to the coordination server.
+	*/
+	"online"?: boolean;
 	"phase"?: string;
 	"reason"?: string;
 	static readonly discriminator: string | undefined;
@@ -9578,6 +9844,35 @@ declare class ManagementV1Config {
 	"metadata"?: V1ObjectMeta;
 	"spec"?: ManagementV1ConfigSpec;
 	"status"?: ManagementV1ConfigStatus;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1DevPodWorkspaceInstanceState {
+	/**
+	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	*/
+	"apiVersion"?: string;
+	/**
+	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	*/
+	"kind"?: string;
+	"metadata"?: V1ObjectMeta;
+	/**
+	* State holds the workspaces state as given by \'devpod export\'
+	*/
+	"state"?: string;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -15981,8 +16276,12 @@ export type TGenResources = {
 	ManagementV1AgentAuditEvent: GroupVersionResource<ManagementV1AgentAuditEvent>;
 	ManagementV1Announcement: GroupVersionResource<ManagementV1Announcement>;
 	ManagementV1App: GroupVersionResource<ManagementV1App>;
+	ManagementV1AppCredentials: GroupVersionResource<ManagementV1AppCredentials>;
+	ManagementV1Backup: GroupVersionResource<ManagementV1Backup>;
+	ManagementV1BackupApply: GroupVersionResource<ManagementV1BackupApply>;
 	ManagementV1Cluster: GroupVersionResource<ManagementV1Cluster>;
 	ManagementV1ClusterAccess: GroupVersionResource<ManagementV1ClusterAccess>;
+	ManagementV1ClusterAccessKey: GroupVersionResource<ManagementV1ClusterAccessKey>;
 	ManagementV1ClusterAgentConfig: GroupVersionResource<ManagementV1ClusterAgentConfig>;
 	ManagementV1ClusterCharts: GroupVersionResource<ManagementV1ClusterCharts>;
 	ManagementV1ClusterConnect: GroupVersionResource<ManagementV1ClusterConnect>;
@@ -15994,6 +16293,7 @@ export type TGenResources = {
 	ManagementV1ClusterVirtualClusterDefaults: GroupVersionResource<ManagementV1ClusterVirtualClusterDefaults>;
 	ManagementV1Config: GroupVersionResource<ManagementV1Config>;
 	ManagementV1DevPodWorkspaceInstance: GroupVersionResource<ManagementV1DevPodWorkspaceInstance>;
+	ManagementV1DevPodWorkspaceInstanceState: GroupVersionResource<ManagementV1DevPodWorkspaceInstanceState>;
 	ManagementV1DevPodWorkspaceTemplate: GroupVersionResource<ManagementV1DevPodWorkspaceTemplate>;
 	ManagementV1DirectClusterEndpointToken: GroupVersionResource<ManagementV1DirectClusterEndpointToken>;
 	ManagementV1Event: GroupVersionResource<ManagementV1Event>;
