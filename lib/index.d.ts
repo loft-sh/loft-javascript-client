@@ -1,6 +1,6 @@
 /// <reference types="node" />
 
-import { CoreV1Event, NetworkingV1beta1Ingress, V1ClusterRole, V1ClusterRoleBinding, V1ConfigMap, V1CustomResourceDefinition, V1Deployment, V1Ingress, V1Namespace, V1Node, V1Pod, V1Role, V1RoleBinding, V1Secret, V1SelfSubjectAccessReview, V1Service, V1StatefulSet, V1Status, V1StorageClassList, VersionInfo } from '@kubernetes/client-node';
+import { CoreV1Event, V1ClusterRole, V1ClusterRoleBinding, V1ConfigMap, V1CustomResourceDefinition, V1Deployment, V1Ingress, V1Namespace, V1Node, V1Pod, V1Role, V1RoleBinding, V1Secret, V1SelfSubjectAccessReview, V1Service, V1StatefulSet, V1Status, V1StorageClassList, VersionInfo } from '@kubernetes/client-node';
 
 export declare class Err<E, Extra = any> {
 	readonly val: E;
@@ -16361,7 +16361,6 @@ export declare const Resources: {
 	StorageV1VirtualCluster: GroupVersionResource<StorageV1VirtualCluster>;
 	StorageV1ClusterQuota: GroupVersionResource<StorageV1ClusterQuota>;
 	NetworkingV1Ingress: GroupVersionResource<V1Ingress>;
-	NetworkingV1beta1Ingress: GroupVersionResource<NetworkingV1beta1Ingress>;
 	V1StatefulSet: GroupVersionResource<V1StatefulSet>;
 	V1Deployment: GroupVersionResource<V1Deployment>;
 	V1Event: GroupVersionResource<CoreV1Event>;
