@@ -25,6 +25,10 @@ export class LicenseApiButton {
     */
     'displayText'?: string;
     /**
+    * Name is the name of the button (ButtonName). Optional.
+    */
+    'name'?: string;
+    /**
     * URL is the link at the other end of the button.
     */
     'url': string;
@@ -41,6 +45,12 @@ export class LicenseApiButton {
         {
             "name": "displayText",
             "baseName": "displayText",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "name",
+            "baseName": "name",
             "type": "string",
             "format": ""
         },

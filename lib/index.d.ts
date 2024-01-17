@@ -6975,6 +6975,10 @@ declare class LicenseApiButton {
 	*/
 	"displayText"?: string;
 	/**
+	* Name is the name of the button (ButtonName). Optional.
+	*/
+	"name"?: string;
+	/**
 	* URL is the link at the other end of the button.
 	*/
 	"url": string;
@@ -10230,6 +10234,26 @@ declare class ManagementV1DevPodWorkspaceTemplate {
 	}[];
 	constructor();
 }
+declare class StorageV1AccessKeyScopeCluster {
+	/**
+	* Cluster is the name of the cluster to access. You can specify * to select all clusters.
+	*/
+	"cluster"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
 declare class StorageV1AccessKeyScopeProject {
 	/**
 	* Project is the name of the project. You can specify * to select all projects.
@@ -10399,6 +10423,10 @@ declare class StorageV1AccessKeyScope {
 	* AllowLoftCLI allows certain read-only management requests to make sure loft cli works correctly with this specific access key.
 	*/
 	"allowLoftCli"?: boolean;
+	/**
+	* Clusters specifies the project cluster the access key is allowed to access.
+	*/
+	"clusters"?: Array<StorageV1AccessKeyScopeCluster>;
 	/**
 	* Projects specifies the projects the access key should have access to.
 	*/
@@ -12630,6 +12658,7 @@ declare class ManagementV1ProjectImportVirtualClusterSource {
 	* Namespace of the virtual cluster to import
 	*/
 	"namespace"?: string;
+	"owner"?: StorageV1UserOrTeam;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -12655,6 +12684,10 @@ declare class ManagementV1ProjectImportVirtualCluster {
 	*/
 	"kind"?: string;
 	"metadata"?: V1ObjectMeta;
+	/**
+	* SkipHelmDeploy will skip management of the vClusters helm deployment
+	*/
+	"skipHelmDeploy"?: boolean;
 	"sourceVirtualCluster": ManagementV1ProjectImportVirtualClusterSource;
 	/**
 	* UpgradeToPro indicates whether we should upgrade to Pro on import
@@ -13449,6 +13482,43 @@ declare class StorageV1ArgoIntegrationSpec {
 	}[];
 	constructor();
 }
+declare class StorageV1AutomaticImportVirtualClusters {
+	/**
+	* Enabled specifies if automatic virtual cluster import should be enabled for this project.
+	*/
+	"enabled"?: boolean;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1AutomaticImport {
+	"virtualClusters"?: StorageV1AutomaticImportVirtualClusters;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
 declare class StorageV1Member {
 	/**
 	* ClusterRole is the assigned role for the above member
@@ -13666,6 +13736,7 @@ declare class ManagementV1ProjectSpec {
 	*/
 	"allowedTemplates"?: Array<StorageV1AllowedTemplate>;
 	"argoCD"?: StorageV1ArgoIntegrationSpec;
+	"automaticImport"?: StorageV1AutomaticImport;
 	/**
 	* Description describes an app
 	*/
