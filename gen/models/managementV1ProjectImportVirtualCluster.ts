@@ -27,6 +27,10 @@ export class ManagementV1ProjectImportVirtualCluster {
     */
     'kind'?: string;
     'metadata'?: V1ObjectMeta;
+    /**
+    * SkipHelmDeploy will skip management of the vClusters helm deployment
+    */
+    'skipHelmDeploy'?: boolean;
     'sourceVirtualCluster': ManagementV1ProjectImportVirtualClusterSource;
     /**
     * UpgradeToPro indicates whether we should upgrade to Pro on import
@@ -52,6 +56,12 @@ export class ManagementV1ProjectImportVirtualCluster {
             "name": "metadata",
             "baseName": "metadata",
             "type": "V1ObjectMeta",
+            "format": ""
+        },
+        {
+            "name": "skipHelmDeploy",
+            "baseName": "skipHelmDeploy",
+            "type": "boolean",
             "format": ""
         },
         {
