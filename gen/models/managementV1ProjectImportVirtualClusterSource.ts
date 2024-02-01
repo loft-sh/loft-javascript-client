@@ -10,7 +10,6 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1UserOrTeam } from '../models/storageV1UserOrTeam';
 
 
 export class ManagementV1ProjectImportVirtualClusterSource {
@@ -30,7 +29,6 @@ export class ManagementV1ProjectImportVirtualClusterSource {
     * Namespace of the virtual cluster to import
     */
     'namespace'?: string;
-    'owner'?: StorageV1UserOrTeam;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -57,12 +55,6 @@ export class ManagementV1ProjectImportVirtualClusterSource {
             "name": "namespace",
             "baseName": "namespace",
             "type": "string",
-            "format": ""
-        },
-        {
-            "name": "owner",
-            "baseName": "owner",
-            "type": "StorageV1UserOrTeam",
             "format": ""
         }    ];
 

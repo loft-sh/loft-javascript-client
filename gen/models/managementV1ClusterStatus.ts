@@ -17,10 +17,6 @@
 */
 export class ManagementV1ClusterStatus {
     'message'?: string;
-    /**
-    * Online is whether the cluster is currently connected to the coordination server.
-    */
-    'online'?: boolean;
     'phase'?: string;
     'reason'?: string;
 
@@ -31,12 +27,6 @@ export class ManagementV1ClusterStatus {
             "name": "message",
             "baseName": "message",
             "type": "string",
-            "format": ""
-        },
-        {
-            "name": "online",
-            "baseName": "online",
-            "type": "boolean",
             "format": ""
         },
         {

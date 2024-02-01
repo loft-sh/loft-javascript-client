@@ -10,7 +10,6 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1AccessKeyScopeCluster } from '../models/storageV1AccessKeyScopeCluster';
 import { StorageV1AccessKeyScopeProject } from '../models/storageV1AccessKeyScopeProject';
 import { StorageV1AccessKeyScopeRule } from '../models/storageV1AccessKeyScopeRule';
 import { StorageV1AccessKeyScopeSpace } from '../models/storageV1AccessKeyScopeSpace';
@@ -22,10 +21,6 @@ export class StorageV1AccessKeyScope {
     * AllowLoftCLI allows certain read-only management requests to make sure loft cli works correctly with this specific access key.
     */
     'allowLoftCli'?: boolean;
-    /**
-    * Clusters specifies the project cluster the access key is allowed to access.
-    */
-    'clusters'?: Array<StorageV1AccessKeyScopeCluster>;
     /**
     * Projects specifies the projects the access key should have access to.
     */
@@ -50,12 +45,6 @@ export class StorageV1AccessKeyScope {
             "name": "allowLoftCli",
             "baseName": "allowLoftCli",
             "type": "boolean",
-            "format": ""
-        },
-        {
-            "name": "clusters",
-            "baseName": "clusters",
-            "type": "Array<StorageV1AccessKeyScopeCluster>",
             "format": ""
         },
         {

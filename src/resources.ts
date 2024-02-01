@@ -14,6 +14,7 @@ import { VirtualclusterV1HelmRelease } from "@gen/models/virtualclusterV1HelmRel
 import { GenResources, TGenResources } from "@gen/resources"
 import {
   CoreV1Event,
+  NetworkingV1beta1Ingress,
   V1ClusterRole,
   V1ClusterRoleBinding,
   V1ConfigMap,
@@ -31,7 +32,6 @@ import {
   V1StatefulSet,
   V1StorageClassList,
 } from "@kubernetes/client-node"
-
 import {
   APIExtensionsGroup,
   APIExtensionsVersion,
@@ -60,6 +60,7 @@ export const Resources: {
   StorageV1VirtualCluster: GroupVersionResource<StorageV1VirtualCluster>
   StorageV1ClusterQuota: GroupVersionResource<StorageV1ClusterQuota>
   NetworkingV1Ingress: GroupVersionResource<V1Ingress>
+  NetworkingV1beta1Ingress: GroupVersionResource<NetworkingV1beta1Ingress>
   V1StatefulSet: GroupVersionResource<V1StatefulSet>
   V1Deployment: GroupVersionResource<V1Deployment>
   V1Event: GroupVersionResource<CoreV1Event>
@@ -167,6 +168,13 @@ export const Resources: {
     version: LoftSchemeVersion,
     resource: "localusers",
     kind: "LocalUser",
+  },
+  NetworkingV1beta1Ingress: {
+    group: "networking.k8s.io",
+    version: "v1beta1",
+    resource: "ingresses",
+    kind: "Ingress",
+    namespaced: true,
   },
   NetworkingV1Ingress: {
     group: "networking.k8s.io",

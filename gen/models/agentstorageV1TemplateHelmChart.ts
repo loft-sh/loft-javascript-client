@@ -10,7 +10,6 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1ChartSecretRef } from '../models/agentstorageV1ChartSecretRef';
 
 
 export class StorageV1TemplateHelmChart {
@@ -26,7 +25,6 @@ export class StorageV1TemplateHelmChart {
     * The password that is required for this repository
     */
     'password'?: string;
-    'passwordRef'?: StorageV1ChartSecretRef;
     /**
     * ReleaseName is the preferred release name of the app
     */
@@ -47,7 +45,6 @@ export class StorageV1TemplateHelmChart {
     * The username that is required for this repository
     */
     'username'?: string;
-    'usernameRef'?: StorageV1ChartSecretRef;
     /**
     * Values are the values that should get passed to the chart
     */
@@ -83,12 +80,6 @@ export class StorageV1TemplateHelmChart {
             "format": ""
         },
         {
-            "name": "passwordRef",
-            "baseName": "passwordRef",
-            "type": "StorageV1ChartSecretRef",
-            "format": ""
-        },
-        {
             "name": "releaseName",
             "baseName": "releaseName",
             "type": "string",
@@ -116,12 +107,6 @@ export class StorageV1TemplateHelmChart {
             "name": "username",
             "baseName": "username",
             "type": "string",
-            "format": ""
-        },
-        {
-            "name": "usernameRef",
-            "baseName": "usernameRef",
-            "type": "StorageV1ChartSecretRef",
             "format": ""
         },
         {
