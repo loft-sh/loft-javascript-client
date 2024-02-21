@@ -50,6 +50,10 @@ export class UiV1UISettingsSpec {
     */
     'navBarButtons'?: Array<UiV1NavBarButton>;
     /**
+    * Offline is true if loft is running in an airgapped environment
+    */
+    'offline'?: boolean;
+    /**
     * PrimaryColor is the color value (ex: \"#12345\") to use as the primary color
     */
     'primaryColor'?: string;
@@ -111,6 +115,12 @@ export class UiV1UISettingsSpec {
             "name": "navBarButtons",
             "baseName": "navBarButtons",
             "type": "Array<UiV1NavBarButton>",
+            "format": ""
+        },
+        {
+            "name": "offline",
+            "baseName": "offline",
+            "type": "boolean",
             "format": ""
         },
         {

@@ -10,6 +10,7 @@
  * Do not edit the class manually.
  */
 
+import { V1ClusterTrustBundleProjection } from '../models/V1ClusterTrustBundleProjection';
 import { V1ConfigMapProjection } from '../models/V1ConfigMapProjection';
 import { V1DownwardAPIProjection } from '../models/V1DownwardAPIProjection';
 import { V1SecretProjection } from '../models/V1SecretProjection';
@@ -20,6 +21,7 @@ import { V1ServiceAccountTokenProjection } from '../models/V1ServiceAccountToken
 * Projection that may be projected along with other supported volume types
 */
 export class V1VolumeProjection {
+    'clusterTrustBundle'?: V1ClusterTrustBundleProjection;
     'configMap'?: V1ConfigMapProjection;
     'downwardAPI'?: V1DownwardAPIProjection;
     'secret'?: V1SecretProjection;
@@ -28,6 +30,12 @@ export class V1VolumeProjection {
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+        {
+            "name": "clusterTrustBundle",
+            "baseName": "clusterTrustBundle",
+            "type": "V1ClusterTrustBundleProjection",
+            "format": ""
+        },
         {
             "name": "configMap",
             "baseName": "configMap",
