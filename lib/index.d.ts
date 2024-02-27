@@ -2768,6 +2768,14 @@ declare class V1NodeAffinity {
 }
 declare class V1PodAffinityTerm {
 	"labelSelector"?: V1LabelSelector;
+	/**
+	* MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with `LabelSelector` as `key in (value)` to select the group of existing pods which pods will be taken into consideration for the incoming pod\'s pod (anti) affinity. Keys that don\'t exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. Also, MatchLabelKeys cannot be set when LabelSelector isn\'t set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
+	*/
+	"matchLabelKeys"?: Array<string>;
+	/**
+	* MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with `LabelSelector` as `key notin (value)` to select the group of existing pods which pods will be taken into consideration for the incoming pod\'s pod (anti) affinity. Keys that don\'t exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector. Also, MismatchLabelKeys cannot be set when LabelSelector isn\'t set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
+	*/
+	"mismatchLabelKeys"?: Array<string>;
 	"namespaceSelector"?: V1LabelSelector;
 	/**
 	* namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means \"this pod\'s namespace\".
@@ -3253,6 +3261,26 @@ declare enum V1HTTPGetActionSchemeEnum {
 	Http = "HTTP",
 	Https = "HTTPS"
 }
+declare class V1SleepAction {
+	/**
+	* Seconds is the number of seconds to sleep.
+	*/
+	"seconds": number;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
 declare class V1TCPSocketAction {
 	/**
 	* Optional: Host name to connect to, defaults to the pod IP.
@@ -3280,6 +3308,7 @@ declare class V1TCPSocketAction {
 declare class V1LifecycleHandler {
 	"exec"?: V1ExecAction;
 	"httpGet"?: V1HTTPGetAction;
+	"sleep"?: V1SleepAction;
 	"tcpSocket"?: V1TCPSocketAction;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
@@ -4662,6 +4691,34 @@ declare class V1TypedObjectReference {
 	}[];
 	constructor();
 }
+declare class V1VolumeResourceRequirements {
+	/**
+	* Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+	*/
+	"limits"?: {
+		[key: string]: string;
+	};
+	/**
+	* Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+	*/
+	"requests"?: {
+		[key: string]: string;
+	};
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
 declare class V1PersistentVolumeClaimSpec {
 	/**
 	* accessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
@@ -4669,12 +4726,16 @@ declare class V1PersistentVolumeClaimSpec {
 	"accessModes"?: Array<string>;
 	"dataSource"?: V1TypedLocalObjectReference;
 	"dataSourceRef"?: V1TypedObjectReference;
-	"resources"?: V1ResourceRequirements;
+	"resources"?: V1VolumeResourceRequirements;
 	"selector"?: V1LabelSelector;
 	/**
 	* storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1
 	*/
 	"storageClassName"?: string;
+	/**
+	* volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it\'s not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#volumeattributesclass (Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.
+	*/
+	"volumeAttributesClassName"?: string;
 	/**
 	* volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.  Possible enum values:  - `\"Block\"` means the volume will not be formatted with a filesystem and will remain a raw block device.  - `\"Filesystem\"` means the volume will be or is formatted with a filesystem.
 	*/
@@ -5115,6 +5176,39 @@ declare class V1PortworxVolumeSource {
 	}[];
 	constructor();
 }
+declare class V1ClusterTrustBundleProjection {
+	"labelSelector"?: V1LabelSelector;
+	/**
+	* Select a single ClusterTrustBundle by object name.  Mutually-exclusive with signerName and labelSelector.
+	*/
+	"name"?: string;
+	/**
+	* If true, don\'t block pod startup if the referenced ClusterTrustBundle(s) aren\'t available.  If using name, then the named ClusterTrustBundle is allowed not to exist.  If using signerName, then the combination of signerName and labelSelector is allowed to match zero ClusterTrustBundles.
+	*/
+	"optional"?: boolean;
+	/**
+	* Relative path from the volume root to write the bundle.
+	*/
+	"path": string;
+	/**
+	* Select all ClusterTrustBundles that match this signer name. Mutually-exclusive with name.  The contents of all selected ClusterTrustBundles will be unified and deduplicated.
+	*/
+	"signerName"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
 declare class V1ConfigMapProjection {
 	/**
 	* items if unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the \'..\' path or start with \'..\'.
@@ -5220,6 +5314,7 @@ declare class V1ServiceAccountTokenProjection {
 	constructor();
 }
 declare class V1VolumeProjection {
+	"clusterTrustBundle"?: V1ClusterTrustBundleProjection;
 	"configMap"?: V1ConfigMapProjection;
 	"downwardAPI"?: V1DownwardAPIProjection;
 	"secret"?: V1SecretProjection;
@@ -11506,6 +11601,10 @@ declare class UiV1UISettingsSpec {
 	* NavBarButtons holds extra nav bar buttons
 	*/
 	"navBarButtons"?: Array<UiV1NavBarButton>;
+	/**
+	* Offline is true if loft is running in an airgapped environment
+	*/
+	"offline"?: boolean;
 	/**
 	* PrimaryColor is the color value (ex: \"#12345\") to use as the primary color
 	*/

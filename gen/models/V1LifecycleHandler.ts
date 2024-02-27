@@ -12,6 +12,7 @@
 
 import { V1ExecAction } from '../models/V1ExecAction';
 import { V1HTTPGetAction } from '../models/V1HTTPGetAction';
+import { V1SleepAction } from '../models/V1SleepAction';
 import { V1TCPSocketAction } from '../models/V1TCPSocketAction';
 
 
@@ -21,6 +22,7 @@ import { V1TCPSocketAction } from '../models/V1TCPSocketAction';
 export class V1LifecycleHandler {
     'exec'?: V1ExecAction;
     'httpGet'?: V1HTTPGetAction;
+    'sleep'?: V1SleepAction;
     'tcpSocket'?: V1TCPSocketAction;
 
     static readonly discriminator: string | undefined = undefined;
@@ -36,6 +38,12 @@ export class V1LifecycleHandler {
             "name": "httpGet",
             "baseName": "httpGet",
             "type": "V1HTTPGetAction",
+            "format": ""
+        },
+        {
+            "name": "sleep",
+            "baseName": "sleep",
+            "type": "V1SleepAction",
             "format": ""
         },
         {
