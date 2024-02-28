@@ -54,7 +54,7 @@ export class StorageV1AppParameter {
     */
     'section'?: string;
     /**
-    * Type of the parameter. Can be one of: string, multiline, boolean, enum and password
+    * Type of the parameter. Can be one of: string, multiline, boolean, number and password
     */
     'type'?: string;
     /**
