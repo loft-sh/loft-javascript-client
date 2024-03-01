@@ -38,7 +38,7 @@ export class StorageV1AppParameter {
     */
     'min'?: number;
     /**
-    * Options are the options if type is enum
+    * Options is a slice of strings, where each string represents a mutually exclusive choice.
     */
     'options'?: Array<string>;
     /**
