@@ -186,7 +186,7 @@ class Client {
 
   public async loftVersion(refresh?: boolean): Promise<Result<VersionV1Version>> {
     try {
-      let path = getApiHost() + "/version"
+      let path = this.apiHost + "/version"
       if (refresh) {
         path += "?refresh=true"
       }
