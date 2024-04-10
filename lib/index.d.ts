@@ -2332,6 +2332,10 @@ declare class ClusterV1LastActivityInfo {
 	*/
 	"host"?: string;
 	/**
+	* MetricsRefreshInterval is the activity refresh interval. This is used to prevent sleeping instances if the last activity metrics have not been refreshed within the interval. Useful for metrics based activty tracking.
+	*/
+	"metricsRefreshInterval"?: number;
+	/**
 	* Name is the name of the resource
 	*/
 	"name"?: string;
@@ -10089,6 +10093,10 @@ declare class StorageV1TemplateRef {
 declare class StorageV1DevPodWorkspaceTemplateDefinition {
 	"provider": StorageV1DevPodWorkspaceProvider;
 	"spaceTemplate"?: StorageV1TemplateRef;
+	/**
+	* UseProjectGitCredentials specifies if the project git credentials should be used instead of local ones for this workspace
+	*/
+	"useProjectGitCredentials"?: boolean;
 	"virtualClusterTemplate"?: StorageV1TemplateRef;
 	/**
 	* WorkspaceEnv are environment variables that should be available within the created workspace.
@@ -11581,6 +11589,10 @@ declare class UiV1UISettingsSpec {
 	* CustomJavaScript holds URLs with custom js files that should be included when loading the UI
 	*/
 	"customJavaScript"?: Array<string>;
+	/**
+	* HasHelmRelease indicates whether loft has been installed via Helm
+	*/
+	"hasHelmRelease"?: boolean;
 	/**
 	* LegalTemplate is a text (html) string containing the legal template to prompt to users when authenticating to Loft
 	*/
@@ -13618,6 +13630,44 @@ declare class StorageV1AutomaticImport {
 	}[];
 	constructor();
 }
+declare class StorageV1GitProjectSpec {
+	/**
+	* Token defines the token to use for authentication.
+	*/
+	"token"?: string;
+	"tokenSecretRef"?: V1SecretKeySelector;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1DevPodProjectSpec {
+	"git"?: StorageV1GitProjectSpec;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
 declare class StorageV1Member {
 	/**
 	* ClusterRole is the assigned role for the above member
@@ -13840,6 +13890,7 @@ declare class ManagementV1ProjectSpec {
 	* Description describes an app
 	*/
 	"description"?: string;
+	"devPod"?: StorageV1DevPodProjectSpec;
 	/**
 	* DisplayName is the name that should be displayed in the UI
 	*/
