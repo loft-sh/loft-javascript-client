@@ -11590,6 +11590,10 @@ declare class UiV1UISettingsSpec {
 	*/
 	"customJavaScript"?: Array<string>;
 	/**
+	* DefaultVClusterVersion is the default version of vClusters
+	*/
+	"defaultVClusterVersion"?: string;
+	/**
 	* HasHelmRelease indicates whether loft has been installed via Helm
 	*/
 	"hasHelmRelease"?: boolean;
