@@ -10523,9 +10523,17 @@ declare class StorageV1AccessKeyScopeVirtualCluster {
 }
 declare class StorageV1AccessKeyScope {
 	/**
+	* AllowAgentless allows a vCluster to enroll by itself to the platform without the need for a platform agent to be deployed.
+	*/
+	"allowAgentless"?: boolean;
+	/**
 	* AllowLoftCLI allows certain read-only management requests to make sure loft cli works correctly with this specific access key.
 	*/
 	"allowLoftCli"?: boolean;
+	/**
+	* AllowNetworkPeering allows the access key user to join the overlay network.
+	*/
+	"allowNetworkPeering"?: boolean;
 	/**
 	* Clusters specifies the project cluster the access key is allowed to access.
 	*/
