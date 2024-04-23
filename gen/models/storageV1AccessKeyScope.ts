@@ -12,6 +12,7 @@
 
 import { StorageV1AccessKeyScopeCluster } from '../models/storageV1AccessKeyScopeCluster';
 import { StorageV1AccessKeyScopeProject } from '../models/storageV1AccessKeyScopeProject';
+import { StorageV1AccessKeyScopeRole } from '../models/storageV1AccessKeyScopeRole';
 import { StorageV1AccessKeyScopeRule } from '../models/storageV1AccessKeyScopeRule';
 import { StorageV1AccessKeyScopeSpace } from '../models/storageV1AccessKeyScopeSpace';
 import { StorageV1AccessKeyScopeVirtualCluster } from '../models/storageV1AccessKeyScopeVirtualCluster';
@@ -19,17 +20,9 @@ import { StorageV1AccessKeyScopeVirtualCluster } from '../models/storageV1Access
 
 export class StorageV1AccessKeyScope {
     /**
-    * AllowAgentless allows a vCluster to enroll by itself to the platform without the need for a platform agent to be deployed.
-    */
-    'allowAgentless'?: boolean;
-    /**
-    * AllowLoftCLI allows certain read-only management requests to make sure loft cli works correctly with this specific access key.
+    * AllowLoftCLI allows certain read-only management requests to make sure loft cli works correctly with this specific access key.  Deprecated: Use the `roles` field instead  ```yaml  # Example:  roles:    - role: loftCLI  ```
     */
     'allowLoftCli'?: boolean;
-    /**
-    * AllowNetworkPeering allows the access key user to join the overlay network.
-    */
-    'allowNetworkPeering'?: boolean;
     /**
     * Clusters specifies the project cluster the access key is allowed to access.
     */
@@ -38,6 +31,10 @@ export class StorageV1AccessKeyScope {
     * Projects specifies the projects the access key should have access to.
     */
     'projects'?: Array<StorageV1AccessKeyScopeProject>;
+    /**
+    * Roles is a set of managed permissions to apply to the access key.
+    */
+    'roles'?: Array<StorageV1AccessKeyScopeRole>;
     /**
     * DEPRECATED: Use Projects, Spaces and VirtualClusters instead Rules specifies the rules that should apply to the access key.
     */
@@ -55,20 +52,8 @@ export class StorageV1AccessKeyScope {
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "allowAgentless",
-            "baseName": "allowAgentless",
-            "type": "boolean",
-            "format": ""
-        },
-        {
             "name": "allowLoftCli",
             "baseName": "allowLoftCli",
-            "type": "boolean",
-            "format": ""
-        },
-        {
-            "name": "allowNetworkPeering",
-            "baseName": "allowNetworkPeering",
             "type": "boolean",
             "format": ""
         },
@@ -82,6 +67,12 @@ export class StorageV1AccessKeyScope {
             "name": "projects",
             "baseName": "projects",
             "type": "Array<StorageV1AccessKeyScopeProject>",
+            "format": ""
+        },
+        {
+            "name": "roles",
+            "baseName": "roles",
+            "type": "Array<StorageV1AccessKeyScopeRole>",
             "format": ""
         },
         {
