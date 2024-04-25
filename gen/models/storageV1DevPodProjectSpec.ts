@@ -14,11 +14,21 @@ import { StorageV1GitProjectSpec } from '../models/storageV1GitProjectSpec';
 
 
 export class StorageV1DevPodProjectSpec {
+    /**
+    * FallbackImage defines an image all workspace will fall back to if no devcontainer.json could be detected
+    */
+    'fallbackImage'?: string;
     'git'?: StorageV1GitProjectSpec;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+        {
+            "name": "fallbackImage",
+            "baseName": "fallbackImage",
+            "type": "string",
+            "format": ""
+        },
         {
             "name": "git",
             "baseName": "git",

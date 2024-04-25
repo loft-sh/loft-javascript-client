@@ -13755,6 +13755,10 @@ declare class StorageV1GitProjectSpec {
 	constructor();
 }
 declare class StorageV1DevPodProjectSpec {
+	/**
+	* FallbackImage defines an image all workspace will fall back to if no devcontainer.json could be detected
+	*/
+	"fallbackImage"?: string;
 	"git"?: StorageV1GitProjectSpec;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
