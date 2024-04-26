@@ -40,7 +40,7 @@ export class ManagementV1VirtualClusterInstanceSpec {
     */
     'extraAccessRules'?: Array<StorageV1InstanceAccessRule>;
     /**
-    * NetworkPeer specifies if the cluster is connected via tailscalel. When this is specified, the vCluster will not be scheduled to any connected cluster and no templates will be applied to it.
+    * NetworkPeer specifies if the cluster is connected via tailscale. When this is specified, the vCluster will not be scheduled to any connected cluster and no templates will be applied to it.
     */
     'networkPeer'?: boolean;
     'owner'?: StorageV1UserOrTeam;

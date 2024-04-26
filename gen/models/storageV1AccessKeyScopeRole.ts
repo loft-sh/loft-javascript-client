@@ -14,9 +14,9 @@
 
 export class StorageV1AccessKeyScopeRole {
     /**
-    * Role is the name of the role to apply to the access key scope.
+    * Role is the name of the role to apply to the access key scope.  Possible enum values:  - `\"loft-cli\"`  - `\"network-peer\"`  - `\"vcluster\"`
     */
-    'role'?: string;
+    'role'?: StorageV1AccessKeyScopeRoleRoleEnum;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -24,7 +24,7 @@ export class StorageV1AccessKeyScopeRole {
         {
             "name": "role",
             "baseName": "role",
-            "type": "string",
+            "type": "StorageV1AccessKeyScopeRoleRoleEnum",
             "format": ""
         }    ];
 
@@ -34,5 +34,12 @@ export class StorageV1AccessKeyScopeRole {
 
     public constructor() {
     }
+}
+
+
+export enum StorageV1AccessKeyScopeRoleRoleEnum {
+    LoftCli = 'loft-cli',
+    NetworkPeer = 'network-peer',
+    Vcluster = 'vcluster'
 }
 

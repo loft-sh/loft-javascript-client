@@ -10502,9 +10502,9 @@ declare class StorageV1AccessKeyScopeProject {
 }
 declare class StorageV1AccessKeyScopeRole {
 	/**
-	* Role is the name of the role to apply to the access key scope.
+	* Role is the name of the role to apply to the access key scope.  Possible enum values:  - `\"loft-cli\"`  - `\"network-peer\"`  - `\"vcluster\"`
 	*/
-	"role"?: string;
+	"role"?: StorageV1AccessKeyScopeRoleRoleEnum;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -10519,6 +10519,11 @@ declare class StorageV1AccessKeyScopeRole {
 		format: string;
 	}[];
 	constructor();
+}
+declare enum StorageV1AccessKeyScopeRoleRoleEnum {
+	LoftCli = "loft-cli",
+	NetworkPeer = "network-peer",
+	Vcluster = "vcluster"
 }
 declare class StorageV1AccessKeyVirtualCluster {
 	/**
@@ -16449,7 +16454,7 @@ declare class ManagementV1VirtualClusterInstanceSpec {
 	*/
 	"extraAccessRules"?: Array<StorageV1InstanceAccessRule>;
 	/**
-	* NetworkPeer specifies if the cluster is connected via tailscalel. When this is specified, the vCluster will not be scheduled to any connected cluster and no templates will be applied to it.
+	* NetworkPeer specifies if the cluster is connected via tailscale. When this is specified, the vCluster will not be scheduled to any connected cluster and no templates will be applied to it.
 	*/
 	"networkPeer"?: boolean;
 	"owner"?: StorageV1UserOrTeam;
@@ -16496,6 +16501,10 @@ declare class ManagementV1VirtualClusterInstanceStatus {
 	* Message describes the reason in human-readable form why the cluster is in the current phase
 	*/
 	"message"?: string;
+	/**
+	* Online specifies if there is at least one network peer available for an agentless vCluster.
+	*/
+	"online"?: boolean;
 	/**
 	* Phase describes the current phase the virtual cluster instance is in
 	*/
