@@ -33,7 +33,6 @@ import {ManagementV1LicenseToken} from "./models/managementV1LicenseToken"
 import {ManagementV1License} from "./models/managementV1License"
 import {ManagementV1LoftUpgrade} from "./models/managementV1LoftUpgrade"
 import {ManagementV1OwnedAccessKey} from "./models/managementV1OwnedAccessKey"
-import {ManagementV1PolicyViolation} from "./models/managementV1PolicyViolation"
 import {ManagementV1ProjectChartInfo} from "./models/managementV1ProjectChartInfo"
 import {ManagementV1ProjectCharts} from "./models/managementV1ProjectCharts"
 import {ManagementV1ProjectClusters} from "./models/managementV1ProjectClusters"
@@ -107,7 +106,6 @@ export type TGenResources = {
   ManagementV1LicenseToken: GroupVersionResource<ManagementV1LicenseToken>
   ManagementV1LoftUpgrade: GroupVersionResource<ManagementV1LoftUpgrade>
   ManagementV1OwnedAccessKey: GroupVersionResource<ManagementV1OwnedAccessKey>
-  ManagementV1PolicyViolation: GroupVersionResource<ManagementV1PolicyViolation>
   ManagementV1Project: GroupVersionResource<ManagementV1Project>
   ManagementV1ProjectChartInfo: GroupVersionResource<ManagementV1ProjectChartInfo>
   ManagementV1ProjectCharts: GroupVersionResource<ManagementV1ProjectCharts>
@@ -412,14 +410,6 @@ export const GenResources: TGenResources = {
     subResource: "",
     namespaced: false,
     kind: "OwnedAccessKey",
-  },
-  ManagementV1PolicyViolation: {
-    group: "management.loft.sh",
-    version: "v1",
-    resource: "policyviolations",
-    subResource: "",
-    namespaced: false,
-    kind: "PolicyViolation",
   },
   ManagementV1Project: {
     group: "management.loft.sh",
