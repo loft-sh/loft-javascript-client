@@ -12,17 +12,18 @@
 
 import { StorageV1DevPodProviderOption } from '../models/storageV1DevPodProviderOption';
 import { StorageV1DevPodWorkspaceProvider } from '../models/storageV1DevPodWorkspaceProvider';
+import { StorageV1SpaceTemplateDefinition } from '../models/storageV1SpaceTemplateDefinition';
 import { StorageV1TemplateRef } from '../models/storageV1TemplateRef';
 
 
 export class StorageV1DevPodWorkspaceTemplateDefinition {
     'provider': StorageV1DevPodWorkspaceProvider;
-    'spaceTemplate'?: StorageV1TemplateRef;
+    'spaceTemplate'?: StorageV1SpaceTemplateDefinition;
+    'spaceTemplateRef'?: StorageV1TemplateRef;
     /**
     * UseProjectGitCredentials specifies if the project git credentials should be used instead of local ones for this workspace
     */
     'useProjectGitCredentials'?: boolean;
-    'virtualClusterTemplate'?: StorageV1TemplateRef;
     /**
     * WorkspaceEnv are environment variables that should be available within the created workspace.
     */
@@ -40,6 +41,12 @@ export class StorageV1DevPodWorkspaceTemplateDefinition {
         {
             "name": "spaceTemplate",
             "baseName": "spaceTemplate",
+            "type": "StorageV1SpaceTemplateDefinition",
+            "format": ""
+        },
+        {
+            "name": "spaceTemplateRef",
+            "baseName": "spaceTemplateRef",
             "type": "StorageV1TemplateRef",
             "format": ""
         },
@@ -47,12 +54,6 @@ export class StorageV1DevPodWorkspaceTemplateDefinition {
             "name": "useProjectGitCredentials",
             "baseName": "useProjectGitCredentials",
             "type": "boolean",
-            "format": ""
-        },
-        {
-            "name": "virtualClusterTemplate",
-            "baseName": "virtualClusterTemplate",
-            "type": "StorageV1TemplateRef",
             "format": ""
         },
         {
