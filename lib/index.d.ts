@@ -13648,43 +13648,6 @@ declare class StorageV1ArgoIntegrationSpec {
 	}[];
 	constructor();
 }
-declare class StorageV1AutomaticImportVirtualClusters {
-	/**
-	* Enabled specifies if automatic virtual cluster import should be enabled for this project.
-	*/
-	"enabled"?: boolean;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class StorageV1AutomaticImport {
-	"virtualClusters"?: StorageV1AutomaticImportVirtualClusters;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
 declare class StorageV1GitProjectSpec {
 	/**
 	* Token defines the token to use for authentication.
@@ -13944,7 +13907,6 @@ declare class ManagementV1ProjectSpec {
 	*/
 	"allowedTemplates"?: Array<StorageV1AllowedTemplate>;
 	"argoCD"?: StorageV1ArgoIntegrationSpec;
-	"automaticImport"?: StorageV1AutomaticImport;
 	/**
 	* Description describes an app
 	*/

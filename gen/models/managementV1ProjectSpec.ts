@@ -15,7 +15,6 @@ import { StorageV1AllowedCluster } from '../models/storageV1AllowedCluster';
 import { StorageV1AllowedRunner } from '../models/storageV1AllowedRunner';
 import { StorageV1AllowedTemplate } from '../models/storageV1AllowedTemplate';
 import { StorageV1ArgoIntegrationSpec } from '../models/storageV1ArgoIntegrationSpec';
-import { StorageV1AutomaticImport } from '../models/storageV1AutomaticImport';
 import { StorageV1DevPodProjectSpec } from '../models/storageV1DevPodProjectSpec';
 import { StorageV1Member } from '../models/storageV1Member';
 import { StorageV1NamespacePattern } from '../models/storageV1NamespacePattern';
@@ -47,7 +46,6 @@ export class ManagementV1ProjectSpec {
     */
     'allowedTemplates'?: Array<StorageV1AllowedTemplate>;
     'argoCD'?: StorageV1ArgoIntegrationSpec;
-    'automaticImport'?: StorageV1AutomaticImport;
     /**
     * Description describes an app
     */
@@ -99,12 +97,6 @@ export class ManagementV1ProjectSpec {
             "name": "argoCD",
             "baseName": "argoCD",
             "type": "StorageV1ArgoIntegrationSpec",
-            "format": ""
-        },
-        {
-            "name": "automaticImport",
-            "baseName": "automaticImport",
-            "type": "StorageV1AutomaticImport",
             "format": ""
         },
         {
