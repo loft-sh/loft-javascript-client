@@ -17,6 +17,10 @@ import { StorageV1TemplateRef } from '../models/storageV1TemplateRef';
 
 
 export class StorageV1DevPodWorkspaceTemplateDefinition {
+    /**
+    * GitCloneStrategy specifies how git based workspace are being cloned. Can be \"\" (full, default), treeless, blobless or shallow  Possible enum values:  - `\"\"`  - `\"blobless\"`  - `\"shallow\"`  - `\"treeless\"`
+    */
+    'gitCloneStrategy'?: StorageV1DevPodWorkspaceTemplateDefinitionGitCloneStrategyEnum;
     'provider': StorageV1DevPodWorkspaceProvider;
     'spaceTemplate'?: StorageV1SpaceTemplateDefinition;
     'spaceTemplateRef'?: StorageV1TemplateRef;
@@ -32,6 +36,12 @@ export class StorageV1DevPodWorkspaceTemplateDefinition {
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+        {
+            "name": "gitCloneStrategy",
+            "baseName": "gitCloneStrategy",
+            "type": "StorageV1DevPodWorkspaceTemplateDefinitionGitCloneStrategyEnum",
+            "format": ""
+        },
         {
             "name": "provider",
             "baseName": "provider",
@@ -69,5 +79,13 @@ export class StorageV1DevPodWorkspaceTemplateDefinition {
 
     public constructor() {
     }
+}
+
+
+export enum StorageV1DevPodWorkspaceTemplateDefinitionGitCloneStrategyEnum {
+    Empty = '',
+    Blobless = 'blobless',
+    Shallow = 'shallow',
+    Treeless = 'treeless'
 }
 

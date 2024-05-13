@@ -10214,6 +10214,10 @@ declare class StorageV1TemplateRef {
 	constructor();
 }
 declare class StorageV1DevPodWorkspaceTemplateDefinition {
+	/**
+	* GitCloneStrategy specifies how git based workspace are being cloned. Can be \"\" (full, default), treeless, blobless or shallow  Possible enum values:  - `\"\"`  - `\"blobless\"`  - `\"shallow\"`  - `\"treeless\"`
+	*/
+	"gitCloneStrategy"?: StorageV1DevPodWorkspaceTemplateDefinitionGitCloneStrategyEnum;
 	"provider": StorageV1DevPodWorkspaceProvider;
 	"spaceTemplate"?: StorageV1SpaceTemplateDefinition;
 	"spaceTemplateRef"?: StorageV1TemplateRef;
@@ -10241,6 +10245,12 @@ declare class StorageV1DevPodWorkspaceTemplateDefinition {
 		format: string;
 	}[];
 	constructor();
+}
+declare enum StorageV1DevPodWorkspaceTemplateDefinitionGitCloneStrategyEnum {
+	Empty = "",
+	Blobless = "blobless",
+	Shallow = "shallow",
+	Treeless = "treeless"
 }
 declare class StorageV1RunnerRef {
 	/**
