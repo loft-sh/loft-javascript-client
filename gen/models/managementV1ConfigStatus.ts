@@ -34,6 +34,10 @@ export class ManagementV1ConfigStatus {
     */
     'loftHost'?: string;
     'oidc'?: ManagementV1OIDC;
+    /**
+    * ProjectNamespacePrefix holds the prefix for loft project namespaces. Omitted defaults to \"loft-p-\"
+    */
+    'projectNamespacePrefix'?: string;
     'uiSettings'?: UiV1UISettingsConfig;
     'vault'?: StorageV1VaultIntegrationSpec;
 
@@ -74,6 +78,12 @@ export class ManagementV1ConfigStatus {
             "name": "oidc",
             "baseName": "oidc",
             "type": "ManagementV1OIDC",
+            "format": ""
+        },
+        {
+            "name": "projectNamespacePrefix",
+            "baseName": "projectNamespacePrefix",
+            "type": "string",
             "format": ""
         },
         {

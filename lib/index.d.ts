@@ -9918,6 +9918,10 @@ declare class ManagementV1ConfigStatus {
 	*/
 	"loftHost"?: string;
 	"oidc"?: ManagementV1OIDC;
+	/**
+	* ProjectNamespacePrefix holds the prefix for loft project namespaces. Omitted defaults to \"loft-p-\"
+	*/
+	"projectNamespacePrefix"?: string;
 	"uiSettings"?: UiV1UISettingsConfig;
 	"vault"?: StorageV1VaultIntegrationSpec;
 	static readonly discriminator: string | undefined;
@@ -14606,6 +14610,10 @@ declare class ManagementV1SelfStatus {
 	* InstanceID is the loft instance id
 	*/
 	"instanceID"?: string;
+	/**
+	* ProjectNamespacePrefix is the prefix used to name project namespaces
+	*/
+	"projectNamespacePrefix"?: string;
 	/**
 	* The subject of the currently logged in user
 	*/

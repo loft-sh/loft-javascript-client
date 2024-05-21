@@ -38,6 +38,10 @@ export class ManagementV1SelfStatus {
     */
     'instanceID'?: string;
     /**
+    * ProjectNamespacePrefix is the prefix used to name project namespaces
+    */
+    'projectNamespacePrefix'?: string;
+    /**
     * The subject of the currently logged in user
     */
     'subject'?: string;
@@ -84,6 +88,12 @@ export class ManagementV1SelfStatus {
         {
             "name": "instanceID",
             "baseName": "instanceID",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "projectNamespacePrefix",
+            "baseName": "projectNamespacePrefix",
             "type": "string",
             "format": ""
         },
