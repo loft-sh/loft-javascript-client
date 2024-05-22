@@ -47,6 +47,10 @@ export class ManagementV1ClusterAgentConfig {
     'loftInstanceID'?: string;
     'metadata'?: V1ObjectMeta;
     /**
+    * ProjectNamespacePrefix holds the prefix for loft project namespaces
+    */
+    'projectNamespacePrefix'?: string;
+    /**
     * TokenCaCert is the certificate authority the Loft tokens will be signed with
     */
     'tokenCaCert'?: string;
@@ -106,6 +110,12 @@ export class ManagementV1ClusterAgentConfig {
             "name": "metadata",
             "baseName": "metadata",
             "type": "V1ObjectMeta",
+            "format": ""
+        },
+        {
+            "name": "projectNamespacePrefix",
+            "baseName": "projectNamespacePrefix",
+            "type": "string",
             "format": ""
         },
         {

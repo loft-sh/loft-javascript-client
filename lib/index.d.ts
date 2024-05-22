@@ -8061,6 +8061,10 @@ declare class ManagementV1ClusterAgentConfig {
 	"loftInstanceID"?: string;
 	"metadata"?: V1ObjectMeta;
 	/**
+	* ProjectNamespacePrefix holds the prefix for loft project namespaces
+	*/
+	"projectNamespacePrefix"?: string;
+	/**
 	* TokenCaCert is the certificate authority the Loft tokens will be signed with
 	*/
 	"tokenCaCert"?: string;
@@ -9919,7 +9923,7 @@ declare class ManagementV1ConfigStatus {
 	"loftHost"?: string;
 	"oidc"?: ManagementV1OIDC;
 	/**
-	* ProjectNamespacePrefix holds the prefix for loft project namespaces. Omitted defaults to \"loft-p-\"
+	* ProjectNamespacePrefix holds the prefix for loft project namespaces. Omitted defaults to \"p-\"
 	*/
 	"projectNamespacePrefix"?: string;
 	"uiSettings"?: UiV1UISettingsConfig;
@@ -14611,7 +14615,7 @@ declare class ManagementV1SelfStatus {
 	*/
 	"instanceID"?: string;
 	/**
-	* ProjectNamespacePrefix is the prefix used to name project namespaces
+	* ProjectNamespacePrefix is the prefix used to name project namespaces after defaulting has been applied
 	*/
 	"projectNamespacePrefix"?: string;
 	/**

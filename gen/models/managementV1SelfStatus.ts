@@ -38,7 +38,7 @@ export class ManagementV1SelfStatus {
     */
     'instanceID'?: string;
     /**
-    * ProjectNamespacePrefix is the prefix used to name project namespaces
+    * ProjectNamespacePrefix is the prefix used to name project namespaces after defaulting has been applied
     */
     'projectNamespacePrefix'?: string;
     /**
