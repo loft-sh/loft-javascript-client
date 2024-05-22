@@ -10520,7 +10520,7 @@ declare class StorageV1AccessKeyScopeProject {
 }
 declare class StorageV1AccessKeyScopeRole {
 	/**
-	* Role is the name of the role to apply to the access key scope.  Possible enum values:  - `\"loft-cli\"`  - `\"network-peer\"`  - `\"vcluster\"`
+	* Role is the name of the role to apply to the access key scope.  Possible enum values:  - `\"agent\"`  - `\"loft-cli\"`  - `\"network-peer\"`  - `\"runner\"`  - `\"vcluster\"`
 	*/
 	"role"?: StorageV1AccessKeyScopeRoleRoleEnum;
 	static readonly discriminator: string | undefined;
@@ -10539,8 +10539,10 @@ declare class StorageV1AccessKeyScopeRole {
 	constructor();
 }
 declare enum StorageV1AccessKeyScopeRoleRoleEnum {
+	Agent = "agent",
 	LoftCli = "loft-cli",
 	NetworkPeer = "network-peer",
+	Runner = "runner",
 	Vcluster = "vcluster"
 }
 declare class StorageV1AccessKeyVirtualCluster {
@@ -12704,9 +12706,9 @@ declare class ManagementV1RunnerSpec {
 	*/
 	"displayName"?: string;
 	/**
-	* Endpoint is the hostname used to connect directly to the runner
+	* NetworkPeerName is the network peer name used to connect directly to the runner
 	*/
-	"endpoint"?: string;
+	"networkPeerName"?: string;
 	"owner"?: StorageV1UserOrTeam;
 	/**
 	* If unusable is true, no DevPod workspaces can be scheduled on this runner.
