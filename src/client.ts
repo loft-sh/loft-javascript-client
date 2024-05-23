@@ -115,21 +115,43 @@ export const ClusterBasePath = "/kubernetes/cluster/"
 export const VClusterBasePath = "/kubernetes/virtualcluster/"
 export const ProjectBasePath = "/kubernetes/project/"
 
-export function getProjectNamespace(name: string | undefined) {
+export function getProjectNamespace(name: string | undefined, prefix?: string | undefined): string {
   if (!name) {
-    return "loft-p-"
+    return "p-"
   }
 
-  // TODO: actually implement ProjectNamespace from golang
-  return "loft-p-" + name
+  const prefixHasDash = prefix && prefix.endsWith("-")
+
+  if (prefixHasDash) {
+    return `${prefix}${name}`
+  } else if (prefix === "") {
+    return `${name}`
+  } else if (prefix) {
+    return `${prefix}-${name}`
+  } else {
+    return `p-${name}`
+  }
 }
 
-export function getProjectFromNamespace(namespace: string | undefined): string | undefined {
+export function getProjectFromNamespace(
+  namespace: string | undefined,
+  prefix?: string
+): string | undefined {
   if (!namespace) {
     return undefined
   }
 
-  return namespace.replace(/^loft-p-/, "")
+  if (prefix) {
+    const prefixHasDash = prefix.endsWith("-")
+
+    if (prefixHasDash) {
+      return namespace.replace(new RegExp(`^${prefix}`), "")
+    } else {
+      return namespace.replace(new RegExp(`^${prefix}-`), "")
+    }
+  }
+
+  return namespace.replace(/^p-/, "")
 }
 
 class Client {
