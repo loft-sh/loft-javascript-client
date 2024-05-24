@@ -29,6 +29,10 @@ export class StorageV1DevPodWorkspaceTemplateDefinition {
     */
     'useProjectGitCredentials'?: boolean;
     /**
+    * UseProjectSSHCredentials specifies if the project ssh credentials should be used instead of local ones for this workspace
+    */
+    'useProjectSSHCredentials'?: boolean;
+    /**
     * WorkspaceEnv are environment variables that should be available within the created workspace.
     */
     'workspaceEnv'?: { [key: string]: StorageV1DevPodProviderOption; };
@@ -63,6 +67,12 @@ export class StorageV1DevPodWorkspaceTemplateDefinition {
         {
             "name": "useProjectGitCredentials",
             "baseName": "useProjectGitCredentials",
+            "type": "boolean",
+            "format": ""
+        },
+        {
+            "name": "useProjectSSHCredentials",
+            "baseName": "useProjectSSHCredentials",
             "type": "boolean",
             "format": ""
         },

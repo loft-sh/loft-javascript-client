@@ -10163,6 +10163,10 @@ declare class StorageV1DevPodWorkspaceTemplateDefinition {
 	*/
 	"useProjectGitCredentials"?: boolean;
 	/**
+	* UseProjectSSHCredentials specifies if the project ssh credentials should be used instead of local ones for this workspace
+	*/
+	"useProjectSSHCredentials"?: boolean;
+	/**
 	* WorkspaceEnv are environment variables that should be available within the created workspace.
 	*/
 	"workspaceEnv"?: {
@@ -13618,12 +13622,34 @@ declare class StorageV1GitProjectSpec {
 	}[];
 	constructor();
 }
+declare class StorageV1SSHProjectSpec {
+	/**
+	* Token defines the private ssh key to use for authentication.
+	*/
+	"token"?: string;
+	"tokenSecretRef"?: V1SecretKeySelector;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
 declare class StorageV1DevPodProjectSpec {
 	/**
 	* FallbackImage defines an image all workspace will fall back to if no devcontainer.json could be detected
 	*/
 	"fallbackImage"?: string;
 	"git"?: StorageV1GitProjectSpec;
+	"ssh"?: StorageV1SSHProjectSpec;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;

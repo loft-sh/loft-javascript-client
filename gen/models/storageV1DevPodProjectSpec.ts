@@ -11,6 +11,7 @@
  */
 
 import { StorageV1GitProjectSpec } from '../models/storageV1GitProjectSpec';
+import { StorageV1SSHProjectSpec } from '../models/storageV1SSHProjectSpec';
 
 
 export class StorageV1DevPodProjectSpec {
@@ -19,6 +20,7 @@ export class StorageV1DevPodProjectSpec {
     */
     'fallbackImage'?: string;
     'git'?: StorageV1GitProjectSpec;
+    'ssh'?: StorageV1SSHProjectSpec;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -33,6 +35,12 @@ export class StorageV1DevPodProjectSpec {
             "name": "git",
             "baseName": "git",
             "type": "StorageV1GitProjectSpec",
+            "format": ""
+        },
+        {
+            "name": "ssh",
+            "baseName": "ssh",
+            "type": "StorageV1SSHProjectSpec",
             "format": ""
         }    ];
 
