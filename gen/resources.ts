@@ -10,7 +10,6 @@ import {ManagementV1ClusterAccessKey} from "./models/managementV1ClusterAccessKe
 import {ManagementV1ClusterAccess} from "./models/managementV1ClusterAccess"
 import {ManagementV1ClusterAgentConfig} from "./models/managementV1ClusterAgentConfig"
 import {ManagementV1ClusterCharts} from "./models/managementV1ClusterCharts"
-import {ManagementV1ClusterConnect} from "./models/managementV1ClusterConnect"
 import {ManagementV1ClusterDomain} from "./models/managementV1ClusterDomain"
 import {ManagementV1ClusterMemberAccess} from "./models/managementV1ClusterMemberAccess"
 import {ManagementV1ClusterMembers} from "./models/managementV1ClusterMembers"
@@ -84,7 +83,6 @@ export type TGenResources = {
   ManagementV1ClusterAccessKey: GroupVersionResource<ManagementV1ClusterAccessKey>
   ManagementV1ClusterAgentConfig: GroupVersionResource<ManagementV1ClusterAgentConfig>
   ManagementV1ClusterCharts: GroupVersionResource<ManagementV1ClusterCharts>
-  ManagementV1ClusterConnect: GroupVersionResource<ManagementV1ClusterConnect>
   ManagementV1ClusterDomain: GroupVersionResource<ManagementV1ClusterDomain>
   ManagementV1ClusterMemberAccess: GroupVersionResource<ManagementV1ClusterMemberAccess>
   ManagementV1ClusterMembers: GroupVersionResource<ManagementV1ClusterMembers>
@@ -234,14 +232,6 @@ export const GenResources: TGenResources = {
     subResource: "charts",
     namespaced: false,
     kind: "ClusterCharts",
-  },
-  ManagementV1ClusterConnect: {
-    group: "management.loft.sh",
-    version: "v1",
-    resource: "clusterconnect",
-    subResource: "",
-    namespaced: false,
-    kind: "ClusterConnect",
   },
   ManagementV1ClusterDomain: {
     group: "management.loft.sh",

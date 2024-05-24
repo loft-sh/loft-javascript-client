@@ -8174,192 +8174,6 @@ declare class ManagementV1ClusterCharts {
 	}[];
 	constructor();
 }
-declare class StorageV1SecretRef {
-	"key"?: string;
-	"secretName"?: string;
-	"secretNamespace"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1ClusterSpec {
-	/**
-	* Access holds the access rights for users and teams
-	*/
-	"access"?: Array<StorageV1Access>;
-	"config"?: StorageV1SecretRef;
-	/**
-	* Description describes a cluster access object
-	*/
-	"description"?: string;
-	/**
-	* If specified this name is displayed in the UI instead of the metadata name
-	*/
-	"displayName"?: string;
-	/**
-	* Local specifies if it is the local cluster that should be connected, when this is specified, config is optional
-	*/
-	"local"?: boolean;
-	/**
-	* The namespace where the cluster components will be installed in
-	*/
-	"managementNamespace"?: string;
-	/**
-	* NetworkPeer specifies if the cluster is connected via tailscale, when this is specified, config is optional
-	*/
-	"networkPeer"?: boolean;
-	"owner"?: StorageV1UserOrTeam;
-	/**
-	* If unusable is true, no spaces or virtual clusters can be scheduled on this cluster.
-	*/
-	"unusable"?: boolean;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1ClusterStatus {
-	"message"?: string;
-	/**
-	* Online is whether the cluster is currently connected to the coordination server.
-	*/
-	"online"?: boolean;
-	"phase"?: string;
-	"reason"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1Cluster {
-	/**
-	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
-	*/
-	"apiVersion"?: string;
-	/**
-	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-	*/
-	"kind"?: string;
-	"metadata"?: V1ObjectMeta;
-	"spec"?: ManagementV1ClusterSpec;
-	"status"?: ManagementV1ClusterStatus;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1ClusterConnectSpec {
-	/**
-	* The user to create an admin account for
-	*/
-	"adminUser"?: string;
-	"clusterTemplate"?: ManagementV1Cluster;
-	/**
-	* the kube config used to connect the cluster
-	*/
-	"config"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1ClusterConnectStatus {
-	"failed"?: boolean;
-	"message"?: string;
-	"reason"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1ClusterConnect {
-	/**
-	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
-	*/
-	"apiVersion"?: string;
-	/**
-	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-	*/
-	"kind"?: string;
-	"metadata"?: V1ObjectMeta;
-	"spec"?: ManagementV1ClusterConnectSpec;
-	"status"?: ManagementV1ClusterConnectStatus;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
 declare class ManagementV1ClusterDomain {
 	/**
 	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
@@ -8971,6 +8785,121 @@ declare class ManagementV1ClusterVirtualClusterDefaults {
 	* Warning should be somehow shown to the user when there is a problem retrieving the defaults
 	*/
 	"warning"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1SecretRef {
+	"key"?: string;
+	"secretName"?: string;
+	"secretNamespace"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1ClusterSpec {
+	/**
+	* Access holds the access rights for users and teams
+	*/
+	"access"?: Array<StorageV1Access>;
+	"config"?: StorageV1SecretRef;
+	/**
+	* Description describes a cluster access object
+	*/
+	"description"?: string;
+	/**
+	* If specified this name is displayed in the UI instead of the metadata name
+	*/
+	"displayName"?: string;
+	/**
+	* Local specifies if it is the local cluster that should be connected, when this is specified, config is optional
+	*/
+	"local"?: boolean;
+	/**
+	* The namespace where the cluster components will be installed in
+	*/
+	"managementNamespace"?: string;
+	/**
+	* NetworkPeer specifies if the cluster is connected via tailscale, when this is specified, config is optional
+	*/
+	"networkPeer"?: boolean;
+	"owner"?: StorageV1UserOrTeam;
+	/**
+	* If unusable is true, no spaces or virtual clusters can be scheduled on this cluster.
+	*/
+	"unusable"?: boolean;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1ClusterStatus {
+	"message"?: string;
+	/**
+	* Online is whether the cluster is currently connected to the coordination server.
+	*/
+	"online"?: boolean;
+	"phase"?: string;
+	"reason"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1Cluster {
+	/**
+	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	*/
+	"apiVersion"?: string;
+	/**
+	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	*/
+	"kind"?: string;
+	"metadata"?: V1ObjectMeta;
+	"spec"?: ManagementV1ClusterSpec;
+	"status"?: ManagementV1ClusterStatus;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -16558,7 +16487,6 @@ export type TGenResources = {
 	ManagementV1ClusterAccessKey: GroupVersionResource<ManagementV1ClusterAccessKey>;
 	ManagementV1ClusterAgentConfig: GroupVersionResource<ManagementV1ClusterAgentConfig>;
 	ManagementV1ClusterCharts: GroupVersionResource<ManagementV1ClusterCharts>;
-	ManagementV1ClusterConnect: GroupVersionResource<ManagementV1ClusterConnect>;
 	ManagementV1ClusterDomain: GroupVersionResource<ManagementV1ClusterDomain>;
 	ManagementV1ClusterMemberAccess: GroupVersionResource<ManagementV1ClusterMemberAccess>;
 	ManagementV1ClusterMembers: GroupVersionResource<ManagementV1ClusterMembers>;
