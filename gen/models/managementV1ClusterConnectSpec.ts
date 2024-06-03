@@ -10,39 +10,44 @@
  * Do not edit the class manually.
  */
 
+import { ManagementV1Cluster } from '../models/managementV1Cluster';
 
 
-/**
-* ConvertVirtualClusterConfigSpec holds the specification
-*/
-export class ManagementV1ConvertVirtualClusterConfigSpec {
+export class ManagementV1ClusterConnectSpec {
     /**
-    * Distro is the distro to be used for the config
+    * The user to create an admin account for
     */
-    'distro'?: string;
+    'adminUser'?: string;
+    'clusterTemplate'?: ManagementV1Cluster;
     /**
-    * Values are the config values for the virtual cluster
+    * the kube config used to connect the cluster
     */
-    'values'?: string;
+    'config'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "distro",
-            "baseName": "distro",
+            "name": "adminUser",
+            "baseName": "adminUser",
             "type": "string",
             "format": ""
         },
         {
-            "name": "values",
-            "baseName": "values",
+            "name": "clusterTemplate",
+            "baseName": "clusterTemplate",
+            "type": "ManagementV1Cluster",
+            "format": ""
+        },
+        {
+            "name": "config",
+            "baseName": "config",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1ConvertVirtualClusterConfigSpec.attributeTypeMap;
+        return ManagementV1ClusterConnectSpec.attributeTypeMap;
     }
 
     public constructor() {

@@ -12,37 +12,35 @@
 
 
 
-/**
-* ConvertVirtualClusterConfigStatus holds the status
-*/
-export class ManagementV1ConvertVirtualClusterConfigStatus {
-    /**
-    * Converted signals if the Values have been converted from the old format
-    */
-    'converted': boolean;
-    /**
-    * Values are the converted config values for the virtual cluster
-    */
-    'values'?: string;
+export class ManagementV1ClusterConnectStatus {
+    'failed'?: boolean;
+    'message'?: string;
+    'reason'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "converted",
-            "baseName": "converted",
+            "name": "failed",
+            "baseName": "failed",
             "type": "boolean",
             "format": ""
         },
         {
-            "name": "values",
-            "baseName": "values",
+            "name": "message",
+            "baseName": "message",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "reason",
+            "baseName": "reason",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1ConvertVirtualClusterConfigStatus.attributeTypeMap;
+        return ManagementV1ClusterConnectStatus.attributeTypeMap;
     }
 
     public constructor() {

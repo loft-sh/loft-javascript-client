@@ -10,34 +10,24 @@
  * Do not edit the class manually.
  */
 
-import { V1SecretKeySelector } from '../models/V1SecretKeySelector';
+import { StorageV1AutomaticImportVirtualClusters } from '../models/storageV1AutomaticImportVirtualClusters';
 
 
-export class StorageV1SSHProjectSpec {
-    /**
-    * Token defines the private ssh key to use for authentication.
-    */
-    'token'?: string;
-    'tokenSecretRef'?: V1SecretKeySelector;
+export class StorageV1AutomaticImport {
+    'virtualClusters'?: StorageV1AutomaticImportVirtualClusters;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "token",
-            "baseName": "token",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "tokenSecretRef",
-            "baseName": "tokenSecretRef",
-            "type": "V1SecretKeySelector",
+            "name": "virtualClusters",
+            "baseName": "virtualClusters",
+            "type": "StorageV1AutomaticImportVirtualClusters",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1SSHProjectSpec.attributeTypeMap;
+        return StorageV1AutomaticImport.attributeTypeMap;
     }
 
     public constructor() {

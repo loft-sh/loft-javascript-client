@@ -41,10 +41,6 @@ export class ManagementV1VirtualClusterInstanceStatus {
     */
     'message'?: string;
     /**
-    * Online specifies if there is at least one network peer available for an agentless vCluster.
-    */
-    'online'?: boolean;
-    /**
     * Phase describes the current phase the virtual cluster instance is in
     */
     'phase'?: string;
@@ -89,12 +85,6 @@ export class ManagementV1VirtualClusterInstanceStatus {
             "name": "message",
             "baseName": "message",
             "type": "string",
-            "format": ""
-        },
-        {
-            "name": "online",
-            "baseName": "online",
-            "type": "boolean",
             "format": ""
         },
         {
