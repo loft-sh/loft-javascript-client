@@ -186,7 +186,7 @@ class Client {
 
   public async loftVersion(refresh?: boolean): Promise<Result<VersionV1Version>> {
     try {
-      let path = getApiHost() + "/version"
+      let path = this.apiHost + "/version"
       if (refresh) {
         path += "?refresh=true"
       }
@@ -520,10 +520,10 @@ class Client {
     return project
       ? this.project(project, groupVersionResource)
       : vCluster
-      ? this.vCluster(vCluster, groupVersionResource)
-      : cluster
-      ? this.cluster(cluster!, groupVersionResource)
-      : this.management(groupVersionResource)
+        ? this.vCluster(vCluster, groupVersionResource)
+        : cluster
+          ? this.cluster(cluster!, groupVersionResource)
+          : this.management(groupVersionResource)
   }
 
   public autoNonResource(
@@ -534,10 +534,10 @@ class Client {
     return project
       ? this.projectNonResource(project)
       : vCluster
-      ? this.vClusterNonResource(vCluster)
-      : cluster
-      ? this.clusterNonResource(cluster!)
-      : this.managementNonResource()
+        ? this.vClusterNonResource(vCluster)
+        : cluster
+          ? this.clusterNonResource(cluster!)
+          : this.managementNonResource()
   }
 
   public async doRawSocket(path: string, protocols?: string[]): Promise<Result<WebSocket>> {

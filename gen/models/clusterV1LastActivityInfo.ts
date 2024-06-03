@@ -25,6 +25,10 @@ export class ClusterV1LastActivityInfo {
     */
     'host'?: string;
     /**
+    * MetricsRefreshInterval is the activity refresh interval. This is used to prevent sleeping instances if the last activity metrics have not been refreshed within the interval. Useful for metrics based activty tracking.
+    */
+    'metricsRefreshInterval'?: number;
+    /**
     * Name is the name of the resource
     */
     'name'?: string;
@@ -63,6 +67,12 @@ export class ClusterV1LastActivityInfo {
             "baseName": "host",
             "type": "string",
             "format": ""
+        },
+        {
+            "name": "metricsRefreshInterval",
+            "baseName": "metricsRefreshInterval",
+            "type": "number",
+            "format": "int64"
         },
         {
             "name": "name",

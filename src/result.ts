@@ -2,14 +2,20 @@ export class Err<E, Extra = any> {
   readonly ok = false
   readonly err = true
 
-  constructor(public readonly val: E, public extra: Extra | undefined = undefined) {}
+  constructor(
+    public readonly val: E,
+    public extra: Extra | undefined = undefined
+  ) {}
 }
 
 export class Ok<T, Extra = any> {
   readonly ok = true
   readonly err = false
 
-  constructor(public readonly val: T, public extra: Extra | undefined = undefined) {}
+  constructor(
+    public readonly val: T,
+    public extra: Extra | undefined = undefined
+  ) {}
 }
 
 export type ResultError<Extra = any> = Ok<undefined, Extra> | Err<Failed, Extra>

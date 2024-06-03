@@ -30,6 +30,14 @@ export class UiV1UISettingsSpec {
     */
     'customJavaScript'?: Array<string>;
     /**
+    * DefaultVClusterVersion is the default version of vClusters
+    */
+    'defaultVClusterVersion'?: string;
+    /**
+    * HasHelmRelease indicates whether loft has been installed via Helm
+    */
+    'hasHelmRelease'?: boolean;
+    /**
     * LegalTemplate is a text (html) string containing the legal template to prompt to users when authenticating to Loft
     */
     'legalTemplate'?: string;
@@ -85,6 +93,18 @@ export class UiV1UISettingsSpec {
             "name": "customJavaScript",
             "baseName": "customJavaScript",
             "type": "Array<string>",
+            "format": ""
+        },
+        {
+            "name": "defaultVClusterVersion",
+            "baseName": "defaultVClusterVersion",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "hasHelmRelease",
+            "baseName": "hasHelmRelease",
+            "type": "boolean",
             "format": ""
         },
         {
