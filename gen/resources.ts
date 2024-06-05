@@ -67,7 +67,6 @@ import {ManagementV1UserProfile} from "./models/managementV1UserProfile"
 import {ManagementV1User} from "./models/managementV1User"
 import {ManagementV1VirtualClusterInstanceKubeConfig} from "./models/managementV1VirtualClusterInstanceKubeConfig"
 import {ManagementV1VirtualClusterInstanceLog} from "./models/managementV1VirtualClusterInstanceLog"
-import {ManagementV1VirtualClusterInstanceWorkloadKubeConfig} from "./models/managementV1VirtualClusterInstanceWorkloadKubeConfig"
 import {ManagementV1VirtualClusterInstance} from "./models/managementV1VirtualClusterInstance"
 import {ManagementV1VirtualClusterTemplate} from "./models/managementV1VirtualClusterTemplate"
 
@@ -140,7 +139,6 @@ export type TGenResources = {
   ManagementV1VirtualClusterInstance: GroupVersionResource<ManagementV1VirtualClusterInstance>
   ManagementV1VirtualClusterInstanceKubeConfig: GroupVersionResource<ManagementV1VirtualClusterInstanceKubeConfig>
   ManagementV1VirtualClusterInstanceLog: GroupVersionResource<ManagementV1VirtualClusterInstanceLog>
-  ManagementV1VirtualClusterInstanceWorkloadKubeConfig: GroupVersionResource<ManagementV1VirtualClusterInstanceWorkloadKubeConfig>
   ManagementV1VirtualClusterTemplate: GroupVersionResource<ManagementV1VirtualClusterTemplate>
 }
 
@@ -688,14 +686,6 @@ export const GenResources: TGenResources = {
     subResource: "log",
     namespaced: true,
     kind: "VirtualClusterInstanceLog",
-  },
-  ManagementV1VirtualClusterInstanceWorkloadKubeConfig: {
-    group: "management.loft.sh",
-    version: "v1",
-    resource: "virtualclusterinstances",
-    subResource: "workloadkubeconfig",
-    namespaced: true,
-    kind: "VirtualClusterInstanceWorkloadKubeConfig",
   },
   ManagementV1VirtualClusterTemplate: {
     group: "management.loft.sh",

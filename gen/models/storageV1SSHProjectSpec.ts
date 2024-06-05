@@ -15,7 +15,7 @@ import { V1SecretKeySelector } from '../models/V1SecretKeySelector';
 
 export class StorageV1SSHProjectSpec {
     /**
-    * Token defines the private ssh key to use for authentication.
+    * Token defines the private ssh key to use for authentication, this is a base64 encoded string.
     */
     'token'?: string;
     'tokenSecretRef'?: V1SecretKeySelector;

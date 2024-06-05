@@ -994,100 +994,6 @@ declare class StorageV1InstanceAccess {
 	}[];
 	constructor();
 }
-declare class V1LabelSelectorRequirement {
-	/**
-	* key is the label key that the selector applies to.
-	*/
-	"key": string;
-	/**
-	* operator represents a key\'s relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
-	*/
-	"operator": string;
-	/**
-	* values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
-	*/
-	"values"?: Array<string>;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class V1LabelSelector {
-	/**
-	* matchExpressions is a list of label selector requirements. The requirements are ANDed.
-	*/
-	"matchExpressions"?: Array<V1LabelSelectorRequirement>;
-	/**
-	* matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is \"key\", the operator is \"In\", and the values array contains only \"value\". The requirements are ANDed.
-	*/
-	"matchLabels"?: {
-		[key: string]: string;
-	};
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class StorageV1PodSelector {
-	"podSelector"?: V1LabelSelector;
-	/**
-	* The port of the pod to route to
-	*/
-	"port"?: number;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class StorageV1SecretRef {
-	"key"?: string;
-	"secretName"?: string;
-	"secretNamespace"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
 declare class StorageV1ProjectSecretRef {
 	/**
 	* Key of the project secret to use.
@@ -1325,12 +1231,10 @@ declare class StorageV1VirtualClusterSpec {
 	*/
 	"forwardToken"?: boolean;
 	"helmRelease"?: StorageV1VirtualClusterHelmRelease;
-	"kubeConfigRef"?: StorageV1SecretRef;
 	/**
 	* Objects are Kubernetes style yamls that should get deployed into the virtual cluster
 	*/
 	"objects"?: string;
-	"pod"?: StorageV1PodSelector;
 	"pro"?: StorageV1VirtualClusterProSpec;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
@@ -2626,12 +2530,10 @@ declare class ClusterV1VirtualClusterSpec {
 	*/
 	"forwardToken"?: boolean;
 	"helmRelease"?: StorageV1VirtualClusterHelmRelease;
-	"kubeConfigRef"?: StorageV1SecretRef;
 	/**
 	* Objects are Kubernetes style yamls that should get deployed into the virtual cluster
 	*/
 	"objects"?: string;
-	"pod"?: StorageV1PodSelector;
 	"pro"?: StorageV1VirtualClusterProSpec;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
@@ -2755,6 +2657,60 @@ declare class V1NodeAffinity {
 	*/
 	"preferredDuringSchedulingIgnoredDuringExecution"?: Array<V1PreferredSchedulingTerm>;
 	"requiredDuringSchedulingIgnoredDuringExecution"?: V1NodeSelector;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class V1LabelSelectorRequirement {
+	/**
+	* key is the label key that the selector applies to.
+	*/
+	"key": string;
+	/**
+	* operator represents a key\'s relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+	*/
+	"operator": string;
+	/**
+	* values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+	*/
+	"values"?: Array<string>;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class V1LabelSelector {
+	/**
+	* matchExpressions is a list of label selector requirements. The requirements are ANDed.
+	*/
+	"matchExpressions"?: Array<V1LabelSelectorRequirement>;
+	/**
+	* matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is \"key\", the operator is \"In\", and the values array contains only \"value\". The requirements are ANDed.
+	*/
+	"matchLabels"?: {
+		[key: string]: string;
+	};
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -8589,25 +8545,6 @@ declare class StorageV1VirtualClusterSpaceTemplateDefinition {
 	}[];
 	constructor();
 }
-declare class StorageV1WorkloadVirtualClusterTemplateDefinition {
-	"helmRelease"?: StorageV1VirtualClusterHelmRelease;
-	"metadata"?: StorageV1TemplateMetadata;
-	"spaceTemplate"?: StorageV1VirtualClusterSpaceTemplateDefinition;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
 declare class StorageV1VirtualClusterTemplateDefinition {
 	"access"?: StorageV1InstanceAccess;
 	"accessPoint"?: StorageV1VirtualClusterAccessPoint;
@@ -8632,7 +8569,6 @@ declare class StorageV1VirtualClusterTemplateDefinition {
 	"objects"?: string;
 	"pro"?: StorageV1VirtualClusterProSpec;
 	"spaceTemplate"?: StorageV1VirtualClusterSpaceTemplateDefinition;
-	"workloadVirtualClusterTemplate"?: StorageV1WorkloadVirtualClusterTemplateDefinition;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -13624,7 +13560,7 @@ declare class StorageV1GitProjectSpec {
 }
 declare class StorageV1SSHProjectSpec {
 	/**
-	* Token defines the private ssh key to use for authentication.
+	* Token defines the private ssh key to use for authentication, this is a base64 encoded string.
 	*/
 	"token"?: string;
 	"tokenSecretRef"?: V1SecretKeySelector;
@@ -16315,39 +16251,6 @@ declare class ManagementV1VirtualClusterInstanceLog {
 	}[];
 	constructor();
 }
-declare class ManagementV1VirtualClusterInstanceWorkloadKubeConfig {
-	/**
-	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
-	*/
-	"apiVersion"?: string;
-	/**
-	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-	*/
-	"kind"?: string;
-	/**
-	* KubeConfig holds the workload cluster\'s kubeconfig to access the virtual cluster
-	*/
-	"kubeConfig"?: string;
-	"metadata"?: V1ObjectMeta;
-	/**
-	* Token holds the service account token vcluster should use to connect to the remote cluster
-	*/
-	"token"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
 declare class StorageV1VirtualClusterClusterRef {
 	/**
 	* Cluster is the connected cluster the space will be created in
@@ -16405,7 +16308,6 @@ declare class ManagementV1VirtualClusterInstanceSpec {
 	"parameters"?: string;
 	"template"?: StorageV1VirtualClusterTemplateDefinition;
 	"templateRef"?: StorageV1TemplateRef;
-	"workloadClusterRef"?: StorageV1VirtualClusterClusterRef;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -16458,7 +16360,6 @@ declare class ManagementV1VirtualClusterInstanceStatus {
 	"spaceObjects"?: StorageV1ObjectsStatus;
 	"virtualCluster"?: StorageV1VirtualClusterTemplateDefinition;
 	"virtualClusterObjects"?: StorageV1ObjectsStatus;
-	"workloadSpaceObjects"?: StorageV1ObjectsStatus;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -16570,7 +16471,6 @@ export type TGenResources = {
 	ManagementV1VirtualClusterInstance: GroupVersionResource<ManagementV1VirtualClusterInstance>;
 	ManagementV1VirtualClusterInstanceKubeConfig: GroupVersionResource<ManagementV1VirtualClusterInstanceKubeConfig>;
 	ManagementV1VirtualClusterInstanceLog: GroupVersionResource<ManagementV1VirtualClusterInstanceLog>;
-	ManagementV1VirtualClusterInstanceWorkloadKubeConfig: GroupVersionResource<ManagementV1VirtualClusterInstanceWorkloadKubeConfig>;
 	ManagementV1VirtualClusterTemplate: GroupVersionResource<ManagementV1VirtualClusterTemplate>;
 };
 export declare const Resources: {

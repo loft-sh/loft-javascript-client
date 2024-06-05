@@ -56,7 +56,6 @@ export class ManagementV1VirtualClusterInstanceStatus {
     'spaceObjects'?: StorageV1ObjectsStatus;
     'virtualCluster'?: StorageV1VirtualClusterTemplateDefinition;
     'virtualClusterObjects'?: StorageV1ObjectsStatus;
-    'workloadSpaceObjects'?: StorageV1ObjectsStatus;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -130,12 +129,6 @@ export class ManagementV1VirtualClusterInstanceStatus {
         {
             "name": "virtualClusterObjects",
             "baseName": "virtualClusterObjects",
-            "type": "StorageV1ObjectsStatus",
-            "format": ""
-        },
-        {
-            "name": "workloadSpaceObjects",
-            "baseName": "workloadSpaceObjects",
             "type": "StorageV1ObjectsStatus",
             "format": ""
         }    ];

@@ -12,8 +12,6 @@
 
 import { StorageV1AppReference } from '../models/agentstorageV1AppReference';
 import { StorageV1InstanceAccess } from '../models/agentstorageV1InstanceAccess';
-import { StorageV1PodSelector } from '../models/agentstorageV1PodSelector';
-import { StorageV1SecretRef } from '../models/agentstorageV1SecretRef';
 import { StorageV1TemplateHelmChart } from '../models/agentstorageV1TemplateHelmChart';
 import { StorageV1VirtualClusterAccessPoint } from '../models/agentstorageV1VirtualClusterAccessPoint';
 import { StorageV1VirtualClusterHelmRelease } from '../models/agentstorageV1VirtualClusterHelmRelease';
@@ -36,12 +34,10 @@ export class StorageV1VirtualClusterSpec {
     */
     'forwardToken'?: boolean;
     'helmRelease'?: StorageV1VirtualClusterHelmRelease;
-    'kubeConfigRef'?: StorageV1SecretRef;
     /**
     * Objects are Kubernetes style yamls that should get deployed into the virtual cluster
     */
     'objects'?: string;
-    'pod'?: StorageV1PodSelector;
     'pro'?: StorageV1VirtualClusterProSpec;
 
     static readonly discriminator: string | undefined = undefined;
@@ -84,21 +80,9 @@ export class StorageV1VirtualClusterSpec {
             "format": ""
         },
         {
-            "name": "kubeConfigRef",
-            "baseName": "kubeConfigRef",
-            "type": "StorageV1SecretRef",
-            "format": ""
-        },
-        {
             "name": "objects",
             "baseName": "objects",
             "type": "string",
-            "format": ""
-        },
-        {
-            "name": "pod",
-            "baseName": "pod",
-            "type": "StorageV1PodSelector",
             "format": ""
         },
         {
