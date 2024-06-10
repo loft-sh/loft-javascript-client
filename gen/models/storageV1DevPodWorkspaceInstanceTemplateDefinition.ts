@@ -10,29 +10,24 @@
  * Do not edit the class manually.
  */
 
+import { StorageV1TemplateMetadata } from '../models/storageV1TemplateMetadata';
 
 
-/**
-* LocalObjectReference contains enough information to let you locate the referenced object inside the same namespace.
-*/
-export class V1LocalObjectReference {
-    /**
-    * Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-    */
-    'name'?: string;
+export class StorageV1DevPodWorkspaceInstanceTemplateDefinition {
+    'metadata'?: StorageV1TemplateMetadata;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "name",
-            "baseName": "name",
-            "type": "string",
+            "name": "metadata",
+            "baseName": "metadata",
+            "type": "StorageV1TemplateMetadata",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return V1LocalObjectReference.attributeTypeMap;
+        return StorageV1DevPodWorkspaceInstanceTemplateDefinition.attributeTypeMap;
     }
 
     public constructor() {

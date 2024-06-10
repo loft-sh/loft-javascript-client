@@ -23,7 +23,7 @@ export class V1HostAlias {
     /**
     * IP address of the host file entry.
     */
-    'ip'?: string;
+    'ip': string;
 
     static readonly discriminator: string | undefined = undefined;
 

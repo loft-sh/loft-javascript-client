@@ -16,7 +16,7 @@ export class StorageV1RunnerPersistentVolumeClaimTemplateSpec {
     /**
     * accessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
     */
-    'accessModes'?: Array<string>;
+    'accessModes'?: Array<StorageV1RunnerPersistentVolumeClaimTemplateSpecAccessModesEnum>;
     /**
     * storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1
     */
@@ -32,7 +32,7 @@ export class StorageV1RunnerPersistentVolumeClaimTemplateSpec {
         {
             "name": "accessModes",
             "baseName": "accessModes",
-            "type": "Array<string>",
+            "type": "Array<StorageV1RunnerPersistentVolumeClaimTemplateSpecAccessModesEnum>",
             "format": ""
         },
         {
@@ -54,5 +54,13 @@ export class StorageV1RunnerPersistentVolumeClaimTemplateSpec {
 
     public constructor() {
     }
+}
+
+
+export enum StorageV1RunnerPersistentVolumeClaimTemplateSpecAccessModesEnum {
+    ReadOnlyMany = 'ReadOnlyMany',
+    ReadWriteMany = 'ReadWriteMany',
+    ReadWriteOnce = 'ReadWriteOnce',
+    ReadWriteOncePod = 'ReadWriteOncePod'
 }
 

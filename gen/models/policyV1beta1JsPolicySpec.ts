@@ -51,15 +51,15 @@ export class PolicyV1beta1JsPolicySpec {
     /**
     * Operations is the operations the admission hook cares about - CREATE, UPDATE, DELETE, CONNECT or * for all of those operations and any future admission operations that are added. If \'*\' is present, the length of the slice must be one. Required.
     */
-    'operations'?: Array<string>;
+    'operations'?: Array<PolicyV1beta1JsPolicySpecOperationsEnum>;
     /**
     * Resources is a list of resources this rule applies to.  For example: \'pods\' means pods. \'pods/log\' means the log subresource of pods. \'*\' means all resources, but not subresources. \'pods/_*\' means all subresources of pods. \'*_/scale\' means all scale subresources. \'*_/_*\' means all resources and their subresources.  If wildcard is present, the validation rule will ensure resources do not overlap with each other.  Depending on the enclosing object, subresources might not be allowed. Required.
     */
     'resources'?: Array<string>;
     /**
-    * scope specifies the scope of this rule. Valid values are \"Cluster\", \"Namespaced\", and \"*\" \"Cluster\" means that only cluster-scoped resources will match this rule. Namespace API objects are cluster-scoped. \"Namespaced\" means that only namespaced resources will match this rule. \"*\" means that there are no scope restrictions. Subresources match the scope of their parent resource. Default is \"*\".
+    * scope specifies the scope of this rule. Valid values are \"Cluster\", \"Namespaced\", and \"*\" \"Cluster\" means that only cluster-scoped resources will match this rule. Namespace API objects are cluster-scoped. \"Namespaced\" means that only namespaced resources will match this rule. \"*\" means that there are no scope restrictions. Subresources match the scope of their parent resource. Default is \"*\".   Possible enum values:  - `\"*\"` means that all scopes are included.  - `\"Cluster\"` means that scope is limited to cluster-scoped objects. Namespace objects are cluster-scoped.  - `\"Namespaced\"` means that scope is limited to namespaced objects.
     */
-    'scope'?: string;
+    'scope'?: PolicyV1beta1JsPolicySpecScopeEnum;
     /**
     * TimeoutSeconds specifies the timeout for this webhook. After the timeout passes, the webhook call will be ignored or the API call will fail based on the failure policy. The timeout value must be between 1 and 30 seconds. Default to 10 seconds.
     */
@@ -139,7 +139,7 @@ export class PolicyV1beta1JsPolicySpec {
         {
             "name": "operations",
             "baseName": "operations",
-            "type": "Array<string>",
+            "type": "Array<PolicyV1beta1JsPolicySpecOperationsEnum>",
             "format": ""
         },
         {
@@ -151,7 +151,7 @@ export class PolicyV1beta1JsPolicySpec {
         {
             "name": "scope",
             "baseName": "scope",
-            "type": "string",
+            "type": "PolicyV1beta1JsPolicySpecScopeEnum",
             "format": ""
         },
         {
@@ -189,5 +189,17 @@ export enum PolicyV1beta1JsPolicySpecFailurePolicyEnum {
 export enum PolicyV1beta1JsPolicySpecMatchPolicyEnum {
     Equivalent = 'Equivalent',
     Exact = 'Exact'
+}
+export enum PolicyV1beta1JsPolicySpecOperationsEnum {
+    Star = '*',
+    Connect = 'CONNECT',
+    Create = 'CREATE',
+    Delete = 'DELETE',
+    Update = 'UPDATE'
+}
+export enum PolicyV1beta1JsPolicySpecScopeEnum {
+    Star = '*',
+    Cluster = 'Cluster',
+    Namespaced = 'Namespaced'
 }
 
