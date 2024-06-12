@@ -10,15 +10,15 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1ConvertVirtualClusterConfigSpec } from '../models/managementV1ConvertVirtualClusterConfigSpec';
-import { ManagementV1ConvertVirtualClusterConfigStatus } from '../models/managementV1ConvertVirtualClusterConfigStatus';
+import { ManagementV1ClusterConnectSpec } from '../models/managementV1ClusterConnectSpec';
+import { ManagementV1ClusterConnectStatus } from '../models/managementV1ClusterConnectStatus';
 import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
 /**
-* ConvertVirtualClusterConfig holds config request and response data for virtual clusters
+* ClusterConnect holds the information
 */
-export class ManagementV1ConvertVirtualClusterConfig {
+export class ManagementV1ClusterConnect {
     /**
     * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
     */
@@ -28,8 +28,8 @@ export class ManagementV1ConvertVirtualClusterConfig {
     */
     'kind'?: string;
     'metadata'?: V1ObjectMeta;
-    'spec'?: ManagementV1ConvertVirtualClusterConfigSpec;
-    'status'?: ManagementV1ConvertVirtualClusterConfigStatus;
+    'spec'?: ManagementV1ClusterConnectSpec;
+    'status'?: ManagementV1ClusterConnectStatus;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -55,18 +55,18 @@ export class ManagementV1ConvertVirtualClusterConfig {
         {
             "name": "spec",
             "baseName": "spec",
-            "type": "ManagementV1ConvertVirtualClusterConfigSpec",
+            "type": "ManagementV1ClusterConnectSpec",
             "format": ""
         },
         {
             "name": "status",
             "baseName": "status",
-            "type": "ManagementV1ConvertVirtualClusterConfigStatus",
+            "type": "ManagementV1ClusterConnectStatus",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1ConvertVirtualClusterConfig.attributeTypeMap;
+        return ManagementV1ClusterConnect.attributeTypeMap;
     }
 
     public constructor() {

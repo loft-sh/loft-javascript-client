@@ -19,6 +19,7 @@ import { StorageV1VirtualClusterProSpec } from '../models/agentstorageV1VirtualC
 import { StorageV1TemplateMetadata } from '../models/storageV1TemplateMetadata';
 import { StorageV1VirtualClusterInstanceTemplateDefinition } from '../models/storageV1VirtualClusterInstanceTemplateDefinition';
 import { StorageV1VirtualClusterSpaceTemplateDefinition } from '../models/storageV1VirtualClusterSpaceTemplateDefinition';
+import { StorageV1WorkloadVirtualClusterTemplateDefinition } from '../models/storageV1WorkloadVirtualClusterTemplateDefinition';
 
 
 export class StorageV1VirtualClusterTemplateDefinition {
@@ -45,6 +46,7 @@ export class StorageV1VirtualClusterTemplateDefinition {
     'objects'?: string;
     'pro'?: StorageV1VirtualClusterProSpec;
     'spaceTemplate'?: StorageV1VirtualClusterSpaceTemplateDefinition;
+    'workloadVirtualClusterTemplate'?: StorageV1WorkloadVirtualClusterTemplateDefinition;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -113,6 +115,12 @@ export class StorageV1VirtualClusterTemplateDefinition {
             "name": "spaceTemplate",
             "baseName": "spaceTemplate",
             "type": "StorageV1VirtualClusterSpaceTemplateDefinition",
+            "format": ""
+        },
+        {
+            "name": "workloadVirtualClusterTemplate",
+            "baseName": "workloadVirtualClusterTemplate",
+            "type": "StorageV1WorkloadVirtualClusterTemplateDefinition",
             "format": ""
         }    ];
 
