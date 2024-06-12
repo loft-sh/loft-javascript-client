@@ -57,7 +57,7 @@ export class V1PodSpec {
     */
     'ephemeralContainers'?: Array<V1EphemeralContainer>;
     /**
-    * HostAliases is an optional list of hosts and IPs that will be injected into the pod\'s hosts file if specified.
+    * HostAliases is an optional list of hosts and IPs that will be injected into the pod\'s hosts file if specified. This is only valid for non-hostNetwork pods.
     */
     'hostAliases'?: Array<V1HostAlias>;
     /**
@@ -134,12 +134,12 @@ export class V1PodSpec {
     */
     'schedulerName'?: string;
     /**
-    * SchedulingGates is an opaque list of values that if specified will block scheduling the pod. If schedulingGates is not empty, the pod will stay in the SchedulingGated state and the scheduler will not attempt to schedule the pod.  SchedulingGates can only be set at pod creation time, and be removed only afterwards.
+    * SchedulingGates is an opaque list of values that if specified will block scheduling the pod. If schedulingGates is not empty, the pod will stay in the SchedulingGated state and the scheduler will not attempt to schedule the pod.  SchedulingGates can only be set at pod creation time, and be removed only afterwards.  This is a beta feature enabled by the PodSchedulingReadiness feature gate.
     */
     'schedulingGates'?: Array<V1PodSchedulingGate>;
     'securityContext'?: V1PodSecurityContext;
     /**
-    * DeprecatedServiceAccount is a deprecated alias for ServiceAccountName. Deprecated: Use serviceAccountName instead.
+    * DeprecatedServiceAccount is a depreciated alias for ServiceAccountName. Deprecated: Use serviceAccountName instead.
     */
     'serviceAccount'?: string;
     /**
@@ -147,7 +147,7 @@ export class V1PodSpec {
     */
     'serviceAccountName'?: string;
     /**
-    * If true the pod\'s hostname will be configured as the pod\'s FQDN, rather than the leaf name (the default). In Linux containers, this means setting the FQDN in the hostname field of the kernel (the nodename field of struct utsname). In Windows containers, this means setting the registry value of hostname for the registry key HKEY_LOCAL_MACHINE\\\\SYSTEM\\\\CurrentControlSet\\\\Services\\\\Tcpip\\\\Parameters to FQDN. If a pod does not have FQDN, this has no effect. Default to false.
+    * If true the pod\'s hostname will be configured as the pod\'s FQDN, rather than the leaf name (the default). In Linux containers, this means setting the FQDN in the hostname field of the kernel (the nodename field of struct utsname). In Windows containers, this means setting the registry value of hostname for the registry key HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters to FQDN. If a pod does not have FQDN, this has no effect. Default to false.
     */
     'setHostnameAsFQDN'?: boolean;
     /**

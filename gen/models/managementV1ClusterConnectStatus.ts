@@ -10,24 +10,37 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1TemplateMetadata } from '../models/storageV1TemplateMetadata';
 
 
-export class StorageV1DevPodWorkspaceInstanceTemplateDefinition {
-    'metadata'?: StorageV1TemplateMetadata;
+export class ManagementV1ClusterConnectStatus {
+    'failed'?: boolean;
+    'message'?: string;
+    'reason'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "metadata",
-            "baseName": "metadata",
-            "type": "StorageV1TemplateMetadata",
+            "name": "failed",
+            "baseName": "failed",
+            "type": "boolean",
+            "format": ""
+        },
+        {
+            "name": "message",
+            "baseName": "message",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "reason",
+            "baseName": "reason",
+            "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1DevPodWorkspaceInstanceTemplateDefinition.attributeTypeMap;
+        return ManagementV1ClusterConnectStatus.attributeTypeMap;
     }
 
     public constructor() {

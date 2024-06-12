@@ -12,7 +12,6 @@
 
 import { StorageV1AccessKeyScopeCluster } from '../models/storageV1AccessKeyScopeCluster';
 import { StorageV1AccessKeyScopeProject } from '../models/storageV1AccessKeyScopeProject';
-import { StorageV1AccessKeyScopeRole } from '../models/storageV1AccessKeyScopeRole';
 import { StorageV1AccessKeyScopeRule } from '../models/storageV1AccessKeyScopeRule';
 import { StorageV1AccessKeyScopeSpace } from '../models/storageV1AccessKeyScopeSpace';
 import { StorageV1AccessKeyScopeVirtualCluster } from '../models/storageV1AccessKeyScopeVirtualCluster';
@@ -20,7 +19,7 @@ import { StorageV1AccessKeyScopeVirtualCluster } from '../models/storageV1Access
 
 export class StorageV1AccessKeyScope {
     /**
-    * AllowLoftCLI allows certain read-only management requests to make sure loft cli works correctly with this specific access key.  Deprecated: Use the `roles` field instead  ```yaml  # Example:  roles:    - role: loftCLI  ```
+    * AllowLoftCLI allows certain read-only management requests to make sure loft cli works correctly with this specific access key.
     */
     'allowLoftCli'?: boolean;
     /**
@@ -31,10 +30,6 @@ export class StorageV1AccessKeyScope {
     * Projects specifies the projects the access key should have access to.
     */
     'projects'?: Array<StorageV1AccessKeyScopeProject>;
-    /**
-    * Roles is a set of managed permissions to apply to the access key.
-    */
-    'roles'?: Array<StorageV1AccessKeyScopeRole>;
     /**
     * DEPRECATED: Use Projects, Spaces and VirtualClusters instead Rules specifies the rules that should apply to the access key.
     */
@@ -67,12 +62,6 @@ export class StorageV1AccessKeyScope {
             "name": "projects",
             "baseName": "projects",
             "type": "Array<StorageV1AccessKeyScopeProject>",
-            "format": ""
-        },
-        {
-            "name": "roles",
-            "baseName": "roles",
-            "type": "Array<StorageV1AccessKeyScopeRole>",
             "format": ""
         },
         {

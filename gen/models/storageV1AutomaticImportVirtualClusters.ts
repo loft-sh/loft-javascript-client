@@ -12,36 +12,27 @@
 
 
 
-export class StorageV1AccessKeyScopeRole {
+export class StorageV1AutomaticImportVirtualClusters {
     /**
-    * Role is the name of the role to apply to the access key scope.  Possible enum values:  - `\"agent\"`  - `\"loft-cli\"`  - `\"network-peer\"`  - `\"runner\"`  - `\"vcluster\"`
+    * Enabled specifies if automatic virtual cluster import should be enabled for this project.
     */
-    'role'?: StorageV1AccessKeyScopeRoleRoleEnum;
+    'enabled'?: boolean;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "role",
-            "baseName": "role",
-            "type": "StorageV1AccessKeyScopeRoleRoleEnum",
+            "name": "enabled",
+            "baseName": "enabled",
+            "type": "boolean",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1AccessKeyScopeRole.attributeTypeMap;
+        return StorageV1AutomaticImportVirtualClusters.attributeTypeMap;
     }
 
     public constructor() {
     }
-}
-
-
-export enum StorageV1AccessKeyScopeRoleRoleEnum {
-    Agent = 'agent',
-    LoftCli = 'loft-cli',
-    NetworkPeer = 'network-peer',
-    Runner = 'runner',
-    Vcluster = 'vcluster'
 }
 

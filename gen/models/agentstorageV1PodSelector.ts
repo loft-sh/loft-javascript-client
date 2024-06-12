@@ -10,39 +10,34 @@
  * Do not edit the class manually.
  */
 
+import { V1LabelSelector } from '../models/V1LabelSelector';
 
 
-/**
-* ConvertVirtualClusterConfigStatus holds the status
-*/
-export class ManagementV1ConvertVirtualClusterConfigStatus {
+export class StorageV1PodSelector {
+    'podSelector'?: V1LabelSelector;
     /**
-    * Converted signals if the Values have been converted from the old format
+    * The port of the pod to route to
     */
-    'converted': boolean;
-    /**
-    * Values are the converted config values for the virtual cluster
-    */
-    'values'?: string;
+    'port'?: number;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "converted",
-            "baseName": "converted",
-            "type": "boolean",
+            "name": "podSelector",
+            "baseName": "podSelector",
+            "type": "V1LabelSelector",
             "format": ""
         },
         {
-            "name": "values",
-            "baseName": "values",
-            "type": "string",
-            "format": ""
+            "name": "port",
+            "baseName": "port",
+            "type": "number",
+            "format": "int32"
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1ConvertVirtualClusterConfigStatus.attributeTypeMap;
+        return StorageV1PodSelector.attributeTypeMap;
     }
 
     public constructor() {

@@ -10,34 +10,44 @@
  * Do not edit the class manually.
  */
 
-import { V1SecretKeySelector } from '../models/V1SecretKeySelector';
+import { ManagementV1Cluster } from '../models/managementV1Cluster';
 
 
-export class StorageV1SSHProjectSpec {
+export class ManagementV1ClusterConnectSpec {
     /**
-    * Token defines the private ssh key to use for authentication, this is a base64 encoded string.
+    * The user to create an admin account for
     */
-    'token'?: string;
-    'tokenSecretRef'?: V1SecretKeySelector;
+    'adminUser'?: string;
+    'clusterTemplate'?: ManagementV1Cluster;
+    /**
+    * the kube config used to connect the cluster
+    */
+    'config'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "token",
-            "baseName": "token",
+            "name": "adminUser",
+            "baseName": "adminUser",
             "type": "string",
             "format": ""
         },
         {
-            "name": "tokenSecretRef",
-            "baseName": "tokenSecretRef",
-            "type": "V1SecretKeySelector",
+            "name": "clusterTemplate",
+            "baseName": "clusterTemplate",
+            "type": "ManagementV1Cluster",
+            "format": ""
+        },
+        {
+            "name": "config",
+            "baseName": "config",
+            "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1SSHProjectSpec.attributeTypeMap;
+        return ManagementV1ClusterConnectSpec.attributeTypeMap;
     }
 
     public constructor() {

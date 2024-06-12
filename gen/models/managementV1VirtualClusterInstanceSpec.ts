@@ -39,10 +39,6 @@ export class ManagementV1VirtualClusterInstanceSpec {
     * ExtraAccessRules defines extra rules which users and teams should have which access to the virtual cluster.
     */
     'extraAccessRules'?: Array<StorageV1InstanceAccessRule>;
-    /**
-    * NetworkPeer specifies if the cluster is connected via tailscale. When this is specified, the vCluster will not be scheduled to any connected cluster and no templates will be applied to it.
-    */
-    'networkPeer'?: boolean;
     'owner'?: StorageV1UserOrTeam;
     /**
     * Parameters are values to pass to the template. The values should be encoded as YAML string where each parameter is represented as a top-level field key.
@@ -50,6 +46,7 @@ export class ManagementV1VirtualClusterInstanceSpec {
     'parameters'?: string;
     'template'?: StorageV1VirtualClusterTemplateDefinition;
     'templateRef'?: StorageV1TemplateRef;
+    'workloadClusterRef'?: StorageV1VirtualClusterClusterRef;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -85,12 +82,6 @@ export class ManagementV1VirtualClusterInstanceSpec {
             "format": ""
         },
         {
-            "name": "networkPeer",
-            "baseName": "networkPeer",
-            "type": "boolean",
-            "format": ""
-        },
-        {
             "name": "owner",
             "baseName": "owner",
             "type": "StorageV1UserOrTeam",
@@ -112,6 +103,12 @@ export class ManagementV1VirtualClusterInstanceSpec {
             "name": "templateRef",
             "baseName": "templateRef",
             "type": "StorageV1TemplateRef",
+            "format": ""
+        },
+        {
+            "name": "workloadClusterRef",
+            "baseName": "workloadClusterRef",
+            "type": "StorageV1VirtualClusterClusterRef",
             "format": ""
         }    ];
 

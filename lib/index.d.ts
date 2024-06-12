@@ -540,8 +540,8 @@ export declare const ManagementBasePath = "/kubernetes/management";
 export declare const ClusterBasePath = "/kubernetes/cluster/";
 export declare const VClusterBasePath = "/kubernetes/virtualcluster/";
 export declare const ProjectBasePath = "/kubernetes/project/";
-export declare function getProjectNamespace(name: string | undefined, prefix?: string | undefined): string;
-export declare function getProjectFromNamespace(namespace: string | undefined, prefix?: string): string | undefined;
+export declare function getProjectNamespace(name: string | undefined): string;
+export declare function getProjectFromNamespace(namespace: string | undefined): string | undefined;
 export declare class Client {
 	static getAccessKey(): string | null;
 	static tryCastToStatus(obj: any): Result<V1Status | null>;
@@ -685,7 +685,7 @@ declare class V1ResourceQuotaSpec {
 	/**
 	* A collection of filters that must match each object tracked by a quota. If not specified, the quota matches all objects.
 	*/
-	"scopes"?: Array<V1ResourceQuotaSpecScopesEnum>;
+	"scopes"?: Array<string>;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -700,14 +700,6 @@ declare class V1ResourceQuotaSpec {
 		format: string;
 	}[];
 	constructor();
-}
-declare enum V1ResourceQuotaSpecScopesEnum {
-	BestEffort = "BestEffort",
-	CrossNamespacePodAffinity = "CrossNamespacePodAffinity",
-	NotBestEffort = "NotBestEffort",
-	NotTerminating = "NotTerminating",
-	PriorityClass = "PriorityClass",
-	Terminating = "Terminating"
 }
 declare class StorageV1ClusterQuotaSpec {
 	/**
@@ -1002,6 +994,100 @@ declare class StorageV1InstanceAccess {
 	}[];
 	constructor();
 }
+declare class V1LabelSelectorRequirement {
+	/**
+	* key is the label key that the selector applies to.
+	*/
+	"key": string;
+	/**
+	* operator represents a key\'s relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+	*/
+	"operator": string;
+	/**
+	* values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+	*/
+	"values"?: Array<string>;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class V1LabelSelector {
+	/**
+	* matchExpressions is a list of label selector requirements. The requirements are ANDed.
+	*/
+	"matchExpressions"?: Array<V1LabelSelectorRequirement>;
+	/**
+	* matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is \"key\", the operator is \"In\", and the values array contains only \"value\". The requirements are ANDed.
+	*/
+	"matchLabels"?: {
+		[key: string]: string;
+	};
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1PodSelector {
+	"podSelector"?: V1LabelSelector;
+	/**
+	* The port of the pod to route to
+	*/
+	"port"?: number;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1SecretRef {
+	"key"?: string;
+	"secretName"?: string;
+	"secretNamespace"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
 declare class StorageV1ProjectSecretRef {
 	/**
 	* Key of the project secret to use.
@@ -1239,10 +1325,12 @@ declare class StorageV1VirtualClusterSpec {
 	*/
 	"forwardToken"?: boolean;
 	"helmRelease"?: StorageV1VirtualClusterHelmRelease;
+	"kubeConfigRef"?: StorageV1SecretRef;
 	/**
 	* Objects are Kubernetes style yamls that should get deployed into the virtual cluster
 	*/
 	"objects"?: string;
+	"pod"?: StorageV1PodSelector;
 	"pro"?: StorageV1VirtualClusterProSpec;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
@@ -1263,7 +1351,7 @@ declare class StorageV1Condition {
 	/**
 	* Last time the condition transitioned from one status to another. This should be when the underlying condition changed. If that is not known, then using the time when the API field changed is acceptable.
 	*/
-	"lastTransitionTime": Date;
+	"lastTransitionTime"?: Date;
 	/**
 	* A human readable message indicating details about the transition. This field may be empty.
 	*/
@@ -2538,10 +2626,12 @@ declare class ClusterV1VirtualClusterSpec {
 	*/
 	"forwardToken"?: boolean;
 	"helmRelease"?: StorageV1VirtualClusterHelmRelease;
+	"kubeConfigRef"?: StorageV1SecretRef;
 	/**
 	* Objects are Kubernetes style yamls that should get deployed into the virtual cluster
 	*/
 	"objects"?: string;
+	"pod"?: StorageV1PodSelector;
 	"pro"?: StorageV1VirtualClusterProSpec;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
@@ -2680,68 +2770,14 @@ declare class V1NodeAffinity {
 	}[];
 	constructor();
 }
-declare class V1LabelSelectorRequirement {
-	/**
-	* key is the label key that the selector applies to.
-	*/
-	"key": string;
-	/**
-	* operator represents a key\'s relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
-	*/
-	"operator": string;
-	/**
-	* values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
-	*/
-	"values"?: Array<string>;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class V1LabelSelector {
-	/**
-	* matchExpressions is a list of label selector requirements. The requirements are ANDed.
-	*/
-	"matchExpressions"?: Array<V1LabelSelectorRequirement>;
-	/**
-	* matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is \"key\", the operator is \"In\", and the values array contains only \"value\". The requirements are ANDed.
-	*/
-	"matchLabels"?: {
-		[key: string]: string;
-	};
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
 declare class V1PodAffinityTerm {
 	"labelSelector"?: V1LabelSelector;
 	/**
-	* MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with `labelSelector` as `key in (value)` to select the group of existing pods which pods will be taken into consideration for the incoming pod\'s pod (anti) affinity. Keys that don\'t exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn\'t set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
+	* MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with `LabelSelector` as `key in (value)` to select the group of existing pods which pods will be taken into consideration for the incoming pod\'s pod (anti) affinity. Keys that don\'t exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. Also, MatchLabelKeys cannot be set when LabelSelector isn\'t set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
 	*/
 	"matchLabelKeys"?: Array<string>;
 	/**
-	* MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with `labelSelector` as `key notin (value)` to select the group of existing pods which pods will be taken into consideration for the incoming pod\'s pod (anti) affinity. Keys that don\'t exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn\'t set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
+	* MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with `LabelSelector` as `key notin (value)` to select the group of existing pods which pods will be taken into consideration for the incoming pod\'s pod (anti) affinity. Keys that don\'t exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector. Also, MismatchLabelKeys cannot be set when LabelSelector isn\'t set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
 	*/
 	"mismatchLabelKeys"?: Array<string>;
 	"namespaceSelector"?: V1LabelSelector;
@@ -2923,7 +2959,7 @@ declare class V1ContainerResizePolicy {
 }
 declare class V1ConfigMapEnvSource {
 	/**
-	* Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+	* Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 	*/
 	"name"?: string;
 	/**
@@ -2947,7 +2983,7 @@ declare class V1ConfigMapEnvSource {
 }
 declare class V1SecretEnvSource {
 	/**
-	* Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+	* Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 	*/
 	"name"?: string;
 	/**
@@ -2997,7 +3033,7 @@ declare class V1ConfigMapKeySelector {
 	*/
 	"key": string;
 	/**
-	* Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+	* Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 	*/
 	"name"?: string;
 	/**
@@ -3077,7 +3113,7 @@ declare class V1SecretKeySelector {
 	*/
 	"key": string;
 	/**
-	* Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+	* Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 	*/
 	"name"?: string;
 	/**
@@ -3431,35 +3467,6 @@ declare class V1ResourceRequirements {
 	}[];
 	constructor();
 }
-declare class V1AppArmorProfile {
-	/**
-	* localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is \"Localhost\".
-	*/
-	"localhostProfile"?: string;
-	/**
-	* type indicates which kind of AppArmor profile will be applied. Valid options are:   Localhost - a profile pre-loaded on the node.   RuntimeDefault - the container runtime\'s default profile.   Unconfined - no AppArmor enforcement.  Possible enum values:  - `\"Localhost\"` indicates that a profile pre-loaded on the node should be used.  - `\"RuntimeDefault\"` indicates that the container runtime\'s default AppArmor profile should be used.  - `\"Unconfined\"` indicates that no AppArmor profile should be enforced.
-	*/
-	"type": V1AppArmorProfileTypeEnum;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare enum V1AppArmorProfileTypeEnum {
-	Localhost = "Localhost",
-	RuntimeDefault = "RuntimeDefault",
-	Unconfined = "Unconfined"
-}
 declare class V1Capabilities {
 	/**
 	* Added capabilities
@@ -3582,7 +3589,6 @@ declare class V1SecurityContext {
 	* AllowPrivilegeEscalation controls whether a process can gain more privileges than its parent process. This bool directly controls if the no_new_privs flag will be set on the container process. AllowPrivilegeEscalation is true always when the container is: 1) run as Privileged 2) has CAP_SYS_ADMIN Note that this field cannot be set when spec.os.name is windows.
 	*/
 	"allowPrivilegeEscalation"?: boolean;
-	"appArmorProfile"?: V1AppArmorProfile;
 	"capabilities"?: V1Capabilities;
 	/**
 	* Run container in privileged mode. Processes in privileged containers are essentially equivalent to root on the host. Defaults to false. Note that this field cannot be set when spec.os.name is windows.
@@ -3660,7 +3666,7 @@ declare class V1VolumeMount {
 	*/
 	"mountPath": string;
 	/**
-	* mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10. When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified (which defaults to None).  Possible enum values:  - `\"Bidirectional\"` means that the volume in a container will receive new mounts from the host or other containers, and its own mounts will be propagated from the container to the host or other containers. Note that this mode is recursively applied to all mounts in the volume (\"rshared\" in Linux terminology).  - `\"HostToContainer\"` means that the volume in a container will receive new mounts from the host or other containers, but filesystems mounted inside the container won\'t be propagated to the host or other containers. Note that this mode is recursively applied to all mounts in the volume (\"rslave\" in Linux terminology).  - `\"None\"` means that the volume in a container will not receive new mounts from the host or other containers, and filesystems mounted inside the container won\'t be propagated to the host or other containers. Note that this mode corresponds to \"private\" in Linux terminology.
+	* mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.  Possible enum values:  - `\"Bidirectional\"` means that the volume in a container will receive new mounts from the host or other containers, and its own mounts will be propagated from the container to the host or other containers. Note that this mode is recursively applied to all mounts in the volume (\"rshared\" in Linux terminology).  - `\"HostToContainer\"` means that the volume in a container will receive new mounts from the host or other containers, but filesystems mounted inside the container won\'t be propagated to the host or other containers. Note that this mode is recursively applied to all mounts in the volume (\"rslave\" in Linux terminology).  - `\"None\"` means that the volume in a container will not receive new mounts from the host or other containers, and filesystems mounted inside the container won\'t be propagated to the host or other containers. Note that this mode corresponds to \"private\" in Linux terminology.
 	*/
 	"mountPropagation"?: V1VolumeMountMountPropagationEnum;
 	/**
@@ -3671,10 +3677,6 @@ declare class V1VolumeMount {
 	* Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.
 	*/
 	"readOnly"?: boolean;
-	/**
-	* RecursiveReadOnly specifies whether read-only mounts should be handled recursively.  If ReadOnly is false, this field has no meaning and must be unspecified.  If ReadOnly is true, and this field is set to Disabled, the mount is not made recursively read-only.  If this field is set to IfPossible, the mount is made recursively read-only, if it is supported by the container runtime.  If this field is set to Enabled, the mount is made recursively read-only if it is supported by the container runtime, otherwise the pod will not be started and an error will be generated to indicate the reason.  If this field is set to IfPossible or Enabled, MountPropagation must be set to None (or be unspecified, which defaults to None).  If this field is not specified, it is treated as an equivalent of Disabled.
-	*/
-	"recursiveReadOnly"?: string;
 	/**
 	* Path within the volume from which the container\'s volume should be mounted. Defaults to \"\" (volume\'s root).
 	*/
@@ -3921,7 +3923,7 @@ declare class V1HostAlias {
 	/**
 	* IP address of the host file entry.
 	*/
-	"ip": string;
+	"ip"?: string;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -3939,7 +3941,7 @@ declare class V1HostAlias {
 }
 declare class V1LocalObjectReference {
 	/**
-	* Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+	* Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 	*/
 	"name"?: string;
 	static readonly discriminator: string | undefined;
@@ -4136,7 +4138,6 @@ declare class V1Sysctl {
 	constructor();
 }
 declare class V1PodSecurityContext {
-	"appArmorProfile"?: V1AppArmorProfile;
 	/**
 	* A special supplemental group that applies to all containers in a pod. Some volume types allow the Kubelet to change the ownership of that volume to be owned by the pod:  1. The owning GID will be the FSGroup 2. The setgid bit is set (new files created in the volume will be owned by FSGroup) 3. The permission bits are OR\'d with rw-rw----  If unset, the Kubelet will not modify the ownership and permissions of any volume. Note that this field cannot be set when spec.os.name is windows.
 	*/
@@ -4243,7 +4244,7 @@ declare class V1TopologySpreadConstraint {
 	*/
 	"maxSkew": number;
 	/**
-	* MinDomains indicates a minimum number of eligible domains. When the number of eligible domains with matching topology keys is less than minDomains, Pod Topology Spread treats \"global minimum\" as 0, and then the calculation of Skew is performed. And when the number of eligible domains with matching topology keys equals or greater than minDomains, this value has no effect on scheduling. As a result, when the number of eligible domains is less than minDomains, scheduler won\'t schedule more than maxSkew Pods to those domains. If value is nil, the constraint behaves as if MinDomains is equal to 1. Valid values are integers greater than 0. When value is not nil, WhenUnsatisfiable must be DoNotSchedule.  For example, in a 3-zone cluster, MaxSkew is set to 2, MinDomains is set to 5 and pods with the same labelSelector spread as 2/2/2: | zone1 | zone2 | zone3 | |  P P  |  P P  |  P P  | The number of domains is less than 5(MinDomains), so \"global minimum\" is treated as 0. In this situation, new pod with the same labelSelector cannot be scheduled, because computed skew will be 3(3 - 0) if new Pod is scheduled to any of the three zones, it will violate MaxSkew.
+	* MinDomains indicates a minimum number of eligible domains. When the number of eligible domains with matching topology keys is less than minDomains, Pod Topology Spread treats \"global minimum\" as 0, and then the calculation of Skew is performed. And when the number of eligible domains with matching topology keys equals or greater than minDomains, this value has no effect on scheduling. As a result, when the number of eligible domains is less than minDomains, scheduler won\'t schedule more than maxSkew Pods to those domains. If value is nil, the constraint behaves as if MinDomains is equal to 1. Valid values are integers greater than 0. When value is not nil, WhenUnsatisfiable must be DoNotSchedule.  For example, in a 3-zone cluster, MaxSkew is set to 2, MinDomains is set to 5 and pods with the same labelSelector spread as 2/2/2: | zone1 | zone2 | zone3 | |  P P  |  P P  |  P P  | The number of domains is less than 5(MinDomains), so \"global minimum\" is treated as 0. In this situation, new pod with the same labelSelector cannot be scheduled, because computed skew will be 3(3 - 0) if new Pod is scheduled to any of the three zones, it will violate MaxSkew.  This is a beta field and requires the MinDomainsInPodTopologySpread feature gate to be enabled (enabled by default).
 	*/
 	"minDomains"?: number;
 	/**
@@ -4538,7 +4539,7 @@ declare class V1ConfigMapVolumeSource {
 	*/
 	"items"?: Array<V1KeyToPath>;
 	/**
-	* Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+	* Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 	*/
 	"name"?: string;
 	/**
@@ -4726,7 +4727,7 @@ declare class V1PersistentVolumeClaimSpec {
 	/**
 	* accessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
 	*/
-	"accessModes"?: Array<V1PersistentVolumeClaimSpecAccessModesEnum>;
+	"accessModes"?: Array<string>;
 	"dataSource"?: V1TypedLocalObjectReference;
 	"dataSourceRef"?: V1TypedObjectReference;
 	"resources"?: V1VolumeResourceRequirements;
@@ -4736,7 +4737,7 @@ declare class V1PersistentVolumeClaimSpec {
 	*/
 	"storageClassName"?: string;
 	/**
-	* volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it\'s not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.
+	* volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it\'s not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#volumeattributesclass (Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.
 	*/
 	"volumeAttributesClassName"?: string;
 	/**
@@ -4761,12 +4762,6 @@ declare class V1PersistentVolumeClaimSpec {
 		format: string;
 	}[];
 	constructor();
-}
-declare enum V1PersistentVolumeClaimSpecAccessModesEnum {
-	ReadOnlyMany = "ReadOnlyMany",
-	ReadWriteMany = "ReadWriteMany",
-	ReadWriteOnce = "ReadWriteOnce",
-	ReadWriteOncePod = "ReadWriteOncePod"
 }
 declare enum V1PersistentVolumeClaimSpecVolumeModeEnum {
 	Block = "Block",
@@ -5224,7 +5219,7 @@ declare class V1ConfigMapProjection {
 	*/
 	"items"?: Array<V1KeyToPath>;
 	/**
-	* Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+	* Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 	*/
 	"name"?: string;
 	/**
@@ -5272,7 +5267,7 @@ declare class V1SecretProjection {
 	*/
 	"items"?: Array<V1KeyToPath>;
 	/**
-	* Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+	* Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 	*/
 	"name"?: string;
 	/**
@@ -5679,7 +5674,7 @@ declare class V1PodSpec {
 	*/
 	"ephemeralContainers"?: Array<V1EphemeralContainer>;
 	/**
-	* HostAliases is an optional list of hosts and IPs that will be injected into the pod\'s hosts file if specified.
+	* HostAliases is an optional list of hosts and IPs that will be injected into the pod\'s hosts file if specified. This is only valid for non-hostNetwork pods.
 	*/
 	"hostAliases"?: Array<V1HostAlias>;
 	/**
@@ -5760,12 +5755,12 @@ declare class V1PodSpec {
 	*/
 	"schedulerName"?: string;
 	/**
-	* SchedulingGates is an opaque list of values that if specified will block scheduling the pod. If schedulingGates is not empty, the pod will stay in the SchedulingGated state and the scheduler will not attempt to schedule the pod.  SchedulingGates can only be set at pod creation time, and be removed only afterwards.
+	* SchedulingGates is an opaque list of values that if specified will block scheduling the pod. If schedulingGates is not empty, the pod will stay in the SchedulingGated state and the scheduler will not attempt to schedule the pod.  SchedulingGates can only be set at pod creation time, and be removed only afterwards.  This is a beta feature enabled by the PodSchedulingReadiness feature gate.
 	*/
 	"schedulingGates"?: Array<V1PodSchedulingGate>;
 	"securityContext"?: V1PodSecurityContext;
 	/**
-	* DeprecatedServiceAccount is a deprecated alias for ServiceAccountName. Deprecated: Use serviceAccountName instead.
+	* DeprecatedServiceAccount is a depreciated alias for ServiceAccountName. Deprecated: Use serviceAccountName instead.
 	*/
 	"serviceAccount"?: string;
 	/**
@@ -5773,7 +5768,7 @@ declare class V1PodSpec {
 	*/
 	"serviceAccountName"?: string;
 	/**
-	* If true the pod\'s hostname will be configured as the pod\'s FQDN, rather than the leaf name (the default). In Linux containers, this means setting the FQDN in the hostname field of the kernel (the nodename field of struct utsname). In Windows containers, this means setting the registry value of hostname for the registry key HKEY_LOCAL_MACHINE\\\\SYSTEM\\\\CurrentControlSet\\\\Services\\\\Tcpip\\\\Parameters to FQDN. If a pod does not have FQDN, this has no effect. Default to false.
+	* If true the pod\'s hostname will be configured as the pod\'s FQDN, rather than the leaf name (the default). In Linux containers, this means setting the FQDN in the hostname field of the kernel (the nodename field of struct utsname). In Windows containers, this means setting the registry value of hostname for the registry key HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters to FQDN. If a pod does not have FQDN, this has no effect. Default to false.
 	*/
 	"setHostnameAsFQDN"?: boolean;
 	/**
@@ -5937,38 +5932,6 @@ declare class V1ContainerState {
 	}[];
 	constructor();
 }
-declare class V1VolumeMountStatus {
-	/**
-	* MountPath corresponds to the original VolumeMount.
-	*/
-	"mountPath": string;
-	/**
-	* Name corresponds to the name of the original VolumeMount.
-	*/
-	"name": string;
-	/**
-	* ReadOnly corresponds to the original VolumeMount.
-	*/
-	"readOnly"?: boolean;
-	/**
-	* RecursiveReadOnly must be set to Disabled, Enabled, or unspecified (for non-readonly mounts). An IfPossible value in the original VolumeMount must be translated to Disabled or Enabled, depending on the mount result.
-	*/
-	"recursiveReadOnly"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
 declare class V1ContainerStatus {
 	/**
 	* AllocatedResources represents the compute resources allocated for this container by the node. Kubelet sets this value to Container.Resources.Requests upon successful pod admission and after successfully admitting desired pod resize.
@@ -6007,10 +5970,6 @@ declare class V1ContainerStatus {
 	*/
 	"started"?: boolean;
 	"state"?: V1ContainerState;
-	/**
-	* Status of volume mounts.
-	*/
-	"volumeMounts"?: Array<V1VolumeMountStatus>;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -6370,15 +6329,15 @@ declare class PolicyV1beta1JsPolicySpec {
 	/**
 	* Operations is the operations the admission hook cares about - CREATE, UPDATE, DELETE, CONNECT or * for all of those operations and any future admission operations that are added. If \'*\' is present, the length of the slice must be one. Required.
 	*/
-	"operations"?: Array<PolicyV1beta1JsPolicySpecOperationsEnum>;
+	"operations"?: Array<string>;
 	/**
 	* Resources is a list of resources this rule applies to.  For example: \'pods\' means pods. \'pods/log\' means the log subresource of pods. \'*\' means all resources, but not subresources. \'pods/_*\' means all subresources of pods. \'*_/scale\' means all scale subresources. \'*_/_*\' means all resources and their subresources.  If wildcard is present, the validation rule will ensure resources do not overlap with each other.  Depending on the enclosing object, subresources might not be allowed. Required.
 	*/
 	"resources"?: Array<string>;
 	/**
-	* scope specifies the scope of this rule. Valid values are \"Cluster\", \"Namespaced\", and \"*\" \"Cluster\" means that only cluster-scoped resources will match this rule. Namespace API objects are cluster-scoped. \"Namespaced\" means that only namespaced resources will match this rule. \"*\" means that there are no scope restrictions. Subresources match the scope of their parent resource. Default is \"*\".   Possible enum values:  - `\"*\"` means that all scopes are included.  - `\"Cluster\"` means that scope is limited to cluster-scoped objects. Namespace objects are cluster-scoped.  - `\"Namespaced\"` means that scope is limited to namespaced objects.
+	* scope specifies the scope of this rule. Valid values are \"Cluster\", \"Namespaced\", and \"*\" \"Cluster\" means that only cluster-scoped resources will match this rule. Namespace API objects are cluster-scoped. \"Namespaced\" means that only namespaced resources will match this rule. \"*\" means that there are no scope restrictions. Subresources match the scope of their parent resource. Default is \"*\".
 	*/
-	"scope"?: PolicyV1beta1JsPolicySpecScopeEnum;
+	"scope"?: string;
 	/**
 	* TimeoutSeconds specifies the timeout for this webhook. After the timeout passes, the webhook call will be ignored or the API call will fail based on the failure policy. The timeout value must be between 1 and 30 seconds. Default to 10 seconds.
 	*/
@@ -6414,23 +6373,11 @@ declare enum PolicyV1beta1JsPolicySpecMatchPolicyEnum {
 	Equivalent = "Equivalent",
 	Exact = "Exact"
 }
-declare enum PolicyV1beta1JsPolicySpecOperationsEnum {
-	Star = "*",
-	Connect = "CONNECT",
-	Create = "CREATE",
-	Delete = "DELETE",
-	Update = "UPDATE"
-}
-declare enum PolicyV1beta1JsPolicySpecScopeEnum {
-	Star = "*",
-	Cluster = "Cluster",
-	Namespaced = "Namespaced"
-}
 declare class PolicyV1beta1Condition {
 	/**
 	* Last time the condition transitioned from one status to another. This should be when the underlying condition changed. If that is not known, then using the time when the API field changed is acceptable.
 	*/
-	"lastTransitionTime": Date;
+	"lastTransitionTime"?: Date;
 	/**
 	* A human readable message indicating details about the transition. This field may be empty.
 	*/
@@ -8114,10 +8061,6 @@ declare class ManagementV1ClusterAgentConfig {
 	"loftInstanceID"?: string;
 	"metadata"?: V1ObjectMeta;
 	/**
-	* ProjectNamespacePrefix holds the prefix for loft project namespaces
-	*/
-	"projectNamespacePrefix"?: string;
-	/**
 	* TokenCaCert is the certificate authority the Loft tokens will be signed with
 	*/
 	"tokenCaCert"?: string;
@@ -8212,6 +8155,192 @@ declare class ManagementV1ClusterCharts {
 	*/
 	"kind"?: string;
 	"metadata"?: V1ObjectMeta;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1SecretRef {
+	"key"?: string;
+	"secretName"?: string;
+	"secretNamespace"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1ClusterSpec {
+	/**
+	* Access holds the access rights for users and teams
+	*/
+	"access"?: Array<StorageV1Access>;
+	"config"?: StorageV1SecretRef;
+	/**
+	* Description describes a cluster access object
+	*/
+	"description"?: string;
+	/**
+	* If specified this name is displayed in the UI instead of the metadata name
+	*/
+	"displayName"?: string;
+	/**
+	* Local specifies if it is the local cluster that should be connected, when this is specified, config is optional
+	*/
+	"local"?: boolean;
+	/**
+	* The namespace where the cluster components will be installed in
+	*/
+	"managementNamespace"?: string;
+	/**
+	* NetworkPeer specifies if the cluster is connected via tailscale, when this is specified, config is optional
+	*/
+	"networkPeer"?: boolean;
+	"owner"?: StorageV1UserOrTeam;
+	/**
+	* If unusable is true, no spaces or virtual clusters can be scheduled on this cluster.
+	*/
+	"unusable"?: boolean;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1ClusterStatus {
+	"message"?: string;
+	/**
+	* Online is whether the cluster is currently connected to the coordination server.
+	*/
+	"online"?: boolean;
+	"phase"?: string;
+	"reason"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1Cluster {
+	/**
+	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	*/
+	"apiVersion"?: string;
+	/**
+	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	*/
+	"kind"?: string;
+	"metadata"?: V1ObjectMeta;
+	"spec"?: ManagementV1ClusterSpec;
+	"status"?: ManagementV1ClusterStatus;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1ClusterConnectSpec {
+	/**
+	* The user to create an admin account for
+	*/
+	"adminUser"?: string;
+	"clusterTemplate"?: ManagementV1Cluster;
+	/**
+	* the kube config used to connect the cluster
+	*/
+	"config"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1ClusterConnectStatus {
+	"failed"?: boolean;
+	"message"?: string;
+	"reason"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1ClusterConnect {
+	/**
+	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	*/
+	"apiVersion"?: string;
+	/**
+	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	*/
+	"kind"?: string;
+	"metadata"?: V1ObjectMeta;
+	"spec"?: ManagementV1ClusterConnectSpec;
+	"status"?: ManagementV1ClusterConnectStatus;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -8642,6 +8771,25 @@ declare class StorageV1VirtualClusterSpaceTemplateDefinition {
 	}[];
 	constructor();
 }
+declare class StorageV1WorkloadVirtualClusterTemplateDefinition {
+	"helmRelease"?: StorageV1VirtualClusterHelmRelease;
+	"metadata"?: StorageV1TemplateMetadata;
+	"spaceTemplate"?: StorageV1VirtualClusterSpaceTemplateDefinition;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
 declare class StorageV1VirtualClusterTemplateDefinition {
 	"access"?: StorageV1InstanceAccess;
 	"accessPoint"?: StorageV1VirtualClusterAccessPoint;
@@ -8666,6 +8814,7 @@ declare class StorageV1VirtualClusterTemplateDefinition {
 	"objects"?: string;
 	"pro"?: StorageV1VirtualClusterProSpec;
 	"spaceTemplate"?: StorageV1VirtualClusterSpaceTemplateDefinition;
+	"workloadVirtualClusterTemplate"?: StorageV1WorkloadVirtualClusterTemplateDefinition;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -8818,121 +8967,6 @@ declare class ManagementV1ClusterVirtualClusterDefaults {
 	* Warning should be somehow shown to the user when there is a problem retrieving the defaults
 	*/
 	"warning"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class StorageV1SecretRef {
-	"key"?: string;
-	"secretName"?: string;
-	"secretNamespace"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1ClusterSpec {
-	/**
-	* Access holds the access rights for users and teams
-	*/
-	"access"?: Array<StorageV1Access>;
-	"config"?: StorageV1SecretRef;
-	/**
-	* Description describes a cluster access object
-	*/
-	"description"?: string;
-	/**
-	* If specified this name is displayed in the UI instead of the metadata name
-	*/
-	"displayName"?: string;
-	/**
-	* Local specifies if it is the local cluster that should be connected, when this is specified, config is optional
-	*/
-	"local"?: boolean;
-	/**
-	* The namespace where the cluster components will be installed in
-	*/
-	"managementNamespace"?: string;
-	/**
-	* NetworkPeer specifies if the cluster is connected via tailscale, when this is specified, config is optional
-	*/
-	"networkPeer"?: boolean;
-	"owner"?: StorageV1UserOrTeam;
-	/**
-	* If unusable is true, no spaces or virtual clusters can be scheduled on this cluster.
-	*/
-	"unusable"?: boolean;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1ClusterStatus {
-	"message"?: string;
-	/**
-	* Online is whether the cluster is currently connected to the coordination server.
-	*/
-	"online"?: boolean;
-	"phase"?: string;
-	"reason"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1Cluster {
-	/**
-	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
-	*/
-	"apiVersion"?: string;
-	/**
-	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-	*/
-	"kind"?: string;
-	"metadata"?: V1ObjectMeta;
-	"spec"?: ManagementV1ClusterSpec;
-	"status"?: ManagementV1ClusterStatus;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -9884,10 +9918,6 @@ declare class ManagementV1ConfigStatus {
 	*/
 	"loftHost"?: string;
 	"oidc"?: ManagementV1OIDC;
-	/**
-	* ProjectNamespacePrefix holds the prefix for loft project namespaces. Omitted defaults to \"p-\"
-	*/
-	"projectNamespacePrefix"?: string;
 	"uiSettings"?: UiV1UISettingsConfig;
 	"vault"?: StorageV1VaultIntegrationSpec;
 	static readonly discriminator: string | undefined;
@@ -9917,81 +9947,6 @@ declare class ManagementV1Config {
 	"metadata"?: V1ObjectMeta;
 	"spec"?: ManagementV1ConfigSpec;
 	"status"?: ManagementV1ConfigStatus;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1ConvertVirtualClusterConfigSpec {
-	/**
-	* Distro is the distro to be used for the config
-	*/
-	"distro"?: string;
-	/**
-	* Values are the config values for the virtual cluster
-	*/
-	"values"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1ConvertVirtualClusterConfigStatus {
-	/**
-	* Converted signals if the Values have been converted from the old format
-	*/
-	"converted": boolean;
-	/**
-	* Values are the converted config values for the virtual cluster
-	*/
-	"values"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1ConvertVirtualClusterConfig {
-	/**
-	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
-	*/
-	"apiVersion"?: string;
-	/**
-	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-	*/
-	"kind"?: string;
-	"metadata"?: V1ObjectMeta;
-	"spec"?: ManagementV1ConvertVirtualClusterConfigSpec;
-	"status"?: ManagementV1ConvertVirtualClusterConfigStatus;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -10075,23 +10030,6 @@ declare class StorageV1DevPodProviderOption {
 	}[];
 	constructor();
 }
-declare class StorageV1DevPodWorkspaceInstanceTemplateDefinition {
-	"metadata"?: StorageV1TemplateMetadata;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
 declare class StorageV1DevPodWorkspaceProvider {
 	/**
 	* Env are environment options to set when using the provider.
@@ -10109,54 +10047,6 @@ declare class StorageV1DevPodWorkspaceProvider {
 	"options"?: {
 		[key: string]: StorageV1DevPodProviderOption;
 	};
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class StorageV1SpaceInstanceTemplateDefinition {
-	"metadata"?: StorageV1TemplateMetadata;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class StorageV1SpaceTemplateDefinition {
-	"access"?: StorageV1InstanceAccess;
-	/**
-	* Apps specifies the apps that should get deployed by this template
-	*/
-	"apps"?: Array<StorageV1AppReference>;
-	/**
-	* Charts are helm charts that should get deployed
-	*/
-	"charts"?: Array<StorageV1TemplateHelmChart>;
-	"instanceTemplate"?: StorageV1SpaceInstanceTemplateDefinition;
-	"metadata"?: StorageV1TemplateMetadata;
-	/**
-	* Objects are Kubernetes style yamls that should get deployed into the virtual cluster
-	*/
-	"objects"?: string;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -10201,22 +10091,13 @@ declare class StorageV1TemplateRef {
 	constructor();
 }
 declare class StorageV1DevPodWorkspaceTemplateDefinition {
-	/**
-	* GitCloneStrategy specifies how git based workspace are being cloned. Can be \"\" (full, default), treeless, blobless or shallow  Possible enum values:  - `\"\"`  - `\"blobless\"`  - `\"shallow\"`  - `\"treeless\"`
-	*/
-	"gitCloneStrategy"?: StorageV1DevPodWorkspaceTemplateDefinitionGitCloneStrategyEnum;
-	"instanceTemplate"?: StorageV1DevPodWorkspaceInstanceTemplateDefinition;
 	"provider": StorageV1DevPodWorkspaceProvider;
-	"spaceTemplate"?: StorageV1SpaceTemplateDefinition;
-	"spaceTemplateRef"?: StorageV1TemplateRef;
+	"spaceTemplate"?: StorageV1TemplateRef;
 	/**
 	* UseProjectGitCredentials specifies if the project git credentials should be used instead of local ones for this workspace
 	*/
 	"useProjectGitCredentials"?: boolean;
-	/**
-	* UseProjectSSHCredentials specifies if the project ssh credentials should be used instead of local ones for this workspace
-	*/
-	"useProjectSSHCredentials"?: boolean;
+	"virtualClusterTemplate"?: StorageV1TemplateRef;
 	/**
 	* WorkspaceEnv are environment variables that should be available within the created workspace.
 	*/
@@ -10237,12 +10118,6 @@ declare class StorageV1DevPodWorkspaceTemplateDefinition {
 		format: string;
 	}[];
 	constructor();
-}
-declare enum StorageV1DevPodWorkspaceTemplateDefinitionGitCloneStrategyEnum {
-	Empty = "",
-	Blobless = "blobless",
-	Shallow = "shallow",
-	Treeless = "treeless"
 }
 declare class StorageV1RunnerRef {
 	/**
@@ -10502,33 +10377,6 @@ declare class StorageV1AccessKeyScopeProject {
 	}[];
 	constructor();
 }
-declare class StorageV1AccessKeyScopeRole {
-	/**
-	* Role is the name of the role to apply to the access key scope.  Possible enum values:  - `\"agent\"`  - `\"loft-cli\"`  - `\"network-peer\"`  - `\"runner\"`  - `\"vcluster\"`
-	*/
-	"role"?: StorageV1AccessKeyScopeRoleRoleEnum;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare enum StorageV1AccessKeyScopeRoleRoleEnum {
-	Agent = "agent",
-	LoftCli = "loft-cli",
-	NetworkPeer = "network-peer",
-	Runner = "runner",
-	Vcluster = "vcluster"
-}
 declare class StorageV1AccessKeyVirtualCluster {
 	/**
 	* Name of the virtual cluster. Empty means all virtual clusters.
@@ -10675,7 +10523,7 @@ declare class StorageV1AccessKeyScopeVirtualCluster {
 }
 declare class StorageV1AccessKeyScope {
 	/**
-	* AllowLoftCLI allows certain read-only management requests to make sure loft cli works correctly with this specific access key.  Deprecated: Use the `roles` field instead  ```yaml  # Example:  roles:    - role: loftCLI  ```
+	* AllowLoftCLI allows certain read-only management requests to make sure loft cli works correctly with this specific access key.
 	*/
 	"allowLoftCli"?: boolean;
 	/**
@@ -10686,10 +10534,6 @@ declare class StorageV1AccessKeyScope {
 	* Projects specifies the projects the access key should have access to.
 	*/
 	"projects"?: Array<StorageV1AccessKeyScopeProject>;
-	/**
-	* Roles is a set of managed permissions to apply to the access key.
-	*/
-	"roles"?: Array<StorageV1AccessKeyScopeRole>;
 	/**
 	* DEPRECATED: Use Projects, Spaces and VirtualClusters instead Rules specifies the rules that should apply to the access key.
 	*/
@@ -12427,6 +12271,59 @@ declare class ManagementV1OwnedAccessKey {
 	}[];
 	constructor();
 }
+declare class ManagementV1PolicyViolationStatus {
+	/**
+	* Cluster is the cluster where the violation occurred in
+	*/
+	"cluster"?: string;
+	/**
+	* Policy is the name of the policy where the violation occurred
+	*/
+	"policy"?: string;
+	"user"?: ClusterV1EntityInfo;
+	"violation"?: PolicyV1beta1PolicyViolation;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1PolicyViolation {
+	/**
+	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	*/
+	"apiVersion"?: string;
+	/**
+	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	*/
+	"kind"?: string;
+	"metadata"?: V1ObjectMeta;
+	"spec"?: any;
+	"status"?: ManagementV1PolicyViolationStatus;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
 declare class ManagementV1ProjectChartInfoSpec {
 	"chart"?: StorageV1Chart;
 	static readonly discriminator: string | undefined;
@@ -12533,7 +12430,7 @@ declare class StorageV1RunnerPersistentVolumeClaimTemplateSpec {
 	/**
 	* accessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
 	*/
-	"accessModes"?: Array<StorageV1RunnerPersistentVolumeClaimTemplateSpecAccessModesEnum>;
+	"accessModes"?: Array<string>;
 	/**
 	* storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1
 	*/
@@ -12556,12 +12453,6 @@ declare class StorageV1RunnerPersistentVolumeClaimTemplateSpec {
 		format: string;
 	}[];
 	constructor();
-}
-declare enum StorageV1RunnerPersistentVolumeClaimTemplateSpecAccessModesEnum {
-	ReadOnlyMany = "ReadOnlyMany",
-	ReadWriteMany = "ReadWriteMany",
-	ReadWriteOnce = "ReadWriteOnce",
-	ReadWriteOncePod = "ReadWriteOncePod"
 }
 declare class StorageV1RunnerPersistentVolumeClaimTemplate {
 	"metadata"?: StorageV1TemplateMetadata;
@@ -12696,9 +12587,9 @@ declare class ManagementV1RunnerSpec {
 	*/
 	"displayName"?: string;
 	/**
-	* NetworkPeerName is the network peer name used to connect directly to the runner
+	* Endpoint is the hostname used to connect directly to the runner
 	*/
-	"networkPeerName"?: string;
+	"endpoint"?: string;
 	"owner"?: StorageV1UserOrTeam;
 	/**
 	* If unusable is true, no DevPod workspaces can be scheduled on this runner.
@@ -13149,6 +13040,54 @@ declare class ManagementV1ProjectSecret {
 	"metadata"?: V1ObjectMeta;
 	"spec"?: ManagementV1ProjectSecretSpec;
 	"status"?: ManagementV1ProjectSecretStatus;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1SpaceInstanceTemplateDefinition {
+	"metadata"?: StorageV1TemplateMetadata;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1SpaceTemplateDefinition {
+	"access"?: StorageV1InstanceAccess;
+	/**
+	* Apps specifies the apps that should get deployed by this template
+	*/
+	"apps"?: Array<StorageV1AppReference>;
+	/**
+	* Charts are helm charts that should get deployed
+	*/
+	"charts"?: Array<StorageV1TemplateHelmChart>;
+	"instanceTemplate"?: StorageV1SpaceInstanceTemplateDefinition;
+	"metadata"?: StorageV1TemplateMetadata;
+	/**
+	* Objects are Kubernetes style yamls that should get deployed into the virtual cluster
+	*/
+	"objects"?: string;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -13658,6 +13597,43 @@ declare class StorageV1ArgoIntegrationSpec {
 	}[];
 	constructor();
 }
+declare class StorageV1AutomaticImportVirtualClusters {
+	/**
+	* Enabled specifies if automatic virtual cluster import should be enabled for this project.
+	*/
+	"enabled"?: boolean;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1AutomaticImport {
+	"virtualClusters"?: StorageV1AutomaticImportVirtualClusters;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
 declare class StorageV1GitProjectSpec {
 	/**
 	* Token defines the token to use for authentication.
@@ -13679,34 +13655,8 @@ declare class StorageV1GitProjectSpec {
 	}[];
 	constructor();
 }
-declare class StorageV1SSHProjectSpec {
-	/**
-	* Token defines the private ssh key to use for authentication, this is a base64 encoded string.
-	*/
-	"token"?: string;
-	"tokenSecretRef"?: V1SecretKeySelector;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
 declare class StorageV1DevPodProjectSpec {
-	/**
-	* FallbackImage defines an image all workspace will fall back to if no devcontainer.json could be detected
-	*/
-	"fallbackImage"?: string;
 	"git"?: StorageV1GitProjectSpec;
-	"ssh"?: StorageV1SSHProjectSpec;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -13939,6 +13889,7 @@ declare class ManagementV1ProjectSpec {
 	*/
 	"allowedTemplates"?: Array<StorageV1AllowedTemplate>;
 	"argoCD"?: StorageV1ArgoIntegrationSpec;
+	"automaticImport"?: StorageV1AutomaticImport;
 	/**
 	* Description describes an app
 	*/
@@ -14628,10 +14579,6 @@ declare class ManagementV1SelfStatus {
 	* InstanceID is the loft instance id
 	*/
 	"instanceID"?: string;
-	/**
-	* ProjectNamespacePrefix is the prefix used to name project namespaces after defaulting has been applied
-	*/
-	"projectNamespacePrefix"?: string;
 	/**
 	* The subject of the currently logged in user
 	*/
@@ -16372,6 +16319,39 @@ declare class ManagementV1VirtualClusterInstanceLog {
 	}[];
 	constructor();
 }
+declare class ManagementV1VirtualClusterInstanceWorkloadKubeConfig {
+	/**
+	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	*/
+	"apiVersion"?: string;
+	/**
+	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	*/
+	"kind"?: string;
+	/**
+	* KubeConfig holds the workload cluster\'s kubeconfig to access the virtual cluster
+	*/
+	"kubeConfig"?: string;
+	"metadata"?: V1ObjectMeta;
+	/**
+	* Token holds the service account token vcluster should use to connect to the remote cluster
+	*/
+	"token"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
 declare class StorageV1VirtualClusterClusterRef {
 	/**
 	* Cluster is the connected cluster the space will be created in
@@ -16418,10 +16398,6 @@ declare class ManagementV1VirtualClusterInstanceSpec {
 	* ExtraAccessRules defines extra rules which users and teams should have which access to the virtual cluster.
 	*/
 	"extraAccessRules"?: Array<StorageV1InstanceAccessRule>;
-	/**
-	* NetworkPeer specifies if the cluster is connected via tailscale. When this is specified, the vCluster will not be scheduled to any connected cluster and no templates will be applied to it.
-	*/
-	"networkPeer"?: boolean;
 	"owner"?: StorageV1UserOrTeam;
 	/**
 	* Parameters are values to pass to the template. The values should be encoded as YAML string where each parameter is represented as a top-level field key.
@@ -16429,6 +16405,7 @@ declare class ManagementV1VirtualClusterInstanceSpec {
 	"parameters"?: string;
 	"template"?: StorageV1VirtualClusterTemplateDefinition;
 	"templateRef"?: StorageV1TemplateRef;
+	"workloadClusterRef"?: StorageV1VirtualClusterClusterRef;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -16466,10 +16443,6 @@ declare class ManagementV1VirtualClusterInstanceStatus {
 	*/
 	"message"?: string;
 	/**
-	* Online specifies if there is at least one network peer available for an agentless vCluster.
-	*/
-	"online"?: boolean;
-	/**
 	* Phase describes the current phase the virtual cluster instance is in
 	*/
 	"phase"?: string;
@@ -16481,6 +16454,7 @@ declare class ManagementV1VirtualClusterInstanceStatus {
 	"spaceObjects"?: StorageV1ObjectsStatus;
 	"virtualCluster"?: StorageV1VirtualClusterTemplateDefinition;
 	"virtualClusterObjects"?: StorageV1ObjectsStatus;
+	"workloadSpaceObjects"?: StorageV1ObjectsStatus;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -16535,6 +16509,7 @@ export type TGenResources = {
 	ManagementV1ClusterAccessKey: GroupVersionResource<ManagementV1ClusterAccessKey>;
 	ManagementV1ClusterAgentConfig: GroupVersionResource<ManagementV1ClusterAgentConfig>;
 	ManagementV1ClusterCharts: GroupVersionResource<ManagementV1ClusterCharts>;
+	ManagementV1ClusterConnect: GroupVersionResource<ManagementV1ClusterConnect>;
 	ManagementV1ClusterDomain: GroupVersionResource<ManagementV1ClusterDomain>;
 	ManagementV1ClusterMemberAccess: GroupVersionResource<ManagementV1ClusterMemberAccess>;
 	ManagementV1ClusterMembers: GroupVersionResource<ManagementV1ClusterMembers>;
@@ -16542,7 +16517,6 @@ export type TGenResources = {
 	ManagementV1ClusterRoleTemplate: GroupVersionResource<ManagementV1ClusterRoleTemplate>;
 	ManagementV1ClusterVirtualClusterDefaults: GroupVersionResource<ManagementV1ClusterVirtualClusterDefaults>;
 	ManagementV1Config: GroupVersionResource<ManagementV1Config>;
-	ManagementV1ConvertVirtualClusterConfig: GroupVersionResource<ManagementV1ConvertVirtualClusterConfig>;
 	ManagementV1DevPodWorkspaceInstance: GroupVersionResource<ManagementV1DevPodWorkspaceInstance>;
 	ManagementV1DevPodWorkspaceInstanceState: GroupVersionResource<ManagementV1DevPodWorkspaceInstanceState>;
 	ManagementV1DevPodWorkspaceTemplate: GroupVersionResource<ManagementV1DevPodWorkspaceTemplate>;
@@ -16556,6 +16530,7 @@ export type TGenResources = {
 	ManagementV1LicenseToken: GroupVersionResource<ManagementV1LicenseToken>;
 	ManagementV1LoftUpgrade: GroupVersionResource<ManagementV1LoftUpgrade>;
 	ManagementV1OwnedAccessKey: GroupVersionResource<ManagementV1OwnedAccessKey>;
+	ManagementV1PolicyViolation: GroupVersionResource<ManagementV1PolicyViolation>;
 	ManagementV1Project: GroupVersionResource<ManagementV1Project>;
 	ManagementV1ProjectChartInfo: GroupVersionResource<ManagementV1ProjectChartInfo>;
 	ManagementV1ProjectCharts: GroupVersionResource<ManagementV1ProjectCharts>;
@@ -16592,6 +16567,7 @@ export type TGenResources = {
 	ManagementV1VirtualClusterInstance: GroupVersionResource<ManagementV1VirtualClusterInstance>;
 	ManagementV1VirtualClusterInstanceKubeConfig: GroupVersionResource<ManagementV1VirtualClusterInstanceKubeConfig>;
 	ManagementV1VirtualClusterInstanceLog: GroupVersionResource<ManagementV1VirtualClusterInstanceLog>;
+	ManagementV1VirtualClusterInstanceWorkloadKubeConfig: GroupVersionResource<ManagementV1VirtualClusterInstanceWorkloadKubeConfig>;
 	ManagementV1VirtualClusterTemplate: GroupVersionResource<ManagementV1VirtualClusterTemplate>;
 };
 export declare const Resources: {

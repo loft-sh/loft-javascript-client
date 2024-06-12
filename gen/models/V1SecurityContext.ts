@@ -10,7 +10,6 @@
  * Do not edit the class manually.
  */
 
-import { V1AppArmorProfile } from '../models/V1AppArmorProfile';
 import { V1Capabilities } from '../models/V1Capabilities';
 import { V1SELinuxOptions } from '../models/V1SELinuxOptions';
 import { V1SeccompProfile } from '../models/V1SeccompProfile';
@@ -25,7 +24,6 @@ export class V1SecurityContext {
     * AllowPrivilegeEscalation controls whether a process can gain more privileges than its parent process. This bool directly controls if the no_new_privs flag will be set on the container process. AllowPrivilegeEscalation is true always when the container is: 1) run as Privileged 2) has CAP_SYS_ADMIN Note that this field cannot be set when spec.os.name is windows.
     */
     'allowPrivilegeEscalation'?: boolean;
-    'appArmorProfile'?: V1AppArmorProfile;
     'capabilities'?: V1Capabilities;
     /**
     * Run container in privileged mode. Processes in privileged containers are essentially equivalent to root on the host. Defaults to false. Note that this field cannot be set when spec.os.name is windows.
@@ -62,12 +60,6 @@ export class V1SecurityContext {
             "name": "allowPrivilegeEscalation",
             "baseName": "allowPrivilegeEscalation",
             "type": "boolean",
-            "format": ""
-        },
-        {
-            "name": "appArmorProfile",
-            "baseName": "appArmorProfile",
-            "type": "V1AppArmorProfile",
             "format": ""
         },
         {
