@@ -13,36 +13,37 @@
 
 
 /**
-* ConvertVirtualClusterConfigSpec holds the specification
+* SecretRef is the reference to a secret containing the user password
 */
-export class ManagementV1ConvertVirtualClusterConfigSpec {
-    /**
-    * Distro is the distro to be used for the config
-    */
-    'distro'?: string;
-    /**
-    * Values are the config values for the virtual cluster
-    */
-    'values'?: string;
+export class StorageV1SecretRef {
+    'key'?: string;
+    'secretName'?: string;
+    'secretNamespace'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "distro",
-            "baseName": "distro",
+            "name": "key",
+            "baseName": "key",
             "type": "string",
             "format": ""
         },
         {
-            "name": "values",
-            "baseName": "values",
+            "name": "secretName",
+            "baseName": "secretName",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "secretNamespace",
+            "baseName": "secretNamespace",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1ConvertVirtualClusterConfigSpec.attributeTypeMap;
+        return StorageV1SecretRef.attributeTypeMap;
     }
 
     public constructor() {

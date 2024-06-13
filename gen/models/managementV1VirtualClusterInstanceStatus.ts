@@ -41,10 +41,6 @@ export class ManagementV1VirtualClusterInstanceStatus {
     */
     'message'?: string;
     /**
-    * Online specifies if there is at least one network peer available for an agentless vCluster.
-    */
-    'online'?: boolean;
-    /**
     * Phase describes the current phase the virtual cluster instance is in
     */
     'phase'?: string;
@@ -56,6 +52,7 @@ export class ManagementV1VirtualClusterInstanceStatus {
     'spaceObjects'?: StorageV1ObjectsStatus;
     'virtualCluster'?: StorageV1VirtualClusterTemplateDefinition;
     'virtualClusterObjects'?: StorageV1ObjectsStatus;
+    'workloadSpaceObjects'?: StorageV1ObjectsStatus;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -91,12 +88,6 @@ export class ManagementV1VirtualClusterInstanceStatus {
             "format": ""
         },
         {
-            "name": "online",
-            "baseName": "online",
-            "type": "boolean",
-            "format": ""
-        },
-        {
             "name": "phase",
             "baseName": "phase",
             "type": "string",
@@ -129,6 +120,12 @@ export class ManagementV1VirtualClusterInstanceStatus {
         {
             "name": "virtualClusterObjects",
             "baseName": "virtualClusterObjects",
+            "type": "StorageV1ObjectsStatus",
+            "format": ""
+        },
+        {
+            "name": "workloadSpaceObjects",
+            "baseName": "workloadSpaceObjects",
             "type": "StorageV1ObjectsStatus",
             "format": ""
         }    ];
