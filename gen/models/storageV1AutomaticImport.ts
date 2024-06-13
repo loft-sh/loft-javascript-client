@@ -10,24 +10,24 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1GitProjectSpec } from '../models/storageV1GitProjectSpec';
+import { StorageV1AutomaticImportVirtualClusters } from '../models/storageV1AutomaticImportVirtualClusters';
 
 
-export class StorageV1DevPodProjectSpec {
-    'git'?: StorageV1GitProjectSpec;
+export class StorageV1AutomaticImport {
+    'virtualClusters'?: StorageV1AutomaticImportVirtualClusters;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "git",
-            "baseName": "git",
-            "type": "StorageV1GitProjectSpec",
+            "name": "virtualClusters",
+            "baseName": "virtualClusters",
+            "type": "StorageV1AutomaticImportVirtualClusters",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1DevPodProjectSpec.attributeTypeMap;
+        return StorageV1AutomaticImport.attributeTypeMap;
     }
 
     public constructor() {
