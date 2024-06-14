@@ -10,10 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1EntityInfo } from '../models/storageV1EntityInfo';
 
 
-export class ManagementV1UserInfo {
+export class StorageV1EntityInfo {
     /**
     * The display name shown in the UI
     */
@@ -34,10 +33,6 @@ export class ManagementV1UserInfo {
     * The user subject
     */
     'subject'?: string;
-    /**
-    * Teams are the teams the user is part of
-    */
-    'teams'?: Array<StorageV1EntityInfo>;
     /**
     * The username that is used to login
     */
@@ -77,12 +72,6 @@ export class ManagementV1UserInfo {
             "format": ""
         },
         {
-            "name": "teams",
-            "baseName": "teams",
-            "type": "Array<StorageV1EntityInfo>",
-            "format": ""
-        },
-        {
             "name": "username",
             "baseName": "username",
             "type": "string",
@@ -90,7 +79,7 @@ export class ManagementV1UserInfo {
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1UserInfo.attributeTypeMap;
+        return StorageV1EntityInfo.attributeTypeMap;
     }
 
     public constructor() {

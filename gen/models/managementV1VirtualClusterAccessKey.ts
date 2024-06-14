@@ -10,14 +10,17 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1TeamSpec } from '../models/managementV1TeamSpec';
 import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
 /**
-* Team holds the team information
+* VirtualClusterAccessKey holds the access key for the virtual cluster
 */
-export class ManagementV1Team {
+export class ManagementV1VirtualClusterAccessKey {
+    /**
+    * AccessKey is the access key used by the agent
+    */
+    'accessKey'?: string;
     /**
     * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
     */
@@ -27,12 +30,16 @@ export class ManagementV1Team {
     */
     'kind'?: string;
     'metadata'?: V1ObjectMeta;
-    'spec'?: ManagementV1TeamSpec;
-    'status'?: any;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+        {
+            "name": "accessKey",
+            "baseName": "accessKey",
+            "type": "string",
+            "format": ""
+        },
         {
             "name": "apiVersion",
             "baseName": "apiVersion",
@@ -50,22 +57,10 @@ export class ManagementV1Team {
             "baseName": "metadata",
             "type": "V1ObjectMeta",
             "format": ""
-        },
-        {
-            "name": "spec",
-            "baseName": "spec",
-            "type": "ManagementV1TeamSpec",
-            "format": ""
-        },
-        {
-            "name": "status",
-            "baseName": "status",
-            "type": "any",
-            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1Team.attributeTypeMap;
+        return ManagementV1VirtualClusterAccessKey.attributeTypeMap;
     }
 
     public constructor() {

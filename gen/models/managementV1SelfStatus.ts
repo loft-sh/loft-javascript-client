@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { ClusterV1EntityInfo } from '../models/clusterV1EntityInfo';
 import { ManagementV1UserInfo } from '../models/managementV1UserInfo';
 import { StorageV1AccessKeyScope } from '../models/storageV1AccessKeyScope';
+import { StorageV1EntityInfo } from '../models/storageV1EntityInfo';
 
 
 export class ManagementV1SelfStatus {
@@ -45,7 +45,7 @@ export class ManagementV1SelfStatus {
     * The subject of the currently logged in user
     */
     'subject'?: string;
-    'team'?: ClusterV1EntityInfo;
+    'team'?: StorageV1EntityInfo;
     /**
     * UID is the user uid
     */
@@ -106,7 +106,7 @@ export class ManagementV1SelfStatus {
         {
             "name": "team",
             "baseName": "team",
-            "type": "ClusterV1EntityInfo",
+            "type": "StorageV1EntityInfo",
             "format": ""
         },
         {

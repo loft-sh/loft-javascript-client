@@ -11,8 +11,6 @@
  */
 
 import { ManagementV1AuthenticationGithubOrg } from '../models/managementV1AuthenticationGithubOrg';
-import { ManagementV1AuthenticationGroupClusterAccountTemplate } from '../models/managementV1AuthenticationGroupClusterAccountTemplate';
-import { StorageV1UserClusterAccountTemplate } from '../models/storageV1UserClusterAccountTemplate';
 
 
 export class ManagementV1AuthenticationGithub {
@@ -24,14 +22,6 @@ export class ManagementV1AuthenticationGithub {
     * ClientID holds the github client secret
     */
     'clientSecret': string;
-    /**
-    * Cluster Account Templates that will be applied for users logging in through this authentication
-    */
-    'clusterAccountTemplates'?: Array<StorageV1UserClusterAccountTemplate>;
-    /**
-    * A mapping between groups and cluster account templates. If the user has a certain group, the cluster account template will be added during creation
-    */
-    'groupClusterAccountTemplates'?: Array<ManagementV1AuthenticationGroupClusterAccountTemplate>;
     /**
     * Required ONLY for GitHub Enterprise. This is the Hostname of the GitHub Enterprise account listed on the management console. Ensure this domain is routable on your network.
     */
@@ -62,18 +52,6 @@ export class ManagementV1AuthenticationGithub {
             "name": "clientSecret",
             "baseName": "clientSecret",
             "type": "string",
-            "format": ""
-        },
-        {
-            "name": "clusterAccountTemplates",
-            "baseName": "clusterAccountTemplates",
-            "type": "Array<StorageV1UserClusterAccountTemplate>",
-            "format": ""
-        },
-        {
-            "name": "groupClusterAccountTemplates",
-            "baseName": "groupClusterAccountTemplates",
-            "type": "Array<ManagementV1AuthenticationGroupClusterAccountTemplate>",
             "format": ""
         },
         {

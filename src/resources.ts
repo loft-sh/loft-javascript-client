@@ -1,15 +1,7 @@
 import { StorageV1ClusterQuota } from "@gen/models/agentstorageV1ClusterQuota"
-import { StorageV1LocalUser } from "@gen/models/agentstorageV1LocalUser"
-import { StorageV1VirtualCluster } from "@gen/models/agentstorageV1VirtualCluster"
 import { ClusterV1ChartInfo } from "@gen/models/clusterV1ChartInfo"
-import { ClusterV1ClusterQuota } from "@gen/models/clusterV1ClusterQuota"
 import { ClusterV1HelmRelease } from "@gen/models/clusterV1HelmRelease"
-import { ClusterV1LocalClusterAccess } from "@gen/models/clusterV1LocalClusterAccess"
 import { ClusterV1SleepModeConfig } from "@gen/models/clusterV1SleepModeConfig"
-import { ClusterV1Space } from "@gen/models/clusterV1Space"
-import { ClusterV1VirtualCluster } from "@gen/models/clusterV1VirtualCluster"
-import { PolicyV1beta1JsPolicy } from "@gen/models/policyV1beta1JsPolicy"
-import { PolicyV1beta1JsPolicyViolations } from "@gen/models/policyV1beta1JsPolicyViolations"
 import { VirtualclusterV1HelmRelease } from "@gen/models/virtualclusterV1HelmRelease"
 import { GenResources, TGenResources } from "@gen/resources"
 import {
@@ -47,17 +39,9 @@ import {
 export const Resources: {
   ClusterV1SleepModeConfig: GroupVersionResource<ClusterV1SleepModeConfig>
   ClusterV1HelmRelease: GroupVersionResource<ClusterV1HelmRelease>
-  ClusterV1VirtualCluster: GroupVersionResource<ClusterV1VirtualCluster>
-  ClusterV1Space: GroupVersionResource<ClusterV1Space>
-  ClusterV1ClusterQuota: GroupVersionResource<ClusterV1ClusterQuota>
-  ClusterV1LocalClusterAccess: GroupVersionResource<ClusterV1LocalClusterAccess>
   ClusterV1ChartInfo: GroupVersionResource<ClusterV1ChartInfo>
   VirtualclusterV1HelmRelease: GroupVersionResource<VirtualclusterV1HelmRelease>
   CustomResourceDefinition: GroupVersionResource<V1CustomResourceDefinition>
-  PolicyV1beta1JsPolicy: GroupVersionResource<PolicyV1beta1JsPolicy>
-  PolicyV1beta1JsPolicyViolations: GroupVersionResource<PolicyV1beta1JsPolicyViolations>
-  StorageV1LocalUser: GroupVersionResource<StorageV1LocalUser>
-  StorageV1VirtualCluster: GroupVersionResource<StorageV1VirtualCluster>
   StorageV1ClusterQuota: GroupVersionResource<StorageV1ClusterQuota>
   NetworkingV1Ingress: GroupVersionResource<V1Ingress>
   V1StatefulSet: GroupVersionResource<V1StatefulSet>
@@ -86,37 +70,12 @@ export const Resources: {
     kind: "SleepModeConfig",
     namespaced: true,
   },
-  ClusterV1Space: {
-    group: LoftSchemeGroupCluster,
-    version: LoftSchemeVersionCluster,
-    resource: "spaces",
-    kind: "Space",
-  },
-  ClusterV1ClusterQuota: {
-    group: LoftSchemeGroupCluster,
-    version: LoftSchemeVersionCluster,
-    resource: "clusterquotas",
-    kind: "ClusterQuota",
-  },
   ClusterV1HelmRelease: {
     group: LoftSchemeGroupCluster,
     version: LoftSchemeVersionCluster,
     resource: "helmreleases",
     kind: "HelmRelease",
     namespaced: true,
-  },
-  ClusterV1VirtualCluster: {
-    group: LoftSchemeGroupCluster,
-    version: LoftSchemeVersionCluster,
-    resource: "virtualclusters",
-    kind: "VirtualCluster",
-    namespaced: true,
-  },
-  ClusterV1LocalClusterAccess: {
-    group: LoftSchemeGroupCluster,
-    version: LoftSchemeVersionCluster,
-    resource: "localclusteraccesses",
-    kind: "LocalClusterAccess",
   },
   ClusterV1ChartInfo: {
     group: LoftSchemeGroupCluster,
@@ -137,36 +96,11 @@ export const Resources: {
     resource: "customresourcedefinitions",
     kind: "CustomResourceDefinition",
   },
-  PolicyV1beta1JsPolicy: {
-    group: "policy.jspolicy.com",
-    version: "v1beta1",
-    resource: "jspolicies",
-    kind: "JsPolicy",
-  },
-  PolicyV1beta1JsPolicyViolations: {
-    group: "policy.jspolicy.com",
-    version: "v1beta1",
-    resource: "jspolicyviolations",
-    kind: "JsPolicyViolations",
-  },
-  StorageV1VirtualCluster: {
-    group: "storage.loft.sh",
-    version: LoftSchemeVersion,
-    resource: "virtualclusters",
-    kind: "VirtualCluster",
-    namespaced: true,
-  },
   StorageV1ClusterQuota: {
     group: "storage.loft.sh",
     version: LoftSchemeVersion,
     resource: "clusterquotas",
     kind: "ClusterQuota",
-  },
-  StorageV1LocalUser: {
-    group: "storage.loft.sh",
-    version: LoftSchemeVersion,
-    resource: "localusers",
-    kind: "LocalUser",
   },
   NetworkingV1Ingress: {
     group: "networking.k8s.io",

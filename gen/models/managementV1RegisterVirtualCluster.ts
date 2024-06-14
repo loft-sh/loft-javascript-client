@@ -10,14 +10,15 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1TeamSpec } from '../models/managementV1TeamSpec';
+import { ManagementV1RegisterVirtualClusterSpec } from '../models/managementV1RegisterVirtualClusterSpec';
+import { ManagementV1RegisterVirtualClusterStatus } from '../models/managementV1RegisterVirtualClusterStatus';
 import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
 /**
-* Team holds the team information
+* RegisterVirtualCluster holds config request and response data for virtual clusters
 */
-export class ManagementV1Team {
+export class ManagementV1RegisterVirtualCluster {
     /**
     * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
     */
@@ -27,8 +28,8 @@ export class ManagementV1Team {
     */
     'kind'?: string;
     'metadata'?: V1ObjectMeta;
-    'spec'?: ManagementV1TeamSpec;
-    'status'?: any;
+    'spec'?: ManagementV1RegisterVirtualClusterSpec;
+    'status'?: ManagementV1RegisterVirtualClusterStatus;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -54,18 +55,18 @@ export class ManagementV1Team {
         {
             "name": "spec",
             "baseName": "spec",
-            "type": "ManagementV1TeamSpec",
+            "type": "ManagementV1RegisterVirtualClusterSpec",
             "format": ""
         },
         {
             "name": "status",
             "baseName": "status",
-            "type": "any",
+            "type": "ManagementV1RegisterVirtualClusterStatus",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1Team.attributeTypeMap;
+        return ManagementV1RegisterVirtualCluster.attributeTypeMap;
     }
 
     public constructor() {

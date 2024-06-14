@@ -10,27 +10,24 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1EntityInfo } from '../models/storageV1EntityInfo';
+import { ClusterV1ProjectSecretRef } from '../models/clusterV1ProjectSecretRef';
 
 
-/**
-* ClusterRoleTemplateStatus holds the status
-*/
-export class ManagementV1ClusterRoleTemplateStatus {
-    'clusters'?: Array<StorageV1EntityInfo>;
+export class ClusterV1ChartSecretRef {
+    'projectSecretRef'?: ClusterV1ProjectSecretRef;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "clusters",
-            "baseName": "clusters",
-            "type": "Array<StorageV1EntityInfo>",
+            "name": "projectSecretRef",
+            "baseName": "projectSecretRef",
+            "type": "ClusterV1ProjectSecretRef",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1ClusterRoleTemplateStatus.attributeTypeMap;
+        return ClusterV1ChartSecretRef.attributeTypeMap;
     }
 
     public constructor() {

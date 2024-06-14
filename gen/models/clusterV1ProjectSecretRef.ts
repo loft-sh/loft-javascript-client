@@ -10,44 +10,46 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1AppReference } from '../models/storageV1AppReference';
 
 
-export class StorageV1AppTask {
-    'appReference'?: StorageV1AppReference;
+export class ClusterV1ProjectSecretRef {
     /**
-    * RollbackRevision is the revision to rollback to
+    * Key of the project secret to use.
     */
-    'rollbackRevision'?: string;
+    'key'?: string;
     /**
-    * Type is the task type. Defaults to Upgrade
+    * Name of the project secret to use.
     */
-    'type'?: string;
+    'name'?: string;
+    /**
+    * Project is the project name where the secret is located in.
+    */
+    'project'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "appReference",
-            "baseName": "appReference",
-            "type": "StorageV1AppReference",
-            "format": ""
-        },
-        {
-            "name": "rollbackRevision",
-            "baseName": "rollbackRevision",
+            "name": "key",
+            "baseName": "key",
             "type": "string",
             "format": ""
         },
         {
-            "name": "type",
-            "baseName": "type",
+            "name": "name",
+            "baseName": "name",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "project",
+            "baseName": "project",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1AppTask.attributeTypeMap;
+        return ClusterV1ProjectSecretRef.attributeTypeMap;
     }
 
     public constructor() {

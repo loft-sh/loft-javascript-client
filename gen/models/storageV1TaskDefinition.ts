@@ -12,15 +12,11 @@
 
 import { StorageV1AppTask } from '../models/storageV1AppTask';
 import { StorageV1HelmTask } from '../models/storageV1HelmTask';
-import { StorageV1SpaceCreationTask } from '../models/storageV1SpaceCreationTask';
-import { StorageV1VirtualClusterCreationTask } from '../models/storageV1VirtualClusterCreationTask';
 
 
 export class StorageV1TaskDefinition {
     'appTask'?: StorageV1AppTask;
     'helm'?: StorageV1HelmTask;
-    'spaceCreation'?: StorageV1SpaceCreationTask;
-    'virtualClusterCreation'?: StorageV1VirtualClusterCreationTask;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -35,18 +31,6 @@ export class StorageV1TaskDefinition {
             "name": "helm",
             "baseName": "helm",
             "type": "StorageV1HelmTask",
-            "format": ""
-        },
-        {
-            "name": "spaceCreation",
-            "baseName": "spaceCreation",
-            "type": "StorageV1SpaceCreationTask",
-            "format": ""
-        },
-        {
-            "name": "virtualClusterCreation",
-            "baseName": "virtualClusterCreation",
-            "type": "StorageV1VirtualClusterCreationTask",
             "format": ""
         }    ];
 

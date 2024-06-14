@@ -10,14 +10,14 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1AppReference } from '../models/agentstorageV1AppReference';
-import { StorageV1InstanceAccess } from '../models/agentstorageV1InstanceAccess';
-import { StorageV1TemplateHelmChart } from '../models/agentstorageV1TemplateHelmChart';
-import { StorageV1VirtualClusterAccessPoint } from '../models/agentstorageV1VirtualClusterAccessPoint';
-import { StorageV1VirtualClusterHelmRelease } from '../models/agentstorageV1VirtualClusterHelmRelease';
-import { StorageV1VirtualClusterProSpec } from '../models/agentstorageV1VirtualClusterProSpec';
+import { StorageV1AppReference } from '../models/storageV1AppReference';
+import { StorageV1InstanceAccess } from '../models/storageV1InstanceAccess';
+import { StorageV1TemplateHelmChart } from '../models/storageV1TemplateHelmChart';
 import { StorageV1TemplateMetadata } from '../models/storageV1TemplateMetadata';
+import { StorageV1VirtualClusterAccessPoint } from '../models/storageV1VirtualClusterAccessPoint';
+import { StorageV1VirtualClusterHelmRelease } from '../models/storageV1VirtualClusterHelmRelease';
 import { StorageV1VirtualClusterInstanceTemplateDefinition } from '../models/storageV1VirtualClusterInstanceTemplateDefinition';
+import { StorageV1VirtualClusterProSpec } from '../models/storageV1VirtualClusterProSpec';
 import { StorageV1VirtualClusterSpaceTemplateDefinition } from '../models/storageV1VirtualClusterSpaceTemplateDefinition';
 
 

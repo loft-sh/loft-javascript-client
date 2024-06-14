@@ -14,17 +14,37 @@
 
 export class StorageV1AccessKeyScopeRole {
     /**
+    * Projects specifies the projects the access key should have access to.
+    */
+    'projects'?: Array<string>;
+    /**
     * Role is the name of the role to apply to the access key scope.  Possible enum values:  - `\"agent\"`  - `\"loft-cli\"`  - `\"network-peer\"`  - `\"runner\"`  - `\"vcluster\"`
     */
     'role'?: StorageV1AccessKeyScopeRoleRoleEnum;
+    /**
+    * VirtualClusters specifies the virtual clusters the access key is allowed to access.
+    */
+    'virtualClusters'?: Array<string>;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
+            "name": "projects",
+            "baseName": "projects",
+            "type": "Array<string>",
+            "format": ""
+        },
+        {
             "name": "role",
             "baseName": "role",
             "type": "StorageV1AccessKeyScopeRoleRoleEnum",
+            "format": ""
+        },
+        {
+            "name": "virtualClusters",
+            "baseName": "virtualClusters",
+            "type": "Array<string>",
             "format": ""
         }    ];
 

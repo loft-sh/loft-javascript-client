@@ -13,24 +13,28 @@
 import { StorageV1EntityInfo } from '../models/storageV1EntityInfo';
 
 
-/**
-* ClusterRoleTemplateStatus holds the status
-*/
-export class ManagementV1ClusterRoleTemplateStatus {
-    'clusters'?: Array<StorageV1EntityInfo>;
+export class StorageV1UserOrTeamEntity {
+    'team'?: StorageV1EntityInfo;
+    'user'?: StorageV1EntityInfo;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "clusters",
-            "baseName": "clusters",
-            "type": "Array<StorageV1EntityInfo>",
+            "name": "team",
+            "baseName": "team",
+            "type": "StorageV1EntityInfo",
+            "format": ""
+        },
+        {
+            "name": "user",
+            "baseName": "user",
+            "type": "StorageV1EntityInfo",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1ClusterRoleTemplateStatus.attributeTypeMap;
+        return StorageV1UserOrTeamEntity.attributeTypeMap;
     }
 
     public constructor() {

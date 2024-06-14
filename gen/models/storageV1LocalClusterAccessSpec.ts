@@ -10,56 +10,39 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1Access } from '../models/storageV1Access';
 import { StorageV1ClusterRoleRef } from '../models/storageV1ClusterRoleRef';
-import { StorageV1KindSecretRef } from '../models/storageV1KindSecretRef';
 import { StorageV1UserOrTeam } from '../models/storageV1UserOrTeam';
 
 
-export class ManagementV1TeamSpec {
-    /**
-    * Access holds the access rights for users and teams
-    */
-    'access'?: Array<StorageV1Access>;
+export class StorageV1LocalClusterAccessSpec {
     /**
     * ClusterRoles define the cluster roles that the users should have assigned in the cluster.
     */
     'clusterRoles'?: Array<StorageV1ClusterRoleRef>;
     /**
-    * Description describes a cluster access object
+    * Description is the description of this object in human-readable text.
     */
     'description'?: string;
     /**
-    * The display name shown in the UI
+    * DisplayName is the name that should be shown in the UI
     */
     'displayName'?: string;
     /**
-    * The groups defined in a token that belong to a team
+    * Priority is a unique value that specifies the priority of this cluster access for the space constraints and quota. A higher priority means the cluster access object will override the space constraints of lower priority cluster access objects
     */
-    'groups'?: Array<string>;
+    'priority'?: number;
     /**
-    * ImagePullSecrets holds secret references to image pull secrets the team has access to.
+    * Teams are the teams affected by this cluster access object
     */
-    'imagePullSecrets'?: Array<StorageV1KindSecretRef>;
-    'owner'?: StorageV1UserOrTeam;
+    'teams'?: Array<string>;
     /**
-    * The username of the team that will be used for identification and docker registry namespace
+    * Users are the users affected by this cluster access object
     */
-    'username'?: string;
-    /**
-    * The loft users that belong to a team
-    */
-    'users'?: Array<string>;
+    'users'?: Array<StorageV1UserOrTeam>;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
-        {
-            "name": "access",
-            "baseName": "access",
-            "type": "Array<StorageV1Access>",
-            "format": ""
-        },
         {
             "name": "clusterRoles",
             "baseName": "clusterRoles",
@@ -79,38 +62,26 @@ export class ManagementV1TeamSpec {
             "format": ""
         },
         {
-            "name": "groups",
-            "baseName": "groups",
+            "name": "priority",
+            "baseName": "priority",
+            "type": "number",
+            "format": "int32"
+        },
+        {
+            "name": "teams",
+            "baseName": "teams",
             "type": "Array<string>",
-            "format": ""
-        },
-        {
-            "name": "imagePullSecrets",
-            "baseName": "imagePullSecrets",
-            "type": "Array<StorageV1KindSecretRef>",
-            "format": ""
-        },
-        {
-            "name": "owner",
-            "baseName": "owner",
-            "type": "StorageV1UserOrTeam",
-            "format": ""
-        },
-        {
-            "name": "username",
-            "baseName": "username",
-            "type": "string",
             "format": ""
         },
         {
             "name": "users",
             "baseName": "users",
-            "type": "Array<string>",
+            "type": "Array<StorageV1UserOrTeam>",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1TeamSpec.attributeTypeMap;
+        return StorageV1LocalClusterAccessSpec.attributeTypeMap;
     }
 
     public constructor() {

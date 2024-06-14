@@ -10,27 +10,34 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1EntityInfo } from '../models/storageV1EntityInfo';
+import { StorageV1VirtualClusterHelmChart } from '../models/storageV1VirtualClusterHelmChart';
 
 
-/**
-* ClusterRoleTemplateStatus holds the status
-*/
-export class ManagementV1ClusterRoleTemplateStatus {
-    'clusters'?: Array<StorageV1EntityInfo>;
+export class StorageV1VirtualClusterHelmRelease {
+    'chart'?: StorageV1VirtualClusterHelmChart;
+    /**
+    * the values for the given chart
+    */
+    'values'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "clusters",
-            "baseName": "clusters",
-            "type": "Array<StorageV1EntityInfo>",
+            "name": "chart",
+            "baseName": "chart",
+            "type": "StorageV1VirtualClusterHelmChart",
+            "format": ""
+        },
+        {
+            "name": "values",
+            "baseName": "values",
+            "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1ClusterRoleTemplateStatus.attributeTypeMap;
+        return StorageV1VirtualClusterHelmRelease.attributeTypeMap;
     }
 
     public constructor() {

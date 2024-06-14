@@ -12,7 +12,7 @@
 
 import { ClusterV1SleepModeConfig } from '../models/clusterV1SleepModeConfig';
 import { StorageV1Condition } from '../models/agentstorageV1Condition';
-import { StorageV1ObjectsStatus } from '../models/agentstorageV1ObjectsStatus';
+import { StorageV1ObjectsStatus } from '../models/storageV1ObjectsStatus';
 import { StorageV1SpaceTemplateDefinition } from '../models/storageV1SpaceTemplateDefinition';
 
 

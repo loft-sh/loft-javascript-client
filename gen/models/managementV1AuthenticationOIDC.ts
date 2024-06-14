@@ -10,8 +10,6 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1AuthenticationGroupClusterAccountTemplate } from '../models/managementV1AuthenticationGroupClusterAccountTemplate';
-import { StorageV1UserClusterAccountTemplate } from '../models/storageV1UserClusterAccountTemplate';
 
 
 export class ManagementV1AuthenticationOIDC {
@@ -28,10 +26,6 @@ export class ManagementV1AuthenticationOIDC {
     */
     'clientSecret'?: string;
     /**
-    * Cluster Account Templates that will be applied for users logging in through this authentication
-    */
-    'clusterAccountTemplates'?: Array<StorageV1UserClusterAccountTemplate>;
-    /**
     * EmailClaim is the JWT field to use as the user\'s email.
     */
     'emailClaim'?: string;
@@ -39,10 +33,6 @@ export class ManagementV1AuthenticationOIDC {
     * GetUserInfo, if specified, tells the OIDCAuthenticator to try to populate the user\'s information from the UserInfo.
     */
     'getUserInfo'?: boolean;
-    /**
-    * A mapping between groups and cluster account templates. If the user has a certain group, the cluster account template will be added during creation
-    */
-    'groupClusterAccountTemplates'?: Array<ManagementV1AuthenticationGroupClusterAccountTemplate>;
     /**
     * If required groups is non empty, access is denied if the user is not part of at least one of the specified groups.
     */
@@ -118,12 +108,6 @@ export class ManagementV1AuthenticationOIDC {
             "format": ""
         },
         {
-            "name": "clusterAccountTemplates",
-            "baseName": "clusterAccountTemplates",
-            "type": "Array<StorageV1UserClusterAccountTemplate>",
-            "format": ""
-        },
-        {
             "name": "emailClaim",
             "baseName": "emailClaim",
             "type": "string",
@@ -133,12 +117,6 @@ export class ManagementV1AuthenticationOIDC {
             "name": "getUserInfo",
             "baseName": "getUserInfo",
             "type": "boolean",
-            "format": ""
-        },
-        {
-            "name": "groupClusterAccountTemplates",
-            "baseName": "groupClusterAccountTemplates",
-            "type": "Array<ManagementV1AuthenticationGroupClusterAccountTemplate>",
             "format": ""
         },
         {

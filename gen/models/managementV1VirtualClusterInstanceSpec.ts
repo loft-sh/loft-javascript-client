@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1InstanceAccessRule } from '../models/agentstorageV1InstanceAccessRule';
 import { StorageV1Access } from '../models/storageV1Access';
+import { StorageV1InstanceAccessRule } from '../models/storageV1InstanceAccessRule';
 import { StorageV1TemplateRef } from '../models/storageV1TemplateRef';
 import { StorageV1UserOrTeam } from '../models/storageV1UserOrTeam';
 import { StorageV1VirtualClusterClusterRef } from '../models/storageV1VirtualClusterClusterRef';
@@ -36,11 +36,15 @@ export class ManagementV1VirtualClusterInstanceSpec {
     */
     'displayName'?: string;
     /**
+    * External specifies if the virtual cluster is managed by the platform agent or externally.
+    */
+    'external'?: boolean;
+    /**
     * ExtraAccessRules defines extra rules which users and teams should have which access to the virtual cluster.
     */
     'extraAccessRules'?: Array<StorageV1InstanceAccessRule>;
     /**
-    * NetworkPeer specifies if the cluster is connected via tailscale. When this is specified, the vCluster will not be scheduled to any connected cluster and no templates will be applied to it.
+    * NetworkPeer specifies if the cluster is connected via tailscale.
     */
     'networkPeer'?: boolean;
     'owner'?: StorageV1UserOrTeam;
@@ -76,6 +80,12 @@ export class ManagementV1VirtualClusterInstanceSpec {
             "name": "displayName",
             "baseName": "displayName",
             "type": "string",
+            "format": ""
+        },
+        {
+            "name": "external",
+            "baseName": "external",
+            "type": "boolean",
             "format": ""
         },
         {

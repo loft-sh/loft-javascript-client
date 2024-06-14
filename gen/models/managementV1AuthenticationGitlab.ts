@@ -10,8 +10,6 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1AuthenticationGroupClusterAccountTemplate } from '../models/managementV1AuthenticationGroupClusterAccountTemplate';
-import { StorageV1UserClusterAccountTemplate } from '../models/storageV1UserClusterAccountTemplate';
 
 
 export class ManagementV1AuthenticationGitlab {
@@ -27,14 +25,6 @@ export class ManagementV1AuthenticationGitlab {
     * Gitlab client secret
     */
     'clientSecret': string;
-    /**
-    * Cluster Account Templates that will be applied for users logging in through this authentication
-    */
-    'clusterAccountTemplates'?: Array<StorageV1UserClusterAccountTemplate>;
-    /**
-    * A mapping between groups and cluster account templates. If the user has a certain group, the cluster account template will be added during creation
-    */
-    'groupClusterAccountTemplates'?: Array<ManagementV1AuthenticationGroupClusterAccountTemplate>;
     /**
     * Optional groups whitelist, communicated through the \"groups\" scope. If `groups` is omitted, all of the user\'s GitLab groups are returned. If `groups` is provided, this acts as a whitelist - only the user\'s GitLab groups that are in the configured `groups` below will go into the groups claim. Conversely, if the user is not in any of the configured `groups`, the user will not be authenticated.
     */
@@ -63,18 +53,6 @@ export class ManagementV1AuthenticationGitlab {
             "name": "clientSecret",
             "baseName": "clientSecret",
             "type": "string",
-            "format": ""
-        },
-        {
-            "name": "clusterAccountTemplates",
-            "baseName": "clusterAccountTemplates",
-            "type": "Array<StorageV1UserClusterAccountTemplate>",
-            "format": ""
-        },
-        {
-            "name": "groupClusterAccountTemplates",
-            "baseName": "groupClusterAccountTemplates",
-            "type": "Array<ManagementV1AuthenticationGroupClusterAccountTemplate>",
             "format": ""
         },
         {

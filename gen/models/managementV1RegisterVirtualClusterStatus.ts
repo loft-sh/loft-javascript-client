@@ -10,27 +10,29 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1EntityInfo } from '../models/storageV1EntityInfo';
 
 
 /**
-* ClusterRoleTemplateStatus holds the status
+* RegisterVirtualClusterStatus holds the status
 */
-export class ManagementV1ClusterRoleTemplateStatus {
-    'clusters'?: Array<StorageV1EntityInfo>;
+export class ManagementV1RegisterVirtualClusterStatus {
+    /**
+    * Name is the actual name of the virtual cluster instance.
+    */
+    'name'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "clusters",
-            "baseName": "clusters",
-            "type": "Array<StorageV1EntityInfo>",
+            "name": "name",
+            "baseName": "name",
+            "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1ClusterRoleTemplateStatus.attributeTypeMap;
+        return ManagementV1RegisterVirtualClusterStatus.attributeTypeMap;
     }
 
     public constructor() {

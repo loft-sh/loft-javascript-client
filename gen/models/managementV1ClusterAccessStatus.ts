@@ -10,18 +10,17 @@
  * Do not edit the class manually.
  */
 
-import { ClusterV1EntityInfo } from '../models/clusterV1EntityInfo';
-import { ClusterV1UserOrTeam } from '../models/clusterV1UserOrTeam';
+import { StorageV1EntityInfo } from '../models/storageV1EntityInfo';
+import { StorageV1UserOrTeamEntity } from '../models/storageV1UserOrTeamEntity';
 
 
 /**
 * ClusterAccessStatus holds the status
 */
 export class ManagementV1ClusterAccessStatus {
-    'clusters'?: Array<ClusterV1EntityInfo>;
-    'spaceConstraint'?: ClusterV1EntityInfo;
-    'teams'?: Array<ClusterV1EntityInfo>;
-    'users'?: Array<ClusterV1UserOrTeam>;
+    'clusters'?: Array<StorageV1EntityInfo>;
+    'teams'?: Array<StorageV1EntityInfo>;
+    'users'?: Array<StorageV1UserOrTeamEntity>;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -29,25 +28,19 @@ export class ManagementV1ClusterAccessStatus {
         {
             "name": "clusters",
             "baseName": "clusters",
-            "type": "Array<ClusterV1EntityInfo>",
-            "format": ""
-        },
-        {
-            "name": "spaceConstraint",
-            "baseName": "spaceConstraint",
-            "type": "ClusterV1EntityInfo",
+            "type": "Array<StorageV1EntityInfo>",
             "format": ""
         },
         {
             "name": "teams",
             "baseName": "teams",
-            "type": "Array<ClusterV1EntityInfo>",
+            "type": "Array<StorageV1EntityInfo>",
             "format": ""
         },
         {
             "name": "users",
             "baseName": "users",
-            "type": "Array<ClusterV1UserOrTeam>",
+            "type": "Array<StorageV1UserOrTeamEntity>",
             "format": ""
         }    ];
 

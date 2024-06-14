@@ -10,11 +10,11 @@
  * Do not edit the class manually.
  */
 
-import { ClusterV1EntityInfo } from '../models/clusterV1EntityInfo';
+import { StorageV1EntityInfo } from '../models/storageV1EntityInfo';
 
 
 export class ManagementV1ClusterMember {
-    'info'?: ClusterV1EntityInfo;
+    'info'?: StorageV1EntityInfo;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -22,7 +22,7 @@ export class ManagementV1ClusterMember {
         {
             "name": "info",
             "baseName": "info",
-            "type": "ClusterV1EntityInfo",
+            "type": "StorageV1EntityInfo",
             "format": ""
         }    ];
 

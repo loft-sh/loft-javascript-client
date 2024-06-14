@@ -11,24 +11,22 @@
  */
 
 import { StorageV1AppReference } from '../models/storageV1AppReference';
-import { StorageV1TemplateHelmChart } from '../models/storageV1TemplateHelmChart';
-import { StorageV1TemplateMetadata } from '../models/storageV1TemplateMetadata';
+import { StorageV1ChartStatus } from '../models/storageV1ChartStatus';
 
 
-export class StorageV1VirtualClusterSpaceTemplateDefinition {
+export class StorageV1ObjectsStatus {
     /**
-    * Apps specifies the apps that should get deployed by this template
+    * Apps are the apps that were applied
     */
     'apps'?: Array<StorageV1AppReference>;
     /**
-    * Charts are helm charts that should get deployed
+    * Charts are the charts that were applied
     */
-    'charts'?: Array<StorageV1TemplateHelmChart>;
-    'metadata'?: StorageV1TemplateMetadata;
+    'charts'?: Array<StorageV1ChartStatus>;
     /**
-    * Objects are Kubernetes style yamls that should get deployed into the virtual cluster namespace
+    * LastAppliedObjects holds the status for the objects that were applied
     */
-    'objects'?: string;
+    'lastAppliedObjects'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -42,24 +40,18 @@ export class StorageV1VirtualClusterSpaceTemplateDefinition {
         {
             "name": "charts",
             "baseName": "charts",
-            "type": "Array<StorageV1TemplateHelmChart>",
+            "type": "Array<StorageV1ChartStatus>",
             "format": ""
         },
         {
-            "name": "metadata",
-            "baseName": "metadata",
-            "type": "StorageV1TemplateMetadata",
-            "format": ""
-        },
-        {
-            "name": "objects",
-            "baseName": "objects",
+            "name": "lastAppliedObjects",
+            "baseName": "lastAppliedObjects",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1VirtualClusterSpaceTemplateDefinition.attributeTypeMap;
+        return StorageV1ObjectsStatus.attributeTypeMap;
     }
 
     public constructor() {
