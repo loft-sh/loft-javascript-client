@@ -13477,6 +13477,81 @@ declare class ManagementV1Team {
 	}[];
 	constructor();
 }
+declare class ManagementV1TranslateVClusterResourceNameSpec {
+	/**
+	* Name is the name of resource we want to rename
+	*/
+	"name": string;
+	/**
+	* Namespace is the name of namespace in which this resource is running
+	*/
+	"namespace": string;
+	/**
+	* VClusterName is the name of vCluster in which this resource is running
+	*/
+	"vclusterName": string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1TranslateVClusterResourceNameStatus {
+	/**
+	* Name is the converted name of resource
+	*/
+	"name"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1TranslateVClusterResourceName {
+	/**
+	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	*/
+	"apiVersion"?: string;
+	/**
+	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	*/
+	"kind"?: string;
+	"metadata"?: V1ObjectMeta;
+	"spec"?: ManagementV1TranslateVClusterResourceNameSpec;
+	"status"?: ManagementV1TranslateVClusterResourceNameStatus;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
 declare class ManagementV1UserAccessKeys {
 	"accessKeys"?: Array<ManagementV1OwnedAccessKey>;
 	/**
@@ -14109,6 +14184,7 @@ export type TGenResources = {
 	ManagementV1Team: GroupVersionResource<ManagementV1Team>;
 	ManagementV1TeamAccessKeys: GroupVersionResource<ManagementV1TeamAccessKeys>;
 	ManagementV1TeamClusters: GroupVersionResource<ManagementV1TeamClusters>;
+	ManagementV1TranslateVClusterResourceName: GroupVersionResource<ManagementV1TranslateVClusterResourceName>;
 	ManagementV1User: GroupVersionResource<ManagementV1User>;
 	ManagementV1UserAccessKeys: GroupVersionResource<ManagementV1UserAccessKeys>;
 	ManagementV1UserClusters: GroupVersionResource<ManagementV1UserClusters>;

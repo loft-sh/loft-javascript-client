@@ -59,6 +59,7 @@ import {ManagementV1Task} from "./models/managementV1Task"
 import {ManagementV1TeamAccessKeys} from "./models/managementV1TeamAccessKeys"
 import {ManagementV1TeamClusters} from "./models/managementV1TeamClusters"
 import {ManagementV1Team} from "./models/managementV1Team"
+import {ManagementV1TranslateVClusterResourceName} from "./models/managementV1TranslateVClusterResourceName"
 import {ManagementV1UserAccessKeys} from "./models/managementV1UserAccessKeys"
 import {ManagementV1UserClusters} from "./models/managementV1UserClusters"
 import {ManagementV1UserPermissions} from "./models/managementV1UserPermissions"
@@ -130,6 +131,7 @@ export type TGenResources = {
   ManagementV1Team: GroupVersionResource<ManagementV1Team>
   ManagementV1TeamAccessKeys: GroupVersionResource<ManagementV1TeamAccessKeys>
   ManagementV1TeamClusters: GroupVersionResource<ManagementV1TeamClusters>
+  ManagementV1TranslateVClusterResourceName: GroupVersionResource<ManagementV1TranslateVClusterResourceName>
   ManagementV1User: GroupVersionResource<ManagementV1User>
   ManagementV1UserAccessKeys: GroupVersionResource<ManagementV1UserAccessKeys>
   ManagementV1UserClusters: GroupVersionResource<ManagementV1UserClusters>
@@ -490,7 +492,7 @@ export const GenResources: TGenResources = {
   ManagementV1RegisterVirtualCluster: {
     group: "management.loft.sh",
     version: "v1",
-    resource: "registervirtualcluster",
+    resource: "registervirtualclusters",
     subResource: "",
     namespaced: false,
     kind: "RegisterVirtualCluster",
@@ -614,6 +616,14 @@ export const GenResources: TGenResources = {
     subResource: "clusters",
     namespaced: false,
     kind: "TeamClusters",
+  },
+  ManagementV1TranslateVClusterResourceName: {
+    group: "management.loft.sh",
+    version: "v1",
+    resource: "translatevclusterresourcenames",
+    subResource: "",
+    namespaced: false,
+    kind: "TranslateVClusterResourceName",
   },
   ManagementV1User: {
     group: "management.loft.sh",
