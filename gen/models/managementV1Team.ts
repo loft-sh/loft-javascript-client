@@ -11,6 +11,7 @@
  */
 
 import { ManagementV1TeamSpec } from '../models/managementV1TeamSpec';
+import { ManagementV1TeamStatus } from '../models/managementV1TeamStatus';
 import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
@@ -28,7 +29,7 @@ export class ManagementV1Team {
     'kind'?: string;
     'metadata'?: V1ObjectMeta;
     'spec'?: ManagementV1TeamSpec;
-    'status'?: any;
+    'status'?: ManagementV1TeamStatus;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -60,7 +61,7 @@ export class ManagementV1Team {
         {
             "name": "status",
             "baseName": "status",
-            "type": "any",
+            "type": "ManagementV1TeamStatus",
             "format": ""
         }    ];
 

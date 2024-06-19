@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1EntityInfo } from '../models/storageV1EntityInfo';
+import { ClusterV1EntityInfo } from '../models/clusterV1EntityInfo';
 
 
 export class ManagementV1UserInfo {
@@ -37,7 +37,7 @@ export class ManagementV1UserInfo {
     /**
     * Teams are the teams the user is part of
     */
-    'teams'?: Array<StorageV1EntityInfo>;
+    'teams'?: Array<ClusterV1EntityInfo>;
     /**
     * The username that is used to login
     */
@@ -79,7 +79,7 @@ export class ManagementV1UserInfo {
         {
             "name": "teams",
             "baseName": "teams",
-            "type": "Array<StorageV1EntityInfo>",
+            "type": "Array<ClusterV1EntityInfo>",
             "format": ""
         },
         {

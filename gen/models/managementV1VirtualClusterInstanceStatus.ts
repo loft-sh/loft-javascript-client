@@ -12,7 +12,7 @@
 
 import { ClusterV1SleepModeConfig } from '../models/clusterV1SleepModeConfig';
 import { StorageV1Condition } from '../models/agentstorageV1Condition';
-import { StorageV1ObjectsStatus } from '../models/storageV1ObjectsStatus';
+import { StorageV1ObjectsStatus } from '../models/agentstorageV1ObjectsStatus';
 import { StorageV1VirtualClusterTemplateDefinition } from '../models/storageV1VirtualClusterTemplateDefinition';
 
 
@@ -33,10 +33,6 @@ export class ManagementV1VirtualClusterInstanceStatus {
     */
     'conditions'?: Array<StorageV1Condition>;
     /**
-    * DeployHash is the hash of the last deployed values.
-    */
-    'deployHash'?: string;
-    /**
     * IgnoreReconciliation tells the controller to ignore reconciliation for this instance -- this is primarily used when migrating virtual cluster instances from project to project; this prevents a situation where there are two virtual cluster instances representing the same virtual cluster which could cause issues with concurrent reconciliations of the same object. Once the virtual cluster instance has been cloned and placed into the new project, this (the \"old\") virtual cluster instance can safely be deleted.
     */
     'ignoreReconciliation'?: boolean;
@@ -45,10 +41,6 @@ export class ManagementV1VirtualClusterInstanceStatus {
     */
     'message'?: string;
     /**
-    * Online specifies if there is at least one network peer available for an agentless vCluster.
-    */
-    'online'?: boolean;
-    /**
     * Phase describes the current phase the virtual cluster instance is in
     */
     'phase'?: string;
@@ -56,14 +48,11 @@ export class ManagementV1VirtualClusterInstanceStatus {
     * Reason describes the reason in machine-readable form why the cluster is in the current phase
     */
     'reason'?: string;
-    /**
-    * ServiceUID is the service uid of the virtual cluster to uniquely identify it.
-    */
-    'serviceUID'?: string;
     'sleepModeConfig'?: ClusterV1SleepModeConfig;
     'spaceObjects'?: StorageV1ObjectsStatus;
     'virtualCluster'?: StorageV1VirtualClusterTemplateDefinition;
     'virtualClusterObjects'?: StorageV1ObjectsStatus;
+    'workloadSpaceObjects'?: StorageV1ObjectsStatus;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -87,12 +76,6 @@ export class ManagementV1VirtualClusterInstanceStatus {
             "format": ""
         },
         {
-            "name": "deployHash",
-            "baseName": "deployHash",
-            "type": "string",
-            "format": ""
-        },
-        {
             "name": "ignoreReconciliation",
             "baseName": "ignoreReconciliation",
             "type": "boolean",
@@ -105,12 +88,6 @@ export class ManagementV1VirtualClusterInstanceStatus {
             "format": ""
         },
         {
-            "name": "online",
-            "baseName": "online",
-            "type": "boolean",
-            "format": ""
-        },
-        {
             "name": "phase",
             "baseName": "phase",
             "type": "string",
@@ -119,12 +96,6 @@ export class ManagementV1VirtualClusterInstanceStatus {
         {
             "name": "reason",
             "baseName": "reason",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "serviceUID",
-            "baseName": "serviceUID",
             "type": "string",
             "format": ""
         },
@@ -149,6 +120,12 @@ export class ManagementV1VirtualClusterInstanceStatus {
         {
             "name": "virtualClusterObjects",
             "baseName": "virtualClusterObjects",
+            "type": "StorageV1ObjectsStatus",
+            "format": ""
+        },
+        {
+            "name": "workloadSpaceObjects",
+            "baseName": "workloadSpaceObjects",
             "type": "StorageV1ObjectsStatus",
             "format": ""
         }    ];
