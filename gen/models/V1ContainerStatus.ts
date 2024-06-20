@@ -12,7 +12,6 @@
 
 import { V1ContainerState } from '../models/V1ContainerState';
 import { V1ResourceRequirements } from '../models/V1ResourceRequirements';
-import { V1VolumeMountStatus } from '../models/V1VolumeMountStatus';
 
 
 /**
@@ -54,10 +53,6 @@ export class V1ContainerStatus {
     */
     'started'?: boolean;
     'state'?: V1ContainerState;
-    /**
-    * Status of volume mounts.
-    */
-    'volumeMounts'?: Array<V1VolumeMountStatus>;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -126,12 +121,6 @@ export class V1ContainerStatus {
             "name": "state",
             "baseName": "state",
             "type": "V1ContainerState",
-            "format": ""
-        },
-        {
-            "name": "volumeMounts",
-            "baseName": "volumeMounts",
-            "type": "Array<V1VolumeMountStatus>",
             "format": ""
         }    ];
 
