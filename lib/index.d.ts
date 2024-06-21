@@ -5345,6 +5345,12 @@ declare class StorageV1DevPodWorkspaceTemplateDefinition {
 	* GitCloneStrategy specifies how git based workspace are being cloned. Can be \"\" (full, default), treeless, blobless or shallow  Possible enum values:  - `\"\"`  - `\"blobless\"`  - `\"shallow\"`  - `\"treeless\"`
 	*/
 	"gitCloneStrategy"?: StorageV1DevPodWorkspaceTemplateDefinitionGitCloneStrategyEnum;
+	/**
+	* InitEnv are environment variables that should be available during the initialization phase of the created workspace.
+	*/
+	"initEnv"?: {
+		[key: string]: StorageV1DevPodProviderOption;
+	};
 	"instanceTemplate"?: StorageV1DevPodWorkspaceInstanceTemplateDefinition;
 	"provider": StorageV1DevPodWorkspaceProvider;
 	"spaceTemplate"?: StorageV1SpaceTemplateDefinition;
