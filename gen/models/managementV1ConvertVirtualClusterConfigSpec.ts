@@ -17,6 +17,10 @@
 */
 export class ManagementV1ConvertVirtualClusterConfigSpec {
     /**
+    * Annotations are annotations on the virtual cluster
+    */
+    'annotations'?: { [key: string]: string; };
+    /**
     * Distro is the distro to be used for the config
     */
     'distro'?: string;
@@ -28,6 +32,12 @@ export class ManagementV1ConvertVirtualClusterConfigSpec {
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+        {
+            "name": "annotations",
+            "baseName": "annotations",
+            "type": "{ [key: string]: string; }",
+            "format": ""
+        },
         {
             "name": "distro",
             "baseName": "distro",

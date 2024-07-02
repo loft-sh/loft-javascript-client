@@ -5074,6 +5074,12 @@ declare class ManagementV1Config {
 }
 declare class ManagementV1ConvertVirtualClusterConfigSpec {
 	/**
+	* Annotations are annotations on the virtual cluster
+	*/
+	"annotations"?: {
+		[key: string]: string;
+	};
+	/**
 	* Distro is the distro to be used for the config
 	*/
 	"distro"?: string;
