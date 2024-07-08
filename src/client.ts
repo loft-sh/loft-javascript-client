@@ -600,10 +600,12 @@ class Client {
           ...headers,
           Authorization: "bearer " + requestToken,
           "X-Sleep-Mode-Ignore": "true",
+          "X-Platform-Client": "true",
         })
       : new Headers({
           ...headers,
           "X-Sleep-Mode-Ignore": "true",
+          "X-Platform-Client": "true",
         })
 
     // merge headers
