@@ -12,11 +12,13 @@
 
 import { StorageV1TargetCluster } from '../models/storageV1TargetCluster';
 import { StorageV1TargetInstance } from '../models/storageV1TargetInstance';
+import { StorageV1TargetVirtualCluster } from '../models/storageV1TargetVirtualCluster';
 
 
 export class StorageV1Target {
     'cluster'?: StorageV1TargetCluster;
     'spaceInstance'?: StorageV1TargetInstance;
+    'virtualCluster'?: StorageV1TargetVirtualCluster;
     'virtualClusterInstance'?: StorageV1TargetInstance;
 
     static readonly discriminator: string | undefined = undefined;
@@ -32,6 +34,12 @@ export class StorageV1Target {
             "name": "spaceInstance",
             "baseName": "spaceInstance",
             "type": "StorageV1TargetInstance",
+            "format": ""
+        },
+        {
+            "name": "virtualCluster",
+            "baseName": "virtualCluster",
+            "type": "StorageV1TargetVirtualCluster",
             "format": ""
         },
         {

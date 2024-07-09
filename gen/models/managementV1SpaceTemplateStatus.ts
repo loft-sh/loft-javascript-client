@@ -10,14 +10,14 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1EntityInfo } from '../models/storageV1EntityInfo';
+import { ClusterV1EntityInfo } from '../models/clusterV1EntityInfo';
 
 
 /**
 * SpaceTemplateStatus holds the status
 */
 export class ManagementV1SpaceTemplateStatus {
-    'apps'?: Array<StorageV1EntityInfo>;
+    'apps'?: Array<ClusterV1EntityInfo>;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -25,7 +25,7 @@ export class ManagementV1SpaceTemplateStatus {
         {
             "name": "apps",
             "baseName": "apps",
-            "type": "Array<StorageV1EntityInfo>",
+            "type": "Array<ClusterV1EntityInfo>",
             "format": ""
         }    ];
 

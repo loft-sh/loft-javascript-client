@@ -10,12 +10,22 @@
  * Do not edit the class manually.
  */
 
+import { StorageV1AccountClusterStatus } from '../models/storageV1AccountClusterStatus';
+import { StorageV1UserClusterAccountTemplateStatus } from '../models/storageV1UserClusterAccountTemplateStatus';
 
 
 /**
 * UserStatus holds the status of an user
 */
 export class ManagementV1UserStatus {
+    /**
+    * ClusterAccountTemplates holds information about which cluster account templates were applied DEPRECATED: Use status.clusters instead
+    */
+    'clusterAccountTemplates'?: Array<StorageV1UserClusterAccountTemplateStatus>;
+    /**
+    * Clusters holds information about which clusters the user has accounts in
+    */
+    'clusters'?: Array<StorageV1AccountClusterStatus>;
     /**
     * Teams the user is currently part of
     */
@@ -24,6 +34,18 @@ export class ManagementV1UserStatus {
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+        {
+            "name": "clusterAccountTemplates",
+            "baseName": "clusterAccountTemplates",
+            "type": "Array<StorageV1UserClusterAccountTemplateStatus>",
+            "format": ""
+        },
+        {
+            "name": "clusters",
+            "baseName": "clusters",
+            "type": "Array<StorageV1AccountClusterStatus>",
+            "format": ""
+        },
         {
             "name": "teams",
             "baseName": "teams",

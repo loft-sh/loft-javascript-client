@@ -25,7 +25,7 @@ export class V1ResourceQuotaSpec {
     /**
     * A collection of filters that must match each object tracked by a quota. If not specified, the quota matches all objects.
     */
-    'scopes'?: Array<V1ResourceQuotaSpecScopesEnum>;
+    'scopes'?: Array<string>;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -45,7 +45,7 @@ export class V1ResourceQuotaSpec {
         {
             "name": "scopes",
             "baseName": "scopes",
-            "type": "Array<V1ResourceQuotaSpecScopesEnum>",
+            "type": "Array<string>",
             "format": ""
         }    ];
 
@@ -55,15 +55,5 @@ export class V1ResourceQuotaSpec {
 
     public constructor() {
     }
-}
-
-
-export enum V1ResourceQuotaSpecScopesEnum {
-    BestEffort = 'BestEffort',
-    CrossNamespacePodAffinity = 'CrossNamespacePodAffinity',
-    NotBestEffort = 'NotBestEffort',
-    NotTerminating = 'NotTerminating',
-    PriorityClass = 'PriorityClass',
-    Terminating = 'Terminating'
 }
 

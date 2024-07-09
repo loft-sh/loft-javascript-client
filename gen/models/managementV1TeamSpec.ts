@@ -10,9 +10,10 @@
  * Do not edit the class manually.
  */
 
+import { StorageV1ClusterRoleRef } from '../models/agentstorageV1ClusterRoleRef';
 import { StorageV1Access } from '../models/storageV1Access';
-import { StorageV1ClusterRoleRef } from '../models/storageV1ClusterRoleRef';
 import { StorageV1KindSecretRef } from '../models/storageV1KindSecretRef';
+import { StorageV1UserClusterAccountTemplate } from '../models/storageV1UserClusterAccountTemplate';
 import { StorageV1UserOrTeam } from '../models/storageV1UserOrTeam';
 
 
@@ -21,6 +22,10 @@ export class ManagementV1TeamSpec {
     * Access holds the access rights for users and teams
     */
     'access'?: Array<StorageV1Access>;
+    /**
+    * ClusterAccountTemplates that should be applied for the user
+    */
+    'clusterAccountTemplates'?: Array<StorageV1UserClusterAccountTemplate>;
     /**
     * ClusterRoles define the cluster roles that the users should have assigned in the cluster.
     */
@@ -58,6 +63,12 @@ export class ManagementV1TeamSpec {
             "name": "access",
             "baseName": "access",
             "type": "Array<StorageV1Access>",
+            "format": ""
+        },
+        {
+            "name": "clusterAccountTemplates",
+            "baseName": "clusterAccountTemplates",
+            "type": "Array<StorageV1UserClusterAccountTemplate>",
             "format": ""
         },
         {
