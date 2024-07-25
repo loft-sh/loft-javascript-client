@@ -41,10 +41,6 @@ export class ManagementV1Authentication {
     * Prevents from team creation for the new groups associated with the user at the time of logging in through sso, Default behaviour is false, this means that teams will be created for new groups.
     */
     'disableTeamCreation'?: boolean;
-    /**
-    * DisableUserCreation prevents the SSO connectors from creating a new user on a users initial signin through sso. Default behaviour is false, this means that a new user object will be created once a user without a Kubernetes user object logs in.
-    */
-    'disableUserCreation'?: boolean;
     'github'?: ManagementV1AuthenticationGithub;
     'gitlab'?: ManagementV1AuthenticationGitlab;
     'google'?: ManagementV1AuthenticationGoogle;
@@ -82,12 +78,6 @@ export class ManagementV1Authentication {
         {
             "name": "disableTeamCreation",
             "baseName": "disableTeamCreation",
-            "type": "boolean",
-            "format": ""
-        },
-        {
-            "name": "disableUserCreation",
-            "baseName": "disableUserCreation",
             "type": "boolean",
             "format": ""
         },

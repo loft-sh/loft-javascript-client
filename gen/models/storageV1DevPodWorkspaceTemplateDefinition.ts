@@ -11,33 +11,18 @@
  */
 
 import { StorageV1DevPodProviderOption } from '../models/storageV1DevPodProviderOption';
-import { StorageV1DevPodWorkspaceInstanceTemplateDefinition } from '../models/storageV1DevPodWorkspaceInstanceTemplateDefinition';
 import { StorageV1DevPodWorkspaceProvider } from '../models/storageV1DevPodWorkspaceProvider';
-import { StorageV1SpaceTemplateDefinition } from '../models/storageV1SpaceTemplateDefinition';
 import { StorageV1TemplateRef } from '../models/storageV1TemplateRef';
 
 
 export class StorageV1DevPodWorkspaceTemplateDefinition {
-    /**
-    * GitCloneStrategy specifies how git based workspace are being cloned. Can be \"\" (full, default), treeless, blobless or shallow  Possible enum values:  - `\"\"`  - `\"blobless\"`  - `\"shallow\"`  - `\"treeless\"`
-    */
-    'gitCloneStrategy'?: StorageV1DevPodWorkspaceTemplateDefinitionGitCloneStrategyEnum;
-    /**
-    * InitEnv are environment variables that should be available during the initialization phase of the created workspace.
-    */
-    'initEnv'?: { [key: string]: StorageV1DevPodProviderOption; };
-    'instanceTemplate'?: StorageV1DevPodWorkspaceInstanceTemplateDefinition;
     'provider': StorageV1DevPodWorkspaceProvider;
-    'spaceTemplate'?: StorageV1SpaceTemplateDefinition;
-    'spaceTemplateRef'?: StorageV1TemplateRef;
+    'spaceTemplate'?: StorageV1TemplateRef;
     /**
     * UseProjectGitCredentials specifies if the project git credentials should be used instead of local ones for this workspace
     */
     'useProjectGitCredentials'?: boolean;
-    /**
-    * UseProjectSSHCredentials specifies if the project ssh credentials should be used instead of local ones for this workspace
-    */
-    'useProjectSSHCredentials'?: boolean;
+    'virtualClusterTemplate'?: StorageV1TemplateRef;
     /**
     * WorkspaceEnv are environment variables that should be available within the created workspace.
     */
@@ -47,24 +32,6 @@ export class StorageV1DevPodWorkspaceTemplateDefinition {
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "gitCloneStrategy",
-            "baseName": "gitCloneStrategy",
-            "type": "StorageV1DevPodWorkspaceTemplateDefinitionGitCloneStrategyEnum",
-            "format": ""
-        },
-        {
-            "name": "initEnv",
-            "baseName": "initEnv",
-            "type": "{ [key: string]: StorageV1DevPodProviderOption; }",
-            "format": ""
-        },
-        {
-            "name": "instanceTemplate",
-            "baseName": "instanceTemplate",
-            "type": "StorageV1DevPodWorkspaceInstanceTemplateDefinition",
-            "format": ""
-        },
-        {
             "name": "provider",
             "baseName": "provider",
             "type": "StorageV1DevPodWorkspaceProvider",
@@ -73,12 +40,6 @@ export class StorageV1DevPodWorkspaceTemplateDefinition {
         {
             "name": "spaceTemplate",
             "baseName": "spaceTemplate",
-            "type": "StorageV1SpaceTemplateDefinition",
-            "format": ""
-        },
-        {
-            "name": "spaceTemplateRef",
-            "baseName": "spaceTemplateRef",
             "type": "StorageV1TemplateRef",
             "format": ""
         },
@@ -89,9 +50,9 @@ export class StorageV1DevPodWorkspaceTemplateDefinition {
             "format": ""
         },
         {
-            "name": "useProjectSSHCredentials",
-            "baseName": "useProjectSSHCredentials",
-            "type": "boolean",
+            "name": "virtualClusterTemplate",
+            "baseName": "virtualClusterTemplate",
+            "type": "StorageV1TemplateRef",
             "format": ""
         },
         {
@@ -107,13 +68,5 @@ export class StorageV1DevPodWorkspaceTemplateDefinition {
 
     public constructor() {
     }
-}
-
-
-export enum StorageV1DevPodWorkspaceTemplateDefinitionGitCloneStrategyEnum {
-    Empty = '',
-    Blobless = 'blobless',
-    Shallow = 'shallow',
-    Treeless = 'treeless'
 }
 

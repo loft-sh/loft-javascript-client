@@ -33,9 +33,9 @@ export class ManagementV1RunnerSpec {
     */
     'displayName'?: string;
     /**
-    * NetworkPeerName is the network peer name used to connect directly to the runner
+    * Endpoint is the hostname used to connect directly to the runner
     */
-    'networkPeerName'?: string;
+    'endpoint'?: string;
     'owner'?: StorageV1UserOrTeam;
     /**
     * If unusable is true, no DevPod workspaces can be scheduled on this runner.
@@ -70,8 +70,8 @@ export class ManagementV1RunnerSpec {
             "format": ""
         },
         {
-            "name": "networkPeerName",
-            "baseName": "networkPeerName",
+            "name": "endpoint",
+            "baseName": "endpoint",
             "type": "string",
             "format": ""
         },
