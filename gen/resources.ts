@@ -31,6 +31,7 @@ import {ManagementV1LicenseRequest} from "./models/managementV1LicenseRequest"
 import {ManagementV1LicenseToken} from "./models/managementV1LicenseToken"
 import {ManagementV1License} from "./models/managementV1License"
 import {ManagementV1LoftUpgrade} from "./models/managementV1LoftUpgrade"
+import {ManagementV1OIDCClient} from "./models/managementV1OIDCClient"
 import {ManagementV1OwnedAccessKey} from "./models/managementV1OwnedAccessKey"
 import {ManagementV1ProjectChartInfo} from "./models/managementV1ProjectChartInfo"
 import {ManagementV1ProjectCharts} from "./models/managementV1ProjectCharts"
@@ -103,6 +104,7 @@ export type TGenResources = {
   ManagementV1LicenseRequest: GroupVersionResource<ManagementV1LicenseRequest>
   ManagementV1LicenseToken: GroupVersionResource<ManagementV1LicenseToken>
   ManagementV1LoftUpgrade: GroupVersionResource<ManagementV1LoftUpgrade>
+  ManagementV1OIDCClient: GroupVersionResource<ManagementV1OIDCClient>
   ManagementV1OwnedAccessKey: GroupVersionResource<ManagementV1OwnedAccessKey>
   ManagementV1Project: GroupVersionResource<ManagementV1Project>
   ManagementV1ProjectChartInfo: GroupVersionResource<ManagementV1ProjectChartInfo>
@@ -392,6 +394,14 @@ export const GenResources: TGenResources = {
     subResource: "",
     namespaced: false,
     kind: "LoftUpgrade",
+  },
+  ManagementV1OIDCClient: {
+    group: "management.loft.sh",
+    version: "v1",
+    resource: "oidcclients",
+    subResource: "",
+    namespaced: true,
+    kind: "OIDCClient",
   },
   ManagementV1OwnedAccessKey: {
     group: "management.loft.sh",
