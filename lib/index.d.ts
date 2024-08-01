@@ -4781,7 +4781,7 @@ declare class ManagementV1Authentication {
 	}[];
 	constructor();
 }
-declare class ManagementV1OIDCClient {
+declare class ManagementV1OIDCClientSpec {
 	/**
 	* The client id of the client
 	*/
@@ -4817,7 +4817,7 @@ declare class ManagementV1OIDC {
 	/**
 	* The clients that are allowed to request loft tokens
 	*/
-	"clients"?: Array<ManagementV1OIDCClient>;
+	"clients"?: Array<ManagementV1OIDCClientSpec>;
 	/**
 	* If true indicates that loft will act as an OIDC server
 	*/
@@ -7225,6 +7225,36 @@ declare class ManagementV1LoftUpgrade {
 	"kind"?: string;
 	"metadata"?: V1ObjectMeta;
 	"spec"?: ManagementV1LoftUpgradeSpec;
+	"status"?: any;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1OIDCClient {
+	/**
+	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	*/
+	"apiVersion"?: string;
+	/**
+	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	*/
+	"kind"?: string;
+	"metadata"?: V1ObjectMeta;
+	"spec"?: ManagementV1OIDCClientSpec;
+	/**
+	* OIDCClientStatus holds the status
+	*/
 	"status"?: any;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
@@ -14172,6 +14202,7 @@ export type TGenResources = {
 	ManagementV1LicenseRequest: GroupVersionResource<ManagementV1LicenseRequest>;
 	ManagementV1LicenseToken: GroupVersionResource<ManagementV1LicenseToken>;
 	ManagementV1LoftUpgrade: GroupVersionResource<ManagementV1LoftUpgrade>;
+	ManagementV1OIDCClient: GroupVersionResource<ManagementV1OIDCClient>;
 	ManagementV1OwnedAccessKey: GroupVersionResource<ManagementV1OwnedAccessKey>;
 	ManagementV1Project: GroupVersionResource<ManagementV1Project>;
 	ManagementV1ProjectChartInfo: GroupVersionResource<ManagementV1ProjectChartInfo>;
