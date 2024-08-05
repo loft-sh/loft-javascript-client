@@ -4781,7 +4781,7 @@ declare class ManagementV1Authentication {
 	}[];
 	constructor();
 }
-declare class ManagementV1OIDCClient {
+declare class ManagementV1OIDCClientSpec {
 	/**
 	* The client id of the client
 	*/
@@ -4817,7 +4817,7 @@ declare class ManagementV1OIDC {
 	/**
 	* The clients that are allowed to request loft tokens
 	*/
-	"clients"?: Array<ManagementV1OIDCClient>;
+	"clients"?: Array<ManagementV1OIDCClientSpec>;
 	/**
 	* If true indicates that loft will act as an OIDC server
 	*/
@@ -7225,6 +7225,36 @@ declare class ManagementV1LoftUpgrade {
 	"kind"?: string;
 	"metadata"?: V1ObjectMeta;
 	"spec"?: ManagementV1LoftUpgradeSpec;
+	"status"?: any;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1OIDCClient {
+	/**
+	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	*/
+	"apiVersion"?: string;
+	/**
+	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	*/
+	"kind"?: string;
+	"metadata"?: V1ObjectMeta;
+	"spec"?: ManagementV1OIDCClientSpec;
+	/**
+	* OIDCClientStatus holds the status
+	*/
 	"status"?: any;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
@@ -10317,6 +10347,50 @@ declare class StorageV1RunnerPodTemplate {
 	}[];
 	constructor();
 }
+declare class StorageV1RunnerServiceTemplateSpec {
+	/**
+	* type determines how the Service is exposed. Defaults to ClusterIP  Possible enum values:  - `\"ClusterIP\"` means a service will only be accessible inside the cluster, via the cluster IP.  - `\"ExternalName\"` means a service consists of only a reference to an external name that kubedns or equivalent will return as a CNAME record, with no exposing or proxying of any pods involved.  - `\"LoadBalancer\"` means a service will be exposed via an external load balancer (if the cloud provider supports it), in addition to \'NodePort\' type.  - `\"NodePort\"` means a service will be exposed on one port of every node, in addition to \'ClusterIP\' type.
+	*/
+	"type"?: StorageV1RunnerServiceTemplateSpecTypeEnum;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare enum StorageV1RunnerServiceTemplateSpecTypeEnum {
+	ClusterIp = "ClusterIP",
+	ExternalName = "ExternalName",
+	LoadBalancer = "LoadBalancer",
+	NodePort = "NodePort"
+}
+declare class StorageV1RunnerServiceTemplate {
+	"metadata"?: StorageV1TemplateMetadata;
+	"spec"?: StorageV1RunnerServiceTemplateSpec;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
 declare class StorageV1RunnerClusterRef {
 	/**
 	* Cluster is the connected cluster the space will be created in
@@ -10328,6 +10402,7 @@ declare class StorageV1RunnerClusterRef {
 	"namespace"?: string;
 	"persistentVolumeClaimTemplate"?: StorageV1RunnerPersistentVolumeClaimTemplate;
 	"podTemplate"?: StorageV1RunnerPodTemplate;
+	"serviceTemplate"?: StorageV1RunnerServiceTemplate;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -10357,6 +10432,10 @@ declare class ManagementV1RunnerSpec {
 	* The display name shown in the UI
 	*/
 	"displayName"?: string;
+	/**
+	* Endpoint is the hostname used to connect directly to the runner
+	*/
+	"endpoint"?: string;
 	/**
 	* NetworkPeerName is the network peer name used to connect directly to the runner
 	*/
@@ -10662,6 +10741,35 @@ declare class ManagementV1ProjectMigrateVirtualClusterInstance {
 	"kind"?: string;
 	"metadata"?: V1ObjectMeta;
 	"sourceVirtualClusterInstance": ManagementV1ProjectMigrateVirtualClusterInstanceSource;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1ProjectRunners {
+	/**
+	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	*/
+	"apiVersion"?: string;
+	/**
+	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	*/
+	"kind"?: string;
+	"metadata"?: V1ObjectMeta;
+	/**
+	* Runners holds all the allowed runners
+	*/
+	"runners"?: Array<ManagementV1Runner>;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -14172,6 +14280,7 @@ export type TGenResources = {
 	ManagementV1LicenseRequest: GroupVersionResource<ManagementV1LicenseRequest>;
 	ManagementV1LicenseToken: GroupVersionResource<ManagementV1LicenseToken>;
 	ManagementV1LoftUpgrade: GroupVersionResource<ManagementV1LoftUpgrade>;
+	ManagementV1OIDCClient: GroupVersionResource<ManagementV1OIDCClient>;
 	ManagementV1OwnedAccessKey: GroupVersionResource<ManagementV1OwnedAccessKey>;
 	ManagementV1Project: GroupVersionResource<ManagementV1Project>;
 	ManagementV1ProjectChartInfo: GroupVersionResource<ManagementV1ProjectChartInfo>;
@@ -14181,6 +14290,7 @@ export type TGenResources = {
 	ManagementV1ProjectMembers: GroupVersionResource<ManagementV1ProjectMembers>;
 	ManagementV1ProjectMigrateSpaceInstance: GroupVersionResource<ManagementV1ProjectMigrateSpaceInstance>;
 	ManagementV1ProjectMigrateVirtualClusterInstance: GroupVersionResource<ManagementV1ProjectMigrateVirtualClusterInstance>;
+	ManagementV1ProjectRunners: GroupVersionResource<ManagementV1ProjectRunners>;
 	ManagementV1ProjectSecret: GroupVersionResource<ManagementV1ProjectSecret>;
 	ManagementV1ProjectTemplates: GroupVersionResource<ManagementV1ProjectTemplates>;
 	ManagementV1RedirectToken: GroupVersionResource<ManagementV1RedirectToken>;
