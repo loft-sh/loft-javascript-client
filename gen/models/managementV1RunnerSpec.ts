@@ -33,6 +33,10 @@ export class ManagementV1RunnerSpec {
     */
     'displayName'?: string;
     /**
+    * Endpoint is the hostname used to connect directly to the runner
+    */
+    'endpoint'?: string;
+    /**
     * NetworkPeerName is the network peer name used to connect directly to the runner
     */
     'networkPeerName'?: string;
@@ -66,6 +70,12 @@ export class ManagementV1RunnerSpec {
         {
             "name": "displayName",
             "baseName": "displayName",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "endpoint",
+            "baseName": "endpoint",
             "type": "string",
             "format": ""
         },
