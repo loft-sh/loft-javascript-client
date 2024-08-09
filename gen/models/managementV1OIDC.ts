@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1OIDCClient } from '../models/managementV1OIDCClient';
+import { ManagementV1OIDCClientSpec } from '../models/managementV1OIDCClientSpec';
 
 
 /**
@@ -20,7 +20,7 @@ export class ManagementV1OIDC {
     /**
     * The clients that are allowed to request loft tokens
     */
-    'clients'?: Array<ManagementV1OIDCClient>;
+    'clients'?: Array<ManagementV1OIDCClientSpec>;
     /**
     * If true indicates that loft will act as an OIDC server
     */
@@ -36,7 +36,7 @@ export class ManagementV1OIDC {
         {
             "name": "clients",
             "baseName": "clients",
-            "type": "Array<ManagementV1OIDCClient>",
+            "type": "Array<ManagementV1OIDCClientSpec>",
             "format": ""
         },
         {
