@@ -10,14 +10,11 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1OIDCClientSpec } from '../models/managementV1OIDCClientSpec';
+import { ManagementV1Runner } from '../models/managementV1Runner';
 import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
-/**
-* OIDCClient represents an OIDC client to use with Loft as an OIDC provider
-*/
-export class ManagementV1OIDCClient {
+export class ManagementV1ProjectRunners {
     /**
     * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
     */
@@ -27,11 +24,10 @@ export class ManagementV1OIDCClient {
     */
     'kind'?: string;
     'metadata'?: V1ObjectMeta;
-    'spec'?: ManagementV1OIDCClientSpec;
     /**
-    * OIDCClientStatus holds the status
+    * Runners holds all the allowed runners
     */
-    'status'?: any;
+    'runners'?: Array<ManagementV1Runner>;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -55,20 +51,14 @@ export class ManagementV1OIDCClient {
             "format": ""
         },
         {
-            "name": "spec",
-            "baseName": "spec",
-            "type": "ManagementV1OIDCClientSpec",
-            "format": ""
-        },
-        {
-            "name": "status",
-            "baseName": "status",
-            "type": "any",
+            "name": "runners",
+            "baseName": "runners",
+            "type": "Array<ManagementV1Runner>",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1OIDCClient.attributeTypeMap;
+        return ManagementV1ProjectRunners.attributeTypeMap;
     }
 
     public constructor() {

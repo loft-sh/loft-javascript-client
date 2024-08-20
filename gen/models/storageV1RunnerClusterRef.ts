@@ -12,6 +12,7 @@
 
 import { StorageV1RunnerPersistentVolumeClaimTemplate } from '../models/storageV1RunnerPersistentVolumeClaimTemplate';
 import { StorageV1RunnerPodTemplate } from '../models/storageV1RunnerPodTemplate';
+import { StorageV1RunnerServiceTemplate } from '../models/storageV1RunnerServiceTemplate';
 
 
 export class StorageV1RunnerClusterRef {
@@ -25,6 +26,7 @@ export class StorageV1RunnerClusterRef {
     'namespace'?: string;
     'persistentVolumeClaimTemplate'?: StorageV1RunnerPersistentVolumeClaimTemplate;
     'podTemplate'?: StorageV1RunnerPodTemplate;
+    'serviceTemplate'?: StorageV1RunnerServiceTemplate;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -51,6 +53,12 @@ export class StorageV1RunnerClusterRef {
             "name": "podTemplate",
             "baseName": "podTemplate",
             "type": "StorageV1RunnerPodTemplate",
+            "format": ""
+        },
+        {
+            "name": "serviceTemplate",
+            "baseName": "serviceTemplate",
+            "type": "StorageV1RunnerServiceTemplate",
             "format": ""
         }    ];
 
