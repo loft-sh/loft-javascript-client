@@ -30,6 +30,10 @@ export class ManagementV1ConfigStatus {
     */
     'devPodSubDomain'?: string;
     /**
+    * DisableLoftConfigEndpoint will disable setting config via the UI and config.management.loft.sh endpoint
+    */
+    'disableConfigEndpoint'?: boolean;
+    /**
     * LoftHost holds the domain where the loft instance is hosted. This should not include https or http. E.g. loft.my-domain.com
     */
     'loftHost'?: string;
@@ -66,6 +70,12 @@ export class ManagementV1ConfigStatus {
             "name": "devPodSubDomain",
             "baseName": "devPodSubDomain",
             "type": "string",
+            "format": ""
+        },
+        {
+            "name": "disableConfigEndpoint",
+            "baseName": "disableConfigEndpoint",
+            "type": "boolean",
             "format": ""
         },
         {
