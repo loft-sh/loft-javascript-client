@@ -402,7 +402,7 @@ export const GenResources: TGenResources = {
     version: "v1",
     resource: "oidcclients",
     subResource: "",
-    namespaced: true,
+    namespaced: false,
     kind: "OIDCClient",
   },
   ManagementV1OwnedAccessKey: {
