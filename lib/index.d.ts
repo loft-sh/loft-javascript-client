@@ -5024,6 +5024,10 @@ declare class ManagementV1ConfigStatus {
 	*/
 	"devPodSubDomain"?: string;
 	/**
+	* DisableLoftConfigEndpoint will disable setting config via the UI and config.management.loft.sh endpoint
+	*/
+	"disableConfigEndpoint"?: boolean;
+	/**
 	* LoftHost holds the domain where the loft instance is hosted. This should not include https or http. E.g. loft.my-domain.com
 	*/
 	"loftHost"?: string;
@@ -5496,7 +5500,32 @@ declare class StorageV1Condition {
 	}[];
 	constructor();
 }
+declare class StorageV1ClusterRef {
+	/**
+	* Cluster is the connected cluster the space will be created in
+	*/
+	"cluster"?: string;
+	/**
+	* Namespace is the namespace inside the connected cluster holding the space
+	*/
+	"namespace"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
 declare class ManagementV1DevPodWorkspaceInstanceStatus {
+	"clusterRef"?: StorageV1ClusterRef;
 	/**
 	* Conditions holds several conditions the DevPod machine might be in
 	*/
@@ -6753,6 +6782,10 @@ declare class LicenseApiLicense {
 	* DomainToken holds the JWT with the URL that the Loft instance is publicly available on. (via Loft router)
 	*/
 	"domainToken"?: string;
+	/**
+	* Entity holds a name for an organization, person or entity this product is licensed for. This will be displayed to the user.
+	*/
+	"entity"?: string;
 	/**
 	* InstanceID contains the instance id of the Loft instance
 	*/
@@ -12545,30 +12578,6 @@ declare class ManagementV1SharedSecret {
 	"metadata"?: V1ObjectMeta;
 	"spec"?: ManagementV1SharedSecretSpec;
 	"status"?: ManagementV1SharedSecretStatus;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class StorageV1ClusterRef {
-	/**
-	* Cluster is the connected cluster the space will be created in
-	*/
-	"cluster"?: string;
-	/**
-	* Namespace is the namespace inside the connected cluster holding the space
-	*/
-	"namespace"?: string;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;

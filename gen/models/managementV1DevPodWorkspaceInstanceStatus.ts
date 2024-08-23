@@ -12,6 +12,7 @@
 
 import { ClusterV1SleepModeConfig } from '../models/clusterV1SleepModeConfig';
 import { StorageV1Condition } from '../models/agentstorageV1Condition';
+import { StorageV1ClusterRef } from '../models/storageV1ClusterRef';
 import { StorageV1DevPodWorkspaceTemplateDefinition } from '../models/storageV1DevPodWorkspaceTemplateDefinition';
 
 
@@ -19,6 +20,7 @@ import { StorageV1DevPodWorkspaceTemplateDefinition } from '../models/storageV1D
 * DevPodWorkspaceInstanceStatus holds the status
 */
 export class ManagementV1DevPodWorkspaceInstanceStatus {
+    'clusterRef'?: StorageV1ClusterRef;
     /**
     * Conditions holds several conditions the DevPod machine might be in
     */
@@ -49,6 +51,12 @@ export class ManagementV1DevPodWorkspaceInstanceStatus {
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+        {
+            "name": "clusterRef",
+            "baseName": "clusterRef",
+            "type": "StorageV1ClusterRef",
+            "format": ""
+        },
         {
             "name": "conditions",
             "baseName": "conditions",
