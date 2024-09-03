@@ -1105,6 +1105,281 @@ declare class ClusterV1ChartInfo {
 	}[];
 	constructor();
 }
+declare class V1AppArmorProfile {
+	/**
+	* localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is \"Localhost\".
+	*/
+	"localhostProfile"?: string;
+	/**
+	* type indicates which kind of AppArmor profile will be applied. Valid options are:   Localhost - a profile pre-loaded on the node.   RuntimeDefault - the container runtime\'s default profile.   Unconfined - no AppArmor enforcement.  Possible enum values:  - `\"Localhost\"` indicates that a profile pre-loaded on the node should be used.  - `\"RuntimeDefault\"` indicates that the container runtime\'s default AppArmor profile should be used.  - `\"Unconfined\"` indicates that no AppArmor profile should be enforced.
+	*/
+	"type": V1AppArmorProfileTypeEnum;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare enum V1AppArmorProfileTypeEnum {
+	Localhost = "Localhost",
+	RuntimeDefault = "RuntimeDefault",
+	Unconfined = "Unconfined"
+}
+declare class V1SELinuxOptions {
+	/**
+	* Level is SELinux level label that applies to the container.
+	*/
+	"level"?: string;
+	/**
+	* Role is a SELinux role label that applies to the container.
+	*/
+	"role"?: string;
+	/**
+	* Type is a SELinux type label that applies to the container.
+	*/
+	"type"?: string;
+	/**
+	* User is a SELinux user label that applies to the container.
+	*/
+	"user"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class V1SeccompProfile {
+	/**
+	* localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet\'s configured seccomp profile location. Must be set if type is \"Localhost\". Must NOT be set for any other type.
+	*/
+	"localhostProfile"?: string;
+	/**
+	* type indicates which kind of seccomp profile will be applied. Valid options are:  Localhost - a profile defined in a file on the node should be used. RuntimeDefault - the container runtime default profile should be used. Unconfined - no profile should be applied.  Possible enum values:  - `\"Localhost\"` indicates a profile defined in a file on the node should be used. The file\'s location relative to <kubelet-root-dir>/seccomp.  - `\"RuntimeDefault\"` represents the default container runtime seccomp profile.  - `\"Unconfined\"` indicates no seccomp profile is applied (A.K.A. unconfined).
+	*/
+	"type": V1SeccompProfileTypeEnum;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare enum V1SeccompProfileTypeEnum {
+	Localhost = "Localhost",
+	RuntimeDefault = "RuntimeDefault",
+	Unconfined = "Unconfined"
+}
+declare class V1Sysctl {
+	/**
+	* Name of a property to set
+	*/
+	"name": string;
+	/**
+	* Value of a property to set
+	*/
+	"value": string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class V1WindowsSecurityContextOptions {
+	/**
+	* GMSACredentialSpec is where the GMSA admission webhook (https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field.
+	*/
+	"gmsaCredentialSpec"?: string;
+	/**
+	* GMSACredentialSpecName is the name of the GMSA credential spec to use.
+	*/
+	"gmsaCredentialSpecName"?: string;
+	/**
+	* HostProcess determines if a container should be run as a \'Host Process\' container. All of a Pod\'s containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.
+	*/
+	"hostProcess"?: boolean;
+	/**
+	* The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.
+	*/
+	"runAsUserName"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class V1PodSecurityContext {
+	"appArmorProfile"?: V1AppArmorProfile;
+	/**
+	* A special supplemental group that applies to all containers in a pod. Some volume types allow the Kubelet to change the ownership of that volume to be owned by the pod:  1. The owning GID will be the FSGroup 2. The setgid bit is set (new files created in the volume will be owned by FSGroup) 3. The permission bits are OR\'d with rw-rw----  If unset, the Kubelet will not modify the ownership and permissions of any volume. Note that this field cannot be set when spec.os.name is windows.
+	*/
+	"fsGroup"?: number;
+	/**
+	* fsGroupChangePolicy defines behavior of changing ownership and permission of the volume before being exposed inside Pod. This field will only apply to volume types which support fsGroup based ownership(and permissions). It will have no effect on ephemeral volume types such as: secret, configmaps and emptydir. Valid values are \"OnRootMismatch\" and \"Always\". If not specified, \"Always\" is used. Note that this field cannot be set when spec.os.name is windows.  Possible enum values:  - `\"Always\"` indicates that volume\'s ownership and permissions should always be changed whenever volume is mounted inside a Pod. This the default behavior.  - `\"OnRootMismatch\"` indicates that volume\'s ownership and permissions will be changed only when permission and ownership of root directory does not match with expected permissions on the volume. This can help shorten the time it takes to change ownership and permissions of a volume.
+	*/
+	"fsGroupChangePolicy"?: V1PodSecurityContextFsGroupChangePolicyEnum;
+	/**
+	* The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.
+	*/
+	"runAsGroup"?: number;
+	/**
+	* Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.
+	*/
+	"runAsNonRoot"?: boolean;
+	/**
+	* The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.
+	*/
+	"runAsUser"?: number;
+	"seLinuxOptions"?: V1SELinuxOptions;
+	"seccompProfile"?: V1SeccompProfile;
+	/**
+	* A list of groups applied to the first process run in each container, in addition to the container\'s primary GID, the fsGroup (if specified), and group memberships defined in the container image for the uid of the container process. If unspecified, no additional groups are added to any container. Note that group memberships defined in the container image for the uid of the container process are still effective, even if they are not included in this list. Note that this field cannot be set when spec.os.name is windows.
+	*/
+	"supplementalGroups"?: Array<number>;
+	/**
+	* Sysctls hold a list of namespaced sysctls used for the pod. Pods with unsupported sysctls (by the container runtime) might fail to launch. Note that this field cannot be set when spec.os.name is windows.
+	*/
+	"sysctls"?: Array<V1Sysctl>;
+	"windowsOptions"?: V1WindowsSecurityContextOptions;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare enum V1PodSecurityContextFsGroupChangePolicyEnum {
+	Always = "Always",
+	OnRootMismatch = "OnRootMismatch"
+}
+declare class V1Capabilities {
+	/**
+	* Added capabilities
+	*/
+	"add"?: Array<string>;
+	/**
+	* Removed capabilities
+	*/
+	"drop"?: Array<string>;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class V1SecurityContext {
+	/**
+	* AllowPrivilegeEscalation controls whether a process can gain more privileges than its parent process. This bool directly controls if the no_new_privs flag will be set on the container process. AllowPrivilegeEscalation is true always when the container is: 1) run as Privileged 2) has CAP_SYS_ADMIN Note that this field cannot be set when spec.os.name is windows.
+	*/
+	"allowPrivilegeEscalation"?: boolean;
+	"appArmorProfile"?: V1AppArmorProfile;
+	"capabilities"?: V1Capabilities;
+	/**
+	* Run container in privileged mode. Processes in privileged containers are essentially equivalent to root on the host. Defaults to false. Note that this field cannot be set when spec.os.name is windows.
+	*/
+	"privileged"?: boolean;
+	/**
+	* procMount denotes the type of proc mount to use for the containers. The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.  Possible enum values:  - `\"Default\"` uses the container runtime defaults for readonly and masked paths for /proc. Most container runtimes mask certain paths in /proc to avoid accidental security exposure of special devices or information.  - `\"Unmasked\"` bypasses the default masking behavior of the container runtime and ensures the newly created /proc the container stays in tact with no modifications.
+	*/
+	"procMount"?: V1SecurityContextProcMountEnum;
+	/**
+	* Whether this container has a read-only root filesystem. Default is false. Note that this field cannot be set when spec.os.name is windows.
+	*/
+	"readOnlyRootFilesystem"?: boolean;
+	/**
+	* The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows.
+	*/
+	"runAsGroup"?: number;
+	/**
+	* Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.
+	*/
+	"runAsNonRoot"?: boolean;
+	/**
+	* The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows.
+	*/
+	"runAsUser"?: number;
+	"seLinuxOptions"?: V1SELinuxOptions;
+	"seccompProfile"?: V1SeccompProfile;
+	"windowsOptions"?: V1WindowsSecurityContextOptions;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare enum V1SecurityContextProcMountEnum {
+	Default = "Default",
+	Unmasked = "Unmasked"
+}
 declare class ClusterV1Bash {
 	/**
 	* ClusterRole is the cluster role to use for this job
@@ -1114,10 +1389,12 @@ declare class ClusterV1Bash {
 	* Image is the image to use for this app
 	*/
 	"image"?: string;
+	"podSecurityContext"?: V1PodSecurityContext;
 	/**
 	* Script is the script to execute.
 	*/
 	"script"?: string;
+	"securityContext"?: V1SecurityContext;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -8479,205 +8756,6 @@ declare class V1ResourceRequirements {
 		format: string;
 	}[];
 	constructor();
-}
-declare class V1AppArmorProfile {
-	/**
-	* localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is \"Localhost\".
-	*/
-	"localhostProfile"?: string;
-	/**
-	* type indicates which kind of AppArmor profile will be applied. Valid options are:   Localhost - a profile pre-loaded on the node.   RuntimeDefault - the container runtime\'s default profile.   Unconfined - no AppArmor enforcement.  Possible enum values:  - `\"Localhost\"` indicates that a profile pre-loaded on the node should be used.  - `\"RuntimeDefault\"` indicates that the container runtime\'s default AppArmor profile should be used.  - `\"Unconfined\"` indicates that no AppArmor profile should be enforced.
-	*/
-	"type": V1AppArmorProfileTypeEnum;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare enum V1AppArmorProfileTypeEnum {
-	Localhost = "Localhost",
-	RuntimeDefault = "RuntimeDefault",
-	Unconfined = "Unconfined"
-}
-declare class V1Capabilities {
-	/**
-	* Added capabilities
-	*/
-	"add"?: Array<string>;
-	/**
-	* Removed capabilities
-	*/
-	"drop"?: Array<string>;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class V1SELinuxOptions {
-	/**
-	* Level is SELinux level label that applies to the container.
-	*/
-	"level"?: string;
-	/**
-	* Role is a SELinux role label that applies to the container.
-	*/
-	"role"?: string;
-	/**
-	* Type is a SELinux type label that applies to the container.
-	*/
-	"type"?: string;
-	/**
-	* User is a SELinux user label that applies to the container.
-	*/
-	"user"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class V1SeccompProfile {
-	/**
-	* localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet\'s configured seccomp profile location. Must be set if type is \"Localhost\". Must NOT be set for any other type.
-	*/
-	"localhostProfile"?: string;
-	/**
-	* type indicates which kind of seccomp profile will be applied. Valid options are:  Localhost - a profile defined in a file on the node should be used. RuntimeDefault - the container runtime default profile should be used. Unconfined - no profile should be applied.  Possible enum values:  - `\"Localhost\"` indicates a profile defined in a file on the node should be used. The file\'s location relative to <kubelet-root-dir>/seccomp.  - `\"RuntimeDefault\"` represents the default container runtime seccomp profile.  - `\"Unconfined\"` indicates no seccomp profile is applied (A.K.A. unconfined).
-	*/
-	"type": V1SeccompProfileTypeEnum;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare enum V1SeccompProfileTypeEnum {
-	Localhost = "Localhost",
-	RuntimeDefault = "RuntimeDefault",
-	Unconfined = "Unconfined"
-}
-declare class V1WindowsSecurityContextOptions {
-	/**
-	* GMSACredentialSpec is where the GMSA admission webhook (https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field.
-	*/
-	"gmsaCredentialSpec"?: string;
-	/**
-	* GMSACredentialSpecName is the name of the GMSA credential spec to use.
-	*/
-	"gmsaCredentialSpecName"?: string;
-	/**
-	* HostProcess determines if a container should be run as a \'Host Process\' container. All of a Pod\'s containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.
-	*/
-	"hostProcess"?: boolean;
-	/**
-	* The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.
-	*/
-	"runAsUserName"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class V1SecurityContext {
-	/**
-	* AllowPrivilegeEscalation controls whether a process can gain more privileges than its parent process. This bool directly controls if the no_new_privs flag will be set on the container process. AllowPrivilegeEscalation is true always when the container is: 1) run as Privileged 2) has CAP_SYS_ADMIN Note that this field cannot be set when spec.os.name is windows.
-	*/
-	"allowPrivilegeEscalation"?: boolean;
-	"appArmorProfile"?: V1AppArmorProfile;
-	"capabilities"?: V1Capabilities;
-	/**
-	* Run container in privileged mode. Processes in privileged containers are essentially equivalent to root on the host. Defaults to false. Note that this field cannot be set when spec.os.name is windows.
-	*/
-	"privileged"?: boolean;
-	/**
-	* procMount denotes the type of proc mount to use for the containers. The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.  Possible enum values:  - `\"Default\"` uses the container runtime defaults for readonly and masked paths for /proc. Most container runtimes mask certain paths in /proc to avoid accidental security exposure of special devices or information.  - `\"Unmasked\"` bypasses the default masking behavior of the container runtime and ensures the newly created /proc the container stays in tact with no modifications.
-	*/
-	"procMount"?: V1SecurityContextProcMountEnum;
-	/**
-	* Whether this container has a read-only root filesystem. Default is false. Note that this field cannot be set when spec.os.name is windows.
-	*/
-	"readOnlyRootFilesystem"?: boolean;
-	/**
-	* The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows.
-	*/
-	"runAsGroup"?: number;
-	/**
-	* Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.
-	*/
-	"runAsNonRoot"?: boolean;
-	/**
-	* The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows.
-	*/
-	"runAsUser"?: number;
-	"seLinuxOptions"?: V1SELinuxOptions;
-	"seccompProfile"?: V1SeccompProfile;
-	"windowsOptions"?: V1WindowsSecurityContextOptions;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare enum V1SecurityContextProcMountEnum {
-	Default = "Default",
-	Unmasked = "Unmasked"
 }
 declare class V1VolumeDevice {
 	/**
