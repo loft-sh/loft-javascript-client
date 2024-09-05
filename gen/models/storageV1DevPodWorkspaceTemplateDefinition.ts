@@ -15,6 +15,7 @@ import { StorageV1DevPodWorkspaceInstanceTemplateDefinition } from '../models/st
 import { StorageV1DevPodWorkspaceProvider } from '../models/storageV1DevPodWorkspaceProvider';
 import { StorageV1SpaceTemplateDefinition } from '../models/storageV1SpaceTemplateDefinition';
 import { StorageV1TemplateRef } from '../models/storageV1TemplateRef';
+import { StorageV1VirtualClusterTemplateDefinition } from '../models/storageV1VirtualClusterTemplateDefinition';
 
 
 export class StorageV1DevPodWorkspaceTemplateDefinition {
@@ -38,6 +39,8 @@ export class StorageV1DevPodWorkspaceTemplateDefinition {
     * UseProjectSSHCredentials specifies if the project ssh credentials should be used instead of local ones for this workspace
     */
     'useProjectSSHCredentials'?: boolean;
+    'virtualClusterTemplate'?: StorageV1VirtualClusterTemplateDefinition;
+    'virtualClusterTemplateRef'?: StorageV1TemplateRef;
     /**
     * WorkspaceEnv are environment variables that should be available within the created workspace.
     */
@@ -92,6 +95,18 @@ export class StorageV1DevPodWorkspaceTemplateDefinition {
             "name": "useProjectSSHCredentials",
             "baseName": "useProjectSSHCredentials",
             "type": "boolean",
+            "format": ""
+        },
+        {
+            "name": "virtualClusterTemplate",
+            "baseName": "virtualClusterTemplate",
+            "type": "StorageV1VirtualClusterTemplateDefinition",
+            "format": ""
+        },
+        {
+            "name": "virtualClusterTemplateRef",
+            "baseName": "virtualClusterTemplateRef",
+            "type": "StorageV1TemplateRef",
             "format": ""
         },
         {
