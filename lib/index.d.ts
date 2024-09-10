@@ -5654,6 +5654,8 @@ declare class StorageV1DevPodWorkspaceTemplateDefinition {
 	* UseProjectSSHCredentials specifies if the project ssh credentials should be used instead of local ones for this workspace
 	*/
 	"useProjectSSHCredentials"?: boolean;
+	"virtualClusterTemplate"?: StorageV1VirtualClusterTemplateDefinition;
+	"virtualClusterTemplateRef"?: StorageV1TemplateRef;
 	/**
 	* WorkspaceEnv are environment variables that should be available within the created workspace.
 	*/
