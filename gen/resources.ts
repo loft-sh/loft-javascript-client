@@ -19,6 +19,7 @@ import {ManagementV1ClusterVirtualClusterDefaults} from "./models/managementV1Cl
 import {ManagementV1Cluster} from "./models/managementV1Cluster"
 import {ManagementV1Config} from "./models/managementV1Config"
 import {ManagementV1ConvertVirtualClusterConfig} from "./models/managementV1ConvertVirtualClusterConfig"
+import {ManagementV1DevPodEnvironmentTemplate} from "./models/managementV1DevPodEnvironmentTemplate"
 import {ManagementV1DevPodWorkspaceInstanceState} from "./models/managementV1DevPodWorkspaceInstanceState"
 import {ManagementV1DevPodWorkspaceInstance} from "./models/managementV1DevPodWorkspaceInstance"
 import {ManagementV1DevPodWorkspaceTemplate} from "./models/managementV1DevPodWorkspaceTemplate"
@@ -93,6 +94,7 @@ export type TGenResources = {
   ManagementV1ClusterVirtualClusterDefaults: GroupVersionResource<ManagementV1ClusterVirtualClusterDefaults>
   ManagementV1Config: GroupVersionResource<ManagementV1Config>
   ManagementV1ConvertVirtualClusterConfig: GroupVersionResource<ManagementV1ConvertVirtualClusterConfig>
+  ManagementV1DevPodEnvironmentTemplate: GroupVersionResource<ManagementV1DevPodEnvironmentTemplate>
   ManagementV1DevPodWorkspaceInstance: GroupVersionResource<ManagementV1DevPodWorkspaceInstance>
   ManagementV1DevPodWorkspaceInstanceState: GroupVersionResource<ManagementV1DevPodWorkspaceInstanceState>
   ManagementV1DevPodWorkspaceTemplate: GroupVersionResource<ManagementV1DevPodWorkspaceTemplate>
@@ -300,6 +302,14 @@ export const GenResources: TGenResources = {
     subResource: "",
     namespaced: false,
     kind: "ConvertVirtualClusterConfig",
+  },
+  ManagementV1DevPodEnvironmentTemplate: {
+    group: "management.loft.sh",
+    version: "v1",
+    resource: "devpodenvironmenttemplate",
+    subResource: "",
+    namespaced: false,
+    kind: "DevPodEnvironmentTemplate",
   },
   ManagementV1DevPodWorkspaceInstance: {
     group: "management.loft.sh",
