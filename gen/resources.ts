@@ -306,7 +306,7 @@ export const GenResources: TGenResources = {
   ManagementV1DevPodEnvironmentTemplate: {
     group: "management.loft.sh",
     version: "v1",
-    resource: "devpodenvironmenttemplate",
+    resource: "devpodenvironmenttemplates",
     subResource: "",
     namespaced: false,
     kind: "DevPodEnvironmentTemplate",
