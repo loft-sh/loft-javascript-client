@@ -18,7 +18,7 @@ import { ManagementV1OIDCClientSpec } from '../models/managementV1OIDCClientSpec
 */
 export class ManagementV1OIDC {
     /**
-    * The clients that are allowed to request loft tokens
+    * DEPRECATED: Use OIDC Client secrets or /oidcclients endpoint instead. The clients that are allowed to request loft tokens
     */
     'clients'?: Array<ManagementV1OIDCClientSpec>;
     /**
