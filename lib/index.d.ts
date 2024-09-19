@@ -5092,7 +5092,7 @@ declare class ManagementV1OIDCClientSpec {
 }
 declare class ManagementV1OIDC {
 	/**
-	* The clients that are allowed to request loft tokens
+	* DEPRECATED: Use OIDC Client secrets or /oidcclients endpoint instead. The clients that are allowed to request loft tokens
 	*/
 	"clients"?: Array<ManagementV1OIDCClientSpec>;
 	/**
