@@ -5035,6 +5035,10 @@ declare class ManagementV1Authentication {
 	"gitlab"?: ManagementV1AuthenticationGitlab;
 	"google"?: ManagementV1AuthenticationGoogle;
 	/**
+	* GroupsFilters is a regex expression to only save matching sso groups into the user resource
+	*/
+	"groupsFilters"?: Array<string>;
+	/**
 	* LoginAccessKeyTTLSeconds is the time in seconds an access key is kept until it is deleted. Leaving it unspecified will default to 20 days. Setting it to zero will disable the ttl. Specifying 2592000 will mean all keys have a  default Time-To-Live of 30 days.
 	*/
 	"loginAccessKeyTTLSeconds"?: number;
@@ -5767,6 +5771,26 @@ declare enum StorageV1DevPodWorkspaceTemplateDefinitionGitCloneStrategyEnum {
 	Shallow = "shallow",
 	Treeless = "treeless"
 }
+declare class StorageV1EnvironmentRef {
+	/**
+	* Name is the name of DevPodEnvironmentTemplate this references
+	*/
+	"name": string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
 declare class StorageV1RunnerRef {
 	/**
 	* Runner is the connected runner the workspace will be created in
@@ -5800,6 +5824,7 @@ declare class ManagementV1DevPodWorkspaceInstanceSpec {
 	* DisplayName is the name that should be displayed in the UI
 	*/
 	"displayName"?: string;
+	"environmentRef"?: StorageV1EnvironmentRef;
 	"owner"?: StorageV1UserOrTeam;
 	/**
 	* Parameters are values to pass to the template. The values should be encoded as YAML string where each parameter is represented as a top-level field key.

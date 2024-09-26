@@ -12,6 +12,7 @@
 
 import { StorageV1Access } from '../models/storageV1Access';
 import { StorageV1DevPodWorkspaceTemplateDefinition } from '../models/storageV1DevPodWorkspaceTemplateDefinition';
+import { StorageV1EnvironmentRef } from '../models/storageV1EnvironmentRef';
 import { StorageV1RunnerRef } from '../models/storageV1RunnerRef';
 import { StorageV1TemplateRef } from '../models/storageV1TemplateRef';
 import { StorageV1UserOrTeam } from '../models/storageV1UserOrTeam';
@@ -33,6 +34,7 @@ export class ManagementV1DevPodWorkspaceInstanceSpec {
     * DisplayName is the name that should be displayed in the UI
     */
     'displayName'?: string;
+    'environmentRef'?: StorageV1EnvironmentRef;
     'owner'?: StorageV1UserOrTeam;
     /**
     * Parameters are values to pass to the template. The values should be encoded as YAML string where each parameter is represented as a top-level field key.
@@ -61,6 +63,12 @@ export class ManagementV1DevPodWorkspaceInstanceSpec {
             "name": "displayName",
             "baseName": "displayName",
             "type": "string",
+            "format": ""
+        },
+        {
+            "name": "environmentRef",
+            "baseName": "environmentRef",
+            "type": "StorageV1EnvironmentRef",
             "format": ""
         },
         {
