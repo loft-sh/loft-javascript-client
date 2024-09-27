@@ -10,6 +10,7 @@
  * Do not edit the class manually.
  */
 
+import { StorageV1CredentialForwarding } from '../models/storageV1CredentialForwarding';
 import { StorageV1DevPodProviderOption } from '../models/storageV1DevPodProviderOption';
 import { StorageV1DevPodWorkspaceInstanceTemplateDefinition } from '../models/storageV1DevPodWorkspaceInstanceTemplateDefinition';
 import { StorageV1DevPodWorkspaceProvider } from '../models/storageV1DevPodWorkspaceProvider';
@@ -19,6 +20,7 @@ import { StorageV1VirtualClusterTemplateDefinition } from '../models/storageV1Vi
 
 
 export class StorageV1DevPodWorkspaceTemplateDefinition {
+    'credentialForwarding'?: StorageV1CredentialForwarding;
     /**
     * GitCloneStrategy specifies how git based workspace are being cloned. Can be \"\" (full, default), treeless, blobless or shallow  Possible enum values:  - `\"\"`  - `\"blobless\"`  - `\"shallow\"`  - `\"treeless\"`
     */
@@ -49,6 +51,12 @@ export class StorageV1DevPodWorkspaceTemplateDefinition {
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+        {
+            "name": "credentialForwarding",
+            "baseName": "credentialForwarding",
+            "type": "StorageV1CredentialForwarding",
+            "format": ""
+        },
         {
             "name": "gitCloneStrategy",
             "baseName": "gitCloneStrategy",
