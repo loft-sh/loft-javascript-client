@@ -10,6 +10,7 @@
  * Do not edit the class manually.
  */
 
+import { ManagementV1DevPodEnvironmentTemplate } from '../models/managementV1DevPodEnvironmentTemplate';
 import { ManagementV1DevPodWorkspaceTemplate } from '../models/managementV1DevPodWorkspaceTemplate';
 import { ManagementV1SpaceTemplate } from '../models/managementV1SpaceTemplate';
 import { ManagementV1VirtualClusterTemplate } from '../models/managementV1VirtualClusterTemplate';
@@ -22,6 +23,10 @@ export class ManagementV1ProjectTemplates {
     */
     'apiVersion'?: string;
     /**
+    * DefaultDevPodEnvironmentTemplate
+    */
+    'defaultDevPodEnvironmentTemplate'?: string;
+    /**
     * DefaultDevPodWorkspaceTemplate
     */
     'defaultDevPodWorkspaceTemplate'?: string;
@@ -33,6 +38,10 @@ export class ManagementV1ProjectTemplates {
     * DefaultVirtualClusterTemplate is the default template for the project
     */
     'defaultVirtualClusterTemplate'?: string;
+    /**
+    * DevPodEnvironmentTemplates holds all the allowed environment templates
+    */
+    'devPodEnvironmentTemplates'?: Array<ManagementV1DevPodEnvironmentTemplate>;
     /**
     * DevPodWorkspaceTemplates holds all the allowed space templates
     */
@@ -61,6 +70,12 @@ export class ManagementV1ProjectTemplates {
             "format": ""
         },
         {
+            "name": "defaultDevPodEnvironmentTemplate",
+            "baseName": "defaultDevPodEnvironmentTemplate",
+            "type": "string",
+            "format": ""
+        },
+        {
             "name": "defaultDevPodWorkspaceTemplate",
             "baseName": "defaultDevPodWorkspaceTemplate",
             "type": "string",
@@ -76,6 +91,12 @@ export class ManagementV1ProjectTemplates {
             "name": "defaultVirtualClusterTemplate",
             "baseName": "defaultVirtualClusterTemplate",
             "type": "string",
+            "format": ""
+        },
+        {
+            "name": "devPodEnvironmentTemplates",
+            "baseName": "devPodEnvironmentTemplates",
+            "type": "Array<ManagementV1DevPodEnvironmentTemplate>",
             "format": ""
         },
         {
