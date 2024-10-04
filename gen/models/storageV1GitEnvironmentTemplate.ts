@@ -28,6 +28,10 @@ export class StorageV1GitEnvironmentTemplate {
     * SubPath stores subpath within Repositor where environment spec is
     */
     'subpath'?: string;
+    /**
+    * UseProjectGitCredentials specifies if the project git credentials should be used instead of local ones for this environment
+    */
+    'useProjectGitCredentials'?: boolean;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -48,6 +52,12 @@ export class StorageV1GitEnvironmentTemplate {
             "name": "subpath",
             "baseName": "subpath",
             "type": "string",
+            "format": ""
+        },
+        {
+            "name": "useProjectGitCredentials",
+            "baseName": "useProjectGitCredentials",
+            "type": "boolean",
             "format": ""
         }    ];
 

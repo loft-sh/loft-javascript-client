@@ -1597,7 +1597,7 @@ declare class ClusterV1SleepModeConfigSpec {
 	*/
 	"sleepSchedule"?: string;
 	/**
-	* Timezone specifies time zone used for scheduled space operations. Defaults to UTC. Accepts the same format as time.LoadLocation() in Go (https://pkg.go.dev/time#LoadLocation). The value should be a location name corresponding to a file in the IANA Time Zone database, such as \"America/New_York\".
+	* Timezone specifies time zone used for scheduled space operations. Defaults to UTC. Accepts the same format as time.LoadLocation() in Go (https://pkg.go.dev/time#LoadLocation). The value should be a location name corresponding to a file in the IANA Time Zone database, such as \"America/New_York\". See also: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 	*/
 	"timezone"?: string;
 	/**
@@ -5455,6 +5455,31 @@ declare class StorageV1GitEnvironmentTemplate {
 	* SubPath stores subpath within Repositor where environment spec is
 	*/
 	"subpath"?: string;
+	/**
+	* UseProjectGitCredentials specifies if the project git credentials should be used instead of local ones for this environment
+	*/
+	"useProjectGitCredentials"?: boolean;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1DevPodEnvironmentTemplateVersion {
+	"git"?: StorageV1GitEnvironmentTemplate;
+	/**
+	* Version is the version. Needs to be in X.X.X format.
+	*/
+	"version"?: string;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -5481,6 +5506,10 @@ declare class ManagementV1DevPodEnvironmentTemplateSpec {
 	"displayName"?: string;
 	"git"?: StorageV1GitEnvironmentTemplate;
 	"owner"?: StorageV1UserOrTeam;
+	/**
+	* Versions are different versions of the template that can be referenced as well
+	*/
+	"versions"?: Array<StorageV1DevPodEnvironmentTemplateVersion>;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -11344,6 +11373,10 @@ declare class ManagementV1ProjectTemplates {
 	*/
 	"apiVersion"?: string;
 	/**
+	* DefaultDevPodEnvironmentTemplate
+	*/
+	"defaultDevPodEnvironmentTemplate"?: string;
+	/**
 	* DefaultDevPodWorkspaceTemplate
 	*/
 	"defaultDevPodWorkspaceTemplate"?: string;
@@ -11355,6 +11388,10 @@ declare class ManagementV1ProjectTemplates {
 	* DefaultVirtualClusterTemplate is the default template for the project
 	*/
 	"defaultVirtualClusterTemplate"?: string;
+	/**
+	* DevPodEnvironmentTemplates holds all the allowed environment templates
+	*/
+	"devPodEnvironmentTemplates"?: Array<ManagementV1DevPodEnvironmentTemplate>;
 	/**
 	* DevPodWorkspaceTemplates holds all the allowed space templates
 	*/
