@@ -10,16 +10,20 @@
  * Do not edit the class manually.
  */
 
+import { V1FieldSelectorAttributes } from '../models/V1FieldSelectorAttributes';
+import { V1LabelSelectorAttributes } from '../models/V1LabelSelectorAttributes';
 
 
 /**
 * ResourceAttributes includes the authorization attributes available for resource requests to the Authorizer interface
 */
 export class V1ResourceAttributes {
+    'fieldSelector'?: V1FieldSelectorAttributes;
     /**
     * Group is the API Group of the Resource.  \"*\" means all.
     */
     'group'?: string;
+    'labelSelector'?: V1LabelSelectorAttributes;
     /**
     * Name is the name of the resource being requested for a \"get\" or deleted for a \"delete\". \"\" (empty) means all.
     */
@@ -49,9 +53,21 @@ export class V1ResourceAttributes {
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
+            "name": "fieldSelector",
+            "baseName": "fieldSelector",
+            "type": "V1FieldSelectorAttributes",
+            "format": ""
+        },
+        {
             "name": "group",
             "baseName": "group",
             "type": "string",
+            "format": ""
+        },
+        {
+            "name": "labelSelector",
+            "baseName": "labelSelector",
+            "type": "V1LabelSelectorAttributes",
             "format": ""
         },
         {

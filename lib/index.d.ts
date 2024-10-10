@@ -1276,9 +1276,13 @@ declare class V1PodSecurityContext {
 	"seLinuxOptions"?: V1SELinuxOptions;
 	"seccompProfile"?: V1SeccompProfile;
 	/**
-	* A list of groups applied to the first process run in each container, in addition to the container\'s primary GID, the fsGroup (if specified), and group memberships defined in the container image for the uid of the container process. If unspecified, no additional groups are added to any container. Note that group memberships defined in the container image for the uid of the container process are still effective, even if they are not included in this list. Note that this field cannot be set when spec.os.name is windows.
+	* A list of groups applied to the first process run in each container, in addition to the container\'s primary GID and fsGroup (if specified).  If the SupplementalGroupsPolicy feature is enabled, the supplementalGroupsPolicy field determines whether these are in addition to or instead of any group memberships defined in the container image. If unspecified, no additional groups are added, though group memberships defined in the container image may still be used, depending on the supplementalGroupsPolicy field. Note that this field cannot be set when spec.os.name is windows.
 	*/
 	"supplementalGroups"?: Array<number>;
+	/**
+	* Defines how supplemental groups of the first container processes are calculated. Valid values are \"Merge\" and \"Strict\". If not specified, \"Merge\" is used. (Alpha) Using the field requires the SupplementalGroupsPolicy feature gate to be enabled and the container runtime must implement support for this feature. Note that this field cannot be set when spec.os.name is windows.  Possible enum values:  - `\"Merge\"` means that the container\'s provided SupplementalGroups and FsGroup (specified in SecurityContext) will be merged with the primary user\'s groups as defined in the container image (in /etc/group).  - `\"Strict\"` means that the container\'s provided SupplementalGroups and FsGroup (specified in SecurityContext) will be used instead of any groups defined in the container image.
+	*/
+	"supplementalGroupsPolicy"?: V1PodSecurityContextSupplementalGroupsPolicyEnum;
 	/**
 	* Sysctls hold a list of namespaced sysctls used for the pod. Pods with unsupported sysctls (by the container runtime) might fail to launch. Note that this field cannot be set when spec.os.name is windows.
 	*/
@@ -1302,6 +1306,10 @@ declare class V1PodSecurityContext {
 declare enum V1PodSecurityContextFsGroupChangePolicyEnum {
 	Always = "Always",
 	OnRootMismatch = "OnRootMismatch"
+}
+declare enum V1PodSecurityContextSupplementalGroupsPolicyEnum {
+	Merge = "Merge",
+	Strict = "Strict"
 }
 declare class V1Capabilities {
 	/**
@@ -1339,7 +1347,7 @@ declare class V1SecurityContext {
 	*/
 	"privileged"?: boolean;
 	/**
-	* procMount denotes the type of proc mount to use for the containers. The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.  Possible enum values:  - `\"Default\"` uses the container runtime defaults for readonly and masked paths for /proc. Most container runtimes mask certain paths in /proc to avoid accidental security exposure of special devices or information.  - `\"Unmasked\"` bypasses the default masking behavior of the container runtime and ensures the newly created /proc the container stays in tact with no modifications.
+	* procMount denotes the type of proc mount to use for the containers. The default value is Default which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.  Possible enum values:  - `\"Default\"` uses the container runtime defaults for readonly and masked paths for /proc. Most container runtimes mask certain paths in /proc to avoid accidental security exposure of special devices or information.  - `\"Unmasked\"` bypasses the default masking behavior of the container runtime and ensures the newly created /proc the container stays in tact with no modifications.
 	*/
 	"procMount"?: V1SecurityContextProcMountEnum;
 	/**
@@ -8290,11 +8298,11 @@ declare class V1NodeAffinity {
 declare class V1PodAffinityTerm {
 	"labelSelector"?: V1LabelSelector;
 	/**
-	* MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with `labelSelector` as `key in (value)` to select the group of existing pods which pods will be taken into consideration for the incoming pod\'s pod (anti) affinity. Keys that don\'t exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn\'t set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
+	* MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with `labelSelector` as `key in (value)` to select the group of existing pods which pods will be taken into consideration for the incoming pod\'s pod (anti) affinity. Keys that don\'t exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn\'t set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).
 	*/
 	"matchLabelKeys"?: Array<string>;
 	/**
-	* MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with `labelSelector` as `key notin (value)` to select the group of existing pods which pods will be taken into consideration for the incoming pod\'s pod (anti) affinity. Keys that don\'t exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn\'t set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
+	* MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with `labelSelector` as `key notin (value)` to select the group of existing pods which pods will be taken into consideration for the incoming pod\'s pod (anti) affinity. Keys that don\'t exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn\'t set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).
 	*/
 	"mismatchLabelKeys"?: Array<string>;
 	"namespaceSelector"?: V1LabelSelector;
@@ -8909,6 +8917,10 @@ declare class V1ResourceClaim {
 	* Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
 	*/
 	"name": string;
+	/**
+	* Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.
+	*/
+	"request"?: string;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -9668,7 +9680,7 @@ declare class V1PersistentVolumeClaimSpec {
 	*/
 	"storageClassName"?: string;
 	/**
-	* volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it\'s not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.
+	* volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it\'s not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Beta) Using this field requires the VolumeAttributesClass feature gate to be enabled (off by default).
 	*/
 	"volumeAttributesClassName"?: string;
 	/**
@@ -10013,6 +10025,35 @@ declare class V1ISCSIVolumeSource {
 	}[];
 	constructor();
 }
+declare class V1ImageVolumeSource {
+	/**
+	* Policy for pulling OCI objects. Possible values are: Always: the kubelet always attempts to pull the reference. Container creation will fail If the pull fails. Never: the kubelet never pulls the reference and only uses a local image or artifact. Container creation will fail if the reference isn\'t present. IfNotPresent: the kubelet pulls if the reference isn\'t already present on disk. Container creation will fail if the reference isn\'t present and the pull fails. Defaults to Always if :latest tag is specified, or IfNotPresent otherwise.  Possible enum values:  - `\"Always\"` means that kubelet always attempts to pull the latest image. Container will fail If the pull fails.  - `\"IfNotPresent\"` means that kubelet pulls if the image isn\'t present on disk. Container will fail if the image isn\'t present and the pull fails.  - `\"Never\"` means that kubelet never pulls an image, but only uses a local image. Container will fail if the image isn\'t present
+	*/
+	"pullPolicy"?: V1ImageVolumeSourcePullPolicyEnum;
+	/**
+	* Required: Image or artifact reference to be used. Behaves in the same way as pod.spec.containers[*].image. Pull secrets will be assembled in the same way as for the container image by looking up node credentials, SA image pull secrets, and pod spec image pull secrets. More info: https://kubernetes.io/docs/concepts/containers/images This field is optional to allow higher level config management to default or override container images in workload controllers like Deployments and StatefulSets.
+	*/
+	"reference"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare enum V1ImageVolumeSourcePullPolicyEnum {
+	Always = "Always",
+	IfNotPresent = "IfNotPresent",
+	Never = "Never"
+}
 declare class V1NFSVolumeSource {
 	/**
 	* path that is exported by the NFS server. More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs
@@ -10281,7 +10322,7 @@ declare class V1ProjectedVolumeSource {
 	*/
 	"defaultMode"?: number;
 	/**
-	* sources is the list of volume projections
+	* sources is the list of volume projections. Each entry in this list handles one source.
 	*/
 	"sources"?: Array<V1VolumeProjection>;
 	static readonly discriminator: string | undefined;
@@ -10552,6 +10593,7 @@ declare class V1Volume {
 	"gitRepo"?: V1GitRepoVolumeSource;
 	"glusterfs"?: V1GlusterfsVolumeSource;
 	"hostPath"?: V1HostPathVolumeSource;
+	"image"?: V1ImageVolumeSource;
 	"iscsi"?: V1ISCSIVolumeSource;
 	/**
 	* name of the volume. Must be a DNS_LABEL and unique within the pod. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
@@ -12533,11 +12575,89 @@ declare class V1NonResourceAttributes {
 	}[];
 	constructor();
 }
+declare class V1FieldSelectorRequirement {
+	/**
+	* key is the field selector key that the requirement applies to.
+	*/
+	"key": string;
+	/**
+	* operator represents a key\'s relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. The list of operators may grow in the future.
+	*/
+	"operator": string;
+	/**
+	* values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty.
+	*/
+	"values"?: Array<string>;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class V1FieldSelectorAttributes {
+	/**
+	* rawSelector is the serialization of a field selector that would be included in a query parameter. Webhook implementations are encouraged to ignore rawSelector. The kube-apiserver\'s *SubjectAccessReview will parse the rawSelector as long as the requirements are not present.
+	*/
+	"rawSelector"?: string;
+	/**
+	* requirements is the parsed interpretation of a field selector. All requirements must be met for a resource instance to match the selector. Webhook implementations should handle requirements, but how to handle them is up to the webhook. Since requirements can only limit the request, it is safe to authorize as unlimited request if the requirements are not understood.
+	*/
+	"requirements"?: Array<V1FieldSelectorRequirement>;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class V1LabelSelectorAttributes {
+	/**
+	* rawSelector is the serialization of a field selector that would be included in a query parameter. Webhook implementations are encouraged to ignore rawSelector. The kube-apiserver\'s *SubjectAccessReview will parse the rawSelector as long as the requirements are not present.
+	*/
+	"rawSelector"?: string;
+	/**
+	* requirements is the parsed interpretation of a label selector. All requirements must be met for a resource instance to match the selector. Webhook implementations should handle requirements, but how to handle them is up to the webhook. Since requirements can only limit the request, it is safe to authorize as unlimited request if the requirements are not understood.
+	*/
+	"requirements"?: Array<V1LabelSelectorRequirement>;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
 declare class V1ResourceAttributes {
+	"fieldSelector"?: V1FieldSelectorAttributes;
 	/**
 	* Group is the API Group of the Resource.  \"*\" means all.
 	*/
 	"group"?: string;
+	"labelSelector"?: V1LabelSelectorAttributes;
 	/**
 	* Name is the name of the resource being requested for a \"get\" or deleted for a \"delete\". \"\" (empty) means all.
 	*/
@@ -13469,6 +13589,99 @@ declare class V1ContainerState {
 	}[];
 	constructor();
 }
+declare class V1LinuxContainerUser {
+	/**
+	* GID is the primary gid initially attached to the first process in the container
+	*/
+	"gid": number;
+	/**
+	* SupplementalGroups are the supplemental groups initially attached to the first process in the container
+	*/
+	"supplementalGroups"?: Array<number>;
+	/**
+	* UID is the primary uid initially attached to the first process in the container
+	*/
+	"uid": number;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class V1ContainerUser {
+	"linux"?: V1LinuxContainerUser;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class V1ResourceHealth {
+	/**
+	* Health of the resource. can be one of:  - Healthy: operates as normal  - Unhealthy: reported unhealthy. We consider this a temporary health issue               since we do not have a mechanism today to distinguish               temporary and permanent issues.  - Unknown: The status cannot be determined.             For example, Device Plugin got unregistered and hasn\'t been re-registered since.  In future we may want to introduce the PermanentlyUnhealthy Status.
+	*/
+	"health"?: string;
+	/**
+	* ResourceID is the unique identifier of the resource. See the ResourceID type for more information.
+	*/
+	"resourceID": string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class V1ResourceStatus {
+	/**
+	* Name of the resource. Must be unique within the pod and match one of the resources from the pod spec.
+	*/
+	"name": string;
+	/**
+	* List of unique Resources health. Each element in the list contains an unique resource ID and resource health. At a minimum, ResourceID must uniquely identify the Resource allocated to the Pod on the Node for the lifetime of a Pod. See ResourceID type for it\'s definition.
+	*/
+	"resources"?: Array<V1ResourceHealth>;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
 declare class V1VolumeMountStatus {
 	/**
 	* MountPath corresponds to the original VolumeMount.
@@ -13509,6 +13722,10 @@ declare class V1ContainerStatus {
 		[key: string]: string;
 	};
 	/**
+	* AllocatedResourcesStatus represents the status of various resources allocated for this Pod.
+	*/
+	"allocatedResourcesStatus"?: Array<V1ResourceStatus>;
+	/**
 	* ContainerID is the ID of the container in the format \'<type>://<container_id>\'. Where type is a container runtime identifier, returned from Version call of CRI API (for example \"containerd\").
 	*/
 	"containerID"?: string;
@@ -13539,6 +13756,7 @@ declare class V1ContainerStatus {
 	*/
 	"started"?: boolean;
 	"state"?: V1ContainerState;
+	"user"?: V1ContainerUser;
 	/**
 	* Status of volume mounts.
 	*/

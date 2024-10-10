@@ -10,20 +10,18 @@
  * Do not edit the class manually.
  */
 
+import { V1ResourceHealth } from '../models/V1ResourceHealth';
 
 
-/**
-* ResourceClaim references one entry in PodSpec.ResourceClaims.
-*/
-export class V1ResourceClaim {
+export class V1ResourceStatus {
     /**
-    * Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+    * Name of the resource. Must be unique within the pod and match one of the resources from the pod spec.
     */
     'name': string;
     /**
-    * Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.
+    * List of unique Resources health. Each element in the list contains an unique resource ID and resource health. At a minimum, ResourceID must uniquely identify the Resource allocated to the Pod on the Node for the lifetime of a Pod. See ResourceID type for it\'s definition.
     */
-    'request'?: string;
+    'resources'?: Array<V1ResourceHealth>;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -35,14 +33,14 @@ export class V1ResourceClaim {
             "format": ""
         },
         {
-            "name": "request",
-            "baseName": "request",
-            "type": "string",
+            "name": "resources",
+            "baseName": "resources",
+            "type": "Array<V1ResourceHealth>",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return V1ResourceClaim.attributeTypeMap;
+        return V1ResourceStatus.attributeTypeMap;
     }
 
     public constructor() {
