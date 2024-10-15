@@ -349,8 +349,43 @@ class Client {
         credentials: "same-origin",
       })
 
+      if (!response.ok) {
+        const responseCopy = response.clone()
+        const body = await responseCopy.text()
+
+        if (response.status === 401) {
+          try {
+            const error = JSON.parse(body) as {
+              message?: string
+              reason?: string
+            }
+
+            if (error?.message === constants.platformAccessKeyNotFound) {
+              window.location.href = `/login?error=${error?.message}&errorType=${error?.reason}`
+
+              return Return.Failed(
+                error.message || "Unauthorized",
+                error.reason,
+                ErrorTypeUnauthorized
+              )
+            }
+          } catch (e) {
+            // noop
+          }
+        }
+      }
+
       return await this.parseResponse(path, response)
     } catch (err) {
+      const error = err as {
+        reason: string
+        message: string
+      }
+
+      if (error.message === constants.platformAccessKeyNotFound) {
+        window.location.href = `/login?error=${error.message}&errorType=${error.reason}`
+      }
+
       return Return.Failed(err + "", "NetworkError", ErrorTypeNetwork)
     }
   }
