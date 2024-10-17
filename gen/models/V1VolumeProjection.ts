@@ -18,7 +18,7 @@ import { V1ServiceAccountTokenProjection } from '../models/V1ServiceAccountToken
 
 
 /**
-* Projection that may be projected along with other supported volume types
+* Projection that may be projected along with other supported volume types. Exactly one of these fields must be set.
 */
 export class V1VolumeProjection {
     'clusterTrustBundle'?: V1ClusterTrustBundleProjection;

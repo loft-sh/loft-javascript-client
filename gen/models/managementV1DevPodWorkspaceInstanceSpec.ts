@@ -40,6 +40,10 @@ export class ManagementV1DevPodWorkspaceInstanceSpec {
     * Parameters are values to pass to the template. The values should be encoded as YAML string where each parameter is represented as a top-level field key.
     */
     'parameters'?: string;
+    /**
+    * PreventWakeUpOnConnection is used to prevent workspace that uses sleep mode from waking up on incomming ssh connection.
+    */
+    'preventWakeUpOnConnection'?: boolean;
     'runnerRef'?: StorageV1RunnerRef;
     'template'?: StorageV1DevPodWorkspaceTemplateDefinition;
     'templateRef'?: StorageV1TemplateRef;
@@ -81,6 +85,12 @@ export class ManagementV1DevPodWorkspaceInstanceSpec {
             "name": "parameters",
             "baseName": "parameters",
             "type": "string",
+            "format": ""
+        },
+        {
+            "name": "preventWakeUpOnConnection",
+            "baseName": "preventWakeUpOnConnection",
+            "type": "boolean",
             "format": ""
         },
         {
