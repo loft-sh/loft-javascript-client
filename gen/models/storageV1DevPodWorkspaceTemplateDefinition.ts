@@ -30,6 +30,10 @@ export class StorageV1DevPodWorkspaceTemplateDefinition {
     */
     'initEnv'?: { [key: string]: StorageV1DevPodProviderOption; };
     'instanceTemplate'?: StorageV1DevPodWorkspaceInstanceTemplateDefinition;
+    /**
+    * PreventWakeUpOnConnection is used to prevent workspace that uses sleep mode from waking up on incomming ssh connection.
+    */
+    'preventWakeUpOnConnection'?: boolean;
     'provider': StorageV1DevPodWorkspaceProvider;
     'spaceTemplate'?: StorageV1SpaceTemplateDefinition;
     'spaceTemplateRef'?: StorageV1TemplateRef;
@@ -73,6 +77,12 @@ export class StorageV1DevPodWorkspaceTemplateDefinition {
             "name": "instanceTemplate",
             "baseName": "instanceTemplate",
             "type": "StorageV1DevPodWorkspaceInstanceTemplateDefinition",
+            "format": ""
+        },
+        {
+            "name": "preventWakeUpOnConnection",
+            "baseName": "preventWakeUpOnConnection",
+            "type": "boolean",
             "format": ""
         },
         {
