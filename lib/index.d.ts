@@ -7378,13 +7378,17 @@ declare class UiV1UISettingsSpec {
 	*/
 	"defaultVClusterVersion"?: string;
 	/**
-	* HasHelmRelease indicates whether loft has been installed via Helm
+	* HasHelmRelease indicates whether the vCluster Platform instance has been installed via Helm
 	*/
 	"hasHelmRelease"?: boolean;
 	/**
 	* LegalTemplate is a text (html) string containing the legal template to prompt to users when authenticating to Loft
 	*/
 	"legalTemplate"?: string;
+	/**
+	* LoftHosted indicates whether the vCluster platform instance is hosted and operated by Loft Labs Inc.
+	*/
+	"loftHosted"?: boolean;
 	/**
 	* LoftVersion holds the current loft version
 	*/
