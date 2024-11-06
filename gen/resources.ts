@@ -69,6 +69,7 @@ import {ManagementV1UserPermissions} from "./models/managementV1UserPermissions"
 import {ManagementV1UserProfile} from "./models/managementV1UserProfile"
 import {ManagementV1User} from "./models/managementV1User"
 import {ManagementV1VirtualClusterAccessKey} from "./models/managementV1VirtualClusterAccessKey"
+import {ManagementV1VirtualClusterExternalDatabase} from "./models/managementV1VirtualClusterExternalDatabase"
 import {ManagementV1VirtualClusterInstanceKubeConfig} from "./models/managementV1VirtualClusterInstanceKubeConfig"
 import {ManagementV1VirtualClusterInstanceLog} from "./models/managementV1VirtualClusterInstanceLog"
 import {ManagementV1VirtualClusterInstance} from "./models/managementV1VirtualClusterInstance"
@@ -144,6 +145,7 @@ export type TGenResources = {
   ManagementV1UserPermissions: GroupVersionResource<ManagementV1UserPermissions>
   ManagementV1UserProfile: GroupVersionResource<ManagementV1UserProfile>
   ManagementV1VirtualClusterAccessKey: GroupVersionResource<ManagementV1VirtualClusterAccessKey>
+  ManagementV1VirtualClusterExternalDatabase: GroupVersionResource<ManagementV1VirtualClusterExternalDatabase>
   ManagementV1VirtualClusterInstance: GroupVersionResource<ManagementV1VirtualClusterInstance>
   ManagementV1VirtualClusterInstanceKubeConfig: GroupVersionResource<ManagementV1VirtualClusterInstanceKubeConfig>
   ManagementV1VirtualClusterInstanceLog: GroupVersionResource<ManagementV1VirtualClusterInstanceLog>
@@ -702,6 +704,14 @@ export const GenResources: TGenResources = {
     subResource: "accesskey",
     namespaced: true,
     kind: "VirtualClusterAccessKey",
+  },
+  ManagementV1VirtualClusterExternalDatabase: {
+    group: "management.loft.sh",
+    version: "v1",
+    resource: "virtualclusterinstances",
+    subResource: "externaldatabase",
+    namespaced: true,
+    kind: "VirtualClusterExternalDatabase",
   },
   ManagementV1VirtualClusterInstance: {
     group: "management.loft.sh",
