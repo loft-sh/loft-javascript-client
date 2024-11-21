@@ -10,34 +10,34 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1DevPodEnvironmentTemplateDefinition } from '../models/storageV1DevPodEnvironmentTemplateDefinition';
+import { StorageV1GitEnvironmentTemplate } from '../models/storageV1GitEnvironmentTemplate';
 
 
-export class StorageV1DevPodEnvironmentTemplateVersion {
-    'template'?: StorageV1DevPodEnvironmentTemplateDefinition;
+export class StorageV1DevPodEnvironmentTemplateDefinition {
+    'git'?: StorageV1GitEnvironmentTemplate;
     /**
-    * Version is the version. Needs to be in X.X.X format.
+    * Inline holds an inline devcontainer.json definition
     */
-    'version'?: string;
+    'inline'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "template",
-            "baseName": "template",
-            "type": "StorageV1DevPodEnvironmentTemplateDefinition",
+            "name": "git",
+            "baseName": "git",
+            "type": "StorageV1GitEnvironmentTemplate",
             "format": ""
         },
         {
-            "name": "version",
-            "baseName": "version",
+            "name": "inline",
+            "baseName": "inline",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1DevPodEnvironmentTemplateVersion.attributeTypeMap;
+        return StorageV1DevPodEnvironmentTemplateDefinition.attributeTypeMap;
     }
 
     public constructor() {
