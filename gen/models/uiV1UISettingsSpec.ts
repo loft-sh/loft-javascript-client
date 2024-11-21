@@ -42,7 +42,7 @@ export class UiV1UISettingsSpec {
     */
     'legalTemplate'?: string;
     /**
-    * LoftHosted indicates whether the vCluster platform instance is hosted and operated by Loft Labs Inc.
+    * LoftHosted indicates whether the vCluster Platform instance is hosted and operated by Loft Labs Inc.
     */
     'loftHosted'?: boolean;
     /**

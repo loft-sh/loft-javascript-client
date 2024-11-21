@@ -5070,6 +5070,51 @@ declare class ManagementV1Authentication {
 	}[];
 	constructor();
 }
+declare class ManagementV1MaintenanceWindow {
+	/**
+	* DayOfWeek specifies the day of the week for the maintenance window. It should be a string representing the day, e.g., \"Monday\", \"Tuesday\", etc.
+	*/
+	"dayOfWeek"?: string;
+	/**
+	* TimeWindow specifies the time window for the maintenance. It should be a string representing the time range in 24-hour format, e.g., \"02:00-03:00\".
+	*/
+	"timeWindow"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1Cloud {
+	"maintenanceWindow"?: ManagementV1MaintenanceWindow;
+	/**
+	* ReleaseChannel specifies the release channel for the cloud configuration. This can be used to determine which updates or versions are applied.
+	*/
+	"releaseChannel"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
 declare class ManagementV1OIDCClientSpec {
 	/**
 	* The client id of the client
@@ -5308,6 +5353,7 @@ declare class ManagementV1ConfigStatus {
 	"apps"?: ManagementV1Apps;
 	"audit"?: ManagementV1Audit;
 	"auth"?: ManagementV1Authentication;
+	"cloud"?: ManagementV1Cloud;
 	/**
 	* DevPodSubDomain holds a subdomain in the following form *.workspace.my-domain.com
 	*/
@@ -7386,7 +7432,7 @@ declare class UiV1UISettingsSpec {
 	*/
 	"legalTemplate"?: string;
 	/**
-	* LoftHosted indicates whether the vCluster platform instance is hosted and operated by Loft Labs Inc.
+	* LoftHosted indicates whether the vCluster Platform instance is hosted and operated by Loft Labs Inc.
 	*/
 	"loftHosted"?: boolean;
 	/**
