@@ -5070,6 +5070,51 @@ declare class ManagementV1Authentication {
 	}[];
 	constructor();
 }
+declare class ManagementV1MaintenanceWindow {
+	/**
+	* DayOfWeek specifies the day of the week for the maintenance window. It should be a string representing the day, e.g., \"Monday\", \"Tuesday\", etc.
+	*/
+	"dayOfWeek"?: string;
+	/**
+	* TimeWindow specifies the time window for the maintenance. It should be a string representing the time range in 24-hour format, in UTC, e.g., \"02:00-03:00\".
+	*/
+	"timeWindow"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1Cloud {
+	"maintenanceWindow"?: ManagementV1MaintenanceWindow;
+	/**
+	* ReleaseChannel specifies the release channel for the cloud configuration. This can be used to determine which updates or versions are applied.
+	*/
+	"releaseChannel"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
 declare class ManagementV1OIDCClientSpec {
 	/**
 	* The client id of the client
@@ -5308,6 +5353,7 @@ declare class ManagementV1ConfigStatus {
 	"apps"?: ManagementV1Apps;
 	"audit"?: ManagementV1Audit;
 	"auth"?: ManagementV1Authentication;
+	"cloud"?: ManagementV1Cloud;
 	/**
 	* DevPodSubDomain holds a subdomain in the following form *.workspace.my-domain.com
 	*/
@@ -5482,8 +5528,29 @@ declare class StorageV1GitEnvironmentTemplate {
 	}[];
 	constructor();
 }
-declare class StorageV1DevPodEnvironmentTemplateVersion {
+declare class StorageV1DevPodEnvironmentTemplateDefinition {
 	"git"?: StorageV1GitEnvironmentTemplate;
+	/**
+	* Inline holds an inline devcontainer.json definition
+	*/
+	"inline"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1DevPodEnvironmentTemplateVersion {
+	"template"?: StorageV1DevPodEnvironmentTemplateDefinition;
 	/**
 	* Version is the version. Needs to be in X.X.X format.
 	*/
@@ -5509,11 +5576,15 @@ declare class ManagementV1DevPodEnvironmentTemplateSpec {
 	*/
 	"access"?: Array<StorageV1Access>;
 	/**
+	* Description describes the environment template
+	*/
+	"description"?: string;
+	/**
 	* DisplayName is the name that should be displayed in the UI
 	*/
 	"displayName"?: string;
-	"git"?: StorageV1GitEnvironmentTemplate;
 	"owner"?: StorageV1UserOrTeam;
+	"template"?: StorageV1DevPodEnvironmentTemplateDefinition;
 	/**
 	* Versions are different versions of the template that can be referenced as well
 	*/
@@ -5876,6 +5947,34 @@ declare class StorageV1EnvironmentRef {
 	* Name is the name of DevPodEnvironmentTemplate this references
 	*/
 	"name": string;
+	/**
+	* Version is the version of DevPodEnvironmentTemplate this references
+	*/
+	"version"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1PresetRef {
+	/**
+	* Name is the name of DevPodWorkspacePreset
+	*/
+	"name": string;
+	/**
+	* Version holds the preset version to use. Version is expected to be in semantic versioning format. Alternatively, you can also exchange major, minor or patch with an \'x\' to tell Loft to automatically select the latest major, minor or patch version.
+	*/
+	"version"?: string;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -5930,6 +6029,7 @@ declare class ManagementV1DevPodWorkspaceInstanceSpec {
 	* Parameters are values to pass to the template. The values should be encoded as YAML string where each parameter is represented as a top-level field key.
 	*/
 	"parameters"?: string;
+	"presetRef"?: StorageV1PresetRef;
 	/**
 	* PreventWakeUpOnConnection is used to prevent workspace that uses sleep mode from waking up on incomming ssh connection.
 	*/
@@ -6071,6 +6171,123 @@ declare class ManagementV1DevPodWorkspaceInstance {
 	"metadata"?: V1ObjectMeta;
 	"spec"?: ManagementV1DevPodWorkspaceInstanceSpec;
 	"status"?: ManagementV1DevPodWorkspaceInstanceStatus;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1DevPodWorkspacePresetSource {
+	/**
+	* Git stores path to git repo to use as workspace source
+	*/
+	"git"?: string;
+	/**
+	* Image stores container image to use as workspace source
+	*/
+	"image"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1DevPodWorkspacePresetVersion {
+	"environmentRef"?: StorageV1EnvironmentRef;
+	"infrastructureRef"?: StorageV1TemplateRef;
+	"source"?: StorageV1DevPodWorkspacePresetSource;
+	/**
+	* UseProjectGitCredentials specifies if the project git credentials should be used instead of local ones for this environment
+	*/
+	"useProjectGitCredentials"?: boolean;
+	/**
+	* Version is the version. Needs to be in X.X.X format.
+	*/
+	"version"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1DevPodWorkspacePresetSpec {
+	/**
+	* Access to the DevPod machine instance object itself
+	*/
+	"access"?: Array<StorageV1Access>;
+	/**
+	* DisplayName is the name that should be displayed in the UI
+	*/
+	"displayName"?: string;
+	"environmentRef"?: StorageV1EnvironmentRef;
+	"infrastructureRef": StorageV1TemplateRef;
+	"owner"?: StorageV1UserOrTeam;
+	"source": StorageV1DevPodWorkspacePresetSource;
+	/**
+	* UseProjectGitCredentials specifies if the project git credentials should be used instead of local ones for this environment
+	*/
+	"useProjectGitCredentials"?: boolean;
+	/**
+	* Versions are different versions of the template that can be referenced as well
+	*/
+	"versions"?: Array<StorageV1DevPodWorkspacePresetVersion>;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1DevPodWorkspacePreset {
+	/**
+	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	*/
+	"apiVersion"?: string;
+	/**
+	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	*/
+	"kind"?: string;
+	"metadata"?: V1ObjectMeta;
+	"spec"?: ManagementV1DevPodWorkspacePresetSpec;
+	/**
+	* DevPodWorkspacePresetStatus holds the status
+	*/
+	"status"?: any;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -7378,13 +7595,17 @@ declare class UiV1UISettingsSpec {
 	*/
 	"defaultVClusterVersion"?: string;
 	/**
-	* HasHelmRelease indicates whether loft has been installed via Helm
+	* HasHelmRelease indicates whether the vCluster Platform instance has been installed via Helm
 	*/
 	"hasHelmRelease"?: boolean;
 	/**
 	* LegalTemplate is a text (html) string containing the legal template to prompt to users when authenticating to Loft
 	*/
 	"legalTemplate"?: string;
+	/**
+	* LoftHosted indicates whether the vCluster Platform instance is hosted and operated by Loft Labs Inc.
+	*/
+	"loftHosted"?: boolean;
 	/**
 	* LoftVersion holds the current loft version
 	*/
@@ -11443,6 +11664,10 @@ declare class ManagementV1ProjectTemplates {
 	*/
 	"devPodEnvironmentTemplates"?: Array<ManagementV1DevPodEnvironmentTemplate>;
 	/**
+	* DevPodWorkspacePresets holds all the allowed workspace presets
+	*/
+	"devPodWorkspacePresets"?: Array<ManagementV1DevPodWorkspacePreset>;
+	/**
 	* DevPodWorkspaceTemplates holds all the allowed space templates
 	*/
 	"devPodWorkspaceTemplates"?: Array<ManagementV1DevPodWorkspaceTemplate>;
@@ -11972,6 +12197,26 @@ declare class StorageV1RancherIntegrationSpec {
 	}[];
 	constructor();
 }
+declare class StorageV1RequirePreset {
+	/**
+	* If true, all users within the project will not be allowed to create a new instance without a preset. By default, all users are allowed to create a new instance without a preset.
+	*/
+	"disabled"?: boolean;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
 declare class StorageV1RequireTemplate {
 	/**
 	* If true, all users within the project will be allowed to create a new instance without a template. By default, only admins are allowed to create a new instance without a template.
@@ -12027,6 +12272,7 @@ declare class ManagementV1ProjectSpec {
 	"owner"?: StorageV1UserOrTeam;
 	"quotas"?: StorageV1Quotas;
 	"rancher"?: StorageV1RancherIntegrationSpec;
+	"requirePreset"?: StorageV1RequirePreset;
 	"requireTemplate"?: StorageV1RequireTemplate;
 	"vault"?: StorageV1VaultIntegrationSpec;
 	static readonly discriminator: string | undefined;
@@ -14513,6 +14759,73 @@ declare class ManagementV1VirtualClusterAccessKey {
 	}[];
 	constructor();
 }
+declare class ManagementV1VirtualClusterExternalDatabaseSpec {
+	/**
+	* Connector specifies the secret that should be used to connect to an external database server. The connection is used to manage a user and database for the vCluster. A data source endpoint constructed from the created user and database is returned on status. The secret specified by connector should contain the following fields: endpoint - the endpoint where the database server can be accessed user - the database username password - the password for the database username port - the port to be used in conjunction with the endpoint to connect to the databse server. This is commonly 3306
+	*/
+	"connector"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1VirtualClusterExternalDatabaseStatus {
+	/**
+	* DataSource holds a datasource endpoint constructed from the vCluster\'s designated user and database. The user and database are created from the given connector.
+	*/
+	"dataSource"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1VirtualClusterExternalDatabase {
+	/**
+	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	*/
+	"apiVersion"?: string;
+	/**
+	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	*/
+	"kind"?: string;
+	"metadata"?: V1ObjectMeta;
+	"spec"?: ManagementV1VirtualClusterExternalDatabaseSpec;
+	"status"?: ManagementV1VirtualClusterExternalDatabaseStatus;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
 declare class ManagementV1VirtualClusterInstanceKubeConfigSpec {
 	/**
 	* CertificateTTL holds the ttl (in seconds) to set for the certificate associated with the returned kubeconfig. This field is optional, if no value is provided, the certificate TTL will be set to one day. If set to zero, this will cause loft to pass nil to the certificate signing request, which will result in the certificate being valid for the clusters `cluster-signing-duration` value which is typically one year.
@@ -14791,6 +15104,7 @@ export type TGenResources = {
 	ManagementV1DevPodEnvironmentTemplate: GroupVersionResource<ManagementV1DevPodEnvironmentTemplate>;
 	ManagementV1DevPodWorkspaceInstance: GroupVersionResource<ManagementV1DevPodWorkspaceInstance>;
 	ManagementV1DevPodWorkspaceInstanceState: GroupVersionResource<ManagementV1DevPodWorkspaceInstanceState>;
+	ManagementV1DevPodWorkspacePreset: GroupVersionResource<ManagementV1DevPodWorkspacePreset>;
 	ManagementV1DevPodWorkspaceTemplate: GroupVersionResource<ManagementV1DevPodWorkspaceTemplate>;
 	ManagementV1DirectClusterEndpointToken: GroupVersionResource<ManagementV1DirectClusterEndpointToken>;
 	ManagementV1Event: GroupVersionResource<ManagementV1Event>;
@@ -14838,6 +15152,7 @@ export type TGenResources = {
 	ManagementV1UserPermissions: GroupVersionResource<ManagementV1UserPermissions>;
 	ManagementV1UserProfile: GroupVersionResource<ManagementV1UserProfile>;
 	ManagementV1VirtualClusterAccessKey: GroupVersionResource<ManagementV1VirtualClusterAccessKey>;
+	ManagementV1VirtualClusterExternalDatabase: GroupVersionResource<ManagementV1VirtualClusterExternalDatabase>;
 	ManagementV1VirtualClusterInstance: GroupVersionResource<ManagementV1VirtualClusterInstance>;
 	ManagementV1VirtualClusterInstanceKubeConfig: GroupVersionResource<ManagementV1VirtualClusterInstanceKubeConfig>;
 	ManagementV1VirtualClusterInstanceLog: GroupVersionResource<ManagementV1VirtualClusterInstanceLog>;
