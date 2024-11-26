@@ -12,34 +12,34 @@
 
 
 
-export class ManagementV1MaintenanceWindow {
+export class StorageV1PresetRef {
     /**
-    * DayOfWeek specifies the day of the week for the maintenance window. It should be a string representing the day, e.g., \"Monday\", \"Tuesday\", etc.
+    * Name is the name of DevPodWorkspacePreset
     */
-    'dayOfWeek'?: string;
+    'name': string;
     /**
-    * TimeWindow specifies the time window for the maintenance. It should be a string representing the time range in 24-hour format, in UTC, e.g., \"02:00-03:00\".
+    * Version holds the preset version to use. Version is expected to be in semantic versioning format. Alternatively, you can also exchange major, minor or patch with an \'x\' to tell Loft to automatically select the latest major, minor or patch version.
     */
-    'timeWindow'?: string;
+    'version'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "dayOfWeek",
-            "baseName": "dayOfWeek",
+            "name": "name",
+            "baseName": "name",
             "type": "string",
             "format": ""
         },
         {
-            "name": "timeWindow",
-            "baseName": "timeWindow",
+            "name": "version",
+            "baseName": "version",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1MaintenanceWindow.attributeTypeMap;
+        return StorageV1PresetRef.attributeTypeMap;
     }
 
     public constructor() {

@@ -10,36 +10,34 @@
  * Do not edit the class manually.
  */
 
+import { StorageV1GitEnvironmentTemplate } from '../models/storageV1GitEnvironmentTemplate';
 
 
-export class ManagementV1MaintenanceWindow {
+export class StorageV1DevPodEnvironmentTemplateDefinition {
+    'git'?: StorageV1GitEnvironmentTemplate;
     /**
-    * DayOfWeek specifies the day of the week for the maintenance window. It should be a string representing the day, e.g., \"Monday\", \"Tuesday\", etc.
+    * Inline holds an inline devcontainer.json definition
     */
-    'dayOfWeek'?: string;
-    /**
-    * TimeWindow specifies the time window for the maintenance. It should be a string representing the time range in 24-hour format, in UTC, e.g., \"02:00-03:00\".
-    */
-    'timeWindow'?: string;
+    'inline'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "dayOfWeek",
-            "baseName": "dayOfWeek",
-            "type": "string",
+            "name": "git",
+            "baseName": "git",
+            "type": "StorageV1GitEnvironmentTemplate",
             "format": ""
         },
         {
-            "name": "timeWindow",
-            "baseName": "timeWindow",
+            "name": "inline",
+            "baseName": "inline",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1MaintenanceWindow.attributeTypeMap;
+        return StorageV1DevPodEnvironmentTemplateDefinition.attributeTypeMap;
     }
 
     public constructor() {

@@ -12,34 +12,24 @@
 
 
 
-export class StorageV1EnvironmentRef {
+export class StorageV1RequirePreset {
     /**
-    * Name is the name of DevPodEnvironmentTemplate this references
+    * If true, all users within the project will not be allowed to create a new instance without a preset. By default, all users are allowed to create a new instance without a preset.
     */
-    'name': string;
-    /**
-    * Version is the version of DevPodEnvironmentTemplate this references
-    */
-    'version'?: string;
+    'disabled'?: boolean;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "name",
-            "baseName": "name",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "version",
-            "baseName": "version",
-            "type": "string",
+            "name": "disabled",
+            "baseName": "disabled",
+            "type": "boolean",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1EnvironmentRef.attributeTypeMap;
+        return StorageV1RequirePreset.attributeTypeMap;
     }
 
     public constructor() {

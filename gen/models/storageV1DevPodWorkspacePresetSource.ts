@@ -12,34 +12,34 @@
 
 
 
-export class ManagementV1MaintenanceWindow {
+export class StorageV1DevPodWorkspacePresetSource {
     /**
-    * DayOfWeek specifies the day of the week for the maintenance window. It should be a string representing the day, e.g., \"Monday\", \"Tuesday\", etc.
+    * Git stores path to git repo to use as workspace source
     */
-    'dayOfWeek'?: string;
+    'git'?: string;
     /**
-    * TimeWindow specifies the time window for the maintenance. It should be a string representing the time range in 24-hour format, in UTC, e.g., \"02:00-03:00\".
+    * Image stores container image to use as workspace source
     */
-    'timeWindow'?: string;
+    'image'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "dayOfWeek",
-            "baseName": "dayOfWeek",
+            "name": "git",
+            "baseName": "git",
             "type": "string",
             "format": ""
         },
         {
-            "name": "timeWindow",
-            "baseName": "timeWindow",
+            "name": "image",
+            "baseName": "image",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1MaintenanceWindow.attributeTypeMap;
+        return StorageV1DevPodWorkspacePresetSource.attributeTypeMap;
     }
 
     public constructor() {
