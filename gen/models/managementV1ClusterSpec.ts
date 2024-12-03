@@ -11,6 +11,7 @@
  */
 
 import { StorageV1Access } from '../models/storageV1Access';
+import { StorageV1Metrics } from '../models/storageV1Metrics';
 import { StorageV1SecretRef } from '../models/storageV1SecretRef';
 import { StorageV1UserOrTeam } from '../models/storageV1UserOrTeam';
 
@@ -40,6 +41,7 @@ export class ManagementV1ClusterSpec {
     * The namespace where the cluster components will be installed in
     */
     'managementNamespace'?: string;
+    'metrics'?: StorageV1Metrics;
     /**
     * NetworkPeer specifies if the cluster is connected via tailscale, when this is specified, config is optional
     */
@@ -87,6 +89,12 @@ export class ManagementV1ClusterSpec {
             "name": "managementNamespace",
             "baseName": "managementNamespace",
             "type": "string",
+            "format": ""
+        },
+        {
+            "name": "metrics",
+            "baseName": "metrics",
+            "type": "StorageV1Metrics",
             "format": ""
         },
         {

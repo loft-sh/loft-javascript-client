@@ -4322,6 +4322,47 @@ declare class ManagementV1ClusterVirtualClusterDefaults {
 	}[];
 	constructor();
 }
+declare class StorageV1Storage {
+	/**
+	* Size the size of the metrics backend\'s persistent volume
+	*/
+	"size"?: string;
+	/**
+	* StorageClass the storage class to use when provisioning the metrics backend\'s persistent volume If set to \"-\" or \"\" dynamic provisioning is disabled If set to undefined or null (the default), the cluster\'s default storage class is used for provisioning
+	*/
+	"storageClass"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1Metrics {
+	"storage"?: StorageV1Storage;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
 declare class StorageV1SecretRef {
 	"key"?: string;
 	"secretName"?: string;
@@ -4363,6 +4404,7 @@ declare class ManagementV1ClusterSpec {
 	* The namespace where the cluster components will be installed in
 	*/
 	"managementNamespace"?: string;
+	"metrics"?: StorageV1Metrics;
 	/**
 	* NetworkPeer specifies if the cluster is connected via tailscale, when this is specified, config is optional
 	*/
@@ -4387,7 +4429,51 @@ declare class ManagementV1ClusterSpec {
 	}[];
 	constructor();
 }
+declare class StorageV1Condition {
+	/**
+	* Last time the condition transitioned from one status to another. This should be when the underlying condition changed. If that is not known, then using the time when the API field changed is acceptable.
+	*/
+	"lastTransitionTime": Date;
+	/**
+	* A human readable message indicating details about the transition. This field may be empty.
+	*/
+	"message"?: string;
+	/**
+	* The reason for the condition\'s last transition in CamelCase. The specific API may choose whether this field is considered a guaranteed API. This field may not be empty.
+	*/
+	"reason"?: string;
+	/**
+	* Severity provides an explicit classification of Reason code, so the users or machines can immediately understand the current situation and act accordingly. The Severity field MUST be set only when Status=False.
+	*/
+	"severity"?: string;
+	/**
+	* Status of the condition, one of True, False, Unknown.
+	*/
+	"status": string;
+	/**
+	* Type of condition in CamelCase or in foo.example.com/CamelCase. Many .condition.type values are consistent across resources like Available, but because arbitrary conditions can be useful (see .node.status.conditions), the ability to deconflict is important.
+	*/
+	"type": string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
 declare class ManagementV1ClusterStatus {
+	/**
+	* Conditions holds several conditions the cluster might be in
+	*/
+	"conditions"?: Array<StorageV1Condition>;
 	"message"?: string;
 	/**
 	* Online is whether the cluster is currently connected to the coordination server.
@@ -5115,6 +5201,76 @@ declare class ManagementV1Cloud {
 	}[];
 	constructor();
 }
+declare class ManagementV1CostControlResourcePrice {
+	/**
+	* Price specifies the price.
+	*/
+	"price"?: number;
+	/**
+	* TimePeriod specifies the time period for the price.
+	*/
+	"timePeriod"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1CostControlSettings {
+	"averageCPUPricePerNode"?: ManagementV1CostControlResourcePrice;
+	"averageRAMPricePerNode"?: ManagementV1CostControlResourcePrice;
+	"controlPlanePricePerCluster"?: ManagementV1CostControlResourcePrice;
+	/**
+	* PriceCurrency specifies the currency.
+	*/
+	"priceCurrency"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1CostControl {
+	"clusterMetrics"?: StorageV1Metrics;
+	/**
+	* Enabled specifies whether the ROI dashboard should be available in the UI, and if the metrics infrastructure that provides dashboard data is deployed
+	*/
+	"enabled"?: boolean;
+	"globalMetrics"?: StorageV1Metrics;
+	"settings"?: ManagementV1CostControlSettings;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
 declare class ManagementV1OIDCClientSpec {
 	/**
 	* The client id of the client
@@ -5354,6 +5510,7 @@ declare class ManagementV1ConfigStatus {
 	"audit"?: ManagementV1Audit;
 	"auth"?: ManagementV1Authentication;
 	"cloud"?: ManagementV1Cloud;
+	"costControl"?: ManagementV1CostControl;
 	/**
 	* DevPodSubDomain holds a subdomain in the following form *.workspace.my-domain.com
 	*/
@@ -6037,46 +6194,6 @@ declare class ManagementV1DevPodWorkspaceInstanceSpec {
 	"runnerRef"?: StorageV1RunnerRef;
 	"template"?: StorageV1DevPodWorkspaceTemplateDefinition;
 	"templateRef"?: StorageV1TemplateRef;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class StorageV1Condition {
-	/**
-	* Last time the condition transitioned from one status to another. This should be when the underlying condition changed. If that is not known, then using the time when the API field changed is acceptable.
-	*/
-	"lastTransitionTime": Date;
-	/**
-	* A human readable message indicating details about the transition. This field may be empty.
-	*/
-	"message"?: string;
-	/**
-	* The reason for the condition\'s last transition in CamelCase. The specific API may choose whether this field is considered a guaranteed API. This field may not be empty.
-	*/
-	"reason"?: string;
-	/**
-	* Severity provides an explicit classification of Reason code, so the users or machines can immediately understand the current situation and act accordingly. The Severity field MUST be set only when Status=False.
-	*/
-	"severity"?: string;
-	/**
-	* Status of the condition, one of True, False, Unknown.
-	*/
-	"status": string;
-	/**
-	* Type of condition in CamelCase or in foo.example.com/CamelCase. Many .condition.type values are consistent across resources like Available, but because arbitrary conditions can be useful (see .node.status.conditions), the ability to deconflict is important.
-	*/
-	"type": string;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -15113,6 +15230,7 @@ declare class StorageV1ClusterSpec {
 	* The namespace where the cluster components will be installed in
 	*/
 	"managementNamespace"?: string;
+	"metrics"?: StorageV1Metrics;
 	/**
 	* NetworkPeer specifies if the cluster is connected via tailscale, when this is specified, config is optional
 	*/
@@ -15138,6 +15256,10 @@ declare class StorageV1ClusterSpec {
 	constructor();
 }
 declare class StorageV1ClusterStatus {
+	/**
+	* Conditions holds several conditions the cluster might be in
+	*/
+	"conditions"?: Array<StorageV1Condition>;
 	"message"?: string;
 	"phase"?: string;
 	"reason"?: string;
