@@ -10,34 +10,29 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1DevPodEnvironmentTemplateDefinition } from '../models/storageV1DevPodEnvironmentTemplateDefinition';
 
 
-export class StorageV1DevPodEnvironmentTemplateVersion {
-    'template'?: StorageV1DevPodEnvironmentTemplateDefinition;
+/**
+* PodReadinessGate contains the reference to a pod condition
+*/
+export class V1PodReadinessGate {
     /**
-    * Version is the version. Needs to be in X.X.X format.
+    * ConditionType refers to a condition in the pod\'s condition list with matching type.
     */
-    'version'?: string;
+    'conditionType': string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "template",
-            "baseName": "template",
-            "type": "StorageV1DevPodEnvironmentTemplateDefinition",
-            "format": ""
-        },
-        {
-            "name": "version",
-            "baseName": "version",
+            "name": "conditionType",
+            "baseName": "conditionType",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1DevPodEnvironmentTemplateVersion.attributeTypeMap;
+        return V1PodReadinessGate.attributeTypeMap;
     }
 
     public constructor() {
