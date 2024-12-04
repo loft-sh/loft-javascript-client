@@ -10,34 +10,32 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1DevPodEnvironmentTemplateDefinition } from '../models/storageV1DevPodEnvironmentTemplateDefinition';
+import { StorageV1Metrics } from '../models/storageV1Metrics';
+import { StorageV1OpenCost } from '../models/storageV1OpenCost';
 
 
-export class StorageV1DevPodEnvironmentTemplateVersion {
-    'template'?: StorageV1DevPodEnvironmentTemplateDefinition;
-    /**
-    * Version is the version. Needs to be in X.X.X format.
-    */
-    'version'?: string;
+export class ManagementV1CostControlClusterConfig {
+    'metrics'?: StorageV1Metrics;
+    'opencost'?: StorageV1OpenCost;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "template",
-            "baseName": "template",
-            "type": "StorageV1DevPodEnvironmentTemplateDefinition",
+            "name": "metrics",
+            "baseName": "metrics",
+            "type": "StorageV1Metrics",
             "format": ""
         },
         {
-            "name": "version",
-            "baseName": "version",
-            "type": "string",
+            "name": "opencost",
+            "baseName": "opencost",
+            "type": "StorageV1OpenCost",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1DevPodEnvironmentTemplateVersion.attributeTypeMap;
+        return ManagementV1CostControlClusterConfig.attributeTypeMap;
     }
 
     public constructor() {
