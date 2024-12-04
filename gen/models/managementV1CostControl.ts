@@ -10,26 +10,27 @@
  * Do not edit the class manually.
  */
 
+import { ManagementV1CostControlClusterConfig } from '../models/managementV1CostControlClusterConfig';
+import { ManagementV1CostControlGlobalConfig } from '../models/managementV1CostControlGlobalConfig';
 import { ManagementV1CostControlSettings } from '../models/managementV1CostControlSettings';
-import { StorageV1Metrics } from '../models/storageV1Metrics';
 
 
 export class ManagementV1CostControl {
-    'clusterMetrics'?: StorageV1Metrics;
+    'cluster'?: ManagementV1CostControlClusterConfig;
     /**
     * Enabled specifies whether the ROI dashboard should be available in the UI, and if the metrics infrastructure that provides dashboard data is deployed
     */
     'enabled'?: boolean;
-    'globalMetrics'?: StorageV1Metrics;
+    'global'?: ManagementV1CostControlGlobalConfig;
     'settings'?: ManagementV1CostControlSettings;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "clusterMetrics",
-            "baseName": "clusterMetrics",
-            "type": "StorageV1Metrics",
+            "name": "cluster",
+            "baseName": "cluster",
+            "type": "ManagementV1CostControlClusterConfig",
             "format": ""
         },
         {
@@ -39,9 +40,9 @@ export class ManagementV1CostControl {
             "format": ""
         },
         {
-            "name": "globalMetrics",
-            "baseName": "globalMetrics",
-            "type": "StorageV1Metrics",
+            "name": "global",
+            "baseName": "global",
+            "type": "ManagementV1CostControlGlobalConfig",
             "format": ""
         },
         {

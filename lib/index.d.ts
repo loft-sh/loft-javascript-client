@@ -4346,8 +4346,94 @@ declare class StorageV1Storage {
 	}[];
 	constructor();
 }
+declare class V1ResourceClaim {
+	/**
+	* Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+	*/
+	"name": string;
+	/**
+	* Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.
+	*/
+	"request"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class V1ResourceRequirements {
+	/**
+	* Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.
+	*/
+	"claims"?: Array<V1ResourceClaim>;
+	/**
+	* Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+	*/
+	"limits"?: {
+		[key: string]: string;
+	};
+	/**
+	* Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+	*/
+	"requests"?: {
+		[key: string]: string;
+	};
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
 declare class StorageV1Metrics {
+	/**
+	* Replicas is the number of desired replicas.
+	*/
+	"replicas"?: number;
+	"resources"?: V1ResourceRequirements;
+	/**
+	* Retention is the metrics data retention period. Default is 1y
+	*/
+	"retention"?: string;
 	"storage"?: StorageV1Storage;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1OpenCost {
+	/**
+	* Replicas is the number of desired replicas.
+	*/
+	"replicas"?: number;
+	"resources"?: V1ResourceRequirements;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -4409,6 +4495,7 @@ declare class ManagementV1ClusterSpec {
 	* NetworkPeer specifies if the cluster is connected via tailscale, when this is specified, config is optional
 	*/
 	"networkPeer"?: boolean;
+	"opencost"?: StorageV1OpenCost;
 	"owner"?: StorageV1UserOrTeam;
 	/**
 	* If unusable is true, no spaces or virtual clusters can be scheduled on this cluster.
@@ -5201,6 +5288,41 @@ declare class ManagementV1Cloud {
 	}[];
 	constructor();
 }
+declare class ManagementV1CostControlClusterConfig {
+	"metrics"?: StorageV1Metrics;
+	"opencost"?: StorageV1OpenCost;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1CostControlGlobalConfig {
+	"metrics"?: StorageV1Metrics;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
 declare class ManagementV1CostControlResourcePrice {
 	/**
 	* Price specifies the price.
@@ -5249,12 +5371,12 @@ declare class ManagementV1CostControlSettings {
 	constructor();
 }
 declare class ManagementV1CostControl {
-	"clusterMetrics"?: StorageV1Metrics;
+	"cluster"?: ManagementV1CostControlClusterConfig;
 	/**
 	* Enabled specifies whether the ROI dashboard should be available in the UI, and if the metrics infrastructure that provides dashboard data is deployed
 	*/
 	"enabled"?: boolean;
-	"globalMetrics"?: StorageV1Metrics;
+	"global"?: ManagementV1CostControlGlobalConfig;
 	"settings"?: ManagementV1CostControlSettings;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
@@ -7410,62 +7532,6 @@ declare class V1Probe {
 	* Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 	*/
 	"timeoutSeconds"?: number;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class V1ResourceClaim {
-	/**
-	* Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
-	*/
-	"name": string;
-	/**
-	* Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.
-	*/
-	"request"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class V1ResourceRequirements {
-	/**
-	* Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.
-	*/
-	"claims"?: Array<V1ResourceClaim>;
-	/**
-	* Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-	*/
-	"limits"?: {
-		[key: string]: string;
-	};
-	/**
-	* Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-	*/
-	"requests"?: {
-		[key: string]: string;
-	};
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -15235,6 +15301,7 @@ declare class StorageV1ClusterSpec {
 	* NetworkPeer specifies if the cluster is connected via tailscale, when this is specified, config is optional
 	*/
 	"networkPeer"?: boolean;
+	"opencost"?: StorageV1OpenCost;
 	"owner"?: StorageV1UserOrTeam;
 	/**
 	* If unusable is true, no spaces or virtual clusters can be scheduled on this cluster.

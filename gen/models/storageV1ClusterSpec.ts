@@ -12,6 +12,7 @@
 
 import { StorageV1Access } from '../models/storageV1Access';
 import { StorageV1Metrics } from '../models/storageV1Metrics';
+import { StorageV1OpenCost } from '../models/storageV1OpenCost';
 import { StorageV1SecretRef } from '../models/storageV1SecretRef';
 import { StorageV1UserOrTeam } from '../models/storageV1UserOrTeam';
 
@@ -46,6 +47,7 @@ export class StorageV1ClusterSpec {
     * NetworkPeer specifies if the cluster is connected via tailscale, when this is specified, config is optional
     */
     'networkPeer'?: boolean;
+    'opencost'?: StorageV1OpenCost;
     'owner'?: StorageV1UserOrTeam;
     /**
     * If unusable is true, no spaces or virtual clusters can be scheduled on this cluster.
@@ -101,6 +103,12 @@ export class StorageV1ClusterSpec {
             "name": "networkPeer",
             "baseName": "networkPeer",
             "type": "boolean",
+            "format": ""
+        },
+        {
+            "name": "opencost",
+            "baseName": "opencost",
+            "type": "StorageV1OpenCost",
             "format": ""
         },
         {
