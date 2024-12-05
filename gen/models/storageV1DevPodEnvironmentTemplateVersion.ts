@@ -10,11 +10,11 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1DevPodEnvironmentTemplateDefinition } from '../models/storageV1DevPodEnvironmentTemplateDefinition';
+import { StorageV1GitEnvironmentTemplate } from '../models/storageV1GitEnvironmentTemplate';
 
 
 export class StorageV1DevPodEnvironmentTemplateVersion {
-    'template'?: StorageV1DevPodEnvironmentTemplateDefinition;
+    'git'?: StorageV1GitEnvironmentTemplate;
     /**
     * Version is the version. Needs to be in X.X.X format.
     */
@@ -24,9 +24,9 @@ export class StorageV1DevPodEnvironmentTemplateVersion {
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "template",
-            "baseName": "template",
-            "type": "StorageV1DevPodEnvironmentTemplateDefinition",
+            "name": "git",
+            "baseName": "git",
+            "type": "StorageV1GitEnvironmentTemplate",
             "format": ""
         },
         {

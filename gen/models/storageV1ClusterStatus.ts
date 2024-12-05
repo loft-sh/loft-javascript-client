@@ -10,17 +10,12 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1Condition } from '../models/agentstorageV1Condition';
 
 
 /**
 * ClusterStatus holds the user status
 */
 export class StorageV1ClusterStatus {
-    /**
-    * Conditions holds several conditions the cluster might be in
-    */
-    'conditions'?: Array<StorageV1Condition>;
     'message'?: string;
     'phase'?: string;
     'reason'?: string;
@@ -28,12 +23,6 @@ export class StorageV1ClusterStatus {
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
-        {
-            "name": "conditions",
-            "baseName": "conditions",
-            "type": "Array<StorageV1Condition>",
-            "format": ""
-        },
         {
             "name": "message",
             "baseName": "message",

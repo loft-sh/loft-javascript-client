@@ -18,7 +18,7 @@ export class ManagementV1MaintenanceWindow {
     */
     'dayOfWeek'?: string;
     /**
-    * TimeWindow specifies the time window for the maintenance. It should be a string representing the time range in 24-hour format, in UTC, e.g., \"02:00-03:00\".
+    * TimeWindow specifies the time window for the maintenance. It should be a string representing the time range in 24-hour format, e.g., \"02:00-03:00\".
     */
     'timeWindow'?: string;
 

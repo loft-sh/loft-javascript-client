@@ -20,7 +20,6 @@ import { StorageV1Member } from '../models/storageV1Member';
 import { StorageV1NamespacePattern } from '../models/storageV1NamespacePattern';
 import { StorageV1Quotas } from '../models/storageV1Quotas';
 import { StorageV1RancherIntegrationSpec } from '../models/storageV1RancherIntegrationSpec';
-import { StorageV1RequirePreset } from '../models/storageV1RequirePreset';
 import { StorageV1RequireTemplate } from '../models/storageV1RequireTemplate';
 import { StorageV1UserOrTeam } from '../models/storageV1UserOrTeam';
 import { StorageV1VaultIntegrationSpec } from '../models/storageV1VaultIntegrationSpec';
@@ -64,7 +63,6 @@ export class ManagementV1ProjectSpec {
     'owner'?: StorageV1UserOrTeam;
     'quotas'?: StorageV1Quotas;
     'rancher'?: StorageV1RancherIntegrationSpec;
-    'requirePreset'?: StorageV1RequirePreset;
     'requireTemplate'?: StorageV1RequireTemplate;
     'vault'?: StorageV1VaultIntegrationSpec;
 
@@ -147,12 +145,6 @@ export class ManagementV1ProjectSpec {
             "name": "rancher",
             "baseName": "rancher",
             "type": "StorageV1RancherIntegrationSpec",
-            "format": ""
-        },
-        {
-            "name": "requirePreset",
-            "baseName": "requirePreset",
-            "type": "StorageV1RequirePreset",
             "format": ""
         },
         {

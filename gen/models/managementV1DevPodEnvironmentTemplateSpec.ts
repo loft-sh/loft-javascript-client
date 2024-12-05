@@ -11,8 +11,8 @@
  */
 
 import { StorageV1Access } from '../models/storageV1Access';
-import { StorageV1DevPodEnvironmentTemplateDefinition } from '../models/storageV1DevPodEnvironmentTemplateDefinition';
 import { StorageV1DevPodEnvironmentTemplateVersion } from '../models/storageV1DevPodEnvironmentTemplateVersion';
+import { StorageV1GitEnvironmentTemplate } from '../models/storageV1GitEnvironmentTemplate';
 import { StorageV1UserOrTeam } from '../models/storageV1UserOrTeam';
 
 
@@ -25,15 +25,11 @@ export class ManagementV1DevPodEnvironmentTemplateSpec {
     */
     'access'?: Array<StorageV1Access>;
     /**
-    * Description describes the environment template
-    */
-    'description'?: string;
-    /**
     * DisplayName is the name that should be displayed in the UI
     */
     'displayName'?: string;
+    'git'?: StorageV1GitEnvironmentTemplate;
     'owner'?: StorageV1UserOrTeam;
-    'template'?: StorageV1DevPodEnvironmentTemplateDefinition;
     /**
     * Versions are different versions of the template that can be referenced as well
     */
@@ -49,27 +45,21 @@ export class ManagementV1DevPodEnvironmentTemplateSpec {
             "format": ""
         },
         {
-            "name": "description",
-            "baseName": "description",
-            "type": "string",
-            "format": ""
-        },
-        {
             "name": "displayName",
             "baseName": "displayName",
             "type": "string",
             "format": ""
         },
         {
-            "name": "owner",
-            "baseName": "owner",
-            "type": "StorageV1UserOrTeam",
+            "name": "git",
+            "baseName": "git",
+            "type": "StorageV1GitEnvironmentTemplate",
             "format": ""
         },
         {
-            "name": "template",
-            "baseName": "template",
-            "type": "StorageV1DevPodEnvironmentTemplateDefinition",
+            "name": "owner",
+            "baseName": "owner",
+            "type": "StorageV1UserOrTeam",
             "format": ""
         },
         {

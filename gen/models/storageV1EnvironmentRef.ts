@@ -17,10 +17,6 @@ export class StorageV1EnvironmentRef {
     * Name is the name of DevPodEnvironmentTemplate this references
     */
     'name': string;
-    /**
-    * Version is the version of DevPodEnvironmentTemplate this references
-    */
-    'version'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -28,12 +24,6 @@ export class StorageV1EnvironmentRef {
         {
             "name": "name",
             "baseName": "name",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "version",
-            "baseName": "version",
             "type": "string",
             "format": ""
         }    ];

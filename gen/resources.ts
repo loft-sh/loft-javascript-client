@@ -21,9 +21,7 @@ import {ManagementV1Config} from "./models/managementV1Config"
 import {ManagementV1ConvertVirtualClusterConfig} from "./models/managementV1ConvertVirtualClusterConfig"
 import {ManagementV1DevPodEnvironmentTemplate} from "./models/managementV1DevPodEnvironmentTemplate"
 import {ManagementV1DevPodWorkspaceInstanceState} from "./models/managementV1DevPodWorkspaceInstanceState"
-import {ManagementV1DevPodWorkspaceInstanceTroubleshoot} from "./models/managementV1DevPodWorkspaceInstanceTroubleshoot"
 import {ManagementV1DevPodWorkspaceInstance} from "./models/managementV1DevPodWorkspaceInstance"
-import {ManagementV1DevPodWorkspacePreset} from "./models/managementV1DevPodWorkspacePreset"
 import {ManagementV1DevPodWorkspaceTemplate} from "./models/managementV1DevPodWorkspaceTemplate"
 import {ManagementV1DirectClusterEndpointToken} from "./models/managementV1DirectClusterEndpointToken"
 import {ManagementV1Event} from "./models/managementV1Event"
@@ -100,8 +98,6 @@ export type TGenResources = {
   ManagementV1DevPodEnvironmentTemplate: GroupVersionResource<ManagementV1DevPodEnvironmentTemplate>
   ManagementV1DevPodWorkspaceInstance: GroupVersionResource<ManagementV1DevPodWorkspaceInstance>
   ManagementV1DevPodWorkspaceInstanceState: GroupVersionResource<ManagementV1DevPodWorkspaceInstanceState>
-  ManagementV1DevPodWorkspaceInstanceTroubleshoot: GroupVersionResource<ManagementV1DevPodWorkspaceInstanceTroubleshoot>
-  ManagementV1DevPodWorkspacePreset: GroupVersionResource<ManagementV1DevPodWorkspacePreset>
   ManagementV1DevPodWorkspaceTemplate: GroupVersionResource<ManagementV1DevPodWorkspaceTemplate>
   ManagementV1DirectClusterEndpointToken: GroupVersionResource<ManagementV1DirectClusterEndpointToken>
   ManagementV1Event: GroupVersionResource<ManagementV1Event>
@@ -332,22 +328,6 @@ export const GenResources: TGenResources = {
     subResource: "state",
     namespaced: true,
     kind: "DevPodWorkspaceInstanceState",
-  },
-  ManagementV1DevPodWorkspaceInstanceTroubleshoot: {
-    group: "management.loft.sh",
-    version: "v1",
-    resource: "devpodworkspaceinstances",
-    subResource: "troubleshoot",
-    namespaced: true,
-    kind: "DevPodWorkspaceInstanceTroubleshoot",
-  },
-  ManagementV1DevPodWorkspacePreset: {
-    group: "management.loft.sh",
-    version: "v1",
-    resource: "devpodworkspacepresets",
-    subResource: "",
-    namespaced: false,
-    kind: "DevPodWorkspacePreset",
   },
   ManagementV1DevPodWorkspaceTemplate: {
     group: "management.loft.sh",
