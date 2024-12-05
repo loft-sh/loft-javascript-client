@@ -11,33 +11,37 @@
  */
 
 import { StorageV1Access } from '../models/storageV1Access';
-import { StorageV1DevPodEnvironmentTemplateDefinition } from '../models/storageV1DevPodEnvironmentTemplateDefinition';
-import { StorageV1DevPodEnvironmentTemplateVersion } from '../models/storageV1DevPodEnvironmentTemplateVersion';
+import { StorageV1DevPodWorkspacePresetSource } from '../models/storageV1DevPodWorkspacePresetSource';
+import { StorageV1DevPodWorkspacePresetVersion } from '../models/storageV1DevPodWorkspacePresetVersion';
+import { StorageV1EnvironmentRef } from '../models/storageV1EnvironmentRef';
+import { StorageV1TemplateRef } from '../models/storageV1TemplateRef';
 import { StorageV1UserOrTeam } from '../models/storageV1UserOrTeam';
 
 
 /**
-* DevPodEnvironmentTemplateSpec holds the specification
+* DevPodWorkspacePresetSpec holds the specification
 */
-export class ManagementV1DevPodEnvironmentTemplateSpec {
+export class ManagementV1DevPodWorkspacePresetSpec {
     /**
     * Access to the DevPod machine instance object itself
     */
     'access'?: Array<StorageV1Access>;
     /**
-    * Description describes the environment template
-    */
-    'description'?: string;
-    /**
     * DisplayName is the name that should be displayed in the UI
     */
     'displayName'?: string;
+    'environmentRef'?: StorageV1EnvironmentRef;
+    'infrastructureRef': StorageV1TemplateRef;
     'owner'?: StorageV1UserOrTeam;
-    'template'?: StorageV1DevPodEnvironmentTemplateDefinition;
+    'source': StorageV1DevPodWorkspacePresetSource;
+    /**
+    * UseProjectGitCredentials specifies if the project git credentials should be used instead of local ones for this environment
+    */
+    'useProjectGitCredentials'?: boolean;
     /**
     * Versions are different versions of the template that can be referenced as well
     */
-    'versions'?: Array<StorageV1DevPodEnvironmentTemplateVersion>;
+    'versions'?: Array<StorageV1DevPodWorkspacePresetVersion>;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -49,15 +53,21 @@ export class ManagementV1DevPodEnvironmentTemplateSpec {
             "format": ""
         },
         {
-            "name": "description",
-            "baseName": "description",
+            "name": "displayName",
+            "baseName": "displayName",
             "type": "string",
             "format": ""
         },
         {
-            "name": "displayName",
-            "baseName": "displayName",
-            "type": "string",
+            "name": "environmentRef",
+            "baseName": "environmentRef",
+            "type": "StorageV1EnvironmentRef",
+            "format": ""
+        },
+        {
+            "name": "infrastructureRef",
+            "baseName": "infrastructureRef",
+            "type": "StorageV1TemplateRef",
             "format": ""
         },
         {
@@ -67,20 +77,26 @@ export class ManagementV1DevPodEnvironmentTemplateSpec {
             "format": ""
         },
         {
-            "name": "template",
-            "baseName": "template",
-            "type": "StorageV1DevPodEnvironmentTemplateDefinition",
+            "name": "source",
+            "baseName": "source",
+            "type": "StorageV1DevPodWorkspacePresetSource",
+            "format": ""
+        },
+        {
+            "name": "useProjectGitCredentials",
+            "baseName": "useProjectGitCredentials",
+            "type": "boolean",
             "format": ""
         },
         {
             "name": "versions",
             "baseName": "versions",
-            "type": "Array<StorageV1DevPodEnvironmentTemplateVersion>",
+            "type": "Array<StorageV1DevPodWorkspacePresetVersion>",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1DevPodEnvironmentTemplateSpec.attributeTypeMap;
+        return ManagementV1DevPodWorkspacePresetSpec.attributeTypeMap;
     }
 
     public constructor() {

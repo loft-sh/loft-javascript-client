@@ -11,33 +11,38 @@
  */
 
 import { StorageV1Access } from '../models/storageV1Access';
-import { StorageV1DevPodEnvironmentTemplateDefinition } from '../models/storageV1DevPodEnvironmentTemplateDefinition';
-import { StorageV1DevPodEnvironmentTemplateVersion } from '../models/storageV1DevPodEnvironmentTemplateVersion';
+import { StorageV1AppParameter } from '../models/storageV1AppParameter';
+import { StorageV1DevPodWorkspaceTemplateDefinition } from '../models/storageV1DevPodWorkspaceTemplateDefinition';
+import { StorageV1DevPodWorkspaceTemplateVersion } from '../models/storageV1DevPodWorkspaceTemplateVersion';
 import { StorageV1UserOrTeam } from '../models/storageV1UserOrTeam';
 
 
 /**
-* DevPodEnvironmentTemplateSpec holds the specification
+* DevPodWorkspaceTemplateSpec holds the specification
 */
-export class ManagementV1DevPodEnvironmentTemplateSpec {
+export class StorageV1DevPodWorkspaceTemplateSpec {
     /**
-    * Access to the DevPod machine instance object itself
+    * Access holds the access rights for users and teams
     */
     'access'?: Array<StorageV1Access>;
     /**
-    * Description describes the environment template
+    * Description describes the virtual cluster template
     */
     'description'?: string;
     /**
-    * DisplayName is the name that should be displayed in the UI
+    * DisplayName is the name that is shown in the UI
     */
     'displayName'?: string;
     'owner'?: StorageV1UserOrTeam;
-    'template'?: StorageV1DevPodEnvironmentTemplateDefinition;
+    /**
+    * Parameters define additional app parameters that will set provider values
+    */
+    'parameters'?: Array<StorageV1AppParameter>;
+    'template'?: StorageV1DevPodWorkspaceTemplateDefinition;
     /**
     * Versions are different versions of the template that can be referenced as well
     */
-    'versions'?: Array<StorageV1DevPodEnvironmentTemplateVersion>;
+    'versions'?: Array<StorageV1DevPodWorkspaceTemplateVersion>;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -67,20 +72,26 @@ export class ManagementV1DevPodEnvironmentTemplateSpec {
             "format": ""
         },
         {
+            "name": "parameters",
+            "baseName": "parameters",
+            "type": "Array<StorageV1AppParameter>",
+            "format": ""
+        },
+        {
             "name": "template",
             "baseName": "template",
-            "type": "StorageV1DevPodEnvironmentTemplateDefinition",
+            "type": "StorageV1DevPodWorkspaceTemplateDefinition",
             "format": ""
         },
         {
             "name": "versions",
             "baseName": "versions",
-            "type": "Array<StorageV1DevPodEnvironmentTemplateVersion>",
+            "type": "Array<StorageV1DevPodWorkspaceTemplateVersion>",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1DevPodEnvironmentTemplateSpec.attributeTypeMap;
+        return StorageV1DevPodWorkspaceTemplateSpec.attributeTypeMap;
     }
 
     public constructor() {

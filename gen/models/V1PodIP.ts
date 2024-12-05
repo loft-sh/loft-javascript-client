@@ -10,34 +10,29 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1DevPodEnvironmentTemplateDefinition } from '../models/storageV1DevPodEnvironmentTemplateDefinition';
 
 
-export class StorageV1DevPodEnvironmentTemplateVersion {
-    'template'?: StorageV1DevPodEnvironmentTemplateDefinition;
+/**
+* PodIP represents a single IP address allocated to the pod.
+*/
+export class V1PodIP {
     /**
-    * Version is the version. Needs to be in X.X.X format.
+    * IP is the IP address assigned to the pod
     */
-    'version'?: string;
+    'ip': string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "template",
-            "baseName": "template",
-            "type": "StorageV1DevPodEnvironmentTemplateDefinition",
-            "format": ""
-        },
-        {
-            "name": "version",
-            "baseName": "version",
+            "name": "ip",
+            "baseName": "ip",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1DevPodEnvironmentTemplateVersion.attributeTypeMap;
+        return V1PodIP.attributeTypeMap;
     }
 
     public constructor() {
