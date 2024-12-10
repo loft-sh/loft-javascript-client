@@ -10,34 +10,34 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1DevPodEnvironmentTemplateDefinition } from '../models/storageV1DevPodEnvironmentTemplateDefinition';
+import { V1ResourceRequirements } from '../models/V1ResourceRequirements';
 
 
-export class StorageV1DevPodEnvironmentTemplateVersion {
-    'template'?: StorageV1DevPodEnvironmentTemplateDefinition;
+export class StorageV1OpenCost {
     /**
-    * Version is the version. Needs to be in X.X.X format.
+    * Replicas is the number of desired replicas.
     */
-    'version'?: string;
+    'replicas'?: number;
+    'resources'?: V1ResourceRequirements;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "template",
-            "baseName": "template",
-            "type": "StorageV1DevPodEnvironmentTemplateDefinition",
-            "format": ""
+            "name": "replicas",
+            "baseName": "replicas",
+            "type": "number",
+            "format": "int32"
         },
         {
-            "name": "version",
-            "baseName": "version",
-            "type": "string",
+            "name": "resources",
+            "baseName": "resources",
+            "type": "V1ResourceRequirements",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1DevPodEnvironmentTemplateVersion.attributeTypeMap;
+        return StorageV1OpenCost.attributeTypeMap;
     }
 
     public constructor() {
