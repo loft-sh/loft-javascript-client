@@ -12,15 +12,18 @@
 
 
 
-export class StorageV1EnvironmentRef {
+/**
+* PodResourceClaimStatus is stored in the PodStatus for each PodResourceClaim which references a ResourceClaimTemplate. It stores the generated name for the corresponding ResourceClaim.
+*/
+export class V1PodResourceClaimStatus {
     /**
-    * Name is the name of DevPodEnvironmentTemplate this references
+    * Name uniquely identifies this resource claim inside the pod. This must match the name of an entry in pod.spec.resourceClaims, which implies that the string must be a DNS_LABEL.
     */
     'name': string;
     /**
-    * Version is the version of DevPodEnvironmentTemplate this references
+    * ResourceClaimName is the name of the ResourceClaim that was generated for the Pod in the namespace of the Pod. If this is unset, then generating a ResourceClaim was not necessary. The pod.spec.resourceClaims entry can be ignored in this case.
     */
-    'version'?: string;
+    'resourceClaimName'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -32,14 +35,14 @@ export class StorageV1EnvironmentRef {
             "format": ""
         },
         {
-            "name": "version",
-            "baseName": "version",
+            "name": "resourceClaimName",
+            "baseName": "resourceClaimName",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1EnvironmentRef.attributeTypeMap;
+        return V1PodResourceClaimStatus.attributeTypeMap;
     }
 
     public constructor() {
