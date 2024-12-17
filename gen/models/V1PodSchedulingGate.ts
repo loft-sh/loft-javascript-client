@@ -10,34 +10,29 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1DevPodEnvironmentTemplateDefinition } from '../models/storageV1DevPodEnvironmentTemplateDefinition';
 
 
-export class StorageV1DevPodEnvironmentTemplateVersion {
-    'template'?: StorageV1DevPodEnvironmentTemplateDefinition;
+/**
+* PodSchedulingGate is associated to a Pod to guard its scheduling.
+*/
+export class V1PodSchedulingGate {
     /**
-    * Version is the version. Needs to be in X.X.X format.
+    * Name of the scheduling gate. Each scheduling gate must have a unique name field.
     */
-    'version'?: string;
+    'name': string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "template",
-            "baseName": "template",
-            "type": "StorageV1DevPodEnvironmentTemplateDefinition",
-            "format": ""
-        },
-        {
-            "name": "version",
-            "baseName": "version",
+            "name": "name",
+            "baseName": "name",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1DevPodEnvironmentTemplateVersion.attributeTypeMap;
+        return V1PodSchedulingGate.attributeTypeMap;
     }
 
     public constructor() {
