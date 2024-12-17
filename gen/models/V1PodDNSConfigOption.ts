@@ -10,34 +10,36 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1DevPodEnvironmentTemplateDefinition } from '../models/storageV1DevPodEnvironmentTemplateDefinition';
 
 
-export class StorageV1DevPodEnvironmentTemplateVersion {
-    'template'?: StorageV1DevPodEnvironmentTemplateDefinition;
+/**
+* PodDNSConfigOption defines DNS resolver options of a pod.
+*/
+export class V1PodDNSConfigOption {
     /**
-    * Version is the version. Needs to be in X.X.X format.
+    * Required.
     */
-    'version'?: string;
+    'name'?: string;
+    'value'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "template",
-            "baseName": "template",
-            "type": "StorageV1DevPodEnvironmentTemplateDefinition",
+            "name": "name",
+            "baseName": "name",
+            "type": "string",
             "format": ""
         },
         {
-            "name": "version",
-            "baseName": "version",
+            "name": "value",
+            "baseName": "value",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1DevPodEnvironmentTemplateVersion.attributeTypeMap;
+        return V1PodDNSConfigOption.attributeTypeMap;
     }
 
     public constructor() {

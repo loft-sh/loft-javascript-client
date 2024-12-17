@@ -10,34 +10,36 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1DevPodEnvironmentTemplateDefinition } from '../models/storageV1DevPodEnvironmentTemplateDefinition';
 
 
-export class StorageV1DevPodEnvironmentTemplateVersion {
-    'template'?: StorageV1DevPodEnvironmentTemplateDefinition;
+export class ManagementV1CostControlResourcePrice {
     /**
-    * Version is the version. Needs to be in X.X.X format.
+    * Price specifies the price.
     */
-    'version'?: string;
+    'price'?: number;
+    /**
+    * TimePeriod specifies the time period for the price.
+    */
+    'timePeriod'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "template",
-            "baseName": "template",
-            "type": "StorageV1DevPodEnvironmentTemplateDefinition",
-            "format": ""
+            "name": "price",
+            "baseName": "price",
+            "type": "number",
+            "format": "double"
         },
         {
-            "name": "version",
-            "baseName": "version",
+            "name": "timePeriod",
+            "baseName": "timePeriod",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1DevPodEnvironmentTemplateVersion.attributeTypeMap;
+        return ManagementV1CostControlResourcePrice.attributeTypeMap;
     }
 
     public constructor() {
