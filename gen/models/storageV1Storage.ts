@@ -10,34 +10,36 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1DevPodEnvironmentTemplateDefinition } from '../models/storageV1DevPodEnvironmentTemplateDefinition';
 
 
-export class StorageV1DevPodEnvironmentTemplateVersion {
-    'template'?: StorageV1DevPodEnvironmentTemplateDefinition;
+export class StorageV1Storage {
     /**
-    * Version is the version. Needs to be in X.X.X format.
+    * Size the size of the metrics backend\'s persistent volume
     */
-    'version'?: string;
+    'size'?: string;
+    /**
+    * StorageClass the storage class to use when provisioning the metrics backend\'s persistent volume If set to \"-\" or \"\" dynamic provisioning is disabled If set to undefined or null (the default), the cluster\'s default storage class is used for provisioning
+    */
+    'storageClass'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "template",
-            "baseName": "template",
-            "type": "StorageV1DevPodEnvironmentTemplateDefinition",
+            "name": "size",
+            "baseName": "size",
+            "type": "string",
             "format": ""
         },
         {
-            "name": "version",
-            "baseName": "version",
+            "name": "storageClass",
+            "baseName": "storageClass",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1DevPodEnvironmentTemplateVersion.attributeTypeMap;
+        return StorageV1Storage.attributeTypeMap;
     }
 
     public constructor() {

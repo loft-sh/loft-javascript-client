@@ -10,34 +10,34 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1DevPodEnvironmentTemplateDefinition } from '../models/storageV1DevPodEnvironmentTemplateDefinition';
+import { ManagementV1MaintenanceWindow } from '../models/managementV1MaintenanceWindow';
 
 
-export class StorageV1DevPodEnvironmentTemplateVersion {
-    'template'?: StorageV1DevPodEnvironmentTemplateDefinition;
+export class ManagementV1Cloud {
+    'maintenanceWindow'?: ManagementV1MaintenanceWindow;
     /**
-    * Version is the version. Needs to be in X.X.X format.
+    * ReleaseChannel specifies the release channel for the cloud configuration. This can be used to determine which updates or versions are applied.
     */
-    'version'?: string;
+    'releaseChannel'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "template",
-            "baseName": "template",
-            "type": "StorageV1DevPodEnvironmentTemplateDefinition",
+            "name": "maintenanceWindow",
+            "baseName": "maintenanceWindow",
+            "type": "ManagementV1MaintenanceWindow",
             "format": ""
         },
         {
-            "name": "version",
-            "baseName": "version",
+            "name": "releaseChannel",
+            "baseName": "releaseChannel",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1DevPodEnvironmentTemplateVersion.attributeTypeMap;
+        return ManagementV1Cloud.attributeTypeMap;
     }
 
     public constructor() {
