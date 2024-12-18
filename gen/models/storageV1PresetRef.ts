@@ -10,13 +10,15 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1DevPodEnvironmentTemplateDefinition } from '../models/storageV1DevPodEnvironmentTemplateDefinition';
 
 
-export class StorageV1DevPodEnvironmentTemplateVersion {
-    'template'?: StorageV1DevPodEnvironmentTemplateDefinition;
+export class StorageV1PresetRef {
     /**
-    * Version is the version. Needs to be in X.X.X format.
+    * Name is the name of DevPodWorkspacePreset
+    */
+    'name': string;
+    /**
+    * Version holds the preset version to use. Version is expected to be in semantic versioning format. Alternatively, you can also exchange major, minor or patch with an \'x\' to tell Loft to automatically select the latest major, minor or patch version.
     */
     'version'?: string;
 
@@ -24,9 +26,9 @@ export class StorageV1DevPodEnvironmentTemplateVersion {
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "template",
-            "baseName": "template",
-            "type": "StorageV1DevPodEnvironmentTemplateDefinition",
+            "name": "name",
+            "baseName": "name",
+            "type": "string",
             "format": ""
         },
         {
@@ -37,7 +39,7 @@ export class StorageV1DevPodEnvironmentTemplateVersion {
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1DevPodEnvironmentTemplateVersion.attributeTypeMap;
+        return StorageV1PresetRef.attributeTypeMap;
     }
 
     public constructor() {
