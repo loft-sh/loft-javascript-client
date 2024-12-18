@@ -115,23 +115,8 @@ export const ClusterBasePath = "/kubernetes/cluster/"
 export const VClusterBasePath = "/kubernetes/virtualcluster/"
 export const ProjectBasePath = "/kubernetes/project/"
 
-export function getProjectNamespace(name: string | undefined, prefix?: string | undefined): string {
-  if (!name) {
-    return "p-"
-  }
-
-  const prefixHasDash = prefix && prefix.endsWith("-")
-
-  if (prefixHasDash) {
-    return `${prefix}${name}`
-  } else if (prefix === "") {
-    return `${name}`
-  } else if (prefix) {
-    return `${prefix}-${name}`
-  } else {
-    return `p-${name}`
-  }
-}
+export const getProjectNamespace = (name?: string, prefix?: string): string =>
+  !name ? "p-" : prefix ? `${prefix}${name}` : `p-${name}`
 
 export function getProjectFromNamespace(
   namespace: string | undefined,

@@ -10,34 +10,36 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1DevPodEnvironmentTemplateDefinition } from '../models/storageV1DevPodEnvironmentTemplateDefinition';
 
 
-export class StorageV1DevPodEnvironmentTemplateVersion {
-    'template'?: StorageV1DevPodEnvironmentTemplateDefinition;
+export class ManagementV1MaintenanceWindow {
     /**
-    * Version is the version. Needs to be in X.X.X format.
+    * DayOfWeek specifies the day of the week for the maintenance window. It should be a string representing the day, e.g., \"Monday\", \"Tuesday\", etc.
     */
-    'version'?: string;
+    'dayOfWeek'?: string;
+    /**
+    * TimeWindow specifies the time window for the maintenance. It should be a string representing the time range in 24-hour format, in UTC, e.g., \"02:00-03:00\".
+    */
+    'timeWindow'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "template",
-            "baseName": "template",
-            "type": "StorageV1DevPodEnvironmentTemplateDefinition",
+            "name": "dayOfWeek",
+            "baseName": "dayOfWeek",
+            "type": "string",
             "format": ""
         },
         {
-            "name": "version",
-            "baseName": "version",
+            "name": "timeWindow",
+            "baseName": "timeWindow",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1DevPodEnvironmentTemplateVersion.attributeTypeMap;
+        return ManagementV1MaintenanceWindow.attributeTypeMap;
     }
 
     public constructor() {
