@@ -10,34 +10,26 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1DevPodEnvironmentTemplateDefinition } from '../models/storageV1DevPodEnvironmentTemplateDefinition';
 
 
-export class StorageV1DevPodEnvironmentTemplateVersion {
-    'template'?: StorageV1DevPodEnvironmentTemplateDefinition;
+export class ManagementV1VirtualClusterExternalDatabaseStatus {
     /**
-    * Version is the version. Needs to be in X.X.X format.
+    * DataSource holds a datasource endpoint constructed from the vCluster\'s designated user and database. The user and database are created from the given connector.
     */
-    'version'?: string;
+    'dataSource'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "template",
-            "baseName": "template",
-            "type": "StorageV1DevPodEnvironmentTemplateDefinition",
-            "format": ""
-        },
-        {
-            "name": "version",
-            "baseName": "version",
+            "name": "dataSource",
+            "baseName": "dataSource",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1DevPodEnvironmentTemplateVersion.attributeTypeMap;
+        return ManagementV1VirtualClusterExternalDatabaseStatus.attributeTypeMap;
     }
 
     public constructor() {
