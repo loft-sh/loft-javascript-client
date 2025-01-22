@@ -34,13 +34,17 @@ export class UiV1UISettingsSpec {
     */
     'defaultVClusterVersion'?: string;
     /**
-    * HasHelmRelease indicates whether loft has been installed via Helm
+    * HasHelmRelease indicates whether the vCluster Platform instance has been installed via Helm
     */
     'hasHelmRelease'?: boolean;
     /**
     * LegalTemplate is a text (html) string containing the legal template to prompt to users when authenticating to Loft
     */
     'legalTemplate'?: string;
+    /**
+    * LoftHosted indicates whether the vCluster Platform instance is hosted and operated by Loft Labs Inc.
+    */
+    'loftHosted'?: boolean;
     /**
     * LoftVersion holds the current loft version
     */
@@ -111,6 +115,12 @@ export class UiV1UISettingsSpec {
             "name": "legalTemplate",
             "baseName": "legalTemplate",
             "type": "string",
+            "format": ""
+        },
+        {
+            "name": "loftHosted",
+            "baseName": "loftHosted",
+            "type": "boolean",
             "format": ""
         },
         {

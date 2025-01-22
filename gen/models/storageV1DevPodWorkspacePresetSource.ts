@@ -10,34 +10,36 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1DevPodEnvironmentTemplateDefinition } from '../models/storageV1DevPodEnvironmentTemplateDefinition';
 
 
-export class StorageV1DevPodEnvironmentTemplateVersion {
-    'template'?: StorageV1DevPodEnvironmentTemplateDefinition;
+export class StorageV1DevPodWorkspacePresetSource {
     /**
-    * Version is the version. Needs to be in X.X.X format.
+    * Git stores path to git repo to use as workspace source
     */
-    'version'?: string;
+    'git'?: string;
+    /**
+    * Image stores container image to use as workspace source
+    */
+    'image'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "template",
-            "baseName": "template",
-            "type": "StorageV1DevPodEnvironmentTemplateDefinition",
+            "name": "git",
+            "baseName": "git",
+            "type": "string",
             "format": ""
         },
         {
-            "name": "version",
-            "baseName": "version",
+            "name": "image",
+            "baseName": "image",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1DevPodEnvironmentTemplateVersion.attributeTypeMap;
+        return StorageV1DevPodWorkspacePresetSource.attributeTypeMap;
     }
 
     public constructor() {
