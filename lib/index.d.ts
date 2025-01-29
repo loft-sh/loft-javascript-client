@@ -540,7 +540,7 @@ export declare const ManagementBasePath = "/kubernetes/management";
 export declare const ClusterBasePath = "/kubernetes/cluster/";
 export declare const VClusterBasePath = "/kubernetes/virtualcluster/";
 export declare const ProjectBasePath = "/kubernetes/project/";
-export declare function getProjectNamespace(name: string | undefined, prefix?: string | undefined): string;
+export declare const getProjectNamespace: (name?: string, prefix?: string) => string;
 export declare function getProjectFromNamespace(namespace: string | undefined, prefix?: string): string | undefined;
 export declare class Client {
 	static getAccessKey(): string | null;
