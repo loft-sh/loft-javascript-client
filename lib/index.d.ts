@@ -1273,6 +1273,10 @@ declare class V1PodSecurityContext {
 	* The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.
 	*/
 	"runAsUser"?: number;
+	/**
+	* seLinuxChangePolicy defines how the container\'s SELinux label is applied to all volumes used by the Pod. It has no effect on nodes that do not support SELinux or to volumes does not support SELinux. Valid values are \"MountOption\" and \"Recursive\".  \"Recursive\" means relabeling of all files on all Pod volumes by the container runtime. This may be slow for large volumes, but allows mixing privileged and unprivileged Pods sharing the same volume on the same node.  \"MountOption\" mounts all eligible Pod volumes with `-o context` mount option. This requires all Pods that share the same volume to use the same SELinux label. It is not possible to share the same volume among privileged and unprivileged Pods. Eligible volumes are in-tree FibreChannel and iSCSI volumes, and all CSI volumes whose CSI driver announces SELinux support by setting spec.seLinuxMount: true in their CSIDriver instance. Other volumes are always re-labelled recursively. \"MountOption\" value is allowed only when SELinuxMount feature gate is enabled.  If not specified and SELinuxMount feature gate is enabled, \"MountOption\" is used. If not specified and SELinuxMount feature gate is disabled, \"MountOption\" is used for ReadWriteOncePod volumes and \"Recursive\" for all other volumes.  This field affects only Pods that have SELinux label set, either in PodSecurityContext or in SecurityContext of all containers.  All Pods that use the same volume should use the same seLinuxChangePolicy, otherwise some pods can get stuck in ContainerCreating state. Note that this field cannot be set when spec.os.name is windows.
+	*/
+	"seLinuxChangePolicy"?: string;
 	"seLinuxOptions"?: V1SELinuxOptions;
 	"seccompProfile"?: V1SeccompProfile;
 	/**
@@ -3310,6 +3314,155 @@ declare class ManagementV1AgentAuditConfig {
 	}[];
 	constructor();
 }
+declare class StorageV1Storage {
+	/**
+	* Size the size of the metrics backend\'s persistent volume
+	*/
+	"size"?: string;
+	/**
+	* StorageClass the storage class to use when provisioning the metrics backend\'s persistent volume If set to \"-\" or \"\" dynamic provisioning is disabled If set to undefined or null (the default), the cluster\'s default storage class is used for provisioning
+	*/
+	"storageClass"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class V1ResourceClaim {
+	/**
+	* Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+	*/
+	"name": string;
+	/**
+	* Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.
+	*/
+	"request"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class V1ResourceRequirements {
+	/**
+	* Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.
+	*/
+	"claims"?: Array<V1ResourceClaim>;
+	/**
+	* Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+	*/
+	"limits"?: {
+		[key: string]: string;
+	};
+	/**
+	* Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+	*/
+	"requests"?: {
+		[key: string]: string;
+	};
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1Metrics {
+	/**
+	* Replicas is the number of desired replicas.
+	*/
+	"replicas"?: number;
+	"resources"?: V1ResourceRequirements;
+	/**
+	* Retention is the metrics data retention period. Default is 1y
+	*/
+	"retention"?: string;
+	"storage"?: StorageV1Storage;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1OpenCost {
+	/**
+	* Replicas is the number of desired replicas.
+	*/
+	"replicas"?: number;
+	"resources"?: V1ResourceRequirements;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1AgentCostControlConfig {
+	/**
+	* Enabled specifies whether the ROI dashboard should be available in the UI, and if the metrics infrastructure that provides dashboard data is deployed
+	*/
+	"enabled"?: boolean;
+	"metrics"?: StorageV1Metrics;
+	"opencost"?: StorageV1OpenCost;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
 declare class ManagementV1ClusterAgentConfig {
 	"analyticsSpec": ManagementV1AgentAnalyticsSpec;
 	/**
@@ -3321,6 +3474,7 @@ declare class ManagementV1ClusterAgentConfig {
 	* Cluster is the cluster the agent is running in.
 	*/
 	"cluster"?: string;
+	"costControl"?: ManagementV1AgentCostControlConfig;
 	/**
 	* DefaultImageRegistry defines if we should prefix the virtual cluster image
 	*/
@@ -4307,133 +4461,6 @@ declare class ManagementV1ClusterVirtualClusterDefaults {
 	* Warning should be somehow shown to the user when there is a problem retrieving the defaults
 	*/
 	"warning"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class StorageV1Storage {
-	/**
-	* Size the size of the metrics backend\'s persistent volume
-	*/
-	"size"?: string;
-	/**
-	* StorageClass the storage class to use when provisioning the metrics backend\'s persistent volume If set to \"-\" or \"\" dynamic provisioning is disabled If set to undefined or null (the default), the cluster\'s default storage class is used for provisioning
-	*/
-	"storageClass"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class V1ResourceClaim {
-	/**
-	* Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
-	*/
-	"name": string;
-	/**
-	* Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.
-	*/
-	"request"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class V1ResourceRequirements {
-	/**
-	* Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.
-	*/
-	"claims"?: Array<V1ResourceClaim>;
-	/**
-	* Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-	*/
-	"limits"?: {
-		[key: string]: string;
-	};
-	/**
-	* Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-	*/
-	"requests"?: {
-		[key: string]: string;
-	};
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class StorageV1Metrics {
-	/**
-	* Replicas is the number of desired replicas.
-	*/
-	"replicas"?: number;
-	"resources"?: V1ResourceRequirements;
-	/**
-	* Retention is the metrics data retention period. Default is 1y
-	*/
-	"retention"?: string;
-	"storage"?: StorageV1Storage;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class StorageV1OpenCost {
-	/**
-	* Replicas is the number of desired replicas.
-	*/
-	"replicas"?: number;
-	"resources"?: V1ResourceRequirements;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -6702,7 +6729,13 @@ declare class V1PersistentVolumeClaimCondition {
 	* reason is a unique, this should be a short, machine understandable string that gives the reason for condition\'s last transition. If it reports \"Resizing\" that means the underlying persistent volume is being resized.
 	*/
 	"reason"?: string;
+	/**
+	* Status is the status of the condition. Can be True, False, Unknown. More info: https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/persistent-volume-claim-v1/#:~:text=state%20of%20pvc-,conditions.status,-(string)%2C%20required
+	*/
 	"status": string;
+	/**
+	* Type is the type of the condition. More info: https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/persistent-volume-claim-v1/#:~:text=set%20to%20%27ResizeStarted%27.-,PersistentVolumeClaimCondition,-contains%20details%20about
+	*/
 	"type": string;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
@@ -7876,9 +7909,12 @@ declare class V1LocalObjectReference {
 }
 declare class V1PodDNSConfigOption {
 	/**
-	* Required.
+	* Name is this DNS resolver option\'s name. Required.
 	*/
 	"name"?: string;
+	/**
+	* Value is this DNS resolver option\'s value.
+	*/
 	"value"?: string;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
@@ -9463,6 +9499,7 @@ declare class V1PodSpec {
 	* ResourceClaims defines which ResourceClaims must be allocated and reserved before the Pod is allowed to start. The resources will be made available to those containers which consume them by name.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable.
 	*/
 	"resourceClaims"?: Array<V1PodResourceClaim>;
+	"resources"?: V1ResourceRequirements;
 	/**
 	* Restart policy for all containers within the pod. One of Always, OnFailure, Never. In some contexts, only a subset of those values may be permitted. Default to Always. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy  Possible enum values:  - `\"Always\"`  - `\"Never\"`  - `\"OnFailure\"`
 	*/
@@ -9724,11 +9761,11 @@ declare class V1ResourceHealth {
 }
 declare class V1ResourceStatus {
 	/**
-	* Name of the resource. Must be unique within the pod and match one of the resources from the pod spec.
+	* Name of the resource. Must be unique within the pod and in case of non-DRA resource, match one of the resources from the pod spec. For DRA resources, the value must be \"claim:<claim_name>/<request>\". When this status is reported about a container, the \"claim_name\" and \"request\" must match one of the claims of this container.
 	*/
 	"name": string;
 	/**
-	* List of unique Resources health. Each element in the list contains an unique resource ID and resource health. At a minimum, ResourceID must uniquely identify the Resource allocated to the Pod on the Node for the lifetime of a Pod. See ResourceID type for it\'s definition.
+	* List of unique resources health. Each element in the list contains an unique resource ID and its health. At a minimum, for the lifetime of a Pod, resource ID must uniquely identify the resource allocated to the Pod on the Node. If other Pod on the same Node reports the status with the same resource ID, it must be the same resource they share. See ResourceID type definition for a specific format it has in various use cases.
 	*/
 	"resources"?: Array<V1ResourceHealth>;
 	static readonly discriminator: string | undefined;
@@ -9950,11 +9987,11 @@ declare class V1PodStatus {
 	*/
 	"conditions"?: Array<V1PodCondition>;
 	/**
-	* The list has one entry per container in the manifest. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#pod-and-container-status
+	* Statuses of containers in this pod. Each container in the pod should have at most one status in this list, and all statuses should be for containers in the pod. However this is not enforced. If a status for a non-existent container is present in the list, or the list has duplicate names, the behavior of various Kubernetes components is not defined and those statuses might be ignored. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#pod-and-container-status
 	*/
 	"containerStatuses"?: Array<V1ContainerStatus>;
 	/**
-	* Status for any ephemeral containers that have run in this pod.
+	* Statuses for any ephemeral containers that have run in this pod. Each ephemeral container in the pod should have at most one status in this list, and all statuses should be for containers in the pod. However this is not enforced. If a status for a non-existent container is present in the list, or the list has duplicate names, the behavior of various Kubernetes components is not defined and those statuses might be ignored. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#pod-and-container-status
 	*/
 	"ephemeralContainerStatuses"?: Array<V1ContainerStatus>;
 	/**
@@ -9966,7 +10003,7 @@ declare class V1PodStatus {
 	*/
 	"hostIPs"?: Array<V1HostIP>;
 	/**
-	* The list has one entry per init container in the manifest. The most recent successful init container will have ready = true, the most recently started container will have startTime set. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#pod-and-container-status
+	* Statuses of init containers in this pod. The most recent successful non-restartable init container will have ready = true, the most recently started container will have startTime set. Each init container in the pod should have at most one status in this list, and all statuses should be for containers in the pod. However this is not enforced. If a status for a non-existent container is present in the list, or the list has duplicate names, the behavior of various Kubernetes components is not defined and those statuses might be ignored. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#pod-and-container-status
 	*/
 	"initContainerStatuses"?: Array<V1ContainerStatus>;
 	/**
@@ -15714,6 +15751,30 @@ declare class ManagementV1UserPermissions {
 	}[];
 	constructor();
 }
+declare class ManagementV1UserProfileSecret {
+	/**
+	* Data is the data of the secret
+	*/
+	"data"?: string;
+	/**
+	* Type is the type of the secret
+	*/
+	"type"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
 declare class ManagementV1UserProfile {
 	/**
 	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
@@ -15748,6 +15809,12 @@ declare class ManagementV1UserProfile {
 	* Password is the new password of the user
 	*/
 	"password"?: string;
+	/**
+	* Secrets is a map of secret names to secret data
+	*/
+	"secrets"?: {
+		[key: string]: ManagementV1UserProfileSecret;
+	};
 	/**
 	* Username is the new username of the user
 	*/
@@ -16236,6 +16303,77 @@ declare class ManagementV1VirtualClusterInstance {
 	}[];
 	constructor();
 }
+declare class ManagementV1VirtualClusterSchemaSpec {
+	/**
+	* Version is the version of the virtual cluster
+	*/
+	"version"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1VirtualClusterSchemaStatus {
+	/**
+	* DefaultValues are the default values of the virtual cluster
+	*/
+	"defaultValues"?: string;
+	/**
+	* Schema is the schema of the virtual cluster
+	*/
+	"schema"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1VirtualClusterSchema {
+	/**
+	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	*/
+	"apiVersion"?: string;
+	/**
+	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	*/
+	"kind"?: string;
+	"metadata"?: V1ObjectMeta;
+	"spec"?: ManagementV1VirtualClusterSchemaSpec;
+	"status"?: ManagementV1VirtualClusterSchemaStatus;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
 export type TGenResources = {
 	ManagementV1AgentAuditEvent: GroupVersionResource<ManagementV1AgentAuditEvent>;
 	ManagementV1Announcement: GroupVersionResource<ManagementV1Announcement>;
@@ -16312,6 +16450,7 @@ export type TGenResources = {
 	ManagementV1VirtualClusterInstance: GroupVersionResource<ManagementV1VirtualClusterInstance>;
 	ManagementV1VirtualClusterInstanceKubeConfig: GroupVersionResource<ManagementV1VirtualClusterInstanceKubeConfig>;
 	ManagementV1VirtualClusterInstanceLog: GroupVersionResource<ManagementV1VirtualClusterInstanceLog>;
+	ManagementV1VirtualClusterSchema: GroupVersionResource<ManagementV1VirtualClusterSchema>;
 	ManagementV1VirtualClusterTemplate: GroupVersionResource<ManagementV1VirtualClusterTemplate>;
 };
 export declare const Resources: {
