@@ -75,6 +75,7 @@ import {ManagementV1VirtualClusterExternalDatabase} from "./models/managementV1V
 import {ManagementV1VirtualClusterInstanceKubeConfig} from "./models/managementV1VirtualClusterInstanceKubeConfig"
 import {ManagementV1VirtualClusterInstanceLog} from "./models/managementV1VirtualClusterInstanceLog"
 import {ManagementV1VirtualClusterInstance} from "./models/managementV1VirtualClusterInstance"
+import {ManagementV1VirtualClusterSchema} from "./models/managementV1VirtualClusterSchema"
 import {ManagementV1VirtualClusterTemplate} from "./models/managementV1VirtualClusterTemplate"
 
 export type TGenResources = {
@@ -153,6 +154,7 @@ export type TGenResources = {
   ManagementV1VirtualClusterInstance: GroupVersionResource<ManagementV1VirtualClusterInstance>
   ManagementV1VirtualClusterInstanceKubeConfig: GroupVersionResource<ManagementV1VirtualClusterInstanceKubeConfig>
   ManagementV1VirtualClusterInstanceLog: GroupVersionResource<ManagementV1VirtualClusterInstanceLog>
+  ManagementV1VirtualClusterSchema: GroupVersionResource<ManagementV1VirtualClusterSchema>
   ManagementV1VirtualClusterTemplate: GroupVersionResource<ManagementV1VirtualClusterTemplate>
 }
 
@@ -756,6 +758,14 @@ export const GenResources: TGenResources = {
     subResource: "log",
     namespaced: true,
     kind: "VirtualClusterInstanceLog",
+  },
+  ManagementV1VirtualClusterSchema: {
+    group: "management.loft.sh",
+    version: "v1",
+    resource: "virtualclusterschemas",
+    subResource: "",
+    namespaced: false,
+    kind: "VirtualClusterSchema",
   },
   ManagementV1VirtualClusterTemplate: {
     group: "management.loft.sh",
