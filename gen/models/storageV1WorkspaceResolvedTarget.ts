@@ -10,46 +10,39 @@
  * Do not edit the class manually.
  */
 
+import { StorageV1WorkspaceTargetName } from '../models/storageV1WorkspaceTargetName';
+import { StorageV1WorkspaceTargetNamespace } from '../models/storageV1WorkspaceTargetNamespace';
 
 
-export class StorageV1NamespacePattern {
-    /**
-    * DevPodWorkspace holds the namespace pattern to use for DevPod workspaces
-    */
-    'devPodWorkspace'?: string;
-    /**
-    * Space holds the namespace pattern to use for space instances
-    */
-    'space'?: string;
-    /**
-    * VirtualCluster holds the namespace pattern to use for virtual cluster instances
-    */
-    'virtualCluster'?: string;
+export class StorageV1WorkspaceResolvedTarget {
+    'cluster'?: StorageV1WorkspaceTargetNamespace;
+    'space'?: StorageV1WorkspaceTargetName;
+    'virtualCluster'?: StorageV1WorkspaceTargetNamespace;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "devPodWorkspace",
-            "baseName": "devPodWorkspace",
-            "type": "string",
+            "name": "cluster",
+            "baseName": "cluster",
+            "type": "StorageV1WorkspaceTargetNamespace",
             "format": ""
         },
         {
             "name": "space",
             "baseName": "space",
-            "type": "string",
+            "type": "StorageV1WorkspaceTargetName",
             "format": ""
         },
         {
             "name": "virtualCluster",
             "baseName": "virtualCluster",
-            "type": "string",
+            "type": "StorageV1WorkspaceTargetNamespace",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1NamespacePattern.attributeTypeMap;
+        return StorageV1WorkspaceResolvedTarget.attributeTypeMap;
     }
 
     public constructor() {

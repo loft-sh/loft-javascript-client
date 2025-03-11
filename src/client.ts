@@ -346,8 +346,6 @@ class Client {
             }
 
             if (error?.message === constants.platformAccessKeyNotFound) {
-              window.location.href = `/login?error=${error?.message}&errorType=${error?.reason}`
-
               return Return.Failed(
                 error.message || "Unauthorized",
                 error.reason,
@@ -986,6 +984,30 @@ class Request<T> {
     )
 
     const parameters: string[] = []
+    if (options) {
+      for (const key of Object.keys(options)) {
+        parameters.push(`${key}=${encodeURIComponent((options as any)[key])}`)
+      }
+    }
+    if (parameters.length > 0) {
+      requestPath += "?" + parameters.join("&")
+    }
+
+    return await this.client.doRawStream(requestPath, undefined, this.options.headers)
+  }
+
+  public async DevPodWorkspaceInstanceLogs(
+    namespace: string,
+    instance: string,
+    task: string,
+    options?: LogOptions
+  ): Promise<Result<ReadableStreamDefaultReader<Uint8Array>>> {
+    let requestPath = [
+      this.options.basePath,
+      `apis/management.loft.sh/v1/namespaces/${namespace}/devpodworkspaceinstances/${instance}/log`,
+    ].join("/")
+
+    const parameters: string[] = ["taskID=" + task]
     if (options) {
       for (const key of Object.keys(options)) {
         parameters.push(`${key}=${encodeURIComponent((options as any)[key])}`)

@@ -10,20 +10,15 @@
  * Do not edit the class manually.
  */
 
+import { V1ResourceRequirements } from '../models/V1ResourceRequirements';
 
 
-/**
-* PodDNSConfigOption defines DNS resolver options of a pod.
-*/
-export class V1PodDNSConfigOption {
+export class ManagementV1DevPodWorkspaceInstanceContainerResource {
     /**
-    * Name is this DNS resolver option\'s name. Required.
+    * Name is the name of the container
     */
     'name'?: string;
-    /**
-    * Value is this DNS resolver option\'s value.
-    */
-    'value'?: string;
+    'resources'?: V1ResourceRequirements;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -35,14 +30,14 @@ export class V1PodDNSConfigOption {
             "format": ""
         },
         {
-            "name": "value",
-            "baseName": "value",
-            "type": "string",
+            "name": "resources",
+            "baseName": "resources",
+            "type": "V1ResourceRequirements",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return V1PodDNSConfigOption.attributeTypeMap;
+        return ManagementV1DevPodWorkspaceInstanceContainerResource.attributeTypeMap;
     }
 
     public constructor() {
