@@ -346,8 +346,6 @@ class Client {
             }
 
             if (error?.message === constants.platformAccessKeyNotFound) {
-              window.location.href = `/login?error=${error?.message}&errorType=${error?.reason}`
-
               return Return.Failed(
                 error.message || "Unauthorized",
                 error.reason,
