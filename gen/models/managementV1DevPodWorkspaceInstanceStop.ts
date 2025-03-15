@@ -10,13 +10,12 @@
  * Do not edit the class manually.
  */
 
+import { ManagementV1DevPodWorkspaceInstanceStopSpec } from '../models/managementV1DevPodWorkspaceInstanceStopSpec';
+import { ManagementV1DevPodWorkspaceInstanceStopStatus } from '../models/managementV1DevPodWorkspaceInstanceStopStatus';
 import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
-/**
-* RunnerConfig holds the config the runner retrieves from Loft
-*/
-export class ManagementV1RunnerConfig {
+export class ManagementV1DevPodWorkspaceInstanceStop {
     /**
     * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
     */
@@ -26,10 +25,8 @@ export class ManagementV1RunnerConfig {
     */
     'kind'?: string;
     'metadata'?: V1ObjectMeta;
-    /**
-    * TokenCaCert is the certificate authority the Loft tokens will be signed with
-    */
-    'tokenCaCert'?: string;
+    'spec'?: ManagementV1DevPodWorkspaceInstanceStopSpec;
+    'status'?: ManagementV1DevPodWorkspaceInstanceStopStatus;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -53,14 +50,20 @@ export class ManagementV1RunnerConfig {
             "format": ""
         },
         {
-            "name": "tokenCaCert",
-            "baseName": "tokenCaCert",
-            "type": "string",
-            "format": "byte"
+            "name": "spec",
+            "baseName": "spec",
+            "type": "ManagementV1DevPodWorkspaceInstanceStopSpec",
+            "format": ""
+        },
+        {
+            "name": "status",
+            "baseName": "status",
+            "type": "ManagementV1DevPodWorkspaceInstanceStopStatus",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1RunnerConfig.attributeTypeMap;
+        return ManagementV1DevPodWorkspaceInstanceStop.attributeTypeMap;
     }
 
     public constructor() {
