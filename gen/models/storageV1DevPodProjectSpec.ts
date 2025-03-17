@@ -11,7 +11,6 @@
  */
 
 import { StorageV1GitProjectSpec } from '../models/storageV1GitProjectSpec';
-import { StorageV1SSHProjectSpec } from '../models/storageV1SSHProjectSpec';
 
 
 export class StorageV1DevPodProjectSpec {
@@ -20,7 +19,10 @@ export class StorageV1DevPodProjectSpec {
     */
     'fallbackImage'?: string;
     'git'?: StorageV1GitProjectSpec;
-    'ssh'?: StorageV1SSHProjectSpec;
+    /**
+    * RegistryPattern specifies a template pattern to use for building images on the fly. Requires the platform pods to be authenticated against the registry.
+    */
+    'registryPattern'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -38,9 +40,9 @@ export class StorageV1DevPodProjectSpec {
             "format": ""
         },
         {
-            "name": "ssh",
-            "baseName": "ssh",
-            "type": "StorageV1SSHProjectSpec",
+            "name": "registryPattern",
+            "baseName": "registryPattern",
+            "type": "string",
             "format": ""
         }    ];
 
