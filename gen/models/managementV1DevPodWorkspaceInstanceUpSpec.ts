@@ -10,32 +10,36 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1RunnerServiceTemplateSpec } from '../models/storageV1RunnerServiceTemplateSpec';
-import { StorageV1TemplateMetadata } from '../models/storageV1TemplateMetadata';
 
 
-export class StorageV1RunnerServiceTemplate {
-    'metadata'?: StorageV1TemplateMetadata;
-    'spec'?: StorageV1RunnerServiceTemplateSpec;
+export class ManagementV1DevPodWorkspaceInstanceUpSpec {
+    /**
+    * Debug includes debug logs.
+    */
+    'debug'?: boolean;
+    /**
+    * Options are the options to pass.
+    */
+    'options'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "metadata",
-            "baseName": "metadata",
-            "type": "StorageV1TemplateMetadata",
+            "name": "debug",
+            "baseName": "debug",
+            "type": "boolean",
             "format": ""
         },
         {
-            "name": "spec",
-            "baseName": "spec",
-            "type": "StorageV1RunnerServiceTemplateSpec",
+            "name": "options",
+            "baseName": "options",
+            "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1RunnerServiceTemplate.attributeTypeMap;
+        return ManagementV1DevPodWorkspaceInstanceUpSpec.attributeTypeMap;
     }
 
     public constructor() {

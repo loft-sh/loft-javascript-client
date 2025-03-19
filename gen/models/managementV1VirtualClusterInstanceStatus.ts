@@ -12,6 +12,7 @@
 
 import { ClusterV1SleepModeConfig } from '../models/clusterV1SleepModeConfig';
 import { StorageV1Condition } from '../models/agentstorageV1Condition';
+import { ManagementV1CurrentUserAccess } from '../models/managementV1CurrentUserAccess';
 import { StorageV1ObjectsStatus } from '../models/storageV1ObjectsStatus';
 import { StorageV1VirtualClusterTemplateDefinition } from '../models/storageV1VirtualClusterTemplateDefinition';
 
@@ -32,6 +33,7 @@ export class ManagementV1VirtualClusterInstanceStatus {
     * Conditions holds several conditions the virtual cluster might be in
     */
     'conditions'?: Array<StorageV1Condition>;
+    'currentUserAccess'?: ManagementV1CurrentUserAccess;
     /**
     * DeployHash is the hash of the last deployed values.
     */
@@ -84,6 +86,12 @@ export class ManagementV1VirtualClusterInstanceStatus {
             "name": "conditions",
             "baseName": "conditions",
             "type": "Array<StorageV1Condition>",
+            "format": ""
+        },
+        {
+            "name": "currentUserAccess",
+            "baseName": "currentUserAccess",
+            "type": "ManagementV1CurrentUserAccess",
             "format": ""
         },
         {
