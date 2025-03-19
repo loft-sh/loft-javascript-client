@@ -12,18 +12,11 @@
 
 
 
-/**
-* PodDNSConfigOption defines DNS resolver options of a pod.
-*/
-export class V1PodDNSConfigOption {
+export class StorageV1WorkspaceTargetName {
     /**
-    * Name is this DNS resolver option\'s name. Required.
+    * Name is the name of the target
     */
-    'name'?: string;
-    /**
-    * Value is this DNS resolver option\'s value.
-    */
-    'value'?: string;
+    'name': string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -33,16 +26,10 @@ export class V1PodDNSConfigOption {
             "baseName": "name",
             "type": "string",
             "format": ""
-        },
-        {
-            "name": "value",
-            "baseName": "value",
-            "type": "string",
-            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return V1PodDNSConfigOption.attributeTypeMap;
+        return StorageV1WorkspaceTargetName.attributeTypeMap;
     }
 
     public constructor() {

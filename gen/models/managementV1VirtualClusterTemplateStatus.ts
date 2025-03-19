@@ -10,6 +10,7 @@
  * Do not edit the class manually.
  */
 
+import { ManagementV1CurrentUserAccess } from '../models/managementV1CurrentUserAccess';
 import { StorageV1EntityInfo } from '../models/storageV1EntityInfo';
 
 
@@ -18,6 +19,7 @@ import { StorageV1EntityInfo } from '../models/storageV1EntityInfo';
 */
 export class ManagementV1VirtualClusterTemplateStatus {
     'apps'?: Array<StorageV1EntityInfo>;
+    'currentUserAccess'?: ManagementV1CurrentUserAccess;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -26,6 +28,12 @@ export class ManagementV1VirtualClusterTemplateStatus {
             "name": "apps",
             "baseName": "apps",
             "type": "Array<StorageV1EntityInfo>",
+            "format": ""
+        },
+        {
+            "name": "currentUserAccess",
+            "baseName": "currentUserAccess",
+            "type": "ManagementV1CurrentUserAccess",
             "format": ""
         }    ];
 
