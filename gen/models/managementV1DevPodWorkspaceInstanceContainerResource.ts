@@ -10,31 +10,34 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1GitProjectCredentials } from '../models/storageV1GitProjectCredentials';
+import { V1ResourceRequirements } from '../models/V1ResourceRequirements';
 
 
-export class StorageV1GitProjectSpec {
-    'http'?: StorageV1GitProjectCredentials;
-    'ssh'?: StorageV1GitProjectCredentials;
+export class ManagementV1DevPodWorkspaceInstanceContainerResource {
+    /**
+    * Name is the name of the container
+    */
+    'name'?: string;
+    'resources'?: V1ResourceRequirements;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "http",
-            "baseName": "http",
-            "type": "StorageV1GitProjectCredentials",
+            "name": "name",
+            "baseName": "name",
+            "type": "string",
             "format": ""
         },
         {
-            "name": "ssh",
-            "baseName": "ssh",
-            "type": "StorageV1GitProjectCredentials",
+            "name": "resources",
+            "baseName": "resources",
+            "type": "V1ResourceRequirements",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1GitProjectSpec.attributeTypeMap;
+        return ManagementV1DevPodWorkspaceInstanceContainerResource.attributeTypeMap;
     }
 
     public constructor() {

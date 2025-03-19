@@ -10,31 +10,26 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1GitProjectCredentials } from '../models/storageV1GitProjectCredentials';
 
 
-export class StorageV1GitProjectSpec {
-    'http'?: StorageV1GitProjectCredentials;
-    'ssh'?: StorageV1GitProjectCredentials;
+export class ManagementV1DevPodWorkspaceInstanceStopStatus {
+    /**
+    * TaskID is the id of the task that is running
+    */
+    'taskId'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "http",
-            "baseName": "http",
-            "type": "StorageV1GitProjectCredentials",
-            "format": ""
-        },
-        {
-            "name": "ssh",
-            "baseName": "ssh",
-            "type": "StorageV1GitProjectCredentials",
+            "name": "taskId",
+            "baseName": "taskId",
+            "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1GitProjectSpec.attributeTypeMap;
+        return ManagementV1DevPodWorkspaceInstanceStopStatus.attributeTypeMap;
     }
 
     public constructor() {

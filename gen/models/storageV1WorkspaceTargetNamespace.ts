@@ -10,31 +10,36 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1GitProjectCredentials } from '../models/storageV1GitProjectCredentials';
 
 
-export class StorageV1GitProjectSpec {
-    'http'?: StorageV1GitProjectCredentials;
-    'ssh'?: StorageV1GitProjectCredentials;
+export class StorageV1WorkspaceTargetNamespace {
+    /**
+    * Name is the name of the object
+    */
+    'name': string;
+    /**
+    * Namespace is the namespace within the cluster.
+    */
+    'namespace'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "http",
-            "baseName": "http",
-            "type": "StorageV1GitProjectCredentials",
+            "name": "name",
+            "baseName": "name",
+            "type": "string",
             "format": ""
         },
         {
-            "name": "ssh",
-            "baseName": "ssh",
-            "type": "StorageV1GitProjectCredentials",
+            "name": "namespace",
+            "baseName": "namespace",
+            "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1GitProjectSpec.attributeTypeMap;
+        return StorageV1WorkspaceTargetNamespace.attributeTypeMap;
     }
 
     public constructor() {

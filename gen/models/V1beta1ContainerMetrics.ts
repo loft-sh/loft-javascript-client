@@ -10,34 +10,39 @@
  * Do not edit the class manually.
  */
 
-import { V1SecretKeySelector } from '../models/V1SecretKeySelector';
 
 
-export class StorageV1SSHProjectSpec {
+/**
+* ContainerMetrics sets resource usage metrics of a container.
+*/
+export class V1beta1ContainerMetrics {
     /**
-    * Token defines the private ssh key to use for authentication, this is a base64 encoded string.
+    * Container name corresponding to the one from pod.spec.containers.
     */
-    'token'?: string;
-    'tokenSecretRef'?: V1SecretKeySelector;
+    'name': string;
+    /**
+    * The memory usage is the memory working set.
+    */
+    'usage': { [key: string]: string; };
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "token",
-            "baseName": "token",
+            "name": "name",
+            "baseName": "name",
             "type": "string",
             "format": ""
         },
         {
-            "name": "tokenSecretRef",
-            "baseName": "tokenSecretRef",
-            "type": "V1SecretKeySelector",
+            "name": "usage",
+            "baseName": "usage",
+            "type": "{ [key: string]: string; }",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1SSHProjectSpec.attributeTypeMap;
+        return V1beta1ContainerMetrics.attributeTypeMap;
     }
 
     public constructor() {

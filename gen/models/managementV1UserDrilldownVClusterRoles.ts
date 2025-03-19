@@ -10,31 +10,31 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1GitProjectCredentials } from '../models/storageV1GitProjectCredentials';
+import { ManagementV1AssignedVia } from '../models/managementV1AssignedVia';
 
 
-export class StorageV1GitProjectSpec {
-    'http'?: StorageV1GitProjectCredentials;
-    'ssh'?: StorageV1GitProjectCredentials;
+export class ManagementV1UserDrilldownVClusterRoles {
+    'assignedVia'?: ManagementV1AssignedVia;
+    'role'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "http",
-            "baseName": "http",
-            "type": "StorageV1GitProjectCredentials",
+            "name": "assignedVia",
+            "baseName": "assignedVia",
+            "type": "ManagementV1AssignedVia",
             "format": ""
         },
         {
-            "name": "ssh",
-            "baseName": "ssh",
-            "type": "StorageV1GitProjectCredentials",
+            "name": "role",
+            "baseName": "role",
+            "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1GitProjectSpec.attributeTypeMap;
+        return ManagementV1UserDrilldownVClusterRoles.attributeTypeMap;
     }
 
     public constructor() {

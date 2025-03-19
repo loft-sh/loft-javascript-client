@@ -10,31 +10,34 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1GitProjectCredentials } from '../models/storageV1GitProjectCredentials';
+import { V1SecretKeySelector } from '../models/V1SecretKeySelector';
 
 
-export class StorageV1GitProjectSpec {
-    'http'?: StorageV1GitProjectCredentials;
-    'ssh'?: StorageV1GitProjectCredentials;
+export class StorageV1GitProjectCredentials {
+    /**
+    * Token defines the credentials to use for authentication, this is a base64 encoded string.
+    */
+    'token'?: string;
+    'tokenSecretRef'?: V1SecretKeySelector;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "http",
-            "baseName": "http",
-            "type": "StorageV1GitProjectCredentials",
+            "name": "token",
+            "baseName": "token",
+            "type": "string",
             "format": ""
         },
         {
-            "name": "ssh",
-            "baseName": "ssh",
-            "type": "StorageV1GitProjectCredentials",
+            "name": "tokenSecretRef",
+            "baseName": "tokenSecretRef",
+            "type": "V1SecretKeySelector",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1GitProjectSpec.attributeTypeMap;
+        return StorageV1GitProjectCredentials.attributeTypeMap;
     }
 
     public constructor() {

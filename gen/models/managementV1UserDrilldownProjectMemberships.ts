@@ -10,32 +10,31 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1RunnerServiceTemplateSpec } from '../models/storageV1RunnerServiceTemplateSpec';
-import { StorageV1TemplateMetadata } from '../models/storageV1TemplateMetadata';
+import { ManagementV1AssignedVia } from '../models/managementV1AssignedVia';
 
 
-export class StorageV1RunnerServiceTemplate {
-    'metadata'?: StorageV1TemplateMetadata;
-    'spec'?: StorageV1RunnerServiceTemplateSpec;
+export class ManagementV1UserDrilldownProjectMemberships {
+    'assignedVia'?: ManagementV1AssignedVia;
+    'role'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "metadata",
-            "baseName": "metadata",
-            "type": "StorageV1TemplateMetadata",
+            "name": "assignedVia",
+            "baseName": "assignedVia",
+            "type": "ManagementV1AssignedVia",
             "format": ""
         },
         {
-            "name": "spec",
-            "baseName": "spec",
-            "type": "StorageV1RunnerServiceTemplateSpec",
+            "name": "role",
+            "baseName": "role",
+            "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1RunnerServiceTemplate.attributeTypeMap;
+        return ManagementV1UserDrilldownProjectMemberships.attributeTypeMap;
     }
 
     public constructor() {
