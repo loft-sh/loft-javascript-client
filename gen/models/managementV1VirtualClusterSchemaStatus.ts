@@ -13,36 +13,36 @@
 
 
 /**
-* PodDNSConfigOption defines DNS resolver options of a pod.
+* VirtualClusterSchemaStatus holds the status
 */
-export class V1PodDNSConfigOption {
+export class ManagementV1VirtualClusterSchemaStatus {
     /**
-    * Name is this DNS resolver option\'s name. Required.
+    * DefaultValues are the default values of the virtual cluster
     */
-    'name'?: string;
+    'defaultValues'?: string;
     /**
-    * Value is this DNS resolver option\'s value.
+    * Schema is the schema of the virtual cluster
     */
-    'value'?: string;
+    'schema'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "name",
-            "baseName": "name",
+            "name": "defaultValues",
+            "baseName": "defaultValues",
             "type": "string",
             "format": ""
         },
         {
-            "name": "value",
-            "baseName": "value",
+            "name": "schema",
+            "baseName": "schema",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return V1PodDNSConfigOption.attributeTypeMap;
+        return ManagementV1VirtualClusterSchemaStatus.attributeTypeMap;
     }
 
     public constructor() {
