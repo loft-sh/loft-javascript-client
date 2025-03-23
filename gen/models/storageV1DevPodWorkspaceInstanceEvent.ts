@@ -10,38 +10,34 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1Condition } from '../models/agentstorageV1Condition';
 
 
-/**
-* RunnerStatus holds the status
-*/
-export class ManagementV1RunnerStatus {
+export class StorageV1DevPodWorkspaceInstanceEvent {
     /**
-    * Conditions holds several conditions the virtual cluster might be in
+    * The time at which the most recent occurrence of this event was recorded.
     */
-    'conditions'?: Array<StorageV1Condition>;
+    'lastTimestamp'?: Date;
     /**
-    * Message describes the reason in human-readable form
+    * A human-readable description of the status of this operation.
     */
     'message'?: string;
     /**
-    * Phase describes the current phase the space instance is in
-    */
-    'phase'?: string;
-    /**
-    * Reason describes the reason in machine-readable form
+    * This should be a short, machine understandable string that gives the reason for the transition into the object\'s current status.
     */
     'reason'?: string;
+    /**
+    * Type of this event (Normal, Warning), new types could be added in the future
+    */
+    'type'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "conditions",
-            "baseName": "conditions",
-            "type": "Array<StorageV1Condition>",
-            "format": ""
+            "name": "lastTimestamp",
+            "baseName": "lastTimestamp",
+            "type": "Date",
+            "format": "date-time"
         },
         {
             "name": "message",
@@ -50,20 +46,20 @@ export class ManagementV1RunnerStatus {
             "format": ""
         },
         {
-            "name": "phase",
-            "baseName": "phase",
+            "name": "reason",
+            "baseName": "reason",
             "type": "string",
             "format": ""
         },
         {
-            "name": "reason",
-            "baseName": "reason",
+            "name": "type",
+            "baseName": "type",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1RunnerStatus.attributeTypeMap;
+        return StorageV1DevPodWorkspaceInstanceEvent.attributeTypeMap;
     }
 
     public constructor() {
