@@ -10,13 +10,13 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1RunnerPersistentVolumeClaimTemplateSpec } from '../models/storageV1RunnerPersistentVolumeClaimTemplateSpec';
 import { StorageV1TemplateMetadata } from '../models/storageV1TemplateMetadata';
+import { V1PersistentVolumeClaimSpec } from '../models/V1PersistentVolumeClaimSpec';
 
 
-export class StorageV1RunnerPersistentVolumeClaimTemplate {
+export class StorageV1DevPodWorkspaceVolumeClaimTemplate {
     'metadata'?: StorageV1TemplateMetadata;
-    'spec'?: StorageV1RunnerPersistentVolumeClaimTemplateSpec;
+    'spec'?: V1PersistentVolumeClaimSpec;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -30,12 +30,12 @@ export class StorageV1RunnerPersistentVolumeClaimTemplate {
         {
             "name": "spec",
             "baseName": "spec",
-            "type": "StorageV1RunnerPersistentVolumeClaimTemplateSpec",
+            "type": "V1PersistentVolumeClaimSpec",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1RunnerPersistentVolumeClaimTemplate.attributeTypeMap;
+        return StorageV1DevPodWorkspaceVolumeClaimTemplate.attributeTypeMap;
     }
 
     public constructor() {
