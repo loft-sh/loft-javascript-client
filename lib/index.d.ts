@@ -3310,6 +3310,155 @@ declare class ManagementV1AgentAuditConfig {
 	}[];
 	constructor();
 }
+declare class StorageV1Storage {
+	/**
+	* Size the size of the metrics backend\'s persistent volume
+	*/
+	"size"?: string;
+	/**
+	* StorageClass the storage class to use when provisioning the metrics backend\'s persistent volume If set to \"-\" or \"\" dynamic provisioning is disabled If set to undefined or null (the default), the cluster\'s default storage class is used for provisioning
+	*/
+	"storageClass"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class V1ResourceClaim {
+	/**
+	* Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+	*/
+	"name": string;
+	/**
+	* Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.
+	*/
+	"request"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class V1ResourceRequirements {
+	/**
+	* Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.
+	*/
+	"claims"?: Array<V1ResourceClaim>;
+	/**
+	* Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+	*/
+	"limits"?: {
+		[key: string]: string;
+	};
+	/**
+	* Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+	*/
+	"requests"?: {
+		[key: string]: string;
+	};
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1Metrics {
+	/**
+	* Replicas is the number of desired replicas.
+	*/
+	"replicas"?: number;
+	"resources"?: V1ResourceRequirements;
+	/**
+	* Retention is the metrics data retention period. Default is 1y
+	*/
+	"retention"?: string;
+	"storage"?: StorageV1Storage;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1OpenCost {
+	/**
+	* Replicas is the number of desired replicas.
+	*/
+	"replicas"?: number;
+	"resources"?: V1ResourceRequirements;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1AgentCostControlConfig {
+	/**
+	* Enabled specifies whether the ROI dashboard should be available in the UI, and if the metrics infrastructure that provides dashboard data is deployed
+	*/
+	"enabled"?: boolean;
+	"metrics"?: StorageV1Metrics;
+	"opencost"?: StorageV1OpenCost;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
 declare class ManagementV1ClusterAgentConfig {
 	"analyticsSpec": ManagementV1AgentAnalyticsSpec;
 	/**
@@ -3321,6 +3470,7 @@ declare class ManagementV1ClusterAgentConfig {
 	* Cluster is the cluster the agent is running in.
 	*/
 	"cluster"?: string;
+	"costControl"?: ManagementV1AgentCostControlConfig;
 	/**
 	* DefaultImageRegistry defines if we should prefix the virtual cluster image
 	*/
@@ -4307,133 +4457,6 @@ declare class ManagementV1ClusterVirtualClusterDefaults {
 	* Warning should be somehow shown to the user when there is a problem retrieving the defaults
 	*/
 	"warning"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class StorageV1Storage {
-	/**
-	* Size the size of the metrics backend\'s persistent volume
-	*/
-	"size"?: string;
-	/**
-	* StorageClass the storage class to use when provisioning the metrics backend\'s persistent volume If set to \"-\" or \"\" dynamic provisioning is disabled If set to undefined or null (the default), the cluster\'s default storage class is used for provisioning
-	*/
-	"storageClass"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class V1ResourceClaim {
-	/**
-	* Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
-	*/
-	"name": string;
-	/**
-	* Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.
-	*/
-	"request"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class V1ResourceRequirements {
-	/**
-	* Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.
-	*/
-	"claims"?: Array<V1ResourceClaim>;
-	/**
-	* Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-	*/
-	"limits"?: {
-		[key: string]: string;
-	};
-	/**
-	* Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-	*/
-	"requests"?: {
-		[key: string]: string;
-	};
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class StorageV1Metrics {
-	/**
-	* Replicas is the number of desired replicas.
-	*/
-	"replicas"?: number;
-	"resources"?: V1ResourceRequirements;
-	/**
-	* Retention is the metrics data retention period. Default is 1y
-	*/
-	"retention"?: string;
-	"storage"?: StorageV1Storage;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class StorageV1OpenCost {
-	/**
-	* Replicas is the number of desired replicas.
-	*/
-	"replicas"?: number;
-	"resources"?: V1ResourceRequirements;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
