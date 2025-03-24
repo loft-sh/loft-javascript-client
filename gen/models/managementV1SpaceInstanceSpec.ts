@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
+import { StorageV1InstanceAccessRule } from '../models/agentstorageV1InstanceAccessRule';
 import { StorageV1Access } from '../models/storageV1Access';
 import { StorageV1ClusterRef } from '../models/storageV1ClusterRef';
-import { StorageV1InstanceAccessRule } from '../models/storageV1InstanceAccessRule';
 import { StorageV1SpaceTemplateDefinition } from '../models/storageV1SpaceTemplateDefinition';
 import { StorageV1TemplateRef } from '../models/storageV1TemplateRef';
 import { StorageV1UserOrTeam } from '../models/storageV1UserOrTeam';

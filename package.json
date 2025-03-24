@@ -11,7 +11,7 @@
   },
   "description": "loft-enterprise js client",
   "dependencies": {
-    "@kubernetes/client-node": "0.22.1",
+    "@kubernetes/client-node": "0.20.0",
     "js-cookie": "3.0.1",
     "json-merge-patch": "1.0.2"
   },

@@ -11,20 +11,42 @@
  */
 
 import { ClusterV1ChartInfo } from '../models/clusterV1ChartInfo';
+import { ClusterV1ClusterQuota } from '../models/clusterV1ClusterQuota';
 import { ClusterV1HelmRelease } from '../models/clusterV1HelmRelease';
+import { ClusterV1LocalClusterAccess } from '../models/clusterV1LocalClusterAccess';
 import { ClusterV1SleepModeConfig } from '../models/clusterV1SleepModeConfig';
+import { ClusterV1Space } from '../models/clusterV1Space';
+import { ClusterV1VirtualCluster } from '../models/clusterV1VirtualCluster';
 import { StorageV1ClusterQuota } from '../models/agentstorageV1ClusterQuota';
+import { StorageV1LocalClusterAccess } from '../models/agentstorageV1LocalClusterAccess';
+import { StorageV1LocalTeam } from '../models/agentstorageV1LocalTeam';
+import { StorageV1LocalUser } from '../models/agentstorageV1LocalUser';
+import { StorageV1VirtualCluster } from '../models/agentstorageV1VirtualCluster';
 import { ManagementV1License } from '../models/managementV1License';
 import { UiV1UISettings } from '../models/uiV1UISettings';
+import { PolicyV1beta1JsPolicy } from '../models/policyV1beta1JsPolicy';
+import { PolicyV1beta1JsPolicyBundle } from '../models/policyV1beta1JsPolicyBundle';
+import { PolicyV1beta1JsPolicyViolations } from '../models/policyV1beta1JsPolicyViolations';
 
 
 export class ManagementV1KioskSpec {
     'UISettings'?: UiV1UISettings;
     'chartInfo'?: ClusterV1ChartInfo;
+    'clusterQuota'?: ClusterV1ClusterQuota;
     'helmRelease'?: ClusterV1HelmRelease;
+    'jsPolicy'?: PolicyV1beta1JsPolicy;
+    'jsPolicyBundle'?: PolicyV1beta1JsPolicyBundle;
+    'jsPolicyViolations'?: PolicyV1beta1JsPolicyViolations;
     'license'?: ManagementV1License;
+    'localClusterAccess'?: ClusterV1LocalClusterAccess;
+    'localStorageClusterAccess'?: StorageV1LocalClusterAccess;
+    'localTeam'?: StorageV1LocalTeam;
+    'localUser'?: StorageV1LocalUser;
     'sleepModeConfig'?: ClusterV1SleepModeConfig;
+    'space'?: ClusterV1Space;
     'storageClusterQuota'?: StorageV1ClusterQuota;
+    'storageVirtualCluster'?: StorageV1VirtualCluster;
+    'virtualCluster'?: ClusterV1VirtualCluster;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -42,9 +64,33 @@ export class ManagementV1KioskSpec {
             "format": ""
         },
         {
+            "name": "clusterQuota",
+            "baseName": "clusterQuota",
+            "type": "ClusterV1ClusterQuota",
+            "format": ""
+        },
+        {
             "name": "helmRelease",
             "baseName": "helmRelease",
             "type": "ClusterV1HelmRelease",
+            "format": ""
+        },
+        {
+            "name": "jsPolicy",
+            "baseName": "jsPolicy",
+            "type": "PolicyV1beta1JsPolicy",
+            "format": ""
+        },
+        {
+            "name": "jsPolicyBundle",
+            "baseName": "jsPolicyBundle",
+            "type": "PolicyV1beta1JsPolicyBundle",
+            "format": ""
+        },
+        {
+            "name": "jsPolicyViolations",
+            "baseName": "jsPolicyViolations",
+            "type": "PolicyV1beta1JsPolicyViolations",
             "format": ""
         },
         {
@@ -54,15 +100,57 @@ export class ManagementV1KioskSpec {
             "format": ""
         },
         {
+            "name": "localClusterAccess",
+            "baseName": "localClusterAccess",
+            "type": "ClusterV1LocalClusterAccess",
+            "format": ""
+        },
+        {
+            "name": "localStorageClusterAccess",
+            "baseName": "localStorageClusterAccess",
+            "type": "StorageV1LocalClusterAccess",
+            "format": ""
+        },
+        {
+            "name": "localTeam",
+            "baseName": "localTeam",
+            "type": "StorageV1LocalTeam",
+            "format": ""
+        },
+        {
+            "name": "localUser",
+            "baseName": "localUser",
+            "type": "StorageV1LocalUser",
+            "format": ""
+        },
+        {
             "name": "sleepModeConfig",
             "baseName": "sleepModeConfig",
             "type": "ClusterV1SleepModeConfig",
             "format": ""
         },
         {
+            "name": "space",
+            "baseName": "space",
+            "type": "ClusterV1Space",
+            "format": ""
+        },
+        {
             "name": "storageClusterQuota",
             "baseName": "storageClusterQuota",
             "type": "StorageV1ClusterQuota",
+            "format": ""
+        },
+        {
+            "name": "storageVirtualCluster",
+            "baseName": "storageVirtualCluster",
+            "type": "StorageV1VirtualCluster",
+            "format": ""
+        },
+        {
+            "name": "virtualCluster",
+            "baseName": "virtualCluster",
+            "type": "ClusterV1VirtualCluster",
             "format": ""
         }    ];
 

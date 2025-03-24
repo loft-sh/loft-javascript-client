@@ -19,7 +19,7 @@ export class V1HostIP {
     /**
     * IP is the IP address assigned to the host
     */
-    'ip': string;
+    'ip'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 

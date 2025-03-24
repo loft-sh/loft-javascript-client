@@ -115,28 +115,21 @@ export const ClusterBasePath = "/kubernetes/cluster/"
 export const VClusterBasePath = "/kubernetes/virtualcluster/"
 export const ProjectBasePath = "/kubernetes/project/"
 
-export const getProjectNamespace = (name?: string, prefix?: string): string =>
-  !name ? "p-" : prefix ? `${prefix}${name}` : `p-${name}`
+export function getProjectNamespace(name: string | undefined) {
+  if (!name) {
+    return "loft-p-"
+  }
 
-export function getProjectFromNamespace(
-  namespace: string | undefined,
-  prefix?: string
-): string | undefined {
+  // TODO: actually implement ProjectNamespace from golang
+  return "loft-p-" + name
+}
+
+export function getProjectFromNamespace(namespace: string | undefined): string | undefined {
   if (!namespace) {
     return undefined
   }
 
-  if (prefix) {
-    const prefixHasDash = prefix.endsWith("-")
-
-    if (prefixHasDash) {
-      return namespace.replace(new RegExp(`^${prefix}`), "")
-    } else {
-      return namespace.replace(new RegExp(`^${prefix}-`), "")
-    }
-  }
-
-  return namespace.replace(/^p-/, "")
+  return namespace.replace(/^loft-p-/, "")
 }
 
 class Client {
@@ -334,43 +327,8 @@ class Client {
         credentials: "same-origin",
       })
 
-      if (!response.ok) {
-        const responseCopy = response.clone()
-        const body = await responseCopy.text()
-
-        if (response.status === 401) {
-          try {
-            const error = JSON.parse(body) as {
-              message?: string
-              reason?: string
-            }
-
-            if (error?.message === constants.platformAccessKeyNotFound) {
-              window.location.href = `/login?error=${error?.message}&errorType=${error?.reason}`
-
-              return Return.Failed(
-                error.message || "Unauthorized",
-                error.reason,
-                ErrorTypeUnauthorized
-              )
-            }
-          } catch (e) {
-            // noop
-          }
-        }
-      }
-
       return await this.parseResponse(path, response)
     } catch (err) {
-      const error = err as {
-        reason: string
-        message: string
-      }
-
-      if (error.message === constants.platformAccessKeyNotFound) {
-        window.location.href = `/login?error=${error.message}&errorType=${error.reason}`
-      }
-
       return Return.Failed(err + "", "NetworkError", ErrorTypeNetwork)
     }
   }
@@ -620,12 +578,10 @@ class Client {
           ...headers,
           Authorization: "bearer " + requestToken,
           "X-Sleep-Mode-Ignore": "true",
-          "X-Platform-Client": "true",
         })
       : new Headers({
           ...headers,
           "X-Sleep-Mode-Ignore": "true",
-          "X-Platform-Client": "true",
         })
 
     // merge headers

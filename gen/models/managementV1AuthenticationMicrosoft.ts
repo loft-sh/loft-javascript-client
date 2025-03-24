@@ -10,6 +10,8 @@
  * Do not edit the class manually.
  */
 
+import { ManagementV1AuthenticationGroupClusterAccountTemplate } from '../models/managementV1AuthenticationGroupClusterAccountTemplate';
+import { StorageV1UserClusterAccountTemplate } from '../models/storageV1UserClusterAccountTemplate';
 
 
 export class ManagementV1AuthenticationMicrosoft {
@@ -21,6 +23,14 @@ export class ManagementV1AuthenticationMicrosoft {
     * Microsoft client secret
     */
     'clientSecret': string;
+    /**
+    * Cluster Account Templates that will be applied for users logging in through this authentication
+    */
+    'clusterAccountTemplates'?: Array<StorageV1UserClusterAccountTemplate>;
+    /**
+    * A mapping between groups and cluster account templates. If the user has a certain group, the cluster account template will be added during creation
+    */
+    'groupClusterAccountTemplates'?: Array<ManagementV1AuthenticationGroupClusterAccountTemplate>;
     /**
     * It is possible to require a user to be a member of a particular group in order to be successfully authenticated in loft.
     */
@@ -55,6 +65,18 @@ export class ManagementV1AuthenticationMicrosoft {
             "name": "clientSecret",
             "baseName": "clientSecret",
             "type": "string",
+            "format": ""
+        },
+        {
+            "name": "clusterAccountTemplates",
+            "baseName": "clusterAccountTemplates",
+            "type": "Array<StorageV1UserClusterAccountTemplate>",
+            "format": ""
+        },
+        {
+            "name": "groupClusterAccountTemplates",
+            "baseName": "groupClusterAccountTemplates",
+            "type": "Array<ManagementV1AuthenticationGroupClusterAccountTemplate>",
             "format": ""
         },
         {

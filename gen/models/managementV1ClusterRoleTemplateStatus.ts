@@ -10,14 +10,14 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1EntityInfo } from '../models/storageV1EntityInfo';
+import { ClusterV1EntityInfo } from '../models/clusterV1EntityInfo';
 
 
 /**
 * ClusterRoleTemplateStatus holds the status
 */
 export class ManagementV1ClusterRoleTemplateStatus {
-    'clusters'?: Array<StorageV1EntityInfo>;
+    'clusters'?: Array<ClusterV1EntityInfo>;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -25,7 +25,7 @@ export class ManagementV1ClusterRoleTemplateStatus {
         {
             "name": "clusters",
             "baseName": "clusters",
-            "type": "Array<StorageV1EntityInfo>",
+            "type": "Array<ClusterV1EntityInfo>",
             "format": ""
         }    ];
 

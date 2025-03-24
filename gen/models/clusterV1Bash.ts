@@ -10,8 +10,6 @@
  * Do not edit the class manually.
  */
 
-import { V1PodSecurityContext } from '../models/V1PodSecurityContext';
-import { V1SecurityContext } from '../models/V1SecurityContext';
 
 
 export class ClusterV1Bash {
@@ -23,12 +21,10 @@ export class ClusterV1Bash {
     * Image is the image to use for this app
     */
     'image'?: string;
-    'podSecurityContext'?: V1PodSecurityContext;
     /**
     * Script is the script to execute.
     */
     'script'?: string;
-    'securityContext'?: V1SecurityContext;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -46,21 +42,9 @@ export class ClusterV1Bash {
             "format": ""
         },
         {
-            "name": "podSecurityContext",
-            "baseName": "podSecurityContext",
-            "type": "V1PodSecurityContext",
-            "format": ""
-        },
-        {
             "name": "script",
             "baseName": "script",
             "type": "string",
-            "format": ""
-        },
-        {
-            "name": "securityContext",
-            "baseName": "securityContext",
-            "type": "V1SecurityContext",
             "format": ""
         }    ];
 

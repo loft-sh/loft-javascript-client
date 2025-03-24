@@ -10,60 +10,54 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1OIDCClientSpec } from '../models/managementV1OIDCClientSpec';
-import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
 /**
-* OIDCClient represents an OIDC client to use with Loft as an OIDC provider
+* OIDCClient holds information about a client
 */
 export class ManagementV1OIDCClient {
     /**
-    * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+    * The client id of the client
     */
-    'apiVersion'?: string;
+    'clientId'?: string;
     /**
-    * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+    * The client secret of the client
     */
-    'kind'?: string;
-    'metadata'?: V1ObjectMeta;
-    'spec'?: ManagementV1OIDCClientSpec;
+    'clientSecret'?: string;
     /**
-    * OIDCClientStatus holds the status
+    * The client name
     */
-    'status'?: any;
+    'name'?: string;
+    /**
+    * A registered set of redirect URIs. When redirecting from dex to the client, the URI requested to redirect to MUST match one of these values, unless the client is \"public\".
+    */
+    'redirectURIs': Array<string>;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "apiVersion",
-            "baseName": "apiVersion",
+            "name": "clientId",
+            "baseName": "clientId",
             "type": "string",
             "format": ""
         },
         {
-            "name": "kind",
-            "baseName": "kind",
+            "name": "clientSecret",
+            "baseName": "clientSecret",
             "type": "string",
             "format": ""
         },
         {
-            "name": "metadata",
-            "baseName": "metadata",
-            "type": "V1ObjectMeta",
+            "name": "name",
+            "baseName": "name",
+            "type": "string",
             "format": ""
         },
         {
-            "name": "spec",
-            "baseName": "spec",
-            "type": "ManagementV1OIDCClientSpec",
-            "format": ""
-        },
-        {
-            "name": "status",
-            "baseName": "status",
-            "type": "any",
+            "name": "redirectURIs",
+            "baseName": "redirectURIs",
+            "type": "Array<string>",
             "format": ""
         }    ];
 

@@ -22,7 +22,7 @@ export class V1ProjectedVolumeSource {
     */
     'defaultMode'?: number;
     /**
-    * sources is the list of volume projections. Each entry in this list handles one source.
+    * sources is the list of volume projections
     */
     'sources'?: Array<V1VolumeProjection>;
 

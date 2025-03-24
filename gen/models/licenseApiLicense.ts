@@ -41,10 +41,6 @@ export class LicenseApiLicense {
     */
     'domainToken'?: string;
     /**
-    * Entity holds a name for an organization, person or entity this product is licensed for. This will be displayed to the user.
-    */
-    'entity'?: string;
-    /**
     * InstanceID contains the instance id of the Loft instance
     */
     'instance'?: string;
@@ -92,12 +88,6 @@ export class LicenseApiLicense {
         {
             "name": "domainToken",
             "baseName": "domainToken",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "entity",
-            "baseName": "entity",
             "type": "string",
             "format": ""
         },
