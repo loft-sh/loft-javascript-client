@@ -10,39 +10,31 @@
  * Do not edit the class manually.
  */
 
+import { StorageV1WorkspaceTargetName } from '../models/storageV1WorkspaceTargetName';
 
 
-/**
-* PodDNSConfigOption defines DNS resolver options of a pod.
-*/
-export class V1PodDNSConfigOption {
-    /**
-    * Name is this DNS resolver option\'s name. Required.
-    */
-    'name'?: string;
-    /**
-    * Value is this DNS resolver option\'s value.
-    */
-    'value'?: string;
+export class StorageV1WorkspaceTarget {
+    'cluster'?: StorageV1WorkspaceTargetName;
+    'virtualCluster'?: StorageV1WorkspaceTargetName;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "name",
-            "baseName": "name",
-            "type": "string",
+            "name": "cluster",
+            "baseName": "cluster",
+            "type": "StorageV1WorkspaceTargetName",
             "format": ""
         },
         {
-            "name": "value",
-            "baseName": "value",
-            "type": "string",
+            "name": "virtualCluster",
+            "baseName": "virtualCluster",
+            "type": "StorageV1WorkspaceTargetName",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return V1PodDNSConfigOption.attributeTypeMap;
+        return StorageV1WorkspaceTarget.attributeTypeMap;
     }
 
     public constructor() {
