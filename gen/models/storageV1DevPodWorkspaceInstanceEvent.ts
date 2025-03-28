@@ -12,7 +12,7 @@
 
 
 
-export class ManagementV1DevPodWorkspaceInstanceEvent {
+export class StorageV1DevPodWorkspaceInstanceEvent {
     /**
     * The time at which the most recent occurrence of this event was recorded.
     */
@@ -59,7 +59,7 @@ export class ManagementV1DevPodWorkspaceInstanceEvent {
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1DevPodWorkspaceInstanceEvent.attributeTypeMap;
+        return StorageV1DevPodWorkspaceInstanceEvent.attributeTypeMap;
     }
 
     public constructor() {

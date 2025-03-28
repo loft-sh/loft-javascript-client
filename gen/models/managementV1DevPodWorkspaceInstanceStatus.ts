@@ -12,7 +12,7 @@
 
 import { ClusterV1SleepModeConfig } from '../models/clusterV1SleepModeConfig';
 import { StorageV1Condition } from '../models/agentstorageV1Condition';
-import { ManagementV1DevPodWorkspaceInstanceKubernetesStatus } from '../models/managementV1DevPodWorkspaceInstanceKubernetesStatus';
+import { StorageV1DevPodWorkspaceInstanceKubernetesStatus } from '../models/storageV1DevPodWorkspaceInstanceKubernetesStatus';
 import { StorageV1DevPodWorkspaceTemplateDefinition } from '../models/storageV1DevPodWorkspaceTemplateDefinition';
 import { StorageV1WorkspaceResolvedTarget } from '../models/storageV1WorkspaceResolvedTarget';
 
@@ -30,7 +30,7 @@ export class ManagementV1DevPodWorkspaceInstanceStatus {
     */
     'ignoreReconciliation'?: boolean;
     'instance'?: StorageV1DevPodWorkspaceTemplateDefinition;
-    'kubernetes'?: ManagementV1DevPodWorkspaceInstanceKubernetesStatus;
+    'kubernetes'?: StorageV1DevPodWorkspaceInstanceKubernetesStatus;
     /**
     * LastWorkspaceStatus is the last workspace status reported by the runner.
     */
@@ -74,7 +74,7 @@ export class ManagementV1DevPodWorkspaceInstanceStatus {
         {
             "name": "kubernetes",
             "baseName": "kubernetes",
-            "type": "ManagementV1DevPodWorkspaceInstanceKubernetesStatus",
+            "type": "StorageV1DevPodWorkspaceInstanceKubernetesStatus",
             "format": ""
         },
         {

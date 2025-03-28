@@ -10,11 +10,11 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1DevPodWorkspaceInstanceEvent } from '../models/managementV1DevPodWorkspaceInstanceEvent';
+import { StorageV1DevPodWorkspaceInstanceEvent } from '../models/storageV1DevPodWorkspaceInstanceEvent';
 import { V1PersistentVolumeClaimCondition } from '../models/V1PersistentVolumeClaimCondition';
 
 
-export class ManagementV1DevPodWorkspaceInstancePersistentVolumeClaimStatus {
+export class StorageV1DevPodWorkspaceInstancePersistentVolumeClaimStatus {
     /**
     * capacity represents the actual resources of the underlying volume.
     */
@@ -26,11 +26,11 @@ export class ManagementV1DevPodWorkspaceInstancePersistentVolumeClaimStatus {
     /**
     * Events are the events of the pod that is running the workspace. This will only be filled if the persistent volume claim is not bound.
     */
-    'events'?: Array<ManagementV1DevPodWorkspaceInstanceEvent>;
+    'events'?: Array<StorageV1DevPodWorkspaceInstanceEvent>;
     /**
     * phase represents the current phase of PersistentVolumeClaim.  Possible enum values:  - `\"Bound\"` used for PersistentVolumeClaims that are bound  - `\"Lost\"` used for PersistentVolumeClaims that lost their underlying PersistentVolume. The claim was bound to a PersistentVolume and this volume does not exist any longer and all data on it was lost.  - `\"Pending\"` used for PersistentVolumeClaims that are not yet bound
     */
-    'phase'?: ManagementV1DevPodWorkspaceInstancePersistentVolumeClaimStatusPhaseEnum;
+    'phase'?: StorageV1DevPodWorkspaceInstancePersistentVolumeClaimStatusPhaseEnum;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -50,18 +50,18 @@ export class ManagementV1DevPodWorkspaceInstancePersistentVolumeClaimStatus {
         {
             "name": "events",
             "baseName": "events",
-            "type": "Array<ManagementV1DevPodWorkspaceInstanceEvent>",
+            "type": "Array<StorageV1DevPodWorkspaceInstanceEvent>",
             "format": ""
         },
         {
             "name": "phase",
             "baseName": "phase",
-            "type": "ManagementV1DevPodWorkspaceInstancePersistentVolumeClaimStatusPhaseEnum",
+            "type": "StorageV1DevPodWorkspaceInstancePersistentVolumeClaimStatusPhaseEnum",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1DevPodWorkspaceInstancePersistentVolumeClaimStatus.attributeTypeMap;
+        return StorageV1DevPodWorkspaceInstancePersistentVolumeClaimStatus.attributeTypeMap;
     }
 
     public constructor() {
@@ -69,7 +69,7 @@ export class ManagementV1DevPodWorkspaceInstancePersistentVolumeClaimStatus {
 }
 
 
-export enum ManagementV1DevPodWorkspaceInstancePersistentVolumeClaimStatusPhaseEnum {
+export enum StorageV1DevPodWorkspaceInstancePersistentVolumeClaimStatusPhaseEnum {
     Bound = 'Bound',
     Lost = 'Lost',
     Pending = 'Pending'

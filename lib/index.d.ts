@@ -9409,7 +9409,7 @@ declare class ManagementV1DevPodWorkspaceInstanceSpec {
 	}[];
 	constructor();
 }
-declare class ManagementV1DevPodWorkspaceInstanceEvent {
+declare class StorageV1DevPodWorkspaceInstanceEvent {
 	/**
 	* The time at which the most recent occurrence of this event was recorded.
 	*/
@@ -9481,7 +9481,7 @@ declare class V1PersistentVolumeClaimCondition {
 	}[];
 	constructor();
 }
-declare class ManagementV1DevPodWorkspaceInstancePersistentVolumeClaimStatus {
+declare class StorageV1DevPodWorkspaceInstancePersistentVolumeClaimStatus {
 	/**
 	* capacity represents the actual resources of the underlying volume.
 	*/
@@ -9495,11 +9495,11 @@ declare class ManagementV1DevPodWorkspaceInstancePersistentVolumeClaimStatus {
 	/**
 	* Events are the events of the pod that is running the workspace. This will only be filled if the persistent volume claim is not bound.
 	*/
-	"events"?: Array<ManagementV1DevPodWorkspaceInstanceEvent>;
+	"events"?: Array<StorageV1DevPodWorkspaceInstanceEvent>;
 	/**
 	* phase represents the current phase of PersistentVolumeClaim.  Possible enum values:  - `\"Bound\"` used for PersistentVolumeClaims that are bound  - `\"Lost\"` used for PersistentVolumeClaims that lost their underlying PersistentVolume. The claim was bound to a PersistentVolume and this volume does not exist any longer and all data on it was lost.  - `\"Pending\"` used for PersistentVolumeClaims that are not yet bound
 	*/
-	"phase"?: ManagementV1DevPodWorkspaceInstancePersistentVolumeClaimStatusPhaseEnum;
+	"phase"?: StorageV1DevPodWorkspaceInstancePersistentVolumeClaimStatusPhaseEnum;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -9515,12 +9515,12 @@ declare class ManagementV1DevPodWorkspaceInstancePersistentVolumeClaimStatus {
 	}[];
 	constructor();
 }
-declare enum ManagementV1DevPodWorkspaceInstancePersistentVolumeClaimStatusPhaseEnum {
+declare enum StorageV1DevPodWorkspaceInstancePersistentVolumeClaimStatusPhaseEnum {
 	Bound = "Bound",
 	Lost = "Lost",
 	Pending = "Pending"
 }
-declare class ManagementV1DevPodWorkspaceInstanceContainerResource {
+declare class StorageV1DevPodWorkspaceInstanceContainerResource {
 	/**
 	* Name is the name of the container
 	*/
@@ -9901,7 +9901,7 @@ declare class V1beta1ContainerMetrics {
 	}[];
 	constructor();
 }
-declare class ManagementV1DevPodWorkspaceInstancePodStatus {
+declare class StorageV1DevPodWorkspaceInstancePodStatus {
 	/**
 	* Current service state of pod. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#pod-conditions
 	*/
@@ -9913,7 +9913,7 @@ declare class ManagementV1DevPodWorkspaceInstancePodStatus {
 	/**
 	* ContainerResources are the resources of the containers that are running the workspace
 	*/
-	"containerResources"?: Array<ManagementV1DevPodWorkspaceInstanceContainerResource>;
+	"containerResources"?: Array<StorageV1DevPodWorkspaceInstanceContainerResource>;
 	/**
 	* Statuses of containers in this pod. Each container in the pod should have at most one status in this list, and all statuses should be for containers in the pod. However this is not enforced. If a status for a non-existent container is present in the list, or the list has duplicate names, the behavior of various Kubernetes components is not defined and those statuses might be ignored. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#pod-and-container-status
 	*/
@@ -9921,7 +9921,7 @@ declare class ManagementV1DevPodWorkspaceInstancePodStatus {
 	/**
 	* Events are the events of the pod that is running the workspace. This will only be filled if the pod is not running.
 	*/
-	"events"?: Array<ManagementV1DevPodWorkspaceInstanceEvent>;
+	"events"?: Array<StorageV1DevPodWorkspaceInstanceEvent>;
 	/**
 	* Statuses of init containers in this pod. The most recent successful non-restartable init container will have ready = true, the most recently started container will have startTime set. Each init container in the pod should have at most one status in this list, and all statuses should be for containers in the pod. However this is not enforced. If a status for a non-existent container is present in the list, or the list has duplicate names, the behavior of various Kubernetes components is not defined and those statuses might be ignored. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#pod-and-container-status
 	*/
@@ -9937,7 +9937,7 @@ declare class ManagementV1DevPodWorkspaceInstancePodStatus {
 	/**
 	* The phase of a Pod is a simple, high-level summary of where the Pod is in its lifecycle. The conditions array, the reason and message fields, and the individual container status arrays contain more detail about the pod\'s status. There are five possible phase values:  Pending: The pod has been accepted by the Kubernetes system, but one or more of the container images has not been created. This includes time before being scheduled as well as time spent downloading images over the network, which could take a while. Running: The pod has been bound to a node, and all of the containers have been created. At least one container is still running, or is in the process of starting or restarting. Succeeded: All containers in the pod have terminated in success, and will not be restarted. Failed: All containers in the pod have terminated, and at least one container has terminated in failure. The container either exited with non-zero status or was terminated by the system. Unknown: For some reason the state of the pod could not be obtained, typically due to an error in communicating with the host of the pod.  More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#pod-phase  Possible enum values:  - `\"Failed\"` means that all containers in the pod have terminated, and at least one container has terminated in a failure (exited with a non-zero exit code or was stopped by the system).  - `\"Pending\"` means the pod has been accepted by the system, but one or more of the containers has not been started. This includes time before being bound to a node, as well as time spent pulling images onto the host.  - `\"Running\"` means the pod has been bound to a node and all of the containers have been started. At least one container is still running or is in the process of being restarted.  - `\"Succeeded\"` means that all containers in the pod have voluntarily terminated with a container exit code of 0, and the system is not going to restart any of these containers.  - `\"Unknown\"` means that for some reason the state of the pod could not be obtained, typically due to an error in communicating with the host of the pod. Deprecated: It isn\'t being set since 2015 (74da3b14b0c0f658b3bb8d2def5094686d0e9095)
 	*/
-	"phase"?: ManagementV1DevPodWorkspaceInstancePodStatusPhaseEnum;
+	"phase"?: StorageV1DevPodWorkspaceInstancePodStatusPhaseEnum;
 	/**
 	* A brief CamelCase message indicating details about why the pod is in this state. e.g. \'Evicted\'
 	*/
@@ -9957,16 +9957,20 @@ declare class ManagementV1DevPodWorkspaceInstancePodStatus {
 	}[];
 	constructor();
 }
-declare enum ManagementV1DevPodWorkspaceInstancePodStatusPhaseEnum {
+declare enum StorageV1DevPodWorkspaceInstancePodStatusPhaseEnum {
 	Failed = "Failed",
 	Pending = "Pending",
 	Running = "Running",
 	Succeeded = "Succeeded",
 	Unknown = "Unknown"
 }
-declare class ManagementV1DevPodWorkspaceInstanceKubernetesStatus {
-	"persistentVolumeClaimStatus"?: ManagementV1DevPodWorkspaceInstancePersistentVolumeClaimStatus;
-	"podStatus"?: ManagementV1DevPodWorkspaceInstancePodStatus;
+declare class StorageV1DevPodWorkspaceInstanceKubernetesStatus {
+	/**
+	* Last time the condition transitioned from one status to another.
+	*/
+	"lastTransitionTime": Date;
+	"persistentVolumeClaimStatus"?: StorageV1DevPodWorkspaceInstancePersistentVolumeClaimStatus;
+	"podStatus"?: StorageV1DevPodWorkspaceInstancePodStatus;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -10035,7 +10039,7 @@ declare class ManagementV1DevPodWorkspaceInstanceStatus {
 	*/
 	"ignoreReconciliation"?: boolean;
 	"instance"?: StorageV1DevPodWorkspaceTemplateDefinition;
-	"kubernetes"?: ManagementV1DevPodWorkspaceInstanceKubernetesStatus;
+	"kubernetes"?: StorageV1DevPodWorkspaceInstanceKubernetesStatus;
 	/**
 	* LastWorkspaceStatus is the last workspace status reported by the runner.
 	*/

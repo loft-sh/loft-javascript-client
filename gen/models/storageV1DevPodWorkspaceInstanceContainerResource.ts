@@ -13,7 +13,7 @@
 import { V1ResourceRequirements } from '../models/V1ResourceRequirements';
 
 
-export class ManagementV1DevPodWorkspaceInstanceContainerResource {
+export class StorageV1DevPodWorkspaceInstanceContainerResource {
     /**
     * Name is the name of the container
     */
@@ -37,7 +37,7 @@ export class ManagementV1DevPodWorkspaceInstanceContainerResource {
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1DevPodWorkspaceInstanceContainerResource.attributeTypeMap;
+        return StorageV1DevPodWorkspaceInstanceContainerResource.attributeTypeMap;
     }
 
     public constructor() {
