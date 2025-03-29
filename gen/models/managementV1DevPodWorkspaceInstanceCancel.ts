@@ -13,7 +13,7 @@
 import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
-export class ManagementV1DevPodWorkspaceInstanceState {
+export class ManagementV1DevPodWorkspaceInstanceCancel {
     /**
     * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
     */
@@ -24,9 +24,9 @@ export class ManagementV1DevPodWorkspaceInstanceState {
     'kind'?: string;
     'metadata'?: V1ObjectMeta;
     /**
-    * State holds the workspaces state as given by \'devpod export\'
+    * TaskID is the id of the task that should get cancelled
     */
-    'state'?: string;
+    'taskId'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -50,14 +50,14 @@ export class ManagementV1DevPodWorkspaceInstanceState {
             "format": ""
         },
         {
-            "name": "state",
-            "baseName": "state",
+            "name": "taskId",
+            "baseName": "taskId",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1DevPodWorkspaceInstanceState.attributeTypeMap;
+        return ManagementV1DevPodWorkspaceInstanceCancel.attributeTypeMap;
     }
 
     public constructor() {
