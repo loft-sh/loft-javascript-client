@@ -10,39 +10,34 @@
  * Do not edit the class manually.
  */
 
+import { V1SecretKeySelector } from '../models/V1SecretKeySelector';
 
 
-/**
-* PodDNSConfigOption defines DNS resolver options of a pod.
-*/
-export class V1PodDNSConfigOption {
+export class StorageV1GitProjectCredentials {
     /**
-    * Name is this DNS resolver option\'s name. Required.
+    * Token defines the credentials to use for authentication, this is a base64 encoded string.
     */
-    'name'?: string;
-    /**
-    * Value is this DNS resolver option\'s value.
-    */
-    'value'?: string;
+    'token'?: string;
+    'tokenSecretRef'?: V1SecretKeySelector;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "name",
-            "baseName": "name",
+            "name": "token",
+            "baseName": "token",
             "type": "string",
             "format": ""
         },
         {
-            "name": "value",
-            "baseName": "value",
-            "type": "string",
+            "name": "tokenSecretRef",
+            "baseName": "tokenSecretRef",
+            "type": "V1SecretKeySelector",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return V1PodDNSConfigOption.attributeTypeMap;
+        return StorageV1GitProjectCredentials.attributeTypeMap;
     }
 
     public constructor() {
