@@ -21,6 +21,7 @@ import {ManagementV1Config} from "./models/managementV1Config"
 import {ManagementV1ConvertVirtualClusterConfig} from "./models/managementV1ConvertVirtualClusterConfig"
 import {ManagementV1DevPodEnvironmentTemplate} from "./models/managementV1DevPodEnvironmentTemplate"
 import {ManagementV1DevPodWorkspaceInstanceCancel} from "./models/managementV1DevPodWorkspaceInstanceCancel"
+import {ManagementV1DevPodWorkspaceInstanceDownload} from "./models/managementV1DevPodWorkspaceInstanceDownload"
 import {ManagementV1DevPodWorkspaceInstanceLog} from "./models/managementV1DevPodWorkspaceInstanceLog"
 import {ManagementV1DevPodWorkspaceInstanceStop} from "./models/managementV1DevPodWorkspaceInstanceStop"
 import {ManagementV1DevPodWorkspaceInstanceTasks} from "./models/managementV1DevPodWorkspaceInstanceTasks"
@@ -102,6 +103,7 @@ export type TGenResources = {
   ManagementV1DevPodEnvironmentTemplate: GroupVersionResource<ManagementV1DevPodEnvironmentTemplate>
   ManagementV1DevPodWorkspaceInstance: GroupVersionResource<ManagementV1DevPodWorkspaceInstance>
   ManagementV1DevPodWorkspaceInstanceCancel: GroupVersionResource<ManagementV1DevPodWorkspaceInstanceCancel>
+  ManagementV1DevPodWorkspaceInstanceDownload: GroupVersionResource<ManagementV1DevPodWorkspaceInstanceDownload>
   ManagementV1DevPodWorkspaceInstanceLog: GroupVersionResource<ManagementV1DevPodWorkspaceInstanceLog>
   ManagementV1DevPodWorkspaceInstanceStop: GroupVersionResource<ManagementV1DevPodWorkspaceInstanceStop>
   ManagementV1DevPodWorkspaceInstanceTasks: GroupVersionResource<ManagementV1DevPodWorkspaceInstanceTasks>
@@ -336,6 +338,14 @@ export const GenResources: TGenResources = {
     subResource: "cancel",
     namespaced: true,
     kind: "DevPodWorkspaceInstanceCancel",
+  },
+  ManagementV1DevPodWorkspaceInstanceDownload: {
+    group: "management.loft.sh",
+    version: "v1",
+    resource: "devpodworkspaceinstances",
+    subResource: "download",
+    namespaced: true,
+    kind: "DevPodWorkspaceInstanceDownload",
   },
   ManagementV1DevPodWorkspaceInstanceLog: {
     group: "management.loft.sh",

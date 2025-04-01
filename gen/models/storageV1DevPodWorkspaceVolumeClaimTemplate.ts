@@ -10,13 +10,13 @@
  * Do not edit the class manually.
  */
 
+import { StorageV1DevPodWorkspaceVolumeClaimSpec } from '../models/storageV1DevPodWorkspaceVolumeClaimSpec';
 import { StorageV1TemplateMetadata } from '../models/storageV1TemplateMetadata';
-import { V1PersistentVolumeClaimSpec } from '../models/V1PersistentVolumeClaimSpec';
 
 
 export class StorageV1DevPodWorkspaceVolumeClaimTemplate {
     'metadata'?: StorageV1TemplateMetadata;
-    'spec'?: V1PersistentVolumeClaimSpec;
+    'spec'?: StorageV1DevPodWorkspaceVolumeClaimSpec;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -30,7 +30,7 @@ export class StorageV1DevPodWorkspaceVolumeClaimTemplate {
         {
             "name": "spec",
             "baseName": "spec",
-            "type": "V1PersistentVolumeClaimSpec",
+            "type": "StorageV1DevPodWorkspaceVolumeClaimSpec",
             "format": ""
         }    ];
 

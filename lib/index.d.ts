@@ -6063,6 +6063,31 @@ declare class ManagementV1DevPodWorkspaceInstanceCancel {
 	}[];
 	constructor();
 }
+declare class ManagementV1DevPodWorkspaceInstanceDownload {
+	/**
+	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	*/
+	"apiVersion"?: string;
+	/**
+	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	*/
+	"kind"?: string;
+	"metadata"?: V1ObjectMeta;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
 declare class ManagementV1DevPodWorkspaceInstanceLog {
 	/**
 	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
@@ -9078,9 +9103,59 @@ declare class StorageV1DevPodWorkspacePodTemplate {
 	}[];
 	constructor();
 }
+declare class StorageV1DevPodWorkspaceVolumeClaimSpec {
+	/**
+	* accessModes contains the desired access modes the volume should have.
+	*/
+	"accessModes"?: Array<StorageV1DevPodWorkspaceVolumeClaimSpecAccessModesEnum>;
+	"dataSource"?: V1TypedLocalObjectReference;
+	"dataSourceRef"?: V1TypedObjectReference;
+	"resources"?: StorageV1DevPodWorkspaceResourceRequirements;
+	"selector"?: V1LabelSelector;
+	/**
+	* storageClassName is the name of the StorageClass required by the claim.
+	*/
+	"storageClassName"?: string;
+	/**
+	* volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim.
+	*/
+	"volumeAttributesClassName"?: string;
+	/**
+	* volumeMode defines what type of volume is required by the claim.  Possible enum values:  - `\"Block\"` means the volume will not be formatted with a filesystem and will remain a raw block device.  - `\"Filesystem\"` means the volume will be or is formatted with a filesystem.
+	*/
+	"volumeMode"?: StorageV1DevPodWorkspaceVolumeClaimSpecVolumeModeEnum;
+	/**
+	* volumeName is the binding reference to the PersistentVolume backing this claim.
+	*/
+	"volumeName"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare enum StorageV1DevPodWorkspaceVolumeClaimSpecAccessModesEnum {
+	ReadOnlyMany = "ReadOnlyMany",
+	ReadWriteMany = "ReadWriteMany",
+	ReadWriteOnce = "ReadWriteOnce",
+	ReadWriteOncePod = "ReadWriteOncePod"
+}
+declare enum StorageV1DevPodWorkspaceVolumeClaimSpecVolumeModeEnum {
+	Block = "Block",
+	Filesystem = "Filesystem"
+}
 declare class StorageV1DevPodWorkspaceVolumeClaimTemplate {
 	"metadata"?: StorageV1TemplateMetadata;
-	"spec"?: V1PersistentVolumeClaimSpec;
+	"spec"?: StorageV1DevPodWorkspaceVolumeClaimSpec;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -17001,6 +17076,7 @@ export type TGenResources = {
 	ManagementV1DevPodEnvironmentTemplate: GroupVersionResource<ManagementV1DevPodEnvironmentTemplate>;
 	ManagementV1DevPodWorkspaceInstance: GroupVersionResource<ManagementV1DevPodWorkspaceInstance>;
 	ManagementV1DevPodWorkspaceInstanceCancel: GroupVersionResource<ManagementV1DevPodWorkspaceInstanceCancel>;
+	ManagementV1DevPodWorkspaceInstanceDownload: GroupVersionResource<ManagementV1DevPodWorkspaceInstanceDownload>;
 	ManagementV1DevPodWorkspaceInstanceLog: GroupVersionResource<ManagementV1DevPodWorkspaceInstanceLog>;
 	ManagementV1DevPodWorkspaceInstanceStop: GroupVersionResource<ManagementV1DevPodWorkspaceInstanceStop>;
 	ManagementV1DevPodWorkspaceInstanceTasks: GroupVersionResource<ManagementV1DevPodWorkspaceInstanceTasks>;
