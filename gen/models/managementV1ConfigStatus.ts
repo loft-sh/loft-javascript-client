@@ -13,8 +13,6 @@
 import { ManagementV1Apps } from '../models/managementV1Apps';
 import { ManagementV1Audit } from '../models/managementV1Audit';
 import { ManagementV1Authentication } from '../models/managementV1Authentication';
-import { ManagementV1Cloud } from '../models/managementV1Cloud';
-import { ManagementV1CostControl } from '../models/managementV1CostControl';
 import { ManagementV1OIDC } from '../models/managementV1OIDC';
 import { StorageV1VaultIntegrationSpec } from '../models/storageV1VaultIntegrationSpec';
 import { UiV1UISettingsConfig } from '../models/uiV1UISettingsConfig';
@@ -27,25 +25,15 @@ export class ManagementV1ConfigStatus {
     'apps'?: ManagementV1Apps;
     'audit'?: ManagementV1Audit;
     'auth'?: ManagementV1Authentication;
-    'cloud'?: ManagementV1Cloud;
-    'costControl'?: ManagementV1CostControl;
     /**
     * DevPodSubDomain holds a subdomain in the following form *.workspace.my-domain.com
     */
     'devPodSubDomain'?: string;
     /**
-    * DisableLoftConfigEndpoint will disable setting config via the UI and config.management.loft.sh endpoint
-    */
-    'disableConfigEndpoint'?: boolean;
-    /**
     * LoftHost holds the domain where the loft instance is hosted. This should not include https or http. E.g. loft.my-domain.com
     */
     'loftHost'?: string;
     'oidc'?: ManagementV1OIDC;
-    /**
-    * ProjectNamespacePrefix holds the prefix for loft project namespaces. Omitted defaults to \"p-\"
-    */
-    'projectNamespacePrefix'?: string;
     'uiSettings'?: UiV1UISettingsConfig;
     'vault'?: StorageV1VaultIntegrationSpec;
 
@@ -71,27 +59,9 @@ export class ManagementV1ConfigStatus {
             "format": ""
         },
         {
-            "name": "cloud",
-            "baseName": "cloud",
-            "type": "ManagementV1Cloud",
-            "format": ""
-        },
-        {
-            "name": "costControl",
-            "baseName": "costControl",
-            "type": "ManagementV1CostControl",
-            "format": ""
-        },
-        {
             "name": "devPodSubDomain",
             "baseName": "devPodSubDomain",
             "type": "string",
-            "format": ""
-        },
-        {
-            "name": "disableConfigEndpoint",
-            "baseName": "disableConfigEndpoint",
-            "type": "boolean",
             "format": ""
         },
         {
@@ -104,12 +74,6 @@ export class ManagementV1ConfigStatus {
             "name": "oidc",
             "baseName": "oidc",
             "type": "ManagementV1OIDC",
-            "format": ""
-        },
-        {
-            "name": "projectNamespacePrefix",
-            "baseName": "projectNamespacePrefix",
-            "type": "string",
             "format": ""
         },
         {
