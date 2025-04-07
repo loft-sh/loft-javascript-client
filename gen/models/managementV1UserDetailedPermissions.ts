@@ -10,11 +10,13 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1Runner } from '../models/managementV1Runner';
+import { ManagementV1UserDrilldownManagementRoles } from '../models/managementV1UserDrilldownManagementRoles';
+import { ManagementV1UserDrilldownProjectMemberships } from '../models/managementV1UserDrilldownProjectMemberships';
+import { ManagementV1UserDrilldownVClusterRoles } from '../models/managementV1UserDrilldownVClusterRoles';
 import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
-export class ManagementV1ProjectRunners {
+export class ManagementV1UserDetailedPermissions {
     /**
     * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
     */
@@ -24,10 +26,10 @@ export class ManagementV1ProjectRunners {
     */
     'kind'?: string;
     'metadata'?: V1ObjectMeta;
-    /**
-    * Runners holds all the allowed runners
-    */
-    'runners'?: Array<ManagementV1Runner>;
+    'projectMemberships'?: Array<ManagementV1UserDrilldownProjectMemberships>;
+    'rolesAssigned'?: Array<ManagementV1UserDrilldownManagementRoles>;
+    'teamMemberships'?: Array<any>;
+    'virtualClusterRoles'?: Array<ManagementV1UserDrilldownVClusterRoles>;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -51,14 +53,32 @@ export class ManagementV1ProjectRunners {
             "format": ""
         },
         {
-            "name": "runners",
-            "baseName": "runners",
-            "type": "Array<ManagementV1Runner>",
+            "name": "projectMemberships",
+            "baseName": "projectMemberships",
+            "type": "Array<ManagementV1UserDrilldownProjectMemberships>",
+            "format": ""
+        },
+        {
+            "name": "rolesAssigned",
+            "baseName": "rolesAssigned",
+            "type": "Array<ManagementV1UserDrilldownManagementRoles>",
+            "format": ""
+        },
+        {
+            "name": "teamMemberships",
+            "baseName": "teamMemberships",
+            "type": "Array<any>",
+            "format": ""
+        },
+        {
+            "name": "virtualClusterRoles",
+            "baseName": "virtualClusterRoles",
+            "type": "Array<ManagementV1UserDrilldownVClusterRoles>",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1ProjectRunners.attributeTypeMap;
+        return ManagementV1UserDetailedPermissions.attributeTypeMap;
     }
 
     public constructor() {
