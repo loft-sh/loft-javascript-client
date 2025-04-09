@@ -12,23 +12,27 @@
 
 
 
-/**
-* Feature contains information regarding to a feature
-*/
-export class LicenseApiFeature {
+export class ManagementV1AssignedVia {
+    /**
+    * DisplayName is the name of the object to display in the UI
+    */
     'displayName'?: string;
     /**
-    * Name is the name of the feature (FeatureName) This cannot be FeatureName because it needs to be downward compatible e.g. older Loft version doesn\'t know a newer feature but it will still be received and still needs to be rendered in the license view
+    * Kind is the type of resource used to establish the assignment. One of `User`, `Team`, or `ClusterAccess`
     */
-    'name': string;
+    'kind'?: string;
     /**
-    * Preview represents whether the feature can be previewed if a user\'s license does not allow the feature
+    * Name of the referenced object
     */
-    'preview'?: boolean;
+    'name'?: string;
     /**
-    * Status shows the status of the feature (see type FeatureStatus)
+    * Namespace of the referenced object
     */
-    'status'?: string;
+    'namespace'?: string;
+    /**
+    * Owner indicates if the
+    */
+    'owner'?: boolean;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -40,26 +44,32 @@ export class LicenseApiFeature {
             "format": ""
         },
         {
+            "name": "kind",
+            "baseName": "kind",
+            "type": "string",
+            "format": ""
+        },
+        {
             "name": "name",
             "baseName": "name",
             "type": "string",
             "format": ""
         },
         {
-            "name": "preview",
-            "baseName": "preview",
-            "type": "boolean",
+            "name": "namespace",
+            "baseName": "namespace",
+            "type": "string",
             "format": ""
         },
         {
-            "name": "status",
-            "baseName": "status",
-            "type": "string",
+            "name": "owner",
+            "baseName": "owner",
+            "type": "boolean",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return LicenseApiFeature.attributeTypeMap;
+        return ManagementV1AssignedVia.attributeTypeMap;
     }
 
     public constructor() {
