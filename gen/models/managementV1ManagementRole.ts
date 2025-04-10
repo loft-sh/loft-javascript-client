@@ -10,24 +10,39 @@
  * Do not edit the class manually.
  */
 
+import { ManagementV1AssignedVia } from '../models/managementV1AssignedVia';
 
 
-/**
-* PodDNSConfigOption defines DNS resolver options of a pod.
-*/
-export class V1PodDNSConfigOption {
+export class ManagementV1ManagementRole {
+    'assignedVia'?: ManagementV1AssignedVia;
     /**
-    * Name is this DNS resolver option\'s name. Required.
+    * DisplayName is the name of the object to display in the UI
+    */
+    'displayName'?: string;
+    /**
+    * Name of the referenced object
     */
     'name'?: string;
     /**
-    * Value is this DNS resolver option\'s value.
+    * Namespace of the referenced object
     */
-    'value'?: string;
+    'namespace'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+        {
+            "name": "assignedVia",
+            "baseName": "assignedVia",
+            "type": "ManagementV1AssignedVia",
+            "format": ""
+        },
+        {
+            "name": "displayName",
+            "baseName": "displayName",
+            "type": "string",
+            "format": ""
+        },
         {
             "name": "name",
             "baseName": "name",
@@ -35,14 +50,14 @@ export class V1PodDNSConfigOption {
             "format": ""
         },
         {
-            "name": "value",
-            "baseName": "value",
+            "name": "namespace",
+            "baseName": "namespace",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return V1PodDNSConfigOption.attributeTypeMap;
+        return ManagementV1ManagementRole.attributeTypeMap;
     }
 
     public constructor() {

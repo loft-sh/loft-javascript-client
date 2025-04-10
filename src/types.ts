@@ -245,6 +245,9 @@ export interface GetOptions {
   pretty?: string
 
   extended?: string
+
+  // Used when querying ManagementV1TeamObjectPermissions or ManagementV1UserObjectPermissions
+  resource?: string
 }
 
 export interface ListOptions {
@@ -368,4 +371,18 @@ export class List<T> {
    */
   "kind"?: string
   "metadata"?: Metadata
+}
+
+export type XOr<T, U> =
+  | (T & { [K in Exclude<keyof U, keyof T>]?: never })
+  | (U & { [K in Exclude<keyof T, keyof U>]?: never })
+
+export type LabeledValue = {
+  value: string
+  label: string
+}
+
+export type NamespacedReference = {
+  name: string
+  namespace?: string
 }
