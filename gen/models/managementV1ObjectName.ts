@@ -12,15 +12,11 @@
 
 
 
-export class ManagementV1AssignedVia {
+export class ManagementV1ObjectName {
     /**
     * DisplayName is the name of the object to display in the UI
     */
     'displayName'?: string;
-    /**
-    * Kind is the type of resource used to establish the assignment. One of `User`, `Team`, or `ClusterAccess`
-    */
-    'kind'?: string;
     /**
     * Name of the referenced object
     */
@@ -29,10 +25,6 @@ export class ManagementV1AssignedVia {
     * Namespace of the referenced object
     */
     'namespace'?: string;
-    /**
-    * Owner indicates if the
-    */
-    'owner'?: boolean;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -40,12 +32,6 @@ export class ManagementV1AssignedVia {
         {
             "name": "displayName",
             "baseName": "displayName",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "kind",
-            "baseName": "kind",
             "type": "string",
             "format": ""
         },
@@ -60,16 +46,10 @@ export class ManagementV1AssignedVia {
             "baseName": "namespace",
             "type": "string",
             "format": ""
-        },
-        {
-            "name": "owner",
-            "baseName": "owner",
-            "type": "boolean",
-            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1AssignedVia.attributeTypeMap;
+        return ManagementV1ObjectName.attributeTypeMap;
     }
 
     public constructor() {

@@ -64,11 +64,13 @@ import {ManagementV1TaskLog} from "./models/managementV1TaskLog"
 import {ManagementV1Task} from "./models/managementV1Task"
 import {ManagementV1TeamAccessKeys} from "./models/managementV1TeamAccessKeys"
 import {ManagementV1TeamClusters} from "./models/managementV1TeamClusters"
+import {ManagementV1TeamObjectPermissions} from "./models/managementV1TeamObjectPermissions"
+import {ManagementV1TeamPermissions} from "./models/managementV1TeamPermissions"
 import {ManagementV1Team} from "./models/managementV1Team"
 import {ManagementV1TranslateVClusterResourceName} from "./models/managementV1TranslateVClusterResourceName"
 import {ManagementV1UserAccessKeys} from "./models/managementV1UserAccessKeys"
 import {ManagementV1UserClusters} from "./models/managementV1UserClusters"
-import {ManagementV1UserDetailedPermissions} from "./models/managementV1UserDetailedPermissions"
+import {ManagementV1UserObjectPermissions} from "./models/managementV1UserObjectPermissions"
 import {ManagementV1UserPermissions} from "./models/managementV1UserPermissions"
 import {ManagementV1UserProfile} from "./models/managementV1UserProfile"
 import {ManagementV1User} from "./models/managementV1User"
@@ -146,11 +148,13 @@ export type TGenResources = {
   ManagementV1Team: GroupVersionResource<ManagementV1Team>
   ManagementV1TeamAccessKeys: GroupVersionResource<ManagementV1TeamAccessKeys>
   ManagementV1TeamClusters: GroupVersionResource<ManagementV1TeamClusters>
+  ManagementV1TeamObjectPermissions: GroupVersionResource<ManagementV1TeamObjectPermissions>
+  ManagementV1TeamPermissions: GroupVersionResource<ManagementV1TeamPermissions>
   ManagementV1TranslateVClusterResourceName: GroupVersionResource<ManagementV1TranslateVClusterResourceName>
   ManagementV1User: GroupVersionResource<ManagementV1User>
   ManagementV1UserAccessKeys: GroupVersionResource<ManagementV1UserAccessKeys>
   ManagementV1UserClusters: GroupVersionResource<ManagementV1UserClusters>
-  ManagementV1UserDetailedPermissions: GroupVersionResource<ManagementV1UserDetailedPermissions>
+  ManagementV1UserObjectPermissions: GroupVersionResource<ManagementV1UserObjectPermissions>
   ManagementV1UserPermissions: GroupVersionResource<ManagementV1UserPermissions>
   ManagementV1UserProfile: GroupVersionResource<ManagementV1UserProfile>
   ManagementV1VirtualClusterAccessKey: GroupVersionResource<ManagementV1VirtualClusterAccessKey>
@@ -683,6 +687,22 @@ export const GenResources: TGenResources = {
     namespaced: false,
     kind: "TeamClusters",
   },
+  ManagementV1TeamObjectPermissions: {
+    group: "management.loft.sh",
+    version: "v1",
+    resource: "teams",
+    subResource: "object-permissions",
+    namespaced: false,
+    kind: "TeamObjectPermissions",
+  },
+  ManagementV1TeamPermissions: {
+    group: "management.loft.sh",
+    version: "v1",
+    resource: "teams",
+    subResource: "permissions",
+    namespaced: false,
+    kind: "TeamPermissions",
+  },
   ManagementV1TranslateVClusterResourceName: {
     group: "management.loft.sh",
     version: "v1",
@@ -715,13 +735,13 @@ export const GenResources: TGenResources = {
     namespaced: false,
     kind: "UserClusters",
   },
-  ManagementV1UserDetailedPermissions: {
+  ManagementV1UserObjectPermissions: {
     group: "management.loft.sh",
     version: "v1",
     resource: "users",
-    subResource: "detailed-permissions",
+    subResource: "object-permissions",
     namespaced: false,
-    kind: "UserDetailedPermissions",
+    kind: "UserObjectPermissions",
   },
   ManagementV1UserPermissions: {
     group: "management.loft.sh",

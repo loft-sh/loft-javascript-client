@@ -10,31 +10,34 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1AssignedVia } from '../models/managementV1AssignedVia';
+import { ManagementV1CostControlResourcePrice } from '../models/managementV1CostControlResourcePrice';
 
 
-export class ManagementV1UserDrilldownManagementRoles {
-    'assignedVia'?: ManagementV1AssignedVia;
-    'management'?: boolean;
+export class ManagementV1CostControlGPUSettings {
+    'averageGPUPrice'?: ManagementV1CostControlResourcePrice;
+    /**
+    * Enabled specifies whether GPU settings should be available in the UI.
+    */
+    'enabled'?: boolean;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "assignedVia",
-            "baseName": "assignedVia",
-            "type": "ManagementV1AssignedVia",
+            "name": "averageGPUPrice",
+            "baseName": "averageGPUPrice",
+            "type": "ManagementV1CostControlResourcePrice",
             "format": ""
         },
         {
-            "name": "management",
-            "baseName": "management",
+            "name": "enabled",
+            "baseName": "enabled",
             "type": "boolean",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1UserDrilldownManagementRoles.attributeTypeMap;
+        return ManagementV1CostControlGPUSettings.attributeTypeMap;
     }
 
     public constructor() {

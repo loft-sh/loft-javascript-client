@@ -14,7 +14,7 @@ import Cookies from "js-cookie"
 import jsonmergepatch from "json-merge-patch"
 
 import constants from "./constants"
-import { arr } from "./helpers"
+import { arr, parseResourceList } from "./helpers"
 import { NewResource, Resources } from "./resources"
 import {
   ErrorTypeNetwork,
@@ -805,44 +805,6 @@ class Request<T> {
     return Return.Value(path.join("/") + optionsStr)
   }
 
-  private parseResourceList(
-    group: string,
-    version: string,
-    resourceList: V1APIResourceList,
-    resultArray: Array<GroupVersionResource<Unstructured>>,
-    removeDuplicates?: boolean,
-    includeSubResources?: boolean
-  ) {
-    for (let k = 0; k < arr(resourceList.resources).length; k++) {
-      const resource = resourceList.resources[k]
-      if (resource === undefined) {
-        continue
-      }
-
-      // check if subresource & duplicate
-      const splitted = resource.name.split("/")
-      const resourceName = splitted[0] ?? ""
-      if (!includeSubResources && splitted.length > 1) {
-        continue
-      } else if (
-        removeDuplicates &&
-        resultArray.find((r) => r.group === group && r.resource === resourceName)
-      ) {
-        continue
-      }
-
-      resultArray.push({
-        resource: resourceName,
-        subResource: splitted.length > 1 ? splitted[1] : undefined,
-        group: group,
-        version: version,
-        kind: resource.kind,
-        namespaced: resource.namespaced,
-        verbs: resource.verbs,
-      })
-    }
-  }
-
   public async ApiResources(
     removeDuplicates?: boolean,
     includeSubResources?: boolean
@@ -874,7 +836,7 @@ class Request<T> {
             return
           }
 
-          this.parseResourceList(
+          parseResourceList(
             "",
             version,
             resourcesResult.val,
@@ -925,7 +887,7 @@ class Request<T> {
               return
             }
 
-            this.parseResourceList(
+            parseResourceList(
               group.name,
               version.version,
               resourcesResult.val,

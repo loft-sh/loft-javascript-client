@@ -13,9 +13,20 @@
 import { ManagementV1AssignedVia } from '../models/managementV1AssignedVia';
 
 
-export class ManagementV1UserDrilldownProjectMemberships {
+export class ManagementV1ManagementRole {
     'assignedVia'?: ManagementV1AssignedVia;
-    'role'?: string;
+    /**
+    * DisplayName is the name of the object to display in the UI
+    */
+    'displayName'?: string;
+    /**
+    * Name of the referenced object
+    */
+    'name'?: string;
+    /**
+    * Namespace of the referenced object
+    */
+    'namespace'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -27,14 +38,26 @@ export class ManagementV1UserDrilldownProjectMemberships {
             "format": ""
         },
         {
-            "name": "role",
-            "baseName": "role",
+            "name": "displayName",
+            "baseName": "displayName",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "name",
+            "baseName": "name",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "namespace",
+            "baseName": "namespace",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1UserDrilldownProjectMemberships.attributeTypeMap;
+        return ManagementV1ManagementRole.attributeTypeMap;
     }
 
     public constructor() {

@@ -487,6 +487,7 @@ export type DeepNullable<T> = {
 export interface GetOptions {
 	pretty?: string;
 	extended?: string;
+	resource?: string;
 }
 export interface ListOptions {
 	pretty?: string;
@@ -596,6 +597,15 @@ export declare class List<T> {
 	"kind"?: string;
 	"metadata"?: Metadata;
 }
+export type XOr<T, U> = (T & {
+	[K in Exclude<keyof U, keyof T>]?: never;
+}) | (U & {
+	[K in Exclude<keyof T, keyof U>]?: never;
+});
+export type LabeledValue = {
+	value: string;
+	label: string;
+};
 export declare function getApiHost(): string;
 export interface AuthInfo {
 	username: string;
@@ -659,7 +669,6 @@ declare class Request<T> {
 	Namespace(namespace?: string): Request<T>;
 	Resource(groupVersionResource: GroupVersionResource<T>): Request<T>;
 	private buildPath;
-	private parseResourceList;
 	ApiResources(removeDuplicates?: boolean, includeSubResources?: boolean): Promise<Result<Array<GroupVersionResource<Unstructured>>>>;
 	Version(): Promise<Result<VersionInfo>>;
 	VirtualClusterInstanceLogs(namespace: string, instance: string, options?: LogOptions): Promise<Result<ReadableStreamDefaultReader<Uint8Array>>>;
@@ -5442,10 +5451,32 @@ declare class ManagementV1CostControlResourcePrice {
 	}[];
 	constructor();
 }
+declare class ManagementV1CostControlGPUSettings {
+	"averageGPUPrice"?: ManagementV1CostControlResourcePrice;
+	/**
+	* Enabled specifies whether GPU settings should be available in the UI.
+	*/
+	"enabled"?: boolean;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
 declare class ManagementV1CostControlSettings {
 	"averageCPUPricePerNode"?: ManagementV1CostControlResourcePrice;
 	"averageRAMPricePerNode"?: ManagementV1CostControlResourcePrice;
 	"controlPlanePricePerCluster"?: ManagementV1CostControlResourcePrice;
+	"gpuSettings"?: ManagementV1CostControlGPUSettings;
 	/**
 	* PriceCurrency specifies the currency.
 	*/
@@ -5934,6 +5965,10 @@ declare class StorageV1DevPodEnvironmentTemplateDefinition {
 	* Inline holds an inline devcontainer.json definition
 	*/
 	"inline"?: string;
+	/**
+	* WorkspaceRepositoryCloneStrategy determines how the workspaces git repository will be checked out in the pod if the workspace is git based  Possible enum values:  - `\"\"`  - `\"blobless\"`  - `\"shallow\"`  - `\"treeless\"`
+	*/
+	"workspaceRepositoryCloneStrategy"?: StorageV1DevPodEnvironmentTemplateDefinitionWorkspaceRepositoryCloneStrategyEnum;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -5948,6 +5983,12 @@ declare class StorageV1DevPodEnvironmentTemplateDefinition {
 		format: string;
 	}[];
 	constructor();
+}
+declare enum StorageV1DevPodEnvironmentTemplateDefinitionWorkspaceRepositoryCloneStrategyEnum {
+	Empty = "",
+	Blobless = "blobless",
+	Shallow = "shallow",
+	Treeless = "treeless"
 }
 declare class StorageV1DevPodEnvironmentTemplateVersion {
 	"template"?: StorageV1DevPodEnvironmentTemplateDefinition;
@@ -13664,26 +13705,8 @@ declare class ManagementV1VirtualClusterTemplateSpec {
 	}[];
 	constructor();
 }
-declare class ManagementV1CurrentUserAccess {
-	"verbs"?: Array<string>;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
 declare class ManagementV1VirtualClusterTemplateStatus {
 	"apps"?: Array<StorageV1EntityInfo>;
-	"currentUserAccess"?: ManagementV1CurrentUserAccess;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -16034,6 +16057,330 @@ declare class ManagementV1TeamClusters {
 	}[];
 	constructor();
 }
+declare class ManagementV1ObjectPermission {
+	/**
+	* DisplayName is the name of the object to display in the UI
+	*/
+	"displayName"?: string;
+	/**
+	* Name of the referenced object
+	*/
+	"name"?: string;
+	/**
+	* Namespace of the referenced object
+	*/
+	"namespace"?: string;
+	/**
+	* Verbs is a list of actions allowed by the user on the object. \'*\' represents all verbs
+	*/
+	"verbs": Array<string>;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1TeamObjectPermissions {
+	/**
+	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	*/
+	"apiVersion"?: string;
+	/**
+	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	*/
+	"kind"?: string;
+	"metadata"?: V1ObjectMeta;
+	"objectPermissions"?: Array<ManagementV1ObjectPermission>;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1AssignedVia {
+	/**
+	* DisplayName is the name of the object to display in the UI
+	*/
+	"displayName"?: string;
+	/**
+	* Kind is the type of resource used to establish the assignment. One of `User`, `Team`, or `ClusterAccess`
+	*/
+	"kind"?: string;
+	/**
+	* Name of the referenced object
+	*/
+	"name"?: string;
+	/**
+	* Namespace of the referenced object
+	*/
+	"namespace"?: string;
+	/**
+	* Owner indicates if the
+	*/
+	"owner"?: boolean;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1ObjectName {
+	/**
+	* DisplayName is the name of the object to display in the UI
+	*/
+	"displayName"?: string;
+	/**
+	* Name of the referenced object
+	*/
+	"name"?: string;
+	/**
+	* Namespace of the referenced object
+	*/
+	"namespace"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1ClusterAccessRole {
+	"assignedVia"?: ManagementV1AssignedVia;
+	/**
+	* Clusters are the clusters that this assigned role applies
+	*/
+	"clusters"?: Array<ManagementV1ObjectName>;
+	/**
+	* DisplayName is the name of the object to display in the UI
+	*/
+	"displayName"?: string;
+	/**
+	* Name of the referenced object
+	*/
+	"name"?: string;
+	/**
+	* Namespace of the referenced object
+	*/
+	"namespace"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1ManagementRole {
+	"assignedVia"?: ManagementV1AssignedVia;
+	/**
+	* DisplayName is the name of the object to display in the UI
+	*/
+	"displayName"?: string;
+	/**
+	* Name of the referenced object
+	*/
+	"name"?: string;
+	/**
+	* Namespace of the referenced object
+	*/
+	"namespace"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1ProjectRole {
+	/**
+	* DisplayName is the name of the object to display in the UI
+	*/
+	"displayName"?: string;
+	/**
+	* IsAdmin describes whether this is an admin project role
+	*/
+	"isAdmin"?: boolean;
+	/**
+	* Name of the referenced object
+	*/
+	"name"?: string;
+	/**
+	* Namespace of the referenced object
+	*/
+	"namespace"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1ProjectMembership {
+	"assignedVia"?: ManagementV1AssignedVia;
+	/**
+	* DisplayName is the name of the object to display in the UI
+	*/
+	"displayName"?: string;
+	/**
+	* Name of the referenced object
+	*/
+	"name"?: string;
+	/**
+	* Namespace of the referenced object
+	*/
+	"namespace"?: string;
+	"role"?: ManagementV1ProjectRole;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1VirtualClusterRole {
+	"assignedVia"?: ManagementV1AssignedVia;
+	/**
+	* DisplayName is the name of the object to display in the UI
+	*/
+	"displayName"?: string;
+	/**
+	* Name of the referenced object
+	*/
+	"name"?: string;
+	/**
+	* Namespace of the referenced object
+	*/
+	"namespace"?: string;
+	/**
+	* Role is the cluster role inside the virtual cluster. One of cluster-admin, admin, edit, or view
+	*/
+	"role"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1TeamPermissions {
+	/**
+	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	*/
+	"apiVersion"?: string;
+	/**
+	* ClustersAccessRoles gives information about the team\'s assigned cluster roles and the clusters they apply to
+	*/
+	"clusterAccessRoles"?: Array<ManagementV1ClusterAccessRole>;
+	/**
+	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	*/
+	"kind"?: string;
+	/**
+	* ManagementRoles gives information about the team\'s assigned management roles
+	*/
+	"managementRoles"?: Array<ManagementV1ManagementRole>;
+	/**
+	* Members gives users that are team members
+	*/
+	"members"?: Array<ManagementV1ObjectName>;
+	"metadata"?: V1ObjectMeta;
+	/**
+	* ProjectMemberships gives information about the team\'s project membership
+	*/
+	"projectMemberships"?: Array<ManagementV1ProjectMembership>;
+	/**
+	* VirtualClusterRoles give information about the team\'s cluster role within the virtual cluster
+	*/
+	"virtualClusterRoles"?: Array<ManagementV1VirtualClusterRole>;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
 declare class StorageV1KindSecretRef {
 	/**
 	* APIGroup is the api group of the secret
@@ -16264,78 +16611,7 @@ declare class ManagementV1UserClusters {
 	}[];
 	constructor();
 }
-declare class ManagementV1AssignedVia {
-	"team"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1UserDrilldownManagementRoles {
-	"assignedVia"?: ManagementV1AssignedVia;
-	"management"?: boolean;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1UserDrilldownProjectMemberships {
-	"assignedVia"?: ManagementV1AssignedVia;
-	"role"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1UserDrilldownVClusterRoles {
-	"assignedVia"?: ManagementV1AssignedVia;
-	"role"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1UserDetailedPermissions {
+declare class ManagementV1UserObjectPermissions {
 	/**
 	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
 	*/
@@ -16345,10 +16621,7 @@ declare class ManagementV1UserDetailedPermissions {
 	*/
 	"kind"?: string;
 	"metadata"?: V1ObjectMeta;
-	"projectMemberships"?: Array<ManagementV1UserDrilldownProjectMemberships>;
-	"rolesAssigned"?: Array<ManagementV1UserDrilldownManagementRoles>;
-	"teamMemberships"?: Array<any>;
-	"virtualClusterRoles"?: Array<ManagementV1UserDrilldownVClusterRoles>;
+	"objectPermissions"?: Array<ManagementV1ObjectPermission>;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -16402,6 +16675,10 @@ declare class ManagementV1UserPermissions {
 	*/
 	"apiVersion"?: string;
 	/**
+	* ClustersAccessRoles gives information about the user\'s assigned cluster roles and the clusters they apply to
+	*/
+	"clusterAccessRoles"?: Array<ManagementV1ClusterAccessRole>;
+	/**
 	* ClusterRoles that apply to the user.
 	*/
 	"clusterRoles"?: Array<ManagementV1UserPermissionsRole>;
@@ -16409,11 +16686,27 @@ declare class ManagementV1UserPermissions {
 	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
 	*/
 	"kind"?: string;
+	/**
+	* ManagementRoles gives information about the user\'s assigned management roles
+	*/
+	"managementRoles"?: Array<ManagementV1ManagementRole>;
 	"metadata"?: V1ObjectMeta;
 	/**
 	* NamespaceRoles that apply to the user. Can be either regular roles or cluster roles that are namespace scoped.
 	*/
 	"namespaceRoles"?: Array<ManagementV1UserPermissionsRole>;
+	/**
+	* ProjectMemberships gives information about the user\'s project membership
+	*/
+	"projectMemberships"?: Array<ManagementV1ProjectMembership>;
+	/**
+	* TeamMemberships gives information about the user\'s team membership
+	*/
+	"teamMemberships"?: Array<ManagementV1ObjectName>;
+	/**
+	* VirtualClusterRoles give information about the user\'s cluster role within the virtual cluster
+	*/
+	"virtualClusterRoles"?: Array<ManagementV1VirtualClusterRole>;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -16907,7 +17200,6 @@ declare class ManagementV1VirtualClusterInstanceStatus {
 	* Conditions holds several conditions the virtual cluster might be in
 	*/
 	"conditions"?: Array<StorageV1Condition>;
-	"currentUserAccess"?: ManagementV1CurrentUserAccess;
 	/**
 	* DeployHash is the hash of the last deployed values.
 	*/
@@ -17119,11 +17411,13 @@ export type TGenResources = {
 	ManagementV1Team: GroupVersionResource<ManagementV1Team>;
 	ManagementV1TeamAccessKeys: GroupVersionResource<ManagementV1TeamAccessKeys>;
 	ManagementV1TeamClusters: GroupVersionResource<ManagementV1TeamClusters>;
+	ManagementV1TeamObjectPermissions: GroupVersionResource<ManagementV1TeamObjectPermissions>;
+	ManagementV1TeamPermissions: GroupVersionResource<ManagementV1TeamPermissions>;
 	ManagementV1TranslateVClusterResourceName: GroupVersionResource<ManagementV1TranslateVClusterResourceName>;
 	ManagementV1User: GroupVersionResource<ManagementV1User>;
 	ManagementV1UserAccessKeys: GroupVersionResource<ManagementV1UserAccessKeys>;
 	ManagementV1UserClusters: GroupVersionResource<ManagementV1UserClusters>;
-	ManagementV1UserDetailedPermissions: GroupVersionResource<ManagementV1UserDetailedPermissions>;
+	ManagementV1UserObjectPermissions: GroupVersionResource<ManagementV1UserObjectPermissions>;
 	ManagementV1UserPermissions: GroupVersionResource<ManagementV1UserPermissions>;
 	ManagementV1UserProfile: GroupVersionResource<ManagementV1UserProfile>;
 	ManagementV1VirtualClusterAccessKey: GroupVersionResource<ManagementV1VirtualClusterAccessKey>;

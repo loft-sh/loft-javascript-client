@@ -10,17 +10,20 @@
  * Do not edit the class manually.
  */
 
+import { ManagementV1AssignedVia } from '../models/managementV1AssignedVia';
+import { ManagementV1ObjectName } from '../models/managementV1ObjectName';
 
 
-export class ManagementV1AssignedVia {
+export class ManagementV1ClusterAccessRole {
+    'assignedVia'?: ManagementV1AssignedVia;
+    /**
+    * Clusters are the clusters that this assigned role applies
+    */
+    'clusters'?: Array<ManagementV1ObjectName>;
     /**
     * DisplayName is the name of the object to display in the UI
     */
     'displayName'?: string;
-    /**
-    * Kind is the type of resource used to establish the assignment. One of `User`, `Team`, or `ClusterAccess`
-    */
-    'kind'?: string;
     /**
     * Name of the referenced object
     */
@@ -29,23 +32,25 @@ export class ManagementV1AssignedVia {
     * Namespace of the referenced object
     */
     'namespace'?: string;
-    /**
-    * Owner indicates if the
-    */
-    'owner'?: boolean;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "displayName",
-            "baseName": "displayName",
-            "type": "string",
+            "name": "assignedVia",
+            "baseName": "assignedVia",
+            "type": "ManagementV1AssignedVia",
             "format": ""
         },
         {
-            "name": "kind",
-            "baseName": "kind",
+            "name": "clusters",
+            "baseName": "clusters",
+            "type": "Array<ManagementV1ObjectName>",
+            "format": ""
+        },
+        {
+            "name": "displayName",
+            "baseName": "displayName",
             "type": "string",
             "format": ""
         },
@@ -60,16 +65,10 @@ export class ManagementV1AssignedVia {
             "baseName": "namespace",
             "type": "string",
             "format": ""
-        },
-        {
-            "name": "owner",
-            "baseName": "owner",
-            "type": "boolean",
-            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1AssignedVia.attributeTypeMap;
+        return ManagementV1ClusterAccessRole.attributeTypeMap;
     }
 
     public constructor() {

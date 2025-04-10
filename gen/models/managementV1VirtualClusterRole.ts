@@ -13,8 +13,23 @@
 import { ManagementV1AssignedVia } from '../models/managementV1AssignedVia';
 
 
-export class ManagementV1UserDrilldownVClusterRoles {
+export class ManagementV1VirtualClusterRole {
     'assignedVia'?: ManagementV1AssignedVia;
+    /**
+    * DisplayName is the name of the object to display in the UI
+    */
+    'displayName'?: string;
+    /**
+    * Name of the referenced object
+    */
+    'name'?: string;
+    /**
+    * Namespace of the referenced object
+    */
+    'namespace'?: string;
+    /**
+    * Role is the cluster role inside the virtual cluster. One of cluster-admin, admin, edit, or view
+    */
     'role'?: string;
 
     static readonly discriminator: string | undefined = undefined;
@@ -27,6 +42,24 @@ export class ManagementV1UserDrilldownVClusterRoles {
             "format": ""
         },
         {
+            "name": "displayName",
+            "baseName": "displayName",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "name",
+            "baseName": "name",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "namespace",
+            "baseName": "namespace",
+            "type": "string",
+            "format": ""
+        },
+        {
             "name": "role",
             "baseName": "role",
             "type": "string",
@@ -34,7 +67,7 @@ export class ManagementV1UserDrilldownVClusterRoles {
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1UserDrilldownVClusterRoles.attributeTypeMap;
+        return ManagementV1VirtualClusterRole.attributeTypeMap;
     }
 
     public constructor() {

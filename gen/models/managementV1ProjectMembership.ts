@@ -10,17 +10,16 @@
  * Do not edit the class manually.
  */
 
+import { ManagementV1AssignedVia } from '../models/managementV1AssignedVia';
+import { ManagementV1ProjectRole } from '../models/managementV1ProjectRole';
 
 
-export class ManagementV1AssignedVia {
+export class ManagementV1ProjectMembership {
+    'assignedVia'?: ManagementV1AssignedVia;
     /**
     * DisplayName is the name of the object to display in the UI
     */
     'displayName'?: string;
-    /**
-    * Kind is the type of resource used to establish the assignment. One of `User`, `Team`, or `ClusterAccess`
-    */
-    'kind'?: string;
     /**
     * Name of the referenced object
     */
@@ -29,23 +28,20 @@ export class ManagementV1AssignedVia {
     * Namespace of the referenced object
     */
     'namespace'?: string;
-    /**
-    * Owner indicates if the
-    */
-    'owner'?: boolean;
+    'role'?: ManagementV1ProjectRole;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "displayName",
-            "baseName": "displayName",
-            "type": "string",
+            "name": "assignedVia",
+            "baseName": "assignedVia",
+            "type": "ManagementV1AssignedVia",
             "format": ""
         },
         {
-            "name": "kind",
-            "baseName": "kind",
+            "name": "displayName",
+            "baseName": "displayName",
             "type": "string",
             "format": ""
         },
@@ -62,14 +58,14 @@ export class ManagementV1AssignedVia {
             "format": ""
         },
         {
-            "name": "owner",
-            "baseName": "owner",
-            "type": "boolean",
+            "name": "role",
+            "baseName": "role",
+            "type": "ManagementV1ProjectRole",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1AssignedVia.attributeTypeMap;
+        return ManagementV1ProjectMembership.attributeTypeMap;
     }
 
     public constructor() {
