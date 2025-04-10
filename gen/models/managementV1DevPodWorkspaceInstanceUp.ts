@@ -10,11 +10,12 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1Runner } from '../models/managementV1Runner';
+import { ManagementV1DevPodWorkspaceInstanceUpSpec } from '../models/managementV1DevPodWorkspaceInstanceUpSpec';
+import { ManagementV1DevPodWorkspaceInstanceUpStatus } from '../models/managementV1DevPodWorkspaceInstanceUpStatus';
 import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
-export class ManagementV1ProjectRunners {
+export class ManagementV1DevPodWorkspaceInstanceUp {
     /**
     * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
     */
@@ -24,10 +25,8 @@ export class ManagementV1ProjectRunners {
     */
     'kind'?: string;
     'metadata'?: V1ObjectMeta;
-    /**
-    * Runners holds all the allowed runners
-    */
-    'runners'?: Array<ManagementV1Runner>;
+    'spec'?: ManagementV1DevPodWorkspaceInstanceUpSpec;
+    'status'?: ManagementV1DevPodWorkspaceInstanceUpStatus;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -51,14 +50,20 @@ export class ManagementV1ProjectRunners {
             "format": ""
         },
         {
-            "name": "runners",
-            "baseName": "runners",
-            "type": "Array<ManagementV1Runner>",
+            "name": "spec",
+            "baseName": "spec",
+            "type": "ManagementV1DevPodWorkspaceInstanceUpSpec",
+            "format": ""
+        },
+        {
+            "name": "status",
+            "baseName": "status",
+            "type": "ManagementV1DevPodWorkspaceInstanceUpStatus",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1ProjectRunners.attributeTypeMap;
+        return ManagementV1DevPodWorkspaceInstanceUp.attributeTypeMap;
     }
 
     public constructor() {

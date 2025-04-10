@@ -10,10 +10,11 @@
  * Do not edit the class manually.
  */
 
+import { ManagementV1ObjectPermission } from '../models/managementV1ObjectPermission';
 import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
-export class ManagementV1DevPodWorkspaceInstanceState {
+export class ManagementV1TeamObjectPermissions {
     /**
     * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
     */
@@ -23,10 +24,7 @@ export class ManagementV1DevPodWorkspaceInstanceState {
     */
     'kind'?: string;
     'metadata'?: V1ObjectMeta;
-    /**
-    * State holds the workspaces state as given by \'devpod export\'
-    */
-    'state'?: string;
+    'objectPermissions'?: Array<ManagementV1ObjectPermission>;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -50,14 +48,14 @@ export class ManagementV1DevPodWorkspaceInstanceState {
             "format": ""
         },
         {
-            "name": "state",
-            "baseName": "state",
-            "type": "string",
+            "name": "objectPermissions",
+            "baseName": "objectPermissions",
+            "type": "Array<ManagementV1ObjectPermission>",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1DevPodWorkspaceInstanceState.attributeTypeMap;
+        return ManagementV1TeamObjectPermissions.attributeTypeMap;
     }
 
     public constructor() {

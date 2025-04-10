@@ -10,21 +10,21 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1Runner } from '../models/managementV1Runner';
-import { V1ListMeta } from '../models/V1ListMeta';
+import { ManagementV1ObjectPermission } from '../models/managementV1ObjectPermission';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
-export class ManagementV1RunnerList {
+export class ManagementV1UserObjectPermissions {
     /**
     * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
     */
     'apiVersion'?: string;
-    'items': Array<ManagementV1Runner>;
     /**
     * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
     */
     'kind'?: string;
-    'metadata'?: V1ListMeta;
+    'metadata'?: V1ObjectMeta;
+    'objectPermissions'?: Array<ManagementV1ObjectPermission>;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -36,12 +36,6 @@ export class ManagementV1RunnerList {
             "format": ""
         },
         {
-            "name": "items",
-            "baseName": "items",
-            "type": "Array<ManagementV1Runner>",
-            "format": ""
-        },
-        {
             "name": "kind",
             "baseName": "kind",
             "type": "string",
@@ -50,12 +44,18 @@ export class ManagementV1RunnerList {
         {
             "name": "metadata",
             "baseName": "metadata",
-            "type": "V1ListMeta",
+            "type": "V1ObjectMeta",
+            "format": ""
+        },
+        {
+            "name": "objectPermissions",
+            "baseName": "objectPermissions",
+            "type": "Array<ManagementV1ObjectPermission>",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1RunnerList.attributeTypeMap;
+        return ManagementV1UserObjectPermissions.attributeTypeMap;
     }
 
     public constructor() {
