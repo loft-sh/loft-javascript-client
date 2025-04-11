@@ -10,34 +10,36 @@
  * Do not edit the class manually.
  */
 
-import { V1SecretKeySelector } from '../models/V1SecretKeySelector';
 
 
-export class StorageV1SSHProjectSpec {
+export class ManagementV1UserProfileSecret {
     /**
-    * Token defines the private ssh key to use for authentication, this is a base64 encoded string.
+    * Data is the data of the secret
     */
-    'token'?: string;
-    'tokenSecretRef'?: V1SecretKeySelector;
+    'data'?: string;
+    /**
+    * Type is the type of the secret
+    */
+    'type'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "token",
-            "baseName": "token",
+            "name": "data",
+            "baseName": "data",
             "type": "string",
             "format": ""
         },
         {
-            "name": "tokenSecretRef",
-            "baseName": "tokenSecretRef",
-            "type": "V1SecretKeySelector",
+            "name": "type",
+            "baseName": "type",
+            "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1SSHProjectSpec.attributeTypeMap;
+        return ManagementV1UserProfileSecret.attributeTypeMap;
     }
 
     public constructor() {
