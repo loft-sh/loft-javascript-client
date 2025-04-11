@@ -10,17 +10,15 @@
  * Do not edit the class manually.
  */
 
+import { ManagementV1VirtualClusterSchemaSpec } from '../models/managementV1VirtualClusterSchemaSpec';
+import { ManagementV1VirtualClusterSchemaStatus } from '../models/managementV1VirtualClusterSchemaStatus';
 import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
 /**
-* RunnerAccessKey holds the access key for the runner
+* VirtualClusterSchema holds config request and response data for virtual clusters
 */
-export class ManagementV1RunnerAccessKey {
-    /**
-    * AccessKey is the access key used by the runner
-    */
-    'accessKey'?: string;
+export class ManagementV1VirtualClusterSchema {
     /**
     * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
     */
@@ -30,16 +28,12 @@ export class ManagementV1RunnerAccessKey {
     */
     'kind'?: string;
     'metadata'?: V1ObjectMeta;
+    'spec'?: ManagementV1VirtualClusterSchemaSpec;
+    'status'?: ManagementV1VirtualClusterSchemaStatus;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
-        {
-            "name": "accessKey",
-            "baseName": "accessKey",
-            "type": "string",
-            "format": ""
-        },
         {
             "name": "apiVersion",
             "baseName": "apiVersion",
@@ -57,10 +51,22 @@ export class ManagementV1RunnerAccessKey {
             "baseName": "metadata",
             "type": "V1ObjectMeta",
             "format": ""
+        },
+        {
+            "name": "spec",
+            "baseName": "spec",
+            "type": "ManagementV1VirtualClusterSchemaSpec",
+            "format": ""
+        },
+        {
+            "name": "status",
+            "baseName": "status",
+            "type": "ManagementV1VirtualClusterSchemaStatus",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1RunnerAccessKey.attributeTypeMap;
+        return ManagementV1VirtualClusterSchema.attributeTypeMap;
     }
 
     public constructor() {

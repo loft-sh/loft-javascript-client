@@ -10,15 +10,10 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1RunnerSpec } from '../models/managementV1RunnerSpec';
-import { ManagementV1RunnerStatus } from '../models/managementV1RunnerStatus';
 import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
-/**
-* Runner holds the Runner information
-*/
-export class ManagementV1Runner {
+export class ManagementV1DevPodWorkspaceInstanceCancel {
     /**
     * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
     */
@@ -28,8 +23,10 @@ export class ManagementV1Runner {
     */
     'kind'?: string;
     'metadata'?: V1ObjectMeta;
-    'spec'?: ManagementV1RunnerSpec;
-    'status'?: ManagementV1RunnerStatus;
+    /**
+    * TaskID is the id of the task that should get cancelled
+    */
+    'taskId'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -53,20 +50,14 @@ export class ManagementV1Runner {
             "format": ""
         },
         {
-            "name": "spec",
-            "baseName": "spec",
-            "type": "ManagementV1RunnerSpec",
-            "format": ""
-        },
-        {
-            "name": "status",
-            "baseName": "status",
-            "type": "ManagementV1RunnerStatus",
+            "name": "taskId",
+            "baseName": "taskId",
+            "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1Runner.attributeTypeMap;
+        return ManagementV1DevPodWorkspaceInstanceCancel.attributeTypeMap;
     }
 
     public constructor() {
