@@ -14,47 +14,38 @@ import { ManagementV1ClusterAccessRole } from '../models/managementV1ClusterAcce
 import { ManagementV1ManagementRole } from '../models/managementV1ManagementRole';
 import { ManagementV1ObjectName } from '../models/managementV1ObjectName';
 import { ManagementV1ProjectMembership } from '../models/managementV1ProjectMembership';
-import { ManagementV1UserPermissionsRole } from '../models/managementV1UserPermissionsRole';
 import { ManagementV1VirtualClusterRole } from '../models/managementV1VirtualClusterRole';
 import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
-export class ManagementV1UserPermissions {
+export class ManagementV1TeamPermissions {
     /**
     * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
     */
     'apiVersion'?: string;
     /**
-    * ClustersAccessRoles gives information about the user\'s assigned cluster roles and the clusters they apply to
+    * ClustersAccessRoles gives information about the team\'s assigned cluster roles and the clusters they apply to
     */
     'clusterAccessRoles'?: Array<ManagementV1ClusterAccessRole>;
-    /**
-    * ClusterRoles that apply to the user.
-    */
-    'clusterRoles'?: Array<ManagementV1UserPermissionsRole>;
     /**
     * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
     */
     'kind'?: string;
     /**
-    * ManagementRoles gives information about the user\'s assigned management roles
+    * ManagementRoles gives information about the team\'s assigned management roles
     */
     'managementRoles'?: Array<ManagementV1ManagementRole>;
+    /**
+    * Members gives users that are team members
+    */
+    'members'?: Array<ManagementV1ObjectName>;
     'metadata'?: V1ObjectMeta;
     /**
-    * NamespaceRoles that apply to the user. Can be either regular roles or cluster roles that are namespace scoped.
-    */
-    'namespaceRoles'?: Array<ManagementV1UserPermissionsRole>;
-    /**
-    * ProjectMemberships gives information about the user\'s project membership
+    * ProjectMemberships gives information about the team\'s project membership
     */
     'projectMemberships'?: Array<ManagementV1ProjectMembership>;
     /**
-    * TeamMemberships gives information about the user\'s team membership
-    */
-    'teamMemberships'?: Array<ManagementV1ObjectName>;
-    /**
-    * VirtualClusterRoles give information about the user\'s cluster role within the virtual cluster
+    * VirtualClusterRoles give information about the team\'s cluster role within the virtual cluster
     */
     'virtualClusterRoles'?: Array<ManagementV1VirtualClusterRole>;
 
@@ -74,12 +65,6 @@ export class ManagementV1UserPermissions {
             "format": ""
         },
         {
-            "name": "clusterRoles",
-            "baseName": "clusterRoles",
-            "type": "Array<ManagementV1UserPermissionsRole>",
-            "format": ""
-        },
-        {
             "name": "kind",
             "baseName": "kind",
             "type": "string",
@@ -92,27 +77,21 @@ export class ManagementV1UserPermissions {
             "format": ""
         },
         {
+            "name": "members",
+            "baseName": "members",
+            "type": "Array<ManagementV1ObjectName>",
+            "format": ""
+        },
+        {
             "name": "metadata",
             "baseName": "metadata",
             "type": "V1ObjectMeta",
             "format": ""
         },
         {
-            "name": "namespaceRoles",
-            "baseName": "namespaceRoles",
-            "type": "Array<ManagementV1UserPermissionsRole>",
-            "format": ""
-        },
-        {
             "name": "projectMemberships",
             "baseName": "projectMemberships",
             "type": "Array<ManagementV1ProjectMembership>",
-            "format": ""
-        },
-        {
-            "name": "teamMemberships",
-            "baseName": "teamMemberships",
-            "type": "Array<ManagementV1ObjectName>",
             "format": ""
         },
         {
@@ -123,7 +102,7 @@ export class ManagementV1UserPermissions {
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1UserPermissions.attributeTypeMap;
+        return ManagementV1TeamPermissions.attributeTypeMap;
     }
 
     public constructor() {

@@ -10,29 +10,35 @@
  * Do not edit the class manually.
  */
 
+import { ManagementV1AssignedVia } from '../models/managementV1AssignedVia';
+import { ManagementV1ProjectRole } from '../models/managementV1ProjectRole';
 
 
-/**
-* Feature contains information regarding to a feature
-*/
-export class LicenseApiFeature {
+export class ManagementV1ProjectMembership {
+    'assignedVia'?: ManagementV1AssignedVia;
+    /**
+    * DisplayName is the name of the object to display in the UI
+    */
     'displayName'?: string;
     /**
-    * Name is the name of the feature (FeatureName) This cannot be FeatureName because it needs to be downward compatible e.g. older Loft version doesn\'t know a newer feature but it will still be received and still needs to be rendered in the license view
+    * Name of the referenced object
     */
-    'name': string;
+    'name'?: string;
     /**
-    * Preview represents whether the feature can be previewed if a user\'s license does not allow the feature
+    * Namespace of the referenced object
     */
-    'preview'?: boolean;
-    /**
-    * Status shows the status of the feature (see type FeatureStatus)
-    */
-    'status'?: string;
+    'namespace'?: string;
+    'role'?: ManagementV1ProjectRole;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+        {
+            "name": "assignedVia",
+            "baseName": "assignedVia",
+            "type": "ManagementV1AssignedVia",
+            "format": ""
+        },
         {
             "name": "displayName",
             "baseName": "displayName",
@@ -46,20 +52,20 @@ export class LicenseApiFeature {
             "format": ""
         },
         {
-            "name": "preview",
-            "baseName": "preview",
-            "type": "boolean",
+            "name": "namespace",
+            "baseName": "namespace",
+            "type": "string",
             "format": ""
         },
         {
-            "name": "status",
-            "baseName": "status",
-            "type": "string",
+            "name": "role",
+            "baseName": "role",
+            "type": "ManagementV1ProjectRole",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return LicenseApiFeature.attributeTypeMap;
+        return ManagementV1ProjectMembership.attributeTypeMap;
     }
 
     public constructor() {
