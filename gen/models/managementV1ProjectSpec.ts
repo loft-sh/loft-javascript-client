@@ -15,12 +15,12 @@ import { StorageV1AllowedCluster } from '../models/storageV1AllowedCluster';
 import { StorageV1AllowedRunner } from '../models/storageV1AllowedRunner';
 import { StorageV1AllowedTemplate } from '../models/storageV1AllowedTemplate';
 import { StorageV1ArgoIntegrationSpec } from '../models/storageV1ArgoIntegrationSpec';
+import { StorageV1AutomaticImport } from '../models/storageV1AutomaticImport';
 import { StorageV1DevPodProjectSpec } from '../models/storageV1DevPodProjectSpec';
 import { StorageV1Member } from '../models/storageV1Member';
 import { StorageV1NamespacePattern } from '../models/storageV1NamespacePattern';
 import { StorageV1Quotas } from '../models/storageV1Quotas';
 import { StorageV1RancherIntegrationSpec } from '../models/storageV1RancherIntegrationSpec';
-import { StorageV1RequirePreset } from '../models/storageV1RequirePreset';
 import { StorageV1RequireTemplate } from '../models/storageV1RequireTemplate';
 import { StorageV1UserOrTeam } from '../models/storageV1UserOrTeam';
 import { StorageV1VaultIntegrationSpec } from '../models/storageV1VaultIntegrationSpec';
@@ -47,6 +47,7 @@ export class ManagementV1ProjectSpec {
     */
     'allowedTemplates'?: Array<StorageV1AllowedTemplate>;
     'argoCD'?: StorageV1ArgoIntegrationSpec;
+    'automaticImport'?: StorageV1AutomaticImport;
     /**
     * Description describes an app
     */
@@ -64,7 +65,6 @@ export class ManagementV1ProjectSpec {
     'owner'?: StorageV1UserOrTeam;
     'quotas'?: StorageV1Quotas;
     'rancher'?: StorageV1RancherIntegrationSpec;
-    'requirePreset'?: StorageV1RequirePreset;
     'requireTemplate'?: StorageV1RequireTemplate;
     'vault'?: StorageV1VaultIntegrationSpec;
 
@@ -99,6 +99,12 @@ export class ManagementV1ProjectSpec {
             "name": "argoCD",
             "baseName": "argoCD",
             "type": "StorageV1ArgoIntegrationSpec",
+            "format": ""
+        },
+        {
+            "name": "automaticImport",
+            "baseName": "automaticImport",
+            "type": "StorageV1AutomaticImport",
             "format": ""
         },
         {
@@ -147,12 +153,6 @@ export class ManagementV1ProjectSpec {
             "name": "rancher",
             "baseName": "rancher",
             "type": "StorageV1RancherIntegrationSpec",
-            "format": ""
-        },
-        {
-            "name": "requirePreset",
-            "baseName": "requirePreset",
-            "type": "StorageV1RequirePreset",
             "format": ""
         },
         {

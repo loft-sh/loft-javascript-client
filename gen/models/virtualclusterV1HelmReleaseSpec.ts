@@ -11,7 +11,7 @@
  */
 
 import { ClusterV1Bash } from '../models/clusterV1Bash';
-import { ClusterV1Chart } from '../models/clusterV1Chart';
+import { StorageV1Chart } from '../models/agentstorageV1Chart';
 
 
 export class VirtualclusterV1HelmReleaseSpec {
@@ -20,7 +20,7 @@ export class VirtualclusterV1HelmReleaseSpec {
     */
     'annotations'?: { [key: string]: string; };
     'bash'?: ClusterV1Bash;
-    'chart'?: ClusterV1Chart;
+    'chart'?: StorageV1Chart;
     /**
     * Manifests holds kube manifests that will be deployed as a chart
     */
@@ -52,7 +52,7 @@ export class VirtualclusterV1HelmReleaseSpec {
         {
             "name": "chart",
             "baseName": "chart",
-            "type": "ClusterV1Chart",
+            "type": "StorageV1Chart",
             "format": ""
         },
         {

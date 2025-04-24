@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
+import { StorageV1InstanceAccessRule } from '../models/agentstorageV1InstanceAccessRule';
 import { StorageV1Access } from '../models/storageV1Access';
-import { StorageV1InstanceAccessRule } from '../models/storageV1InstanceAccessRule';
 import { StorageV1TemplateRef } from '../models/storageV1TemplateRef';
 import { StorageV1UserOrTeam } from '../models/storageV1UserOrTeam';
 import { StorageV1VirtualClusterClusterRef } from '../models/storageV1VirtualClusterClusterRef';
@@ -36,17 +36,9 @@ export class ManagementV1VirtualClusterInstanceSpec {
     */
     'displayName'?: string;
     /**
-    * External specifies if the virtual cluster is managed by the platform agent or externally.
-    */
-    'external'?: boolean;
-    /**
     * ExtraAccessRules defines extra rules which users and teams should have which access to the virtual cluster.
     */
     'extraAccessRules'?: Array<StorageV1InstanceAccessRule>;
-    /**
-    * NetworkPeer specifies if the cluster is connected via tailscale.
-    */
-    'networkPeer'?: boolean;
     'owner'?: StorageV1UserOrTeam;
     /**
     * Parameters are values to pass to the template. The values should be encoded as YAML string where each parameter is represented as a top-level field key.
@@ -54,6 +46,7 @@ export class ManagementV1VirtualClusterInstanceSpec {
     'parameters'?: string;
     'template'?: StorageV1VirtualClusterTemplateDefinition;
     'templateRef'?: StorageV1TemplateRef;
+    'workloadClusterRef'?: StorageV1VirtualClusterClusterRef;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -83,21 +76,9 @@ export class ManagementV1VirtualClusterInstanceSpec {
             "format": ""
         },
         {
-            "name": "external",
-            "baseName": "external",
-            "type": "boolean",
-            "format": ""
-        },
-        {
             "name": "extraAccessRules",
             "baseName": "extraAccessRules",
             "type": "Array<StorageV1InstanceAccessRule>",
-            "format": ""
-        },
-        {
-            "name": "networkPeer",
-            "baseName": "networkPeer",
-            "type": "boolean",
             "format": ""
         },
         {
@@ -122,6 +103,12 @@ export class ManagementV1VirtualClusterInstanceSpec {
             "name": "templateRef",
             "baseName": "templateRef",
             "type": "StorageV1TemplateRef",
+            "format": ""
+        },
+        {
+            "name": "workloadClusterRef",
+            "baseName": "workloadClusterRef",
+            "type": "StorageV1VirtualClusterClusterRef",
             "format": ""
         }    ];
 

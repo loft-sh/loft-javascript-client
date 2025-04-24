@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
+import { ClusterV1EntityInfo } from '../models/clusterV1EntityInfo';
 import { ManagementV1UserInfo } from '../models/managementV1UserInfo';
 import { StorageV1AccessKeyScope } from '../models/storageV1AccessKeyScope';
-import { StorageV1EntityInfo } from '../models/storageV1EntityInfo';
 
 
 export class ManagementV1SelfStatus {
@@ -38,14 +38,10 @@ export class ManagementV1SelfStatus {
     */
     'instanceID'?: string;
     /**
-    * ProjectNamespacePrefix is the prefix used to name project namespaces after defaulting has been applied
-    */
-    'projectNamespacePrefix'?: string;
-    /**
     * The subject of the currently logged in user
     */
     'subject'?: string;
-    'team'?: StorageV1EntityInfo;
+    'team'?: ClusterV1EntityInfo;
     /**
     * UID is the user uid
     */
@@ -92,12 +88,6 @@ export class ManagementV1SelfStatus {
             "format": ""
         },
         {
-            "name": "projectNamespacePrefix",
-            "baseName": "projectNamespacePrefix",
-            "type": "string",
-            "format": ""
-        },
-        {
             "name": "subject",
             "baseName": "subject",
             "type": "string",
@@ -106,7 +96,7 @@ export class ManagementV1SelfStatus {
         {
             "name": "team",
             "baseName": "team",
-            "type": "StorageV1EntityInfo",
+            "type": "ClusterV1EntityInfo",
             "format": ""
         },
         {

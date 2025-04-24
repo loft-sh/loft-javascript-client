@@ -11,10 +11,7 @@
  */
 
 import { V1ContainerState } from '../models/V1ContainerState';
-import { V1ContainerUser } from '../models/V1ContainerUser';
 import { V1ResourceRequirements } from '../models/V1ResourceRequirements';
-import { V1ResourceStatus } from '../models/V1ResourceStatus';
-import { V1VolumeMountStatus } from '../models/V1VolumeMountStatus';
 
 
 /**
@@ -25,10 +22,6 @@ export class V1ContainerStatus {
     * AllocatedResources represents the compute resources allocated for this container by the node. Kubelet sets this value to Container.Resources.Requests upon successful pod admission and after successfully admitting desired pod resize.
     */
     'allocatedResources'?: { [key: string]: string; };
-    /**
-    * AllocatedResourcesStatus represents the status of various resources allocated for this Pod.
-    */
-    'allocatedResourcesStatus'?: Array<V1ResourceStatus>;
     /**
     * ContainerID is the ID of the container in the format \'<type>://<container_id>\'. Where type is a container runtime identifier, returned from Version call of CRI API (for example \"containerd\").
     */
@@ -60,11 +53,6 @@ export class V1ContainerStatus {
     */
     'started'?: boolean;
     'state'?: V1ContainerState;
-    'user'?: V1ContainerUser;
-    /**
-    * Status of volume mounts.
-    */
-    'volumeMounts'?: Array<V1VolumeMountStatus>;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -73,12 +61,6 @@ export class V1ContainerStatus {
             "name": "allocatedResources",
             "baseName": "allocatedResources",
             "type": "{ [key: string]: string; }",
-            "format": ""
-        },
-        {
-            "name": "allocatedResourcesStatus",
-            "baseName": "allocatedResourcesStatus",
-            "type": "Array<V1ResourceStatus>",
             "format": ""
         },
         {
@@ -139,18 +121,6 @@ export class V1ContainerStatus {
             "name": "state",
             "baseName": "state",
             "type": "V1ContainerState",
-            "format": ""
-        },
-        {
-            "name": "user",
-            "baseName": "user",
-            "type": "V1ContainerUser",
-            "format": ""
-        },
-        {
-            "name": "volumeMounts",
-            "baseName": "volumeMounts",
-            "type": "Array<V1VolumeMountStatus>",
             "format": ""
         }    ];
 

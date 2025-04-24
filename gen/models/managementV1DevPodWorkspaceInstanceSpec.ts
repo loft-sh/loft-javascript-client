@@ -12,8 +12,6 @@
 
 import { StorageV1Access } from '../models/storageV1Access';
 import { StorageV1DevPodWorkspaceTemplateDefinition } from '../models/storageV1DevPodWorkspaceTemplateDefinition';
-import { StorageV1EnvironmentRef } from '../models/storageV1EnvironmentRef';
-import { StorageV1PresetRef } from '../models/storageV1PresetRef';
 import { StorageV1RunnerRef } from '../models/storageV1RunnerRef';
 import { StorageV1TemplateRef } from '../models/storageV1TemplateRef';
 import { StorageV1UserOrTeam } from '../models/storageV1UserOrTeam';
@@ -35,17 +33,11 @@ export class ManagementV1DevPodWorkspaceInstanceSpec {
     * DisplayName is the name that should be displayed in the UI
     */
     'displayName'?: string;
-    'environmentRef'?: StorageV1EnvironmentRef;
     'owner'?: StorageV1UserOrTeam;
     /**
     * Parameters are values to pass to the template. The values should be encoded as YAML string where each parameter is represented as a top-level field key.
     */
     'parameters'?: string;
-    'presetRef'?: StorageV1PresetRef;
-    /**
-    * PreventWakeUpOnConnection is used to prevent workspace that uses sleep mode from waking up on incomming ssh connection.
-    */
-    'preventWakeUpOnConnection'?: boolean;
     'runnerRef'?: StorageV1RunnerRef;
     'template'?: StorageV1DevPodWorkspaceTemplateDefinition;
     'templateRef'?: StorageV1TemplateRef;
@@ -72,12 +64,6 @@ export class ManagementV1DevPodWorkspaceInstanceSpec {
             "format": ""
         },
         {
-            "name": "environmentRef",
-            "baseName": "environmentRef",
-            "type": "StorageV1EnvironmentRef",
-            "format": ""
-        },
-        {
             "name": "owner",
             "baseName": "owner",
             "type": "StorageV1UserOrTeam",
@@ -87,18 +73,6 @@ export class ManagementV1DevPodWorkspaceInstanceSpec {
             "name": "parameters",
             "baseName": "parameters",
             "type": "string",
-            "format": ""
-        },
-        {
-            "name": "presetRef",
-            "baseName": "presetRef",
-            "type": "StorageV1PresetRef",
-            "format": ""
-        },
-        {
-            "name": "preventWakeUpOnConnection",
-            "baseName": "preventWakeUpOnConnection",
-            "type": "boolean",
             "format": ""
         },
         {
