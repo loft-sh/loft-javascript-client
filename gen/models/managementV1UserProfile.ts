@@ -10,6 +10,7 @@
  * Do not edit the class manually.
  */
 
+import { ManagementV1UserProfileSecret } from '../models/managementV1UserProfileSecret';
 import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
@@ -47,6 +48,10 @@ export class ManagementV1UserProfile {
     * Password is the new password of the user
     */
     'password'?: string;
+    /**
+    * Secrets is a map of secret names to secret data
+    */
+    'secrets'?: { [key: string]: ManagementV1UserProfileSecret; };
     /**
     * Username is the new username of the user
     */
@@ -107,6 +112,12 @@ export class ManagementV1UserProfile {
             "name": "password",
             "baseName": "password",
             "type": "string",
+            "format": ""
+        },
+        {
+            "name": "secrets",
+            "baseName": "secrets",
+            "type": "{ [key: string]: ManagementV1UserProfileSecret; }",
             "format": ""
         },
         {
