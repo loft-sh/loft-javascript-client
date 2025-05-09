@@ -12,36 +12,34 @@
 
 
 
-export class StorageV1Member {
+export class ManagementV1AssignedVia {
     /**
-    * ClusterRole is the assigned role for the above member
+    * DisplayName is the name of the object to display in the UI
     */
-    'clusterRole': string;
+    'displayName'?: string;
     /**
-    * Group of the member. Currently only supports storage.loft.sh
-    */
-    'group'?: string;
-    /**
-    * Kind is the kind of the member. Currently either User or Team
+    * Kind is the type of resource used to establish the assignment. One of `User`, `Team`, or `ClusterAccess`
     */
     'kind'?: string;
     /**
-    * Name of the member
+    * Name of the referenced object
     */
     'name'?: string;
+    /**
+    * Namespace of the referenced object
+    */
+    'namespace'?: string;
+    /**
+    * Owner indicates if the
+    */
+    'owner'?: boolean;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "clusterRole",
-            "baseName": "clusterRole",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "group",
-            "baseName": "group",
+            "name": "displayName",
+            "baseName": "displayName",
             "type": "string",
             "format": ""
         },
@@ -56,10 +54,22 @@ export class StorageV1Member {
             "baseName": "name",
             "type": "string",
             "format": ""
+        },
+        {
+            "name": "namespace",
+            "baseName": "namespace",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "owner",
+            "baseName": "owner",
+            "type": "boolean",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1Member.attributeTypeMap;
+        return ManagementV1AssignedVia.attributeTypeMap;
     }
 
     public constructor() {

@@ -10,39 +10,34 @@
  * Do not edit the class manually.
  */
 
+import { ManagementV1CostControlResourcePrice } from '../models/managementV1CostControlResourcePrice';
 
 
-/**
-* PodDNSConfigOption defines DNS resolver options of a pod.
-*/
-export class V1PodDNSConfigOption {
+export class ManagementV1CostControlGPUSettings {
+    'averageGPUPrice'?: ManagementV1CostControlResourcePrice;
     /**
-    * Name is this DNS resolver option\'s name. Required.
+    * Enabled specifies whether GPU settings should be available in the UI.
     */
-    'name'?: string;
-    /**
-    * Value is this DNS resolver option\'s value.
-    */
-    'value'?: string;
+    'enabled'?: boolean;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "name",
-            "baseName": "name",
-            "type": "string",
+            "name": "averageGPUPrice",
+            "baseName": "averageGPUPrice",
+            "type": "ManagementV1CostControlResourcePrice",
             "format": ""
         },
         {
-            "name": "value",
-            "baseName": "value",
-            "type": "string",
+            "name": "enabled",
+            "baseName": "enabled",
+            "type": "boolean",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return V1PodDNSConfigOption.attributeTypeMap;
+        return ManagementV1CostControlGPUSettings.attributeTypeMap;
     }
 
     public constructor() {
