@@ -10,60 +10,54 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1Condition } from '../models/agentstorageV1Condition';
+import { ManagementV1AssignedVia } from '../models/managementV1AssignedVia';
 
 
-/**
-* RunnerStatus holds the status
-*/
-export class ManagementV1RunnerStatus {
+export class ManagementV1ManagementRole {
+    'assignedVia'?: ManagementV1AssignedVia;
     /**
-    * Conditions holds several conditions the virtual cluster might be in
+    * DisplayName is the name of the object to display in the UI
     */
-    'conditions'?: Array<StorageV1Condition>;
+    'displayName'?: string;
     /**
-    * Message describes the reason in human-readable form
+    * Name of the referenced object
     */
-    'message'?: string;
+    'name'?: string;
     /**
-    * Phase describes the current phase the space instance is in
+    * Namespace of the referenced object
     */
-    'phase'?: string;
-    /**
-    * Reason describes the reason in machine-readable form
-    */
-    'reason'?: string;
+    'namespace'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "conditions",
-            "baseName": "conditions",
-            "type": "Array<StorageV1Condition>",
+            "name": "assignedVia",
+            "baseName": "assignedVia",
+            "type": "ManagementV1AssignedVia",
             "format": ""
         },
         {
-            "name": "message",
-            "baseName": "message",
+            "name": "displayName",
+            "baseName": "displayName",
             "type": "string",
             "format": ""
         },
         {
-            "name": "phase",
-            "baseName": "phase",
+            "name": "name",
+            "baseName": "name",
             "type": "string",
             "format": ""
         },
         {
-            "name": "reason",
-            "baseName": "reason",
+            "name": "namespace",
+            "baseName": "namespace",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1RunnerStatus.attributeTypeMap;
+        return ManagementV1ManagementRole.attributeTypeMap;
     }
 
     public constructor() {

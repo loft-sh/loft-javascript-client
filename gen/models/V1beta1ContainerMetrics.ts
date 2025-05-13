@@ -10,32 +10,39 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1RunnerPodTemplateSpec } from '../models/storageV1RunnerPodTemplateSpec';
-import { StorageV1TemplateMetadata } from '../models/storageV1TemplateMetadata';
 
 
-export class StorageV1RunnerPodTemplate {
-    'metadata'?: StorageV1TemplateMetadata;
-    'spec'?: StorageV1RunnerPodTemplateSpec;
+/**
+* ContainerMetrics sets resource usage metrics of a container.
+*/
+export class V1beta1ContainerMetrics {
+    /**
+    * Container name corresponding to the one from pod.spec.containers.
+    */
+    'name': string;
+    /**
+    * The memory usage is the memory working set.
+    */
+    'usage': { [key: string]: string; };
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "metadata",
-            "baseName": "metadata",
-            "type": "StorageV1TemplateMetadata",
+            "name": "name",
+            "baseName": "name",
+            "type": "string",
             "format": ""
         },
         {
-            "name": "spec",
-            "baseName": "spec",
-            "type": "StorageV1RunnerPodTemplateSpec",
+            "name": "usage",
+            "baseName": "usage",
+            "type": "{ [key: string]: string; }",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1RunnerPodTemplate.attributeTypeMap;
+        return V1beta1ContainerMetrics.attributeTypeMap;
     }
 
     public constructor() {

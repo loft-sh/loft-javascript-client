@@ -10,10 +10,14 @@
  * Do not edit the class manually.
  */
 
+import { ManagementV1DatabaseConnectorSpec } from '../models/managementV1DatabaseConnectorSpec';
 import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
-export class ManagementV1DevPodWorkspaceInstanceState {
+/**
+* DatabaseConnector represents a connector that can be used to provision and manage a backingstore for a vCluster
+*/
+export class ManagementV1DatabaseConnector {
     /**
     * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
     */
@@ -23,10 +27,11 @@ export class ManagementV1DevPodWorkspaceInstanceState {
     */
     'kind'?: string;
     'metadata'?: V1ObjectMeta;
+    'spec'?: ManagementV1DatabaseConnectorSpec;
     /**
-    * State holds the workspaces state as given by \'devpod export\'
+    * DatabaseConnectorStatus holds the status
     */
-    'state'?: string;
+    'status'?: any;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -50,14 +55,20 @@ export class ManagementV1DevPodWorkspaceInstanceState {
             "format": ""
         },
         {
-            "name": "state",
-            "baseName": "state",
-            "type": "string",
+            "name": "spec",
+            "baseName": "spec",
+            "type": "ManagementV1DatabaseConnectorSpec",
+            "format": ""
+        },
+        {
+            "name": "status",
+            "baseName": "status",
+            "type": "any",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1DevPodWorkspaceInstanceState.attributeTypeMap;
+        return ManagementV1DatabaseConnector.attributeTypeMap;
     }
 
     public constructor() {

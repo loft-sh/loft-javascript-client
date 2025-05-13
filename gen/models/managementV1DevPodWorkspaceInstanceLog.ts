@@ -10,11 +10,10 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1Runner } from '../models/managementV1Runner';
 import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
-export class ManagementV1ProjectRunners {
+export class ManagementV1DevPodWorkspaceInstanceLog {
     /**
     * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
     */
@@ -24,10 +23,6 @@ export class ManagementV1ProjectRunners {
     */
     'kind'?: string;
     'metadata'?: V1ObjectMeta;
-    /**
-    * Runners holds all the allowed runners
-    */
-    'runners'?: Array<ManagementV1Runner>;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -49,16 +44,10 @@ export class ManagementV1ProjectRunners {
             "baseName": "metadata",
             "type": "V1ObjectMeta",
             "format": ""
-        },
-        {
-            "name": "runners",
-            "baseName": "runners",
-            "type": "Array<ManagementV1Runner>",
-            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1ProjectRunners.attributeTypeMap;
+        return ManagementV1DevPodWorkspaceInstanceLog.attributeTypeMap;
     }
 
     public constructor() {
