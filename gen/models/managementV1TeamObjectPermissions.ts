@@ -10,17 +10,11 @@
  * Do not edit the class manually.
  */
 
+import { ManagementV1ObjectPermission } from '../models/managementV1ObjectPermission';
 import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
-/**
-* RunnerAccessKey holds the access key for the runner
-*/
-export class ManagementV1RunnerAccessKey {
-    /**
-    * AccessKey is the access key used by the runner
-    */
-    'accessKey'?: string;
+export class ManagementV1TeamObjectPermissions {
     /**
     * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
     */
@@ -30,16 +24,11 @@ export class ManagementV1RunnerAccessKey {
     */
     'kind'?: string;
     'metadata'?: V1ObjectMeta;
+    'objectPermissions'?: Array<ManagementV1ObjectPermission>;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
-        {
-            "name": "accessKey",
-            "baseName": "accessKey",
-            "type": "string",
-            "format": ""
-        },
         {
             "name": "apiVersion",
             "baseName": "apiVersion",
@@ -57,10 +46,16 @@ export class ManagementV1RunnerAccessKey {
             "baseName": "metadata",
             "type": "V1ObjectMeta",
             "format": ""
+        },
+        {
+            "name": "objectPermissions",
+            "baseName": "objectPermissions",
+            "type": "Array<ManagementV1ObjectPermission>",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1RunnerAccessKey.attributeTypeMap;
+        return ManagementV1TeamObjectPermissions.attributeTypeMap;
     }
 
     public constructor() {
