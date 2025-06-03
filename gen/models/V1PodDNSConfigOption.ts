@@ -17,9 +17,12 @@
 */
 export class V1PodDNSConfigOption {
     /**
-    * Required.
+    * Name is this DNS resolver option\'s name. Required.
     */
     'name'?: string;
+    /**
+    * Value is this DNS resolver option\'s value.
+    */
     'value'?: string;
 
     static readonly discriminator: string | undefined = undefined;
