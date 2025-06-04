@@ -32,6 +32,10 @@ export class ManagementV1DevPodWorkspaceInstanceTroubleshoot {
     'kind'?: string;
     'metadata'?: V1ObjectMeta;
     /**
+    * Netmaps is a list of netmaps that are linked to the workspace.
+    */
+    'netmaps'?: Array<string>;
+    /**
     * Pods is a list of pod objects that are linked to the workspace.
     */
     'pods'?: Array<V1Pod>;
@@ -71,6 +75,12 @@ export class ManagementV1DevPodWorkspaceInstanceTroubleshoot {
             "name": "metadata",
             "baseName": "metadata",
             "type": "V1ObjectMeta",
+            "format": ""
+        },
+        {
+            "name": "netmaps",
+            "baseName": "netmaps",
+            "type": "Array<string>",
             "format": ""
         },
         {
