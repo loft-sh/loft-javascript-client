@@ -597,15 +597,6 @@ export declare class List<T> {
 	"kind"?: string;
 	"metadata"?: Metadata;
 }
-export type XOr<T, U> = (T & {
-	[K in Exclude<keyof U, keyof T>]?: never;
-}) | (U & {
-	[K in Exclude<keyof T, keyof U>]?: never;
-});
-export type LabeledValue = {
-	value: string;
-	label: string;
-};
 export declare function getApiHost(): string;
 export interface AuthInfo {
 	username: string;
@@ -4024,535 +4015,6 @@ declare class ManagementV1ClusterRoleTemplate {
 	}[];
 	constructor();
 }
-declare class StorageV1AppReference {
-	/**
-	* Name of the target app
-	*/
-	"name"?: string;
-	/**
-	* Namespace specifies in which target namespace the app should get deployed in
-	*/
-	"namespace"?: string;
-	/**
-	* Parameters to use for the app
-	*/
-	"parameters"?: string;
-	/**
-	* ReleaseName is the name of the app release
-	*/
-	"releaseName"?: string;
-	/**
-	* Version of the app
-	*/
-	"version"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class StorageV1InstanceAccessRule {
-	/**
-	* ClusterRole is the cluster role that should be assigned to the
-	*/
-	"clusterRole"?: string;
-	/**
-	* Teams that this rule matches.
-	*/
-	"teams"?: Array<string>;
-	/**
-	* Users this rule matches. * means all users.
-	*/
-	"users"?: Array<string>;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class StorageV1InstanceAccess {
-	/**
-	* Specifies which cluster role should get applied to users or teams that do not match a rule below.
-	*/
-	"defaultClusterRole"?: string;
-	/**
-	* Rules defines which users and teams should have which access to the virtual cluster. If no rule matches an authenticated incoming user, the user will get cluster admin access.
-	*/
-	"rules"?: Array<StorageV1InstanceAccessRule>;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class StorageV1TemplateHelmChart {
-	/**
-	* If tls certificate checks for the chart download should be skipped
-	*/
-	"insecureSkipTlsVerify"?: boolean;
-	/**
-	* Name is the chart name in the repository
-	*/
-	"name"?: string;
-	/**
-	* The password that is required for this repository
-	*/
-	"password"?: string;
-	"passwordRef"?: ClusterV1ChartSecretRef;
-	/**
-	* ReleaseName is the preferred release name of the app
-	*/
-	"releaseName"?: string;
-	/**
-	* ReleaseNamespace is the preferred release namespace of the app
-	*/
-	"releaseNamespace"?: string;
-	/**
-	* RepoURL is the repo url where the chart can be found
-	*/
-	"repoURL"?: string;
-	/**
-	* Timeout is the time to wait for any individual Kubernetes operation (like Jobs for hooks) (default 5m0s)
-	*/
-	"timeout"?: string;
-	/**
-	* The username that is required for this repository
-	*/
-	"username"?: string;
-	"usernameRef"?: ClusterV1ChartSecretRef;
-	/**
-	* Values are the values that should get passed to the chart
-	*/
-	"values"?: string;
-	/**
-	* Version is the chart version in the repository
-	*/
-	"version"?: string;
-	/**
-	* Wait determines if Loft should wait during deploy for the app to become ready
-	*/
-	"wait"?: boolean;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class StorageV1TemplateMetadata {
-	/**
-	* Annotations are annotations on the object
-	*/
-	"annotations"?: {
-		[key: string]: string;
-	};
-	/**
-	* Labels are labels on the object
-	*/
-	"labels"?: {
-		[key: string]: string;
-	};
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class StorageV1VirtualClusterAccessPointIngressSpec {
-	/**
-	* Enabled defines if the virtual cluster access point (via ingress) is enabled or not; requires the connected cluster to have the `loft.sh/ingress-suffix` annotation set to define the domain name suffix used for the ingress.
-	*/
-	"enabled"?: boolean;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class StorageV1VirtualClusterAccessPoint {
-	"ingress"?: StorageV1VirtualClusterAccessPointIngressSpec;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class StorageV1VirtualClusterHelmChart {
-	/**
-	* the name of the helm chart
-	*/
-	"name"?: string;
-	/**
-	* The password that is required for this repository
-	*/
-	"password"?: string;
-	/**
-	* the repo of the helm chart
-	*/
-	"repo"?: string;
-	/**
-	* The username that is required for this repository
-	*/
-	"username"?: string;
-	/**
-	* the version of the helm chart to use
-	*/
-	"version"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class StorageV1VirtualClusterHelmRelease {
-	"chart"?: StorageV1VirtualClusterHelmChart;
-	/**
-	* the values for the given chart
-	*/
-	"values"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class StorageV1VirtualClusterInstanceTemplateDefinition {
-	"metadata"?: StorageV1TemplateMetadata;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class StorageV1VirtualClusterProSpec {
-	/**
-	* Enabled defines if the virtual cluster is a pro cluster or not
-	*/
-	"enabled"?: boolean;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class StorageV1VirtualClusterSpaceTemplateDefinition {
-	/**
-	* Apps specifies the apps that should get deployed by this template
-	*/
-	"apps"?: Array<StorageV1AppReference>;
-	/**
-	* Charts are helm charts that should get deployed
-	*/
-	"charts"?: Array<StorageV1TemplateHelmChart>;
-	"metadata"?: StorageV1TemplateMetadata;
-	/**
-	* Objects are Kubernetes style yamls that should get deployed into the virtual cluster namespace
-	*/
-	"objects"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class StorageV1VirtualClusterTemplateDefinition {
-	"access"?: StorageV1InstanceAccess;
-	"accessPoint"?: StorageV1VirtualClusterAccessPoint;
-	/**
-	* Apps specifies the apps that should get deployed by this template
-	*/
-	"apps"?: Array<StorageV1AppReference>;
-	/**
-	* Charts are helm charts that should get deployed
-	*/
-	"charts"?: Array<StorageV1TemplateHelmChart>;
-	/**
-	* ForwardToken signals the proxy to pass through the used token to the virtual Kubernetes api server and do a TokenReview there.
-	*/
-	"forwardToken"?: boolean;
-	"helmRelease"?: StorageV1VirtualClusterHelmRelease;
-	"instanceTemplate"?: StorageV1VirtualClusterInstanceTemplateDefinition;
-	"metadata"?: StorageV1TemplateMetadata;
-	/**
-	* Objects are Kubernetes style yamls that should get deployed into the virtual cluster
-	*/
-	"objects"?: string;
-	"pro"?: StorageV1VirtualClusterProSpec;
-	"spaceTemplate"?: StorageV1VirtualClusterSpaceTemplateDefinition;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class StorageV1VirtualClusterTemplateSpaceTemplateRef {
-	/**
-	* Name of the space template
-	*/
-	"name"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class StorageV1VirtualClusterTemplateVersion {
-	/**
-	* Parameters define additional app parameters that will set helm values
-	*/
-	"parameters"?: Array<StorageV1AppParameter>;
-	"template"?: StorageV1VirtualClusterTemplateDefinition;
-	/**
-	* Version is the version. Needs to be in X.X.X format.
-	*/
-	"version"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class StorageV1VirtualClusterTemplateSpec {
-	/**
-	* Access holds the access rights for users and teams
-	*/
-	"access"?: Array<StorageV1Access>;
-	/**
-	* Description describes the virtual cluster template
-	*/
-	"description"?: string;
-	/**
-	* DisplayName is the name that is shown in the UI
-	*/
-	"displayName"?: string;
-	"owner"?: StorageV1UserOrTeam;
-	/**
-	* Parameters define additional app parameters that will set helm values
-	*/
-	"parameters"?: Array<StorageV1AppParameter>;
-	"spaceTemplateRef"?: StorageV1VirtualClusterTemplateSpaceTemplateRef;
-	"template"?: StorageV1VirtualClusterTemplateDefinition;
-	/**
-	* Versions are different versions of the template that can be referenced as well
-	*/
-	"versions"?: Array<StorageV1VirtualClusterTemplateVersion>;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class StorageV1VirtualClusterTemplate {
-	/**
-	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
-	*/
-	"apiVersion"?: string;
-	/**
-	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-	*/
-	"kind"?: string;
-	"metadata"?: V1ObjectMeta;
-	"spec"?: StorageV1VirtualClusterTemplateSpec;
-	/**
-	* VirtualClusterTemplateStatus holds the status
-	*/
-	"status"?: any;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
-declare class ManagementV1ClusterVirtualClusterDefaults {
-	/**
-	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
-	*/
-	"apiVersion"?: string;
-	"defaultTemplate"?: StorageV1VirtualClusterTemplate;
-	/**
-	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-	*/
-	"kind"?: string;
-	/**
-	* LatestVersion is the latest virtual cluster version
-	*/
-	"latestVersion"?: string;
-	"metadata"?: V1ObjectMeta;
-	/**
-	* Default values for the virtual cluster chart
-	*/
-	"values"?: string;
-	/**
-	* Warning should be somehow shown to the user when there is a problem retrieving the defaults
-	*/
-	"warning"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
 declare class StorageV1SecretRef {
 	"key"?: string;
 	"secretName"?: string;
@@ -5056,6 +4518,10 @@ declare class ManagementV1AuthenticationMicrosoft {
 	constructor();
 }
 declare class ManagementV1AuthenticationOIDC {
+	/**
+	* AllowedExtraClaims are claims of interest that are not part of User by default but may be provided by the OIDC provider.
+	*/
+	"allowedExtraClaims"?: Array<string>;
 	/**
 	* Path to a PEM encoded root certificate of the provider. Optional
 	*/
@@ -5763,6 +5229,10 @@ declare class UiV1UISettingsConfig {
 	* SidebarColor is the color value (ex: \"#12345\") to use for the sidebar
 	*/
 	"sidebarColor"?: string;
+	/**
+	* SmallLogoURL is url pointing to the small logo to use in the Loft UI. This path must be accessible for clients accessing the Loft UI!
+	*/
+	"smallLogoURL"?: string;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -5912,6 +5382,57 @@ declare class ManagementV1ConvertVirtualClusterConfig {
 	"metadata"?: V1ObjectMeta;
 	"spec"?: ManagementV1ConvertVirtualClusterConfigSpec;
 	"status"?: ManagementV1ConvertVirtualClusterConfigStatus;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1DatabaseConnectorSpec {
+	"displayName"?: string;
+	/**
+	* The client id of the client
+	*/
+	"type"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1DatabaseConnector {
+	/**
+	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	*/
+	"apiVersion"?: string;
+	/**
+	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	*/
+	"kind"?: string;
+	"metadata"?: V1ObjectMeta;
+	"spec"?: ManagementV1DatabaseConnectorSpec;
+	/**
+	* DatabaseConnectorStatus holds the status
+	*/
+	"status"?: any;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -6307,6 +5828,34 @@ declare class StorageV1DevPodProviderOption {
 	*/
 	"value"?: string;
 	"valueFrom"?: StorageV1DevPodProviderOptionFrom;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1TemplateMetadata {
+	/**
+	* Annotations are annotations on the object
+	*/
+	"annotations"?: {
+		[key: string]: string;
+	};
+	/**
+	* Labels are labels on the object
+	*/
+	"labels"?: {
+		[key: string]: string;
+	};
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -9216,8 +8765,158 @@ declare class StorageV1DevPodWorkspaceVolumeClaimTemplate {
 	}[];
 	constructor();
 }
+declare class StorageV1AppReference {
+	/**
+	* Name of the target app
+	*/
+	"name"?: string;
+	/**
+	* Namespace specifies in which target namespace the app should get deployed in
+	*/
+	"namespace"?: string;
+	/**
+	* Parameters to use for the app
+	*/
+	"parameters"?: string;
+	/**
+	* ReleaseName is the name of the app release
+	*/
+	"releaseName"?: string;
+	/**
+	* Version of the app
+	*/
+	"version"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1InstanceAccessRule {
+	/**
+	* ClusterRole is the cluster role that should be assigned to the
+	*/
+	"clusterRole"?: string;
+	/**
+	* Teams that this rule matches.
+	*/
+	"teams"?: Array<string>;
+	/**
+	* Users this rule matches. * means all users.
+	*/
+	"users"?: Array<string>;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1InstanceAccess {
+	/**
+	* Specifies which cluster role should get applied to users or teams that do not match a rule below.
+	*/
+	"defaultClusterRole"?: string;
+	/**
+	* Rules defines which users and teams should have which access to the virtual cluster. If no rule matches an authenticated incoming user, the user will get cluster admin access.
+	*/
+	"rules"?: Array<StorageV1InstanceAccessRule>;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
 declare class StorageV1SpaceInstanceTemplateDefinition {
 	"metadata"?: StorageV1TemplateMetadata;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1TemplateHelmChart {
+	/**
+	* If tls certificate checks for the chart download should be skipped
+	*/
+	"insecureSkipTlsVerify"?: boolean;
+	/**
+	* Name is the chart name in the repository
+	*/
+	"name"?: string;
+	/**
+	* The password that is required for this repository
+	*/
+	"password"?: string;
+	"passwordRef"?: ClusterV1ChartSecretRef;
+	/**
+	* ReleaseName is the preferred release name of the app
+	*/
+	"releaseName"?: string;
+	/**
+	* ReleaseNamespace is the preferred release namespace of the app
+	*/
+	"releaseNamespace"?: string;
+	/**
+	* RepoURL is the repo url where the chart can be found
+	*/
+	"repoURL"?: string;
+	/**
+	* Timeout is the time to wait for any individual Kubernetes operation (like Jobs for hooks) (default 5m0s)
+	*/
+	"timeout"?: string;
+	/**
+	* The username that is required for this repository
+	*/
+	"username"?: string;
+	"usernameRef"?: ClusterV1ChartSecretRef;
+	/**
+	* Values are the values that should get passed to the chart
+	*/
+	"values"?: string;
+	/**
+	* Version is the chart version in the repository
+	*/
+	"version"?: string;
+	/**
+	* Wait determines if Loft should wait during deploy for the app to become ready
+	*/
+	"wait"?: boolean;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -9277,6 +8976,205 @@ declare class StorageV1TemplateRef {
 	* Version holds the template version to use. Version is expected to be in semantic versioning format. Alternatively, you can also exchange major, minor or patch with an \'x\' to tell Loft to automatically select the latest major, minor or patch version.
 	*/
 	"version"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1VirtualClusterAccessPointIngressSpec {
+	/**
+	* Enabled defines if the virtual cluster access point (via ingress) is enabled or not; requires the connected cluster to have the `loft.sh/ingress-suffix` annotation set to define the domain name suffix used for the ingress.
+	*/
+	"enabled"?: boolean;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1VirtualClusterAccessPoint {
+	"ingress"?: StorageV1VirtualClusterAccessPointIngressSpec;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1VirtualClusterHelmChart {
+	/**
+	* the name of the helm chart
+	*/
+	"name"?: string;
+	/**
+	* The password that is required for this repository
+	*/
+	"password"?: string;
+	/**
+	* the repo of the helm chart
+	*/
+	"repo"?: string;
+	/**
+	* The username that is required for this repository
+	*/
+	"username"?: string;
+	/**
+	* the version of the helm chart to use
+	*/
+	"version"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1VirtualClusterHelmRelease {
+	"chart"?: StorageV1VirtualClusterHelmChart;
+	/**
+	* the values for the given chart
+	*/
+	"values"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1VirtualClusterInstanceTemplateDefinition {
+	"metadata"?: StorageV1TemplateMetadata;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1VirtualClusterProSpec {
+	/**
+	* Enabled defines if the virtual cluster is a pro cluster or not
+	*/
+	"enabled"?: boolean;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1VirtualClusterSpaceTemplateDefinition {
+	/**
+	* Apps specifies the apps that should get deployed by this template
+	*/
+	"apps"?: Array<StorageV1AppReference>;
+	/**
+	* Charts are helm charts that should get deployed
+	*/
+	"charts"?: Array<StorageV1TemplateHelmChart>;
+	"metadata"?: StorageV1TemplateMetadata;
+	/**
+	* Objects are Kubernetes style yamls that should get deployed into the virtual cluster namespace
+	*/
+	"objects"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1VirtualClusterTemplateDefinition {
+	"access"?: StorageV1InstanceAccess;
+	"accessPoint"?: StorageV1VirtualClusterAccessPoint;
+	/**
+	* Apps specifies the apps that should get deployed by this template
+	*/
+	"apps"?: Array<StorageV1AppReference>;
+	/**
+	* Charts are helm charts that should get deployed
+	*/
+	"charts"?: Array<StorageV1TemplateHelmChart>;
+	/**
+	* ForwardToken signals the proxy to pass through the used token to the virtual Kubernetes api server and do a TokenReview there.
+	*/
+	"forwardToken"?: boolean;
+	"helmRelease"?: StorageV1VirtualClusterHelmRelease;
+	"instanceTemplate"?: StorageV1VirtualClusterInstanceTemplateDefinition;
+	"metadata"?: StorageV1TemplateMetadata;
+	/**
+	* Objects are Kubernetes style yamls that should get deployed into the virtual cluster
+	*/
+	"objects"?: string;
+	"pro"?: StorageV1VirtualClusterProSpec;
+	"spaceTemplate"?: StorageV1VirtualClusterSpaceTemplateDefinition;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -11735,11 +11633,19 @@ declare class ManagementV1Event {
 	constructor();
 }
 declare class ManagementV1FeatureStatus {
+	/**
+	* AllowBefore is an optional timestamp. If set, licenses issued before this time are allowed to use the feature even if it\'s not included in the license.
+	*/
+	"allowBefore"?: string;
 	"displayName"?: string;
 	/**
 	* Internal marks internal features that should not be shown on the license view
 	*/
 	"internal"?: boolean;
+	/**
+	* Name of the module that this feature belongs to
+	*/
+	"module"?: string;
 	/**
 	* Name is the name of the feature (FeatureName) This cannot be FeatureName because it needs to be downward compatible e.g. older Loft version doesn\'t know a newer feature but it will still be received and still needs to be rendered in the license view
 	*/
@@ -12025,7 +11931,15 @@ declare class LicenseApiLicenseAPIRoutes {
 	constructor();
 }
 declare class LicenseApiFeature {
+	/**
+	* AllowBefore is an optional timestamp. If set, licenses issued before this time are allowed to use the feature even if it\'s not included in the license.
+	*/
+	"allowBefore"?: string;
 	"displayName"?: string;
+	/**
+	* Name of the module that this feature belongs to
+	*/
+	"module"?: string;
 	/**
 	* Name is the name of the feature (FeatureName) This cannot be FeatureName because it needs to be downward compatible e.g. older Loft version doesn\'t know a newer feature but it will still be received and still needs to be rendered in the license view
 	*/
@@ -12058,6 +11972,10 @@ declare class LicenseApiLimit {
 	* DisplayName is for display purposes.
 	*/
 	"displayName"?: string;
+	/**
+	* Name of the module that this limit belongs to
+	*/
+	"module"?: string;
 	/**
 	* Name is the name of the resource (ResourceName)
 	*/
@@ -12536,6 +12454,10 @@ declare class UiV1UISettingsSpec {
 	* SidebarColor is the color value (ex: \"#12345\") to use for the sidebar
 	*/
 	"sidebarColor"?: string;
+	/**
+	* SmallLogoURL is url pointing to the small logo to use in the Loft UI. This path must be accessible for clients accessing the Loft UI!
+	*/
+	"smallLogoURL"?: string;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -12915,54 +12837,6 @@ declare class ManagementV1OIDCClient {
 	}[];
 	constructor();
 }
-declare class StorageV1AccessKeyIdentity {
-	/**
-	* Connector is the name of the connector this access key was created from
-	*/
-	"connector"?: string;
-	/**
-	* ConnectorData holds data used by the connector for subsequent requests after initial authentication, such as access tokens for upstream providers.  This data is never shared with end users, OAuth clients, or through the API.
-	*/
-	"connectorData"?: string;
-	/**
-	* The user email
-	*/
-	"email"?: string;
-	/**
-	* If the user email was verified
-	*/
-	"emailVerified"?: boolean;
-	/**
-	* The groups from the identity provider
-	*/
-	"groups"?: Array<string>;
-	/**
-	* The preferred username / display name
-	*/
-	"preferredUsername"?: string;
-	/**
-	* The subject of the user
-	*/
-	"userId"?: string;
-	/**
-	* The username
-	*/
-	"username"?: string;
-	static readonly discriminator: string | undefined;
-	static readonly attributeTypeMap: Array<{
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}>;
-	static getAttributeTypeMap(): {
-		name: string;
-		baseName: string;
-		type: string;
-		format: string;
-	}[];
-	constructor();
-}
 declare class StorageV1AccessKeyOIDC {
 	/**
 	* The current access token that was created during login
@@ -13027,6 +12901,60 @@ declare class StorageV1AccessKeyOIDCProvider {
 	}[];
 	constructor();
 }
+declare class StorageV1SSOIdentity {
+	/**
+	* Connector is the name of the connector this access key was created from
+	*/
+	"connector"?: string;
+	/**
+	* ConnectorData holds data used by the connector for subsequent requests after initial authentication, such as access tokens for upstream providers.  This data is never shared with end users, OAuth clients, or through the API.
+	*/
+	"connectorData"?: string;
+	/**
+	* The user email
+	*/
+	"email"?: string;
+	/**
+	* If the user email was verified
+	*/
+	"emailVerified"?: boolean;
+	/**
+	* ExtraClaims are claims that are not otherwise contained in this struct but may be provided by the OIDC provider. Only extra claims that are allowed by the auth config are included.
+	*/
+	"extraClaims"?: {
+		[key: string]: string;
+	};
+	/**
+	* The groups from the identity provider
+	*/
+	"groups"?: Array<string>;
+	/**
+	* The preferred username / display name
+	*/
+	"preferredUsername"?: string;
+	/**
+	* The subject of the user
+	*/
+	"userId"?: string;
+	/**
+	* The username
+	*/
+	"username"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
 declare class ManagementV1OwnedAccessKeySpec {
 	/**
 	* Description describes an app
@@ -13044,7 +12972,7 @@ declare class ManagementV1OwnedAccessKeySpec {
 	* Groups specifies extra groups to apply when using this access key
 	*/
 	"groups"?: Array<string>;
-	"identity"?: StorageV1AccessKeyIdentity;
+	"identity"?: StorageV1SSOIdentity;
 	/**
 	* The last time the identity was refreshed
 	*/
@@ -13670,6 +13598,51 @@ declare class ManagementV1SpaceTemplate {
 	}[];
 	constructor();
 }
+declare class StorageV1VirtualClusterTemplateSpaceTemplateRef {
+	/**
+	* Name of the space template
+	*/
+	"name"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1VirtualClusterTemplateVersion {
+	/**
+	* Parameters define additional app parameters that will set helm values
+	*/
+	"parameters"?: Array<StorageV1AppParameter>;
+	"template"?: StorageV1VirtualClusterTemplateDefinition;
+	/**
+	* Version is the version. Needs to be in X.X.X format.
+	*/
+	"version"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
 declare class ManagementV1VirtualClusterTemplateSpec {
 	/**
 	* Access holds the access rights for users and teams
@@ -14137,7 +14110,7 @@ declare class StorageV1Member {
 	/**
 	* ClusterRole is the assigned role for the above member
 	*/
-	"clusterRole"?: string;
+	"clusterRole": string;
 	/**
 	* Group of the member. Currently only supports storage.loft.sh
 	*/
@@ -14764,7 +14737,7 @@ declare class ManagementV1ResetAccessKeySpec {
 	* Groups specifies extra groups to apply when using this access key
 	*/
 	"groups"?: Array<string>;
-	"identity"?: StorageV1AccessKeyIdentity;
+	"identity"?: StorageV1SSOIdentity;
 	/**
 	* The last time the identity was refreshed
 	*/
@@ -16836,6 +16809,12 @@ declare class ManagementV1UserSpec {
 	*/
 	"email"?: string;
 	/**
+	* ExtraClaims are additional claims that have been added to the user by an admin.
+	*/
+	"extraClaims"?: {
+		[key: string]: string;
+	};
+	/**
 	* The groups the user has access to
 	*/
 	"groups"?: Array<string>;
@@ -17366,9 +17345,9 @@ export type TGenResources = {
 	ManagementV1ClusterMembers: GroupVersionResource<ManagementV1ClusterMembers>;
 	ManagementV1ClusterReset: GroupVersionResource<ManagementV1ClusterReset>;
 	ManagementV1ClusterRoleTemplate: GroupVersionResource<ManagementV1ClusterRoleTemplate>;
-	ManagementV1ClusterVirtualClusterDefaults: GroupVersionResource<ManagementV1ClusterVirtualClusterDefaults>;
 	ManagementV1Config: GroupVersionResource<ManagementV1Config>;
 	ManagementV1ConvertVirtualClusterConfig: GroupVersionResource<ManagementV1ConvertVirtualClusterConfig>;
+	ManagementV1DatabaseConnector: GroupVersionResource<ManagementV1DatabaseConnector>;
 	ManagementV1DevPodEnvironmentTemplate: GroupVersionResource<ManagementV1DevPodEnvironmentTemplate>;
 	ManagementV1DevPodWorkspaceInstance: GroupVersionResource<ManagementV1DevPodWorkspaceInstance>;
 	ManagementV1DevPodWorkspaceInstanceCancel: GroupVersionResource<ManagementV1DevPodWorkspaceInstanceCancel>;

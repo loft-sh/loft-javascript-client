@@ -10,26 +10,17 @@
  * Do not edit the class manually.
  */
 
-import { LicenseApiResourceCount } from '../models/licenseApiResourceCount';
 
 
 /**
-* Limit defines a limit set in the license
+* DatabaseConnectorSpec holds the specification
 */
-export class LicenseApiLimit {
-    /**
-    * DisplayName is for display purposes.
-    */
+export class ManagementV1DatabaseConnectorSpec {
     'displayName'?: string;
     /**
-    * Name of the module that this limit belongs to
+    * The client id of the client
     */
-    'module'?: string;
-    /**
-    * Name is the name of the resource (ResourceName)
-    */
-    'name'?: string;
-    'quantity'?: LicenseApiResourceCount;
+    'type'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -41,26 +32,14 @@ export class LicenseApiLimit {
             "format": ""
         },
         {
-            "name": "module",
-            "baseName": "module",
+            "name": "type",
+            "baseName": "type",
             "type": "string",
-            "format": ""
-        },
-        {
-            "name": "name",
-            "baseName": "name",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "quantity",
-            "baseName": "quantity",
-            "type": "LicenseApiResourceCount",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return LicenseApiLimit.attributeTypeMap;
+        return ManagementV1DatabaseConnectorSpec.attributeTypeMap;
     }
 
     public constructor() {

@@ -10,33 +10,28 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1VirtualClusterTemplate } from '../models/storageV1VirtualClusterTemplate';
+import { ManagementV1DatabaseConnectorSpec } from '../models/managementV1DatabaseConnectorSpec';
 import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
-export class ManagementV1ClusterVirtualClusterDefaults {
+/**
+* DatabaseConnector represents a connector that can be used to provision and manage a backingstore for a vCluster
+*/
+export class ManagementV1DatabaseConnector {
     /**
     * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
     */
     'apiVersion'?: string;
-    'defaultTemplate'?: StorageV1VirtualClusterTemplate;
     /**
     * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
     */
     'kind'?: string;
-    /**
-    * LatestVersion is the latest virtual cluster version
-    */
-    'latestVersion'?: string;
     'metadata'?: V1ObjectMeta;
+    'spec'?: ManagementV1DatabaseConnectorSpec;
     /**
-    * Default values for the virtual cluster chart
+    * DatabaseConnectorStatus holds the status
     */
-    'values'?: string;
-    /**
-    * Warning should be somehow shown to the user when there is a problem retrieving the defaults
-    */
-    'warning'?: string;
+    'status'?: any;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -48,20 +43,8 @@ export class ManagementV1ClusterVirtualClusterDefaults {
             "format": ""
         },
         {
-            "name": "defaultTemplate",
-            "baseName": "defaultTemplate",
-            "type": "StorageV1VirtualClusterTemplate",
-            "format": ""
-        },
-        {
             "name": "kind",
             "baseName": "kind",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "latestVersion",
-            "baseName": "latestVersion",
             "type": "string",
             "format": ""
         },
@@ -72,20 +55,20 @@ export class ManagementV1ClusterVirtualClusterDefaults {
             "format": ""
         },
         {
-            "name": "values",
-            "baseName": "values",
-            "type": "string",
+            "name": "spec",
+            "baseName": "spec",
+            "type": "ManagementV1DatabaseConnectorSpec",
             "format": ""
         },
         {
-            "name": "warning",
-            "baseName": "warning",
-            "type": "string",
+            "name": "status",
+            "baseName": "status",
+            "type": "any",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1ClusterVirtualClusterDefaults.attributeTypeMap;
+        return ManagementV1DatabaseConnector.attributeTypeMap;
     }
 
     public constructor() {

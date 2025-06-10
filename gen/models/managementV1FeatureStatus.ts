@@ -16,11 +16,19 @@
 * FeatureStatus holds the status
 */
 export class ManagementV1FeatureStatus {
+    /**
+    * AllowBefore is an optional timestamp. If set, licenses issued before this time are allowed to use the feature even if it\'s not included in the license.
+    */
+    'allowBefore'?: string;
     'displayName'?: string;
     /**
     * Internal marks internal features that should not be shown on the license view
     */
     'internal'?: boolean;
+    /**
+    * Name of the module that this feature belongs to
+    */
+    'module'?: string;
     /**
     * Name is the name of the feature (FeatureName) This cannot be FeatureName because it needs to be downward compatible e.g. older Loft version doesn\'t know a newer feature but it will still be received and still needs to be rendered in the license view
     */
@@ -42,6 +50,12 @@ export class ManagementV1FeatureStatus {
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
+            "name": "allowBefore",
+            "baseName": "allowBefore",
+            "type": "string",
+            "format": ""
+        },
+        {
             "name": "displayName",
             "baseName": "displayName",
             "type": "string",
@@ -51,6 +65,12 @@ export class ManagementV1FeatureStatus {
             "name": "internal",
             "baseName": "internal",
             "type": "boolean",
+            "format": ""
+        },
+        {
+            "name": "module",
+            "baseName": "module",
+            "type": "string",
             "format": ""
         },
         {

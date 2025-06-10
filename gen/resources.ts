@@ -15,10 +15,10 @@ import {ManagementV1ClusterMemberAccess} from "./models/managementV1ClusterMembe
 import {ManagementV1ClusterMembers} from "./models/managementV1ClusterMembers"
 import {ManagementV1ClusterReset} from "./models/managementV1ClusterReset"
 import {ManagementV1ClusterRoleTemplate} from "./models/managementV1ClusterRoleTemplate"
-import {ManagementV1ClusterVirtualClusterDefaults} from "./models/managementV1ClusterVirtualClusterDefaults"
 import {ManagementV1Cluster} from "./models/managementV1Cluster"
 import {ManagementV1Config} from "./models/managementV1Config"
 import {ManagementV1ConvertVirtualClusterConfig} from "./models/managementV1ConvertVirtualClusterConfig"
+import {ManagementV1DatabaseConnector} from "./models/managementV1DatabaseConnector"
 import {ManagementV1DevPodEnvironmentTemplate} from "./models/managementV1DevPodEnvironmentTemplate"
 import {ManagementV1DevPodWorkspaceInstanceCancel} from "./models/managementV1DevPodWorkspaceInstanceCancel"
 import {ManagementV1DevPodWorkspaceInstanceDownload} from "./models/managementV1DevPodWorkspaceInstanceDownload"
@@ -99,9 +99,9 @@ export type TGenResources = {
   ManagementV1ClusterMembers: GroupVersionResource<ManagementV1ClusterMembers>
   ManagementV1ClusterReset: GroupVersionResource<ManagementV1ClusterReset>
   ManagementV1ClusterRoleTemplate: GroupVersionResource<ManagementV1ClusterRoleTemplate>
-  ManagementV1ClusterVirtualClusterDefaults: GroupVersionResource<ManagementV1ClusterVirtualClusterDefaults>
   ManagementV1Config: GroupVersionResource<ManagementV1Config>
   ManagementV1ConvertVirtualClusterConfig: GroupVersionResource<ManagementV1ConvertVirtualClusterConfig>
+  ManagementV1DatabaseConnector: GroupVersionResource<ManagementV1DatabaseConnector>
   ManagementV1DevPodEnvironmentTemplate: GroupVersionResource<ManagementV1DevPodEnvironmentTemplate>
   ManagementV1DevPodWorkspaceInstance: GroupVersionResource<ManagementV1DevPodWorkspaceInstance>
   ManagementV1DevPodWorkspaceInstanceCancel: GroupVersionResource<ManagementV1DevPodWorkspaceInstanceCancel>
@@ -295,14 +295,6 @@ export const GenResources: TGenResources = {
     namespaced: false,
     kind: "ClusterRoleTemplate",
   },
-  ManagementV1ClusterVirtualClusterDefaults: {
-    group: "management.loft.sh",
-    version: "v1",
-    resource: "clusters",
-    subResource: "virtualclusterdefaults",
-    namespaced: false,
-    kind: "ClusterVirtualClusterDefaults",
-  },
   ManagementV1Config: {
     group: "management.loft.sh",
     version: "v1",
@@ -318,6 +310,14 @@ export const GenResources: TGenResources = {
     subResource: "",
     namespaced: false,
     kind: "ConvertVirtualClusterConfig",
+  },
+  ManagementV1DatabaseConnector: {
+    group: "management.loft.sh",
+    version: "v1",
+    resource: "databaseconnectors",
+    subResource: "",
+    namespaced: false,
+    kind: "DatabaseConnector",
   },
   ManagementV1DevPodEnvironmentTemplate: {
     group: "management.loft.sh",

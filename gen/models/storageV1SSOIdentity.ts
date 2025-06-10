@@ -12,7 +12,7 @@
 
 
 
-export class StorageV1AccessKeyIdentity {
+export class StorageV1SSOIdentity {
     /**
     * Connector is the name of the connector this access key was created from
     */
@@ -29,6 +29,10 @@ export class StorageV1AccessKeyIdentity {
     * If the user email was verified
     */
     'emailVerified'?: boolean;
+    /**
+    * ExtraClaims are claims that are not otherwise contained in this struct but may be provided by the OIDC provider. Only extra claims that are allowed by the auth config are included.
+    */
+    'extraClaims'?: { [key: string]: string; };
     /**
     * The groups from the identity provider
     */
@@ -74,6 +78,12 @@ export class StorageV1AccessKeyIdentity {
             "format": ""
         },
         {
+            "name": "extraClaims",
+            "baseName": "extraClaims",
+            "type": "{ [key: string]: string; }",
+            "format": ""
+        },
+        {
             "name": "groups",
             "baseName": "groups",
             "type": "Array<string>",
@@ -99,7 +109,7 @@ export class StorageV1AccessKeyIdentity {
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1AccessKeyIdentity.attributeTypeMap;
+        return StorageV1SSOIdentity.attributeTypeMap;
     }
 
     public constructor() {

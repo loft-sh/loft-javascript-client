@@ -10,28 +10,21 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1VirtualClusterTemplateSpec } from '../models/storageV1VirtualClusterTemplateSpec';
-import { V1ObjectMeta } from '../models/V1ObjectMeta';
+import { ManagementV1DatabaseConnector } from '../models/managementV1DatabaseConnector';
+import { V1ListMeta } from '../models/V1ListMeta';
 
 
-/**
-* VirtualClusterTemplate holds the virtualClusterTemplate information
-*/
-export class StorageV1VirtualClusterTemplate {
+export class ManagementV1DatabaseConnectorList {
     /**
     * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
     */
     'apiVersion'?: string;
+    'items': Array<ManagementV1DatabaseConnector>;
     /**
     * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
     */
     'kind'?: string;
-    'metadata'?: V1ObjectMeta;
-    'spec'?: StorageV1VirtualClusterTemplateSpec;
-    /**
-    * VirtualClusterTemplateStatus holds the status
-    */
-    'status'?: any;
+    'metadata'?: V1ListMeta;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -43,6 +36,12 @@ export class StorageV1VirtualClusterTemplate {
             "format": ""
         },
         {
+            "name": "items",
+            "baseName": "items",
+            "type": "Array<ManagementV1DatabaseConnector>",
+            "format": ""
+        },
+        {
             "name": "kind",
             "baseName": "kind",
             "type": "string",
@@ -51,24 +50,12 @@ export class StorageV1VirtualClusterTemplate {
         {
             "name": "metadata",
             "baseName": "metadata",
-            "type": "V1ObjectMeta",
-            "format": ""
-        },
-        {
-            "name": "spec",
-            "baseName": "spec",
-            "type": "StorageV1VirtualClusterTemplateSpec",
-            "format": ""
-        },
-        {
-            "name": "status",
-            "baseName": "status",
-            "type": "any",
+            "type": "V1ListMeta",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1VirtualClusterTemplate.attributeTypeMap;
+        return ManagementV1DatabaseConnectorList.attributeTypeMap;
     }
 
     public constructor() {
