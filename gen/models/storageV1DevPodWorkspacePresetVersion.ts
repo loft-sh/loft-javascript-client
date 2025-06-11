@@ -20,10 +20,6 @@ export class StorageV1DevPodWorkspacePresetVersion {
     'infrastructureRef'?: StorageV1TemplateRef;
     'source'?: StorageV1DevPodWorkspacePresetSource;
     /**
-    * UseProjectGitCredentials specifies if the project git credentials should be used instead of local ones for this environment
-    */
-    'useProjectGitCredentials'?: boolean;
-    /**
     * Version is the version. Needs to be in X.X.X format.
     */
     'version'?: string;
@@ -47,12 +43,6 @@ export class StorageV1DevPodWorkspacePresetVersion {
             "name": "source",
             "baseName": "source",
             "type": "StorageV1DevPodWorkspacePresetSource",
-            "format": ""
-        },
-        {
-            "name": "useProjectGitCredentials",
-            "baseName": "useProjectGitCredentials",
-            "type": "boolean",
             "format": ""
         },
         {
