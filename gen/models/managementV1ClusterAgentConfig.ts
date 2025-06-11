@@ -12,6 +12,7 @@
 
 import { ManagementV1AgentAnalyticsSpec } from '../models/managementV1AgentAnalyticsSpec';
 import { ManagementV1AgentAuditConfig } from '../models/managementV1AgentAuditConfig';
+import { ManagementV1AgentCostControlConfig } from '../models/managementV1AgentCostControlConfig';
 import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
@@ -29,6 +30,7 @@ export class ManagementV1ClusterAgentConfig {
     * Cluster is the cluster the agent is running in.
     */
     'cluster'?: string;
+    'costControl'?: ManagementV1AgentCostControlConfig;
     /**
     * DefaultImageRegistry defines if we should prefix the virtual cluster image
     */
@@ -80,6 +82,12 @@ export class ManagementV1ClusterAgentConfig {
             "name": "cluster",
             "baseName": "cluster",
             "type": "string",
+            "format": ""
+        },
+        {
+            "name": "costControl",
+            "baseName": "costControl",
+            "type": "ManagementV1AgentCostControlConfig",
             "format": ""
         },
         {
