@@ -9030,6 +9030,10 @@ declare class StorageV1VirtualClusterAccessPoint {
 }
 declare class StorageV1VirtualClusterHelmChart {
 	/**
+	* InsecureSkipTlsVerify skips the TLS verification for the helm chart
+	*/
+	"insecureSkipTlsVerify"?: boolean;
+	/**
 	* the name of the helm chart
 	*/
 	"name"?: string;
