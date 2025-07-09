@@ -686,7 +686,7 @@ declare class V1ScopedResourceSelectorRequirement {
 	*/
 	"operator": V1ScopedResourceSelectorRequirementOperatorEnum;
 	/**
-	* The name of the scope that the selector applies to.  Possible enum values:  - `\"BestEffort\"` Match all pod objects that have best effort quality of service  - `\"CrossNamespacePodAffinity\"` Match all pod objects that have cross-namespace pod (anti)affinity mentioned.  - `\"NotBestEffort\"` Match all pod objects that do not have best effort quality of service  - `\"NotTerminating\"` Match all pod objects where spec.activeDeadlineSeconds is nil  - `\"PriorityClass\"` Match all pod objects that have priority class mentioned  - `\"Terminating\"` Match all pod objects where spec.activeDeadlineSeconds >=0
+	* The name of the scope that the selector applies to.  Possible enum values:  - `\"BestEffort\"` Match all pod objects that have best effort quality of service  - `\"CrossNamespacePodAffinity\"` Match all pod objects that have cross-namespace pod (anti)affinity mentioned.  - `\"NotBestEffort\"` Match all pod objects that do not have best effort quality of service  - `\"NotTerminating\"` Match all pod objects where spec.activeDeadlineSeconds is nil  - `\"PriorityClass\"` Match all pod objects that have priority class mentioned  - `\"Terminating\"` Match all pod objects where spec.activeDeadlineSeconds >=0  - `\"VolumeAttributesClass\"` Match all pvc objects that have volume attributes class mentioned.
 	*/
 	"scopeName": V1ScopedResourceSelectorRequirementScopeNameEnum;
 	/**
@@ -720,7 +720,8 @@ declare enum V1ScopedResourceSelectorRequirementScopeNameEnum {
 	NotBestEffort = "NotBestEffort",
 	NotTerminating = "NotTerminating",
 	PriorityClass = "PriorityClass",
-	Terminating = "Terminating"
+	Terminating = "Terminating",
+	VolumeAttributesClass = "VolumeAttributesClass"
 }
 declare class V1ScopeSelector {
 	/**
@@ -775,7 +776,8 @@ declare enum V1ResourceQuotaSpecScopesEnum {
 	NotBestEffort = "NotBestEffort",
 	NotTerminating = "NotTerminating",
 	PriorityClass = "PriorityClass",
-	Terminating = "Terminating"
+	Terminating = "Terminating",
+	VolumeAttributesClass = "VolumeAttributesClass"
 }
 declare class StorageV1ClusterQuotaSpec {
 	/**
@@ -6036,7 +6038,7 @@ declare class V1SecretEnvSource {
 declare class V1EnvFromSource {
 	"configMapRef"?: V1ConfigMapEnvSource;
 	/**
-	* An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.
+	* Optional text to prepend to the name of each environment variable. Must be a C_IDENTIFIER.
 	*/
 	"prefix"?: string;
 	"secretRef"?: V1SecretEnvSource;
@@ -6332,6 +6334,10 @@ declare class V1LifecycleHandler {
 declare class V1Lifecycle {
 	"postStart"?: V1LifecycleHandler;
 	"preStop"?: V1LifecycleHandler;
+	/**
+	* StopSignal defines which signal will be sent to a container when it is being stopped. If not specified, the default is defined by the container runtime in use. StopSignal can only be set for Pods with a non-empty .spec.os.name  Possible enum values:  - `\"SIGABRT\"`  - `\"SIGALRM\"`  - `\"SIGBUS\"`  - `\"SIGCHLD\"`  - `\"SIGCLD\"`  - `\"SIGCONT\"`  - `\"SIGFPE\"`  - `\"SIGHUP\"`  - `\"SIGILL\"`  - `\"SIGINT\"`  - `\"SIGIO\"`  - `\"SIGIOT\"`  - `\"SIGKILL\"`  - `\"SIGPIPE\"`  - `\"SIGPOLL\"`  - `\"SIGPROF\"`  - `\"SIGPWR\"`  - `\"SIGQUIT\"`  - `\"SIGRTMAX\"`  - `\"SIGRTMAX-1\"`  - `\"SIGRTMAX-10\"`  - `\"SIGRTMAX-11\"`  - `\"SIGRTMAX-12\"`  - `\"SIGRTMAX-13\"`  - `\"SIGRTMAX-14\"`  - `\"SIGRTMAX-2\"`  - `\"SIGRTMAX-3\"`  - `\"SIGRTMAX-4\"`  - `\"SIGRTMAX-5\"`  - `\"SIGRTMAX-6\"`  - `\"SIGRTMAX-7\"`  - `\"SIGRTMAX-8\"`  - `\"SIGRTMAX-9\"`  - `\"SIGRTMIN\"`  - `\"SIGRTMIN+1\"`  - `\"SIGRTMIN+10\"`  - `\"SIGRTMIN+11\"`  - `\"SIGRTMIN+12\"`  - `\"SIGRTMIN+13\"`  - `\"SIGRTMIN+14\"`  - `\"SIGRTMIN+15\"`  - `\"SIGRTMIN+2\"`  - `\"SIGRTMIN+3\"`  - `\"SIGRTMIN+4\"`  - `\"SIGRTMIN+5\"`  - `\"SIGRTMIN+6\"`  - `\"SIGRTMIN+7\"`  - `\"SIGRTMIN+8\"`  - `\"SIGRTMIN+9\"`  - `\"SIGSEGV\"`  - `\"SIGSTKFLT\"`  - `\"SIGSTOP\"`  - `\"SIGSYS\"`  - `\"SIGTERM\"`  - `\"SIGTRAP\"`  - `\"SIGTSTP\"`  - `\"SIGTTIN\"`  - `\"SIGTTOU\"`  - `\"SIGURG\"`  - `\"SIGUSR1\"`  - `\"SIGUSR2\"`  - `\"SIGVTALRM\"`  - `\"SIGWINCH\"`  - `\"SIGXCPU\"`  - `\"SIGXFSZ\"`
+	*/
+	"stopSignal"?: V1LifecycleStopSignalEnum;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -6346,6 +6352,73 @@ declare class V1Lifecycle {
 		format: string;
 	}[];
 	constructor();
+}
+declare enum V1LifecycleStopSignalEnum {
+	Sigabrt = "SIGABRT",
+	Sigalrm = "SIGALRM",
+	Sigbus = "SIGBUS",
+	Sigchld = "SIGCHLD",
+	Sigcld = "SIGCLD",
+	Sigcont = "SIGCONT",
+	Sigfpe = "SIGFPE",
+	Sighup = "SIGHUP",
+	Sigill = "SIGILL",
+	Sigint = "SIGINT",
+	Sigio = "SIGIO",
+	Sigiot = "SIGIOT",
+	Sigkill = "SIGKILL",
+	Sigpipe = "SIGPIPE",
+	Sigpoll = "SIGPOLL",
+	Sigprof = "SIGPROF",
+	Sigpwr = "SIGPWR",
+	Sigquit = "SIGQUIT",
+	Sigrtmax = "SIGRTMAX",
+	Sigrtmax1 = "SIGRTMAX-1",
+	Sigrtmax10 = "SIGRTMAX-10",
+	Sigrtmax11 = "SIGRTMAX-11",
+	Sigrtmax12 = "SIGRTMAX-12",
+	Sigrtmax13 = "SIGRTMAX-13",
+	Sigrtmax14 = "SIGRTMAX-14",
+	Sigrtmax2 = "SIGRTMAX-2",
+	Sigrtmax3 = "SIGRTMAX-3",
+	Sigrtmax4 = "SIGRTMAX-4",
+	Sigrtmax5 = "SIGRTMAX-5",
+	Sigrtmax6 = "SIGRTMAX-6",
+	Sigrtmax7 = "SIGRTMAX-7",
+	Sigrtmax8 = "SIGRTMAX-8",
+	Sigrtmax9 = "SIGRTMAX-9",
+	Sigrtmin = "SIGRTMIN",
+	Sigrtmin1 = "SIGRTMIN+1",
+	Sigrtmin10 = "SIGRTMIN+10",
+	Sigrtmin11 = "SIGRTMIN+11",
+	Sigrtmin12 = "SIGRTMIN+12",
+	Sigrtmin13 = "SIGRTMIN+13",
+	Sigrtmin14 = "SIGRTMIN+14",
+	Sigrtmin15 = "SIGRTMIN+15",
+	Sigrtmin2 = "SIGRTMIN+2",
+	Sigrtmin3 = "SIGRTMIN+3",
+	Sigrtmin4 = "SIGRTMIN+4",
+	Sigrtmin5 = "SIGRTMIN+5",
+	Sigrtmin6 = "SIGRTMIN+6",
+	Sigrtmin7 = "SIGRTMIN+7",
+	Sigrtmin8 = "SIGRTMIN+8",
+	Sigrtmin9 = "SIGRTMIN+9",
+	Sigsegv = "SIGSEGV",
+	Sigstkflt = "SIGSTKFLT",
+	Sigstop = "SIGSTOP",
+	Sigsys = "SIGSYS",
+	Sigterm = "SIGTERM",
+	Sigtrap = "SIGTRAP",
+	Sigtstp = "SIGTSTP",
+	Sigttin = "SIGTTIN",
+	Sigttou = "SIGTTOU",
+	Sigurg = "SIGURG",
+	Sigusr1 = "SIGUSR1",
+	Sigusr2 = "SIGUSR2",
+	Sigvtalrm = "SIGVTALRM",
+	Sigwinch = "SIGWINCH",
+	Sigxcpu = "SIGXCPU",
+	Sigxfsz = "SIGXFSZ"
 }
 declare class V1GRPCAction {
 	/**
@@ -6713,11 +6786,11 @@ declare class V1NodeAffinity {
 declare class V1PodAffinityTerm {
 	"labelSelector"?: V1LabelSelector;
 	/**
-	* MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with `labelSelector` as `key in (value)` to select the group of existing pods which pods will be taken into consideration for the incoming pod\'s pod (anti) affinity. Keys that don\'t exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn\'t set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).
+	* MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with `labelSelector` as `key in (value)` to select the group of existing pods which pods will be taken into consideration for the incoming pod\'s pod (anti) affinity. Keys that don\'t exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn\'t set.
 	*/
 	"matchLabelKeys"?: Array<string>;
 	/**
-	* MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with `labelSelector` as `key notin (value)` to select the group of existing pods which pods will be taken into consideration for the incoming pod\'s pod (anti) affinity. Keys that don\'t exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn\'t set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).
+	* MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with `labelSelector` as `key notin (value)` to select the group of existing pods which pods will be taken into consideration for the incoming pod\'s pod (anti) affinity. Keys that don\'t exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn\'t set.
 	*/
 	"mismatchLabelKeys"?: Array<string>;
 	"namespaceSelector"?: V1LabelSelector;
@@ -7076,11 +7149,11 @@ declare class V1TopologySpreadConstraint {
 	*/
 	"minDomains"?: number;
 	/**
-	* NodeAffinityPolicy indicates how we will treat Pod\'s nodeAffinity/nodeSelector when calculating pod topology spread skew. Options are: - Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations. - Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations.  If this value is nil, the behavior is equivalent to the Honor policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.  Possible enum values:  - `\"Honor\"` means use this scheduling directive when calculating pod topology spread skew.  - `\"Ignore\"` means ignore this scheduling directive when calculating pod topology spread skew.
+	* NodeAffinityPolicy indicates how we will treat Pod\'s nodeAffinity/nodeSelector when calculating pod topology spread skew. Options are: - Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations. - Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations.  If this value is nil, the behavior is equivalent to the Honor policy.  Possible enum values:  - `\"Honor\"` means use this scheduling directive when calculating pod topology spread skew.  - `\"Ignore\"` means ignore this scheduling directive when calculating pod topology spread skew.
 	*/
 	"nodeAffinityPolicy"?: V1TopologySpreadConstraintNodeAffinityPolicyEnum;
 	/**
-	* NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew. Options are: - Honor: nodes without taints, along with tainted nodes for which the incoming pod has a toleration, are included. - Ignore: node taints are ignored. All nodes are included.  If this value is nil, the behavior is equivalent to the Ignore policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.  Possible enum values:  - `\"Honor\"` means use this scheduling directive when calculating pod topology spread skew.  - `\"Ignore\"` means ignore this scheduling directive when calculating pod topology spread skew.
+	* NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew. Options are: - Honor: nodes without taints, along with tainted nodes for which the incoming pod has a toleration, are included. - Ignore: node taints are ignored. All nodes are included.  If this value is nil, the behavior is equivalent to the Ignore policy.  Possible enum values:  - `\"Honor\"` means use this scheduling directive when calculating pod topology spread skew.  - `\"Ignore\"` means ignore this scheduling directive when calculating pod topology spread skew.
 	*/
 	"nodeTaintsPolicy"?: V1TopologySpreadConstraintNodeTaintsPolicyEnum;
 	/**
@@ -9837,6 +9910,10 @@ declare class V1ContainerStatus {
 	*/
 	"started"?: boolean;
 	"state"?: V1ContainerState;
+	/**
+	* StopSignal reports the effective stop signal for this container  Possible enum values:  - `\"SIGABRT\"`  - `\"SIGALRM\"`  - `\"SIGBUS\"`  - `\"SIGCHLD\"`  - `\"SIGCLD\"`  - `\"SIGCONT\"`  - `\"SIGFPE\"`  - `\"SIGHUP\"`  - `\"SIGILL\"`  - `\"SIGINT\"`  - `\"SIGIO\"`  - `\"SIGIOT\"`  - `\"SIGKILL\"`  - `\"SIGPIPE\"`  - `\"SIGPOLL\"`  - `\"SIGPROF\"`  - `\"SIGPWR\"`  - `\"SIGQUIT\"`  - `\"SIGRTMAX\"`  - `\"SIGRTMAX-1\"`  - `\"SIGRTMAX-10\"`  - `\"SIGRTMAX-11\"`  - `\"SIGRTMAX-12\"`  - `\"SIGRTMAX-13\"`  - `\"SIGRTMAX-14\"`  - `\"SIGRTMAX-2\"`  - `\"SIGRTMAX-3\"`  - `\"SIGRTMAX-4\"`  - `\"SIGRTMAX-5\"`  - `\"SIGRTMAX-6\"`  - `\"SIGRTMAX-7\"`  - `\"SIGRTMAX-8\"`  - `\"SIGRTMAX-9\"`  - `\"SIGRTMIN\"`  - `\"SIGRTMIN+1\"`  - `\"SIGRTMIN+10\"`  - `\"SIGRTMIN+11\"`  - `\"SIGRTMIN+12\"`  - `\"SIGRTMIN+13\"`  - `\"SIGRTMIN+14\"`  - `\"SIGRTMIN+15\"`  - `\"SIGRTMIN+2\"`  - `\"SIGRTMIN+3\"`  - `\"SIGRTMIN+4\"`  - `\"SIGRTMIN+5\"`  - `\"SIGRTMIN+6\"`  - `\"SIGRTMIN+7\"`  - `\"SIGRTMIN+8\"`  - `\"SIGRTMIN+9\"`  - `\"SIGSEGV\"`  - `\"SIGSTKFLT\"`  - `\"SIGSTOP\"`  - `\"SIGSYS\"`  - `\"SIGTERM\"`  - `\"SIGTRAP\"`  - `\"SIGTSTP\"`  - `\"SIGTTIN\"`  - `\"SIGTTOU\"`  - `\"SIGURG\"`  - `\"SIGUSR1\"`  - `\"SIGUSR2\"`  - `\"SIGVTALRM\"`  - `\"SIGWINCH\"`  - `\"SIGXCPU\"`  - `\"SIGXFSZ\"`
+	*/
+	"stopSignal"?: V1ContainerStatusStopSignalEnum;
 	"user"?: V1ContainerUser;
 	/**
 	* Status of volume mounts.
@@ -9857,6 +9934,73 @@ declare class V1ContainerStatus {
 	}[];
 	constructor();
 }
+declare enum V1ContainerStatusStopSignalEnum {
+	Sigabrt = "SIGABRT",
+	Sigalrm = "SIGALRM",
+	Sigbus = "SIGBUS",
+	Sigchld = "SIGCHLD",
+	Sigcld = "SIGCLD",
+	Sigcont = "SIGCONT",
+	Sigfpe = "SIGFPE",
+	Sighup = "SIGHUP",
+	Sigill = "SIGILL",
+	Sigint = "SIGINT",
+	Sigio = "SIGIO",
+	Sigiot = "SIGIOT",
+	Sigkill = "SIGKILL",
+	Sigpipe = "SIGPIPE",
+	Sigpoll = "SIGPOLL",
+	Sigprof = "SIGPROF",
+	Sigpwr = "SIGPWR",
+	Sigquit = "SIGQUIT",
+	Sigrtmax = "SIGRTMAX",
+	Sigrtmax1 = "SIGRTMAX-1",
+	Sigrtmax10 = "SIGRTMAX-10",
+	Sigrtmax11 = "SIGRTMAX-11",
+	Sigrtmax12 = "SIGRTMAX-12",
+	Sigrtmax13 = "SIGRTMAX-13",
+	Sigrtmax14 = "SIGRTMAX-14",
+	Sigrtmax2 = "SIGRTMAX-2",
+	Sigrtmax3 = "SIGRTMAX-3",
+	Sigrtmax4 = "SIGRTMAX-4",
+	Sigrtmax5 = "SIGRTMAX-5",
+	Sigrtmax6 = "SIGRTMAX-6",
+	Sigrtmax7 = "SIGRTMAX-7",
+	Sigrtmax8 = "SIGRTMAX-8",
+	Sigrtmax9 = "SIGRTMAX-9",
+	Sigrtmin = "SIGRTMIN",
+	Sigrtmin1 = "SIGRTMIN+1",
+	Sigrtmin10 = "SIGRTMIN+10",
+	Sigrtmin11 = "SIGRTMIN+11",
+	Sigrtmin12 = "SIGRTMIN+12",
+	Sigrtmin13 = "SIGRTMIN+13",
+	Sigrtmin14 = "SIGRTMIN+14",
+	Sigrtmin15 = "SIGRTMIN+15",
+	Sigrtmin2 = "SIGRTMIN+2",
+	Sigrtmin3 = "SIGRTMIN+3",
+	Sigrtmin4 = "SIGRTMIN+4",
+	Sigrtmin5 = "SIGRTMIN+5",
+	Sigrtmin6 = "SIGRTMIN+6",
+	Sigrtmin7 = "SIGRTMIN+7",
+	Sigrtmin8 = "SIGRTMIN+8",
+	Sigrtmin9 = "SIGRTMIN+9",
+	Sigsegv = "SIGSEGV",
+	Sigstkflt = "SIGSTKFLT",
+	Sigstop = "SIGSTOP",
+	Sigsys = "SIGSYS",
+	Sigterm = "SIGTERM",
+	Sigtrap = "SIGTRAP",
+	Sigtstp = "SIGTSTP",
+	Sigttin = "SIGTTIN",
+	Sigttou = "SIGTTOU",
+	Sigurg = "SIGURG",
+	Sigusr1 = "SIGUSR1",
+	Sigusr2 = "SIGUSR2",
+	Sigvtalrm = "SIGVTALRM",
+	Sigwinch = "SIGWINCH",
+	Sigxcpu = "SIGXCPU",
+	Sigxfsz = "SIGXFSZ"
+}
 declare class V1PodCondition {
 	/**
 	* Last time we probed the condition.
@@ -9870,6 +10014,10 @@ declare class V1PodCondition {
 	* Human-readable message indicating details about last transition.
 	*/
 	"message"?: string;
+	/**
+	* If set, this represents the .metadata.generation that the pod condition was set based upon. This is an alpha field. Enable PodObservedGenerationTracking to be able to use this field.
+	*/
+	"observedGeneration"?: number;
 	/**
 	* Unique, one-word, CamelCase reason for the condition\'s last transition.
 	*/
@@ -10599,7 +10747,7 @@ declare class V1PodSpec {
 	*/
 	"imagePullSecrets"?: Array<V1LocalObjectReference>;
 	/**
-	* List of initialization containers belonging to the pod. Init containers are executed in order prior to containers being started. If any init container fails, the pod is considered to have failed and is handled according to its restartPolicy. The name for an init container or normal container must be unique among all containers. Init containers may not have Lifecycle actions, Readiness probes, Liveness probes, or Startup probes. The resourceRequirements of an init container are taken into account during scheduling by finding the highest request/limit for each resource type, and then using the max of of that value or the sum of the normal containers. Limits are applied to init containers in a similar fashion. Init containers cannot currently be added or removed. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/
+	* List of initialization containers belonging to the pod. Init containers are executed in order prior to containers being started. If any init container fails, the pod is considered to have failed and is handled according to its restartPolicy. The name for an init container or normal container must be unique among all containers. Init containers may not have Lifecycle actions, Readiness probes, Liveness probes, or Startup probes. The resourceRequirements of an init container are taken into account during scheduling by finding the highest request/limit for each resource type, and then using the max of that value or the sum of the normal containers. Limits are applied to init containers in a similar fashion. Init containers cannot currently be added or removed. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/
 	*/
 	"initContainers"?: Array<V1Container>;
 	/**
@@ -10821,6 +10969,10 @@ declare class V1PodStatus {
 	*/
 	"nominatedNodeName"?: string;
 	/**
+	* If set, this represents the .metadata.generation that the pod status was set based upon. This is an alpha field. Enable PodObservedGenerationTracking to be able to use this field.
+	*/
+	"observedGeneration"?: number;
+	/**
 	* The phase of a Pod is a simple, high-level summary of where the Pod is in its lifecycle. The conditions array, the reason and message fields, and the individual container status arrays contain more detail about the pod\'s status. There are five possible phase values:  Pending: The pod has been accepted by the Kubernetes system, but one or more of the container images has not been created. This includes time before being scheduled as well as time spent downloading images over the network, which could take a while. Running: The pod has been bound to a node, and all of the containers have been created. At least one container is still running, or is in the process of starting or restarting. Succeeded: All containers in the pod have terminated in success, and will not be restarted. Failed: All containers in the pod have terminated, and at least one container has terminated in failure. The container either exited with non-zero status or was terminated by the system. Unknown: For some reason the state of the pod could not be obtained, typically due to an error in communicating with the host of the pod.  More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#pod-phase  Possible enum values:  - `\"Failed\"` means that all containers in the pod have terminated, and at least one container has terminated in a failure (exited with a non-zero exit code or was stopped by the system).  - `\"Pending\"` means the pod has been accepted by the system, but one or more of the containers has not been started. This includes time before being bound to a node, as well as time spent pulling images onto the host.  - `\"Running\"` means the pod has been bound to a node and all of the containers have been started. At least one container is still running or is in the process of being restarted.  - `\"Succeeded\"` means that all containers in the pod have voluntarily terminated with a container exit code of 0, and the system is not going to restart any of these containers.  - `\"Unknown\"` means that for some reason the state of the pod could not be obtained, typically due to an error in communicating with the host of the pod. Deprecated: It isn\'t being set since 2015 (74da3b14b0c0f658b3bb8d2def5094686d0e9095)
 	*/
 	"phase"?: V1PodStatusPhaseEnum;
@@ -10841,7 +10993,7 @@ declare class V1PodStatus {
 	*/
 	"reason"?: string;
 	/**
-	* Status of resources resize desired for pod\'s containers. It is empty if no resources resize is pending. Any changes to container resources will automatically set this to \"Proposed\"
+	* Status of resources resize desired for pod\'s containers. It is empty if no resources resize is pending. Any changes to container resources will automatically set this to \"Proposed\" Deprecated: Resize status is moved to two pod conditions PodResizePending and PodResizeInProgress. PodResizePending will track states where the spec has been resized, but the Kubelet has not yet allocated the resources. PodResizeInProgress will track in-progress resizes, and should be present whenever allocated resources != acknowledged resources.
 	*/
 	"resize"?: string;
 	/**
@@ -17011,6 +17163,14 @@ declare class ManagementV1VirtualClusterInstanceKubeConfigSpec {
 	* CertificateTTL holds the ttl (in seconds) to set for the certificate associated with the returned kubeconfig. This field is optional, if no value is provided, the certificate TTL will be set to one day. If set to zero, this will cause loft to pass nil to the certificate signing request, which will result in the certificate being valid for the clusters `cluster-signing-duration` value which is typically one year.
 	*/
 	"certificateTTL"?: number;
+	/**
+	* ClientCert, if set to true, will return kube config with generated client certs instead of platform token
+	*/
+	"clientCert"?: boolean;
+	/**
+	* Server allows user to override server in the kubeconfig.
+	*/
+	"server"?: string;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
