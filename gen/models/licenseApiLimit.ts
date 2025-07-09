@@ -22,6 +22,10 @@ export class LicenseApiLimit {
     */
     'displayName'?: string;
     /**
+    * Name of the module that this limit belongs to
+    */
+    'module'?: string;
+    /**
     * Name is the name of the resource (ResourceName)
     */
     'name'?: string;
@@ -33,6 +37,12 @@ export class LicenseApiLimit {
         {
             "name": "displayName",
             "baseName": "displayName",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "module",
+            "baseName": "module",
             "type": "string",
             "format": ""
         },
