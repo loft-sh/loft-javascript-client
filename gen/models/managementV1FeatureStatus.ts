@@ -17,23 +17,26 @@
 */
 export class ManagementV1FeatureStatus {
     /**
-    * Compatibility contains a series of semver compatibility constraints
+    * AllowBefore is an optional timestamp. If set, licenses issued before this time are allowed to use the feature even if it\'s not included in the license.
     */
-    'compatibility'?: string;
-    'description'?: string;
+    'allowBefore'?: string;
     'displayName'?: string;
     /**
     * Internal marks internal features that should not be shown on the license view
     */
     'internal'?: boolean;
     /**
-    * Labels contains a list of labels to be displayed for this feature (e.g. alpha, beta)
+    * Name of the module that this feature belongs to
     */
-    'labels'?: Array<string>;
+    'module'?: string;
     /**
     * Name is the name of the feature (FeatureName) This cannot be FeatureName because it needs to be downward compatible e.g. older Loft version doesn\'t know a newer feature but it will still be received and still needs to be rendered in the license view
     */
     'name': string;
+    /**
+    * Preview represents whether the feature can be previewed if a user\'s license does not allow the feature
+    */
+    'preview'?: boolean;
     /**
     * Status shows the status of the feature (see type FeatureStatus)
     */
@@ -47,14 +50,8 @@ export class ManagementV1FeatureStatus {
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "compatibility",
-            "baseName": "compatibility",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "description",
-            "baseName": "description",
+            "name": "allowBefore",
+            "baseName": "allowBefore",
             "type": "string",
             "format": ""
         },
@@ -71,15 +68,21 @@ export class ManagementV1FeatureStatus {
             "format": ""
         },
         {
-            "name": "labels",
-            "baseName": "labels",
-            "type": "Array<string>",
+            "name": "module",
+            "baseName": "module",
+            "type": "string",
             "format": ""
         },
         {
             "name": "name",
             "baseName": "name",
             "type": "string",
+            "format": ""
+        },
+        {
+            "name": "preview",
+            "baseName": "preview",
+            "type": "boolean",
             "format": ""
         },
         {
