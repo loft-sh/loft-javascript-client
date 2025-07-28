@@ -17,6 +17,7 @@ import { StorageV1PresetRef } from '../models/storageV1PresetRef';
 import { StorageV1RunnerRef } from '../models/storageV1RunnerRef';
 import { StorageV1TemplateRef } from '../models/storageV1TemplateRef';
 import { StorageV1UserOrTeam } from '../models/storageV1UserOrTeam';
+import { StorageV1WorkspaceTarget } from '../models/storageV1WorkspaceTarget';
 
 
 /**
@@ -47,6 +48,7 @@ export class ManagementV1DevPodWorkspaceInstanceSpec {
     */
     'preventWakeUpOnConnection'?: boolean;
     'runnerRef'?: StorageV1RunnerRef;
+    'target'?: StorageV1WorkspaceTarget;
     'template'?: StorageV1DevPodWorkspaceTemplateDefinition;
     'templateRef'?: StorageV1TemplateRef;
 
@@ -105,6 +107,12 @@ export class ManagementV1DevPodWorkspaceInstanceSpec {
             "name": "runnerRef",
             "baseName": "runnerRef",
             "type": "StorageV1RunnerRef",
+            "format": ""
+        },
+        {
+            "name": "target",
+            "baseName": "target",
+            "type": "StorageV1WorkspaceTarget",
             "format": ""
         },
         {
