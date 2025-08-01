@@ -10,6 +10,7 @@
  * Do not edit the class manually.
  */
 
+import { UiV1ExternalURLs } from '../models/uiV1ExternalURLs';
 import { UiV1NavBarButton } from '../models/uiV1NavBarButton';
 
 
@@ -33,6 +34,7 @@ export class UiV1UISettingsSpec {
     * DefaultVClusterVersion is the default version of vClusters
     */
     'defaultVClusterVersion'?: string;
+    'externalURLs'?: UiV1ExternalURLs;
     /**
     * HasHelmRelease indicates whether the vCluster Platform instance has been installed via Helm
     */
@@ -77,6 +79,10 @@ export class UiV1UISettingsSpec {
     * SidebarColor is the color value (ex: \"#12345\") to use for the sidebar
     */
     'sidebarColor'?: string;
+    /**
+    * SmallLogoURL is url pointing to the small logo to use in the Loft UI. This path must be accessible for clients accessing the Loft UI!
+    */
+    'smallLogoURL'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -103,6 +109,12 @@ export class UiV1UISettingsSpec {
             "name": "defaultVClusterVersion",
             "baseName": "defaultVClusterVersion",
             "type": "string",
+            "format": ""
+        },
+        {
+            "name": "externalURLs",
+            "baseName": "externalURLs",
+            "type": "UiV1ExternalURLs",
             "format": ""
         },
         {
@@ -168,6 +180,12 @@ export class UiV1UISettingsSpec {
         {
             "name": "sidebarColor",
             "baseName": "sidebarColor",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "smallLogoURL",
+            "baseName": "smallLogoURL",
             "type": "string",
             "format": ""
         }    ];

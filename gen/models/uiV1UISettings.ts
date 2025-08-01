@@ -11,6 +11,7 @@
  */
 
 import { UiV1UISettingsSpec } from '../models/uiV1UISettingsSpec';
+import { UiV1UISettingsStatus } from '../models/uiV1UISettingsStatus';
 import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
@@ -28,10 +29,7 @@ export class UiV1UISettings {
     'kind'?: string;
     'metadata'?: V1ObjectMeta;
     'spec'?: UiV1UISettingsSpec;
-    /**
-    * UISettingsStatus holds the status
-    */
-    'status'?: any;
+    'status'?: UiV1UISettingsStatus;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -63,7 +61,7 @@ export class UiV1UISettings {
         {
             "name": "status",
             "baseName": "status",
-            "type": "any",
+            "type": "UiV1UISettingsStatus",
             "format": ""
         }    ];
 
