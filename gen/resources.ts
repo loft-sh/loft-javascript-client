@@ -15,13 +15,18 @@ import {ManagementV1ClusterMemberAccess} from "./models/managementV1ClusterMembe
 import {ManagementV1ClusterMembers} from "./models/managementV1ClusterMembers"
 import {ManagementV1ClusterReset} from "./models/managementV1ClusterReset"
 import {ManagementV1ClusterRoleTemplate} from "./models/managementV1ClusterRoleTemplate"
-import {ManagementV1ClusterVirtualClusterDefaults} from "./models/managementV1ClusterVirtualClusterDefaults"
 import {ManagementV1Cluster} from "./models/managementV1Cluster"
 import {ManagementV1Config} from "./models/managementV1Config"
 import {ManagementV1ConvertVirtualClusterConfig} from "./models/managementV1ConvertVirtualClusterConfig"
+import {ManagementV1DatabaseConnector} from "./models/managementV1DatabaseConnector"
 import {ManagementV1DevPodEnvironmentTemplate} from "./models/managementV1DevPodEnvironmentTemplate"
-import {ManagementV1DevPodWorkspaceInstanceState} from "./models/managementV1DevPodWorkspaceInstanceState"
+import {ManagementV1DevPodWorkspaceInstanceCancel} from "./models/managementV1DevPodWorkspaceInstanceCancel"
+import {ManagementV1DevPodWorkspaceInstanceDownload} from "./models/managementV1DevPodWorkspaceInstanceDownload"
+import {ManagementV1DevPodWorkspaceInstanceLog} from "./models/managementV1DevPodWorkspaceInstanceLog"
+import {ManagementV1DevPodWorkspaceInstanceStop} from "./models/managementV1DevPodWorkspaceInstanceStop"
+import {ManagementV1DevPodWorkspaceInstanceTasks} from "./models/managementV1DevPodWorkspaceInstanceTasks"
 import {ManagementV1DevPodWorkspaceInstanceTroubleshoot} from "./models/managementV1DevPodWorkspaceInstanceTroubleshoot"
+import {ManagementV1DevPodWorkspaceInstanceUp} from "./models/managementV1DevPodWorkspaceInstanceUp"
 import {ManagementV1DevPodWorkspaceInstance} from "./models/managementV1DevPodWorkspaceInstance"
 import {ManagementV1DevPodWorkspacePreset} from "./models/managementV1DevPodWorkspacePreset"
 import {ManagementV1DevPodWorkspaceTemplate} from "./models/managementV1DevPodWorkspaceTemplate"
@@ -34,6 +39,9 @@ import {ManagementV1LicenseRequest} from "./models/managementV1LicenseRequest"
 import {ManagementV1LicenseToken} from "./models/managementV1LicenseToken"
 import {ManagementV1License} from "./models/managementV1License"
 import {ManagementV1LoftUpgrade} from "./models/managementV1LoftUpgrade"
+import {ManagementV1NodeClaim} from "./models/managementV1NodeClaim"
+import {ManagementV1NodeProvider} from "./models/managementV1NodeProvider"
+import {ManagementV1NodeType} from "./models/managementV1NodeType"
 import {ManagementV1OIDCClient} from "./models/managementV1OIDCClient"
 import {ManagementV1OwnedAccessKey} from "./models/managementV1OwnedAccessKey"
 import {ManagementV1ProjectChartInfo} from "./models/managementV1ProjectChartInfo"
@@ -43,16 +51,12 @@ import {ManagementV1ProjectImportSpace} from "./models/managementV1ProjectImport
 import {ManagementV1ProjectMembers} from "./models/managementV1ProjectMembers"
 import {ManagementV1ProjectMigrateSpaceInstance} from "./models/managementV1ProjectMigrateSpaceInstance"
 import {ManagementV1ProjectMigrateVirtualClusterInstance} from "./models/managementV1ProjectMigrateVirtualClusterInstance"
-import {ManagementV1ProjectRunners} from "./models/managementV1ProjectRunners"
 import {ManagementV1ProjectSecret} from "./models/managementV1ProjectSecret"
 import {ManagementV1ProjectTemplates} from "./models/managementV1ProjectTemplates"
 import {ManagementV1Project} from "./models/managementV1Project"
 import {ManagementV1RedirectToken} from "./models/managementV1RedirectToken"
 import {ManagementV1RegisterVirtualCluster} from "./models/managementV1RegisterVirtualCluster"
 import {ManagementV1ResetAccessKey} from "./models/managementV1ResetAccessKey"
-import {ManagementV1RunnerAccessKey} from "./models/managementV1RunnerAccessKey"
-import {ManagementV1RunnerConfig} from "./models/managementV1RunnerConfig"
-import {ManagementV1Runner} from "./models/managementV1Runner"
 import {ManagementV1SelfSubjectAccessReview} from "./models/managementV1SelfSubjectAccessReview"
 import {ManagementV1Self} from "./models/managementV1Self"
 import {ManagementV1SharedSecret} from "./models/managementV1SharedSecret"
@@ -63,10 +67,13 @@ import {ManagementV1TaskLog} from "./models/managementV1TaskLog"
 import {ManagementV1Task} from "./models/managementV1Task"
 import {ManagementV1TeamAccessKeys} from "./models/managementV1TeamAccessKeys"
 import {ManagementV1TeamClusters} from "./models/managementV1TeamClusters"
+import {ManagementV1TeamObjectPermissions} from "./models/managementV1TeamObjectPermissions"
+import {ManagementV1TeamPermissions} from "./models/managementV1TeamPermissions"
 import {ManagementV1Team} from "./models/managementV1Team"
 import {ManagementV1TranslateVClusterResourceName} from "./models/managementV1TranslateVClusterResourceName"
 import {ManagementV1UserAccessKeys} from "./models/managementV1UserAccessKeys"
 import {ManagementV1UserClusters} from "./models/managementV1UserClusters"
+import {ManagementV1UserObjectPermissions} from "./models/managementV1UserObjectPermissions"
 import {ManagementV1UserPermissions} from "./models/managementV1UserPermissions"
 import {ManagementV1UserProfile} from "./models/managementV1UserProfile"
 import {ManagementV1User} from "./models/managementV1User"
@@ -75,6 +82,8 @@ import {ManagementV1VirtualClusterExternalDatabase} from "./models/managementV1V
 import {ManagementV1VirtualClusterInstanceKubeConfig} from "./models/managementV1VirtualClusterInstanceKubeConfig"
 import {ManagementV1VirtualClusterInstanceLog} from "./models/managementV1VirtualClusterInstanceLog"
 import {ManagementV1VirtualClusterInstance} from "./models/managementV1VirtualClusterInstance"
+import {ManagementV1VirtualClusterNodeAccessKey} from "./models/managementV1VirtualClusterNodeAccessKey"
+import {ManagementV1VirtualClusterSchema} from "./models/managementV1VirtualClusterSchema"
 import {ManagementV1VirtualClusterTemplate} from "./models/managementV1VirtualClusterTemplate"
 
 export type TGenResources = {
@@ -94,13 +103,18 @@ export type TGenResources = {
   ManagementV1ClusterMembers: GroupVersionResource<ManagementV1ClusterMembers>
   ManagementV1ClusterReset: GroupVersionResource<ManagementV1ClusterReset>
   ManagementV1ClusterRoleTemplate: GroupVersionResource<ManagementV1ClusterRoleTemplate>
-  ManagementV1ClusterVirtualClusterDefaults: GroupVersionResource<ManagementV1ClusterVirtualClusterDefaults>
   ManagementV1Config: GroupVersionResource<ManagementV1Config>
   ManagementV1ConvertVirtualClusterConfig: GroupVersionResource<ManagementV1ConvertVirtualClusterConfig>
+  ManagementV1DatabaseConnector: GroupVersionResource<ManagementV1DatabaseConnector>
   ManagementV1DevPodEnvironmentTemplate: GroupVersionResource<ManagementV1DevPodEnvironmentTemplate>
   ManagementV1DevPodWorkspaceInstance: GroupVersionResource<ManagementV1DevPodWorkspaceInstance>
-  ManagementV1DevPodWorkspaceInstanceState: GroupVersionResource<ManagementV1DevPodWorkspaceInstanceState>
+  ManagementV1DevPodWorkspaceInstanceCancel: GroupVersionResource<ManagementV1DevPodWorkspaceInstanceCancel>
+  ManagementV1DevPodWorkspaceInstanceDownload: GroupVersionResource<ManagementV1DevPodWorkspaceInstanceDownload>
+  ManagementV1DevPodWorkspaceInstanceLog: GroupVersionResource<ManagementV1DevPodWorkspaceInstanceLog>
+  ManagementV1DevPodWorkspaceInstanceStop: GroupVersionResource<ManagementV1DevPodWorkspaceInstanceStop>
+  ManagementV1DevPodWorkspaceInstanceTasks: GroupVersionResource<ManagementV1DevPodWorkspaceInstanceTasks>
   ManagementV1DevPodWorkspaceInstanceTroubleshoot: GroupVersionResource<ManagementV1DevPodWorkspaceInstanceTroubleshoot>
+  ManagementV1DevPodWorkspaceInstanceUp: GroupVersionResource<ManagementV1DevPodWorkspaceInstanceUp>
   ManagementV1DevPodWorkspacePreset: GroupVersionResource<ManagementV1DevPodWorkspacePreset>
   ManagementV1DevPodWorkspaceTemplate: GroupVersionResource<ManagementV1DevPodWorkspaceTemplate>
   ManagementV1DirectClusterEndpointToken: GroupVersionResource<ManagementV1DirectClusterEndpointToken>
@@ -112,6 +126,9 @@ export type TGenResources = {
   ManagementV1LicenseRequest: GroupVersionResource<ManagementV1LicenseRequest>
   ManagementV1LicenseToken: GroupVersionResource<ManagementV1LicenseToken>
   ManagementV1LoftUpgrade: GroupVersionResource<ManagementV1LoftUpgrade>
+  ManagementV1NodeClaim: GroupVersionResource<ManagementV1NodeClaim>
+  ManagementV1NodeProvider: GroupVersionResource<ManagementV1NodeProvider>
+  ManagementV1NodeType: GroupVersionResource<ManagementV1NodeType>
   ManagementV1OIDCClient: GroupVersionResource<ManagementV1OIDCClient>
   ManagementV1OwnedAccessKey: GroupVersionResource<ManagementV1OwnedAccessKey>
   ManagementV1Project: GroupVersionResource<ManagementV1Project>
@@ -122,15 +139,11 @@ export type TGenResources = {
   ManagementV1ProjectMembers: GroupVersionResource<ManagementV1ProjectMembers>
   ManagementV1ProjectMigrateSpaceInstance: GroupVersionResource<ManagementV1ProjectMigrateSpaceInstance>
   ManagementV1ProjectMigrateVirtualClusterInstance: GroupVersionResource<ManagementV1ProjectMigrateVirtualClusterInstance>
-  ManagementV1ProjectRunners: GroupVersionResource<ManagementV1ProjectRunners>
   ManagementV1ProjectSecret: GroupVersionResource<ManagementV1ProjectSecret>
   ManagementV1ProjectTemplates: GroupVersionResource<ManagementV1ProjectTemplates>
   ManagementV1RedirectToken: GroupVersionResource<ManagementV1RedirectToken>
   ManagementV1RegisterVirtualCluster: GroupVersionResource<ManagementV1RegisterVirtualCluster>
   ManagementV1ResetAccessKey: GroupVersionResource<ManagementV1ResetAccessKey>
-  ManagementV1Runner: GroupVersionResource<ManagementV1Runner>
-  ManagementV1RunnerAccessKey: GroupVersionResource<ManagementV1RunnerAccessKey>
-  ManagementV1RunnerConfig: GroupVersionResource<ManagementV1RunnerConfig>
   ManagementV1Self: GroupVersionResource<ManagementV1Self>
   ManagementV1SelfSubjectAccessReview: GroupVersionResource<ManagementV1SelfSubjectAccessReview>
   ManagementV1SharedSecret: GroupVersionResource<ManagementV1SharedSecret>
@@ -142,10 +155,13 @@ export type TGenResources = {
   ManagementV1Team: GroupVersionResource<ManagementV1Team>
   ManagementV1TeamAccessKeys: GroupVersionResource<ManagementV1TeamAccessKeys>
   ManagementV1TeamClusters: GroupVersionResource<ManagementV1TeamClusters>
+  ManagementV1TeamObjectPermissions: GroupVersionResource<ManagementV1TeamObjectPermissions>
+  ManagementV1TeamPermissions: GroupVersionResource<ManagementV1TeamPermissions>
   ManagementV1TranslateVClusterResourceName: GroupVersionResource<ManagementV1TranslateVClusterResourceName>
   ManagementV1User: GroupVersionResource<ManagementV1User>
   ManagementV1UserAccessKeys: GroupVersionResource<ManagementV1UserAccessKeys>
   ManagementV1UserClusters: GroupVersionResource<ManagementV1UserClusters>
+  ManagementV1UserObjectPermissions: GroupVersionResource<ManagementV1UserObjectPermissions>
   ManagementV1UserPermissions: GroupVersionResource<ManagementV1UserPermissions>
   ManagementV1UserProfile: GroupVersionResource<ManagementV1UserProfile>
   ManagementV1VirtualClusterAccessKey: GroupVersionResource<ManagementV1VirtualClusterAccessKey>
@@ -153,6 +169,8 @@ export type TGenResources = {
   ManagementV1VirtualClusterInstance: GroupVersionResource<ManagementV1VirtualClusterInstance>
   ManagementV1VirtualClusterInstanceKubeConfig: GroupVersionResource<ManagementV1VirtualClusterInstanceKubeConfig>
   ManagementV1VirtualClusterInstanceLog: GroupVersionResource<ManagementV1VirtualClusterInstanceLog>
+  ManagementV1VirtualClusterNodeAccessKey: GroupVersionResource<ManagementV1VirtualClusterNodeAccessKey>
+  ManagementV1VirtualClusterSchema: GroupVersionResource<ManagementV1VirtualClusterSchema>
   ManagementV1VirtualClusterTemplate: GroupVersionResource<ManagementV1VirtualClusterTemplate>
 }
 
@@ -285,14 +303,6 @@ export const GenResources: TGenResources = {
     namespaced: false,
     kind: "ClusterRoleTemplate",
   },
-  ManagementV1ClusterVirtualClusterDefaults: {
-    group: "management.loft.sh",
-    version: "v1",
-    resource: "clusters",
-    subResource: "virtualclusterdefaults",
-    namespaced: false,
-    kind: "ClusterVirtualClusterDefaults",
-  },
   ManagementV1Config: {
     group: "management.loft.sh",
     version: "v1",
@@ -308,6 +318,14 @@ export const GenResources: TGenResources = {
     subResource: "",
     namespaced: false,
     kind: "ConvertVirtualClusterConfig",
+  },
+  ManagementV1DatabaseConnector: {
+    group: "management.loft.sh",
+    version: "v1",
+    resource: "databaseconnectors",
+    subResource: "",
+    namespaced: false,
+    kind: "DatabaseConnector",
   },
   ManagementV1DevPodEnvironmentTemplate: {
     group: "management.loft.sh",
@@ -325,13 +343,45 @@ export const GenResources: TGenResources = {
     namespaced: true,
     kind: "DevPodWorkspaceInstance",
   },
-  ManagementV1DevPodWorkspaceInstanceState: {
+  ManagementV1DevPodWorkspaceInstanceCancel: {
     group: "management.loft.sh",
     version: "v1",
     resource: "devpodworkspaceinstances",
-    subResource: "state",
+    subResource: "cancel",
     namespaced: true,
-    kind: "DevPodWorkspaceInstanceState",
+    kind: "DevPodWorkspaceInstanceCancel",
+  },
+  ManagementV1DevPodWorkspaceInstanceDownload: {
+    group: "management.loft.sh",
+    version: "v1",
+    resource: "devpodworkspaceinstances",
+    subResource: "download",
+    namespaced: true,
+    kind: "DevPodWorkspaceInstanceDownload",
+  },
+  ManagementV1DevPodWorkspaceInstanceLog: {
+    group: "management.loft.sh",
+    version: "v1",
+    resource: "devpodworkspaceinstances",
+    subResource: "log",
+    namespaced: true,
+    kind: "DevPodWorkspaceInstanceLog",
+  },
+  ManagementV1DevPodWorkspaceInstanceStop: {
+    group: "management.loft.sh",
+    version: "v1",
+    resource: "devpodworkspaceinstances",
+    subResource: "stop",
+    namespaced: true,
+    kind: "DevPodWorkspaceInstanceStop",
+  },
+  ManagementV1DevPodWorkspaceInstanceTasks: {
+    group: "management.loft.sh",
+    version: "v1",
+    resource: "devpodworkspaceinstances",
+    subResource: "tasks",
+    namespaced: true,
+    kind: "DevPodWorkspaceInstanceTasks",
   },
   ManagementV1DevPodWorkspaceInstanceTroubleshoot: {
     group: "management.loft.sh",
@@ -340,6 +390,14 @@ export const GenResources: TGenResources = {
     subResource: "troubleshoot",
     namespaced: true,
     kind: "DevPodWorkspaceInstanceTroubleshoot",
+  },
+  ManagementV1DevPodWorkspaceInstanceUp: {
+    group: "management.loft.sh",
+    version: "v1",
+    resource: "devpodworkspaceinstances",
+    subResource: "up",
+    namespaced: true,
+    kind: "DevPodWorkspaceInstanceUp",
   },
   ManagementV1DevPodWorkspacePreset: {
     group: "management.loft.sh",
@@ -429,6 +487,30 @@ export const GenResources: TGenResources = {
     namespaced: false,
     kind: "LoftUpgrade",
   },
+  ManagementV1NodeClaim: {
+    group: "management.loft.sh",
+    version: "v1",
+    resource: "nodeclaims",
+    subResource: "",
+    namespaced: true,
+    kind: "NodeClaim",
+  },
+  ManagementV1NodeProvider: {
+    group: "management.loft.sh",
+    version: "v1",
+    resource: "nodeproviders",
+    subResource: "",
+    namespaced: false,
+    kind: "NodeProvider",
+  },
+  ManagementV1NodeType: {
+    group: "management.loft.sh",
+    version: "v1",
+    resource: "nodetypes",
+    subResource: "",
+    namespaced: false,
+    kind: "NodeType",
+  },
   ManagementV1OIDCClient: {
     group: "management.loft.sh",
     version: "v1",
@@ -509,14 +591,6 @@ export const GenResources: TGenResources = {
     namespaced: false,
     kind: "ProjectMigrateVirtualClusterInstance",
   },
-  ManagementV1ProjectRunners: {
-    group: "management.loft.sh",
-    version: "v1",
-    resource: "projects",
-    subResource: "runners",
-    namespaced: false,
-    kind: "ProjectRunners",
-  },
   ManagementV1ProjectSecret: {
     group: "management.loft.sh",
     version: "v1",
@@ -556,30 +630,6 @@ export const GenResources: TGenResources = {
     subResource: "",
     namespaced: false,
     kind: "ResetAccessKey",
-  },
-  ManagementV1Runner: {
-    group: "management.loft.sh",
-    version: "v1",
-    resource: "runners",
-    subResource: "",
-    namespaced: false,
-    kind: "Runner",
-  },
-  ManagementV1RunnerAccessKey: {
-    group: "management.loft.sh",
-    version: "v1",
-    resource: "runners",
-    subResource: "accesskey",
-    namespaced: false,
-    kind: "RunnerAccessKey",
-  },
-  ManagementV1RunnerConfig: {
-    group: "management.loft.sh",
-    version: "v1",
-    resource: "runners",
-    subResource: "config",
-    namespaced: false,
-    kind: "RunnerConfig",
   },
   ManagementV1Self: {
     group: "management.loft.sh",
@@ -669,6 +719,22 @@ export const GenResources: TGenResources = {
     namespaced: false,
     kind: "TeamClusters",
   },
+  ManagementV1TeamObjectPermissions: {
+    group: "management.loft.sh",
+    version: "v1",
+    resource: "teams",
+    subResource: "object-permissions",
+    namespaced: false,
+    kind: "TeamObjectPermissions",
+  },
+  ManagementV1TeamPermissions: {
+    group: "management.loft.sh",
+    version: "v1",
+    resource: "teams",
+    subResource: "permissions",
+    namespaced: false,
+    kind: "TeamPermissions",
+  },
   ManagementV1TranslateVClusterResourceName: {
     group: "management.loft.sh",
     version: "v1",
@@ -700,6 +766,14 @@ export const GenResources: TGenResources = {
     subResource: "clusters",
     namespaced: false,
     kind: "UserClusters",
+  },
+  ManagementV1UserObjectPermissions: {
+    group: "management.loft.sh",
+    version: "v1",
+    resource: "users",
+    subResource: "object-permissions",
+    namespaced: false,
+    kind: "UserObjectPermissions",
   },
   ManagementV1UserPermissions: {
     group: "management.loft.sh",
@@ -756,6 +830,22 @@ export const GenResources: TGenResources = {
     subResource: "log",
     namespaced: true,
     kind: "VirtualClusterInstanceLog",
+  },
+  ManagementV1VirtualClusterNodeAccessKey: {
+    group: "management.loft.sh",
+    version: "v1",
+    resource: "virtualclusterinstances",
+    subResource: "nodeaccesskey",
+    namespaced: true,
+    kind: "VirtualClusterNodeAccessKey",
+  },
+  ManagementV1VirtualClusterSchema: {
+    group: "management.loft.sh",
+    version: "v1",
+    resource: "virtualclusterschemas",
+    subResource: "",
+    namespaced: false,
+    kind: "VirtualClusterSchema",
   },
   ManagementV1VirtualClusterTemplate: {
     group: "management.loft.sh",

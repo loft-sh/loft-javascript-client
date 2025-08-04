@@ -10,6 +10,7 @@
  * Do not edit the class manually.
  */
 
+import { UiV1ExternalURLs } from '../models/uiV1ExternalURLs';
 import { UiV1NavBarButton } from '../models/uiV1NavBarButton';
 
 
@@ -26,6 +27,7 @@ export class UiV1UISettingsConfig {
     * CustomJavaScript holds URLs with custom js files that should be included when loading the UI
     */
     'customJavaScript'?: Array<string>;
+    'externalURLs'?: UiV1ExternalURLs;
     /**
     * LegalTemplate is a text (html) string containing the legal template to prompt to users when authenticating to Loft
     */
@@ -54,6 +56,10 @@ export class UiV1UISettingsConfig {
     * SidebarColor is the color value (ex: \"#12345\") to use for the sidebar
     */
     'sidebarColor'?: string;
+    /**
+    * SmallLogoURL is url pointing to the small logo to use in the Loft UI. This path must be accessible for clients accessing the Loft UI!
+    */
+    'smallLogoURL'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -74,6 +80,12 @@ export class UiV1UISettingsConfig {
             "name": "customJavaScript",
             "baseName": "customJavaScript",
             "type": "Array<string>",
+            "format": ""
+        },
+        {
+            "name": "externalURLs",
+            "baseName": "externalURLs",
+            "type": "UiV1ExternalURLs",
             "format": ""
         },
         {
@@ -115,6 +127,12 @@ export class UiV1UISettingsConfig {
         {
             "name": "sidebarColor",
             "baseName": "sidebarColor",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "smallLogoURL",
+            "baseName": "smallLogoURL",
             "type": "string",
             "format": ""
         }    ];
