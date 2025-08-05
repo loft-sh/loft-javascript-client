@@ -15,12 +15,12 @@ import { V1SecretEnvSource } from '../models/V1SecretEnvSource';
 
 
 /**
-* EnvFromSource represents the source of a set of ConfigMaps or Secrets
+* EnvFromSource represents the source of a set of ConfigMaps
 */
 export class V1EnvFromSource {
     'configMapRef'?: V1ConfigMapEnvSource;
     /**
-    * Optional text to prepend to the name of each environment variable. Must be a C_IDENTIFIER.
+    * An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.
     */
     'prefix'?: string;
     'secretRef'?: V1SecretEnvSource;
