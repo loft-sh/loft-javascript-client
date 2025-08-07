@@ -64,7 +64,6 @@ export enum V1ResourceQuotaSpecScopesEnum {
     NotBestEffort = 'NotBestEffort',
     NotTerminating = 'NotTerminating',
     PriorityClass = 'PriorityClass',
-    Terminating = 'Terminating',
-    VolumeAttributesClass = 'VolumeAttributesClass'
+    Terminating = 'Terminating'
 }
 
