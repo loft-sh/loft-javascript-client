@@ -10,15 +10,15 @@
  * Do not edit the class manually.
  */
 
-import { UiV1UISettingsSpec } from '../models/uiV1UISettingsSpec';
-import { UiV1UISettingsStatus } from '../models/uiV1UISettingsStatus';
+import { ManagementV1NodeClaimSpec } from '../models/managementV1NodeClaimSpec';
+import { ManagementV1NodeClaimStatus } from '../models/managementV1NodeClaimStatus';
 import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
 /**
-* UISettings holds the loft ui configuration settings
+* NodeClaim holds the node claim for vCluster.
 */
-export class UiV1UISettings {
+export class ManagementV1NodeClaim {
     /**
     * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
     */
@@ -28,8 +28,8 @@ export class UiV1UISettings {
     */
     'kind'?: string;
     'metadata'?: V1ObjectMeta;
-    'spec'?: UiV1UISettingsSpec;
-    'status'?: UiV1UISettingsStatus;
+    'spec'?: ManagementV1NodeClaimSpec;
+    'status'?: ManagementV1NodeClaimStatus;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -55,18 +55,18 @@ export class UiV1UISettings {
         {
             "name": "spec",
             "baseName": "spec",
-            "type": "UiV1UISettingsSpec",
+            "type": "ManagementV1NodeClaimSpec",
             "format": ""
         },
         {
             "name": "status",
             "baseName": "status",
-            "type": "UiV1UISettingsStatus",
+            "type": "ManagementV1NodeClaimStatus",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return UiV1UISettings.attributeTypeMap;
+        return ManagementV1NodeClaim.attributeTypeMap;
     }
 
     public constructor() {
