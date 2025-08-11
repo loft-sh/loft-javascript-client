@@ -10,15 +10,15 @@
  * Do not edit the class manually.
  */
 
-import { UiV1UISettingsSpec } from '../models/uiV1UISettingsSpec';
-import { UiV1UISettingsStatus } from '../models/uiV1UISettingsStatus';
+import { ManagementV1NodeProviderSpec } from '../models/managementV1NodeProviderSpec';
+import { ManagementV1NodeProviderStatus } from '../models/managementV1NodeProviderStatus';
 import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
 /**
-* UISettings holds the loft ui configuration settings
+* NodeProvider holds the information of a node provider config. This resource defines various ways a node can be provisioned or configured.
 */
-export class UiV1UISettings {
+export class ManagementV1NodeProvider {
     /**
     * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
     */
@@ -28,8 +28,8 @@ export class UiV1UISettings {
     */
     'kind'?: string;
     'metadata'?: V1ObjectMeta;
-    'spec'?: UiV1UISettingsSpec;
-    'status'?: UiV1UISettingsStatus;
+    'spec'?: ManagementV1NodeProviderSpec;
+    'status'?: ManagementV1NodeProviderStatus;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -55,18 +55,18 @@ export class UiV1UISettings {
         {
             "name": "spec",
             "baseName": "spec",
-            "type": "UiV1UISettingsSpec",
+            "type": "ManagementV1NodeProviderSpec",
             "format": ""
         },
         {
             "name": "status",
             "baseName": "status",
-            "type": "UiV1UISettingsStatus",
+            "type": "ManagementV1NodeProviderStatus",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return UiV1UISettings.attributeTypeMap;
+        return ManagementV1NodeProvider.attributeTypeMap;
     }
 
     public constructor() {

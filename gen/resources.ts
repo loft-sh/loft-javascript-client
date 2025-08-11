@@ -39,6 +39,11 @@ import {ManagementV1LicenseRequest} from "./models/managementV1LicenseRequest"
 import {ManagementV1LicenseToken} from "./models/managementV1LicenseToken"
 import {ManagementV1License} from "./models/managementV1License"
 import {ManagementV1LoftUpgrade} from "./models/managementV1LoftUpgrade"
+import {ManagementV1NodeClaim} from "./models/managementV1NodeClaim"
+import {ManagementV1NodeEnvironment} from "./models/managementV1NodeEnvironment"
+import {ManagementV1NodeProviderExec} from "./models/managementV1NodeProviderExec"
+import {ManagementV1NodeProvider} from "./models/managementV1NodeProvider"
+import {ManagementV1NodeType} from "./models/managementV1NodeType"
 import {ManagementV1OIDCClient} from "./models/managementV1OIDCClient"
 import {ManagementV1OwnedAccessKey} from "./models/managementV1OwnedAccessKey"
 import {ManagementV1ProjectChartInfo} from "./models/managementV1ProjectChartInfo"
@@ -48,6 +53,7 @@ import {ManagementV1ProjectImportSpace} from "./models/managementV1ProjectImport
 import {ManagementV1ProjectMembers} from "./models/managementV1ProjectMembers"
 import {ManagementV1ProjectMigrateSpaceInstance} from "./models/managementV1ProjectMigrateSpaceInstance"
 import {ManagementV1ProjectMigrateVirtualClusterInstance} from "./models/managementV1ProjectMigrateVirtualClusterInstance"
+import {ManagementV1ProjectNodeTypes} from "./models/managementV1ProjectNodeTypes"
 import {ManagementV1ProjectSecret} from "./models/managementV1ProjectSecret"
 import {ManagementV1ProjectTemplates} from "./models/managementV1ProjectTemplates"
 import {ManagementV1Project} from "./models/managementV1Project"
@@ -79,6 +85,7 @@ import {ManagementV1VirtualClusterExternalDatabase} from "./models/managementV1V
 import {ManagementV1VirtualClusterInstanceKubeConfig} from "./models/managementV1VirtualClusterInstanceKubeConfig"
 import {ManagementV1VirtualClusterInstanceLog} from "./models/managementV1VirtualClusterInstanceLog"
 import {ManagementV1VirtualClusterInstance} from "./models/managementV1VirtualClusterInstance"
+import {ManagementV1VirtualClusterNodeAccessKey} from "./models/managementV1VirtualClusterNodeAccessKey"
 import {ManagementV1VirtualClusterSchema} from "./models/managementV1VirtualClusterSchema"
 import {ManagementV1VirtualClusterTemplate} from "./models/managementV1VirtualClusterTemplate"
 
@@ -122,6 +129,11 @@ export type TGenResources = {
   ManagementV1LicenseRequest: GroupVersionResource<ManagementV1LicenseRequest>
   ManagementV1LicenseToken: GroupVersionResource<ManagementV1LicenseToken>
   ManagementV1LoftUpgrade: GroupVersionResource<ManagementV1LoftUpgrade>
+  ManagementV1NodeClaim: GroupVersionResource<ManagementV1NodeClaim>
+  ManagementV1NodeEnvironment: GroupVersionResource<ManagementV1NodeEnvironment>
+  ManagementV1NodeProvider: GroupVersionResource<ManagementV1NodeProvider>
+  ManagementV1NodeProviderExec: GroupVersionResource<ManagementV1NodeProviderExec>
+  ManagementV1NodeType: GroupVersionResource<ManagementV1NodeType>
   ManagementV1OIDCClient: GroupVersionResource<ManagementV1OIDCClient>
   ManagementV1OwnedAccessKey: GroupVersionResource<ManagementV1OwnedAccessKey>
   ManagementV1Project: GroupVersionResource<ManagementV1Project>
@@ -132,6 +144,7 @@ export type TGenResources = {
   ManagementV1ProjectMembers: GroupVersionResource<ManagementV1ProjectMembers>
   ManagementV1ProjectMigrateSpaceInstance: GroupVersionResource<ManagementV1ProjectMigrateSpaceInstance>
   ManagementV1ProjectMigrateVirtualClusterInstance: GroupVersionResource<ManagementV1ProjectMigrateVirtualClusterInstance>
+  ManagementV1ProjectNodeTypes: GroupVersionResource<ManagementV1ProjectNodeTypes>
   ManagementV1ProjectSecret: GroupVersionResource<ManagementV1ProjectSecret>
   ManagementV1ProjectTemplates: GroupVersionResource<ManagementV1ProjectTemplates>
   ManagementV1RedirectToken: GroupVersionResource<ManagementV1RedirectToken>
@@ -162,6 +175,7 @@ export type TGenResources = {
   ManagementV1VirtualClusterInstance: GroupVersionResource<ManagementV1VirtualClusterInstance>
   ManagementV1VirtualClusterInstanceKubeConfig: GroupVersionResource<ManagementV1VirtualClusterInstanceKubeConfig>
   ManagementV1VirtualClusterInstanceLog: GroupVersionResource<ManagementV1VirtualClusterInstanceLog>
+  ManagementV1VirtualClusterNodeAccessKey: GroupVersionResource<ManagementV1VirtualClusterNodeAccessKey>
   ManagementV1VirtualClusterSchema: GroupVersionResource<ManagementV1VirtualClusterSchema>
   ManagementV1VirtualClusterTemplate: GroupVersionResource<ManagementV1VirtualClusterTemplate>
 }
@@ -479,6 +493,46 @@ export const GenResources: TGenResources = {
     namespaced: false,
     kind: "LoftUpgrade",
   },
+  ManagementV1NodeClaim: {
+    group: "management.loft.sh",
+    version: "v1",
+    resource: "nodeclaims",
+    subResource: "",
+    namespaced: true,
+    kind: "NodeClaim",
+  },
+  ManagementV1NodeEnvironment: {
+    group: "management.loft.sh",
+    version: "v1",
+    resource: "nodeenvironments",
+    subResource: "",
+    namespaced: true,
+    kind: "NodeEnvironment",
+  },
+  ManagementV1NodeProvider: {
+    group: "management.loft.sh",
+    version: "v1",
+    resource: "nodeproviders",
+    subResource: "",
+    namespaced: false,
+    kind: "NodeProvider",
+  },
+  ManagementV1NodeProviderExec: {
+    group: "management.loft.sh",
+    version: "v1",
+    resource: "nodeproviders",
+    subResource: "exec",
+    namespaced: false,
+    kind: "NodeProviderExec",
+  },
+  ManagementV1NodeType: {
+    group: "management.loft.sh",
+    version: "v1",
+    resource: "nodetypes",
+    subResource: "",
+    namespaced: false,
+    kind: "NodeType",
+  },
   ManagementV1OIDCClient: {
     group: "management.loft.sh",
     version: "v1",
@@ -558,6 +612,14 @@ export const GenResources: TGenResources = {
     subResource: "migratevirtualclusterinstance",
     namespaced: false,
     kind: "ProjectMigrateVirtualClusterInstance",
+  },
+  ManagementV1ProjectNodeTypes: {
+    group: "management.loft.sh",
+    version: "v1",
+    resource: "projects",
+    subResource: "nodetypes",
+    namespaced: false,
+    kind: "ProjectNodeTypes",
   },
   ManagementV1ProjectSecret: {
     group: "management.loft.sh",
@@ -798,6 +860,14 @@ export const GenResources: TGenResources = {
     subResource: "log",
     namespaced: true,
     kind: "VirtualClusterInstanceLog",
+  },
+  ManagementV1VirtualClusterNodeAccessKey: {
+    group: "management.loft.sh",
+    version: "v1",
+    resource: "virtualclusterinstances",
+    subResource: "nodeaccesskey",
+    namespaced: true,
+    kind: "VirtualClusterNodeAccessKey",
   },
   ManagementV1VirtualClusterSchema: {
     group: "management.loft.sh",
