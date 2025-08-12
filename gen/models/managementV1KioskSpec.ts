@@ -15,6 +15,9 @@ import { ClusterV1HelmRelease } from '../models/clusterV1HelmRelease';
 import { ClusterV1SleepModeConfig } from '../models/clusterV1SleepModeConfig';
 import { StorageV1ClusterQuota } from '../models/agentstorageV1ClusterQuota';
 import { ManagementV1License } from '../models/managementV1License';
+import { ManagementV1NodeProviderBCMGetResourcesResult } from '../models/managementV1NodeProviderBCMGetResourcesResult';
+import { ManagementV1NodeProviderBCMNodeWithResources } from '../models/managementV1NodeProviderBCMNodeWithResources';
+import { ManagementV1NodeProviderBCMTestConnectionResult } from '../models/managementV1NodeProviderBCMTestConnectionResult';
 import { UiV1UISettings } from '../models/uiV1UISettings';
 
 
@@ -23,6 +26,9 @@ export class ManagementV1KioskSpec {
     'chartInfo'?: ClusterV1ChartInfo;
     'helmRelease'?: ClusterV1HelmRelease;
     'license'?: ManagementV1License;
+    'nodeProviderBCMGetResourcesResult'?: ManagementV1NodeProviderBCMGetResourcesResult;
+    'nodeProviderBCMNodeWithResources'?: ManagementV1NodeProviderBCMNodeWithResources;
+    'nodeProviderBCMTestConnectionResult'?: ManagementV1NodeProviderBCMTestConnectionResult;
     'sleepModeConfig'?: ClusterV1SleepModeConfig;
     'storageClusterQuota'?: StorageV1ClusterQuota;
 
@@ -51,6 +57,24 @@ export class ManagementV1KioskSpec {
             "name": "license",
             "baseName": "license",
             "type": "ManagementV1License",
+            "format": ""
+        },
+        {
+            "name": "nodeProviderBCMGetResourcesResult",
+            "baseName": "nodeProviderBCMGetResourcesResult",
+            "type": "ManagementV1NodeProviderBCMGetResourcesResult",
+            "format": ""
+        },
+        {
+            "name": "nodeProviderBCMNodeWithResources",
+            "baseName": "nodeProviderBCMNodeWithResources",
+            "type": "ManagementV1NodeProviderBCMNodeWithResources",
+            "format": ""
+        },
+        {
+            "name": "nodeProviderBCMTestConnectionResult",
+            "baseName": "nodeProviderBCMTestConnectionResult",
+            "type": "ManagementV1NodeProviderBCMTestConnectionResult",
             "format": ""
         },
         {
