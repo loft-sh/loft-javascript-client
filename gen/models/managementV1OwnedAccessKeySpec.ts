@@ -10,10 +10,10 @@
  * Do not edit the class manually.
  */
 
+import { StorageV1AccessKeyIdentity } from '../models/storageV1AccessKeyIdentity';
 import { StorageV1AccessKeyOIDC } from '../models/storageV1AccessKeyOIDC';
 import { StorageV1AccessKeyOIDCProvider } from '../models/storageV1AccessKeyOIDCProvider';
 import { StorageV1AccessKeyScope } from '../models/storageV1AccessKeyScope';
-import { StorageV1SSOIdentity } from '../models/storageV1SSOIdentity';
 
 
 export class ManagementV1OwnedAccessKeySpec {
@@ -33,7 +33,7 @@ export class ManagementV1OwnedAccessKeySpec {
     * Groups specifies extra groups to apply when using this access key
     */
     'groups'?: Array<string>;
-    'identity'?: StorageV1SSOIdentity;
+    'identity'?: StorageV1AccessKeyIdentity;
     /**
     * The last time the identity was refreshed
     */
@@ -104,7 +104,7 @@ export class ManagementV1OwnedAccessKeySpec {
         {
             "name": "identity",
             "baseName": "identity",
-            "type": "StorageV1SSOIdentity",
+            "type": "StorageV1AccessKeyIdentity",
             "format": ""
         },
         {

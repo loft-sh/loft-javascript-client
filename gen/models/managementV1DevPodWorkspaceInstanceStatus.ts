@@ -12,15 +12,15 @@
 
 import { ClusterV1SleepModeConfig } from '../models/clusterV1SleepModeConfig';
 import { StorageV1Condition } from '../models/agentstorageV1Condition';
-import { StorageV1DevPodWorkspaceInstanceKubernetesStatus } from '../models/storageV1DevPodWorkspaceInstanceKubernetesStatus';
+import { StorageV1ClusterRef } from '../models/storageV1ClusterRef';
 import { StorageV1DevPodWorkspaceTemplateDefinition } from '../models/storageV1DevPodWorkspaceTemplateDefinition';
-import { StorageV1WorkspaceResolvedTarget } from '../models/storageV1WorkspaceResolvedTarget';
 
 
 /**
 * DevPodWorkspaceInstanceStatus holds the status
 */
 export class ManagementV1DevPodWorkspaceInstanceStatus {
+    'clusterRef'?: StorageV1ClusterRef;
     /**
     * Conditions holds several conditions the DevPod machine might be in
     */
@@ -30,7 +30,6 @@ export class ManagementV1DevPodWorkspaceInstanceStatus {
     */
     'ignoreReconciliation'?: boolean;
     'instance'?: StorageV1DevPodWorkspaceTemplateDefinition;
-    'kubernetes'?: StorageV1DevPodWorkspaceInstanceKubernetesStatus;
     /**
     * LastWorkspaceStatus is the last workspace status reported by the runner.
     */
@@ -47,12 +46,17 @@ export class ManagementV1DevPodWorkspaceInstanceStatus {
     * Reason describes the reason in machine-readable form why the cluster is in the current phase
     */
     'reason'?: string;
-    'resolvedTarget'?: StorageV1WorkspaceResolvedTarget;
     'sleepModeConfig'?: ClusterV1SleepModeConfig;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+        {
+            "name": "clusterRef",
+            "baseName": "clusterRef",
+            "type": "StorageV1ClusterRef",
+            "format": ""
+        },
         {
             "name": "conditions",
             "baseName": "conditions",
@@ -69,12 +73,6 @@ export class ManagementV1DevPodWorkspaceInstanceStatus {
             "name": "instance",
             "baseName": "instance",
             "type": "StorageV1DevPodWorkspaceTemplateDefinition",
-            "format": ""
-        },
-        {
-            "name": "kubernetes",
-            "baseName": "kubernetes",
-            "type": "StorageV1DevPodWorkspaceInstanceKubernetesStatus",
             "format": ""
         },
         {
@@ -99,12 +97,6 @@ export class ManagementV1DevPodWorkspaceInstanceStatus {
             "name": "reason",
             "baseName": "reason",
             "type": "string",
-            "format": ""
-        },
-        {
-            "name": "resolvedTarget",
-            "baseName": "resolvedTarget",
-            "type": "StorageV1WorkspaceResolvedTarget",
             "format": ""
         },
         {

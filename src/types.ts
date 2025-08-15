@@ -245,9 +245,6 @@ export interface GetOptions {
   pretty?: string
 
   extended?: string
-
-  // Used when querying ManagementV1TeamObjectPermissions or ManagementV1UserObjectPermissions
-  resource?: string
 }
 
 export interface ListOptions {

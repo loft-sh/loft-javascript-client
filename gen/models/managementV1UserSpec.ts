@@ -44,10 +44,6 @@ export class ManagementV1UserSpec {
     */
     'email'?: string;
     /**
-    * ExtraClaims are additional claims that have been added to the user by an admin.
-    */
-    'extraClaims'?: { [key: string]: string; };
-    /**
     * The groups the user has access to
     */
     'groups'?: Array<string>;
@@ -121,12 +117,6 @@ export class ManagementV1UserSpec {
             "name": "email",
             "baseName": "email",
             "type": "string",
-            "format": ""
-        },
-        {
-            "name": "extraClaims",
-            "baseName": "extraClaims",
-            "type": "{ [key: string]: string; }",
             "format": ""
         },
         {

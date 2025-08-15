@@ -19,14 +19,6 @@ export class StorageV1DevPodEnvironmentTemplateDefinition {
     * Inline holds an inline devcontainer.json definition
     */
     'inline'?: string;
-    /**
-    * WorkspaceRepositoryCloneStrategy determines how the workspaces git repository will be checked out in the pod if the workspace is git based  Possible enum values:  - `\"\"`  - `\"blobless\"`  - `\"shallow\"`  - `\"treeless\"`
-    */
-    'workspaceRepositoryCloneStrategy'?: StorageV1DevPodEnvironmentTemplateDefinitionWorkspaceRepositoryCloneStrategyEnum;
-    /**
-    * WorkspaceRepositorySkipLFS specifies if git lfs will be skipped when cloning the repository into the workspace
-    */
-    'workspaceRepositorySkipLFS'?: boolean;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -42,18 +34,6 @@ export class StorageV1DevPodEnvironmentTemplateDefinition {
             "baseName": "inline",
             "type": "string",
             "format": ""
-        },
-        {
-            "name": "workspaceRepositoryCloneStrategy",
-            "baseName": "workspaceRepositoryCloneStrategy",
-            "type": "StorageV1DevPodEnvironmentTemplateDefinitionWorkspaceRepositoryCloneStrategyEnum",
-            "format": ""
-        },
-        {
-            "name": "workspaceRepositorySkipLFS",
-            "baseName": "workspaceRepositorySkipLFS",
-            "type": "boolean",
-            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
@@ -62,13 +42,5 @@ export class StorageV1DevPodEnvironmentTemplateDefinition {
 
     public constructor() {
     }
-}
-
-
-export enum StorageV1DevPodEnvironmentTemplateDefinitionWorkspaceRepositoryCloneStrategyEnum {
-    Empty = '',
-    Blobless = 'blobless',
-    Shallow = 'shallow',
-    Treeless = 'treeless'
 }
 

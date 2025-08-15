@@ -19,10 +19,6 @@ import { V1LifecycleHandler } from '../models/V1LifecycleHandler';
 export class V1Lifecycle {
     'postStart'?: V1LifecycleHandler;
     'preStop'?: V1LifecycleHandler;
-    /**
-    * StopSignal defines which signal will be sent to a container when it is being stopped. If not specified, the default is defined by the container runtime in use. StopSignal can only be set for Pods with a non-empty .spec.os.name  Possible enum values:  - `\"SIGABRT\"`  - `\"SIGALRM\"`  - `\"SIGBUS\"`  - `\"SIGCHLD\"`  - `\"SIGCLD\"`  - `\"SIGCONT\"`  - `\"SIGFPE\"`  - `\"SIGHUP\"`  - `\"SIGILL\"`  - `\"SIGINT\"`  - `\"SIGIO\"`  - `\"SIGIOT\"`  - `\"SIGKILL\"`  - `\"SIGPIPE\"`  - `\"SIGPOLL\"`  - `\"SIGPROF\"`  - `\"SIGPWR\"`  - `\"SIGQUIT\"`  - `\"SIGRTMAX\"`  - `\"SIGRTMAX-1\"`  - `\"SIGRTMAX-10\"`  - `\"SIGRTMAX-11\"`  - `\"SIGRTMAX-12\"`  - `\"SIGRTMAX-13\"`  - `\"SIGRTMAX-14\"`  - `\"SIGRTMAX-2\"`  - `\"SIGRTMAX-3\"`  - `\"SIGRTMAX-4\"`  - `\"SIGRTMAX-5\"`  - `\"SIGRTMAX-6\"`  - `\"SIGRTMAX-7\"`  - `\"SIGRTMAX-8\"`  - `\"SIGRTMAX-9\"`  - `\"SIGRTMIN\"`  - `\"SIGRTMIN+1\"`  - `\"SIGRTMIN+10\"`  - `\"SIGRTMIN+11\"`  - `\"SIGRTMIN+12\"`  - `\"SIGRTMIN+13\"`  - `\"SIGRTMIN+14\"`  - `\"SIGRTMIN+15\"`  - `\"SIGRTMIN+2\"`  - `\"SIGRTMIN+3\"`  - `\"SIGRTMIN+4\"`  - `\"SIGRTMIN+5\"`  - `\"SIGRTMIN+6\"`  - `\"SIGRTMIN+7\"`  - `\"SIGRTMIN+8\"`  - `\"SIGRTMIN+9\"`  - `\"SIGSEGV\"`  - `\"SIGSTKFLT\"`  - `\"SIGSTOP\"`  - `\"SIGSYS\"`  - `\"SIGTERM\"`  - `\"SIGTRAP\"`  - `\"SIGTSTP\"`  - `\"SIGTTIN\"`  - `\"SIGTTOU\"`  - `\"SIGURG\"`  - `\"SIGUSR1\"`  - `\"SIGUSR2\"`  - `\"SIGVTALRM\"`  - `\"SIGWINCH\"`  - `\"SIGXCPU\"`  - `\"SIGXFSZ\"`
-    */
-    'stopSignal'?: V1LifecycleStopSignalEnum;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -38,12 +34,6 @@ export class V1Lifecycle {
             "baseName": "preStop",
             "type": "V1LifecycleHandler",
             "format": ""
-        },
-        {
-            "name": "stopSignal",
-            "baseName": "stopSignal",
-            "type": "V1LifecycleStopSignalEnum",
-            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
@@ -52,74 +42,5 @@ export class V1Lifecycle {
 
     public constructor() {
     }
-}
-
-
-export enum V1LifecycleStopSignalEnum {
-    Sigabrt = 'SIGABRT',
-    Sigalrm = 'SIGALRM',
-    Sigbus = 'SIGBUS',
-    Sigchld = 'SIGCHLD',
-    Sigcld = 'SIGCLD',
-    Sigcont = 'SIGCONT',
-    Sigfpe = 'SIGFPE',
-    Sighup = 'SIGHUP',
-    Sigill = 'SIGILL',
-    Sigint = 'SIGINT',
-    Sigio = 'SIGIO',
-    Sigiot = 'SIGIOT',
-    Sigkill = 'SIGKILL',
-    Sigpipe = 'SIGPIPE',
-    Sigpoll = 'SIGPOLL',
-    Sigprof = 'SIGPROF',
-    Sigpwr = 'SIGPWR',
-    Sigquit = 'SIGQUIT',
-    Sigrtmax = 'SIGRTMAX',
-    Sigrtmax1 = 'SIGRTMAX-1',
-    Sigrtmax10 = 'SIGRTMAX-10',
-    Sigrtmax11 = 'SIGRTMAX-11',
-    Sigrtmax12 = 'SIGRTMAX-12',
-    Sigrtmax13 = 'SIGRTMAX-13',
-    Sigrtmax14 = 'SIGRTMAX-14',
-    Sigrtmax2 = 'SIGRTMAX-2',
-    Sigrtmax3 = 'SIGRTMAX-3',
-    Sigrtmax4 = 'SIGRTMAX-4',
-    Sigrtmax5 = 'SIGRTMAX-5',
-    Sigrtmax6 = 'SIGRTMAX-6',
-    Sigrtmax7 = 'SIGRTMAX-7',
-    Sigrtmax8 = 'SIGRTMAX-8',
-    Sigrtmax9 = 'SIGRTMAX-9',
-    Sigrtmin = 'SIGRTMIN',
-    Sigrtmin1 = 'SIGRTMIN+1',
-    Sigrtmin10 = 'SIGRTMIN+10',
-    Sigrtmin11 = 'SIGRTMIN+11',
-    Sigrtmin12 = 'SIGRTMIN+12',
-    Sigrtmin13 = 'SIGRTMIN+13',
-    Sigrtmin14 = 'SIGRTMIN+14',
-    Sigrtmin15 = 'SIGRTMIN+15',
-    Sigrtmin2 = 'SIGRTMIN+2',
-    Sigrtmin3 = 'SIGRTMIN+3',
-    Sigrtmin4 = 'SIGRTMIN+4',
-    Sigrtmin5 = 'SIGRTMIN+5',
-    Sigrtmin6 = 'SIGRTMIN+6',
-    Sigrtmin7 = 'SIGRTMIN+7',
-    Sigrtmin8 = 'SIGRTMIN+8',
-    Sigrtmin9 = 'SIGRTMIN+9',
-    Sigsegv = 'SIGSEGV',
-    Sigstkflt = 'SIGSTKFLT',
-    Sigstop = 'SIGSTOP',
-    Sigsys = 'SIGSYS',
-    Sigterm = 'SIGTERM',
-    Sigtrap = 'SIGTRAP',
-    Sigtstp = 'SIGTSTP',
-    Sigttin = 'SIGTTIN',
-    Sigttou = 'SIGTTOU',
-    Sigurg = 'SIGURG',
-    Sigusr1 = 'SIGUSR1',
-    Sigusr2 = 'SIGUSR2',
-    Sigvtalrm = 'SIGVTALRM',
-    Sigwinch = 'SIGWINCH',
-    Sigxcpu = 'SIGXCPU',
-    Sigxfsz = 'SIGXFSZ'
 }
 

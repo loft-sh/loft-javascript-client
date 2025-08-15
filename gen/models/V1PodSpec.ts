@@ -21,7 +21,6 @@ import { V1PodReadinessGate } from '../models/V1PodReadinessGate';
 import { V1PodResourceClaim } from '../models/V1PodResourceClaim';
 import { V1PodSchedulingGate } from '../models/V1PodSchedulingGate';
 import { V1PodSecurityContext } from '../models/V1PodSecurityContext';
-import { V1ResourceRequirements } from '../models/V1ResourceRequirements';
 import { V1Toleration } from '../models/V1Toleration';
 import { V1TopologySpreadConstraint } from '../models/V1TopologySpreadConstraint';
 import { V1Volume } from '../models/V1Volume';
@@ -86,7 +85,7 @@ export class V1PodSpec {
     */
     'imagePullSecrets'?: Array<V1LocalObjectReference>;
     /**
-    * List of initialization containers belonging to the pod. Init containers are executed in order prior to containers being started. If any init container fails, the pod is considered to have failed and is handled according to its restartPolicy. The name for an init container or normal container must be unique among all containers. Init containers may not have Lifecycle actions, Readiness probes, Liveness probes, or Startup probes. The resourceRequirements of an init container are taken into account during scheduling by finding the highest request/limit for each resource type, and then using the max of that value or the sum of the normal containers. Limits are applied to init containers in a similar fashion. Init containers cannot currently be added or removed. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/
+    * List of initialization containers belonging to the pod. Init containers are executed in order prior to containers being started. If any init container fails, the pod is considered to have failed and is handled according to its restartPolicy. The name for an init container or normal container must be unique among all containers. Init containers may not have Lifecycle actions, Readiness probes, Liveness probes, or Startup probes. The resourceRequirements of an init container are taken into account during scheduling by finding the highest request/limit for each resource type, and then using the max of of that value or the sum of the normal containers. Limits are applied to init containers in a similar fashion. Init containers cannot currently be added or removed. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/
     */
     'initContainers'?: Array<V1Container>;
     /**
@@ -122,7 +121,6 @@ export class V1PodSpec {
     * ResourceClaims defines which ResourceClaims must be allocated and reserved before the Pod is allowed to start. The resources will be made available to those containers which consume them by name.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable.
     */
     'resourceClaims'?: Array<V1PodResourceClaim>;
-    'resources'?: V1ResourceRequirements;
     /**
     * Restart policy for all containers within the pod. One of Always, OnFailure, Never. In some contexts, only a subset of those values may be permitted. Default to Always. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy  Possible enum values:  - `\"Always\"`  - `\"Never\"`  - `\"OnFailure\"`
     */
@@ -328,12 +326,6 @@ export class V1PodSpec {
             "name": "resourceClaims",
             "baseName": "resourceClaims",
             "type": "Array<V1PodResourceClaim>",
-            "format": ""
-        },
-        {
-            "name": "resources",
-            "baseName": "resources",
-            "type": "V1ResourceRequirements",
             "format": ""
         },
         {

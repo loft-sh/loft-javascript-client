@@ -21,7 +21,7 @@ export class StorageV1DevPodWorkspaceProvider {
     /**
     * Name is the name of the provider. This can also be an url.
     */
-    'name'?: string;
+    'name': string;
     /**
     * Options are the provider option values
     */

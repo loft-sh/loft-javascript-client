@@ -15,7 +15,6 @@ import { ManagementV1Audit } from '../models/managementV1Audit';
 import { ManagementV1Authentication } from '../models/managementV1Authentication';
 import { ManagementV1Cloud } from '../models/managementV1Cloud';
 import { ManagementV1CostControl } from '../models/managementV1CostControl';
-import { ManagementV1ImageBuilder } from '../models/managementV1ImageBuilder';
 import { ManagementV1OIDC } from '../models/managementV1OIDC';
 import { StorageV1VaultIntegrationSpec } from '../models/storageV1VaultIntegrationSpec';
 import { UiV1UISettingsConfig } from '../models/uiV1UISettingsConfig';
@@ -38,7 +37,6 @@ export class ManagementV1ConfigStatus {
     * DisableLoftConfigEndpoint will disable setting config via the UI and config.management.loft.sh endpoint
     */
     'disableConfigEndpoint'?: boolean;
-    'imageBuilder'?: ManagementV1ImageBuilder;
     /**
     * LoftHost holds the domain where the loft instance is hosted. This should not include https or http. E.g. loft.my-domain.com
     */
@@ -94,12 +92,6 @@ export class ManagementV1ConfigStatus {
             "name": "disableConfigEndpoint",
             "baseName": "disableConfigEndpoint",
             "type": "boolean",
-            "format": ""
-        },
-        {
-            "name": "imageBuilder",
-            "baseName": "imageBuilder",
-            "type": "ManagementV1ImageBuilder",
             "format": ""
         },
         {

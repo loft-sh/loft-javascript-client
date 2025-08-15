@@ -77,10 +77,6 @@ export class UiV1UISettingsSpec {
     * SidebarColor is the color value (ex: \"#12345\") to use for the sidebar
     */
     'sidebarColor'?: string;
-    /**
-    * SmallLogoURL is url pointing to the small logo to use in the Loft UI. This path must be accessible for clients accessing the Loft UI!
-    */
-    'smallLogoURL'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -172,12 +168,6 @@ export class UiV1UISettingsSpec {
         {
             "name": "sidebarColor",
             "baseName": "sidebarColor",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "smallLogoURL",
-            "baseName": "smallLogoURL",
             "type": "string",
             "format": ""
         }    ];

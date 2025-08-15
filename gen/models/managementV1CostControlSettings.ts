@@ -10,7 +10,6 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1CostControlGPUSettings } from '../models/managementV1CostControlGPUSettings';
 import { ManagementV1CostControlResourcePrice } from '../models/managementV1CostControlResourcePrice';
 
 
@@ -18,7 +17,6 @@ export class ManagementV1CostControlSettings {
     'averageCPUPricePerNode'?: ManagementV1CostControlResourcePrice;
     'averageRAMPricePerNode'?: ManagementV1CostControlResourcePrice;
     'controlPlanePricePerCluster'?: ManagementV1CostControlResourcePrice;
-    'gpuSettings'?: ManagementV1CostControlGPUSettings;
     /**
     * PriceCurrency specifies the currency.
     */
@@ -43,12 +41,6 @@ export class ManagementV1CostControlSettings {
             "name": "controlPlanePricePerCluster",
             "baseName": "controlPlanePricePerCluster",
             "type": "ManagementV1CostControlResourcePrice",
-            "format": ""
-        },
-        {
-            "name": "gpuSettings",
-            "baseName": "gpuSettings",
-            "type": "ManagementV1CostControlGPUSettings",
             "format": ""
         },
         {

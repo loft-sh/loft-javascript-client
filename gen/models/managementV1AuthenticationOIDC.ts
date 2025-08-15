@@ -14,10 +14,6 @@
 
 export class ManagementV1AuthenticationOIDC {
     /**
-    * AllowedExtraClaims are claims of interest that are not part of User by default but may be provided by the OIDC provider.
-    */
-    'allowedExtraClaims'?: Array<string>;
-    /**
     * Path to a PEM encoded root certificate of the provider. Optional
     */
     'caFile'?: string;
@@ -93,12 +89,6 @@ export class ManagementV1AuthenticationOIDC {
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
-        {
-            "name": "allowedExtraClaims",
-            "baseName": "allowedExtraClaims",
-            "type": "Array<string>",
-            "format": ""
-        },
         {
             "name": "caFile",
             "baseName": "caFile",

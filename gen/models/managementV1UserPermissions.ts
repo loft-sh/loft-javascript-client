@@ -10,12 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1ClusterAccessRole } from '../models/managementV1ClusterAccessRole';
-import { ManagementV1ManagementRole } from '../models/managementV1ManagementRole';
-import { ManagementV1ObjectName } from '../models/managementV1ObjectName';
-import { ManagementV1ProjectMembership } from '../models/managementV1ProjectMembership';
 import { ManagementV1UserPermissionsRole } from '../models/managementV1UserPermissionsRole';
-import { ManagementV1VirtualClusterRole } from '../models/managementV1VirtualClusterRole';
 import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
@@ -25,10 +20,6 @@ export class ManagementV1UserPermissions {
     */
     'apiVersion'?: string;
     /**
-    * ClustersAccessRoles gives information about the user\'s assigned cluster roles and the clusters they apply to
-    */
-    'clusterAccessRoles'?: Array<ManagementV1ClusterAccessRole>;
-    /**
     * ClusterRoles that apply to the user.
     */
     'clusterRoles'?: Array<ManagementV1UserPermissionsRole>;
@@ -36,27 +27,11 @@ export class ManagementV1UserPermissions {
     * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
     */
     'kind'?: string;
-    /**
-    * ManagementRoles gives information about the user\'s assigned management roles
-    */
-    'managementRoles'?: Array<ManagementV1ManagementRole>;
     'metadata'?: V1ObjectMeta;
     /**
     * NamespaceRoles that apply to the user. Can be either regular roles or cluster roles that are namespace scoped.
     */
     'namespaceRoles'?: Array<ManagementV1UserPermissionsRole>;
-    /**
-    * ProjectMemberships gives information about the user\'s project membership
-    */
-    'projectMemberships'?: Array<ManagementV1ProjectMembership>;
-    /**
-    * TeamMemberships gives information about the user\'s team membership
-    */
-    'teamMemberships'?: Array<ManagementV1ObjectName>;
-    /**
-    * VirtualClusterRoles give information about the user\'s cluster role within the virtual cluster
-    */
-    'virtualClusterRoles'?: Array<ManagementV1VirtualClusterRole>;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -65,12 +40,6 @@ export class ManagementV1UserPermissions {
             "name": "apiVersion",
             "baseName": "apiVersion",
             "type": "string",
-            "format": ""
-        },
-        {
-            "name": "clusterAccessRoles",
-            "baseName": "clusterAccessRoles",
-            "type": "Array<ManagementV1ClusterAccessRole>",
             "format": ""
         },
         {
@@ -86,12 +55,6 @@ export class ManagementV1UserPermissions {
             "format": ""
         },
         {
-            "name": "managementRoles",
-            "baseName": "managementRoles",
-            "type": "Array<ManagementV1ManagementRole>",
-            "format": ""
-        },
-        {
             "name": "metadata",
             "baseName": "metadata",
             "type": "V1ObjectMeta",
@@ -101,24 +64,6 @@ export class ManagementV1UserPermissions {
             "name": "namespaceRoles",
             "baseName": "namespaceRoles",
             "type": "Array<ManagementV1UserPermissionsRole>",
-            "format": ""
-        },
-        {
-            "name": "projectMemberships",
-            "baseName": "projectMemberships",
-            "type": "Array<ManagementV1ProjectMembership>",
-            "format": ""
-        },
-        {
-            "name": "teamMemberships",
-            "baseName": "teamMemberships",
-            "type": "Array<ManagementV1ObjectName>",
-            "format": ""
-        },
-        {
-            "name": "virtualClusterRoles",
-            "baseName": "virtualClusterRoles",
-            "type": "Array<ManagementV1VirtualClusterRole>",
             "format": ""
         }    ];
 

@@ -11,12 +11,12 @@
   },
   "description": "loft-enterprise js client",
   "dependencies": {
-    "@kubernetes/client-node": "1.2.0",
+    "@kubernetes/client-node": "0.22.1",
     "js-cookie": "3.0.1",
     "json-merge-patch": "1.0.2"
   },
   "devDependencies": {
     "dts-bundle-generator": "8.0.1",
-    "esbuild": "0.25.0"
+    "esbuild": "0.17.18"
   }
 }

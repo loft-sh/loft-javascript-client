@@ -12,9 +12,6 @@
 
 
 
-/**
-* GRPCAction specifies an action involving a GRPC service.
-*/
 export class V1GRPCAction {
     /**
     * Port number of the gRPC service. Number must be in the range 1 to 65535.
