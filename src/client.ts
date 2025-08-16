@@ -487,11 +487,18 @@ class Client {
     })
   }
 
-  public cluster = <T>(name: string, groupVersionResource: GroupVersionResource<T>) => {
+  public cluster = <T>(
+    name: string,
+    groupVersionResource: GroupVersionResource<T>,
+    additionalHeaders: { [name: string]: string } = {}
+  ) => {
     return new Request<T>(this, {
       basePath: ClusterBasePath + name,
       groupVersionResource,
-      headers: this.impersonationHeaders(),
+      headers: {
+        ...this.impersonationHeaders(),
+        ...additionalHeaders,
+      },
     })
   }
 
@@ -504,7 +511,8 @@ class Client {
 
   public project = <T>(
     project: RequestOptionsProject,
-    groupVersionResource: GroupVersionResource<T>
+    groupVersionResource: GroupVersionResource<T>,
+    additionalHeaders: { [name: string]: string } = {}
   ) => {
     return new Request<T>(this, {
       basePath:
@@ -514,7 +522,10 @@ class Client {
         (project.space ? "space/" + project.space : "virtualcluster/" + project.virtualCluster),
       groupVersionResource,
       project,
-      headers: this.impersonationHeaders(getProjectExtraGroups(project)),
+      headers: {
+        ...this.impersonationHeaders(getProjectExtraGroups(project)),
+        ...additionalHeaders,
+      },
     })
   }
 
@@ -1099,7 +1110,7 @@ class Request<T> {
     )
   }
 
-  public async Create(obj: T, options?: CreateOptions): Promise<Result<T>> {
+  public async Create(obj: T, options?: CreateOptions, signal?: AbortSignal): Promise<Result<T>> {
     const path = this.buildPath(options)
     if (path.err) {
       return path
@@ -1111,6 +1122,7 @@ class Request<T> {
         {
           method: "POST",
           body: JSON.stringify(obj),
+          signal: signal,
         },
         { ...this.options.headers, "Content-Type": "application/json" }
       ),
