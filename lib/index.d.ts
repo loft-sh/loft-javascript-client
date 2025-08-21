@@ -635,9 +635,13 @@ export declare class Client {
 	private parseResponse;
 	management<T>(groupVersionResource: GroupVersionResource<T>): Request<T>;
 	managementNonResource: <T>() => Request<T>;
-	cluster: <T>(name: string, groupVersionResource: GroupVersionResource<T>) => Request<T>;
+	cluster: <T>(name: string, groupVersionResource: GroupVersionResource<T>, additionalHeaders?: {
+		[name: string]: string;
+	}) => Request<T>;
 	clusterNonResource: <T>(name: string) => Request<T>;
-	project: <T>(project: RequestOptionsProject, groupVersionResource: GroupVersionResource<T>) => Request<T>;
+	project: <T>(project: RequestOptionsProject, groupVersionResource: GroupVersionResource<T>, additionalHeaders?: {
+		[name: string]: string;
+	}) => Request<T>;
 	projectNonResource: <T>(project: RequestOptionsProject) => Request<T>;
 	vCluster<T>(vCluster: RequestOptionsVCluster, groupVersionResource: GroupVersionResource<T>): Request<T>;
 	vClusterNonResource<T>(vCluster: RequestOptionsVCluster): Request<T>;
@@ -673,7 +677,7 @@ declare class Request<T> {
 	Get(name: string, options?: GetOptions): Promise<Result<T>>;
 	List(options?: ListOptions): Promise<Result<List<T>>>;
 	ListTable(options?: ListOptions): Promise<Result<V1Table | List<T>>>;
-	Create(obj: T, options?: CreateOptions): Promise<Result<T>>;
+	Create(obj: T, options?: CreateOptions, signal?: AbortSignal): Promise<Result<T>>;
 	PatchObject<O extends object>(before: O, after: O, patchType?: string, options?: PatchOptions): Promise<Result<T>>;
 	Patch(name: string, patch: any, patchType?: string, options?: PatchOptions): Promise<Result<T>>;
 	Update(name: string, obj: T, options?: UpdateOptions): Promise<Result<T>>;
@@ -5072,6 +5076,26 @@ declare class ManagementV1OIDC {
 	}[];
 	constructor();
 }
+declare class ManagementV1PlatformDB {
+	/**
+	* StorageClass sets the storage class for the PersistentVolumeClaim used by the platform database statefulSet.
+	*/
+	"storageClass"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
 declare class V1SecretKeySelector {
 	/**
 	* The key of the secret to select from.  Must be a valid secret key.
@@ -5158,6 +5182,30 @@ declare class StorageV1VaultIntegrationSpec {
 	}[];
 	constructor();
 }
+declare class UiV1ExternalURLs {
+	/**
+	* Allow specifies which external URLs can be called. In addition to the predefined modules, - \"vcluster\" (license page, feature descriptions, ...) - \"gtm\" (google tag manager) - \"featurebase\" (changelog) any URL can be added to this list. This will allow the UI to make any request to this URL. This is only active when Block is true.
+	*/
+	"allow"?: Array<string>;
+	/**
+	* Block determines if requests to external URLs from the UI should be blocked
+	*/
+	"block"?: boolean;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
 declare class UiV1NavBarButton {
 	/**
 	* Icon holds the url of the icon to display
@@ -5203,6 +5251,7 @@ declare class UiV1UISettingsConfig {
 	* CustomJavaScript holds URLs with custom js files that should be included when loading the UI
 	*/
 	"customJavaScript"?: Array<string>;
+	"externalURLs"?: UiV1ExternalURLs;
 	/**
 	* LegalTemplate is a text (html) string containing the legal template to prompt to users when authenticating to Loft
 	*/
@@ -5270,6 +5319,7 @@ declare class ManagementV1ConfigStatus {
 	*/
 	"loftHost"?: string;
 	"oidc"?: ManagementV1OIDC;
+	"platformDB"?: ManagementV1PlatformDB;
 	/**
 	* ProjectNamespacePrefix holds the prefix for loft project namespaces. Omitted defaults to \"p-\"
 	*/
@@ -12549,11 +12599,148 @@ declare class ManagementV1License {
 	}[];
 	constructor();
 }
+declare class ManagementV1NodeProviderBCMNodeGroup {
+	"name": string;
+	"nodes": Array<string>;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1NodeProviderBCMNodeWithResources {
+	"name": string;
+	"resources"?: {
+		[key: string]: string;
+	};
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1NodeProviderBCMGetResourcesResult {
+	"nodeGroups": Array<ManagementV1NodeProviderBCMNodeGroup>;
+	"nodes": Array<ManagementV1NodeProviderBCMNodeWithResources>;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1NodeProviderBCMTestConnectionResult {
+	"message": string;
+	"success": boolean;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1NodeProviderCalculateCostResult {
+	"cost": number;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1NodeProviderTerraformValidateResult {
+	"output": string;
+	"success": boolean;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class UiV1VClusterVersion {
+	/**
+	* PreRelease determines if the version is marked as prerelease
+	*/
+	"prerelease"?: boolean;
+	/**
+	* TagName is the full tag name
+	*/
+	"tagName"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
 declare class UiV1UISettingsSpec {
 	/**
 	* AccentColor is the color value (ex: \"#12345\") to use for the accent
 	*/
 	"accentColor"?: string;
+	/**
+	* AvailableVClusterVersions lists all virtual cluster versions available to the platform instance
+	*/
+	"availableVClusterVersions"?: Array<UiV1VClusterVersion>;
 	/**
 	* CustomCSS holds URLs with custom css files that should be included when loading the UI
 	*/
@@ -12566,6 +12753,7 @@ declare class UiV1UISettingsSpec {
 	* DefaultVClusterVersion is the default version of vClusters
 	*/
 	"defaultVClusterVersion"?: string;
+	"externalURLs"?: UiV1ExternalURLs;
 	/**
 	* HasHelmRelease indicates whether the vCluster Platform instance has been installed via Helm
 	*/
@@ -12629,6 +12817,52 @@ declare class UiV1UISettingsSpec {
 	}[];
 	constructor();
 }
+declare class UiV1CspPolicy {
+	"Connect": string;
+	"Font": string;
+	"Frame": string;
+	"Script": string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class UiV1UISettingsStatus {
+	/**
+	* CspConfig holds the raw csp config from the user
+	*/
+	"cspConfig"?: string;
+	/**
+	* Csps holds Content Security Policies
+	*/
+	"csps"?: {
+		[key: string]: UiV1CspPolicy;
+	};
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
 declare class UiV1UISettings {
 	/**
 	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
@@ -12640,10 +12874,7 @@ declare class UiV1UISettings {
 	"kind"?: string;
 	"metadata"?: V1ObjectMeta;
 	"spec"?: UiV1UISettingsSpec;
-	/**
-	* UISettingsStatus holds the status
-	*/
-	"status"?: any;
+	"status"?: UiV1UISettingsStatus;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -12664,6 +12895,11 @@ declare class ManagementV1KioskSpec {
 	"chartInfo"?: ClusterV1ChartInfo;
 	"helmRelease"?: ClusterV1HelmRelease;
 	"license"?: ManagementV1License;
+	"nodeProviderBCMGetResourcesResult"?: ManagementV1NodeProviderBCMGetResourcesResult;
+	"nodeProviderBCMNodeWithResources"?: ManagementV1NodeProviderBCMNodeWithResources;
+	"nodeProviderBCMTestConnectionResult"?: ManagementV1NodeProviderBCMTestConnectionResult;
+	"nodeProviderCalculateCostResult"?: ManagementV1NodeProviderCalculateCostResult;
+	"nodeProviderTerraformValidateResult"?: ManagementV1NodeProviderTerraformValidateResult;
 	"sleepModeConfig"?: ClusterV1SleepModeConfig;
 	"storageClusterQuota"?: StorageV1ClusterQuota;
 	static readonly discriminator: string | undefined;
@@ -12948,6 +13184,945 @@ declare class ManagementV1LoftUpgrade {
 	"metadata"?: V1ObjectMeta;
 	"spec"?: ManagementV1LoftUpgradeSpec;
 	"status"?: any;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class V1Taint {
+	/**
+	* Required. The effect of the taint on pods that do not tolerate the taint. Valid effects are NoSchedule, PreferNoSchedule and NoExecute.  Possible enum values:  - `\"NoExecute\"` Evict any already-running pods that do not tolerate the taint. Currently enforced by NodeController.  - `\"NoSchedule\"` Do not allow new pods to schedule onto the node unless they tolerate the taint, but allow all pods submitted to Kubelet without going through the scheduler to start, and allow all already-running pods to continue running. Enforced by the scheduler.  - `\"PreferNoSchedule\"` Like TaintEffectNoSchedule, but the scheduler tries not to schedule new pods onto the node, rather than prohibiting new pods from scheduling onto the node entirely. Enforced by the scheduler.
+	*/
+	"effect": V1TaintEffectEnum;
+	/**
+	* Required. The taint key to be applied to a node.
+	*/
+	"key": string;
+	/**
+	* TimeAdded represents the time at which the taint was added. It is only written for NoExecute taints.
+	*/
+	"timeAdded"?: Date;
+	/**
+	* The taint value corresponding to the taint key.
+	*/
+	"value"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare enum V1TaintEffectEnum {
+	NoExecute = "NoExecute",
+	NoSchedule = "NoSchedule",
+	PreferNoSchedule = "PreferNoSchedule"
+}
+declare class ManagementV1NodeClaimSpec {
+	/**
+	* ControlPlane indicates if the node claim is for a control plane node.
+	*/
+	"controlPlane"?: boolean;
+	/**
+	* DesiredCapacity specifies the resources requested by the NodeClaim.
+	*/
+	"desiredCapacity"?: {
+		[key: string]: string;
+	};
+	/**
+	* KubeletArgs are additional arguments to pass to the kubelet.
+	*/
+	"kubeletArgs"?: {
+		[key: string]: string;
+	};
+	/**
+	* NodeTypeRef is the name of the NodeType that this NodeClaim is based on.
+	*/
+	"nodeTypeRef"?: string;
+	/**
+	* Requirements are the requirements for the NodeClaim.
+	*/
+	"requirements"?: Array<V1NodeSelectorRequirement>;
+	/**
+	* StartupTaints are taints that are applied to nodes upon startup which are expected to be removed automatically within a short period of time, typically by a DaemonSet that tolerates the taint. These are commonly used by daemonsets to allow initialization and enforce startup ordering.  StartupTaints are ignored for provisioning purposes in that pods are not required to tolerate a StartupTaint in order to have nodes provisioned for them.
+	*/
+	"startupTaints"?: Array<V1Taint>;
+	/**
+	* Taints will be applied to the NodeClaim\'s node.
+	*/
+	"taints"?: Array<V1Taint>;
+	/**
+	* VClusterRef references source vCluster. This is required.
+	*/
+	"vClusterRef": string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1NodeClaimStatus {
+	/**
+	* Conditions describe the current state of the platform NodeClaim.
+	*/
+	"conditions"?: Array<StorageV1Condition>;
+	/**
+	* Message describes the reason in human-readable form
+	*/
+	"message"?: string;
+	/**
+	* Phase is the current lifecycle phase of the NodeClaim.
+	*/
+	"phase"?: string;
+	/**
+	* Reason describes the reason in machine-readable form
+	*/
+	"reason"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1NodeClaim {
+	/**
+	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	*/
+	"apiVersion"?: string;
+	/**
+	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	*/
+	"kind"?: string;
+	"metadata"?: V1ObjectMeta;
+	"spec"?: ManagementV1NodeClaimSpec;
+	"status"?: ManagementV1NodeClaimStatus;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1NodeEnvironmentSpec {
+	/**
+	* ProviderRef is the name of the NodeProvider that this NodeEnvironment is based on.
+	*/
+	"providerRef": string;
+	/**
+	* Requirements are the requirements for the NodeEnvironment.
+	*/
+	"requirements"?: Array<V1NodeSelectorRequirement>;
+	/**
+	* VClusterRef references source vCluster. This is required.
+	*/
+	"vClusterRef": string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1NodeEnvironmentStatus {
+	/**
+	* Conditions describe the current state of the platform NodeClaim.
+	*/
+	"conditions"?: Array<StorageV1Condition>;
+	/**
+	* Message describes the reason in human-readable form
+	*/
+	"message"?: string;
+	/**
+	* Phase is the current lifecycle phase of the NodeEnvironment.
+	*/
+	"phase"?: string;
+	/**
+	* Reason describes the reason in machine-readable form
+	*/
+	"reason"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1NodeEnvironment {
+	/**
+	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	*/
+	"apiVersion"?: string;
+	/**
+	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	*/
+	"kind"?: string;
+	"metadata"?: V1ObjectMeta;
+	"spec"?: ManagementV1NodeEnvironmentSpec;
+	"status"?: ManagementV1NodeEnvironmentStatus;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1NodeProviderExecSpec {
+	/**
+	* RawExtension is used to hold extensions in external versions.  To use this, make a field which has RawExtension as its type in your external, versioned struct, and Object in your internal struct. You also need to register your various plugin types.  // Internal package:   type MyAPIObject struct {   runtime.TypeMeta `json:\",inline\"`   MyPlugin runtime.Object `json:\"myPlugin\"`  }   type PluginA struct {   AOption string `json:\"aOption\"`  }  // External package:   type MyAPIObject struct {   runtime.TypeMeta `json:\",inline\"`   MyPlugin runtime.RawExtension `json:\"myPlugin\"`  }   type PluginA struct {   AOption string `json:\"aOption\"`  }  // On the wire, the JSON will look something like this:   {   \"kind\":\"MyAPIObject\",   \"apiVersion\":\"v1\",   \"myPlugin\": {    \"kind\":\"PluginA\",    \"aOption\":\"foo\",   },  }  So what happens? Decode first uses json or yaml to unmarshal the serialized data into your external MyAPIObject. That causes the raw JSON to be stored, but not unpacked. The next step is to copy (using pkg/conversion) into the internal struct. The runtime package\'s DefaultScheme has conversion functions installed which will unpack the JSON stored in RawExtension, turning it into the correct object type, and storing it in the Object. (TODO: In the case where the object is of an unknown type, a runtime.Unknown object will be created and stored.)
+	*/
+	"args"?: any;
+	/**
+	* Command is the action to perform.
+	*/
+	"command": string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1NodeProviderExecStatus {
+	/**
+	* Result is the output of the executed command.
+	*/
+	"result"?: any;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1NodeProviderExec {
+	/**
+	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	*/
+	"apiVersion"?: string;
+	/**
+	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	*/
+	"kind"?: string;
+	"metadata"?: V1ObjectMeta;
+	"spec": ManagementV1NodeProviderExecSpec;
+	"status"?: ManagementV1NodeProviderExecStatus;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1NodeTypeOverhead {
+	/**
+	* KubeReserved is the resource overhead for kubelet and other Kubernetes system daemons.
+	*/
+	"kubeReserved"?: {
+		[key: string]: string;
+	};
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1BCMNodeTypeSpec {
+	/**
+	* Cost is the instance cost. The higher the cost, the less likely it is to be selected. If empty, cost is automatically calculated from the resources specified.
+	*/
+	"cost"?: number;
+	/**
+	* DisplayName is the name that should be displayed in the UI
+	*/
+	"displayName"?: string;
+	/**
+	* Name is the name of this node type.
+	*/
+	"name": string;
+	/**
+	* NodeGroups is the name of the node groups to use for this provider.
+	*/
+	"nodeGroups"?: Array<string>;
+	/**
+	* Nodes specifies nodes.
+	*/
+	"nodes"?: Array<string>;
+	"overhead"?: StorageV1NodeTypeOverhead;
+	/**
+	* Properties returns a flexible set of properties that may be selected for scheduling.
+	*/
+	"properties"?: {
+		[key: string]: string;
+	};
+	/**
+	* ProviderRef is the node provider to use for this node type.
+	*/
+	"providerRef"?: string;
+	/**
+	* Region is the region of the node type.
+	*/
+	"region"?: string;
+	/**
+	* Resources lists the full resources for a single node.
+	*/
+	"resources"?: {
+		[key: string]: string;
+	};
+	/**
+	* Zone is the zone of the node type. If empty, will default to \"global\".
+	*/
+	"zone"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1NamespacedRef {
+	/**
+	* Name is the name of this resource
+	*/
+	"name": string;
+	/**
+	* Namespace is the namespace of this resource
+	*/
+	"namespace": string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1NodeProviderBCM {
+	/**
+	* Endpoint is a address for head node.
+	*/
+	"endpoint": string;
+	/**
+	* NodeTypes define NodeTypes that should be automatically created for this provider.
+	*/
+	"nodeTypes"?: Array<StorageV1BCMNodeTypeSpec>;
+	"secretRef": StorageV1NamespacedRef;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1KubeVirtClusterRef {
+	/**
+	* Cluster is the connected cluster the VMs will be created in
+	*/
+	"cluster": string;
+	/**
+	* Namespace is the namespace inside the connected cluster holding VMs
+	*/
+	"namespace": string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1KubeVirtNodeTypeSpec {
+	/**
+	* Cost is the instance cost. The higher the cost, the less likely it is to be selected. If empty, cost is automatically calculated from the resources specified.
+	*/
+	"cost"?: number;
+	/**
+	* DisplayName is the name that should be displayed in the UI
+	*/
+	"displayName"?: string;
+	/**
+	* MergeVirtualMachineTemplate will be merged into base VirtualMachine template for this NodeProvider. This allows overwriting of specific fields from top level template by individual NodeTypes This is mutually exclusive with VirtualMachineTemplate
+	*/
+	"mergeVirtualMachineTemplate"?: any;
+	/**
+	* Name is the name of this node type.
+	*/
+	"name": string;
+	"overhead"?: StorageV1NodeTypeOverhead;
+	/**
+	* Properties returns a flexible set of properties that may be selected for scheduling.
+	*/
+	"properties"?: {
+		[key: string]: string;
+	};
+	/**
+	* ProviderRef is the node provider to use for this node type.
+	*/
+	"providerRef"?: string;
+	/**
+	* Region is the region of the node type.
+	*/
+	"region"?: string;
+	/**
+	* Resources lists the full resources for a single node.
+	*/
+	"resources"?: {
+		[key: string]: string;
+	};
+	/**
+	* VirtualMachineTemplate is a full KubeVirt VirtualMachine template to use for this NodeType. This is mutually exclusive with MergeVirtualMachineTemplate
+	*/
+	"virtualMachineTemplate"?: any;
+	/**
+	* Zone is the zone of the node type. If empty, will default to \"global\".
+	*/
+	"zone"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1NodeProviderKubeVirt {
+	"clusterRef"?: StorageV1KubeVirtClusterRef;
+	/**
+	* NodeTypes define NodeTypes that should be automatically created for this provider.
+	*/
+	"nodeTypes": Array<StorageV1KubeVirtNodeTypeSpec>;
+	/**
+	* VirtualMachineTemplate is a KubeVirt VirtualMachine template to use by NodeTypes managed by this NodeProvider
+	*/
+	"virtualMachineTemplate"?: any;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1TerraformTemplateDriftDetection {
+	/**
+	* Enabled is the flag to enable drift detection.
+	*/
+	"enabled"?: boolean;
+	/**
+	* Interval is the interval to use for drift detection. Defaults to 10m.
+	*/
+	"interval"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1TerraformTemplateSourceGit {
+	/**
+	* Branch is the branch to use
+	*/
+	"branch"?: string;
+	/**
+	* Commit is the commit SHA to checkout
+	*/
+	"commit"?: string;
+	/**
+	* ExtraEnv is the extra environment variables to use for the clone
+	*/
+	"extraEnv"?: Array<string>;
+	/**
+	* FetchInterval is the interval to use for refetching the git repository. Defaults to 5m. Refetching only checks for remote changes but does not do a complete repull.
+	*/
+	"fetchInterval"?: string;
+	"password"?: StorageV1SecretRef;
+	/**
+	* Repository is the repository to clone
+	*/
+	"repository"?: string;
+	/**
+	* SubPath is the subpath in the repo to use
+	*/
+	"subPath"?: string;
+	"username"?: StorageV1SecretRef;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1TerraformTemplate {
+	"driftDetection"?: StorageV1TerraformTemplateDriftDetection;
+	"git"?: StorageV1TerraformTemplateSourceGit;
+	/**
+	* Inline is the inline template to use for this node type.
+	*/
+	"inline"?: string;
+	/**
+	* Timeout is the timeout to use for the terraform operations. Defaults to 60m.
+	*/
+	"timeout"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1TerraformNodeTypeSpec {
+	/**
+	* Cost is the instance cost. The higher the cost, the less likely it is to be selected. If empty, cost is automatically calculated from the resources specified.
+	*/
+	"cost"?: number;
+	/**
+	* DisplayName is the name that should be displayed in the UI
+	*/
+	"displayName"?: string;
+	/**
+	* Name is the name of this node type.
+	*/
+	"name": string;
+	"nodeTemplate"?: StorageV1TerraformTemplate;
+	"overhead"?: StorageV1NodeTypeOverhead;
+	/**
+	* Properties returns a flexible set of properties that may be selected for scheduling.
+	*/
+	"properties"?: {
+		[key: string]: string;
+	};
+	/**
+	* ProviderRef is the node provider to use for this node type.
+	*/
+	"providerRef"?: string;
+	/**
+	* Region is the region of the node type.
+	*/
+	"region"?: string;
+	/**
+	* Resources lists the full resources for a single node.
+	*/
+	"resources"?: {
+		[key: string]: string;
+	};
+	/**
+	* Zone is the zone of the node type. If empty, will default to \"global\".
+	*/
+	"zone"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1NodeProviderTerraform {
+	"nodeEnvironmentTemplate"?: StorageV1TerraformTemplate;
+	"nodeTemplate"?: StorageV1TerraformTemplate;
+	/**
+	* NodeTypes define NodeTypes that should be automatically created for this provider.
+	*/
+	"nodeTypes"?: Array<StorageV1TerraformNodeTypeSpec>;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1NodeProviderSpec {
+	"bcm"?: StorageV1NodeProviderBCM;
+	/**
+	* DisplayName is the name that should be displayed in the UI
+	*/
+	"displayName"?: string;
+	"kubeVirt"?: StorageV1NodeProviderKubeVirt;
+	"terraform"?: StorageV1NodeProviderTerraform;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1NodeProviderStatus {
+	/**
+	* Conditions describe the current state of the platform NodeProvider.
+	*/
+	"conditions"?: Array<StorageV1Condition>;
+	/**
+	* Message is a human-readable message indicating details about why the NodeProvider is in its current state.
+	*/
+	"message"?: string;
+	/**
+	* Phase is the current lifecycle phase of the NodeProvider.
+	*/
+	"phase"?: string;
+	/**
+	* Reason describes the reason in machine-readable form
+	*/
+	"reason"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1NodeProvider {
+	/**
+	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	*/
+	"apiVersion"?: string;
+	/**
+	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	*/
+	"kind"?: string;
+	"metadata"?: V1ObjectMeta;
+	"spec"?: ManagementV1NodeProviderSpec;
+	"status"?: ManagementV1NodeProviderStatus;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1NodeTypeSpec {
+	/**
+	* Cost is the instance cost. The higher the cost, the less likely it is to be selected. If empty, cost is automatically calculated from the resources specified.
+	*/
+	"cost"?: number;
+	/**
+	* DisplayName is the name that should be displayed in the UI
+	*/
+	"displayName"?: string;
+	"overhead"?: StorageV1NodeTypeOverhead;
+	/**
+	* Properties returns a flexible set of properties that may be selected for scheduling.
+	*/
+	"properties"?: {
+		[key: string]: string;
+	};
+	/**
+	* ProviderRef is the node provider to use for this node type.
+	*/
+	"providerRef"?: string;
+	/**
+	* Region is the region of the node type.
+	*/
+	"region"?: string;
+	/**
+	* Resources lists the full resources for a single node.
+	*/
+	"resources"?: {
+		[key: string]: string;
+	};
+	/**
+	* Zone is the zone of the node type. If empty, will default to \"global\".
+	*/
+	"zone"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1NodeTypeCapacity {
+	/**
+	* Available is the number of available nodes of this type
+	*/
+	"available": number;
+	/**
+	* Provisioned is the number of already provisioned nodes of this type
+	*/
+	"provisioned": number;
+	/**
+	* Total is the total number of nodes of this type
+	*/
+	"total": number;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1NodeTypeStatus {
+	"capacity"?: StorageV1NodeTypeCapacity;
+	/**
+	* Conditions holds several conditions the node type might be in
+	*/
+	"conditions"?: Array<StorageV1Condition>;
+	/**
+	* Cost is the calculated instance cost from the resources specified or the price specified from spec. The higher the cost, the less likely it is to be selected.
+	*/
+	"cost"?: number;
+	/**
+	* Message describes the reason in human-readable form
+	*/
+	"message"?: string;
+	/**
+	* Phase is the current lifecycle phase of the NodeType.
+	*/
+	"phase"?: string;
+	/**
+	* Reason describes the reason in machine-readable form
+	*/
+	"reason"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1NodeType {
+	/**
+	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	*/
+	"apiVersion"?: string;
+	/**
+	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	*/
+	"kind"?: string;
+	"metadata"?: V1ObjectMeta;
+	"spec"?: ManagementV1NodeTypeSpec;
+	"status"?: ManagementV1NodeTypeStatus;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -13550,6 +14725,152 @@ declare class ManagementV1ProjectMigrateVirtualClusterInstance {
 	"kind"?: string;
 	"metadata"?: V1ObjectMeta;
 	"sourceVirtualClusterInstance": ManagementV1ProjectMigrateVirtualClusterInstanceSource;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1ProjectNodeTypeStatus {
+	"capacity"?: StorageV1NodeTypeCapacity;
+	/**
+	* Conditions holds several conditions the node type might be in
+	*/
+	"conditions"?: Array<StorageV1Condition>;
+	/**
+	* Cost is the calculated instance cost from the resources specified or the price specified from spec. The higher the cost, the less likely it is to be selected.
+	*/
+	"cost"?: number;
+	/**
+	* Message describes the reason in human-readable form
+	*/
+	"message"?: string;
+	/**
+	* Phase is the current lifecycle phase of the NodeType.
+	*/
+	"phase"?: string;
+	/**
+	* Reason describes the reason in machine-readable form
+	*/
+	"reason"?: string;
+	/**
+	* Requirements of the node type computed from the node type properties
+	*/
+	"requirements"?: Array<V1NodeSelectorRequirement>;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class StorageV1NodeTypeSpec {
+	/**
+	* Cost is the instance cost. The higher the cost, the less likely it is to be selected. If empty, cost is automatically calculated from the resources specified.
+	*/
+	"cost"?: number;
+	/**
+	* DisplayName is the name that should be displayed in the UI
+	*/
+	"displayName"?: string;
+	"overhead"?: StorageV1NodeTypeOverhead;
+	/**
+	* Properties returns a flexible set of properties that may be selected for scheduling.
+	*/
+	"properties"?: {
+		[key: string]: string;
+	};
+	/**
+	* ProviderRef is the node provider to use for this node type.
+	*/
+	"providerRef"?: string;
+	/**
+	* Region is the region of the node type.
+	*/
+	"region"?: string;
+	/**
+	* Resources lists the full resources for a single node.
+	*/
+	"resources"?: {
+		[key: string]: string;
+	};
+	/**
+	* Zone is the zone of the node type. If empty, will default to \"global\".
+	*/
+	"zone"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1ProjectNodeType {
+	/**
+	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	*/
+	"apiVersion"?: string;
+	/**
+	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	*/
+	"kind"?: string;
+	"metadata"?: V1ObjectMeta;
+	"spec"?: StorageV1NodeTypeSpec;
+	"status"?: ManagementV1ProjectNodeTypeStatus;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1ProjectNodeTypes {
+	/**
+	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	*/
+	"apiVersion"?: string;
+	/**
+	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	*/
+	"kind"?: string;
+	"metadata"?: V1ObjectMeta;
+	/**
+	* NodeTypes holds all the allowed node types for the project
+	*/
+	"nodeTypes"?: Array<ManagementV1ProjectNodeType>;
 	static readonly discriminator: string | undefined;
 	static readonly attributeTypeMap: Array<{
 		name: string;
@@ -15305,6 +16626,10 @@ declare class ManagementV1SelfStatus {
 	*/
 	"instanceID"?: string;
 	/**
+	* LoftHost is the host of the loft instance
+	*/
+	"loftHost"?: string;
+	/**
 	* ProjectNamespacePrefix is the prefix used to name project namespaces after defaulting has been applied
 	*/
 	"projectNamespacePrefix"?: string;
@@ -16692,6 +18017,33 @@ declare class ManagementV1TranslateVClusterResourceName {
 	}[];
 	constructor();
 }
+declare class ManagementV1UsageDownload {
+	/**
+	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	*/
+	"apiVersion"?: string;
+	/**
+	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	*/
+	"kind"?: string;
+	"metadata"?: V1ObjectMeta;
+	"spec"?: any;
+	"status"?: any;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
 declare class ManagementV1UserAccessKeys {
 	"accessKeys"?: Array<ManagementV1OwnedAccessKey>;
 	/**
@@ -17258,6 +18610,70 @@ declare class ManagementV1VirtualClusterInstanceLog {
 	}[];
 	constructor();
 }
+declare class ManagementV1SnapshotTaken {
+	"id"?: string;
+	"reason"?: string;
+	"status"?: string;
+	"timestamp"?: string;
+	"url"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1VirtualClusterInstanceSnapshotStatus {
+	"snapshotTaken"?: Array<ManagementV1SnapshotTaken>;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1VirtualClusterInstanceSnapshot {
+	/**
+	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	*/
+	"apiVersion"?: string;
+	/**
+	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	*/
+	"kind"?: string;
+	"metadata"?: V1ObjectMeta;
+	"status"?: ManagementV1VirtualClusterInstanceSnapshotStatus;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
 declare class StorageV1VirtualClusterClusterRef {
 	/**
 	* Cluster is the connected cluster the space will be created in
@@ -17317,6 +18733,10 @@ declare class ManagementV1VirtualClusterInstanceSpec {
 	* Parameters are values to pass to the template. The values should be encoded as YAML string where each parameter is represented as a top-level field key.
 	*/
 	"parameters"?: string;
+	/**
+	* Standalone specifies if the virtual cluster is standalone and not hosted in another Kubernetes cluster.
+	*/
+	"standalone"?: boolean;
 	"template"?: StorageV1VirtualClusterTemplateDefinition;
 	"templateRef"?: StorageV1TemplateRef;
 	static readonly discriminator: string | undefined;
@@ -17421,6 +18841,53 @@ declare class ManagementV1VirtualClusterInstance {
 	}[];
 	constructor();
 }
+declare class ManagementV1VirtualClusterNodeAccessKeyStatus {
+	/**
+	* AccessKey is the access key used by the agent
+	*/
+	"accessKey"?: string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1VirtualClusterNodeAccessKey {
+	/**
+	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	*/
+	"apiVersion"?: string;
+	/**
+	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	*/
+	"kind"?: string;
+	"metadata"?: V1ObjectMeta;
+	"spec"?: any;
+	"status"?: ManagementV1VirtualClusterNodeAccessKeyStatus;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
 declare class ManagementV1VirtualClusterSchemaSpec {
 	/**
 	* Version is the version of the virtual cluster
@@ -17492,6 +18959,122 @@ declare class ManagementV1VirtualClusterSchema {
 	}[];
 	constructor();
 }
+declare class ManagementV1StandaloneEtcdPeer {
+	/**
+	* Address is the address of the peer.
+	*/
+	"address": string;
+	/**
+	* Name is the name of the peer.
+	*/
+	"name": string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1VirtualClusterStandaloneSpec {
+	"currentPeer": ManagementV1StandaloneEtcdPeer;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1StandaloneEtcdPeerCoordinator {
+	/**
+	* Address is the address of the peer.
+	*/
+	"address": string;
+	/**
+	* IsCoordinator is true if the peer is the coordinator.
+	*/
+	"isCoordinator": boolean;
+	/**
+	* Name is the name of the peer.
+	*/
+	"name": string;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1VirtualClusterStandaloneStatus {
+	/**
+	* ETCDPeers holds the comma separated list of etcd peers addresses. It is used as a peer cache for vCluster Standalone deployed in HA mode via NodeProvider.
+	*/
+	"etcdPeers": Array<ManagementV1StandaloneEtcdPeerCoordinator>;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
+declare class ManagementV1VirtualClusterStandalone {
+	/**
+	* APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+	*/
+	"apiVersion"?: string;
+	/**
+	* Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+	*/
+	"kind"?: string;
+	"metadata"?: V1ObjectMeta;
+	"spec"?: ManagementV1VirtualClusterStandaloneSpec;
+	"status"?: ManagementV1VirtualClusterStandaloneStatus;
+	static readonly discriminator: string | undefined;
+	static readonly attributeTypeMap: Array<{
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}>;
+	static getAttributeTypeMap(): {
+		name: string;
+		baseName: string;
+		type: string;
+		format: string;
+	}[];
+	constructor();
+}
 export type TGenResources = {
 	ManagementV1AgentAuditEvent: GroupVersionResource<ManagementV1AgentAuditEvent>;
 	ManagementV1Announcement: GroupVersionResource<ManagementV1Announcement>;
@@ -17532,6 +19115,11 @@ export type TGenResources = {
 	ManagementV1LicenseRequest: GroupVersionResource<ManagementV1LicenseRequest>;
 	ManagementV1LicenseToken: GroupVersionResource<ManagementV1LicenseToken>;
 	ManagementV1LoftUpgrade: GroupVersionResource<ManagementV1LoftUpgrade>;
+	ManagementV1NodeClaim: GroupVersionResource<ManagementV1NodeClaim>;
+	ManagementV1NodeEnvironment: GroupVersionResource<ManagementV1NodeEnvironment>;
+	ManagementV1NodeProvider: GroupVersionResource<ManagementV1NodeProvider>;
+	ManagementV1NodeProviderExec: GroupVersionResource<ManagementV1NodeProviderExec>;
+	ManagementV1NodeType: GroupVersionResource<ManagementV1NodeType>;
 	ManagementV1OIDCClient: GroupVersionResource<ManagementV1OIDCClient>;
 	ManagementV1OwnedAccessKey: GroupVersionResource<ManagementV1OwnedAccessKey>;
 	ManagementV1Project: GroupVersionResource<ManagementV1Project>;
@@ -17542,6 +19130,7 @@ export type TGenResources = {
 	ManagementV1ProjectMembers: GroupVersionResource<ManagementV1ProjectMembers>;
 	ManagementV1ProjectMigrateSpaceInstance: GroupVersionResource<ManagementV1ProjectMigrateSpaceInstance>;
 	ManagementV1ProjectMigrateVirtualClusterInstance: GroupVersionResource<ManagementV1ProjectMigrateVirtualClusterInstance>;
+	ManagementV1ProjectNodeTypes: GroupVersionResource<ManagementV1ProjectNodeTypes>;
 	ManagementV1ProjectSecret: GroupVersionResource<ManagementV1ProjectSecret>;
 	ManagementV1ProjectTemplates: GroupVersionResource<ManagementV1ProjectTemplates>;
 	ManagementV1RedirectToken: GroupVersionResource<ManagementV1RedirectToken>;
@@ -17561,6 +19150,7 @@ export type TGenResources = {
 	ManagementV1TeamObjectPermissions: GroupVersionResource<ManagementV1TeamObjectPermissions>;
 	ManagementV1TeamPermissions: GroupVersionResource<ManagementV1TeamPermissions>;
 	ManagementV1TranslateVClusterResourceName: GroupVersionResource<ManagementV1TranslateVClusterResourceName>;
+	ManagementV1UsageDownload: GroupVersionResource<ManagementV1UsageDownload>;
 	ManagementV1User: GroupVersionResource<ManagementV1User>;
 	ManagementV1UserAccessKeys: GroupVersionResource<ManagementV1UserAccessKeys>;
 	ManagementV1UserClusters: GroupVersionResource<ManagementV1UserClusters>;
@@ -17572,7 +19162,10 @@ export type TGenResources = {
 	ManagementV1VirtualClusterInstance: GroupVersionResource<ManagementV1VirtualClusterInstance>;
 	ManagementV1VirtualClusterInstanceKubeConfig: GroupVersionResource<ManagementV1VirtualClusterInstanceKubeConfig>;
 	ManagementV1VirtualClusterInstanceLog: GroupVersionResource<ManagementV1VirtualClusterInstanceLog>;
+	ManagementV1VirtualClusterInstanceSnapshot: GroupVersionResource<ManagementV1VirtualClusterInstanceSnapshot>;
+	ManagementV1VirtualClusterNodeAccessKey: GroupVersionResource<ManagementV1VirtualClusterNodeAccessKey>;
 	ManagementV1VirtualClusterSchema: GroupVersionResource<ManagementV1VirtualClusterSchema>;
+	ManagementV1VirtualClusterStandalone: GroupVersionResource<ManagementV1VirtualClusterStandalone>;
 	ManagementV1VirtualClusterTemplate: GroupVersionResource<ManagementV1VirtualClusterTemplate>;
 };
 export declare const Resources: {
