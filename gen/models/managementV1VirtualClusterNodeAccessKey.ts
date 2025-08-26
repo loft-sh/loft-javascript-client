@@ -10,15 +10,14 @@
  * Do not edit the class manually.
  */
 
-import { UiV1UISettingsSpec } from '../models/uiV1UISettingsSpec';
-import { UiV1UISettingsStatus } from '../models/uiV1UISettingsStatus';
+import { ManagementV1VirtualClusterNodeAccessKeyStatus } from '../models/managementV1VirtualClusterNodeAccessKeyStatus';
 import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
 /**
-* UISettings holds the loft ui configuration settings
+* VirtualClusterNodeAccessKey holds the access key for the virtual cluster
 */
-export class UiV1UISettings {
+export class ManagementV1VirtualClusterNodeAccessKey {
     /**
     * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
     */
@@ -28,8 +27,8 @@ export class UiV1UISettings {
     */
     'kind'?: string;
     'metadata'?: V1ObjectMeta;
-    'spec'?: UiV1UISettingsSpec;
-    'status'?: UiV1UISettingsStatus;
+    'spec'?: any;
+    'status'?: ManagementV1VirtualClusterNodeAccessKeyStatus;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -55,18 +54,18 @@ export class UiV1UISettings {
         {
             "name": "spec",
             "baseName": "spec",
-            "type": "UiV1UISettingsSpec",
+            "type": "any",
             "format": ""
         },
         {
             "name": "status",
             "baseName": "status",
-            "type": "UiV1UISettingsStatus",
+            "type": "ManagementV1VirtualClusterNodeAccessKeyStatus",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return UiV1UISettings.attributeTypeMap;
+        return ManagementV1VirtualClusterNodeAccessKey.attributeTypeMap;
     }
 
     public constructor() {

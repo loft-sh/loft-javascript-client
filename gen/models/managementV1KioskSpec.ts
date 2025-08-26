@@ -15,6 +15,12 @@ import { ClusterV1HelmRelease } from '../models/clusterV1HelmRelease';
 import { ClusterV1SleepModeConfig } from '../models/clusterV1SleepModeConfig';
 import { StorageV1ClusterQuota } from '../models/agentstorageV1ClusterQuota';
 import { ManagementV1License } from '../models/managementV1License';
+import { ManagementV1NodeProviderBCMGetResourcesResult } from '../models/managementV1NodeProviderBCMGetResourcesResult';
+import { ManagementV1NodeProviderBCMNodeWithResources } from '../models/managementV1NodeProviderBCMNodeWithResources';
+import { ManagementV1NodeProviderBCMTestConnectionResult } from '../models/managementV1NodeProviderBCMTestConnectionResult';
+import { ManagementV1NodeProviderCalculateCostResult } from '../models/managementV1NodeProviderCalculateCostResult';
+import { ManagementV1NodeProviderExecResult } from '../models/managementV1NodeProviderExecResult';
+import { ManagementV1NodeProviderTerraformValidateResult } from '../models/managementV1NodeProviderTerraformValidateResult';
 import { UiV1UISettings } from '../models/uiV1UISettings';
 
 
@@ -23,6 +29,12 @@ export class ManagementV1KioskSpec {
     'chartInfo'?: ClusterV1ChartInfo;
     'helmRelease'?: ClusterV1HelmRelease;
     'license'?: ManagementV1License;
+    'nodeProviderBCMGetResourcesResult'?: ManagementV1NodeProviderBCMGetResourcesResult;
+    'nodeProviderBCMNodeWithResources'?: ManagementV1NodeProviderBCMNodeWithResources;
+    'nodeProviderBCMTestConnectionResult'?: ManagementV1NodeProviderBCMTestConnectionResult;
+    'nodeProviderCalculateCostResult'?: ManagementV1NodeProviderCalculateCostResult;
+    'nodeProviderExecResult'?: ManagementV1NodeProviderExecResult;
+    'nodeProviderTerraformValidateResult'?: ManagementV1NodeProviderTerraformValidateResult;
     'sleepModeConfig'?: ClusterV1SleepModeConfig;
     'storageClusterQuota'?: StorageV1ClusterQuota;
 
@@ -51,6 +63,42 @@ export class ManagementV1KioskSpec {
             "name": "license",
             "baseName": "license",
             "type": "ManagementV1License",
+            "format": ""
+        },
+        {
+            "name": "nodeProviderBCMGetResourcesResult",
+            "baseName": "nodeProviderBCMGetResourcesResult",
+            "type": "ManagementV1NodeProviderBCMGetResourcesResult",
+            "format": ""
+        },
+        {
+            "name": "nodeProviderBCMNodeWithResources",
+            "baseName": "nodeProviderBCMNodeWithResources",
+            "type": "ManagementV1NodeProviderBCMNodeWithResources",
+            "format": ""
+        },
+        {
+            "name": "nodeProviderBCMTestConnectionResult",
+            "baseName": "nodeProviderBCMTestConnectionResult",
+            "type": "ManagementV1NodeProviderBCMTestConnectionResult",
+            "format": ""
+        },
+        {
+            "name": "nodeProviderCalculateCostResult",
+            "baseName": "nodeProviderCalculateCostResult",
+            "type": "ManagementV1NodeProviderCalculateCostResult",
+            "format": ""
+        },
+        {
+            "name": "nodeProviderExecResult",
+            "baseName": "nodeProviderExecResult",
+            "type": "ManagementV1NodeProviderExecResult",
+            "format": ""
+        },
+        {
+            "name": "nodeProviderTerraformValidateResult",
+            "baseName": "nodeProviderTerraformValidateResult",
+            "type": "ManagementV1NodeProviderTerraformValidateResult",
             "format": ""
         },
         {

@@ -328,6 +328,19 @@ class Client {
     }
   }
 
+  public async blob(path: string, init?: RequestInit): Promise<Result<Blob>> {
+    try {
+      const response = await fetch(this.apiHost + path, init)
+      if (response.status >= 400 || !response.body) {
+        return await this.parseResponse(path, response)
+      }
+
+      return Return.Value(await response.blob())
+    } catch (err) {
+      return Return.Failed(err + "", "NetworkError", ErrorTypeNetwork)
+    }
+  }
+
   public async request<E>(path: string, init?: RequestInit): Promise<Result<E>> {
     try {
       const response = await fetch(this.apiHost + path, {
@@ -487,11 +500,18 @@ class Client {
     })
   }
 
-  public cluster = <T>(name: string, groupVersionResource: GroupVersionResource<T>) => {
+  public cluster = <T>(
+    name: string,
+    groupVersionResource: GroupVersionResource<T>,
+    additionalHeaders: { [name: string]: string } = {}
+  ) => {
     return new Request<T>(this, {
       basePath: ClusterBasePath + name,
       groupVersionResource,
-      headers: this.impersonationHeaders(),
+      headers: {
+        ...this.impersonationHeaders(),
+        ...additionalHeaders,
+      },
     })
   }
 
@@ -504,7 +524,8 @@ class Client {
 
   public project = <T>(
     project: RequestOptionsProject,
-    groupVersionResource: GroupVersionResource<T>
+    groupVersionResource: GroupVersionResource<T>,
+    additionalHeaders: { [name: string]: string } = {}
   ) => {
     return new Request<T>(this, {
       basePath:
@@ -514,7 +535,10 @@ class Client {
         (project.space ? "space/" + project.space : "virtualcluster/" + project.virtualCluster),
       groupVersionResource,
       project,
-      headers: this.impersonationHeaders(getProjectExtraGroups(project)),
+      headers: {
+        ...this.impersonationHeaders(getProjectExtraGroups(project)),
+        ...additionalHeaders,
+      },
     })
   }
 
@@ -596,7 +620,15 @@ class Client {
     init?: RequestInit,
     headers?: Record<string, string>
   ): Promise<Result<ReadableStreamDefaultReader<Uint8Array>>> {
-    return this.doRawInternal(path, init, headers, true)
+    return this.doRawInternal(path, init, headers, "stream")
+  }
+
+  public async doRawBlob(
+    path: string,
+    init?: RequestInit,
+    headers?: Record<string, string>
+  ): Promise<Result<Blob>> {
+    return this.doRawInternal(path, init, headers, "blob")
   }
 
   public async doRaw<E>(
@@ -611,7 +643,7 @@ class Client {
     path: string,
     init?: RequestInit,
     headers?: Record<string, string>,
-    stream?: boolean
+    type?: "resource" | "stream" | "blob"
   ): Promise<Result<any>> {
     const requestToken = this.accessKey
     const mergedHeaders = requestToken
@@ -628,15 +660,21 @@ class Client {
         })
 
     // merge headers
-    const response = !stream
-      ? await this.request(path, {
-          ...init,
-          headers: mergedHeaders,
-        })
-      : await this.stream(path, {
-          ...init,
-          headers: mergedHeaders,
-        })
+    const response =
+      type === "stream"
+        ? await this.stream(path, {
+            ...init,
+            headers: mergedHeaders,
+          })
+        : type === "blob"
+          ? await this.blob(path, {
+              ...init,
+              headers: mergedHeaders,
+            })
+          : await this.request(path, {
+              ...init,
+              headers: mergedHeaders,
+            })
 
     // refetch the token when its expired
     if (response.err && response.val.type === ErrorTypeUnauthorized) {
@@ -1063,6 +1101,18 @@ class Request<T> {
     )
   }
 
+  public async GetFile(options?: GetOptions): Promise<Result<Blob>> {
+    const path = this.buildPath(options)
+    if (path.err) {
+      return path
+    }
+
+    return Return.WithExtra(
+      await this.client.doRawBlob(path.val, undefined, this.options.headers),
+      this.options
+    )
+  }
+
   public async List(options?: ListOptions): Promise<Result<List<T>>> {
     if (this.options.name) {
       return Return.Failed("name is set on a list request")
@@ -1099,7 +1149,7 @@ class Request<T> {
     )
   }
 
-  public async Create(obj: T, options?: CreateOptions): Promise<Result<T>> {
+  public async Create(obj: T, options?: CreateOptions, signal?: AbortSignal): Promise<Result<T>> {
     const path = this.buildPath(options)
     if (path.err) {
       return path
@@ -1111,6 +1161,7 @@ class Request<T> {
         {
           method: "POST",
           body: JSON.stringify(obj),
+          signal: signal,
         },
         { ...this.options.headers, "Content-Type": "application/json" }
       ),
