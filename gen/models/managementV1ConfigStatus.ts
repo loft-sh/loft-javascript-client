@@ -17,6 +17,7 @@ import { ManagementV1Cloud } from '../models/managementV1Cloud';
 import { ManagementV1CostControl } from '../models/managementV1CostControl';
 import { ManagementV1ImageBuilder } from '../models/managementV1ImageBuilder';
 import { ManagementV1OIDC } from '../models/managementV1OIDC';
+import { ManagementV1PlatformDB } from '../models/managementV1PlatformDB';
 import { StorageV1VaultIntegrationSpec } from '../models/storageV1VaultIntegrationSpec';
 import { UiV1UISettingsConfig } from '../models/uiV1UISettingsConfig';
 
@@ -44,6 +45,7 @@ export class ManagementV1ConfigStatus {
     */
     'loftHost'?: string;
     'oidc'?: ManagementV1OIDC;
+    'platformDB'?: ManagementV1PlatformDB;
     /**
     * ProjectNamespacePrefix holds the prefix for loft project namespaces. Omitted defaults to \"p-\"
     */
@@ -112,6 +114,12 @@ export class ManagementV1ConfigStatus {
             "name": "oidc",
             "baseName": "oidc",
             "type": "ManagementV1OIDC",
+            "format": ""
+        },
+        {
+            "name": "platformDB",
+            "baseName": "platformDB",
+            "type": "ManagementV1PlatformDB",
             "format": ""
         },
         {
