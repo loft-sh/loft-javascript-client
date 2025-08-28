@@ -10,15 +10,15 @@
  * Do not edit the class manually.
  */
 
-import { UiV1UISettingsSpec } from '../models/uiV1UISettingsSpec';
-import { UiV1UISettingsStatus } from '../models/uiV1UISettingsStatus';
+import { StorageV1NodeTypeSpec } from '../models/storageV1NodeTypeSpec';
+import { StorageV1NodeTypeStatus } from '../models/storageV1NodeTypeStatus';
 import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
 /**
-* UISettings holds the loft ui configuration settings
+* NodeType holds the information of a node type.
 */
-export class UiV1UISettings {
+export class StorageV1NodeType {
     /**
     * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
     */
@@ -27,9 +27,9 @@ export class UiV1UISettings {
     * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
     */
     'kind'?: string;
-    'metadata'?: V1ObjectMeta;
-    'spec'?: UiV1UISettingsSpec;
-    'status'?: UiV1UISettingsStatus;
+    'metadata': V1ObjectMeta;
+    'spec'?: StorageV1NodeTypeSpec;
+    'status'?: StorageV1NodeTypeStatus;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -55,18 +55,18 @@ export class UiV1UISettings {
         {
             "name": "spec",
             "baseName": "spec",
-            "type": "UiV1UISettingsSpec",
+            "type": "StorageV1NodeTypeSpec",
             "format": ""
         },
         {
             "name": "status",
             "baseName": "status",
-            "type": "UiV1UISettingsStatus",
+            "type": "StorageV1NodeTypeStatus",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return UiV1UISettings.attributeTypeMap;
+        return StorageV1NodeType.attributeTypeMap;
     }
 
     public constructor() {
