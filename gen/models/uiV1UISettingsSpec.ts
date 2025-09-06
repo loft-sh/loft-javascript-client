@@ -10,7 +10,9 @@
  * Do not edit the class manually.
  */
 
+import { UiV1ExternalURLs } from '../models/uiV1ExternalURLs';
 import { UiV1NavBarButton } from '../models/uiV1NavBarButton';
+import { UiV1VClusterVersion } from '../models/uiV1VClusterVersion';
 
 
 /**
@@ -21,6 +23,10 @@ export class UiV1UISettingsSpec {
     * AccentColor is the color value (ex: \"#12345\") to use for the accent
     */
     'accentColor'?: string;
+    /**
+    * AvailableVClusterVersions lists all virtual cluster versions available to the platform instance
+    */
+    'availableVClusterVersions'?: Array<UiV1VClusterVersion>;
     /**
     * CustomCSS holds URLs with custom css files that should be included when loading the UI
     */
@@ -33,6 +39,7 @@ export class UiV1UISettingsSpec {
     * DefaultVClusterVersion is the default version of vClusters
     */
     'defaultVClusterVersion'?: string;
+    'externalURLs'?: UiV1ExternalURLs;
     /**
     * HasHelmRelease indicates whether the vCluster Platform instance has been installed via Helm
     */
@@ -92,6 +99,12 @@ export class UiV1UISettingsSpec {
             "format": ""
         },
         {
+            "name": "availableVClusterVersions",
+            "baseName": "availableVClusterVersions",
+            "type": "Array<UiV1VClusterVersion>",
+            "format": ""
+        },
+        {
             "name": "customCss",
             "baseName": "customCss",
             "type": "Array<string>",
@@ -107,6 +120,12 @@ export class UiV1UISettingsSpec {
             "name": "defaultVClusterVersion",
             "baseName": "defaultVClusterVersion",
             "type": "string",
+            "format": ""
+        },
+        {
+            "name": "externalURLs",
+            "baseName": "externalURLs",
+            "type": "UiV1ExternalURLs",
             "format": ""
         },
         {

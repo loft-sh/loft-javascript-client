@@ -293,6 +293,7 @@ export interface RequestOptions<T> {
   groupVersionResource?: GroupVersionResource<T>
 
   headers?: { [name: string]: string }
+  allowSpecificErrors?: number[]
 }
 
 export interface RequestOptionsProject {
@@ -371,4 +372,12 @@ export class List<T> {
    */
   "kind"?: string
   "metadata"?: Metadata
+}
+
+export enum DownloadMimeType {
+  TEXT_CSV = "text/csv;charset=utf-8;",
+  TEXT_YAML = "text/yaml;charset=utf-8;",
+  TEXT_JSON = "text/json;charset=utf-8;",
+  TEXT_PLAIN = "text/plain;charset=utf-8;",
+  ZIP = "application/zip",
 }
