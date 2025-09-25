@@ -29,10 +29,6 @@ export class V1PodCondition {
     */
     'message'?: string;
     /**
-    * If set, this represents the .metadata.generation that the pod condition was set based upon. This is an alpha field. Enable PodObservedGenerationTracking to be able to use this field.
-    */
-    'observedGeneration'?: number;
-    /**
     * Unique, one-word, CamelCase reason for the condition\'s last transition.
     */
     'reason'?: string;
@@ -65,12 +61,6 @@ export class V1PodCondition {
             "baseName": "message",
             "type": "string",
             "format": ""
-        },
-        {
-            "name": "observedGeneration",
-            "baseName": "observedGeneration",
-            "type": "number",
-            "format": "int64"
         },
         {
             "name": "reason",
