@@ -11,11 +11,13 @@
  */
 
 import { LicenseApiLicense } from '../models/licenseApiLicense';
+import { LicenseApiPlatformDatabase } from '../models/licenseApiPlatformDatabase';
 import { LicenseApiResourceCount } from '../models/licenseApiResourceCount';
 
 
 export class ManagementV1LicenseStatus {
     'license'?: LicenseApiLicense;
+    'platformDatabase'?: LicenseApiPlatformDatabase;
     /**
     * ResourceUsage shows the current usage of license limit.
     */
@@ -28,6 +30,12 @@ export class ManagementV1LicenseStatus {
             "name": "license",
             "baseName": "license",
             "type": "LicenseApiLicense",
+            "format": ""
+        },
+        {
+            "name": "platformDatabase",
+            "baseName": "platformDatabase",
+            "type": "LicenseApiPlatformDatabase",
             "format": ""
         },
         {
