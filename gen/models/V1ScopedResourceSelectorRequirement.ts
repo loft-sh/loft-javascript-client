@@ -21,7 +21,7 @@ export class V1ScopedResourceSelectorRequirement {
     */
     'operator': V1ScopedResourceSelectorRequirementOperatorEnum;
     /**
-    * The name of the scope that the selector applies to.  Possible enum values:  - `\"BestEffort\"` Match all pod objects that have best effort quality of service  - `\"CrossNamespacePodAffinity\"` Match all pod objects that have cross-namespace pod (anti)affinity mentioned.  - `\"NotBestEffort\"` Match all pod objects that do not have best effort quality of service  - `\"NotTerminating\"` Match all pod objects where spec.activeDeadlineSeconds is nil  - `\"PriorityClass\"` Match all pod objects that have priority class mentioned  - `\"Terminating\"` Match all pod objects where spec.activeDeadlineSeconds >=0  - `\"VolumeAttributesClass\"` Match all pvc objects that have volume attributes class mentioned.
+    * The name of the scope that the selector applies to.  Possible enum values:  - `\"BestEffort\"` Match all pod objects that have best effort quality of service  - `\"CrossNamespacePodAffinity\"` Match all pod objects that have cross-namespace pod (anti)affinity mentioned.  - `\"NotBestEffort\"` Match all pod objects that do not have best effort quality of service  - `\"NotTerminating\"` Match all pod objects where spec.activeDeadlineSeconds is nil  - `\"PriorityClass\"` Match all pod objects that have priority class mentioned  - `\"Terminating\"` Match all pod objects where spec.activeDeadlineSeconds >=0
     */
     'scopeName': V1ScopedResourceSelectorRequirementScopeNameEnum;
     /**
@@ -72,7 +72,6 @@ export enum V1ScopedResourceSelectorRequirementScopeNameEnum {
     NotBestEffort = 'NotBestEffort',
     NotTerminating = 'NotTerminating',
     PriorityClass = 'PriorityClass',
-    Terminating = 'Terminating',
-    VolumeAttributesClass = 'VolumeAttributesClass'
+    Terminating = 'Terminating'
 }
 
