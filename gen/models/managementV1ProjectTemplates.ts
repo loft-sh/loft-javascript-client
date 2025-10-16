@@ -10,9 +10,6 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1DevPodEnvironmentTemplate } from '../models/managementV1DevPodEnvironmentTemplate';
-import { ManagementV1DevPodWorkspacePreset } from '../models/managementV1DevPodWorkspacePreset';
-import { ManagementV1DevPodWorkspaceTemplate } from '../models/managementV1DevPodWorkspaceTemplate';
 import { ManagementV1SpaceTemplate } from '../models/managementV1SpaceTemplate';
 import { ManagementV1VirtualClusterTemplate } from '../models/managementV1VirtualClusterTemplate';
 import { V1ObjectMeta } from '../models/V1ObjectMeta';
@@ -24,14 +21,6 @@ export class ManagementV1ProjectTemplates {
     */
     'apiVersion'?: string;
     /**
-    * DefaultDevPodEnvironmentTemplate
-    */
-    'defaultDevPodEnvironmentTemplate'?: string;
-    /**
-    * DefaultDevPodWorkspaceTemplate
-    */
-    'defaultDevPodWorkspaceTemplate'?: string;
-    /**
     * DefaultSpaceTemplate
     */
     'defaultSpaceTemplate'?: string;
@@ -39,18 +28,6 @@ export class ManagementV1ProjectTemplates {
     * DefaultVirtualClusterTemplate is the default template for the project
     */
     'defaultVirtualClusterTemplate'?: string;
-    /**
-    * DevPodEnvironmentTemplates holds all the allowed environment templates
-    */
-    'devPodEnvironmentTemplates'?: Array<ManagementV1DevPodEnvironmentTemplate>;
-    /**
-    * DevPodWorkspacePresets holds all the allowed workspace presets
-    */
-    'devPodWorkspacePresets'?: Array<ManagementV1DevPodWorkspacePreset>;
-    /**
-    * DevPodWorkspaceTemplates holds all the allowed space templates
-    */
-    'devPodWorkspaceTemplates'?: Array<ManagementV1DevPodWorkspaceTemplate>;
     /**
     * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
     */
@@ -75,18 +52,6 @@ export class ManagementV1ProjectTemplates {
             "format": ""
         },
         {
-            "name": "defaultDevPodEnvironmentTemplate",
-            "baseName": "defaultDevPodEnvironmentTemplate",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "defaultDevPodWorkspaceTemplate",
-            "baseName": "defaultDevPodWorkspaceTemplate",
-            "type": "string",
-            "format": ""
-        },
-        {
             "name": "defaultSpaceTemplate",
             "baseName": "defaultSpaceTemplate",
             "type": "string",
@@ -96,24 +61,6 @@ export class ManagementV1ProjectTemplates {
             "name": "defaultVirtualClusterTemplate",
             "baseName": "defaultVirtualClusterTemplate",
             "type": "string",
-            "format": ""
-        },
-        {
-            "name": "devPodEnvironmentTemplates",
-            "baseName": "devPodEnvironmentTemplates",
-            "type": "Array<ManagementV1DevPodEnvironmentTemplate>",
-            "format": ""
-        },
-        {
-            "name": "devPodWorkspacePresets",
-            "baseName": "devPodWorkspacePresets",
-            "type": "Array<ManagementV1DevPodWorkspacePreset>",
-            "format": ""
-        },
-        {
-            "name": "devPodWorkspaceTemplates",
-            "baseName": "devPodWorkspaceTemplates",
-            "type": "Array<ManagementV1DevPodWorkspaceTemplate>",
             "format": ""
         },
         {
