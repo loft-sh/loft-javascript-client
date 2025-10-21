@@ -74,6 +74,10 @@ export class ManagementV1AuthenticationOIDC {
     */
     'redirectURI'?: string;
     /**
+    * Resource, if specified, is the value that is set for the \"resource\" URL parameter when making a request to the /token endpoint of the OIDC provider.
+    */
+    'resource'?: string;
+    /**
     * Scopes that should be sent to the server. If empty, defaults to \"email\" and \"profile\".
     */
     'scopes'?: Array<string>;
@@ -180,6 +184,12 @@ export class ManagementV1AuthenticationOIDC {
         {
             "name": "redirectURI",
             "baseName": "redirectURI",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "resource",
+            "baseName": "resource",
             "type": "string",
             "format": ""
         },
