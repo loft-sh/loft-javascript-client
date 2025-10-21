@@ -27,6 +27,10 @@ export class ManagementV1ClusterAgentConfig {
     'apiVersion'?: string;
     'audit'?: ManagementV1AgentAuditConfig;
     /**
+    * AuthenticateVersionEndpoint will force authentication for the \'/version\' endpoint. Will only work with vCluster v0.27 & later
+    */
+    'authenticateVersionEndpoint'?: boolean;
+    /**
     * Cluster is the cluster the agent is running in.
     */
     'cluster'?: string;
@@ -76,6 +80,12 @@ export class ManagementV1ClusterAgentConfig {
             "name": "audit",
             "baseName": "audit",
             "type": "ManagementV1AgentAuditConfig",
+            "format": ""
+        },
+        {
+            "name": "authenticateVersionEndpoint",
+            "baseName": "authenticateVersionEndpoint",
+            "type": "boolean",
             "format": ""
         },
         {
