@@ -1,4 +1,3 @@
-import { ManagementV1DevPodWorkspaceInstanceTasks } from "@gen/models/managementV1DevPodWorkspaceInstanceTasks"
 import { ManagementV1Self } from "@gen/models/managementV1Self"
 import { ManagementV1SelfSubjectAccessReview } from "@gen/models/managementV1SelfSubjectAccessReview"
 import {
@@ -328,7 +327,24 @@ class Client {
     }
   }
 
-  public async request<E>(path: string, init?: RequestInit): Promise<Result<E>> {
+  public async blob(path: string, init?: RequestInit): Promise<Result<Blob>> {
+    try {
+      const response = await fetch(this.apiHost + path, init)
+      if (response.status >= 400 || !response.body) {
+        return await this.parseResponse(path, response)
+      }
+
+      return Return.Value(await response.blob())
+    } catch (err) {
+      return Return.Failed(err + "", "NetworkError", ErrorTypeNetwork)
+    }
+  }
+
+  public async request<E>(
+    path: string,
+    init?: RequestInit,
+    allowSpecificErrors?: number[]
+  ): Promise<Result<E>> {
     try {
       const response = await fetch(this.apiHost + path, {
         ...init,
@@ -359,7 +375,7 @@ class Client {
         }
       }
 
-      return await this.parseResponse(path, response)
+      return await this.parseResponse(path, response, allowSpecificErrors)
     } catch (err) {
       const error = err as {
         reason: string
@@ -398,7 +414,11 @@ class Client {
     })
   }
 
-  private async parseResponse<E>(path: string, response: Response): Promise<Result<E>> {
+  private async parseResponse<E>(
+    path: string,
+    response: Response,
+    allowSpecificErrors?: number[]
+  ): Promise<Result<E>> {
     const text = await response.text()
     let obj: any = undefined
     try {
@@ -466,6 +486,10 @@ class Client {
 
     // return other non status responses with error codes as error
     if (response.status >= 400) {
+      // Check if this error code is explicitly allowed
+      if (allowSpecificErrors && allowSpecificErrors.includes(response.status)) {
+        return Return.Value(obj)
+      }
       return Return.Failed("unknown error", "Unknown", MapErrorCode(response.status!))
     }
 
@@ -487,11 +511,18 @@ class Client {
     })
   }
 
-  public cluster = <T>(name: string, groupVersionResource: GroupVersionResource<T>) => {
+  public cluster = <T>(
+    name: string,
+    groupVersionResource: GroupVersionResource<T>,
+    additionalHeaders: { [name: string]: string } = {}
+  ) => {
     return new Request<T>(this, {
       basePath: ClusterBasePath + name,
       groupVersionResource,
-      headers: this.impersonationHeaders(),
+      headers: {
+        ...this.impersonationHeaders(),
+        ...additionalHeaders,
+      },
     })
   }
 
@@ -504,7 +535,8 @@ class Client {
 
   public project = <T>(
     project: RequestOptionsProject,
-    groupVersionResource: GroupVersionResource<T>
+    groupVersionResource: GroupVersionResource<T>,
+    additionalHeaders: { [name: string]: string } = {}
   ) => {
     return new Request<T>(this, {
       basePath:
@@ -514,7 +546,10 @@ class Client {
         (project.space ? "space/" + project.space : "virtualcluster/" + project.virtualCluster),
       groupVersionResource,
       project,
-      headers: this.impersonationHeaders(getProjectExtraGroups(project)),
+      headers: {
+        ...this.impersonationHeaders(getProjectExtraGroups(project)),
+        ...additionalHeaders,
+      },
     })
   }
 
@@ -596,22 +631,32 @@ class Client {
     init?: RequestInit,
     headers?: Record<string, string>
   ): Promise<Result<ReadableStreamDefaultReader<Uint8Array>>> {
-    return this.doRawInternal(path, init, headers, true)
+    return this.doRawInternal(path, init, headers, "stream")
+  }
+
+  public async doRawBlob(
+    path: string,
+    init?: RequestInit,
+    headers?: Record<string, string>
+  ): Promise<Result<Blob>> {
+    return this.doRawInternal(path, init, headers, "blob")
   }
 
   public async doRaw<E>(
     path: string,
     init?: RequestInit,
-    headers?: Record<string, string>
+    headers?: Record<string, string>,
+    allowSpecificErrors?: number[]
   ): Promise<Result<E>> {
-    return this.doRawInternal(path, init, headers)
+    return this.doRawInternal(path, init, headers, undefined, allowSpecificErrors)
   }
 
   private async doRawInternal(
     path: string,
     init?: RequestInit,
     headers?: Record<string, string>,
-    stream?: boolean
+    type?: "resource" | "stream" | "blob",
+    allowSpecificErrors?: number[]
   ): Promise<Result<any>> {
     const requestToken = this.accessKey
     const mergedHeaders = requestToken
@@ -628,15 +673,25 @@ class Client {
         })
 
     // merge headers
-    const response = !stream
-      ? await this.request(path, {
-          ...init,
-          headers: mergedHeaders,
-        })
-      : await this.stream(path, {
-          ...init,
-          headers: mergedHeaders,
-        })
+    const response =
+      type === "stream"
+        ? await this.stream(path, {
+            ...init,
+            headers: mergedHeaders,
+          })
+        : type === "blob"
+          ? await this.blob(path, {
+              ...init,
+              headers: mergedHeaders,
+            })
+          : await this.request(
+              path,
+              {
+                ...init,
+                headers: mergedHeaders,
+              },
+              allowSpecificErrors
+            )
 
     // refetch the token when its expired
     if (response.err && response.val.type === ErrorTypeUnauthorized) {
@@ -750,6 +805,10 @@ class Request<T> {
 
   public Resource(groupVersionResource: GroupVersionResource<T>) {
     return new Request(this.client, { ...this.options, groupVersionResource })
+  }
+
+  public AllowSpecificErrors(errorCodes: number[]) {
+    return new Request(this.client, { ...this.options, allowSpecificErrors: errorCodes })
   }
 
   private buildPath(options?: any): Result<string> {
@@ -959,42 +1018,6 @@ class Request<T> {
     return await this.client.doRawStream(requestPath, undefined, this.options.headers)
   }
 
-  public async DevPodWorkspaceInstanceLogs(
-    namespace: string,
-    instance: string,
-    task: string,
-    options?: LogOptions
-  ): Promise<Result<ReadableStreamDefaultReader<Uint8Array>>> {
-    let requestPath = [
-      this.options.basePath,
-      `apis/management.loft.sh/v1/namespaces/${namespace}/devpodworkspaceinstances/${instance}/log`,
-    ].join("/")
-
-    const parameters: string[] = ["taskID=" + task]
-    if (options) {
-      for (const key of Object.keys(options)) {
-        parameters.push(`${key}=${encodeURIComponent((options as any)[key])}`)
-      }
-    }
-    if (parameters.length > 0) {
-      requestPath += "?" + parameters.join("&")
-    }
-
-    return await this.client.doRawStream(requestPath, undefined, this.options.headers)
-  }
-
-  public async DevPodWorkspaceInstanceTasks(
-    namespace: string,
-    instance: string
-  ): Promise<Result<ManagementV1DevPodWorkspaceInstanceTasks>> {
-    let requestPath = [
-      this.options.basePath,
-      `apis/management.loft.sh/v1/namespaces/${namespace}/devpodworkspaceinstances/${instance}/tasks`,
-    ].join("/")
-
-    return this.client.doRaw(requestPath, undefined, this.options.headers)
-  }
-
   public async Logs(
     namespace: string,
     pod: string,
@@ -1036,10 +1059,15 @@ class Request<T> {
   ): Promise<Result<T>> {
     const requestPath = [this.options.basePath, path]
 
-    return await this.client.doRaw<T>(requestPath.join("/"), init, {
-      ...headers,
-      ...this.options.headers,
-    })
+    return await this.client.doRaw<T>(
+      requestPath.join("/"),
+      init,
+      {
+        ...headers,
+        ...this.options.headers,
+      },
+      this.options.allowSpecificErrors
+    )
   }
 
   public ResolvePath(name?: string): Result<string> {
@@ -1058,7 +1086,24 @@ class Request<T> {
     }
 
     return Return.WithExtra(
-      await this.client.doRaw<T>(path.val, undefined, this.options.headers),
+      await this.client.doRaw<T>(
+        path.val,
+        undefined,
+        this.options.headers,
+        this.options.allowSpecificErrors
+      ),
+      this.options
+    )
+  }
+
+  public async GetFile(options?: GetOptions): Promise<Result<Blob>> {
+    const path = this.buildPath(options)
+    if (path.err) {
+      return path
+    }
+
+    return Return.WithExtra(
+      await this.client.doRawBlob(path.val, undefined, this.options.headers),
       this.options
     )
   }
@@ -1074,7 +1119,12 @@ class Request<T> {
     }
 
     return Return.WithExtra(
-      await this.client.doRaw<List<T>>(path.val, undefined, this.options.headers),
+      await this.client.doRaw<List<T>>(
+        path.val,
+        undefined,
+        this.options.headers,
+        this.options.allowSpecificErrors
+      ),
       this.options
     )
   }
@@ -1090,16 +1140,21 @@ class Request<T> {
     }
 
     return Return.WithExtra(
-      await this.client.doRaw<List<T>>(path.val, undefined, {
-        ...this.options.headers,
-        Accept:
-          "application/json;as=Table;v=v1;g=meta.k8s.io,application/json;as=Table;v=v1beta1;g=meta.k8s.io,application/json",
-      }),
+      await this.client.doRaw<List<T>>(
+        path.val,
+        undefined,
+        {
+          ...this.options.headers,
+          Accept:
+            "application/json;as=Table;v=v1;g=meta.k8s.io,application/json;as=Table;v=v1beta1;g=meta.k8s.io,application/json",
+        },
+        this.options.allowSpecificErrors
+      ),
       this.options
     )
   }
 
-  public async Create(obj: T, options?: CreateOptions): Promise<Result<T>> {
+  public async Create(obj: T, options?: CreateOptions, signal?: AbortSignal): Promise<Result<T>> {
     const path = this.buildPath(options)
     if (path.err) {
       return path
@@ -1111,8 +1166,10 @@ class Request<T> {
         {
           method: "POST",
           body: JSON.stringify(obj),
+          signal: signal,
         },
-        { ...this.options.headers, "Content-Type": "application/json" }
+        { ...this.options.headers, "Content-Type": "application/json" },
+        this.options.allowSpecificErrors
       ),
       this.options
     )
@@ -1154,7 +1211,8 @@ class Request<T> {
         {
           ...this.options.headers,
           "Content-Type": patchType || "application/merge-patch+json",
-        }
+        },
+        this.options.allowSpecificErrors
       ),
       this.options
     )
