@@ -10,7 +10,6 @@
  * Do not edit the class manually.
  */
 
-import { UiV1ExternalURLs } from '../models/uiV1ExternalURLs';
 import { UiV1NavBarButton } from '../models/uiV1NavBarButton';
 
 
@@ -27,7 +26,6 @@ export class UiV1UISettingsConfig {
     * CustomJavaScript holds URLs with custom js files that should be included when loading the UI
     */
     'customJavaScript'?: Array<string>;
-    'externalURLs'?: UiV1ExternalURLs;
     /**
     * LegalTemplate is a text (html) string containing the legal template to prompt to users when authenticating to Loft
     */
@@ -80,12 +78,6 @@ export class UiV1UISettingsConfig {
             "name": "customJavaScript",
             "baseName": "customJavaScript",
             "type": "Array<string>",
-            "format": ""
-        },
-        {
-            "name": "externalURLs",
-            "baseName": "externalURLs",
-            "type": "UiV1ExternalURLs",
             "format": ""
         },
         {
