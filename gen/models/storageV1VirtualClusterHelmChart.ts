@@ -14,10 +14,6 @@
 
 export class StorageV1VirtualClusterHelmChart {
     /**
-    * InsecureSkipTlsVerify skips the TLS verification for the helm chart
-    */
-    'insecureSkipTlsVerify'?: boolean;
-    /**
     * the name of the helm chart
     */
     'name'?: string;
@@ -41,12 +37,6 @@ export class StorageV1VirtualClusterHelmChart {
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
-        {
-            "name": "insecureSkipTlsVerify",
-            "baseName": "insecureSkipTlsVerify",
-            "type": "boolean",
-            "format": ""
-        },
         {
             "name": "name",
             "baseName": "name",
