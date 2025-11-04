@@ -36,7 +36,7 @@ export class ManagementV1ConfigStatus {
     'cloud'?: ManagementV1Cloud;
     'costControl'?: ManagementV1CostControl;
     /**
-    * DEPRECATED: DevPodSubDomain holds a subdomain in the following form *.workspace.my-domain.com DevPodSubDomain holds a subdomain in the following form *.workspace.my-domain.com
+    * DevPodSubDomain holds a subdomain in the following form *.workspace.my-domain.com
     */
     'devPodSubDomain'?: string;
     /**

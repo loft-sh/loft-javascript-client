@@ -31,10 +31,6 @@ export class ManagementV1NodeClaimSpec {
     */
     'kubeletArgs'?: { [key: string]: string; };
     /**
-    * Properties are extra properties for the NodeClaim.
-    */
-    'properties'?: { [key: string]: string; };
-    /**
     * ProviderRef is the name of the NodeProvider that this NodeClaim is based on.
     */
     'providerRef'?: string;
@@ -77,12 +73,6 @@ export class ManagementV1NodeClaimSpec {
         {
             "name": "kubeletArgs",
             "baseName": "kubeletArgs",
-            "type": "{ [key: string]: string; }",
-            "format": ""
-        },
-        {
-            "name": "properties",
-            "baseName": "properties",
             "type": "{ [key: string]: string; }",
             "format": ""
         },
