@@ -25,10 +25,6 @@ export class StorageV1NodeProviderSpec {
     */
     'displayName'?: string;
     'kubeVirt'?: StorageV1NodeProviderKubeVirt;
-    /**
-    * Properties are global properties that are applied to all node claims and environments managed by this provider.
-    */
-    'properties'?: { [key: string]: string; };
     'terraform'?: StorageV1NodeProviderTerraform;
 
     static readonly discriminator: string | undefined = undefined;
@@ -50,12 +46,6 @@ export class StorageV1NodeProviderSpec {
             "name": "kubeVirt",
             "baseName": "kubeVirt",
             "type": "StorageV1NodeProviderKubeVirt",
-            "format": ""
-        },
-        {
-            "name": "properties",
-            "baseName": "properties",
-            "type": "{ [key: string]: string; }",
             "format": ""
         },
         {

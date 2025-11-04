@@ -20,10 +20,6 @@ export class ManagementV1RegisterVirtualClusterStatus {
     * Name is the actual name of the virtual cluster instance.
     */
     'name'?: string;
-    /**
-    * Namespace is the namespace of the virtual cluster instance.
-    */
-    'namespace'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -31,12 +27,6 @@ export class ManagementV1RegisterVirtualClusterStatus {
         {
             "name": "name",
             "baseName": "name",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "namespace",
-            "baseName": "namespace",
             "type": "string",
             "format": ""
         }    ];
