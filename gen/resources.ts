@@ -25,7 +25,6 @@ import {ManagementV1Feature} from "./models/managementV1Feature"
 import {ManagementV1IngressAuthToken} from "./models/managementV1IngressAuthToken"
 import {ManagementV1Kiosk} from "./models/managementV1Kiosk"
 import {ManagementV1LicenseRequest} from "./models/managementV1LicenseRequest"
-import {ManagementV1LicenseToken} from "./models/managementV1LicenseToken"
 import {ManagementV1License} from "./models/managementV1License"
 import {ManagementV1LoftUpgrade} from "./models/managementV1LoftUpgrade"
 import {ManagementV1NodeClaim} from "./models/managementV1NodeClaim"
@@ -78,6 +77,7 @@ import {ManagementV1VirtualClusterInstanceShell} from "./models/managementV1Virt
 import {ManagementV1VirtualClusterInstanceSnapshot} from "./models/managementV1VirtualClusterInstanceSnapshot"
 import {ManagementV1VirtualClusterInstance} from "./models/managementV1VirtualClusterInstance"
 import {ManagementV1VirtualClusterNodeAccessKey} from "./models/managementV1VirtualClusterNodeAccessKey"
+import {ManagementV1VirtualClusterResourceUsage} from "./models/managementV1VirtualClusterResourceUsage"
 import {ManagementV1VirtualClusterSchema} from "./models/managementV1VirtualClusterSchema"
 import {ManagementV1VirtualClusterStandalone} from "./models/managementV1VirtualClusterStandalone"
 import {ManagementV1VirtualClusterTemplate} from "./models/managementV1VirtualClusterTemplate"
@@ -109,7 +109,6 @@ export type TGenResources = {
   ManagementV1Kiosk: GroupVersionResource<ManagementV1Kiosk>
   ManagementV1License: GroupVersionResource<ManagementV1License>
   ManagementV1LicenseRequest: GroupVersionResource<ManagementV1LicenseRequest>
-  ManagementV1LicenseToken: GroupVersionResource<ManagementV1LicenseToken>
   ManagementV1LoftUpgrade: GroupVersionResource<ManagementV1LoftUpgrade>
   ManagementV1NodeClaim: GroupVersionResource<ManagementV1NodeClaim>
   ManagementV1NodeEnvironment: GroupVersionResource<ManagementV1NodeEnvironment>
@@ -161,6 +160,7 @@ export type TGenResources = {
   ManagementV1VirtualClusterInstanceShell: GroupVersionResource<ManagementV1VirtualClusterInstanceShell>
   ManagementV1VirtualClusterInstanceSnapshot: GroupVersionResource<ManagementV1VirtualClusterInstanceSnapshot>
   ManagementV1VirtualClusterNodeAccessKey: GroupVersionResource<ManagementV1VirtualClusterNodeAccessKey>
+  ManagementV1VirtualClusterResourceUsage: GroupVersionResource<ManagementV1VirtualClusterResourceUsage>
   ManagementV1VirtualClusterSchema: GroupVersionResource<ManagementV1VirtualClusterSchema>
   ManagementV1VirtualClusterStandalone: GroupVersionResource<ManagementV1VirtualClusterStandalone>
   ManagementV1VirtualClusterTemplate: GroupVersionResource<ManagementV1VirtualClusterTemplate>
@@ -374,14 +374,6 @@ export const GenResources: TGenResources = {
     subResource: "request",
     namespaced: false,
     kind: "LicenseRequest",
-  },
-  ManagementV1LicenseToken: {
-    group: "management.loft.sh",
-    version: "v1",
-    resource: "licensetokens",
-    subResource: "",
-    namespaced: false,
-    kind: "LicenseToken",
   },
   ManagementV1LoftUpgrade: {
     group: "management.loft.sh",
@@ -790,6 +782,14 @@ export const GenResources: TGenResources = {
     subResource: "nodeaccesskey",
     namespaced: true,
     kind: "VirtualClusterNodeAccessKey",
+  },
+  ManagementV1VirtualClusterResourceUsage: {
+    group: "management.loft.sh",
+    version: "v1",
+    resource: "virtualclusterinstances",
+    subResource: "resourceusage",
+    namespaced: true,
+    kind: "VirtualClusterResourceUsage",
   },
   ManagementV1VirtualClusterSchema: {
     group: "management.loft.sh",

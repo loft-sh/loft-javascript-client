@@ -25,6 +25,10 @@ import { LicenseApiPlan } from '../models/licenseApiPlan';
 export class LicenseApiLicense {
     'analytics'?: LicenseApiAnalytics;
     /**
+    * Annotations contains additional metadata about the license.
+    */
+    'annotations'?: { [key: string]: string; };
+    /**
     * Announcements is a map string/string such that we can easily add any additional data without needing to change types. For now, we will use the keys \"name\" and \"content\".
     */
     'announcement'?: Array<LicenseApiAnnouncement>;
@@ -69,6 +73,12 @@ export class LicenseApiLicense {
             "name": "analytics",
             "baseName": "analytics",
             "type": "LicenseApiAnalytics",
+            "format": ""
+        },
+        {
+            "name": "annotations",
+            "baseName": "annotations",
+            "type": "{ [key: string]: string; }",
             "format": ""
         },
         {
