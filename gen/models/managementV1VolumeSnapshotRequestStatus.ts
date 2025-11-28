@@ -19,7 +19,6 @@ import { ManagementV1SnapshotRequestError } from '../models/managementV1Snapshot
 export class ManagementV1VolumeSnapshotRequestStatus {
     'error': ManagementV1SnapshotRequestError;
     'phase'?: string;
-    'snapshotHandle'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -33,12 +32,6 @@ export class ManagementV1VolumeSnapshotRequestStatus {
         {
             "name": "phase",
             "baseName": "phase",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "snapshotHandle",
-            "baseName": "snapshotHandle",
             "type": "string",
             "format": ""
         }    ];
