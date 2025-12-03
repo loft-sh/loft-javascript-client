@@ -25,6 +25,7 @@ import {ManagementV1Feature} from "./models/managementV1Feature"
 import {ManagementV1IngressAuthToken} from "./models/managementV1IngressAuthToken"
 import {ManagementV1Kiosk} from "./models/managementV1Kiosk"
 import {ManagementV1LicenseRequest} from "./models/managementV1LicenseRequest"
+import {ManagementV1LicenseToken} from "./models/managementV1LicenseToken"
 import {ManagementV1License} from "./models/managementV1License"
 import {ManagementV1LoftUpgrade} from "./models/managementV1LoftUpgrade"
 import {ManagementV1NodeClaim} from "./models/managementV1NodeClaim"
@@ -109,6 +110,7 @@ export type TGenResources = {
   ManagementV1Kiosk: GroupVersionResource<ManagementV1Kiosk>
   ManagementV1License: GroupVersionResource<ManagementV1License>
   ManagementV1LicenseRequest: GroupVersionResource<ManagementV1LicenseRequest>
+  ManagementV1LicenseToken: GroupVersionResource<ManagementV1LicenseToken>
   ManagementV1LoftUpgrade: GroupVersionResource<ManagementV1LoftUpgrade>
   ManagementV1NodeClaim: GroupVersionResource<ManagementV1NodeClaim>
   ManagementV1NodeEnvironment: GroupVersionResource<ManagementV1NodeEnvironment>
@@ -374,6 +376,14 @@ export const GenResources: TGenResources = {
     subResource: "request",
     namespaced: false,
     kind: "LicenseRequest",
+  },
+  ManagementV1LicenseToken: {
+    group: "management.loft.sh",
+    version: "v1",
+    resource: "licensetokens",
+    subResource: "",
+    namespaced: false,
+    kind: "LicenseToken",
   },
   ManagementV1LoftUpgrade: {
     group: "management.loft.sh",
