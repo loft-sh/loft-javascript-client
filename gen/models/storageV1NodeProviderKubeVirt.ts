@@ -10,15 +10,15 @@
  * Do not edit the class manually.
  */
 
+import { StorageV1KubeVirtClusterRef } from '../models/storageV1KubeVirtClusterRef';
 import { StorageV1KubeVirtNodeTypeSpec } from '../models/storageV1KubeVirtNodeTypeSpec';
-import { StorageV1NodeProviderClusterRef } from '../models/storageV1NodeProviderClusterRef';
 
 
 /**
 * NodeProviderKubeVirt defines the configuration for a KubeVirt node provider.
 */
 export class StorageV1NodeProviderKubeVirt {
-    'clusterRef'?: StorageV1NodeProviderClusterRef;
+    'clusterRef'?: StorageV1KubeVirtClusterRef;
     /**
     * NodeTypes define NodeTypes that should be automatically created for this provider.
     */
@@ -34,7 +34,7 @@ export class StorageV1NodeProviderKubeVirt {
         {
             "name": "clusterRef",
             "baseName": "clusterRef",
-            "type": "StorageV1NodeProviderClusterRef",
+            "type": "StorageV1KubeVirtClusterRef",
             "format": ""
         },
         {

@@ -19,7 +19,7 @@ import { V1Taint } from '../models/V1Taint';
 */
 export class ManagementV1NodeClaimSpec {
     /**
-    * ControlPlane indicates if the node claim is for a control plane node. This is intentionally not omitempty as we want to ensure that the control plane is always set for easier checking in for example terraform templates.
+    * ControlPlane indicates if the node claim is for a control plane node.
     */
     'controlPlane'?: boolean;
     /**
@@ -37,7 +37,7 @@ export class ManagementV1NodeClaimSpec {
     /**
     * ProviderRef is the name of the NodeProvider that this NodeClaim is based on.
     */
-    'providerRef': string;
+    'providerRef'?: string;
     /**
     * Requirements are the requirements for the NodeClaim.
     */
