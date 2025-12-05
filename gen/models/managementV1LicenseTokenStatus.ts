@@ -10,24 +10,24 @@
  * Do not edit the class manually.
  */
 
-import { LicenseApiGenericRequestOutput } from '../models/licenseApiGenericRequestOutput';
+import { LicenseApiInstanceTokenAuth } from '../models/licenseApiInstanceTokenAuth';
 
 
-export class ManagementV1LicenseRequestStatus {
-    'output'?: LicenseApiGenericRequestOutput;
+export class ManagementV1LicenseTokenStatus {
+    'token'?: LicenseApiInstanceTokenAuth;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "output",
-            "baseName": "output",
-            "type": "LicenseApiGenericRequestOutput",
+            "name": "token",
+            "baseName": "token",
+            "type": "LicenseApiInstanceTokenAuth",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1LicenseRequestStatus.attributeTypeMap;
+        return ManagementV1LicenseTokenStatus.attributeTypeMap;
     }
 
     public constructor() {

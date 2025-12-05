@@ -10,14 +10,15 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1VirtualClusterResourceUsageStatus } from '../models/managementV1VirtualClusterResourceUsageStatus';
+import { ManagementV1LicenseTokenSpec } from '../models/managementV1LicenseTokenSpec';
+import { ManagementV1LicenseTokenStatus } from '../models/managementV1LicenseTokenStatus';
 import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
 /**
-* VirtualClusterResourceUsage holds information about a virtual cluster\'s usage of node resources.
+* License Token holds the license token information
 */
-export class ManagementV1VirtualClusterResourceUsage {
+export class ManagementV1LicenseToken {
     /**
     * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
     */
@@ -27,7 +28,8 @@ export class ManagementV1VirtualClusterResourceUsage {
     */
     'kind'?: string;
     'metadata'?: V1ObjectMeta;
-    'status'?: ManagementV1VirtualClusterResourceUsageStatus;
+    'spec'?: ManagementV1LicenseTokenSpec;
+    'status'?: ManagementV1LicenseTokenStatus;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -51,14 +53,20 @@ export class ManagementV1VirtualClusterResourceUsage {
             "format": ""
         },
         {
+            "name": "spec",
+            "baseName": "spec",
+            "type": "ManagementV1LicenseTokenSpec",
+            "format": ""
+        },
+        {
             "name": "status",
             "baseName": "status",
-            "type": "ManagementV1VirtualClusterResourceUsageStatus",
+            "type": "ManagementV1LicenseTokenStatus",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1VirtualClusterResourceUsage.attributeTypeMap;
+        return ManagementV1LicenseToken.attributeTypeMap;
     }
 
     public constructor() {
