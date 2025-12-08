@@ -12,7 +12,7 @@
 
 
 
-export class StorageV1NodeProviderClusterRef {
+export class StorageV1KubeVirtClusterRef {
     /**
     * Cluster is the connected cluster the VMs will be created in
     */
@@ -20,7 +20,7 @@ export class StorageV1NodeProviderClusterRef {
     /**
     * Namespace is the namespace inside the connected cluster holding VMs
     */
-    'namespace'?: string;
+    'namespace': string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -39,7 +39,7 @@ export class StorageV1NodeProviderClusterRef {
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1NodeProviderClusterRef.attributeTypeMap;
+        return StorageV1KubeVirtClusterRef.attributeTypeMap;
     }
 
     public constructor() {

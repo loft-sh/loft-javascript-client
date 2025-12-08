@@ -29,10 +29,6 @@ export class UiV1UISettingsConfig {
     'customJavaScript'?: Array<string>;
     'externalURLs'?: UiV1ExternalURLs;
     /**
-    * FaviconURL is url pointing to the favicon to use in the vCluster Platform UI. This path must be accessible for clients accessing the vCluster Platform UI!
-    */
-    'faviconURL'?: string;
-    /**
     * LegalTemplate is a text (html) string containing the legal template to prompt to users when authenticating to Loft
     */
     'legalTemplate'?: string;
@@ -45,7 +41,7 @@ export class UiV1UISettingsConfig {
     */
     'logoBackgroundColor'?: string;
     /**
-    * LogoURL is url pointing to the logo to use in the vCluster Platform UI. This path must be accessible for clients accessing the vCluster Platform UI!
+    * LogoURL is url pointing to the logo to use in the Loft UI. This path must be accessible for clients accessing the Loft UI!
     */
     'logoURL'?: string;
     /**
@@ -61,7 +57,7 @@ export class UiV1UISettingsConfig {
     */
     'sidebarColor'?: string;
     /**
-    * SmallLogoURL is url pointing to the small logo to use in the vCluster Platform UI. This path must be accessible for clients accessing the vCluster Platform UI!
+    * SmallLogoURL is url pointing to the small logo to use in the Loft UI. This path must be accessible for clients accessing the Loft UI!
     */
     'smallLogoURL'?: string;
 
@@ -90,12 +86,6 @@ export class UiV1UISettingsConfig {
             "name": "externalURLs",
             "baseName": "externalURLs",
             "type": "UiV1ExternalURLs",
-            "format": ""
-        },
-        {
-            "name": "faviconURL",
-            "baseName": "faviconURL",
-            "type": "string",
             "format": ""
         },
         {
