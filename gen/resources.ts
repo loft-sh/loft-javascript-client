@@ -25,6 +25,7 @@ import {ManagementV1Feature} from "./models/managementV1Feature"
 import {ManagementV1IngressAuthToken} from "./models/managementV1IngressAuthToken"
 import {ManagementV1Kiosk} from "./models/managementV1Kiosk"
 import {ManagementV1LicenseRequest} from "./models/managementV1LicenseRequest"
+import {ManagementV1LicenseToken} from "./models/managementV1LicenseToken"
 import {ManagementV1License} from "./models/managementV1License"
 import {ManagementV1LoftUpgrade} from "./models/managementV1LoftUpgrade"
 import {ManagementV1NodeClaim} from "./models/managementV1NodeClaim"
@@ -70,6 +71,7 @@ import {ManagementV1UserPermissions} from "./models/managementV1UserPermissions"
 import {ManagementV1UserProfile} from "./models/managementV1UserProfile"
 import {ManagementV1User} from "./models/managementV1User"
 import {ManagementV1VirtualClusterAccessKey} from "./models/managementV1VirtualClusterAccessKey"
+import {ManagementV1VirtualClusterConnection} from "./models/managementV1VirtualClusterConnection"
 import {ManagementV1VirtualClusterExternalDatabase} from "./models/managementV1VirtualClusterExternalDatabase"
 import {ManagementV1VirtualClusterInstanceKubeConfig} from "./models/managementV1VirtualClusterInstanceKubeConfig"
 import {ManagementV1VirtualClusterInstanceLog} from "./models/managementV1VirtualClusterInstanceLog"
@@ -109,6 +111,7 @@ export type TGenResources = {
   ManagementV1Kiosk: GroupVersionResource<ManagementV1Kiosk>
   ManagementV1License: GroupVersionResource<ManagementV1License>
   ManagementV1LicenseRequest: GroupVersionResource<ManagementV1LicenseRequest>
+  ManagementV1LicenseToken: GroupVersionResource<ManagementV1LicenseToken>
   ManagementV1LoftUpgrade: GroupVersionResource<ManagementV1LoftUpgrade>
   ManagementV1NodeClaim: GroupVersionResource<ManagementV1NodeClaim>
   ManagementV1NodeEnvironment: GroupVersionResource<ManagementV1NodeEnvironment>
@@ -153,6 +156,7 @@ export type TGenResources = {
   ManagementV1UserPermissions: GroupVersionResource<ManagementV1UserPermissions>
   ManagementV1UserProfile: GroupVersionResource<ManagementV1UserProfile>
   ManagementV1VirtualClusterAccessKey: GroupVersionResource<ManagementV1VirtualClusterAccessKey>
+  ManagementV1VirtualClusterConnection: GroupVersionResource<ManagementV1VirtualClusterConnection>
   ManagementV1VirtualClusterExternalDatabase: GroupVersionResource<ManagementV1VirtualClusterExternalDatabase>
   ManagementV1VirtualClusterInstance: GroupVersionResource<ManagementV1VirtualClusterInstance>
   ManagementV1VirtualClusterInstanceKubeConfig: GroupVersionResource<ManagementV1VirtualClusterInstanceKubeConfig>
@@ -374,6 +378,14 @@ export const GenResources: TGenResources = {
     subResource: "request",
     namespaced: false,
     kind: "LicenseRequest",
+  },
+  ManagementV1LicenseToken: {
+    group: "management.loft.sh",
+    version: "v1",
+    resource: "licensetokens",
+    subResource: "",
+    namespaced: false,
+    kind: "LicenseToken",
   },
   ManagementV1LoftUpgrade: {
     group: "management.loft.sh",
@@ -726,6 +738,14 @@ export const GenResources: TGenResources = {
     subResource: "accesskey",
     namespaced: true,
     kind: "VirtualClusterAccessKey",
+  },
+  ManagementV1VirtualClusterConnection: {
+    group: "management.loft.sh",
+    version: "v1",
+    resource: "virtualclusterconnections",
+    subResource: "",
+    namespaced: false,
+    kind: "VirtualClusterConnection",
   },
   ManagementV1VirtualClusterExternalDatabase: {
     group: "management.loft.sh",

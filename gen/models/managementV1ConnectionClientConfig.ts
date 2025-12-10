@@ -10,24 +10,39 @@
  * Do not edit the class manually.
  */
 
-import { LicenseApiGenericRequestOutput } from '../models/licenseApiGenericRequestOutput';
 
 
-export class ManagementV1LicenseRequestStatus {
-    'output'?: LicenseApiGenericRequestOutput;
+/**
+* ConnectionClientConfig specifies the client vCluster to connect to
+*/
+export class ManagementV1ConnectionClientConfig {
+    /**
+    * Name is the name of the client vCluster
+    */
+    'name': string;
+    /**
+    * Project is the project of the client vCluster
+    */
+    'project'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "output",
-            "baseName": "output",
-            "type": "LicenseApiGenericRequestOutput",
+            "name": "name",
+            "baseName": "name",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "project",
+            "baseName": "project",
+            "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1LicenseRequestStatus.attributeTypeMap;
+        return ManagementV1ConnectionClientConfig.attributeTypeMap;
     }
 
     public constructor() {
