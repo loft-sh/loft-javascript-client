@@ -12,34 +12,37 @@
 
 
 
-export class ManagementV1VirtualClusterResourceUsageMap {
+/**
+* GenericRequestInput defines the payload that needs to be sent to a button\'s action URL
+*/
+export class LicenseApiGenericRequestInput {
     /**
-    * Capacity is a map of resources to their total amounts across all attached nodes.
+    * Payload provides the json encoded payload
     */
-    'capacity'?: { [key: string]: number; };
+    'payload'?: string;
     /**
-    * Nodes is the total count of nodes attached to the virtual cluster.
+    * ReturnURL is the url from which the request is initiated
     */
-    'nodes': number;
+    'returnURL'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "capacity",
-            "baseName": "capacity",
-            "type": "{ [key: string]: number; }",
-            "format": "int32"
+            "name": "payload",
+            "baseName": "payload",
+            "type": "string",
+            "format": ""
         },
         {
-            "name": "nodes",
-            "baseName": "nodes",
-            "type": "number",
-            "format": "int32"
+            "name": "returnURL",
+            "baseName": "returnURL",
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1VirtualClusterResourceUsageMap.attributeTypeMap;
+        return LicenseApiGenericRequestInput.attributeTypeMap;
     }
 
     public constructor() {
