@@ -17,10 +17,6 @@
 */
 export class ManagementV1NodeEnvironmentSpec {
     /**
-    * ControlPlane indicates if the node environment is a control plane environment. This is intentionally not omitempty as we want to ensure that the control plane is always set for easier checking in for example terraform templates.
-    */
-    'controlPlane'?: boolean;
-    /**
     * Properties are the properties for the NodeEnvironment.
     */
     'properties'?: { [key: string]: string; };
@@ -36,12 +32,6 @@ export class ManagementV1NodeEnvironmentSpec {
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
-        {
-            "name": "controlPlane",
-            "baseName": "controlPlane",
-            "type": "boolean",
-            "format": ""
-        },
         {
             "name": "properties",
             "baseName": "properties",
