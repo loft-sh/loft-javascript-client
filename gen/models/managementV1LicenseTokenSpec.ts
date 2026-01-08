@@ -10,24 +10,30 @@
  * Do not edit the class manually.
  */
 
-import { LicenseApiGenericRequestOutput } from '../models/licenseApiGenericRequestOutput';
 
 
-export class ManagementV1LicenseRequestStatus {
-    'output'?: LicenseApiGenericRequestOutput;
+export class ManagementV1LicenseTokenSpec {
+    'payload'?: string;
+    'url'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "output",
-            "baseName": "output",
-            "type": "LicenseApiGenericRequestOutput",
+            "name": "payload",
+            "baseName": "payload",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "url",
+            "baseName": "url",
+            "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1LicenseRequestStatus.attributeTypeMap;
+        return ManagementV1LicenseTokenSpec.attributeTypeMap;
     }
 
     public constructor() {
