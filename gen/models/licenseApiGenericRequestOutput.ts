@@ -10,41 +10,50 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1SnapshotRequestError } from '../models/managementV1SnapshotRequestError';
+import { LicenseApiButton } from '../models/licenseApiButton';
 
 
 /**
-* SnapshotStatus shows the current status of a single PVC snapshot.
+* GenericRequestOutput specifies the response
 */
-export class ManagementV1VolumeSnapshotRequestStatus {
-    'error': ManagementV1SnapshotRequestError;
-    'phase'?: string;
-    'snapshotHandle'?: string;
+export class LicenseApiGenericRequestOutput {
+    /**
+    * Buttons to be shown to the user alongside other content (e.g. HTML).
+    */
+    'buttons'?: Array<LicenseApiButton>;
+    /**
+    * HTML to display to the user.
+    */
+    'html'?: string;
+    /**
+    * RedirectURL to redirect the user to.
+    */
+    'redirectURL'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "error",
-            "baseName": "error",
-            "type": "ManagementV1SnapshotRequestError",
+            "name": "buttons",
+            "baseName": "buttons",
+            "type": "Array<LicenseApiButton>",
             "format": ""
         },
         {
-            "name": "phase",
-            "baseName": "phase",
+            "name": "html",
+            "baseName": "html",
             "type": "string",
             "format": ""
         },
         {
-            "name": "snapshotHandle",
-            "baseName": "snapshotHandle",
+            "name": "redirectURL",
+            "baseName": "redirectURL",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1VolumeSnapshotRequestStatus.attributeTypeMap;
+        return LicenseApiGenericRequestOutput.attributeTypeMap;
     }
 
     public constructor() {
