@@ -10,13 +10,11 @@
  * Do not edit the class manually.
  */
 
+import { LicenseApiGenericRequestOutput } from '../models/licenseApiGenericRequestOutput';
 
 
 export class ManagementV1LicenseRequestStatus {
-    /**
-    * Output is where the request output is stored.
-    */
-    'output'?: string;
+    'output'?: LicenseApiGenericRequestOutput;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -24,7 +22,7 @@ export class ManagementV1LicenseRequestStatus {
         {
             "name": "output",
             "baseName": "output",
-            "type": "string",
+            "type": "LicenseApiGenericRequestOutput",
             "format": ""
         }    ];
 
