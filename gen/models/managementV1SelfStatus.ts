@@ -38,10 +38,6 @@ export class ManagementV1SelfStatus {
     */
     'instanceID'?: string;
     /**
-    * LoftHost is the host of the loft instance
-    */
-    'loftHost'?: string;
-    /**
     * ProjectNamespacePrefix is the prefix used to name project namespaces after defaulting has been applied
     */
     'projectNamespacePrefix'?: string;
@@ -92,12 +88,6 @@ export class ManagementV1SelfStatus {
         {
             "name": "instanceID",
             "baseName": "instanceID",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "loftHost",
-            "baseName": "loftHost",
             "type": "string",
             "format": ""
         },
