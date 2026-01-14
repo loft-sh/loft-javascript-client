@@ -10,24 +10,36 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1VirtualClusterResourceUsageMap } from '../models/managementV1VirtualClusterResourceUsageMap';
 
 
-export class ManagementV1VirtualClusterResourceUsageStatus {
-    'resourceUsage'?: ManagementV1VirtualClusterResourceUsageMap;
+export class StorageV1KubeVirtClusterRef {
+    /**
+    * Cluster is the connected cluster the VMs will be created in
+    */
+    'cluster': string;
+    /**
+    * Namespace is the namespace inside the connected cluster holding VMs
+    */
+    'namespace': string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "resourceUsage",
-            "baseName": "resourceUsage",
-            "type": "ManagementV1VirtualClusterResourceUsageMap",
+            "name": "cluster",
+            "baseName": "cluster",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "namespace",
+            "baseName": "namespace",
+            "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1VirtualClusterResourceUsageStatus.attributeTypeMap;
+        return StorageV1KubeVirtClusterRef.attributeTypeMap;
     }
 
     public constructor() {
