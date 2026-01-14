@@ -52,10 +52,6 @@ export class ManagementV1VirtualClusterInstanceSpec {
     * Parameters are values to pass to the template. The values should be encoded as YAML string where each parameter is represented as a top-level field key.
     */
     'parameters'?: string;
-    /**
-    * Standalone specifies if the virtual cluster is standalone and not hosted in another Kubernetes cluster.
-    */
-    'standalone'?: boolean;
     'template'?: StorageV1VirtualClusterTemplateDefinition;
     'templateRef'?: StorageV1TemplateRef;
 
@@ -114,12 +110,6 @@ export class ManagementV1VirtualClusterInstanceSpec {
             "name": "parameters",
             "baseName": "parameters",
             "type": "string",
-            "format": ""
-        },
-        {
-            "name": "standalone",
-            "baseName": "standalone",
-            "type": "boolean",
             "format": ""
         },
         {

@@ -21,10 +21,6 @@ export class LicenseApiResourceCount {
     */
     'active'?: number;
     /**
-    * Committed specifies the amount of resource consumption customers have committed to for a given billing period. It can be exceeded and will then be charged with overage fees.
-    */
-    'committed'?: number;
-    /**
     * TotalCreated is a continuous counter of the amount of resources ever created.
     */
     'created'?: number;
@@ -39,12 +35,6 @@ export class LicenseApiResourceCount {
         {
             "name": "active",
             "baseName": "active",
-            "type": "number",
-            "format": "int64"
-        },
-        {
-            "name": "committed",
-            "baseName": "committed",
             "type": "number",
             "format": "int64"
         },
