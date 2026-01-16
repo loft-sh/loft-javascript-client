@@ -10,41 +10,36 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1SnapshotRequestError } from '../models/managementV1SnapshotRequestError';
 
 
-/**
-* SnapshotStatus shows the current status of a single PVC snapshot.
-*/
-export class ManagementV1VolumeSnapshotRequestStatus {
-    'error': ManagementV1SnapshotRequestError;
-    'phase'?: string;
-    'snapshotHandle'?: string;
+export class LicenseApiInstanceTokenAuth {
+    /**
+    * Certificate is the signing certificate for the token.
+    */
+    'certificate': string;
+    /**
+    * Token is the jwt token identifying the loft instance.
+    */
+    'token': string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "error",
-            "baseName": "error",
-            "type": "ManagementV1SnapshotRequestError",
-            "format": ""
-        },
-        {
-            "name": "phase",
-            "baseName": "phase",
+            "name": "certificate",
+            "baseName": "certificate",
             "type": "string",
             "format": ""
         },
         {
-            "name": "snapshotHandle",
-            "baseName": "snapshotHandle",
+            "name": "token",
+            "baseName": "token",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1VolumeSnapshotRequestStatus.attributeTypeMap;
+        return LicenseApiInstanceTokenAuth.attributeTypeMap;
     }
 
     public constructor() {
