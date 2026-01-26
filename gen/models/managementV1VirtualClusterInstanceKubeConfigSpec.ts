@@ -17,14 +17,6 @@ export class ManagementV1VirtualClusterInstanceKubeConfigSpec {
     * CertificateTTL holds the ttl (in seconds) to set for the certificate associated with the returned kubeconfig. This field is optional, if no value is provided, the certificate TTL will be set to one day. If set to zero, this will cause loft to pass nil to the certificate signing request, which will result in the certificate being valid for the clusters `cluster-signing-duration` value which is typically one year.
     */
     'certificateTTL'?: number;
-    /**
-    * ClientCert, if set to true, will return kube config with generated client certs instead of platform token
-    */
-    'clientCert'?: boolean;
-    /**
-    * Server allows user to override server in the kubeconfig.
-    */
-    'server'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -34,18 +26,6 @@ export class ManagementV1VirtualClusterInstanceKubeConfigSpec {
             "baseName": "certificateTTL",
             "type": "number",
             "format": "int32"
-        },
-        {
-            "name": "clientCert",
-            "baseName": "clientCert",
-            "type": "boolean",
-            "format": ""
-        },
-        {
-            "name": "server",
-            "baseName": "server",
-            "type": "string",
-            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
