@@ -14,10 +14,6 @@
 
 export class StorageV1AppReference {
     /**
-    * Hash is the hash of the app configuration
-    */
-    'hash'?: string;
-    /**
     * Name of the target app
     */
     'name'?: string;
@@ -41,12 +37,6 @@ export class StorageV1AppReference {
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
-        {
-            "name": "hash",
-            "baseName": "hash",
-            "type": "string",
-            "format": ""
-        },
         {
             "name": "name",
             "baseName": "name",

@@ -10,19 +10,13 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1SnapshotRequest } from '../models/managementV1SnapshotRequest';
 
 
-/**
-* SnapshotTaken is the auto snapshot metadata of a snapshot taken from the vcluster.
-*/
 export class ManagementV1SnapshotTaken {
     'id'?: string;
     'reason'?: string;
-    'snapshotRequest'?: ManagementV1SnapshotRequest;
     'status'?: string;
     'timestamp'?: string;
-    'totalPV': number;
     'url'?: string;
 
     static readonly discriminator: string | undefined = undefined;
@@ -41,12 +35,6 @@ export class ManagementV1SnapshotTaken {
             "format": ""
         },
         {
-            "name": "snapshotRequest",
-            "baseName": "snapshotRequest",
-            "type": "ManagementV1SnapshotRequest",
-            "format": ""
-        },
-        {
             "name": "status",
             "baseName": "status",
             "type": "string",
@@ -57,12 +45,6 @@ export class ManagementV1SnapshotTaken {
             "baseName": "timestamp",
             "type": "string",
             "format": ""
-        },
-        {
-            "name": "totalPV",
-            "baseName": "totalPV",
-            "type": "number",
-            "format": "int32"
         },
         {
             "name": "url",
