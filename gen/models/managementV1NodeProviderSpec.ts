@@ -11,7 +11,6 @@
  */
 
 import { StorageV1NodeProviderBCM } from '../models/storageV1NodeProviderBCM';
-import { StorageV1NodeProviderClusterAPI } from '../models/storageV1NodeProviderClusterAPI';
 import { StorageV1NodeProviderKubeVirt } from '../models/storageV1NodeProviderKubeVirt';
 import { StorageV1NodeProviderTerraform } from '../models/storageV1NodeProviderTerraform';
 
@@ -21,7 +20,6 @@ import { StorageV1NodeProviderTerraform } from '../models/storageV1NodeProviderT
 */
 export class ManagementV1NodeProviderSpec {
     'bcm'?: StorageV1NodeProviderBCM;
-    'clusterAPI'?: StorageV1NodeProviderClusterAPI;
     /**
     * DisplayName is the name that should be displayed in the UI
     */
@@ -40,12 +38,6 @@ export class ManagementV1NodeProviderSpec {
             "name": "bcm",
             "baseName": "bcm",
             "type": "StorageV1NodeProviderBCM",
-            "format": ""
-        },
-        {
-            "name": "clusterAPI",
-            "baseName": "clusterAPI",
-            "type": "StorageV1NodeProviderClusterAPI",
             "format": ""
         },
         {
