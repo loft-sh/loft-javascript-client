@@ -6,6 +6,7 @@ import {ManagementV1AppCredentials} from "./models/managementV1AppCredentials"
 import {ManagementV1App} from "./models/managementV1App"
 import {ManagementV1BackupApply} from "./models/managementV1BackupApply"
 import {ManagementV1Backup} from "./models/managementV1Backup"
+import {ManagementV1BareMetalInstance} from "./models/managementV1BareMetalInstance"
 import {ManagementV1ClusterAccessKey} from "./models/managementV1ClusterAccessKey"
 import {ManagementV1ClusterAccess} from "./models/managementV1ClusterAccess"
 import {ManagementV1ClusterAgentConfig} from "./models/managementV1ClusterAgentConfig"
@@ -89,6 +90,7 @@ export type TGenResources = {
   ManagementV1AppCredentials: GroupVersionResource<ManagementV1AppCredentials>
   ManagementV1Backup: GroupVersionResource<ManagementV1Backup>
   ManagementV1BackupApply: GroupVersionResource<ManagementV1BackupApply>
+  ManagementV1BareMetalInstance: GroupVersionResource<ManagementV1BareMetalInstance>
   ManagementV1Cluster: GroupVersionResource<ManagementV1Cluster>
   ManagementV1ClusterAccess: GroupVersionResource<ManagementV1ClusterAccess>
   ManagementV1ClusterAccessKey: GroupVersionResource<ManagementV1ClusterAccessKey>
@@ -214,6 +216,14 @@ export const GenResources: TGenResources = {
     subResource: "apply",
     namespaced: false,
     kind: "BackupApply",
+  },
+  ManagementV1BareMetalInstance: {
+    group: "management.loft.sh",
+    version: "v1",
+    resource: "baremetalinstances",
+    subResource: "",
+    namespaced: false,
+    kind: "BareMetalInstance",
   },
   ManagementV1Cluster: {
     group: "management.loft.sh",
