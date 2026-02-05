@@ -17,6 +17,7 @@ import { LicenseApiButton } from '../models/licenseApiButton';
 import { LicenseApiLicenseAPIRoutes } from '../models/licenseApiLicenseAPIRoutes';
 import { LicenseApiModule } from '../models/licenseApiModule';
 import { LicenseApiPlan } from '../models/licenseApiPlan';
+import { LicenseApiUsageData } from '../models/licenseApiUsageData';
 
 
 /**
@@ -65,6 +66,7 @@ export class LicenseApiLicense {
     */
     'plans'?: Array<LicenseApiPlan>;
     'routes'?: LicenseApiLicenseAPIRoutes;
+    'usageData'?: LicenseApiUsageData;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -139,6 +141,12 @@ export class LicenseApiLicense {
             "name": "routes",
             "baseName": "routes",
             "type": "LicenseApiLicenseAPIRoutes",
+            "format": ""
+        },
+        {
+            "name": "usageData",
+            "baseName": "usageData",
+            "type": "LicenseApiUsageData",
             "format": ""
         }    ];
 
