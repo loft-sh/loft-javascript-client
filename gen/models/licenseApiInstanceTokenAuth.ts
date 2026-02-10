@@ -12,34 +12,34 @@
 
 
 
-export class StorageV1NodeProviderClusterRef {
+export class LicenseApiInstanceTokenAuth {
     /**
-    * Cluster is the connected cluster the VMs will be created in
+    * Certificate is the signing certificate for the token.
     */
-    'cluster': string;
+    'certificate': string;
     /**
-    * Namespace is the namespace inside the connected cluster holding VMs
+    * Token is the jwt token identifying the loft instance.
     */
-    'namespace'?: string;
+    'token': string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "cluster",
-            "baseName": "cluster",
+            "name": "certificate",
+            "baseName": "certificate",
             "type": "string",
             "format": ""
         },
         {
-            "name": "namespace",
-            "baseName": "namespace",
+            "name": "token",
+            "baseName": "token",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1NodeProviderClusterRef.attributeTypeMap;
+        return LicenseApiInstanceTokenAuth.attributeTypeMap;
     }
 
     public constructor() {

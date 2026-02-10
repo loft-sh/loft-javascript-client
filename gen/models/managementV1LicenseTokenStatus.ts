@@ -10,33 +10,24 @@
  * Do not edit the class manually.
  */
 
+import { LicenseApiInstanceTokenAuth } from '../models/licenseApiInstanceTokenAuth';
 
 
-/**
-* FeatureUsage holds information about whether a feature is used and its status
-*/
-export class LicenseApiFeatureUsage {
-    'status': string;
-    'used': boolean;
+export class ManagementV1LicenseTokenStatus {
+    'token'?: LicenseApiInstanceTokenAuth;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "status",
-            "baseName": "status",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "used",
-            "baseName": "used",
-            "type": "boolean",
+            "name": "token",
+            "baseName": "token",
+            "type": "LicenseApiInstanceTokenAuth",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return LicenseApiFeatureUsage.attributeTypeMap;
+        return ManagementV1LicenseTokenStatus.attributeTypeMap;
     }
 
     public constructor() {

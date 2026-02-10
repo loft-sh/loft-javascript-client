@@ -12,38 +12,28 @@
 
 
 
-/**
-* NodeInfo holds information about a single node
-*/
-export class LicenseApiNodeInfo {
-    'capacity': { [key: string]: string; };
-    'creation_timestamp': string;
-    'machine_id': string;
+export class ManagementV1LicenseTokenSpec {
+    'payload'?: string;
+    'url'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "capacity",
-            "baseName": "capacity",
-            "type": "{ [key: string]: string; }",
-            "format": ""
-        },
-        {
-            "name": "creation_timestamp",
-            "baseName": "creation_timestamp",
+            "name": "payload",
+            "baseName": "payload",
             "type": "string",
             "format": ""
         },
         {
-            "name": "machine_id",
-            "baseName": "machine_id",
+            "name": "url",
+            "baseName": "url",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return LicenseApiNodeInfo.attributeTypeMap;
+        return ManagementV1LicenseTokenSpec.attributeTypeMap;
     }
 
     public constructor() {
