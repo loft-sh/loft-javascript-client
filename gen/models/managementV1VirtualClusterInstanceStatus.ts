@@ -41,10 +41,6 @@ export class ManagementV1VirtualClusterInstanceStatus {
     */
     'ignoreReconciliation'?: boolean;
     /**
-    * KubernetesVersion is the Kubernetes version of the virtual cluster.
-    */
-    'kubernetesVersion'?: string;
-    /**
     * Message describes the reason in human-readable form why the cluster is in the current phase
     */
     'message'?: string;
@@ -100,12 +96,6 @@ export class ManagementV1VirtualClusterInstanceStatus {
             "name": "ignoreReconciliation",
             "baseName": "ignoreReconciliation",
             "type": "boolean",
-            "format": ""
-        },
-        {
-            "name": "kubernetesVersion",
-            "baseName": "kubernetesVersion",
-            "type": "string",
             "format": ""
         },
         {

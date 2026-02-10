@@ -11,7 +11,6 @@
  */
 
 import { StorageV1NodeProviderBCM } from '../models/storageV1NodeProviderBCM';
-import { StorageV1NodeProviderClusterAPI } from '../models/storageV1NodeProviderClusterAPI';
 import { StorageV1NodeProviderKubeVirt } from '../models/storageV1NodeProviderKubeVirt';
 import { StorageV1NodeProviderTerraform } from '../models/storageV1NodeProviderTerraform';
 
@@ -21,16 +20,11 @@ import { StorageV1NodeProviderTerraform } from '../models/storageV1NodeProviderT
 */
 export class ManagementV1NodeProviderSpec {
     'bcm'?: StorageV1NodeProviderBCM;
-    'clusterAPI'?: StorageV1NodeProviderClusterAPI;
     /**
     * DisplayName is the name that should be displayed in the UI
     */
     'displayName'?: string;
     'kubeVirt'?: StorageV1NodeProviderKubeVirt;
-    /**
-    * Properties are global properties that are applied to all node claims and environments managed by this provider.
-    */
-    'properties'?: { [key: string]: string; };
     'terraform'?: StorageV1NodeProviderTerraform;
 
     static readonly discriminator: string | undefined = undefined;
@@ -43,12 +37,6 @@ export class ManagementV1NodeProviderSpec {
             "format": ""
         },
         {
-            "name": "clusterAPI",
-            "baseName": "clusterAPI",
-            "type": "StorageV1NodeProviderClusterAPI",
-            "format": ""
-        },
-        {
             "name": "displayName",
             "baseName": "displayName",
             "type": "string",
@@ -58,12 +46,6 @@ export class ManagementV1NodeProviderSpec {
             "name": "kubeVirt",
             "baseName": "kubeVirt",
             "type": "StorageV1NodeProviderKubeVirt",
-            "format": ""
-        },
-        {
-            "name": "properties",
-            "baseName": "properties",
-            "type": "{ [key: string]: string; }",
             "format": ""
         },
         {

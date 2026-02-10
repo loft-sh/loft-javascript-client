@@ -1,3 +1,4 @@
+import { ManagementV1DevPodWorkspaceInstanceTasks } from "@gen/models/managementV1DevPodWorkspaceInstanceTasks"
 import { ManagementV1Self } from "@gen/models/managementV1Self"
 import { ManagementV1SelfSubjectAccessReview } from "@gen/models/managementV1SelfSubjectAccessReview"
 import {
@@ -65,7 +66,7 @@ const K8S_WEBSOCKET_PROTOCOLS = [
 export function getApiHost(): string {
   // development
   if (typeof window !== "undefined" && window.location.href.startsWith("http://localhost:3000")) {
-    return "https://63.180.79.33:32100"
+    return "https://localhost:9898"
   }
 
   return ""
@@ -1016,6 +1017,42 @@ class Request<T> {
     }
 
     return await this.client.doRawStream(requestPath, undefined, this.options.headers)
+  }
+
+  public async DevPodWorkspaceInstanceLogs(
+    namespace: string,
+    instance: string,
+    task: string,
+    options?: LogOptions
+  ): Promise<Result<ReadableStreamDefaultReader<Uint8Array>>> {
+    let requestPath = [
+      this.options.basePath,
+      `apis/management.loft.sh/v1/namespaces/${namespace}/devpodworkspaceinstances/${instance}/log`,
+    ].join("/")
+
+    const parameters: string[] = ["taskID=" + task]
+    if (options) {
+      for (const key of Object.keys(options)) {
+        parameters.push(`${key}=${encodeURIComponent((options as any)[key])}`)
+      }
+    }
+    if (parameters.length > 0) {
+      requestPath += "?" + parameters.join("&")
+    }
+
+    return await this.client.doRawStream(requestPath, undefined, this.options.headers)
+  }
+
+  public async DevPodWorkspaceInstanceTasks(
+    namespace: string,
+    instance: string
+  ): Promise<Result<ManagementV1DevPodWorkspaceInstanceTasks>> {
+    let requestPath = [
+      this.options.basePath,
+      `apis/management.loft.sh/v1/namespaces/${namespace}/devpodworkspaceinstances/${instance}/tasks`,
+    ].join("/")
+
+    return this.client.doRaw(requestPath, undefined, this.options.headers)
   }
 
   public async Logs(
