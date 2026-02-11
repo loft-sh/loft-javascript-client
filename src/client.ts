@@ -65,7 +65,7 @@ const K8S_WEBSOCKET_PROTOCOLS = [
 export function getApiHost(): string {
   // development
   if (typeof window !== "undefined" && window.location.href.startsWith("http://localhost:3000")) {
-    return "https://63.180.79.33:32100"
+    return "https://localhost:9898"
   }
 
   return ""
