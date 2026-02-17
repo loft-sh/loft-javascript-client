@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1OIDCClientSpec } from '../models/managementV1OIDCClientSpec';
+import { ManagementV1OIDCClientSpec } from '../models/managementV1OIDCClientSpec.js';
 
 
 /**

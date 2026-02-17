@@ -10,10 +10,10 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1Access } from '../models/storageV1Access';
-import { StorageV1ClusterRoleTemplateTemplate } from '../models/storageV1ClusterRoleTemplateTemplate';
-import { StorageV1LocalClusterRoleTemplate } from '../models/storageV1LocalClusterRoleTemplate';
-import { StorageV1UserOrTeam } from '../models/storageV1UserOrTeam';
+import { StorageV1Access } from '../models/storageV1Access.js';
+import { StorageV1ClusterRoleTemplateTemplate } from '../models/storageV1ClusterRoleTemplateTemplate.js';
+import { StorageV1LocalClusterRoleTemplate } from '../models/storageV1LocalClusterRoleTemplate.js';
+import { StorageV1UserOrTeam } from '../models/storageV1UserOrTeam.js';
 
 
 /**

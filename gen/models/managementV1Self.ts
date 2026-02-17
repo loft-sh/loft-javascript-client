@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1SelfSpec } from '../models/managementV1SelfSpec';
-import { ManagementV1SelfStatus } from '../models/managementV1SelfStatus';
-import { V1ObjectMeta } from '../models/V1ObjectMeta';
+import { ManagementV1SelfSpec } from '../models/managementV1SelfSpec.js';
+import { ManagementV1SelfStatus } from '../models/managementV1SelfStatus.js';
+import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
 
 
 /**

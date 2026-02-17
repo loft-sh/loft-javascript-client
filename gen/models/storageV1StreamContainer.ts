@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1LabelSelector } from '../models/V1LabelSelector';
+import { V1LabelSelector } from '../models/V1LabelSelector.js';
 
 
 export class StorageV1StreamContainer {

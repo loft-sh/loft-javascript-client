@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1VirtualClusterStandaloneSpec } from '../models/managementV1VirtualClusterStandaloneSpec';
-import { ManagementV1VirtualClusterStandaloneStatus } from '../models/managementV1VirtualClusterStandaloneStatus';
-import { V1ObjectMeta } from '../models/V1ObjectMeta';
+import { ManagementV1VirtualClusterStandaloneSpec } from '../models/managementV1VirtualClusterStandaloneSpec.js';
+import { ManagementV1VirtualClusterStandaloneStatus } from '../models/managementV1VirtualClusterStandaloneStatus.js';
+import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
 
 
 /**

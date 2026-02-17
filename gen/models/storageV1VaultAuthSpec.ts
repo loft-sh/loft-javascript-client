@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1SecretKeySelector } from '../models/V1SecretKeySelector';
+import { V1SecretKeySelector } from '../models/V1SecretKeySelector.js';
 
 
 export class StorageV1VaultAuthSpec {
