@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { LicenseApiNodeInfo } from '../models/licenseApiNodeInfo';
-import { LicenseApiVirtualClusterInfo } from '../models/licenseApiVirtualClusterInfo';
+import { LicenseApiNodeInfo } from '../models/licenseApiNodeInfo.js';
+import { LicenseApiVirtualClusterInfo } from '../models/licenseApiVirtualClusterInfo.js';
 
 
 /**
