@@ -10,10 +10,10 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1Access } from '../models/storageV1Access';
-import { StorageV1ClusterRoleRef } from '../models/storageV1ClusterRoleRef';
-import { StorageV1KindSecretRef } from '../models/storageV1KindSecretRef';
-import { StorageV1UserOrTeam } from '../models/storageV1UserOrTeam';
+import { StorageV1Access } from '../models/storageV1Access.js';
+import { StorageV1ClusterRoleRef } from '../models/storageV1ClusterRoleRef.js';
+import { StorageV1KindSecretRef } from '../models/storageV1KindSecretRef.js';
+import { StorageV1UserOrTeam } from '../models/storageV1UserOrTeam.js';
 
 
 export class ManagementV1TeamSpec {

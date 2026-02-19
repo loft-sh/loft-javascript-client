@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1KubeVirtNodeTypeSpec } from '../models/storageV1KubeVirtNodeTypeSpec';
-import { StorageV1NodeProviderClusterRef } from '../models/storageV1NodeProviderClusterRef';
+import { StorageV1KubeVirtNodeTypeSpec } from '../models/storageV1KubeVirtNodeTypeSpec.js';
+import { StorageV1NodeProviderClusterRef } from '../models/storageV1NodeProviderClusterRef.js';
 
 
 /**
