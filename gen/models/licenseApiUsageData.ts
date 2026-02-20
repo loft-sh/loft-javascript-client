@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { LicenseApiFeatureUsage } from '../models/licenseApiFeatureUsage';
-import { LicenseApiResourceCount } from '../models/licenseApiResourceCount';
-import { LicenseApiUsageDataDetails } from '../models/licenseApiUsageDataDetails';
+import { LicenseApiFeatureUsage } from '../models/licenseApiFeatureUsage.js';
+import { LicenseApiResourceCount } from '../models/licenseApiResourceCount.js';
+import { LicenseApiUsageDataDetails } from '../models/licenseApiUsageDataDetails.js';
 
 
 /**

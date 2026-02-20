@@ -10,14 +10,11 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1AnnouncementStatus } from '../models/managementV1AnnouncementStatus.js';
+import { ManagementV1VirtualClusterDebugShellPodsStatus } from '../models/managementV1VirtualClusterDebugShellPodsStatus.js';
 import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
 
 
-/**
-* Announcement holds the announcement information
-*/
-export class ManagementV1Announcement {
+export class ManagementV1VirtualClusterInstanceDebugShellPods {
     /**
     * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
     */
@@ -27,8 +24,7 @@ export class ManagementV1Announcement {
     */
     'kind'?: string;
     'metadata'?: V1ObjectMeta;
-    'spec'?: any;
-    'status'?: ManagementV1AnnouncementStatus;
+    'status'?: ManagementV1VirtualClusterDebugShellPodsStatus;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -52,20 +48,14 @@ export class ManagementV1Announcement {
             "format": ""
         },
         {
-            "name": "spec",
-            "baseName": "spec",
-            "type": "any",
-            "format": ""
-        },
-        {
             "name": "status",
             "baseName": "status",
-            "type": "ManagementV1AnnouncementStatus",
+            "type": "ManagementV1VirtualClusterDebugShellPodsStatus",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1Announcement.attributeTypeMap;
+        return ManagementV1VirtualClusterInstanceDebugShellPods.attributeTypeMap;
     }
 
     public constructor() {

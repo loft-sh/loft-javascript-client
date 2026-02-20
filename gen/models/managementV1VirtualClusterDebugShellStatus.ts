@@ -10,57 +10,59 @@
  * Do not edit the class manually.
  */
 
-import { LicenseApiResourceCount } from '../models/licenseApiResourceCount.js';
 
 
 /**
-* Limit defines a limit set in the license
+* VirtualClusterDebugShellStatus returns the resolved pod/container for the shell.
 */
-export class LicenseApiLimit {
+export class ManagementV1VirtualClusterDebugShellStatus {
     /**
-    * DisplayName is for display purposes.
+    * ContainerName is the name of ephemeral container that was created
     */
-    'displayName'?: string;
+    'containerName'?: string;
     /**
-    * Name of the module that this limit belongs to
+    * PodName is the name of the virtual cluster pod
     */
-    'module'?: string;
+    'podName'?: string;
     /**
-    * Name is the name of the resource (ResourceName)
+    * PodNamespace is the namespace of the virtual cluster pod
     */
-    'name'?: string;
-    'quantity'?: LicenseApiResourceCount;
+    'podNamespace'?: string;
+    /**
+    * TargetName is the target name of ephemeral container
+    */
+    'target'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "displayName",
-            "baseName": "displayName",
+            "name": "containerName",
+            "baseName": "containerName",
             "type": "string",
             "format": ""
         },
         {
-            "name": "module",
-            "baseName": "module",
+            "name": "podName",
+            "baseName": "podName",
             "type": "string",
             "format": ""
         },
         {
-            "name": "name",
-            "baseName": "name",
+            "name": "podNamespace",
+            "baseName": "podNamespace",
             "type": "string",
             "format": ""
         },
         {
-            "name": "quantity",
-            "baseName": "quantity",
-            "type": "LicenseApiResourceCount",
+            "name": "target",
+            "baseName": "target",
+            "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return LicenseApiLimit.attributeTypeMap;
+        return ManagementV1VirtualClusterDebugShellStatus.attributeTypeMap;
     }
 
     public constructor() {
