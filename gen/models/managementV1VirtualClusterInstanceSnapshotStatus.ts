@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1SnapshotTaken } from '../models/managementV1SnapshotTaken';
+import { ManagementV1SnapshotTaken } from '../models/managementV1SnapshotTaken.js';
 
 
 export class ManagementV1VirtualClusterInstanceSnapshotStatus {
