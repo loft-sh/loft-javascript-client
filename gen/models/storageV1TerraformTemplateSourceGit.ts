@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1SecretRef } from '../models/storageV1SecretRef';
+import { StorageV1SecretRef } from '../models/storageV1SecretRef.js';
 
 
 export class StorageV1TerraformTemplateSourceGit {

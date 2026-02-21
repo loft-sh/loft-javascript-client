@@ -10,24 +10,27 @@
  * Do not edit the class manually.
  */
 
-import { LicenseApiAnnouncement } from '../models/licenseApiAnnouncement.js';
+import { ManagementV1VirtualClusterDebugShellPodStatus } from '../models/managementV1VirtualClusterDebugShellPodStatus.js';
 
 
-export class ManagementV1AnnouncementStatus {
-    'announcement'?: LicenseApiAnnouncement;
+export class ManagementV1VirtualClusterDebugShellPodsStatus {
+    /**
+    * Pods are available virtual cluster pods that can be selected for debug shell.
+    */
+    'pods'?: Array<ManagementV1VirtualClusterDebugShellPodStatus>;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "announcement",
-            "baseName": "announcement",
-            "type": "LicenseApiAnnouncement",
+            "name": "pods",
+            "baseName": "pods",
+            "type": "Array<ManagementV1VirtualClusterDebugShellPodStatus>",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1AnnouncementStatus.attributeTypeMap;
+        return ManagementV1VirtualClusterDebugShellPodsStatus.attributeTypeMap;
     }
 
     public constructor() {
