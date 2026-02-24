@@ -6,7 +6,6 @@ import {ManagementV1AppCredentials} from "./models/managementV1AppCredentials"
 import {ManagementV1App} from "./models/managementV1App"
 import {ManagementV1BackupApply} from "./models/managementV1BackupApply"
 import {ManagementV1Backup} from "./models/managementV1Backup"
-import {ManagementV1BareMetalInstance} from "./models/managementV1BareMetalInstance"
 import {ManagementV1ClusterAccessKey} from "./models/managementV1ClusterAccessKey"
 import {ManagementV1ClusterAccess} from "./models/managementV1ClusterAccess"
 import {ManagementV1ClusterAgentConfig} from "./models/managementV1ClusterAgentConfig"
@@ -72,6 +71,8 @@ import {ManagementV1UserProfile} from "./models/managementV1UserProfile"
 import {ManagementV1User} from "./models/managementV1User"
 import {ManagementV1VirtualClusterAccessKey} from "./models/managementV1VirtualClusterAccessKey"
 import {ManagementV1VirtualClusterExternalDatabase} from "./models/managementV1VirtualClusterExternalDatabase"
+import {ManagementV1VirtualClusterInstanceDebugShellPods} from "./models/managementV1VirtualClusterInstanceDebugShellPods"
+import {ManagementV1VirtualClusterInstanceDebugShell} from "./models/managementV1VirtualClusterInstanceDebugShell"
 import {ManagementV1VirtualClusterInstanceKubeConfig} from "./models/managementV1VirtualClusterInstanceKubeConfig"
 import {ManagementV1VirtualClusterInstanceLog} from "./models/managementV1VirtualClusterInstanceLog"
 import {ManagementV1VirtualClusterInstanceShell} from "./models/managementV1VirtualClusterInstanceShell"
@@ -90,7 +91,6 @@ export type TGenResources = {
   ManagementV1AppCredentials: GroupVersionResource<ManagementV1AppCredentials>
   ManagementV1Backup: GroupVersionResource<ManagementV1Backup>
   ManagementV1BackupApply: GroupVersionResource<ManagementV1BackupApply>
-  ManagementV1BareMetalInstance: GroupVersionResource<ManagementV1BareMetalInstance>
   ManagementV1Cluster: GroupVersionResource<ManagementV1Cluster>
   ManagementV1ClusterAccess: GroupVersionResource<ManagementV1ClusterAccess>
   ManagementV1ClusterAccessKey: GroupVersionResource<ManagementV1ClusterAccessKey>
@@ -157,6 +157,8 @@ export type TGenResources = {
   ManagementV1VirtualClusterAccessKey: GroupVersionResource<ManagementV1VirtualClusterAccessKey>
   ManagementV1VirtualClusterExternalDatabase: GroupVersionResource<ManagementV1VirtualClusterExternalDatabase>
   ManagementV1VirtualClusterInstance: GroupVersionResource<ManagementV1VirtualClusterInstance>
+  ManagementV1VirtualClusterInstanceDebugShell: GroupVersionResource<ManagementV1VirtualClusterInstanceDebugShell>
+  ManagementV1VirtualClusterInstanceDebugShellPods: GroupVersionResource<ManagementV1VirtualClusterInstanceDebugShellPods>
   ManagementV1VirtualClusterInstanceKubeConfig: GroupVersionResource<ManagementV1VirtualClusterInstanceKubeConfig>
   ManagementV1VirtualClusterInstanceLog: GroupVersionResource<ManagementV1VirtualClusterInstanceLog>
   ManagementV1VirtualClusterInstanceShell: GroupVersionResource<ManagementV1VirtualClusterInstanceShell>
@@ -216,14 +218,6 @@ export const GenResources: TGenResources = {
     subResource: "apply",
     namespaced: false,
     kind: "BackupApply",
-  },
-  ManagementV1BareMetalInstance: {
-    group: "management.loft.sh",
-    version: "v1",
-    resource: "baremetalinstances",
-    subResource: "",
-    namespaced: false,
-    kind: "BareMetalInstance",
   },
   ManagementV1Cluster: {
     group: "management.loft.sh",
@@ -752,6 +746,22 @@ export const GenResources: TGenResources = {
     subResource: "",
     namespaced: true,
     kind: "VirtualClusterInstance",
+  },
+  ManagementV1VirtualClusterInstanceDebugShell: {
+    group: "management.loft.sh",
+    version: "v1",
+    resource: "virtualclusterinstances",
+    subResource: "debug-shell",
+    namespaced: true,
+    kind: "VirtualClusterInstanceDebugShell",
+  },
+  ManagementV1VirtualClusterInstanceDebugShellPods: {
+    group: "management.loft.sh",
+    version: "v1",
+    resource: "virtualclusterinstances",
+    subResource: "debug-shell-pods",
+    namespaced: true,
+    kind: "VirtualClusterInstanceDebugShellPods",
   },
   ManagementV1VirtualClusterInstanceKubeConfig: {
     group: "management.loft.sh",

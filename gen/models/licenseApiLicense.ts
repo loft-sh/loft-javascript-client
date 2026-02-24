@@ -10,14 +10,14 @@
  * Do not edit the class manually.
  */
 
-import { LicenseApiAnalytics } from '../models/licenseApiAnalytics';
-import { LicenseApiAnnouncement } from '../models/licenseApiAnnouncement';
-import { LicenseApiBlockRequest } from '../models/licenseApiBlockRequest';
-import { LicenseApiButton } from '../models/licenseApiButton';
-import { LicenseApiLicenseAPIRoutes } from '../models/licenseApiLicenseAPIRoutes';
-import { LicenseApiModule } from '../models/licenseApiModule';
-import { LicenseApiPlan } from '../models/licenseApiPlan';
-import { LicenseApiUsageData } from '../models/licenseApiUsageData';
+import { LicenseApiAnalytics } from '../models/licenseApiAnalytics.js';
+import { LicenseApiAnnouncement } from '../models/licenseApiAnnouncement.js';
+import { LicenseApiBlockRequest } from '../models/licenseApiBlockRequest.js';
+import { LicenseApiButton } from '../models/licenseApiButton.js';
+import { LicenseApiLicenseAPIRoutes } from '../models/licenseApiLicenseAPIRoutes.js';
+import { LicenseApiModule } from '../models/licenseApiModule.js';
+import { LicenseApiPlan } from '../models/licenseApiPlan.js';
+import { LicenseApiUsageData } from '../models/licenseApiUsageData.js';
 
 
 /**

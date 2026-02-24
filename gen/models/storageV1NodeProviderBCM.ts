@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1BCMNodeTypeSpec } from '../models/storageV1BCMNodeTypeSpec';
-import { StorageV1NamespacedRef } from '../models/storageV1NamespacedRef';
+import { StorageV1BCMNodeTypeSpec } from '../models/storageV1BCMNodeTypeSpec.js';
+import { StorageV1NamespacedRef } from '../models/storageV1NamespacedRef.js';
 
 
 /**
