@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1ClusterAPINodeTypeSpec } from '../models/storageV1ClusterAPINodeTypeSpec';
-import { StorageV1NodeProviderClusterRef } from '../models/storageV1NodeProviderClusterRef';
+import { StorageV1ClusterAPINodeTypeSpec } from '../models/storageV1ClusterAPINodeTypeSpec.js';
+import { StorageV1NodeProviderClusterRef } from '../models/storageV1NodeProviderClusterRef.js';
 
 
 export class StorageV1NodeProviderClusterAPI {

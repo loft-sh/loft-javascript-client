@@ -10,11 +10,11 @@
  * Do not edit the class manually.
  */
 
-import { AuditV1ObjectReference } from '../models/auditV1ObjectReference';
-import { RuntimeUnknown } from '../models/RuntimeUnknown';
+import { AuditV1ObjectReference } from '../models/auditV1ObjectReference.js';
+import { RuntimeUnknown } from '../models/RuntimeUnknown.js';
 
-import { V1Status } from '../models/V1Status';
-import { V1UserInfo } from '../models/V1UserInfo';
+import { V1Status } from '../models/V1Status.js';
+import { V1UserInfo } from '../models/V1UserInfo.js';
 
 
 /**

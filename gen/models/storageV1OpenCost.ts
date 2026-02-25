@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1ResourceRequirements } from '../models/V1ResourceRequirements';
+import { V1ResourceRequirements } from '../models/V1ResourceRequirements.js';
 
 
 export class StorageV1OpenCost {
