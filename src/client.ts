@@ -65,7 +65,7 @@ const K8S_WEBSOCKET_PROTOCOLS = [
 export function getApiHost(): string {
   // development
   if (typeof window !== "undefined" && window.location.href.startsWith("http://localhost:3000")) {
-    return "https://63.180.79.33:32100"
+    return "https://localhost:9898"
   }
 
   return ""
@@ -1050,6 +1050,15 @@ class Request<T> {
     }
 
     return await this.client.doRawSocket(requestPath, K8S_WEBSOCKET_PROTOCOLS)
+  }
+
+  public async Connect(options?: ExecOptions): Promise<Result<WebSocket>> {
+    const path = this.buildPath(options)
+    if (path.err) {
+      return path
+    }
+
+    return await this.client.doRawSocket(path.val, K8S_WEBSOCKET_PROTOCOLS)
   }
 
   public async Path(
