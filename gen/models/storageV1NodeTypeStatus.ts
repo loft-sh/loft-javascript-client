@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1Condition } from '../models/agentstorageV1Condition';
-import { StorageV1NodeTypeCapacity } from '../models/storageV1NodeTypeCapacity';
-import { V1NodeSelectorRequirement } from '../models/V1NodeSelectorRequirement';
+import { StorageV1Condition } from '../models/agentstorageV1Condition.js';
+import { StorageV1NodeTypeCapacity } from '../models/storageV1NodeTypeCapacity.js';
+import { V1NodeSelectorRequirement } from '../models/V1NodeSelectorRequirement.js';
 
 
 /**

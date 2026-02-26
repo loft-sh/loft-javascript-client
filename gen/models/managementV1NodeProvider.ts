@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1NodeProviderSpec } from '../models/managementV1NodeProviderSpec';
-import { ManagementV1NodeProviderStatus } from '../models/managementV1NodeProviderStatus';
-import { V1ObjectMeta } from '../models/V1ObjectMeta';
+import { ManagementV1NodeProviderSpec } from '../models/managementV1NodeProviderSpec.js';
+import { ManagementV1NodeProviderStatus } from '../models/managementV1NodeProviderStatus.js';
+import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
 
 
 /**
