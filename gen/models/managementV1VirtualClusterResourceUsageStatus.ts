@@ -10,30 +10,24 @@
  * Do not edit the class manually.
  */
 
+import { ManagementV1VirtualClusterResourceUsageMap } from '../models/managementV1VirtualClusterResourceUsageMap';
 
 
-export class ManagementV1LicenseTokenSpec {
-    'payload'?: string;
-    'url'?: string;
+export class ManagementV1VirtualClusterResourceUsageStatus {
+    'resourceUsage'?: ManagementV1VirtualClusterResourceUsageMap;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "payload",
-            "baseName": "payload",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "url",
-            "baseName": "url",
-            "type": "string",
+            "name": "resourceUsage",
+            "baseName": "resourceUsage",
+            "type": "ManagementV1VirtualClusterResourceUsageMap",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1LicenseTokenSpec.attributeTypeMap;
+        return ManagementV1VirtualClusterResourceUsageStatus.attributeTypeMap;
     }
 
     public constructor() {

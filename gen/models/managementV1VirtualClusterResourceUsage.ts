@@ -10,15 +10,14 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1LicenseTokenSpec } from '../models/managementV1LicenseTokenSpec';
-import { ManagementV1LicenseTokenStatus } from '../models/managementV1LicenseTokenStatus';
+import { ManagementV1VirtualClusterResourceUsageStatus } from '../models/managementV1VirtualClusterResourceUsageStatus';
 import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
 /**
-* License Token holds the license token information
+* VirtualClusterResourceUsage holds information about a virtual cluster\'s usage of node resources.
 */
-export class ManagementV1LicenseToken {
+export class ManagementV1VirtualClusterResourceUsage {
     /**
     * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
     */
@@ -28,8 +27,7 @@ export class ManagementV1LicenseToken {
     */
     'kind'?: string;
     'metadata'?: V1ObjectMeta;
-    'spec'?: ManagementV1LicenseTokenSpec;
-    'status'?: ManagementV1LicenseTokenStatus;
+    'status'?: ManagementV1VirtualClusterResourceUsageStatus;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -53,20 +51,14 @@ export class ManagementV1LicenseToken {
             "format": ""
         },
         {
-            "name": "spec",
-            "baseName": "spec",
-            "type": "ManagementV1LicenseTokenSpec",
-            "format": ""
-        },
-        {
             "name": "status",
             "baseName": "status",
-            "type": "ManagementV1LicenseTokenStatus",
+            "type": "ManagementV1VirtualClusterResourceUsageStatus",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1LicenseToken.attributeTypeMap;
+        return ManagementV1VirtualClusterResourceUsage.attributeTypeMap;
     }
 
     public constructor() {

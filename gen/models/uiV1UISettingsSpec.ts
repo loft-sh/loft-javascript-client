@@ -41,6 +41,10 @@ export class UiV1UISettingsSpec {
     'defaultVClusterVersion'?: string;
     'externalURLs'?: UiV1ExternalURLs;
     /**
+    * FaviconURL is url pointing to the favicon to use in the vCluster Platform UI. This path must be accessible for clients accessing the vCluster Platform UI!
+    */
+    'faviconURL'?: string;
+    /**
     * HasHelmRelease indicates whether the vCluster Platform instance has been installed via Helm
     */
     'hasHelmRelease'?: boolean;
@@ -61,7 +65,7 @@ export class UiV1UISettingsSpec {
     */
     'logoBackgroundColor'?: string;
     /**
-    * LogoURL is url pointing to the logo to use in the Loft UI. This path must be accessible for clients accessing the Loft UI!
+    * LogoURL is url pointing to the logo to use in the vCluster Platform UI. This path must be accessible for clients accessing the vCluster Platform UI!
     */
     'logoURL'?: string;
     /**
@@ -85,7 +89,7 @@ export class UiV1UISettingsSpec {
     */
     'sidebarColor'?: string;
     /**
-    * SmallLogoURL is url pointing to the small logo to use in the Loft UI. This path must be accessible for clients accessing the Loft UI!
+    * SmallLogoURL is url pointing to the small logo to use in the vCluster Platform UI. This path must be accessible for clients accessing the vCluster Platform UI!
     */
     'smallLogoURL'?: string;
 
@@ -126,6 +130,12 @@ export class UiV1UISettingsSpec {
             "name": "externalURLs",
             "baseName": "externalURLs",
             "type": "UiV1ExternalURLs",
+            "format": ""
+        },
+        {
+            "name": "faviconURL",
+            "baseName": "faviconURL",
+            "type": "string",
             "format": ""
         },
         {
