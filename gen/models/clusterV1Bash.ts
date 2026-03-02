@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1PodSecurityContext } from '../models/V1PodSecurityContext';
-import { V1SecurityContext } from '../models/V1SecurityContext';
+import { V1PodSecurityContext } from '../models/V1PodSecurityContext.js';
+import { V1SecurityContext } from '../models/V1SecurityContext.js';
 
 
 export class ClusterV1Bash {

@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1VirtualClusterInstanceSpec } from '../models/managementV1VirtualClusterInstanceSpec';
-import { ManagementV1VirtualClusterInstanceStatus } from '../models/managementV1VirtualClusterInstanceStatus';
-import { V1ObjectMeta } from '../models/V1ObjectMeta';
+import { ManagementV1VirtualClusterInstanceSpec } from '../models/managementV1VirtualClusterInstanceSpec.js';
+import { ManagementV1VirtualClusterInstanceStatus } from '../models/managementV1VirtualClusterInstanceStatus.js';
+import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
 
 
 /**

@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1Access } from '../models/storageV1Access';
-import { StorageV1UserOrTeam } from '../models/storageV1UserOrTeam';
+import { StorageV1Access } from '../models/storageV1Access.js';
+import { StorageV1UserOrTeam } from '../models/storageV1UserOrTeam.js';
 
 
 /**

@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1SpaceTemplate } from '../models/managementV1SpaceTemplate';
-import { ManagementV1VirtualClusterTemplate } from '../models/managementV1VirtualClusterTemplate';
-import { V1ObjectMeta } from '../models/V1ObjectMeta';
+import { ManagementV1SpaceTemplate } from '../models/managementV1SpaceTemplate.js';
+import { ManagementV1VirtualClusterTemplate } from '../models/managementV1VirtualClusterTemplate.js';
+import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
 
 
 export class ManagementV1ProjectTemplates {

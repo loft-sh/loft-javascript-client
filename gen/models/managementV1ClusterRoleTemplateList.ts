@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1ClusterRoleTemplate } from '../models/managementV1ClusterRoleTemplate';
-import { V1ListMeta } from '../models/V1ListMeta';
+import { ManagementV1ClusterRoleTemplate } from '../models/managementV1ClusterRoleTemplate.js';
+import { V1ListMeta } from '../models/V1ListMeta.js';
 
 
 export class ManagementV1ClusterRoleTemplateList {

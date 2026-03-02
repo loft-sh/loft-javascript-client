@@ -335,6 +335,7 @@ export interface LogOptions {
 }
 
 export interface ExecOptions {
+  podName?: string
   container?: string
   command?: string | string[]
   stdout?: boolean
