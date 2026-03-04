@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1ArgoProjectRole } from '../models/storageV1ArgoProjectRole.js';
-import { StorageV1ArgoProjectSpecMetadata } from '../models/storageV1ArgoProjectSpecMetadata.js';
+import { StorageV1ArgoProjectRole } from '../models/storageV1ArgoProjectRole';
+import { StorageV1ArgoProjectSpecMetadata } from '../models/storageV1ArgoProjectSpecMetadata';
 
 
 export class StorageV1ArgoProjectSpec {

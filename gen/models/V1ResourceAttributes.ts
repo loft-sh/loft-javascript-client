@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1FieldSelectorAttributes } from '../models/V1FieldSelectorAttributes.js';
-import { V1LabelSelectorAttributes } from '../models/V1LabelSelectorAttributes.js';
+import { V1FieldSelectorAttributes } from '../models/V1FieldSelectorAttributes';
+import { V1LabelSelectorAttributes } from '../models/V1LabelSelectorAttributes';
 
 
 /**

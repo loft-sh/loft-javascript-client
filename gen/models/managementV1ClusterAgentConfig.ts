@@ -10,10 +10,10 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1AgentAnalyticsSpec } from '../models/managementV1AgentAnalyticsSpec.js';
-import { ManagementV1AgentAuditConfig } from '../models/managementV1AgentAuditConfig.js';
-import { ManagementV1AgentCostControlConfig } from '../models/managementV1AgentCostControlConfig.js';
-import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
+import { ManagementV1AgentAnalyticsSpec } from '../models/managementV1AgentAnalyticsSpec';
+import { ManagementV1AgentAuditConfig } from '../models/managementV1AgentAuditConfig';
+import { ManagementV1AgentCostControlConfig } from '../models/managementV1AgentCostControlConfig';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
 /**

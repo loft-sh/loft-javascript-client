@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { UiV1ExternalURLs } from '../models/uiV1ExternalURLs.js';
-import { UiV1NavBarButton } from '../models/uiV1NavBarButton.js';
+import { UiV1ExternalURLs } from '../models/uiV1ExternalURLs';
+import { UiV1NavBarButton } from '../models/uiV1NavBarButton';
 
 
 export class UiV1UISettingsConfig {

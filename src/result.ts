@@ -88,7 +88,26 @@ export class Return {
     return new Err<E>(val)
   }
 
+  static FailedFrom(error: Err<Failed, any>) {
+    return Return.WithExtra(
+      Return.Failed(error.val.message, error.val.reason, error.val.type),
+      error.extra
+    )
+  }
+
   static WithExtra<T, K = any>(result: Result<T>, extra: K | undefined = undefined): Result<T> {
+    if (
+      result.extra &&
+      extra &&
+      typeof result.extra === "object" &&
+      !Array.isArray(result.extra) &&
+      typeof extra === "object" &&
+      !Array.isArray(extra)
+    ) {
+      result.extra = { ...result.extra, ...extra }
+      return result
+    }
+
     result.extra = extra
 
     return result
