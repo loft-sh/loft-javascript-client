@@ -10,14 +10,13 @@
  * Do not edit the class manually.
  */
 
-import { LicenseApiAnalytics } from '../models/licenseApiAnalytics.js';
-import { LicenseApiAnnouncement } from '../models/licenseApiAnnouncement.js';
-import { LicenseApiBlockRequest } from '../models/licenseApiBlockRequest.js';
-import { LicenseApiButton } from '../models/licenseApiButton.js';
-import { LicenseApiLicenseAPIRoutes } from '../models/licenseApiLicenseAPIRoutes.js';
-import { LicenseApiModule } from '../models/licenseApiModule.js';
-import { LicenseApiPlan } from '../models/licenseApiPlan.js';
-import { LicenseApiUsageData } from '../models/licenseApiUsageData.js';
+import { LicenseApiAnalytics } from '../models/licenseApiAnalytics';
+import { LicenseApiAnnouncement } from '../models/licenseApiAnnouncement';
+import { LicenseApiBlockRequest } from '../models/licenseApiBlockRequest';
+import { LicenseApiButton } from '../models/licenseApiButton';
+import { LicenseApiLicenseAPIRoutes } from '../models/licenseApiLicenseAPIRoutes';
+import { LicenseApiModule } from '../models/licenseApiModule';
+import { LicenseApiPlan } from '../models/licenseApiPlan';
 
 
 /**
@@ -25,10 +24,6 @@ import { LicenseApiUsageData } from '../models/licenseApiUsageData.js';
 */
 export class LicenseApiLicense {
     'analytics'?: LicenseApiAnalytics;
-    /**
-    * Annotations contains additional metadata about the license.
-    */
-    'annotations'?: { [key: string]: string; };
     /**
     * Announcements is a map string/string such that we can easily add any additional data without needing to change types. For now, we will use the keys \"name\" and \"content\".
     */
@@ -66,7 +61,6 @@ export class LicenseApiLicense {
     */
     'plans'?: Array<LicenseApiPlan>;
     'routes'?: LicenseApiLicenseAPIRoutes;
-    'usageData'?: LicenseApiUsageData;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -75,12 +69,6 @@ export class LicenseApiLicense {
             "name": "analytics",
             "baseName": "analytics",
             "type": "LicenseApiAnalytics",
-            "format": ""
-        },
-        {
-            "name": "annotations",
-            "baseName": "annotations",
-            "type": "{ [key: string]: string; }",
             "format": ""
         },
         {
@@ -141,12 +129,6 @@ export class LicenseApiLicense {
             "name": "routes",
             "baseName": "routes",
             "type": "LicenseApiLicenseAPIRoutes",
-            "format": ""
-        },
-        {
-            "name": "usageData",
-            "baseName": "usageData",
-            "type": "LicenseApiUsageData",
             "format": ""
         }    ];
 

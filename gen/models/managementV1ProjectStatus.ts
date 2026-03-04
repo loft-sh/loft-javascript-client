@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1Condition } from '../models/agentstorageV1Condition.js';
-import { StorageV1QuotaStatus } from '../models/storageV1QuotaStatus.js';
+import { StorageV1Condition } from '../models/agentstorageV1Condition';
+import { StorageV1QuotaStatus } from '../models/storageV1QuotaStatus';
 
 
 /**

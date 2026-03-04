@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1CostControlClusterConfig } from '../models/managementV1CostControlClusterConfig.js';
-import { ManagementV1CostControlGlobalConfig } from '../models/managementV1CostControlGlobalConfig.js';
-import { ManagementV1CostControlSettings } from '../models/managementV1CostControlSettings.js';
+import { ManagementV1CostControlClusterConfig } from '../models/managementV1CostControlClusterConfig';
+import { ManagementV1CostControlGlobalConfig } from '../models/managementV1CostControlGlobalConfig';
+import { ManagementV1CostControlSettings } from '../models/managementV1CostControlSettings';
 
 
 export class ManagementV1CostControl {

@@ -12,38 +12,34 @@
 
 
 
-/**
-* NodeInfo holds information about a single node
-*/
-export class LicenseApiNodeInfo {
-    'capacity': { [key: string]: string; };
-    'creation_timestamp': string;
-    'machine_id': string;
+export class StorageV1KubeVirtClusterRef {
+    /**
+    * Cluster is the connected cluster the VMs will be created in
+    */
+    'cluster': string;
+    /**
+    * Namespace is the namespace inside the connected cluster holding VMs
+    */
+    'namespace': string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "capacity",
-            "baseName": "capacity",
-            "type": "{ [key: string]: string; }",
-            "format": ""
-        },
-        {
-            "name": "creation_timestamp",
-            "baseName": "creation_timestamp",
+            "name": "cluster",
+            "baseName": "cluster",
             "type": "string",
             "format": ""
         },
         {
-            "name": "machine_id",
-            "baseName": "machine_id",
+            "name": "namespace",
+            "baseName": "namespace",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return LicenseApiNodeInfo.attributeTypeMap;
+        return StorageV1KubeVirtClusterRef.attributeTypeMap;
     }
 
     public constructor() {

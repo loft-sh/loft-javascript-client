@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1VirtualClusterHelmChart } from '../models/storageV1VirtualClusterHelmChart.js';
+import { StorageV1VirtualClusterHelmChart } from '../models/storageV1VirtualClusterHelmChart';
 
 
 export class StorageV1VirtualClusterHelmRelease {
