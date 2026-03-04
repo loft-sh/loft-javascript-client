@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1SpaceInstanceSpec } from '../models/managementV1SpaceInstanceSpec.js';
-import { ManagementV1SpaceInstanceStatus } from '../models/managementV1SpaceInstanceStatus.js';
-import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
+import { ManagementV1SpaceInstanceSpec } from '../models/managementV1SpaceInstanceSpec';
+import { ManagementV1SpaceInstanceStatus } from '../models/managementV1SpaceInstanceStatus';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
 /**

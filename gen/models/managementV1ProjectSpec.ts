@@ -10,19 +10,20 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1Access } from '../models/storageV1Access.js';
-import { StorageV1AllowedCluster } from '../models/storageV1AllowedCluster.js';
-import { StorageV1AllowedRunner } from '../models/storageV1AllowedRunner.js';
-import { StorageV1AllowedTemplate } from '../models/storageV1AllowedTemplate.js';
-import { StorageV1ArgoIntegrationSpec } from '../models/storageV1ArgoIntegrationSpec.js';
-import { StorageV1Member } from '../models/storageV1Member.js';
-import { StorageV1NamespacePattern } from '../models/storageV1NamespacePattern.js';
-import { StorageV1Quotas } from '../models/storageV1Quotas.js';
-import { StorageV1RancherIntegrationSpec } from '../models/storageV1RancherIntegrationSpec.js';
-import { StorageV1RequirePreset } from '../models/storageV1RequirePreset.js';
-import { StorageV1RequireTemplate } from '../models/storageV1RequireTemplate.js';
-import { StorageV1UserOrTeam } from '../models/storageV1UserOrTeam.js';
-import { StorageV1VaultIntegrationSpec } from '../models/storageV1VaultIntegrationSpec.js';
+import { StorageV1Access } from '../models/storageV1Access';
+import { StorageV1AllowedCluster } from '../models/storageV1AllowedCluster';
+import { StorageV1AllowedRunner } from '../models/storageV1AllowedRunner';
+import { StorageV1AllowedTemplate } from '../models/storageV1AllowedTemplate';
+import { StorageV1ArgoIntegrationSpec } from '../models/storageV1ArgoIntegrationSpec';
+import { StorageV1DevPodProjectSpec } from '../models/storageV1DevPodProjectSpec';
+import { StorageV1Member } from '../models/storageV1Member';
+import { StorageV1NamespacePattern } from '../models/storageV1NamespacePattern';
+import { StorageV1Quotas } from '../models/storageV1Quotas';
+import { StorageV1RancherIntegrationSpec } from '../models/storageV1RancherIntegrationSpec';
+import { StorageV1RequirePreset } from '../models/storageV1RequirePreset';
+import { StorageV1RequireTemplate } from '../models/storageV1RequireTemplate';
+import { StorageV1UserOrTeam } from '../models/storageV1UserOrTeam';
+import { StorageV1VaultIntegrationSpec } from '../models/storageV1VaultIntegrationSpec';
 
 
 /**
@@ -38,7 +39,7 @@ export class ManagementV1ProjectSpec {
     */
     'allowedClusters'?: Array<StorageV1AllowedCluster>;
     /**
-    * AllowedRunners are target runners that are allowed to target with
+    * AllowedRunners are target runners that are allowed to target with DevPod environments.
     */
     'allowedRunners'?: Array<StorageV1AllowedRunner>;
     /**
@@ -50,6 +51,7 @@ export class ManagementV1ProjectSpec {
     * Description describes an app
     */
     'description'?: string;
+    'devPod'?: StorageV1DevPodProjectSpec;
     /**
     * DisplayName is the name that should be displayed in the UI
     */
@@ -103,6 +105,12 @@ export class ManagementV1ProjectSpec {
             "name": "description",
             "baseName": "description",
             "type": "string",
+            "format": ""
+        },
+        {
+            "name": "devPod",
+            "baseName": "devPod",
+            "type": "StorageV1DevPodProjectSpec",
             "format": ""
         },
         {

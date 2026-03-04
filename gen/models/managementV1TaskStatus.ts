@@ -10,10 +10,10 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1Condition } from '../models/agentstorageV1Condition.js';
-import { StorageV1EntityInfo } from '../models/storageV1EntityInfo.js';
-import { StorageV1UserOrTeamEntity } from '../models/storageV1UserOrTeamEntity.js';
-import { V1ContainerStatus } from '../models/V1ContainerStatus.js';
+import { StorageV1Condition } from '../models/agentstorageV1Condition';
+import { StorageV1EntityInfo } from '../models/storageV1EntityInfo';
+import { StorageV1UserOrTeamEntity } from '../models/storageV1UserOrTeamEntity';
+import { V1ContainerStatus } from '../models/V1ContainerStatus';
 
 
 /**

@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1NodeSelectorRequirement } from '../models/V1NodeSelectorRequirement.js';
-import { V1Taint } from '../models/V1Taint.js';
+import { V1NodeSelectorRequirement } from '../models/V1NodeSelectorRequirement';
+import { V1Taint } from '../models/V1Taint';
 
 
 /**
@@ -19,7 +19,7 @@ import { V1Taint } from '../models/V1Taint.js';
 */
 export class ManagementV1NodeClaimSpec {
     /**
-    * ControlPlane indicates if the node claim is for a control plane node. This is intentionally not omitempty as we want to ensure that the control plane is always set for easier checking in for example terraform templates.
+    * ControlPlane indicates if the node claim is for a control plane node.
     */
     'controlPlane'?: boolean;
     /**
@@ -31,13 +31,9 @@ export class ManagementV1NodeClaimSpec {
     */
     'kubeletArgs'?: { [key: string]: string; };
     /**
-    * Properties are extra properties for the NodeClaim.
-    */
-    'properties'?: { [key: string]: string; };
-    /**
     * ProviderRef is the name of the NodeProvider that this NodeClaim is based on.
     */
-    'providerRef': string;
+    'providerRef'?: string;
     /**
     * Requirements are the requirements for the NodeClaim.
     */
@@ -77,12 +73,6 @@ export class ManagementV1NodeClaimSpec {
         {
             "name": "kubeletArgs",
             "baseName": "kubeletArgs",
-            "type": "{ [key: string]: string; }",
-            "format": ""
-        },
-        {
-            "name": "properties",
-            "baseName": "properties",
             "type": "{ [key: string]: string; }",
             "format": ""
         },

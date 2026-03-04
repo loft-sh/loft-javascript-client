@@ -14,6 +14,10 @@
 
 export class StorageV1NamespacePattern {
     /**
+    * DevPodWorkspace holds the namespace pattern to use for DevPod workspaces
+    */
+    'devPodWorkspace'?: string;
+    /**
     * Space holds the namespace pattern to use for space instances
     */
     'space'?: string;
@@ -25,6 +29,12 @@ export class StorageV1NamespacePattern {
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+        {
+            "name": "devPodWorkspace",
+            "baseName": "devPodWorkspace",
+            "type": "string",
+            "format": ""
+        },
         {
             "name": "space",
             "baseName": "space",

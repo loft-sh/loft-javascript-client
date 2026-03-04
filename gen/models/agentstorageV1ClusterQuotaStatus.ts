@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1ClusterQuotaStatusByNamespace } from '../models/agentstorageV1ClusterQuotaStatusByNamespace.js';
-import { V1ResourceQuotaStatus } from '../models/V1ResourceQuotaStatus.js';
+import { StorageV1ClusterQuotaStatusByNamespace } from '../models/agentstorageV1ClusterQuotaStatusByNamespace';
+import { V1ResourceQuotaStatus } from '../models/V1ResourceQuotaStatus';
 
 
 /**
