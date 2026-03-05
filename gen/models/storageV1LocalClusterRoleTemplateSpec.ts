@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1ClusterRoleTemplateTemplate } from '../models/storageV1ClusterRoleTemplateTemplate.js';
+import { StorageV1ClusterRoleTemplateTemplate } from '../models/storageV1ClusterRoleTemplateTemplate';
 
 
 export class StorageV1LocalClusterRoleTemplateSpec {

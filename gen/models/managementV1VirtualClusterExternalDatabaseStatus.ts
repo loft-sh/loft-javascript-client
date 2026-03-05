@@ -17,10 +17,6 @@ export class ManagementV1VirtualClusterExternalDatabaseStatus {
     * DataSource holds a datasource endpoint constructed from the vCluster\'s designated user and database. The user and database are created from the given connector.
     */
     'dataSource'?: string;
-    /**
-    * IdentityProvider is the kine identity provider to use when generating temporary authentication tokens for enhanced security.
-    */
-    'identityProvider'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -28,12 +24,6 @@ export class ManagementV1VirtualClusterExternalDatabaseStatus {
         {
             "name": "dataSource",
             "baseName": "dataSource",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "identityProvider",
-            "baseName": "identityProvider",
             "type": "string",
             "format": ""
         }    ];

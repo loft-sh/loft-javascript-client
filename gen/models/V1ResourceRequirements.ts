@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1ResourceClaim } from '../models/V1ResourceClaim.js';
+import { V1ResourceClaim } from '../models/V1ResourceClaim';
 
 
 /**
@@ -18,7 +18,7 @@ import { V1ResourceClaim } from '../models/V1ResourceClaim.js';
 */
 export class V1ResourceRequirements {
     /**
-    * Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This field depends on the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.
+    * Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.
     */
     'claims'?: Array<V1ResourceClaim>;
     /**

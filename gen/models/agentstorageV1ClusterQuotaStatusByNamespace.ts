@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1ResourceQuotaStatus } from '../models/V1ResourceQuotaStatus.js';
+import { V1ResourceQuotaStatus } from '../models/V1ResourceQuotaStatus';
 
 
 /**
