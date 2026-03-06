@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1KioskSpec } from '../models/managementV1KioskSpec.js';
-import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
+import { ManagementV1KioskSpec } from '../models/managementV1KioskSpec';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
 /**

@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1ProjectChartInfoSpec } from '../models/managementV1ProjectChartInfoSpec.js';
-import { ManagementV1ProjectChartInfoStatus } from '../models/managementV1ProjectChartInfoStatus.js';
-import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
+import { ManagementV1ProjectChartInfoSpec } from '../models/managementV1ProjectChartInfoSpec';
+import { ManagementV1ProjectChartInfoStatus } from '../models/managementV1ProjectChartInfoStatus';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
 export class ManagementV1ProjectChartInfo {

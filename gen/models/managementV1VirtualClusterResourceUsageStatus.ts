@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1VirtualClusterResourceUsageMap } from '../models/managementV1VirtualClusterResourceUsageMap.js';
+import { ManagementV1VirtualClusterResourceUsageMap } from '../models/managementV1VirtualClusterResourceUsageMap';
 
 
 export class ManagementV1VirtualClusterResourceUsageStatus {
