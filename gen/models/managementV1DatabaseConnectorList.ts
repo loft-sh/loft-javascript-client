@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1DatabaseConnector } from '../models/managementV1DatabaseConnector.js';
-import { V1ListMeta } from '../models/V1ListMeta.js';
+import { ManagementV1DatabaseConnector } from '../models/managementV1DatabaseConnector';
+import { V1ListMeta } from '../models/V1ListMeta';
 
 
 export class ManagementV1DatabaseConnectorList {

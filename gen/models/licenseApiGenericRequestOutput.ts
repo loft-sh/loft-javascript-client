@@ -10,36 +10,50 @@
  * Do not edit the class manually.
  */
 
+import { LicenseApiButton } from '../models/licenseApiButton';
 
 
-export class StorageV1NodeProviderClusterRef {
+/**
+* GenericRequestOutput specifies the response
+*/
+export class LicenseApiGenericRequestOutput {
     /**
-    * Cluster is the connected cluster the VMs will be created in
+    * Buttons to be shown to the user alongside other content (e.g. HTML).
     */
-    'cluster': string;
+    'buttons'?: Array<LicenseApiButton>;
     /**
-    * Namespace is the namespace inside the connected cluster holding VMs
+    * HTML to display to the user.
     */
-    'namespace'?: string;
+    'html'?: string;
+    /**
+    * RedirectURL to redirect the user to.
+    */
+    'redirectURL'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "cluster",
-            "baseName": "cluster",
+            "name": "buttons",
+            "baseName": "buttons",
+            "type": "Array<LicenseApiButton>",
+            "format": ""
+        },
+        {
+            "name": "html",
+            "baseName": "html",
             "type": "string",
             "format": ""
         },
         {
-            "name": "namespace",
-            "baseName": "namespace",
+            "name": "redirectURL",
+            "baseName": "redirectURL",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1NodeProviderClusterRef.attributeTypeMap;
+        return LicenseApiGenericRequestOutput.attributeTypeMap;
     }
 
     public constructor() {

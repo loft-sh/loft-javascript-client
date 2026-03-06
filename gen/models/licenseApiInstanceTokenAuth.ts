@@ -10,24 +10,36 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1VirtualClusterResourceUsageMap } from '../models/managementV1VirtualClusterResourceUsageMap.js';
 
 
-export class ManagementV1VirtualClusterResourceUsageStatus {
-    'resourceUsage'?: ManagementV1VirtualClusterResourceUsageMap;
+export class LicenseApiInstanceTokenAuth {
+    /**
+    * Certificate is the signing certificate for the token.
+    */
+    'certificate': string;
+    /**
+    * Token is the jwt token identifying the loft instance.
+    */
+    'token': string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "resourceUsage",
-            "baseName": "resourceUsage",
-            "type": "ManagementV1VirtualClusterResourceUsageMap",
+            "name": "certificate",
+            "baseName": "certificate",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "token",
+            "baseName": "token",
+            "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1VirtualClusterResourceUsageStatus.attributeTypeMap;
+        return LicenseApiInstanceTokenAuth.attributeTypeMap;
     }
 
     public constructor() {

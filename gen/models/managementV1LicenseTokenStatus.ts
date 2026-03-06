@@ -10,29 +10,24 @@
  * Do not edit the class manually.
  */
 
+import { LicenseApiInstanceTokenAuth } from '../models/licenseApiInstanceTokenAuth';
 
 
-/**
-* VirtualClusterDebugShellSpec defines the target pod for the debug shell.
-*/
-export class ManagementV1VirtualClusterDebugShellSpec {
-    /**
-    * PodName specifies which virtual cluster replica should get ephemeral container. This is needed to virtual cluster deployed with HA (3+ replicas)
-    */
-    'podName'?: string;
+export class ManagementV1LicenseTokenStatus {
+    'token'?: LicenseApiInstanceTokenAuth;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "podName",
-            "baseName": "podName",
-            "type": "string",
+            "name": "token",
+            "baseName": "token",
+            "type": "LicenseApiInstanceTokenAuth",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1VirtualClusterDebugShellSpec.attributeTypeMap;
+        return ManagementV1LicenseTokenStatus.attributeTypeMap;
     }
 
     public constructor() {

@@ -10,13 +10,11 @@
  * Do not edit the class manually.
  */
 
+import { LicenseApiGenericRequestInput } from '../models/licenseApiGenericRequestInput';
 
 
 export class ManagementV1LicenseRequestSpec {
-    /**
-    * Input is the input payload to send to the url.
-    */
-    'input'?: string;
+    'input'?: LicenseApiGenericRequestInput;
     /**
     * URL is the url for the request.
     */
@@ -28,7 +26,7 @@ export class ManagementV1LicenseRequestSpec {
         {
             "name": "input",
             "baseName": "input",
-            "type": "string",
+            "type": "LicenseApiGenericRequestInput",
             "format": ""
         },
         {

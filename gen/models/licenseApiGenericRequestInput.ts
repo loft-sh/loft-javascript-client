@@ -13,30 +13,36 @@
 
 
 /**
-* FeatureUsage holds information about whether a feature is used and its status
+* GenericRequestInput defines the payload that needs to be sent to a button\'s action URL
 */
-export class LicenseApiFeatureUsage {
-    'status': string;
-    'used': boolean;
+export class LicenseApiGenericRequestInput {
+    /**
+    * Payload provides the json encoded payload
+    */
+    'payload'?: string;
+    /**
+    * ReturnURL is the url from which the request is initiated
+    */
+    'returnURL'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "status",
-            "baseName": "status",
+            "name": "payload",
+            "baseName": "payload",
             "type": "string",
             "format": ""
         },
         {
-            "name": "used",
-            "baseName": "used",
-            "type": "boolean",
+            "name": "returnURL",
+            "baseName": "returnURL",
+            "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return LicenseApiFeatureUsage.attributeTypeMap;
+        return LicenseApiGenericRequestInput.attributeTypeMap;
     }
 
     public constructor() {
