@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1ProjectSecret } from '../models/managementV1ProjectSecret.js';
-import { V1ListMeta } from '../models/V1ListMeta.js';
+import { ManagementV1ProjectSecret } from '../models/managementV1ProjectSecret';
+import { V1ListMeta } from '../models/V1ListMeta';
 
 
 export class ManagementV1ProjectSecretList {
