@@ -14,35 +14,24 @@ import { StorageV1Access } from '../models/storageV1Access.js';
 import { StorageV1UserOrTeam } from '../models/storageV1UserOrTeam.js';
 
 
-/**
-* NodeEnvironmentSpec defines spec of node environment.
-*/
-export class ManagementV1NodeEnvironmentSpec {
+export class ManagementV1SSHKeySpec {
     /**
     * Access holds the access rights for users and teams
     */
     'access'?: Array<StorageV1Access>;
     /**
-    * ControlPlane indicates if the node environment is a control plane environment. This is intentionally not omitempty as we want to ensure that the control plane is always set for easier checking in for example terraform templates.
+    * Description describes an SSH key
     */
-    'controlPlane'?: boolean;
+    'description'?: string;
     /**
-    * DisplayName is the name of the NodeClaim that is displayed in the UI.
+    * DisplayName is the name that should be displayed in the UI
     */
     'displayName'?: string;
     'owner'?: StorageV1UserOrTeam;
     /**
-    * Properties are the properties for the NodeEnvironment.
+    * PublicKey is the public SSH key
     */
-    'properties'?: { [key: string]: string; };
-    /**
-    * ProviderRef is the name of the NodeProvider that this NodeEnvironment is based on.
-    */
-    'providerRef'?: string;
-    /**
-    * VClusterRef references source vCluster.
-    */
-    'vClusterRef'?: string;
+    'publicKey'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -54,9 +43,9 @@ export class ManagementV1NodeEnvironmentSpec {
             "format": ""
         },
         {
-            "name": "controlPlane",
-            "baseName": "controlPlane",
-            "type": "boolean",
+            "name": "description",
+            "baseName": "description",
+            "type": "string",
             "format": ""
         },
         {
@@ -72,26 +61,14 @@ export class ManagementV1NodeEnvironmentSpec {
             "format": ""
         },
         {
-            "name": "properties",
-            "baseName": "properties",
-            "type": "{ [key: string]: string; }",
-            "format": ""
-        },
-        {
-            "name": "providerRef",
-            "baseName": "providerRef",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "vClusterRef",
-            "baseName": "vClusterRef",
+            "name": "publicKey",
+            "baseName": "publicKey",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1NodeEnvironmentSpec.attributeTypeMap;
+        return ManagementV1SSHKeySpec.attributeTypeMap;
     }
 
     public constructor() {
