@@ -13,6 +13,7 @@
 import { StorageV1NodeProviderBCM } from '../models/storageV1NodeProviderBCM.js';
 import { StorageV1NodeProviderClusterAPI } from '../models/storageV1NodeProviderClusterAPI.js';
 import { StorageV1NodeProviderKubeVirt } from '../models/storageV1NodeProviderKubeVirt.js';
+import { StorageV1NodeProviderMetal3 } from '../models/storageV1NodeProviderMetal3.js';
 import { StorageV1NodeProviderTerraform } from '../models/storageV1NodeProviderTerraform.js';
 
 
@@ -27,6 +28,7 @@ export class StorageV1NodeProviderSpec {
     */
     'displayName'?: string;
     'kubeVirt'?: StorageV1NodeProviderKubeVirt;
+    'metal3'?: StorageV1NodeProviderMetal3;
     /**
     * Properties are global properties that are applied to all node claims and environments managed by this provider.
     */
@@ -58,6 +60,12 @@ export class StorageV1NodeProviderSpec {
             "name": "kubeVirt",
             "baseName": "kubeVirt",
             "type": "StorageV1NodeProviderKubeVirt",
+            "format": ""
+        },
+        {
+            "name": "metal3",
+            "baseName": "metal3",
+            "type": "StorageV1NodeProviderMetal3",
             "format": ""
         },
         {

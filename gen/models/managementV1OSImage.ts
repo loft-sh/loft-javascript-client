@@ -10,13 +10,14 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1NodeProvider } from '../models/storageV1NodeProvider.js';
-import { StorageV1NodeType } from '../models/storageV1NodeType.js';
-import { StorageV1OSImage } from '../models/storageV1OSImage.js';
+import { ManagementV1OSImageSpec } from '../models/managementV1OSImageSpec.js';
 import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
 
 
-export class ManagementV1ProjectNodeTypes {
+/**
+* OSImage holds the OS image.
+*/
+export class ManagementV1OSImage {
     /**
     * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
     */
@@ -26,18 +27,8 @@ export class ManagementV1ProjectNodeTypes {
     */
     'kind'?: string;
     'metadata'?: V1ObjectMeta;
-    /**
-    * NodeProviders holds all the allowed node providers for the project
-    */
-    'nodeProviders'?: Array<StorageV1NodeProvider>;
-    /**
-    * NodeTypes holds all the allowed node types for the project
-    */
-    'nodeTypes'?: Array<StorageV1NodeType>;
-    /**
-    * OSImages holds all the allowed OS images for the project
-    */
-    'osImages'?: Array<StorageV1OSImage>;
+    'spec'?: ManagementV1OSImageSpec;
+    'status'?: any;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -61,26 +52,20 @@ export class ManagementV1ProjectNodeTypes {
             "format": ""
         },
         {
-            "name": "nodeProviders",
-            "baseName": "nodeProviders",
-            "type": "Array<StorageV1NodeProvider>",
+            "name": "spec",
+            "baseName": "spec",
+            "type": "ManagementV1OSImageSpec",
             "format": ""
         },
         {
-            "name": "nodeTypes",
-            "baseName": "nodeTypes",
-            "type": "Array<StorageV1NodeType>",
-            "format": ""
-        },
-        {
-            "name": "osImages",
-            "baseName": "osImages",
-            "type": "Array<StorageV1OSImage>",
+            "name": "status",
+            "baseName": "status",
+            "type": "any",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1ProjectNodeTypes.attributeTypeMap;
+        return ManagementV1OSImage.attributeTypeMap;
     }
 
     public constructor() {

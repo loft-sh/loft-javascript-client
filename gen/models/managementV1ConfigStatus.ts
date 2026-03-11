@@ -15,6 +15,7 @@ import { ManagementV1Audit } from '../models/managementV1Audit.js';
 import { ManagementV1Authentication } from '../models/managementV1Authentication.js';
 import { ManagementV1Cloud } from '../models/managementV1Cloud.js';
 import { ManagementV1CostControl } from '../models/managementV1CostControl.js';
+import { ManagementV1DatabaseKine } from '../models/managementV1DatabaseKine.js';
 import { ManagementV1ImageBuilder } from '../models/managementV1ImageBuilder.js';
 import { ManagementV1OIDC } from '../models/managementV1OIDC.js';
 import { ManagementV1PlatformDB } from '../models/managementV1PlatformDB.js';
@@ -35,6 +36,7 @@ export class ManagementV1ConfigStatus {
     'authenticateVersionEndpoint'?: boolean;
     'cloud'?: ManagementV1Cloud;
     'costControl'?: ManagementV1CostControl;
+    'database'?: ManagementV1DatabaseKine;
     /**
     * DEPRECATED: DevPodSubDomain holds a subdomain in the following form *.workspace.my-domain.com DevPodSubDomain holds a subdomain in the following form *.workspace.my-domain.com
     */
@@ -94,6 +96,12 @@ export class ManagementV1ConfigStatus {
             "name": "costControl",
             "baseName": "costControl",
             "type": "ManagementV1CostControl",
+            "format": ""
+        },
+        {
+            "name": "database",
+            "baseName": "database",
+            "type": "ManagementV1DatabaseKine",
             "format": ""
         },
         {

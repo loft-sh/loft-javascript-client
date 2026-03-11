@@ -10,34 +10,21 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1NodeProvider } from '../models/storageV1NodeProvider.js';
-import { StorageV1NodeType } from '../models/storageV1NodeType.js';
-import { StorageV1OSImage } from '../models/storageV1OSImage.js';
-import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
+import { ManagementV1SSHKey } from '../models/managementV1SSHKey.js';
+import { V1ListMeta } from '../models/V1ListMeta.js';
 
 
-export class ManagementV1ProjectNodeTypes {
+export class ManagementV1SSHKeyList {
     /**
     * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
     */
     'apiVersion'?: string;
+    'items': Array<ManagementV1SSHKey>;
     /**
     * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
     */
     'kind'?: string;
-    'metadata'?: V1ObjectMeta;
-    /**
-    * NodeProviders holds all the allowed node providers for the project
-    */
-    'nodeProviders'?: Array<StorageV1NodeProvider>;
-    /**
-    * NodeTypes holds all the allowed node types for the project
-    */
-    'nodeTypes'?: Array<StorageV1NodeType>;
-    /**
-    * OSImages holds all the allowed OS images for the project
-    */
-    'osImages'?: Array<StorageV1OSImage>;
+    'metadata'?: V1ListMeta;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -49,6 +36,12 @@ export class ManagementV1ProjectNodeTypes {
             "format": ""
         },
         {
+            "name": "items",
+            "baseName": "items",
+            "type": "Array<ManagementV1SSHKey>",
+            "format": ""
+        },
+        {
             "name": "kind",
             "baseName": "kind",
             "type": "string",
@@ -57,30 +50,12 @@ export class ManagementV1ProjectNodeTypes {
         {
             "name": "metadata",
             "baseName": "metadata",
-            "type": "V1ObjectMeta",
-            "format": ""
-        },
-        {
-            "name": "nodeProviders",
-            "baseName": "nodeProviders",
-            "type": "Array<StorageV1NodeProvider>",
-            "format": ""
-        },
-        {
-            "name": "nodeTypes",
-            "baseName": "nodeTypes",
-            "type": "Array<StorageV1NodeType>",
-            "format": ""
-        },
-        {
-            "name": "osImages",
-            "baseName": "osImages",
-            "type": "Array<StorageV1OSImage>",
+            "type": "V1ListMeta",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1ProjectNodeTypes.attributeTypeMap;
+        return ManagementV1SSHKeyList.attributeTypeMap;
     }
 
     public constructor() {

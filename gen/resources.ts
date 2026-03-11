@@ -33,6 +33,7 @@ import {ManagementV1NodeProviderExec} from "./models/managementV1NodeProviderExe
 import {ManagementV1NodeProvider} from "./models/managementV1NodeProvider"
 import {ManagementV1NodeType} from "./models/managementV1NodeType"
 import {ManagementV1OIDCClient} from "./models/managementV1OIDCClient"
+import {ManagementV1OSImage} from "./models/managementV1OSImage"
 import {ManagementV1OwnedAccessKey} from "./models/managementV1OwnedAccessKey"
 import {ManagementV1ProjectChartInfo} from "./models/managementV1ProjectChartInfo"
 import {ManagementV1ProjectCharts} from "./models/managementV1ProjectCharts"
@@ -48,6 +49,7 @@ import {ManagementV1Project} from "./models/managementV1Project"
 import {ManagementV1RedirectToken} from "./models/managementV1RedirectToken"
 import {ManagementV1RegisterVirtualCluster} from "./models/managementV1RegisterVirtualCluster"
 import {ManagementV1ResetAccessKey} from "./models/managementV1ResetAccessKey"
+import {ManagementV1SSHKey} from "./models/managementV1SSHKey"
 import {ManagementV1SelfSubjectAccessReview} from "./models/managementV1SelfSubjectAccessReview"
 import {ManagementV1Self} from "./models/managementV1Self"
 import {ManagementV1SharedSecret} from "./models/managementV1SharedSecret"
@@ -118,6 +120,7 @@ export type TGenResources = {
   ManagementV1NodeProviderExec: GroupVersionResource<ManagementV1NodeProviderExec>
   ManagementV1NodeType: GroupVersionResource<ManagementV1NodeType>
   ManagementV1OIDCClient: GroupVersionResource<ManagementV1OIDCClient>
+  ManagementV1OSImage: GroupVersionResource<ManagementV1OSImage>
   ManagementV1OwnedAccessKey: GroupVersionResource<ManagementV1OwnedAccessKey>
   ManagementV1Project: GroupVersionResource<ManagementV1Project>
   ManagementV1ProjectChartInfo: GroupVersionResource<ManagementV1ProjectChartInfo>
@@ -133,6 +136,7 @@ export type TGenResources = {
   ManagementV1RedirectToken: GroupVersionResource<ManagementV1RedirectToken>
   ManagementV1RegisterVirtualCluster: GroupVersionResource<ManagementV1RegisterVirtualCluster>
   ManagementV1ResetAccessKey: GroupVersionResource<ManagementV1ResetAccessKey>
+  ManagementV1SSHKey: GroupVersionResource<ManagementV1SSHKey>
   ManagementV1Self: GroupVersionResource<ManagementV1Self>
   ManagementV1SelfSubjectAccessReview: GroupVersionResource<ManagementV1SelfSubjectAccessReview>
   ManagementV1SharedSecret: GroupVersionResource<ManagementV1SharedSecret>
@@ -435,6 +439,14 @@ export const GenResources: TGenResources = {
     namespaced: false,
     kind: "OIDCClient",
   },
+  ManagementV1OSImage: {
+    group: "management.loft.sh",
+    version: "v1",
+    resource: "osimages",
+    subResource: "",
+    namespaced: false,
+    kind: "OSImage",
+  },
   ManagementV1OwnedAccessKey: {
     group: "management.loft.sh",
     version: "v1",
@@ -554,6 +566,14 @@ export const GenResources: TGenResources = {
     subResource: "",
     namespaced: false,
     kind: "ResetAccessKey",
+  },
+  ManagementV1SSHKey: {
+    group: "management.loft.sh",
+    version: "v1",
+    resource: "sshkeys",
+    subResource: "",
+    namespaced: false,
+    kind: "SSHKey",
   },
   ManagementV1Self: {
     group: "management.loft.sh",
