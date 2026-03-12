@@ -1061,15 +1061,6 @@ class Request<T> {
     return await this.client.doRawSocket(requestPath, K8S_WEBSOCKET_PROTOCOLS)
   }
 
-  public async Connect(options?: ExecOptions): Promise<Result<WebSocket>> {
-    const path = this.buildPath(options)
-    if (path.err) {
-      return path
-    }
-
-    return await this.client.doRawSocket(path.val, K8S_WEBSOCKET_PROTOCOLS)
-  }
-
   public async Path(
     path: string,
     init?: RequestInit,

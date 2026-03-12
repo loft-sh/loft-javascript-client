@@ -10,10 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { UiV1ExternalURLs } from '../models/uiV1ExternalURLs.js';
-import { UiV1MultiRegion } from '../models/uiV1MultiRegion.js';
-import { UiV1NavBarButton } from '../models/uiV1NavBarButton.js';
-import { UiV1VClusterVersion } from '../models/uiV1VClusterVersion.js';
+import { UiV1ExternalURLs } from '../models/uiV1ExternalURLs';
+import { UiV1NavBarButton } from '../models/uiV1NavBarButton';
+import { UiV1VClusterVersion } from '../models/uiV1VClusterVersion';
 
 
 /**
@@ -24,10 +23,6 @@ export class UiV1UISettingsSpec {
     * AccentColor is the color value (ex: \"#12345\") to use for the accent
     */
     'accentColor'?: string;
-    /**
-    * AgentNamespace is the namespace where the connected cluster agents are deployed by default
-    */
-    'agentNamespace'?: string;
     /**
     * AvailableVClusterVersions lists all virtual cluster versions available to the platform instance
     */
@@ -73,7 +68,6 @@ export class UiV1UISettingsSpec {
     * LogoURL is url pointing to the logo to use in the vCluster Platform UI. This path must be accessible for clients accessing the vCluster Platform UI!
     */
     'logoURL'?: string;
-    'multiRegion'?: UiV1MultiRegion;
     /**
     * NavBarButtons holds extra nav bar buttons
     */
@@ -105,12 +99,6 @@ export class UiV1UISettingsSpec {
         {
             "name": "accentColor",
             "baseName": "accentColor",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "agentNamespace",
-            "baseName": "agentNamespace",
             "type": "string",
             "format": ""
         },
@@ -184,12 +172,6 @@ export class UiV1UISettingsSpec {
             "name": "logoURL",
             "baseName": "logoURL",
             "type": "string",
-            "format": ""
-        },
-        {
-            "name": "multiRegion",
-            "baseName": "multiRegion",
-            "type": "UiV1MultiRegion",
             "format": ""
         },
         {

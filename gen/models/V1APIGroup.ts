@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1GroupVersionForDiscovery } from '../models/V1GroupVersionForDiscovery.js';
-import { V1ServerAddressByClientCIDR } from '../models/V1ServerAddressByClientCIDR.js';
+import { V1GroupVersionForDiscovery } from '../models/V1GroupVersionForDiscovery';
+import { V1ServerAddressByClientCIDR } from '../models/V1ServerAddressByClientCIDR';
 
 
 /**

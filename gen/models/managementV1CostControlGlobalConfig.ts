@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1Metrics } from '../models/storageV1Metrics.js';
+import { StorageV1Metrics } from '../models/storageV1Metrics';
 
 
 export class ManagementV1CostControlGlobalConfig {

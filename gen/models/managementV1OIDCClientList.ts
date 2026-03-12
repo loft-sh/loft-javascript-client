@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1OIDCClient } from '../models/managementV1OIDCClient.js';
-import { V1ListMeta } from '../models/V1ListMeta.js';
+import { ManagementV1OIDCClient } from '../models/managementV1OIDCClient';
+import { V1ListMeta } from '../models/V1ListMeta';
 
 
 export class ManagementV1OIDCClientList {
