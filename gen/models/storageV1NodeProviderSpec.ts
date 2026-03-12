@@ -10,10 +10,10 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1NodeProviderBCM } from '../models/storageV1NodeProviderBCM.js';
-import { StorageV1NodeProviderClusterAPI } from '../models/storageV1NodeProviderClusterAPI.js';
-import { StorageV1NodeProviderKubeVirt } from '../models/storageV1NodeProviderKubeVirt.js';
-import { StorageV1NodeProviderTerraform } from '../models/storageV1NodeProviderTerraform.js';
+import { StorageV1NodeProviderBCM } from '../models/storageV1NodeProviderBCM';
+import { StorageV1NodeProviderClusterAPI } from '../models/storageV1NodeProviderClusterAPI';
+import { StorageV1NodeProviderKubeVirt } from '../models/storageV1NodeProviderKubeVirt';
+import { StorageV1NodeProviderTerraform } from '../models/storageV1NodeProviderTerraform';
 
 
 /**
