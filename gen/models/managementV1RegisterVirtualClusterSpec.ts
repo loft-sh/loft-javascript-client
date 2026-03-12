@@ -25,6 +25,10 @@ export class ManagementV1RegisterVirtualClusterSpec {
     */
     'forceName'?: boolean;
     /**
+    * KubernetesVersion is the Kubernetes version of the virtual cluster.
+    */
+    'kubernetesVersion'?: string;
+    /**
     * Name is the virtual cluster instance name. If the name is already taken, the platform will construct a name for the vcluster based on the service uid and this name.
     */
     'name'?: string;
@@ -58,6 +62,12 @@ export class ManagementV1RegisterVirtualClusterSpec {
             "name": "forceName",
             "baseName": "forceName",
             "type": "boolean",
+            "format": ""
+        },
+        {
+            "name": "kubernetesVersion",
+            "baseName": "kubernetesVersion",
+            "type": "string",
             "format": ""
         },
         {

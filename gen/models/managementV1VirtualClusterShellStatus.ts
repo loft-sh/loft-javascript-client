@@ -12,37 +12,34 @@
 
 
 
-/**
-* RegisterVirtualClusterStatus holds the status
-*/
-export class ManagementV1RegisterVirtualClusterStatus {
+export class ManagementV1VirtualClusterShellStatus {
     /**
-    * Name is the actual name of the virtual cluster instance.
+    * PodName is the name of the shell pod that was created
     */
-    'name'?: string;
+    'podName'?: string;
     /**
-    * Namespace is the namespace of the virtual cluster instance.
+    * PodNamespace is the namespace of the shell pod that was created
     */
-    'namespace'?: string;
+    'podNamespace'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "name",
-            "baseName": "name",
+            "name": "podName",
+            "baseName": "podName",
             "type": "string",
             "format": ""
         },
         {
-            "name": "namespace",
-            "baseName": "namespace",
+            "name": "podNamespace",
+            "baseName": "podNamespace",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1RegisterVirtualClusterStatus.attributeTypeMap;
+        return ManagementV1VirtualClusterShellStatus.attributeTypeMap;
     }
 
     public constructor() {

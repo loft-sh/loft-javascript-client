@@ -13,36 +13,23 @@
 
 
 /**
-* RegisterVirtualClusterStatus holds the status
+* SnapshotError describes the error that occurred while taking the snapshot.
 */
-export class ManagementV1RegisterVirtualClusterStatus {
-    /**
-    * Name is the actual name of the virtual cluster instance.
-    */
-    'name'?: string;
-    /**
-    * Namespace is the namespace of the virtual cluster instance.
-    */
-    'namespace'?: string;
+export class ManagementV1SnapshotRequestError {
+    'message'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "name",
-            "baseName": "name",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "namespace",
-            "baseName": "namespace",
+            "name": "message",
+            "baseName": "message",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1RegisterVirtualClusterStatus.attributeTypeMap;
+        return ManagementV1SnapshotRequestError.attributeTypeMap;
     }
 
     public constructor() {

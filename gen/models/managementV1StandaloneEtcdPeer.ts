@@ -21,6 +21,10 @@ export class ManagementV1StandaloneEtcdPeer {
     * Name is the name of the peer.
     */
     'name': string;
+    /**
+    * NodeClaim is the name of the node claim.
+    */
+    'nodeClaim'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -34,6 +38,12 @@ export class ManagementV1StandaloneEtcdPeer {
         {
             "name": "name",
             "baseName": "name",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "nodeClaim",
+            "baseName": "nodeClaim",
             "type": "string",
             "format": ""
         }    ];

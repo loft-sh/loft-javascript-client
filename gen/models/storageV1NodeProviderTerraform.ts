@@ -10,12 +10,13 @@
  * Do not edit the class manually.
  */
 
+import { StorageV1TerraformNodeEnvironmentTemplate } from '../models/storageV1TerraformNodeEnvironmentTemplate';
 import { StorageV1TerraformNodeTypeSpec } from '../models/storageV1TerraformNodeTypeSpec';
 import { StorageV1TerraformTemplate } from '../models/storageV1TerraformTemplate';
 
 
 export class StorageV1NodeProviderTerraform {
-    'nodeEnvironmentTemplate'?: StorageV1TerraformTemplate;
+    'nodeEnvironmentTemplate'?: StorageV1TerraformNodeEnvironmentTemplate;
     'nodeTemplate'?: StorageV1TerraformTemplate;
     /**
     * NodeTypes define NodeTypes that should be automatically created for this provider.
@@ -28,7 +29,7 @@ export class StorageV1NodeProviderTerraform {
         {
             "name": "nodeEnvironmentTemplate",
             "baseName": "nodeEnvironmentTemplate",
-            "type": "StorageV1TerraformTemplate",
+            "type": "StorageV1TerraformNodeEnvironmentTemplate",
             "format": ""
         },
         {

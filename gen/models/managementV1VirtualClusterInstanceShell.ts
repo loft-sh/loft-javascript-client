@@ -10,37 +10,25 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1SpaceTemplate } from '../models/managementV1SpaceTemplate';
-import { ManagementV1VirtualClusterTemplate } from '../models/managementV1VirtualClusterTemplate';
+import { ManagementV1VirtualClusterShellStatus } from '../models/managementV1VirtualClusterShellStatus';
 import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
-export class ManagementV1ProjectTemplates {
+/**
+* VirtualClusterInstanceShell creates a pod for the requesting user
+*/
+export class ManagementV1VirtualClusterInstanceShell {
     /**
     * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
     */
     'apiVersion'?: string;
     /**
-    * DefaultSpaceTemplate
-    */
-    'defaultSpaceTemplate'?: string;
-    /**
-    * DefaultVirtualClusterTemplate is the default template for the project
-    */
-    'defaultVirtualClusterTemplate'?: string;
-    /**
     * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
     */
     'kind'?: string;
     'metadata'?: V1ObjectMeta;
-    /**
-    * SpaceTemplates holds all the allowed space templates
-    */
-    'spaceTemplates'?: Array<ManagementV1SpaceTemplate>;
-    /**
-    * VirtualClusterTemplates holds all the allowed virtual cluster templates
-    */
-    'virtualClusterTemplates'?: Array<ManagementV1VirtualClusterTemplate>;
+    'spec'?: any;
+    'status'?: ManagementV1VirtualClusterShellStatus;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -48,18 +36,6 @@ export class ManagementV1ProjectTemplates {
         {
             "name": "apiVersion",
             "baseName": "apiVersion",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "defaultSpaceTemplate",
-            "baseName": "defaultSpaceTemplate",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "defaultVirtualClusterTemplate",
-            "baseName": "defaultVirtualClusterTemplate",
             "type": "string",
             "format": ""
         },
@@ -76,20 +52,20 @@ export class ManagementV1ProjectTemplates {
             "format": ""
         },
         {
-            "name": "spaceTemplates",
-            "baseName": "spaceTemplates",
-            "type": "Array<ManagementV1SpaceTemplate>",
+            "name": "spec",
+            "baseName": "spec",
+            "type": "any",
             "format": ""
         },
         {
-            "name": "virtualClusterTemplates",
-            "baseName": "virtualClusterTemplates",
-            "type": "Array<ManagementV1VirtualClusterTemplate>",
+            "name": "status",
+            "baseName": "status",
+            "type": "ManagementV1VirtualClusterShellStatus",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1ProjectTemplates.attributeTypeMap;
+        return ManagementV1VirtualClusterInstanceShell.attributeTypeMap;
     }
 
     public constructor() {

@@ -1,4 +1,3 @@
-import { ManagementV1DevPodWorkspaceInstanceTasks } from "@gen/models/managementV1DevPodWorkspaceInstanceTasks"
 import { ManagementV1Self } from "@gen/models/managementV1Self"
 import { ManagementV1SelfSubjectAccessReview } from "@gen/models/managementV1SelfSubjectAccessReview"
 import {
@@ -437,9 +436,18 @@ class Client {
             splitted[2] === "cluster"
           ) {
             return Return.Failed(
-              `Agent seems to be currently unavailable, it is maybe just starting up. Click <a href="/spaces/${splitted[3]}/loft">here</a> for more information</span>`,
+              "Agent seems to be currently unavailable, it is maybe just starting up. Click here for more information.",
               "LoftAgentUnavailable",
-              ErrorTypeServiceUnavailable
+              ErrorTypeServiceUnavailable,
+              {
+                displayMessage: {
+                  textBeforeLink:
+                    "Agent seems to be currently unavailable, it is maybe just starting up. Click ",
+                  linkText: "here",
+                  linkHref: `/spaces/${splitted[3]}/loft`,
+                  textAfterLink: " for more information.",
+                },
+              }
             )
           }
 
@@ -1017,42 +1025,6 @@ class Request<T> {
     }
 
     return await this.client.doRawStream(requestPath, undefined, this.options.headers)
-  }
-
-  public async DevPodWorkspaceInstanceLogs(
-    namespace: string,
-    instance: string,
-    task: string,
-    options?: LogOptions
-  ): Promise<Result<ReadableStreamDefaultReader<Uint8Array>>> {
-    let requestPath = [
-      this.options.basePath,
-      `apis/management.loft.sh/v1/namespaces/${namespace}/devpodworkspaceinstances/${instance}/log`,
-    ].join("/")
-
-    const parameters: string[] = ["taskID=" + task]
-    if (options) {
-      for (const key of Object.keys(options)) {
-        parameters.push(`${key}=${encodeURIComponent((options as any)[key])}`)
-      }
-    }
-    if (parameters.length > 0) {
-      requestPath += "?" + parameters.join("&")
-    }
-
-    return await this.client.doRawStream(requestPath, undefined, this.options.headers)
-  }
-
-  public async DevPodWorkspaceInstanceTasks(
-    namespace: string,
-    instance: string
-  ): Promise<Result<ManagementV1DevPodWorkspaceInstanceTasks>> {
-    let requestPath = [
-      this.options.basePath,
-      `apis/management.loft.sh/v1/namespaces/${namespace}/devpodworkspaceinstances/${instance}/tasks`,
-    ].join("/")
-
-    return this.client.doRaw(requestPath, undefined, this.options.headers)
   }
 
   public async Logs(

@@ -13,36 +13,33 @@
 
 
 /**
-* RegisterVirtualClusterStatus holds the status
+* SnapshotRequestMetadata is the metadata of the snapshot request.
 */
-export class ManagementV1RegisterVirtualClusterStatus {
+export class ManagementV1SnapshotRequestMetadata {
     /**
-    * Name is the actual name of the virtual cluster instance.
+    * Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.
     */
-    'name'?: string;
-    /**
-    * Namespace is the namespace of the virtual cluster instance.
-    */
-    'namespace'?: string;
+    'creationTimestamp': Date;
+    'name': string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "name",
-            "baseName": "name",
-            "type": "string",
-            "format": ""
+            "name": "creationTimestamp",
+            "baseName": "creationTimestamp",
+            "type": "Date",
+            "format": "date-time"
         },
         {
-            "name": "namespace",
-            "baseName": "namespace",
+            "name": "name",
+            "baseName": "name",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1RegisterVirtualClusterStatus.attributeTypeMap;
+        return ManagementV1SnapshotRequestMetadata.attributeTypeMap;
     }
 
     public constructor() {

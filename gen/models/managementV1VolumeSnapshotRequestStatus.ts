@@ -10,39 +10,41 @@
  * Do not edit the class manually.
  */
 
+import { ManagementV1SnapshotRequestError } from '../models/managementV1SnapshotRequestError';
 
 
 /**
-* RegisterVirtualClusterStatus holds the status
+* SnapshotStatus shows the current status of a single PVC snapshot.
 */
-export class ManagementV1RegisterVirtualClusterStatus {
-    /**
-    * Name is the actual name of the virtual cluster instance.
-    */
-    'name'?: string;
-    /**
-    * Namespace is the namespace of the virtual cluster instance.
-    */
-    'namespace'?: string;
+export class ManagementV1VolumeSnapshotRequestStatus {
+    'error': ManagementV1SnapshotRequestError;
+    'phase'?: string;
+    'snapshotHandle'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "name",
-            "baseName": "name",
+            "name": "error",
+            "baseName": "error",
+            "type": "ManagementV1SnapshotRequestError",
+            "format": ""
+        },
+        {
+            "name": "phase",
+            "baseName": "phase",
             "type": "string",
             "format": ""
         },
         {
-            "name": "namespace",
-            "baseName": "namespace",
+            "name": "snapshotHandle",
+            "baseName": "snapshotHandle",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1RegisterVirtualClusterStatus.attributeTypeMap;
+        return ManagementV1VolumeSnapshotRequestStatus.attributeTypeMap;
     }
 
     public constructor() {

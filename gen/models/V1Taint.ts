@@ -25,7 +25,7 @@ export class V1Taint {
     */
     'key': string;
     /**
-    * TimeAdded represents the time at which the taint was added. It is only written for NoExecute taints.
+    * TimeAdded represents the time at which the taint was added.
     */
     'timeAdded'?: Date;
     /**

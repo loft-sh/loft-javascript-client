@@ -248,6 +248,9 @@ export interface GetOptions {
 
   // Used when querying ManagementV1TeamObjectPermissions or ManagementV1UserObjectPermissions
   resource?: string
+
+  // Allow arbitrary query parameters
+  [key: string]: string | undefined
 }
 
 export interface ListOptions {
@@ -300,7 +303,6 @@ export interface RequestOptionsProject {
   project: string
   space?: string
   virtualCluster?: string
-  devPodWorkspace?: string
 }
 
 export interface RequestOptionsVCluster {
