@@ -308,7 +308,6 @@ class Client {
     this.accessKey = key
 
     localStorage.setItem(LOFT_ACCESS_KEY_IDENTIFIER, key)
-    Cookies.set(LOFT_ACCESS_KEY_IDENTIFIER, key, CookieOptions)
   }
 
   public async stream(
@@ -391,8 +390,6 @@ class Client {
   }
 
   public async socket(path: string, protocols: string[] | string | undefined): Promise<WebSocket> {
-    this.refreshCookie()
-
     return new Promise<WebSocket>((resolve, reject) => {
       const client = new WebSocket(`${this.wsHost}${path}`, protocols)
       let resolved = false
@@ -403,7 +400,7 @@ class Client {
 
       client.onerror = (err) => {
         if (!resolved) {
-          const isAuthenticated = Cookies.get(LOFT_ACCESS_KEY_IDENTIFIER) != ""
+          const isAuthenticated = this.isLoggedIn()
           if (isAuthenticated) {
             reject(err)
           } else {
@@ -749,17 +746,8 @@ class Client {
     localStorage.removeItem(LOFT_ACCESS_KEY_IDENTIFIER)
     localStorage.removeItem(LOFT_IMPERSONATE_SUBJECT_IDENTIFIER)
 
-    Cookies.remove(LOFT_ACCESS_KEY_IDENTIFIER, { secure: true })
     Cookies.remove(LOFT_IMPERSONATE_SUBJECT_IDENTIFIER, { secure: true })
     Cookies.remove(LOFT_IMPERSONATE_JOINED_GROUP_IDENTIFIER, { secure: true })
-  }
-
-  private refreshCookie() {
-    const accessKey = this.accessKey || localStorage.getItem(LOFT_ACCESS_KEY_IDENTIFIER)
-    const cookieAccessKey = Cookies.get(LOFT_ACCESS_KEY_IDENTIFIER)
-    if (accessKey && accessKey != cookieAccessKey) {
-      Cookies.set(LOFT_ACCESS_KEY_IDENTIFIER, accessKey, CookieOptions)
-    }
   }
 
   public async logout(): Promise<ResultError> {
@@ -767,10 +755,12 @@ class Client {
       NewResource(Resources.ManagementV1Self)
     )
     if (result.err) {
+      await this.clearServerCookie()
       this.clearStorage()
 
       return result
     } else if (!result.val.status?.accessKey) {
+      await this.clearServerCookie()
       this.clearStorage()
 
       return Return.Ok()
@@ -779,15 +769,26 @@ class Client {
     const deleteResult = await this.management(Resources.ManagementV1OwnedAccessKey).Delete(
       result.val.status.accessKey
     )
-    if (deleteResult.err) {
-      this.clearStorage()
 
+    await this.clearServerCookie()
+    this.clearStorage()
+
+    if (deleteResult.err) {
       return deleteResult
     }
 
-    this.clearStorage()
-
     return Return.Ok()
+  }
+
+  private async clearServerCookie() {
+    try {
+      await fetch(this.apiHost + "/auth/logout", {
+        method: "POST",
+        credentials: "same-origin",
+      })
+    } catch {
+      // best-effort
+    }
   }
 }
 
