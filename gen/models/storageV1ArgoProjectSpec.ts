@@ -12,18 +12,39 @@
 
 import { StorageV1ArgoProjectRole } from '../models/storageV1ArgoProjectRole.js';
 import { StorageV1ArgoProjectSpecMetadata } from '../models/storageV1ArgoProjectSpecMetadata.js';
+import { V1GroupKind } from '../models/V1GroupKind.js';
 
 
 export class StorageV1ArgoProjectSpec {
+    /**
+    * ClusterResourceBlacklist contains a list of blacklisted cluster level resources
+    */
+    'clusterResourceBlacklist'?: Array<V1GroupKind>;
+    /**
+    * ClusterResourceWhitelist contains a list of whitelisted cluster level resources If not specified or empty, deny all cluster-scope resources.
+    */
+    'clusterResourceWhitelist'?: Array<V1GroupKind>;
     /**
     * Enabled indicates if the ArgoCD Project Integration is enabled for this project. Enabling this will cause Loft to create an appProject in ArgoCD that is associated with the Loft Project. When Project integration is enabled Loft will override the default assigned role set in the SSO integration spec.
     */
     'enabled'?: boolean;
     'metadata'?: StorageV1ArgoProjectSpecMetadata;
     /**
+    * NamespaceResourceBlacklist contains a list of blacklisted namespace level resources
+    */
+    'namespaceResourceBlacklist'?: Array<V1GroupKind>;
+    /**
+    * NamespaceResourceWhitelist contains a list of whitelisted namespace level resources If not specified or empty, allow all namespace-scope resources.
+    */
+    'namespaceResourceWhitelist'?: Array<V1GroupKind>;
+    /**
     * Roles is a list of roles that should be attached to the ArgoCD project. If roles are provided no loft default roles will be set. If no roles are provided *and* SSO is enabled, loft will configure sane default values.
     */
     'roles'?: Array<StorageV1ArgoProjectRole>;
+    /**
+    * SourceNamespaces defines the namespaces application resources are allowed to be created in
+    */
+    'sourceNamespaces'?: Array<string>;
     /**
     * SourceRepos is a list of source repositories to attach/allow on the project, if not specified will be \"*\" indicating all source repositories.
     */
@@ -32,6 +53,18 @@ export class StorageV1ArgoProjectSpec {
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+        {
+            "name": "clusterResourceBlacklist",
+            "baseName": "clusterResourceBlacklist",
+            "type": "Array<V1GroupKind>",
+            "format": ""
+        },
+        {
+            "name": "clusterResourceWhitelist",
+            "baseName": "clusterResourceWhitelist",
+            "type": "Array<V1GroupKind>",
+            "format": ""
+        },
         {
             "name": "enabled",
             "baseName": "enabled",
@@ -45,9 +78,27 @@ export class StorageV1ArgoProjectSpec {
             "format": ""
         },
         {
+            "name": "namespaceResourceBlacklist",
+            "baseName": "namespaceResourceBlacklist",
+            "type": "Array<V1GroupKind>",
+            "format": ""
+        },
+        {
+            "name": "namespaceResourceWhitelist",
+            "baseName": "namespaceResourceWhitelist",
+            "type": "Array<V1GroupKind>",
+            "format": ""
+        },
+        {
             "name": "roles",
             "baseName": "roles",
             "type": "Array<StorageV1ArgoProjectRole>",
+            "format": ""
+        },
+        {
+            "name": "sourceNamespaces",
+            "baseName": "sourceNamespaces",
+            "type": "Array<string>",
             "format": ""
         },
         {
