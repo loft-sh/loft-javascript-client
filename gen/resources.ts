@@ -27,6 +27,8 @@ import {ManagementV1Kiosk} from "./models/managementV1Kiosk"
 import {ManagementV1LicenseRequest} from "./models/managementV1LicenseRequest"
 import {ManagementV1License} from "./models/managementV1License"
 import {ManagementV1LoftUpgrade} from "./models/managementV1LoftUpgrade"
+import {ManagementV1NetworkPeerDebug} from "./models/managementV1NetworkPeerDebug"
+import {ManagementV1NetworkPeer} from "./models/managementV1NetworkPeer"
 import {ManagementV1NodeClaim} from "./models/managementV1NodeClaim"
 import {ManagementV1NodeEnvironment} from "./models/managementV1NodeEnvironment"
 import {ManagementV1NodeProviderExec} from "./models/managementV1NodeProviderExec"
@@ -114,6 +116,8 @@ export type TGenResources = {
   ManagementV1License: GroupVersionResource<ManagementV1License>
   ManagementV1LicenseRequest: GroupVersionResource<ManagementV1LicenseRequest>
   ManagementV1LoftUpgrade: GroupVersionResource<ManagementV1LoftUpgrade>
+  ManagementV1NetworkPeer: GroupVersionResource<ManagementV1NetworkPeer>
+  ManagementV1NetworkPeerDebug: GroupVersionResource<ManagementV1NetworkPeerDebug>
   ManagementV1NodeClaim: GroupVersionResource<ManagementV1NodeClaim>
   ManagementV1NodeEnvironment: GroupVersionResource<ManagementV1NodeEnvironment>
   ManagementV1NodeProvider: GroupVersionResource<ManagementV1NodeProvider>
@@ -390,6 +394,22 @@ export const GenResources: TGenResources = {
     subResource: "",
     namespaced: false,
     kind: "LoftUpgrade",
+  },
+  ManagementV1NetworkPeer: {
+    group: "management.loft.sh",
+    version: "v1",
+    resource: "networkpeers",
+    subResource: "",
+    namespaced: false,
+    kind: "NetworkPeer",
+  },
+  ManagementV1NetworkPeerDebug: {
+    group: "management.loft.sh",
+    version: "v1",
+    resource: "networkpeers",
+    subResource: "debug",
+    namespaced: false,
+    kind: "NetworkPeerDebug",
   },
   ManagementV1NodeClaim: {
     group: "management.loft.sh",
