@@ -24,7 +24,6 @@ import {
   V1StorageClassList,
 } from "@kubernetes/client-node"
 
-import { ThirdPartyResources, ThirdPartyResourcesList } from "./third-party/third-party-resources"
 import {
   APIExtensionsGroup,
   APIExtensionsVersion,
@@ -62,10 +61,8 @@ export const Resources: {
   V1User: GroupVersionResource<any>
   V1StorageClassList: GroupVersionResource<V1StorageClassList>
   V1Beta1PodMetrics: GroupVersionResource<V1Beta1PodMetrics>
-} & TGenResources &
-  ThirdPartyResourcesList = {
+} & TGenResources = {
   ...GenResources,
-  ...ThirdPartyResources,
   ClusterV1SleepModeConfig: {
     group: LoftSchemeGroupCluster,
     version: LoftSchemeVersionCluster,
