@@ -12,6 +12,8 @@
 
 import { StorageV1ArgoProjectRole } from '../models/storageV1ArgoProjectRole.js';
 import { StorageV1ArgoProjectSpecMetadata } from '../models/storageV1ArgoProjectSpecMetadata.js';
+import { ApplicationDestination } from '../models/argoCDApplicationV1alpha1ApplicationDestination.js';
+import { ClusterResourceRestrictionItem } from '../models/argoCDApplicationV1alpha1ClusterResourceRestrictionItem.js';
 import { V1GroupKind } from '../models/V1GroupKind.js';
 
 
@@ -19,11 +21,15 @@ export class StorageV1ArgoProjectSpec {
     /**
     * ClusterResourceBlacklist contains a list of blacklisted cluster level resources
     */
-    'clusterResourceBlacklist'?: Array<V1GroupKind>;
+    'clusterResourceBlacklist'?: Array<ClusterResourceRestrictionItem>;
     /**
     * ClusterResourceWhitelist contains a list of whitelisted cluster level resources If not specified or empty, deny all cluster-scope resources.
     */
-    'clusterResourceWhitelist'?: Array<V1GroupKind>;
+    'clusterResourceWhitelist'?: Array<ClusterResourceRestrictionItem>;
+    /**
+    * Destinations contains list of destinations available for deployment
+    */
+    'destinations'?: Array<ApplicationDestination>;
     /**
     * Enabled indicates if the ArgoCD Project Integration is enabled for this project. Enabling this will cause Loft to create an appProject in ArgoCD that is associated with the Loft Project. When Project integration is enabled Loft will override the default assigned role set in the SSO integration spec.
     */
@@ -56,13 +62,19 @@ export class StorageV1ArgoProjectSpec {
         {
             "name": "clusterResourceBlacklist",
             "baseName": "clusterResourceBlacklist",
-            "type": "Array<V1GroupKind>",
+            "type": "Array<ClusterResourceRestrictionItem>",
             "format": ""
         },
         {
             "name": "clusterResourceWhitelist",
             "baseName": "clusterResourceWhitelist",
-            "type": "Array<V1GroupKind>",
+            "type": "Array<ClusterResourceRestrictionItem>",
+            "format": ""
+        },
+        {
+            "name": "destinations",
+            "baseName": "destinations",
+            "type": "Array<ApplicationDestination>",
             "format": ""
         },
         {
