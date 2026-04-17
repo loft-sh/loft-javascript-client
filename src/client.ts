@@ -575,6 +575,7 @@ class Client {
     vCluster: RequestOptionsVCluster,
     groupVersionResource: GroupVersionResource<T>
   ) {
+    // TODO: This is formatting the URL wrong! We need to fix this by using project path. (ENGUI-594)
     return new Request<T>(this, {
       basePath:
         VClusterBasePath + vCluster.cluster + "/" + vCluster.namespace + "/" + vCluster.name,
