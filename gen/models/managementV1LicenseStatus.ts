@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { LicenseApiLicense } from '../models/licenseApiLicense.js';
-import { LicenseApiPlatformDatabase } from '../models/licenseApiPlatformDatabase.js';
-import { LicenseApiResourceCount } from '../models/licenseApiResourceCount.js';
+import { LicenseApiLicense } from '../models/licenseApiLicense';
+import { LicenseApiPlatformDatabase } from '../models/licenseApiPlatformDatabase';
+import { LicenseApiResourceCount } from '../models/licenseApiResourceCount';
 
 
 export class ManagementV1LicenseStatus {

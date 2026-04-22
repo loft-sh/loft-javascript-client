@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1ConvertVirtualClusterConfigSpec } from '../models/managementV1ConvertVirtualClusterConfigSpec.js';
-import { ManagementV1ConvertVirtualClusterConfigStatus } from '../models/managementV1ConvertVirtualClusterConfigStatus.js';
-import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
+import { ManagementV1ConvertVirtualClusterConfigSpec } from '../models/managementV1ConvertVirtualClusterConfigSpec';
+import { ManagementV1ConvertVirtualClusterConfigStatus } from '../models/managementV1ConvertVirtualClusterConfigStatus';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
 /**
