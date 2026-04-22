@@ -10,10 +10,10 @@
  * Do not edit the class manually.
  */
 
-import { ClusterV1SleepModeConfig } from '../models/clusterV1SleepModeConfig.js';
-import { StorageV1Condition } from '../models/agentstorageV1Condition.js';
-import { StorageV1ObjectsStatus } from '../models/storageV1ObjectsStatus.js';
-import { StorageV1VirtualClusterTemplateDefinition } from '../models/storageV1VirtualClusterTemplateDefinition.js';
+import { ClusterV1SleepModeConfig } from '../models/clusterV1SleepModeConfig';
+import { StorageV1Condition } from '../models/agentstorageV1Condition';
+import { StorageV1ObjectsStatus } from '../models/storageV1ObjectsStatus';
+import { StorageV1VirtualClusterTemplateDefinition } from '../models/storageV1VirtualClusterTemplateDefinition';
 
 
 /**
@@ -40,10 +40,6 @@ export class ManagementV1VirtualClusterInstanceStatus {
     * IgnoreReconciliation tells the controller to ignore reconciliation for this instance -- this is primarily used when migrating virtual cluster instances from project to project; this prevents a situation where there are two virtual cluster instances representing the same virtual cluster which could cause issues with concurrent reconciliations of the same object. Once the virtual cluster instance has been cloned and placed into the new project, this (the \"old\") virtual cluster instance can safely be deleted.
     */
     'ignoreReconciliation'?: boolean;
-    /**
-    * KubernetesVersion is the Kubernetes version of the virtual cluster.
-    */
-    'kubernetesVersion'?: string;
     /**
     * Message describes the reason in human-readable form why the cluster is in the current phase
     */
@@ -100,12 +96,6 @@ export class ManagementV1VirtualClusterInstanceStatus {
             "name": "ignoreReconciliation",
             "baseName": "ignoreReconciliation",
             "type": "boolean",
-            "format": ""
-        },
-        {
-            "name": "kubernetesVersion",
-            "baseName": "kubernetesVersion",
-            "type": "string",
             "format": ""
         },
         {

@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { LicenseApiAnnouncement } from '../models/licenseApiAnnouncement.js';
+import { LicenseApiAnnouncement } from '../models/licenseApiAnnouncement';
 
 
 export class ManagementV1AnnouncementStatus {

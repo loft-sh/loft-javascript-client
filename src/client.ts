@@ -1,3 +1,4 @@
+import { ManagementV1DevPodWorkspaceInstanceTasks } from "@gen/models/managementV1DevPodWorkspaceInstanceTasks"
 import { ManagementV1Self } from "@gen/models/managementV1Self"
 import { ManagementV1SelfSubjectAccessReview } from "@gen/models/managementV1SelfSubjectAccessReview"
 import {
@@ -575,7 +576,6 @@ class Client {
     vCluster: RequestOptionsVCluster,
     groupVersionResource: GroupVersionResource<T>
   ) {
-    // TODO: This is formatting the URL wrong! We need to fix this by using project path. (ENGUI-594)
     return new Request<T>(this, {
       basePath:
         VClusterBasePath + vCluster.cluster + "/" + vCluster.namespace + "/" + vCluster.name,
@@ -1029,6 +1029,42 @@ class Request<T> {
     return await this.client.doRawStream(requestPath, undefined, this.options.headers)
   }
 
+  public async DevPodWorkspaceInstanceLogs(
+    namespace: string,
+    instance: string,
+    task: string,
+    options?: LogOptions
+  ): Promise<Result<ReadableStreamDefaultReader<Uint8Array>>> {
+    let requestPath = [
+      this.options.basePath,
+      `apis/management.loft.sh/v1/namespaces/${namespace}/devpodworkspaceinstances/${instance}/log`,
+    ].join("/")
+
+    const parameters: string[] = ["taskID=" + task]
+    if (options) {
+      for (const key of Object.keys(options)) {
+        parameters.push(`${key}=${encodeURIComponent((options as any)[key])}`)
+      }
+    }
+    if (parameters.length > 0) {
+      requestPath += "?" + parameters.join("&")
+    }
+
+    return await this.client.doRawStream(requestPath, undefined, this.options.headers)
+  }
+
+  public async DevPodWorkspaceInstanceTasks(
+    namespace: string,
+    instance: string
+  ): Promise<Result<ManagementV1DevPodWorkspaceInstanceTasks>> {
+    let requestPath = [
+      this.options.basePath,
+      `apis/management.loft.sh/v1/namespaces/${namespace}/devpodworkspaceinstances/${instance}/tasks`,
+    ].join("/")
+
+    return this.client.doRaw(requestPath, undefined, this.options.headers)
+  }
+
   public async Logs(
     namespace: string,
     pod: string,
@@ -1061,15 +1097,6 @@ class Request<T> {
     }
 
     return await this.client.doRawSocket(requestPath, K8S_WEBSOCKET_PROTOCOLS)
-  }
-
-  public async Connect(options?: ExecOptions): Promise<Result<WebSocket>> {
-    const path = this.buildPath(options)
-    if (path.err) {
-      return path
-    }
-
-    return await this.client.doRawSocket(path.val, K8S_WEBSOCKET_PROTOCOLS)
   }
 
   public async Path(

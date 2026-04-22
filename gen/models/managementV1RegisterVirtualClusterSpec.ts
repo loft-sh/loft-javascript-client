@@ -25,10 +25,6 @@ export class ManagementV1RegisterVirtualClusterSpec {
     */
     'forceName'?: boolean;
     /**
-    * KubernetesVersion is the Kubernetes version of the virtual cluster.
-    */
-    'kubernetesVersion'?: string;
-    /**
     * Name is the virtual cluster instance name. If the name is already taken, the platform will construct a name for the vcluster based on the service uid and this name.
     */
     'name'?: string;
@@ -40,10 +36,6 @@ export class ManagementV1RegisterVirtualClusterSpec {
     * ServiceUID uniquely identifies the virtual cluster based on the service uid.
     */
     'serviceUID'?: string;
-    /**
-    * Standalone specifies if the vCluster is standalone
-    */
-    'standalone'?: boolean;
     /**
     * Values specifies the vCluster config.
     */
@@ -69,12 +61,6 @@ export class ManagementV1RegisterVirtualClusterSpec {
             "format": ""
         },
         {
-            "name": "kubernetesVersion",
-            "baseName": "kubernetesVersion",
-            "type": "string",
-            "format": ""
-        },
-        {
             "name": "name",
             "baseName": "name",
             "type": "string",
@@ -90,12 +76,6 @@ export class ManagementV1RegisterVirtualClusterSpec {
             "name": "serviceUID",
             "baseName": "serviceUID",
             "type": "string",
-            "format": ""
-        },
-        {
-            "name": "standalone",
-            "baseName": "standalone",
-            "type": "boolean",
             "format": ""
         },
         {

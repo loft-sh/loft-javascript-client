@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1SpaceInstance } from '../models/managementV1SpaceInstance.js';
-import { V1ListMeta } from '../models/V1ListMeta.js';
+import { ManagementV1SpaceInstance } from '../models/managementV1SpaceInstance';
+import { V1ListMeta } from '../models/V1ListMeta';
 
 
 export class ManagementV1SpaceInstanceList {

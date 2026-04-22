@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1CostControlGPUSettings } from '../models/managementV1CostControlGPUSettings.js';
-import { ManagementV1CostControlResourcePrice } from '../models/managementV1CostControlResourcePrice.js';
+import { ManagementV1CostControlGPUSettings } from '../models/managementV1CostControlGPUSettings';
+import { ManagementV1CostControlResourcePrice } from '../models/managementV1CostControlResourcePrice';
 
 
 export class ManagementV1CostControlSettings {
