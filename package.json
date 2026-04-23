@@ -12,6 +12,7 @@
   "description": "loft-enterprise js client",
   "dependencies": {
     "@kubernetes/client-node": "1.2.0",
+    "@kubevirt-ui/kubevirt-api": "1.4.2",
     "js-cookie": "3.0.1",
     "json-merge-patch": "1.0.2"
   },
