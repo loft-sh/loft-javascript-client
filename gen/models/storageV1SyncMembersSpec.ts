@@ -12,15 +12,15 @@
 
 
 
-export class StorageV1MultusDeployment {
+export class StorageV1SyncMembersSpec {
     /**
-    * Enabled controls whether Multus CNI is deployed into the cluster.
+    * Enabled indicates whether to sync rancher project members to the loft project.
     */
-    'enabled': boolean;
+    'enabled'?: boolean;
     /**
-    * HelmValues is raw YAML that will be passed as values to the Multus Helm chart.
+    * RoleMapping indicates an optional role mapping from a rancher role to a loft role. Map to an empty role to exclude users and groups with that role from being synced.
     */
-    'helmValues'?: string;
+    'roleMapping'?: { [key: string]: string; };
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -32,14 +32,14 @@ export class StorageV1MultusDeployment {
             "format": ""
         },
         {
-            "name": "helmValues",
-            "baseName": "helmValues",
-            "type": "string",
+            "name": "roleMapping",
+            "baseName": "roleMapping",
+            "type": "{ [key: string]: string; }",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1MultusDeployment.attributeTypeMap;
+        return StorageV1SyncMembersSpec.attributeTypeMap;
     }
 
     public constructor() {

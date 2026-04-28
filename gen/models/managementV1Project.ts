@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1ProjectSpec } from '../models/managementV1ProjectSpec.js';
-import { ManagementV1ProjectStatus } from '../models/managementV1ProjectStatus.js';
-import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
+import { ManagementV1ProjectSpec } from '../models/managementV1ProjectSpec';
+import { ManagementV1ProjectStatus } from '../models/managementV1ProjectStatus';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
 /**

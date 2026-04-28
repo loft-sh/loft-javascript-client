@@ -24,7 +24,6 @@ import {
   V1StorageClassList,
 } from "@kubernetes/client-node"
 
-import { ThirdPartyResources, ThirdPartyResourcesList } from "./third-party/third-party-resources"
 import {
   APIExtensionsGroup,
   APIExtensionsVersion,
@@ -62,10 +61,8 @@ export const Resources: {
   V1User: GroupVersionResource<any>
   V1StorageClassList: GroupVersionResource<V1StorageClassList>
   V1Beta1PodMetrics: GroupVersionResource<V1Beta1PodMetrics>
-} & TGenResources &
-  ThirdPartyResourcesList = {
+} & TGenResources = {
   ...GenResources,
-  ...ThirdPartyResources,
   ClusterV1SleepModeConfig: {
     group: LoftSchemeGroupCluster,
     version: LoftSchemeVersionCluster,
@@ -238,22 +235,4 @@ export function NewResource<T>(
     },
     ...data,
   } as T
-}
-
-export function formatResourceReadable<T>(groupVersionResource: GroupVersionResource<T>) {
-  return groupVersionResource.kind
-    .replace(/([a-z0-9])([A-Z])/g, "$1 $2")
-    .replace(/([A-Z]+)([A-Z][a-z])/g, "$1 $2")
-    .replace(/\sInstance$/, "")
-    .trim()
-}
-
-export function formatResourceDomain<T>(groupVersionResource: GroupVersionResource<T>) {
-  return `${groupVersionResource.resource}${groupVersionResource.group ? `.${groupVersionResource.group}` : ""}`
-}
-
-export function formatResourcePath<T>(groupVersionResource: GroupVersionResource<T>) {
-  return groupVersionResource.group
-    ? `${groupVersionResource.group}/${groupVersionResource.version}`
-    : groupVersionResource.resource
 }
