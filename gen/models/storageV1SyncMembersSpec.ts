@@ -12,31 +12,34 @@
 
 
 
-/**
-* GroupKind specifies a Group and a Kind, but does not force a version.  This is useful for identifying concepts during lookup stages without having partially valid types
-*/
-export class V1GroupKind {
-    'group': string;
-    'kind': string;
+export class StorageV1SyncMembersSpec {
+    /**
+    * Enabled indicates whether to sync rancher project members to the loft project.
+    */
+    'enabled'?: boolean;
+    /**
+    * RoleMapping indicates an optional role mapping from a rancher role to a loft role. Map to an empty role to exclude users and groups with that role from being synced.
+    */
+    'roleMapping'?: { [key: string]: string; };
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "group",
-            "baseName": "group",
-            "type": "string",
+            "name": "enabled",
+            "baseName": "enabled",
+            "type": "boolean",
             "format": ""
         },
         {
-            "name": "kind",
-            "baseName": "kind",
-            "type": "string",
+            "name": "roleMapping",
+            "baseName": "roleMapping",
+            "type": "{ [key: string]: string; }",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return V1GroupKind.attributeTypeMap;
+        return StorageV1SyncMembersSpec.attributeTypeMap;
     }
 
     public constructor() {
