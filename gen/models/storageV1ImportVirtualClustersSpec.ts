@@ -10,27 +10,26 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1TemplateMetadata } from '../models/storageV1TemplateMetadata.js';
 
 
-/**
-* ProjectNamespaceTemplate defines metadata to apply to the auto-created project namespace.
-*/
-export class StorageV1ProjectNamespaceTemplate {
-    'metadata'?: StorageV1TemplateMetadata;
+export class StorageV1ImportVirtualClustersSpec {
+    /**
+    * RoleMapping indicates an optional role mapping from a rancher project role to a rancher cluster role. Map to an empty role to exclude users and groups with that role from being synced.
+    */
+    'roleMapping'?: { [key: string]: string; };
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "metadata",
-            "baseName": "metadata",
-            "type": "StorageV1TemplateMetadata",
+            "name": "roleMapping",
+            "baseName": "roleMapping",
+            "type": "{ [key: string]: string; }",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1ProjectNamespaceTemplate.attributeTypeMap;
+        return StorageV1ImportVirtualClustersSpec.attributeTypeMap;
     }
 
     public constructor() {

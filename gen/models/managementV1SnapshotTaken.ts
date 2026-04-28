@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1SnapshotRequest } from '../models/managementV1SnapshotRequest.js';
+import { ManagementV1SnapshotRequest } from '../models/managementV1SnapshotRequest';
 
 
 /**

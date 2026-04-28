@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1ResetAccessKeySpec } from '../models/managementV1ResetAccessKeySpec.js';
-import { ManagementV1ResetAccessKeyStatus } from '../models/managementV1ResetAccessKeyStatus.js';
-import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
+import { ManagementV1ResetAccessKeySpec } from '../models/managementV1ResetAccessKeySpec';
+import { ManagementV1ResetAccessKeyStatus } from '../models/managementV1ResetAccessKeyStatus';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
 /**

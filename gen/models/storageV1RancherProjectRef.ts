@@ -12,27 +12,34 @@
 
 
 
-/**
-* VirtualClusterDebugShellSpec defines the target pod for the debug shell.
-*/
-export class ManagementV1VirtualClusterDebugShellSpec {
+export class StorageV1RancherProjectRef {
     /**
-    * PodName specifies which virtual cluster replica should get ephemeral container. This is needed to virtual cluster deployed with HA (3+ replicas)
+    * Cluster defines the Rancher cluster ID Needs to be the same id within Loft
     */
-    'podName'?: string;
+    'cluster'?: string;
+    /**
+    * Project defines the Rancher project ID
+    */
+    'project'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "podName",
-            "baseName": "podName",
+            "name": "cluster",
+            "baseName": "cluster",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "project",
+            "baseName": "project",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1VirtualClusterDebugShellSpec.attributeTypeMap;
+        return StorageV1RancherProjectRef.attributeTypeMap;
     }
 
     public constructor() {

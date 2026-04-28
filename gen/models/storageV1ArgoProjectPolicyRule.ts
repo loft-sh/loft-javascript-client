@@ -18,13 +18,9 @@ export class StorageV1ArgoProjectPolicyRule {
     */
     'action'?: string;
     /**
-    * Application is the ArgoCD project/repository to apply the rule to. DEPRECATED: Wasn\'t used. Kind provides a more flexible way to specify the resource type.
+    * Application is the ArgoCD project/repository to apply the rule to.
     */
     'application'?: string;
-    /**
-    * Kind is the kind to apply the rule to
-    */
-    'kind'?: string;
     /**
     * Allow applies the \"allow\" permission to the rule, if allow is not set, the permission will always be set to \"deny\".
     */
@@ -42,12 +38,6 @@ export class StorageV1ArgoProjectPolicyRule {
         {
             "name": "application",
             "baseName": "application",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "kind",
-            "baseName": "kind",
             "type": "string",
             "format": ""
         },

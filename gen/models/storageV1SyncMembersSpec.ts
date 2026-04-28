@@ -12,38 +12,34 @@
 
 
 
-/**
-* NodeInfo holds information about a single node
-*/
-export class LicenseApiNodeInfo {
-    'capacity': { [key: string]: string; };
-    'creation_timestamp': string;
-    'machine_id': string;
+export class StorageV1SyncMembersSpec {
+    /**
+    * Enabled indicates whether to sync rancher project members to the loft project.
+    */
+    'enabled'?: boolean;
+    /**
+    * RoleMapping indicates an optional role mapping from a rancher role to a loft role. Map to an empty role to exclude users and groups with that role from being synced.
+    */
+    'roleMapping'?: { [key: string]: string; };
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "capacity",
-            "baseName": "capacity",
+            "name": "enabled",
+            "baseName": "enabled",
+            "type": "boolean",
+            "format": ""
+        },
+        {
+            "name": "roleMapping",
+            "baseName": "roleMapping",
             "type": "{ [key: string]: string; }",
-            "format": ""
-        },
-        {
-            "name": "creation_timestamp",
-            "baseName": "creation_timestamp",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "machine_id",
-            "baseName": "machine_id",
-            "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return LicenseApiNodeInfo.attributeTypeMap;
+        return StorageV1SyncMembersSpec.attributeTypeMap;
     }
 
     public constructor() {
