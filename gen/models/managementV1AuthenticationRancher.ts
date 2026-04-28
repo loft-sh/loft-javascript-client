@@ -12,41 +12,44 @@
 
 
 
-/**
-* ClusterResourceRestrictionItem is a cluster resource that is restricted by the project\'s whitelist or blacklist
-*/
-export class ClusterResourceRestrictionItem {
-    'group': string;
-    'kind': string;
+export class ManagementV1AuthenticationRancher {
     /**
-    * Name is the name of the restricted resource. Glob patterns using Go\'s filepath.Match syntax are supported. Unlike the group and kind fields, if no name is specified, all resources of the specified group/kind are matched.
+    * BearerToken holds the rancher API key in token username and password form. E.g. my-token:my-secret
     */
-    'name'?: string;
+    'bearerToken'?: string;
+    /**
+    * Host holds the rancher host, e.g. my-domain.com
+    */
+    'host'?: string;
+    /**
+    * Insecure tells Loft if the Rancher endpoint is insecure.
+    */
+    'insecure'?: boolean;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "group",
-            "baseName": "group",
+            "name": "bearerToken",
+            "baseName": "bearerToken",
             "type": "string",
             "format": ""
         },
         {
-            "name": "kind",
-            "baseName": "kind",
+            "name": "host",
+            "baseName": "host",
             "type": "string",
             "format": ""
         },
         {
-            "name": "name",
-            "baseName": "name",
-            "type": "string",
+            "name": "insecure",
+            "baseName": "insecure",
+            "type": "boolean",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ClusterResourceRestrictionItem.attributeTypeMap;
+        return ManagementV1AuthenticationRancher.attributeTypeMap;
     }
 
     public constructor() {

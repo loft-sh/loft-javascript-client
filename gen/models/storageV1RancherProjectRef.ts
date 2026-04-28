@@ -12,24 +12,34 @@
 
 
 
-export class ManagementV1VirtualClusterInstanceJoinScriptStatus {
+export class StorageV1RancherProjectRef {
     /**
-    * JoinCommand holds the curl command that can be run on a node to join the vCluster
+    * Cluster defines the Rancher cluster ID Needs to be the same id within Loft
     */
-    'joinCommand'?: string;
+    'cluster'?: string;
+    /**
+    * Project defines the Rancher project ID
+    */
+    'project'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "joinCommand",
-            "baseName": "joinCommand",
+            "name": "cluster",
+            "baseName": "cluster",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "project",
+            "baseName": "project",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1VirtualClusterInstanceJoinScriptStatus.attributeTypeMap;
+        return StorageV1RancherProjectRef.attributeTypeMap;
     }
 
     public constructor() {
