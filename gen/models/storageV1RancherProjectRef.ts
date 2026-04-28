@@ -10,27 +10,36 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1TemplateMetadata } from '../models/storageV1TemplateMetadata.js';
 
 
-/**
-* ProjectNamespaceTemplate defines metadata to apply to the auto-created project namespace.
-*/
-export class StorageV1ProjectNamespaceTemplate {
-    'metadata'?: StorageV1TemplateMetadata;
+export class StorageV1RancherProjectRef {
+    /**
+    * Cluster defines the Rancher cluster ID Needs to be the same id within Loft
+    */
+    'cluster'?: string;
+    /**
+    * Project defines the Rancher project ID
+    */
+    'project'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "metadata",
-            "baseName": "metadata",
-            "type": "StorageV1TemplateMetadata",
+            "name": "cluster",
+            "baseName": "cluster",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "project",
+            "baseName": "project",
+            "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1ProjectNamespaceTemplate.attributeTypeMap;
+        return StorageV1RancherProjectRef.attributeTypeMap;
     }
 
     public constructor() {

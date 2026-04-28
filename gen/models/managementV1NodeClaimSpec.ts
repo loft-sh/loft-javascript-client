@@ -10,8 +10,6 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1Access } from '../models/storageV1Access.js';
-import { StorageV1UserOrTeam } from '../models/storageV1UserOrTeam.js';
 import { V1NodeSelectorRequirement } from '../models/V1NodeSelectorRequirement.js';
 import { V1Taint } from '../models/V1Taint.js';
 
@@ -21,10 +19,6 @@ import { V1Taint } from '../models/V1Taint.js';
 */
 export class ManagementV1NodeClaimSpec {
     /**
-    * Access holds the access rights for users and teams
-    */
-    'access'?: Array<StorageV1Access>;
-    /**
     * ControlPlane indicates if the node claim is for a control plane node. This is intentionally not omitempty as we want to ensure that the control plane is always set for easier checking in for example terraform templates.
     */
     'controlPlane'?: boolean;
@@ -33,18 +27,9 @@ export class ManagementV1NodeClaimSpec {
     */
     'desiredCapacity'?: { [key: string]: string; };
     /**
-    * DisplayName is the name of the NodeClaim that is displayed in the UI.
-    */
-    'displayName'?: string;
-    /**
-    * EnvironmentRef is the name of the NodeEnvironment that this NodeClaim is based on.
-    */
-    'environmentRef'?: string;
-    /**
     * KubeletArgs are additional arguments to pass to the kubelet.
     */
     'kubeletArgs'?: { [key: string]: string; };
-    'owner'?: StorageV1UserOrTeam;
     /**
     * Properties are extra properties for the NodeClaim.
     */
@@ -70,19 +55,13 @@ export class ManagementV1NodeClaimSpec {
     */
     'typeRef'?: string;
     /**
-    * VClusterRef references source vCluster.
+    * VClusterRef references source vCluster. This is required.
     */
-    'vClusterRef'?: string;
+    'vClusterRef': string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
-        {
-            "name": "access",
-            "baseName": "access",
-            "type": "Array<StorageV1Access>",
-            "format": ""
-        },
         {
             "name": "controlPlane",
             "baseName": "controlPlane",
@@ -96,27 +75,9 @@ export class ManagementV1NodeClaimSpec {
             "format": ""
         },
         {
-            "name": "displayName",
-            "baseName": "displayName",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "environmentRef",
-            "baseName": "environmentRef",
-            "type": "string",
-            "format": ""
-        },
-        {
             "name": "kubeletArgs",
             "baseName": "kubeletArgs",
             "type": "{ [key: string]: string; }",
-            "format": ""
-        },
-        {
-            "name": "owner",
-            "baseName": "owner",
-            "type": "StorageV1UserOrTeam",
             "format": ""
         },
         {

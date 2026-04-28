@@ -12,15 +12,15 @@
 
 
 
-export class StorageV1DHCPDeployment {
+export class StorageV1SyncMembersSpec {
     /**
-    * Enabled controls whether the DHCP server is deployed into the cluster.
+    * Enabled indicates whether to sync rancher project members to the loft project.
     */
-    'enabled': boolean;
+    'enabled'?: boolean;
     /**
-    * HelmValues is raw YAML that will be passed as values to the DHCP Helm chart.
+    * RoleMapping indicates an optional role mapping from a rancher role to a loft role. Map to an empty role to exclude users and groups with that role from being synced.
     */
-    'helmValues'?: string;
+    'roleMapping'?: { [key: string]: string; };
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -32,14 +32,14 @@ export class StorageV1DHCPDeployment {
             "format": ""
         },
         {
-            "name": "helmValues",
-            "baseName": "helmValues",
-            "type": "string",
+            "name": "roleMapping",
+            "baseName": "roleMapping",
+            "type": "{ [key: string]: string; }",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1DHCPDeployment.attributeTypeMap;
+        return StorageV1SyncMembersSpec.attributeTypeMap;
     }
 
     public constructor() {

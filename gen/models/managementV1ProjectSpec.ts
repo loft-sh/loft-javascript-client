@@ -17,8 +17,8 @@ import { StorageV1AllowedTemplate } from '../models/storageV1AllowedTemplate.js'
 import { StorageV1ArgoIntegrationSpec } from '../models/storageV1ArgoIntegrationSpec.js';
 import { StorageV1Member } from '../models/storageV1Member.js';
 import { StorageV1NamespacePattern } from '../models/storageV1NamespacePattern.js';
-import { StorageV1ProjectNamespaceTemplate } from '../models/storageV1ProjectNamespaceTemplate.js';
 import { StorageV1Quotas } from '../models/storageV1Quotas.js';
+import { StorageV1RancherIntegrationSpec } from '../models/storageV1RancherIntegrationSpec.js';
 import { StorageV1RequirePreset } from '../models/storageV1RequirePreset.js';
 import { StorageV1RequireTemplate } from '../models/storageV1RequireTemplate.js';
 import { StorageV1UserOrTeam } from '../models/storageV1UserOrTeam.js';
@@ -59,9 +59,9 @@ export class ManagementV1ProjectSpec {
     */
     'members'?: Array<StorageV1Member>;
     'namespacePattern'?: StorageV1NamespacePattern;
-    'namespaceTemplate'?: StorageV1ProjectNamespaceTemplate;
     'owner'?: StorageV1UserOrTeam;
     'quotas'?: StorageV1Quotas;
+    'rancher'?: StorageV1RancherIntegrationSpec;
     'requirePreset'?: StorageV1RequirePreset;
     'requireTemplate'?: StorageV1RequireTemplate;
     'vault'?: StorageV1VaultIntegrationSpec;
@@ -124,12 +124,6 @@ export class ManagementV1ProjectSpec {
             "format": ""
         },
         {
-            "name": "namespaceTemplate",
-            "baseName": "namespaceTemplate",
-            "type": "StorageV1ProjectNamespaceTemplate",
-            "format": ""
-        },
-        {
             "name": "owner",
             "baseName": "owner",
             "type": "StorageV1UserOrTeam",
@@ -139,6 +133,12 @@ export class ManagementV1ProjectSpec {
             "name": "quotas",
             "baseName": "quotas",
             "type": "StorageV1Quotas",
+            "format": ""
+        },
+        {
+            "name": "rancher",
+            "baseName": "rancher",
+            "type": "StorageV1RancherIntegrationSpec",
             "format": ""
         },
         {
