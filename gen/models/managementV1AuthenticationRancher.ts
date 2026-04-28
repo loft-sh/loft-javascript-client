@@ -12,34 +12,44 @@
 
 
 
-export class StorageV1MultusDeployment {
+export class ManagementV1AuthenticationRancher {
     /**
-    * Enabled controls whether Multus CNI is deployed into the cluster.
+    * BearerToken holds the rancher API key in token username and password form. E.g. my-token:my-secret
     */
-    'enabled': boolean;
+    'bearerToken'?: string;
     /**
-    * HelmValues is raw YAML that will be passed as values to the Multus Helm chart.
+    * Host holds the rancher host, e.g. my-domain.com
     */
-    'helmValues'?: string;
+    'host'?: string;
+    /**
+    * Insecure tells Loft if the Rancher endpoint is insecure.
+    */
+    'insecure'?: boolean;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "enabled",
-            "baseName": "enabled",
-            "type": "boolean",
+            "name": "bearerToken",
+            "baseName": "bearerToken",
+            "type": "string",
             "format": ""
         },
         {
-            "name": "helmValues",
-            "baseName": "helmValues",
+            "name": "host",
+            "baseName": "host",
             "type": "string",
+            "format": ""
+        },
+        {
+            "name": "insecure",
+            "baseName": "insecure",
+            "type": "boolean",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1MultusDeployment.attributeTypeMap;
+        return ManagementV1AuthenticationRancher.attributeTypeMap;
     }
 
     public constructor() {

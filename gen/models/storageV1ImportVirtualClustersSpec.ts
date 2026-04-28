@@ -12,24 +12,24 @@
 
 
 
-export class ManagementV1VirtualClusterInstanceJoinScriptStatus {
+export class StorageV1ImportVirtualClustersSpec {
     /**
-    * JoinCommand holds the curl command that can be run on a node to join the vCluster
+    * RoleMapping indicates an optional role mapping from a rancher project role to a rancher cluster role. Map to an empty role to exclude users and groups with that role from being synced.
     */
-    'joinCommand'?: string;
+    'roleMapping'?: { [key: string]: string; };
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "joinCommand",
-            "baseName": "joinCommand",
-            "type": "string",
+            "name": "roleMapping",
+            "baseName": "roleMapping",
+            "type": "{ [key: string]: string; }",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1VirtualClusterInstanceJoinScriptStatus.attributeTypeMap;
+        return StorageV1ImportVirtualClustersSpec.attributeTypeMap;
     }
 
     public constructor() {
