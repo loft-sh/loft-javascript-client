@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1ManagedNodeTypeObjectMeta } from '../models/storageV1ManagedNodeTypeObjectMeta.js';
-import { StorageV1NodeTypeOverhead } from '../models/storageV1NodeTypeOverhead.js';
+import { StorageV1ManagedNodeTypeObjectMeta } from '../models/storageV1ManagedNodeTypeObjectMeta';
+import { StorageV1NodeTypeOverhead } from '../models/storageV1NodeTypeOverhead';
 
 
 export class StorageV1ClusterAPINodeTypeSpec {

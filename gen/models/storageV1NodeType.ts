@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1NodeTypeSpec } from '../models/storageV1NodeTypeSpec.js';
-import { StorageV1NodeTypeStatus } from '../models/storageV1NodeTypeStatus.js';
-import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
+import { StorageV1NodeTypeSpec } from '../models/storageV1NodeTypeSpec';
+import { StorageV1NodeTypeStatus } from '../models/storageV1NodeTypeStatus';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
 /**
