@@ -12,31 +12,44 @@
 
 
 
-/**
-* FeatureUsage holds information about whether a feature is used and its status
-*/
-export class LicenseApiFeatureUsage {
-    'status': string;
-    'used': boolean;
+export class ManagementV1AuthenticationRancher {
+    /**
+    * BearerToken holds the rancher API key in token username and password form. E.g. my-token:my-secret
+    */
+    'bearerToken'?: string;
+    /**
+    * Host holds the rancher host, e.g. my-domain.com
+    */
+    'host'?: string;
+    /**
+    * Insecure tells Loft if the Rancher endpoint is insecure.
+    */
+    'insecure'?: boolean;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "status",
-            "baseName": "status",
+            "name": "bearerToken",
+            "baseName": "bearerToken",
             "type": "string",
             "format": ""
         },
         {
-            "name": "used",
-            "baseName": "used",
+            "name": "host",
+            "baseName": "host",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "insecure",
+            "baseName": "insecure",
             "type": "boolean",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return LicenseApiFeatureUsage.attributeTypeMap;
+        return ManagementV1AuthenticationRancher.attributeTypeMap;
     }
 
     public constructor() {

@@ -12,34 +12,34 @@
 
 
 
-export class ManagementV1VirtualClusterResourceUsageMap {
+export class LicenseApiInstanceTokenAuth {
     /**
-    * Capacity is a map of resources to their total amounts across all attached nodes.
+    * Certificate is the signing certificate for the token.
     */
-    'capacity'?: { [key: string]: number; };
+    'certificate': string;
     /**
-    * Nodes is the total count of nodes attached to the virtual cluster.
+    * Token is the jwt token identifying the loft instance.
     */
-    'nodes': number;
+    'token': string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "capacity",
-            "baseName": "capacity",
-            "type": "{ [key: string]: number; }",
-            "format": "int32"
+            "name": "certificate",
+            "baseName": "certificate",
+            "type": "string",
+            "format": ""
         },
         {
-            "name": "nodes",
-            "baseName": "nodes",
-            "type": "number",
-            "format": "int32"
+            "name": "token",
+            "baseName": "token",
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1VirtualClusterResourceUsageMap.attributeTypeMap;
+        return LicenseApiInstanceTokenAuth.attributeTypeMap;
     }
 
     public constructor() {

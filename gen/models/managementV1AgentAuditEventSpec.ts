@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { AuditV1Event } from '../models/auditV1Event.js';
+import { AuditV1Event } from '../models/auditV1Event';
 
 
 /**

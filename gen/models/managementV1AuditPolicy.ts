@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1AuditPolicyRule } from '../models/managementV1AuditPolicyRule.js';
+import { ManagementV1AuditPolicyRule } from '../models/managementV1AuditPolicyRule';
 
 
 /**

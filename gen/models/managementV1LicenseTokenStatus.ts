@@ -10,27 +10,24 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1TemplateMetadata } from '../models/storageV1TemplateMetadata.js';
+import { LicenseApiInstanceTokenAuth } from '../models/licenseApiInstanceTokenAuth';
 
 
-/**
-* ProjectNamespaceTemplate defines metadata to apply to the auto-created project namespace.
-*/
-export class StorageV1ProjectNamespaceTemplate {
-    'metadata'?: StorageV1TemplateMetadata;
+export class ManagementV1LicenseTokenStatus {
+    'token'?: LicenseApiInstanceTokenAuth;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "metadata",
-            "baseName": "metadata",
-            "type": "StorageV1TemplateMetadata",
+            "name": "token",
+            "baseName": "token",
+            "type": "LicenseApiInstanceTokenAuth",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1ProjectNamespaceTemplate.attributeTypeMap;
+        return ManagementV1LicenseTokenStatus.attributeTypeMap;
     }
 
     public constructor() {

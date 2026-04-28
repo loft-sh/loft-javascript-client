@@ -10,10 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { UiV1ExternalURLs } from '../models/uiV1ExternalURLs.js';
-import { UiV1MultiRegion } from '../models/uiV1MultiRegion.js';
-import { UiV1NavBarButton } from '../models/uiV1NavBarButton.js';
-import { UiV1VClusterVersion } from '../models/uiV1VClusterVersion.js';
+import { UiV1ExternalURLs } from '../models/uiV1ExternalURLs';
+import { UiV1NavBarButton } from '../models/uiV1NavBarButton';
+import { UiV1VClusterVersion } from '../models/uiV1VClusterVersion';
 
 
 /**
@@ -24,10 +23,6 @@ export class UiV1UISettingsSpec {
     * AccentColor is the color value (ex: \"#12345\") to use for the accent
     */
     'accentColor'?: string;
-    /**
-    * AgentNamespace is the namespace where the connected cluster agents are deployed by default
-    */
-    'agentNamespace'?: string;
     /**
     * AvailableVClusterVersions lists all virtual cluster versions available to the platform instance
     */
@@ -45,10 +40,6 @@ export class UiV1UISettingsSpec {
     */
     'defaultVClusterVersion'?: string;
     'externalURLs'?: UiV1ExternalURLs;
-    /**
-    * FaviconURL is url pointing to the favicon to use in the vCluster Platform UI. This path must be accessible for clients accessing the vCluster Platform UI!
-    */
-    'faviconURL'?: string;
     /**
     * HasHelmRelease indicates whether the vCluster Platform instance has been installed via Helm
     */
@@ -70,10 +61,9 @@ export class UiV1UISettingsSpec {
     */
     'logoBackgroundColor'?: string;
     /**
-    * LogoURL is url pointing to the logo to use in the vCluster Platform UI. This path must be accessible for clients accessing the vCluster Platform UI!
+    * LogoURL is url pointing to the logo to use in the Loft UI. This path must be accessible for clients accessing the Loft UI!
     */
     'logoURL'?: string;
-    'multiRegion'?: UiV1MultiRegion;
     /**
     * NavBarButtons holds extra nav bar buttons
     */
@@ -95,7 +85,7 @@ export class UiV1UISettingsSpec {
     */
     'sidebarColor'?: string;
     /**
-    * SmallLogoURL is url pointing to the small logo to use in the vCluster Platform UI. This path must be accessible for clients accessing the vCluster Platform UI!
+    * SmallLogoURL is url pointing to the small logo to use in the Loft UI. This path must be accessible for clients accessing the Loft UI!
     */
     'smallLogoURL'?: string;
 
@@ -105,12 +95,6 @@ export class UiV1UISettingsSpec {
         {
             "name": "accentColor",
             "baseName": "accentColor",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "agentNamespace",
-            "baseName": "agentNamespace",
             "type": "string",
             "format": ""
         },
@@ -142,12 +126,6 @@ export class UiV1UISettingsSpec {
             "name": "externalURLs",
             "baseName": "externalURLs",
             "type": "UiV1ExternalURLs",
-            "format": ""
-        },
-        {
-            "name": "faviconURL",
-            "baseName": "faviconURL",
-            "type": "string",
             "format": ""
         },
         {
@@ -184,12 +162,6 @@ export class UiV1UISettingsSpec {
             "name": "logoURL",
             "baseName": "logoURL",
             "type": "string",
-            "format": ""
-        },
-        {
-            "name": "multiRegion",
-            "baseName": "multiRegion",
-            "type": "UiV1MultiRegion",
             "format": ""
         },
         {

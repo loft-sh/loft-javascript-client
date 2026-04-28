@@ -10,14 +10,15 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1OSImageSpec } from '../models/storageV1OSImageSpec.js';
-import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
+import { ManagementV1LicenseTokenSpec } from '../models/managementV1LicenseTokenSpec';
+import { ManagementV1LicenseTokenStatus } from '../models/managementV1LicenseTokenStatus';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
 /**
-* OSImage holds the information of machine networks
+* License Token holds the license token information
 */
-export class StorageV1OSImage {
+export class ManagementV1LicenseToken {
     /**
     * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
     */
@@ -27,8 +28,8 @@ export class StorageV1OSImage {
     */
     'kind'?: string;
     'metadata'?: V1ObjectMeta;
-    'spec'?: StorageV1OSImageSpec;
-    'status'?: any;
+    'spec'?: ManagementV1LicenseTokenSpec;
+    'status'?: ManagementV1LicenseTokenStatus;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -54,18 +55,18 @@ export class StorageV1OSImage {
         {
             "name": "spec",
             "baseName": "spec",
-            "type": "StorageV1OSImageSpec",
+            "type": "ManagementV1LicenseTokenSpec",
             "format": ""
         },
         {
             "name": "status",
             "baseName": "status",
-            "type": "any",
+            "type": "ManagementV1LicenseTokenStatus",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1OSImage.attributeTypeMap;
+        return ManagementV1LicenseToken.attributeTypeMap;
     }
 
     public constructor() {
