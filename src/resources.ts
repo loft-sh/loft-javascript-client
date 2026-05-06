@@ -2,6 +2,7 @@ import { StorageV1ClusterQuota } from "@gen/models/agentstorageV1ClusterQuota"
 import { ClusterV1ChartInfo } from "@gen/models/clusterV1ChartInfo"
 import { ClusterV1HelmRelease } from "@gen/models/clusterV1HelmRelease"
 import { ClusterV1SleepModeConfig } from "@gen/models/clusterV1SleepModeConfig"
+import { StorageV1AccessKey } from "@gen/models/storageV1AccessKey"
 import { VirtualclusterV1HelmRelease } from "@gen/models/virtualclusterV1HelmRelease"
 import { GenResources, TGenResources } from "@gen/resources"
 import {
@@ -44,6 +45,7 @@ export const Resources: {
   VirtualclusterV1HelmRelease: GroupVersionResource<VirtualclusterV1HelmRelease>
   CustomResourceDefinition: GroupVersionResource<V1CustomResourceDefinition>
   StorageV1ClusterQuota: GroupVersionResource<StorageV1ClusterQuota>
+  StorageV1AccessKey: GroupVersionResource<StorageV1AccessKey>
   NetworkingV1Ingress: GroupVersionResource<V1Ingress>
   V1StatefulSet: GroupVersionResource<V1StatefulSet>
   V1Deployment: GroupVersionResource<V1Deployment>
@@ -104,6 +106,12 @@ export const Resources: {
     version: LoftSchemeVersion,
     resource: "clusterquotas",
     kind: "ClusterQuota",
+  },
+  StorageV1AccessKey: {
+    group: "storage.loft.sh",
+    version: LoftSchemeVersion,
+    resource: "accesskeys",
+    kind: "AccessKey",
   },
   NetworkingV1Ingress: {
     group: "networking.k8s.io",
@@ -233,9 +241,7 @@ export function NewResource<T>(
       ? groupVersionResource.group + "/" + groupVersionResource.version
       : groupVersionResource.version,
     kind: groupVersionResource.kind,
-    metadata: {
-      name: name,
-    },
+    ...(name != null ? { metadata: { name: name } } : {}),
     ...data,
   } as T
 }
