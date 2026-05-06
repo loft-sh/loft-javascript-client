@@ -17,11 +17,11 @@
 */
 export class V1NonResourceAttributes {
     /**
-    * Path is the URL path of the request
+    * path is the URL path of the request
     */
     'path'?: string;
     /**
-    * Verb is the standard HTTP verb
+    * verb is the standard HTTP verb
     */
     'verb'?: string;
 
