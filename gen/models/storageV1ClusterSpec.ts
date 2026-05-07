@@ -11,6 +11,7 @@
  */
 
 import { StorageV1Access } from '../models/storageV1Access.js';
+import { StorageV1ArgoCD } from '../models/storageV1ArgoCD.js';
 import { StorageV1Metrics } from '../models/storageV1Metrics.js';
 import { StorageV1OpenCost } from '../models/storageV1OpenCost.js';
 import { StorageV1SecretRef } from '../models/storageV1SecretRef.js';
@@ -25,6 +26,7 @@ export class StorageV1ClusterSpec {
     * Access holds the access rights for users and teams
     */
     'access'?: Array<StorageV1Access>;
+    'argoCD'?: StorageV1ArgoCD;
     'config'?: StorageV1SecretRef;
     /**
     * Description describes a cluster access object
@@ -61,6 +63,12 @@ export class StorageV1ClusterSpec {
             "name": "access",
             "baseName": "access",
             "type": "Array<StorageV1Access>",
+            "format": ""
+        },
+        {
+            "name": "argoCD",
+            "baseName": "argoCD",
+            "type": "StorageV1ArgoCD",
             "format": ""
         },
         {
