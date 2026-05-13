@@ -12,37 +12,24 @@
 
 
 
-/**
-* OperationInitiator contains information about the initiator of an operation
-*/
-export class OperationInitiator {
+export class StorageV1AllowedNodeType {
     /**
-    * Automated is set to true if operation was initiated automatically by the application controller.
+    * Name of the NodeType, or \"<provider>.*\" to allow all NodeTypes of the given provider.
     */
-    'automated'?: boolean;
-    /**
-    * Username contains the name of a user who started operation
-    */
-    'username'?: string;
+    'name'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "automated",
-            "baseName": "automated",
-            "type": "boolean",
-            "format": ""
-        },
-        {
-            "name": "username",
-            "baseName": "username",
+            "name": "name",
+            "baseName": "name",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return OperationInitiator.attributeTypeMap;
+        return StorageV1AllowedNodeType.attributeTypeMap;
     }
 
     public constructor() {

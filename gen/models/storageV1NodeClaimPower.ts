@@ -12,38 +12,24 @@
 
 
 
-/**
-* JsonnetVar represents a variable to be passed to jsonnet during manifest generation
-*/
-export class JsonnetVar {
-    'code'?: boolean;
-    'name': string;
-    'value': string;
+export class StorageV1NodeClaimPower {
+    /**
+    * State is the power state.  In spec, only \"On\" and \"Off\" are meaningful; an empty value is treated as \"On\".  In status, \"On\" and \"Off\" indicate the observed state is stable. Providers may also surface their native intermediate state (e.g. \"Starting\", \"Stopping\", \"Migrating\", ...) as a passthrough. An empty value means the state could not be determined.
+    */
+    'state'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "code",
-            "baseName": "code",
-            "type": "boolean",
-            "format": ""
-        },
-        {
-            "name": "name",
-            "baseName": "name",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "value",
-            "baseName": "value",
+            "name": "state",
+            "baseName": "state",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return JsonnetVar.attributeTypeMap;
+        return StorageV1NodeClaimPower.attributeTypeMap;
     }
 
     public constructor() {
