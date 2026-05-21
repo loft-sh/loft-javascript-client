@@ -454,12 +454,10 @@ class Client {
             ErrorTypeServiceUnavailable
           )
         }
-      } else if (response.status === 200) {
+      } else if (response.status === 200 || response.status === 202) {
         // the request succeeded, maybe we wanted text all along
         return Return.Value(text as any)
       }
-
-      console.info("Unexpected Server Response", text)
 
       return Return.Failed(
         "Unexpected server response",
@@ -1063,13 +1061,13 @@ class Request<T> {
     return await this.client.doRawSocket(requestPath, K8S_WEBSOCKET_PROTOCOLS)
   }
 
-  public async Connect(options?: ExecOptions): Promise<Result<WebSocket>> {
+  public async Connect(options?: ExecOptions, protocols?: string[]): Promise<Result<WebSocket>> {
     const path = this.buildPath(options)
     if (path.err) {
       return path
     }
 
-    return await this.client.doRawSocket(path.val, K8S_WEBSOCKET_PROTOCOLS)
+    return await this.client.doRawSocket(path.val, protocols || K8S_WEBSOCKET_PROTOCOLS)
   }
 
   public async Path(
