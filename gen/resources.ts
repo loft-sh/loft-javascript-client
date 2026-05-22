@@ -4,8 +4,6 @@ import {ManagementV1AgentAuditEvent} from "./models/managementV1AgentAuditEvent"
 import {ManagementV1Announcement} from "./models/managementV1Announcement"
 import {ManagementV1AppCredentials} from "./models/managementV1AppCredentials"
 import {ManagementV1App} from "./models/managementV1App"
-import {ManagementV1ArgoCDApplicationTemplate} from "./models/managementV1ArgoCDApplicationTemplate"
-import {ManagementV1ArgoCDApplication} from "./models/managementV1ArgoCDApplication"
 import {ManagementV1BackupApply} from "./models/managementV1BackupApply"
 import {ManagementV1Backup} from "./models/managementV1Backup"
 import {ManagementV1ClusterAccessKey} from "./models/managementV1ClusterAccessKey"
@@ -96,8 +94,6 @@ export type TGenResources = {
   ManagementV1Announcement: GroupVersionResource<ManagementV1Announcement>
   ManagementV1App: GroupVersionResource<ManagementV1App>
   ManagementV1AppCredentials: GroupVersionResource<ManagementV1AppCredentials>
-  ManagementV1ArgoCDApplication: GroupVersionResource<ManagementV1ArgoCDApplication>
-  ManagementV1ArgoCDApplicationTemplate: GroupVersionResource<ManagementV1ArgoCDApplicationTemplate>
   ManagementV1Backup: GroupVersionResource<ManagementV1Backup>
   ManagementV1BackupApply: GroupVersionResource<ManagementV1BackupApply>
   ManagementV1Cluster: GroupVersionResource<ManagementV1Cluster>
@@ -216,22 +212,6 @@ export const GenResources: TGenResources = {
     subResource: "credentials",
     namespaced: false,
     kind: "AppCredentials",
-  },
-  ManagementV1ArgoCDApplication: {
-    group: "management.loft.sh",
-    version: "v1",
-    resource: "argocdapplications",
-    subResource: "",
-    namespaced: true,
-    kind: "ArgoCDApplication",
-  },
-  ManagementV1ArgoCDApplicationTemplate: {
-    group: "management.loft.sh",
-    version: "v1",
-    resource: "argocdapplicationtemplates",
-    subResource: "",
-    namespaced: false,
-    kind: "ArgoCDApplicationTemplate",
   },
   ManagementV1Backup: {
     group: "management.loft.sh",
