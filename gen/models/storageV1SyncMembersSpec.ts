@@ -12,38 +12,34 @@
 
 
 
-/**
-* JsonnetVar represents a variable to be passed to jsonnet during manifest generation
-*/
-export class JsonnetVar {
-    'code'?: boolean;
-    'name': string;
-    'value': string;
+export class StorageV1SyncMembersSpec {
+    /**
+    * Enabled indicates whether to sync rancher project members to the loft project.
+    */
+    'enabled'?: boolean;
+    /**
+    * RoleMapping indicates an optional role mapping from a rancher role to a loft role. Map to an empty role to exclude users and groups with that role from being synced.
+    */
+    'roleMapping'?: { [key: string]: string; };
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "code",
-            "baseName": "code",
+            "name": "enabled",
+            "baseName": "enabled",
             "type": "boolean",
             "format": ""
         },
         {
-            "name": "name",
-            "baseName": "name",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "value",
-            "baseName": "value",
-            "type": "string",
+            "name": "roleMapping",
+            "baseName": "roleMapping",
+            "type": "{ [key: string]: string; }",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return JsonnetVar.attributeTypeMap;
+        return StorageV1SyncMembersSpec.attributeTypeMap;
     }
 
     public constructor() {

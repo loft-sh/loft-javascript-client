@@ -19,10 +19,6 @@ export class ManagementV1NodeClaimData {
     */
     'operations'?: { [key: string]: ManagementV1Operation; };
     /**
-    * Outputs of the node environment.
-    */
-    'outputs'?: string;
-    /**
     * Terraform state of the node claim.
     */
     'state'?: string;
@@ -39,12 +35,6 @@ export class ManagementV1NodeClaimData {
             "baseName": "operations",
             "type": "{ [key: string]: ManagementV1Operation; }",
             "format": ""
-        },
-        {
-            "name": "outputs",
-            "baseName": "outputs",
-            "type": "string",
-            "format": "byte"
         },
         {
             "name": "state",

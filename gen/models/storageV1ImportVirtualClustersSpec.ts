@@ -12,28 +12,24 @@
 
 
 
-export class ManagedNamespaceMetadata {
-    'annotations'?: { [key: string]: string; };
-    'labels'?: { [key: string]: string; };
+export class StorageV1ImportVirtualClustersSpec {
+    /**
+    * RoleMapping indicates an optional role mapping from a rancher project role to a rancher cluster role. Map to an empty role to exclude users and groups with that role from being synced.
+    */
+    'roleMapping'?: { [key: string]: string; };
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "annotations",
-            "baseName": "annotations",
-            "type": "{ [key: string]: string; }",
-            "format": ""
-        },
-        {
-            "name": "labels",
-            "baseName": "labels",
+            "name": "roleMapping",
+            "baseName": "roleMapping",
             "type": "{ [key: string]: string; }",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagedNamespaceMetadata.attributeTypeMap;
+        return StorageV1ImportVirtualClustersSpec.attributeTypeMap;
     }
 
     public constructor() {
