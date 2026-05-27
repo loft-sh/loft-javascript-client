@@ -12,24 +12,34 @@
 
 
 
-export class StorageV1AllowedNodeType {
+export class StorageV1RancherProjectRef {
     /**
-    * Name of the NodeType, or \"<provider>.*\" to allow all NodeTypes of the given provider.
+    * Cluster defines the Rancher cluster ID Needs to be the same id within Loft
     */
-    'name'?: string;
+    'cluster'?: string;
+    /**
+    * Project defines the Rancher project ID
+    */
+    'project'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "name",
-            "baseName": "name",
+            "name": "cluster",
+            "baseName": "cluster",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "project",
+            "baseName": "project",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1AllowedNodeType.attributeTypeMap;
+        return StorageV1RancherProjectRef.attributeTypeMap;
     }
 
     public constructor() {

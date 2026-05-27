@@ -10,7 +10,6 @@
  * Do not edit the class manually.
  */
 
-import { V1ShardInfo } from '../models/V1ShardInfo.js';
 
 
 /**
@@ -33,7 +32,6 @@ export class V1ListMeta {
     * Deprecated: selfLink is a legacy read-only field that is no longer populated by the system.
     */
     'selfLink'?: string;
-    'shardInfo'?: V1ShardInfo;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -60,12 +58,6 @@ export class V1ListMeta {
             "name": "selfLink",
             "baseName": "selfLink",
             "type": "string",
-            "format": ""
-        },
-        {
-            "name": "shardInfo",
-            "baseName": "shardInfo",
-            "type": "V1ShardInfo",
             "format": ""
         }    ];
 
