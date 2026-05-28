@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1TemplateMetadata } from '../models/storageV1TemplateMetadata.js';
+import { StorageV1TemplateMetadata } from '../models/storageV1TemplateMetadata';
 
 
 /**

@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1Metrics } from '../models/storageV1Metrics.js';
-import { StorageV1OpenCost } from '../models/storageV1OpenCost.js';
+import { StorageV1Metrics } from '../models/storageV1Metrics';
+import { StorageV1OpenCost } from '../models/storageV1OpenCost';
 
 
 export class ManagementV1CostControlClusterConfig {

@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { ClusterV1Chart } from '../models/clusterV1Chart.js';
+import { ClusterV1Chart } from '../models/clusterV1Chart';
 
 
 export class ManagementV1ProjectChartInfoSpec {

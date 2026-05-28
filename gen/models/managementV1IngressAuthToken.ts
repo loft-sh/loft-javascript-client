@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1IngressAuthTokenSpec } from '../models/managementV1IngressAuthTokenSpec.js';
-import { ManagementV1IngressAuthTokenStatus } from '../models/managementV1IngressAuthTokenStatus.js';
-import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
+import { ManagementV1IngressAuthTokenSpec } from '../models/managementV1IngressAuthTokenSpec';
+import { ManagementV1IngressAuthTokenStatus } from '../models/managementV1IngressAuthTokenStatus';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
 /**

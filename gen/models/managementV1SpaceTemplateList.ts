@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1SpaceTemplate } from '../models/managementV1SpaceTemplate.js';
-import { V1ListMeta } from '../models/V1ListMeta.js';
+import { ManagementV1SpaceTemplate } from '../models/managementV1SpaceTemplate';
+import { V1ListMeta } from '../models/V1ListMeta';
 
 
 export class ManagementV1SpaceTemplateList {

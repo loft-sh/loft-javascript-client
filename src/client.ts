@@ -575,7 +575,6 @@ class Client {
     vCluster: RequestOptionsVCluster,
     groupVersionResource: GroupVersionResource<T>
   ) {
-    // TODO: This is formatting the URL wrong! We need to fix this by using project path. (ENGUI-594)
     return new Request<T>(this, {
       basePath:
         VClusterBasePath + vCluster.cluster + "/" + vCluster.namespace + "/" + vCluster.name,
@@ -1061,15 +1060,6 @@ class Request<T> {
     }
 
     return await this.client.doRawSocket(requestPath, K8S_WEBSOCKET_PROTOCOLS)
-  }
-
-  public async Connect(options?: ExecOptions): Promise<Result<WebSocket>> {
-    const path = this.buildPath(options)
-    if (path.err) {
-      return path
-    }
-
-    return await this.client.doRawSocket(path.val, K8S_WEBSOCKET_PROTOCOLS)
   }
 
   public async Path(

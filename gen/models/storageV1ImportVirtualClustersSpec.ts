@@ -12,37 +12,24 @@
 
 
 
-/**
-* OperationInitiator contains information about the initiator of an operation
-*/
-export class OperationInitiator {
+export class StorageV1ImportVirtualClustersSpec {
     /**
-    * Automated is set to true if operation was initiated automatically by the application controller.
+    * RoleMapping indicates an optional role mapping from a rancher project role to a rancher cluster role. Map to an empty role to exclude users and groups with that role from being synced.
     */
-    'automated'?: boolean;
-    /**
-    * Username contains the name of a user who started operation
-    */
-    'username'?: string;
+    'roleMapping'?: { [key: string]: string; };
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "automated",
-            "baseName": "automated",
-            "type": "boolean",
-            "format": ""
-        },
-        {
-            "name": "username",
-            "baseName": "username",
-            "type": "string",
+            "name": "roleMapping",
+            "baseName": "roleMapping",
+            "type": "{ [key: string]: string; }",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return OperationInitiator.attributeTypeMap;
+        return StorageV1ImportVirtualClustersSpec.attributeTypeMap;
     }
 
     public constructor() {

@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1AppSpec } from '../models/managementV1AppSpec.js';
-import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
+import { ManagementV1AppSpec } from '../models/managementV1AppSpec';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
 /**

@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1TerraformNodeEnvironmentTemplate } from '../models/storageV1TerraformNodeEnvironmentTemplate.js';
-import { StorageV1TerraformNodeTypeSpec } from '../models/storageV1TerraformNodeTypeSpec.js';
-import { StorageV1TerraformTemplate } from '../models/storageV1TerraformTemplate.js';
+import { StorageV1TerraformNodeEnvironmentTemplate } from '../models/storageV1TerraformNodeEnvironmentTemplate';
+import { StorageV1TerraformNodeTypeSpec } from '../models/storageV1TerraformNodeTypeSpec';
+import { StorageV1TerraformTemplate } from '../models/storageV1TerraformTemplate';
 
 
 export class StorageV1NodeProviderTerraform {

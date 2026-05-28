@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1LinuxContainerUser } from '../models/V1LinuxContainerUser.js';
+import { V1LinuxContainerUser } from '../models/V1LinuxContainerUser';
 
 
 /**

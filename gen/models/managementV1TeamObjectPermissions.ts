@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1ObjectPermission } from '../models/managementV1ObjectPermission.js';
-import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
+import { ManagementV1ObjectPermission } from '../models/managementV1ObjectPermission';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
 export class ManagementV1TeamObjectPermissions {

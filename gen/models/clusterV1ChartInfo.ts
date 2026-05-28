@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { ClusterV1ChartInfoSpec } from '../models/clusterV1ChartInfoSpec.js';
-import { ClusterV1ChartInfoStatus } from '../models/clusterV1ChartInfoStatus.js';
-import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
+import { ClusterV1ChartInfoSpec } from '../models/clusterV1ChartInfoSpec';
+import { ClusterV1ChartInfoStatus } from '../models/clusterV1ChartInfoStatus';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
 export class ClusterV1ChartInfo {

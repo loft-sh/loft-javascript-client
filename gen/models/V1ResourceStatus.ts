@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1ResourceHealth } from '../models/V1ResourceHealth.js';
+import { V1ResourceHealth } from '../models/V1ResourceHealth';
 
 
 /**

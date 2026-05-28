@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1ResourceClaim } from '../models/V1ResourceClaim.js';
+import { V1ResourceClaim } from '../models/V1ResourceClaim';
 
 
 /**

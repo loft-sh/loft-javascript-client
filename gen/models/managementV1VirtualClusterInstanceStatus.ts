@@ -10,10 +10,10 @@
  * Do not edit the class manually.
  */
 
-import { ClusterV1SleepModeConfig } from '../models/clusterV1SleepModeConfig.js';
-import { StorageV1Condition } from '../models/agentstorageV1Condition.js';
-import { StorageV1ObjectsStatus } from '../models/storageV1ObjectsStatus.js';
-import { StorageV1VirtualClusterTemplateDefinition } from '../models/storageV1VirtualClusterTemplateDefinition.js';
+import { ClusterV1SleepModeConfig } from '../models/clusterV1SleepModeConfig';
+import { StorageV1Condition } from '../models/agentstorageV1Condition';
+import { StorageV1ObjectsStatus } from '../models/storageV1ObjectsStatus';
+import { StorageV1VirtualClusterTemplateDefinition } from '../models/storageV1VirtualClusterTemplateDefinition';
 
 
 /**

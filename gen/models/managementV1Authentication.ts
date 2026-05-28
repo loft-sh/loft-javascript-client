@@ -10,14 +10,15 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1AuthenticationGithub } from '../models/managementV1AuthenticationGithub.js';
-import { ManagementV1AuthenticationGitlab } from '../models/managementV1AuthenticationGitlab.js';
-import { ManagementV1AuthenticationGoogle } from '../models/managementV1AuthenticationGoogle.js';
-import { ManagementV1AuthenticationMicrosoft } from '../models/managementV1AuthenticationMicrosoft.js';
-import { ManagementV1AuthenticationOIDC } from '../models/managementV1AuthenticationOIDC.js';
-import { ManagementV1AuthenticationPassword } from '../models/managementV1AuthenticationPassword.js';
-import { ManagementV1AuthenticationSAML } from '../models/managementV1AuthenticationSAML.js';
-import { ManagementV1ConnectorWithName } from '../models/managementV1ConnectorWithName.js';
+import { ManagementV1AuthenticationGithub } from '../models/managementV1AuthenticationGithub';
+import { ManagementV1AuthenticationGitlab } from '../models/managementV1AuthenticationGitlab';
+import { ManagementV1AuthenticationGoogle } from '../models/managementV1AuthenticationGoogle';
+import { ManagementV1AuthenticationMicrosoft } from '../models/managementV1AuthenticationMicrosoft';
+import { ManagementV1AuthenticationOIDC } from '../models/managementV1AuthenticationOIDC';
+import { ManagementV1AuthenticationPassword } from '../models/managementV1AuthenticationPassword';
+import { ManagementV1AuthenticationRancher } from '../models/managementV1AuthenticationRancher';
+import { ManagementV1AuthenticationSAML } from '../models/managementV1AuthenticationSAML';
+import { ManagementV1ConnectorWithName } from '../models/managementV1ConnectorWithName';
 
 
 /**
@@ -58,6 +59,7 @@ export class ManagementV1Authentication {
     'microsoft'?: ManagementV1AuthenticationMicrosoft;
     'oidc'?: ManagementV1AuthenticationOIDC;
     'password'?: ManagementV1AuthenticationPassword;
+    'rancher'?: ManagementV1AuthenticationRancher;
     'saml'?: ManagementV1AuthenticationSAML;
 
     static readonly discriminator: string | undefined = undefined;
@@ -139,6 +141,12 @@ export class ManagementV1Authentication {
             "name": "password",
             "baseName": "password",
             "type": "ManagementV1AuthenticationPassword",
+            "format": ""
+        },
+        {
+            "name": "rancher",
+            "baseName": "rancher",
+            "type": "ManagementV1AuthenticationRancher",
             "format": ""
         },
         {

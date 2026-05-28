@@ -10,12 +10,12 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1Access } from '../models/storageV1Access.js';
-import { StorageV1AppParameter } from '../models/storageV1AppParameter.js';
-import { StorageV1UserOrTeam } from '../models/storageV1UserOrTeam.js';
-import { StorageV1VirtualClusterTemplateDefinition } from '../models/storageV1VirtualClusterTemplateDefinition.js';
-import { StorageV1VirtualClusterTemplateSpaceTemplateRef } from '../models/storageV1VirtualClusterTemplateSpaceTemplateRef.js';
-import { StorageV1VirtualClusterTemplateVersion } from '../models/storageV1VirtualClusterTemplateVersion.js';
+import { StorageV1Access } from '../models/storageV1Access';
+import { StorageV1AppParameter } from '../models/storageV1AppParameter';
+import { StorageV1UserOrTeam } from '../models/storageV1UserOrTeam';
+import { StorageV1VirtualClusterTemplateDefinition } from '../models/storageV1VirtualClusterTemplateDefinition';
+import { StorageV1VirtualClusterTemplateSpaceTemplateRef } from '../models/storageV1VirtualClusterTemplateSpaceTemplateRef';
+import { StorageV1VirtualClusterTemplateVersion } from '../models/storageV1VirtualClusterTemplateVersion';
 
 
 /**

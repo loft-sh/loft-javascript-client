@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1FieldSelectorAttributes } from '../models/V1FieldSelectorAttributes.js';
-import { V1LabelSelectorAttributes } from '../models/V1LabelSelectorAttributes.js';
+import { V1FieldSelectorAttributes } from '../models/V1FieldSelectorAttributes';
+import { V1LabelSelectorAttributes } from '../models/V1LabelSelectorAttributes';
 
 
 /**
@@ -20,32 +20,32 @@ import { V1LabelSelectorAttributes } from '../models/V1LabelSelectorAttributes.j
 export class V1ResourceAttributes {
     'fieldSelector'?: V1FieldSelectorAttributes;
     /**
-    * group is the API Group of the Resource.  \"*\" means all.
+    * Group is the API Group of the Resource.  \"*\" means all.
     */
     'group'?: string;
     'labelSelector'?: V1LabelSelectorAttributes;
     /**
-    * name is the name of the resource being requested for a \"get\" or deleted for a \"delete\". \"\" (empty) means all.
+    * Name is the name of the resource being requested for a \"get\" or deleted for a \"delete\". \"\" (empty) means all.
     */
     'name'?: string;
     /**
-    * namespace is the namespace of the action being requested.  Currently, there is no distinction between no namespace and all namespaces \"\" (empty) is defaulted for LocalSubjectAccessReviews \"\" (empty) is empty for cluster-scoped resources \"\" (empty) means \"all\" for namespace scoped resources from a SubjectAccessReview or SelfSubjectAccessReview
+    * Namespace is the namespace of the action being requested.  Currently, there is no distinction between no namespace and all namespaces \"\" (empty) is defaulted for LocalSubjectAccessReviews \"\" (empty) is empty for cluster-scoped resources \"\" (empty) means \"all\" for namespace scoped resources from a SubjectAccessReview or SelfSubjectAccessReview
     */
     'namespace'?: string;
     /**
-    * resource is one of the existing resource types.  \"*\" means all.
+    * Resource is one of the existing resource types.  \"*\" means all.
     */
     'resource'?: string;
     /**
-    * subresource is one of the existing resource types.  \"\" means none.
+    * Subresource is one of the existing resource types.  \"\" means none.
     */
     'subresource'?: string;
     /**
-    * verb is a kubernetes resource API verb, like: get, list, watch, create, update, delete, proxy.  \"*\" means all.
+    * Verb is a kubernetes resource API verb, like: get, list, watch, create, update, delete, proxy.  \"*\" means all.
     */
     'verb'?: string;
     /**
-    * version is the API Version of the Resource.  \"*\" means all.
+    * Version is the API Version of the Resource.  \"*\" means all.
     */
     'version'?: string;
 

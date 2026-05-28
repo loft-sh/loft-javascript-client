@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { VirtualclusterV1HelmRelease } from '../models/virtualclusterV1HelmRelease.js';
-import { V1ListMeta } from '../models/V1ListMeta.js';
+import { VirtualclusterV1HelmRelease } from '../models/virtualclusterV1HelmRelease';
+import { V1ListMeta } from '../models/V1ListMeta';
 
 
 export class VirtualclusterV1HelmReleaseList {

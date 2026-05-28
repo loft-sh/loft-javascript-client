@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1FieldSelectorRequirement } from '../models/V1FieldSelectorRequirement.js';
+import { V1FieldSelectorRequirement } from '../models/V1FieldSelectorRequirement';
 
 
 /**

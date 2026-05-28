@@ -10,11 +10,11 @@
  * Do not edit the class manually.
  */
 
-import { V1AppArmorProfile } from '../models/V1AppArmorProfile.js';
-import { V1Capabilities } from '../models/V1Capabilities.js';
-import { V1SELinuxOptions } from '../models/V1SELinuxOptions.js';
-import { V1SeccompProfile } from '../models/V1SeccompProfile.js';
-import { V1WindowsSecurityContextOptions } from '../models/V1WindowsSecurityContextOptions.js';
+import { V1AppArmorProfile } from '../models/V1AppArmorProfile';
+import { V1Capabilities } from '../models/V1Capabilities';
+import { V1SELinuxOptions } from '../models/V1SELinuxOptions';
+import { V1SeccompProfile } from '../models/V1SeccompProfile';
+import { V1WindowsSecurityContextOptions } from '../models/V1WindowsSecurityContextOptions';
 
 
 /**
@@ -32,7 +32,7 @@ export class V1SecurityContext {
     */
     'privileged'?: boolean;
     /**
-    * procMount denotes the type of proc mount to use for the containers. The default value is Default which uses the container runtime defaults for readonly paths and masked paths. Note that this field cannot be set when spec.os.name is windows.  Possible enum values:  - `\"Default\"` uses the container runtime defaults for readonly and masked paths for /proc. Most container runtimes mask certain paths in /proc to avoid accidental security exposure of special devices or information.  - `\"Unmasked\"` bypasses the default masking behavior of the container runtime and ensures the newly created /proc the container stays in tact with no modifications.
+    * procMount denotes the type of proc mount to use for the containers. The default value is Default which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.  Possible enum values:  - `\"Default\"` uses the container runtime defaults for readonly and masked paths for /proc. Most container runtimes mask certain paths in /proc to avoid accidental security exposure of special devices or information.  - `\"Unmasked\"` bypasses the default masking behavior of the container runtime and ensures the newly created /proc the container stays in tact with no modifications.
     */
     'procMount'?: V1SecurityContextProcMountEnum;
     /**

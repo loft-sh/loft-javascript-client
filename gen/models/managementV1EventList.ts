@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1Event } from '../models/managementV1Event.js';
-import { V1ListMeta } from '../models/V1ListMeta.js';
+import { ManagementV1Event } from '../models/managementV1Event';
+import { V1ListMeta } from '../models/V1ListMeta';
 
 
 export class ManagementV1EventList {

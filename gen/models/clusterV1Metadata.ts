@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { ClusterV1Maintainer } from '../models/clusterV1Maintainer.js';
+import { ClusterV1Maintainer } from '../models/clusterV1Maintainer';
 
 
 /**
