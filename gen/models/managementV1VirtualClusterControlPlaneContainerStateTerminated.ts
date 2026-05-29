@@ -10,27 +10,37 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1VirtualClusterDebugShellPodStatus } from '../models/managementV1VirtualClusterDebugShellPodStatus.js';
 
 
-export class ManagementV1VirtualClusterDebugShellPodsStatus {
-    /**
-    * Pods are available virtual cluster pods that can be selected for debug shell.
-    */
-    'pods'?: Array<ManagementV1VirtualClusterDebugShellPodStatus>;
+export class ManagementV1VirtualClusterControlPlaneContainerStateTerminated {
+    'exitCode': number;
+    'message'?: string;
+    'reason'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "pods",
-            "baseName": "pods",
-            "type": "Array<ManagementV1VirtualClusterDebugShellPodStatus>",
+            "name": "exitCode",
+            "baseName": "exitCode",
+            "type": "number",
+            "format": "int32"
+        },
+        {
+            "name": "message",
+            "baseName": "message",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "reason",
+            "baseName": "reason",
+            "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1VirtualClusterDebugShellPodsStatus.attributeTypeMap;
+        return ManagementV1VirtualClusterControlPlaneContainerStateTerminated.attributeTypeMap;
     }
 
     public constructor() {

@@ -10,37 +10,27 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1AccessKeyScope } from '../models/storageV1AccessKeyScope.js';
+import { ManagementV1VirtualClusterControlPlanePod } from '../models/managementV1VirtualClusterControlPlanePod.js';
 
 
-/**
-* DirectClusterEndpointTokenSpec holds the object specification
-*/
-export class ManagementV1DirectClusterEndpointTokenSpec {
-    'scope'?: StorageV1AccessKeyScope;
+export class ManagementV1VirtualClusterControlPlanePodsStatus {
     /**
-    * The time to live for this access token in seconds
+    * Pods contains a reduced view of control plane pods (status and identifying metadata only).
     */
-    'ttl'?: number;
+    'pods'?: Array<ManagementV1VirtualClusterControlPlanePod>;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "scope",
-            "baseName": "scope",
-            "type": "StorageV1AccessKeyScope",
+            "name": "pods",
+            "baseName": "pods",
+            "type": "Array<ManagementV1VirtualClusterControlPlanePod>",
             "format": ""
-        },
-        {
-            "name": "ttl",
-            "baseName": "ttl",
-            "type": "number",
-            "format": "int64"
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1DirectClusterEndpointTokenSpec.attributeTypeMap;
+        return ManagementV1VirtualClusterControlPlanePodsStatus.attributeTypeMap;
     }
 
     public constructor() {
