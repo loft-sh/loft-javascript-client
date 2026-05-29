@@ -12,45 +12,28 @@
 
 
 
-/**
-* VirtualClusterDebugShellPodStatus contains selectable vcluster pod metadata.
-*/
-export class ManagementV1VirtualClusterDebugShellPodStatus {
-    'name'?: string;
-    'namespace'?: string;
-    'phase'?: string;
-    'ready'?: boolean;
+export class ManagementV1VirtualClusterControlPlaneContainerStateWaiting {
+    'message'?: string;
+    'reason'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "name",
-            "baseName": "name",
+            "name": "message",
+            "baseName": "message",
             "type": "string",
             "format": ""
         },
         {
-            "name": "namespace",
-            "baseName": "namespace",
+            "name": "reason",
+            "baseName": "reason",
             "type": "string",
-            "format": ""
-        },
-        {
-            "name": "phase",
-            "baseName": "phase",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "ready",
-            "baseName": "ready",
-            "type": "boolean",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1VirtualClusterDebugShellPodStatus.attributeTypeMap;
+        return ManagementV1VirtualClusterControlPlaneContainerStateWaiting.attributeTypeMap;
     }
 
     public constructor() {

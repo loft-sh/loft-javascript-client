@@ -1,13 +1,7 @@
 import { V1APIResourceList } from "@kubernetes/client-node"
 
 import { GroupVersionResource, Unstructured } from "./types"
-
-/**
- * @deprecated Use arrStrict from shared instead.
- */
-export function arr<T>(array: T[] | undefined | null): T[] {
-  return !array ? [] : array
-}
+import { arrStrict } from "@loft-enterprise/shared"
 
 export function parseResourceList(
   group: string,
@@ -17,7 +11,7 @@ export function parseResourceList(
   removeDuplicates?: boolean,
   includeSubResources?: boolean
 ) {
-  for (let k = 0; k < arr(resourceList.resources).length; k++) {
+  for (let k = 0; k < arrStrict(resourceList.resources).length; k++) {
     const resource = resourceList.resources[k]
     if (resource === undefined) {
       continue
