@@ -10,7 +10,6 @@
  * Do not edit the class manually.
  */
 
-import { V1VolumeStatus } from '../models/V1VolumeStatus.js';
 
 
 /**
@@ -33,7 +32,6 @@ export class V1VolumeMountStatus {
     * RecursiveReadOnly must be set to Disabled, Enabled, or unspecified (for non-readonly mounts). An IfPossible value in the original VolumeMount must be translated to Disabled or Enabled, depending on the mount result.
     */
     'recursiveReadOnly'?: string;
-    'volumeStatus'?: V1VolumeStatus;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -60,12 +58,6 @@ export class V1VolumeMountStatus {
             "name": "recursiveReadOnly",
             "baseName": "recursiveReadOnly",
             "type": "string",
-            "format": ""
-        },
-        {
-            "name": "volumeStatus",
-            "baseName": "volumeStatus",
-            "type": "V1VolumeStatus",
             "format": ""
         }    ];
 
