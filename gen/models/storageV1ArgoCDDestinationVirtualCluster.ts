@@ -14,7 +14,7 @@
 
 export class StorageV1ArgoCDDestinationVirtualCluster {
     /**
-    * Name of the virtual cluster
+    * Name of the tenant cluster
     */
     'name'?: string;
     /**
@@ -22,7 +22,7 @@ export class StorageV1ArgoCDDestinationVirtualCluster {
     */
     'namespace'?: string;
     /**
-    * Target of the virtual cluster
+    * Target of the tenant cluster
     */
     'target'?: string;
 
