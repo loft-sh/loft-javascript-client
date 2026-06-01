@@ -51,6 +51,8 @@ export const Resources: {
   V1Deployment: GroupVersionResource<V1Deployment>
   V1Event: GroupVersionResource<CoreV1Event>
   V1Pod: GroupVersionResource<V1Pod>
+  V1PodLog: GroupVersionResource<V1Pod>
+  V1PodExec: GroupVersionResource<V1Pod>
   V1Service: GroupVersionResource<V1Service>
   V1Node: GroupVersionResource<V1Node>
   V1Namespace: GroupVersionResource<V1Namespace>
@@ -145,6 +147,22 @@ export const Resources: {
     group: "",
     version: "v1",
     resource: "pods",
+    kind: "Pod",
+    namespaced: true,
+  },
+  V1PodLog: {
+    group: "",
+    version: "v1",
+    resource: "pods",
+    subResource: "log",
+    kind: "Pod",
+    namespaced: true,
+  },
+  V1PodExec: {
+    group: "",
+    version: "v1",
+    resource: "pods",
+    subResource: "exec",
     kind: "Pod",
     namespaced: true,
   },
@@ -247,11 +265,15 @@ export function NewResource<T>(
 }
 
 export function formatResourceReadable<T>(groupVersionResource: GroupVersionResource<T>) {
-  return groupVersionResource.kind
+  let name = groupVersionResource.kind
     .replace(/([a-z0-9])([A-Z])/g, "$1 $2")
     .replace(/([A-Z]+)([A-Z][a-z])/g, "$1 $2")
-    .replace(/\sInstance$/, "")
-    .trim()
+
+  if (groupVersionResource.group?.endsWith(".loft.sh")) {
+    name = name.replace(/\sInstance$/, "")
+  }
+
+  return name.trim()
 }
 
 export function formatResourceDomain<T>(groupVersionResource: GroupVersionResource<T>) {

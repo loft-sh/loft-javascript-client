@@ -10,37 +10,36 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1AccessKeyScope } from '../models/storageV1AccessKeyScope.js';
 
 
-/**
-* DirectClusterEndpointTokenSpec holds the object specification
-*/
-export class ManagementV1DirectClusterEndpointTokenSpec {
-    'scope'?: StorageV1AccessKeyScope;
+export class StorageV1KubeVirtDeployment {
     /**
-    * The time to live for this access token in seconds
+    * Enabled controls whether the KubeVirt operator is deployed into the cluster.
     */
-    'ttl'?: number;
+    'enabled': boolean;
+    /**
+    * HelmValues is raw YAML that will be passed as values to the KubeVirt Helm chart.
+    */
+    'helmValues'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "scope",
-            "baseName": "scope",
-            "type": "StorageV1AccessKeyScope",
+            "name": "enabled",
+            "baseName": "enabled",
+            "type": "boolean",
             "format": ""
         },
         {
-            "name": "ttl",
-            "baseName": "ttl",
-            "type": "number",
-            "format": "int64"
+            "name": "helmValues",
+            "baseName": "helmValues",
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1DirectClusterEndpointTokenSpec.attributeTypeMap;
+        return StorageV1KubeVirtDeployment.attributeTypeMap;
     }
 
     public constructor() {
