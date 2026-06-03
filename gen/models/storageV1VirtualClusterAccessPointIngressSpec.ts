@@ -14,7 +14,7 @@
 
 export class StorageV1VirtualClusterAccessPointIngressSpec {
     /**
-    * Enabled defines if the virtual cluster access point (via ingress) is enabled or not; requires the connected cluster to have the `loft.sh/ingress-suffix` annotation set to define the domain name suffix used for the ingress.
+    * Enabled defines if the tenant cluster access point (via ingress) is enabled or not; requires the connected cluster to have the `loft.sh/ingress-suffix` annotation set to define the domain name suffix used for the ingress.
     */
     'enabled'?: boolean;
 

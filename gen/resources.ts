@@ -29,6 +29,7 @@ import {ManagementV1Kiosk} from "./models/managementV1Kiosk"
 import {ManagementV1LicenseRequest} from "./models/managementV1LicenseRequest"
 import {ManagementV1License} from "./models/managementV1License"
 import {ManagementV1LoftUpgrade} from "./models/managementV1LoftUpgrade"
+import {ManagementV1MachineConfigTemplate} from "./models/managementV1MachineConfigTemplate"
 import {ManagementV1NetworkPeerDebug} from "./models/managementV1NetworkPeerDebug"
 import {ManagementV1NetworkPeer} from "./models/managementV1NetworkPeer"
 import {ManagementV1NodeClaim} from "./models/managementV1NodeClaim"
@@ -121,6 +122,7 @@ export type TGenResources = {
   ManagementV1License: GroupVersionResource<ManagementV1License>
   ManagementV1LicenseRequest: GroupVersionResource<ManagementV1LicenseRequest>
   ManagementV1LoftUpgrade: GroupVersionResource<ManagementV1LoftUpgrade>
+  ManagementV1MachineConfigTemplate: GroupVersionResource<ManagementV1MachineConfigTemplate>
   ManagementV1NetworkPeer: GroupVersionResource<ManagementV1NetworkPeer>
   ManagementV1NetworkPeerDebug: GroupVersionResource<ManagementV1NetworkPeerDebug>
   ManagementV1NodeClaim: GroupVersionResource<ManagementV1NodeClaim>
@@ -416,6 +418,14 @@ export const GenResources: TGenResources = {
     subResource: "",
     namespaced: false,
     kind: "LoftUpgrade",
+  },
+  ManagementV1MachineConfigTemplate: {
+    group: "management.loft.sh",
+    version: "v1",
+    resource: "machineconfigtemplates",
+    subResource: "",
+    namespaced: false,
+    kind: "MachineConfigTemplate",
   },
   ManagementV1NetworkPeer: {
     group: "management.loft.sh",
