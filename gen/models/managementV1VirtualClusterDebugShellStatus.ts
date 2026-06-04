@@ -21,11 +21,11 @@ export class ManagementV1VirtualClusterDebugShellStatus {
     */
     'containerName'?: string;
     /**
-    * PodName is the name of the virtual cluster pod
+    * PodName is the name of the tenant cluster pod
     */
     'podName'?: string;
     /**
-    * PodNamespace is the namespace of the virtual cluster pod
+    * PodNamespace is the namespace of the tenant cluster pod
     */
     'podNamespace'?: string;
     /**
