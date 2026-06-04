@@ -16,7 +16,7 @@ import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
 
 
 /**
-* VirtualClusterSchema holds config request and response data for virtual clusters
+* VirtualClusterSchema holds config request and response data for tenant clusters
 */
 export class ManagementV1VirtualClusterSchema {
     /**
