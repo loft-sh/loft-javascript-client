@@ -40,7 +40,7 @@ export class StorageV1VirtualClusterTemplateDefinition {
     'instanceTemplate'?: StorageV1VirtualClusterInstanceTemplateDefinition;
     'metadata'?: StorageV1TemplateMetadata;
     /**
-    * Objects are Kubernetes style YAMLs that should get deployed into the virtual cluster
+    * Objects are Kubernetes style YAMLs that should get deployed into the tenant cluster
     */
     'objects'?: string;
     'pro'?: StorageV1VirtualClusterProSpec;
