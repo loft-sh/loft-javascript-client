@@ -10,15 +10,11 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1ArgoCDApplicationSpec } from '../models/managementV1ArgoCDApplicationSpec.js';
-import { ManagementV1ArgoCDApplicationStatus } from '../models/managementV1ArgoCDApplicationStatus.js';
+import { ManagementV1VirtualClusterDebugShellPodsStatus } from '../models/managementV1VirtualClusterDebugShellPodsStatus.js';
 import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
 
 
-/**
-* ArgoCDApplication holds the ArgoCDApplication information
-*/
-export class ManagementV1ArgoCDApplication {
+export class ManagementV1VirtualClusterInstanceDebugShellPods {
     /**
     * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
     */
@@ -28,8 +24,7 @@ export class ManagementV1ArgoCDApplication {
     */
     'kind'?: string;
     'metadata'?: V1ObjectMeta;
-    'spec'?: ManagementV1ArgoCDApplicationSpec;
-    'status'?: ManagementV1ArgoCDApplicationStatus;
+    'status'?: ManagementV1VirtualClusterDebugShellPodsStatus;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -53,20 +48,14 @@ export class ManagementV1ArgoCDApplication {
             "format": ""
         },
         {
-            "name": "spec",
-            "baseName": "spec",
-            "type": "ManagementV1ArgoCDApplicationSpec",
-            "format": ""
-        },
-        {
             "name": "status",
             "baseName": "status",
-            "type": "ManagementV1ArgoCDApplicationStatus",
+            "type": "ManagementV1VirtualClusterDebugShellPodsStatus",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1ArgoCDApplication.attributeTypeMap;
+        return ManagementV1VirtualClusterInstanceDebugShellPods.attributeTypeMap;
     }
 
     public constructor() {
