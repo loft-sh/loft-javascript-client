@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { UiV1CspPolicy } from '../models/uiV1CspPolicy.js';
+import { UiV1CspPolicy } from '../models/uiV1CspPolicy';
 
 
 /**

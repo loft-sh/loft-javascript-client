@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1NodeType } from '../models/managementV1NodeType.js';
-import { V1ListMeta } from '../models/V1ListMeta.js';
+import { ManagementV1NodeType } from '../models/managementV1NodeType';
+import { V1ListMeta } from '../models/V1ListMeta';
 
 
 export class ManagementV1NodeTypeList {

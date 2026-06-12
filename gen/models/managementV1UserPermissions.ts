@@ -10,13 +10,13 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1ClusterAccessRole } from '../models/managementV1ClusterAccessRole.js';
-import { ManagementV1ManagementRole } from '../models/managementV1ManagementRole.js';
-import { ManagementV1ObjectName } from '../models/managementV1ObjectName.js';
-import { ManagementV1ProjectMembership } from '../models/managementV1ProjectMembership.js';
-import { ManagementV1UserPermissionsRole } from '../models/managementV1UserPermissionsRole.js';
-import { ManagementV1VirtualClusterRole } from '../models/managementV1VirtualClusterRole.js';
-import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
+import { ManagementV1ClusterAccessRole } from '../models/managementV1ClusterAccessRole';
+import { ManagementV1ManagementRole } from '../models/managementV1ManagementRole';
+import { ManagementV1ObjectName } from '../models/managementV1ObjectName';
+import { ManagementV1ProjectMembership } from '../models/managementV1ProjectMembership';
+import { ManagementV1UserPermissionsRole } from '../models/managementV1UserPermissionsRole';
+import { ManagementV1VirtualClusterRole } from '../models/managementV1VirtualClusterRole';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
 export class ManagementV1UserPermissions {

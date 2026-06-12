@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1VirtualClusterInstanceSnapshotStatus } from '../models/managementV1VirtualClusterInstanceSnapshotStatus.js';
-import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
+import { ManagementV1VirtualClusterInstanceSnapshotStatus } from '../models/managementV1VirtualClusterInstanceSnapshotStatus';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
 export class ManagementV1VirtualClusterInstanceSnapshot {

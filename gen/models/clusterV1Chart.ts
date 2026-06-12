@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { ClusterV1ChartSecretRef } from '../models/clusterV1ChartSecretRef.js';
+import { ClusterV1ChartSecretRef } from '../models/clusterV1ChartSecretRef';
 
 
 /**

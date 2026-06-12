@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { ClusterV1Bash } from '../models/clusterV1Bash.js';
-import { ClusterV1Chart } from '../models/clusterV1Chart.js';
+import { ClusterV1Bash } from '../models/clusterV1Bash';
+import { ClusterV1Chart } from '../models/clusterV1Chart';
 
 
 export class ClusterV1HelmReleaseConfig {

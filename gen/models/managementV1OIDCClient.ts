@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1OIDCClientSpec } from '../models/managementV1OIDCClientSpec.js';
-import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
+import { ManagementV1OIDCClientSpec } from '../models/managementV1OIDCClientSpec';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
 /**

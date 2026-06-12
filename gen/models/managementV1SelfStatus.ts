@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1UserInfo } from '../models/managementV1UserInfo.js';
-import { StorageV1AccessKeyScope } from '../models/storageV1AccessKeyScope.js';
-import { StorageV1EntityInfo } from '../models/storageV1EntityInfo.js';
+import { ManagementV1UserInfo } from '../models/managementV1UserInfo';
+import { StorageV1AccessKeyScope } from '../models/storageV1AccessKeyScope';
+import { StorageV1EntityInfo } from '../models/storageV1EntityInfo';
 
 
 export class ManagementV1SelfStatus {

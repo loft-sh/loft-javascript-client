@@ -10,11 +10,11 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1Access } from '../models/storageV1Access.js';
-import { StorageV1ClusterRoleRef } from '../models/storageV1ClusterRoleRef.js';
-import { StorageV1KindSecretRef } from '../models/storageV1KindSecretRef.js';
-import { StorageV1SecretRef } from '../models/storageV1SecretRef.js';
-import { StorageV1UserOrTeam } from '../models/storageV1UserOrTeam.js';
+import { StorageV1Access } from '../models/storageV1Access';
+import { StorageV1ClusterRoleRef } from '../models/storageV1ClusterRoleRef';
+import { StorageV1KindSecretRef } from '../models/storageV1KindSecretRef';
+import { StorageV1SecretRef } from '../models/storageV1SecretRef';
+import { StorageV1UserOrTeam } from '../models/storageV1UserOrTeam';
 
 
 export class ManagementV1UserSpec {
@@ -32,7 +32,7 @@ export class ManagementV1UserSpec {
     */
     'description'?: string;
     /**
-    * If disabled is true, a user will not be able to login anymore. All other user resources are unaffected and other users can still interact with this user
+    * If disabled is true, an user will not be able to login anymore. All other user resources are unaffected and other users can still interact with this user
     */
     'disabled'?: boolean;
     /**

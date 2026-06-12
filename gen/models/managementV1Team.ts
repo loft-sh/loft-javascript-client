@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1TeamSpec } from '../models/managementV1TeamSpec.js';
-import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
+import { ManagementV1TeamSpec } from '../models/managementV1TeamSpec';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
 /**

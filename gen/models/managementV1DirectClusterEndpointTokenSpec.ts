@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1AccessKeyScope } from '../models/storageV1AccessKeyScope.js';
+import { StorageV1AccessKeyScope } from '../models/storageV1AccessKeyScope';
 
 
 /**
@@ -19,7 +19,7 @@ import { StorageV1AccessKeyScope } from '../models/storageV1AccessKeyScope.js';
 export class ManagementV1DirectClusterEndpointTokenSpec {
     'scope'?: StorageV1AccessKeyScope;
     /**
-    * The time to live for this access token in seconds
+    * The time to life for this access token in seconds
     */
     'ttl'?: number;
 

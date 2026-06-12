@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1AssignedVia } from '../models/managementV1AssignedVia.js';
-import { ManagementV1ProjectRole } from '../models/managementV1ProjectRole.js';
+import { ManagementV1AssignedVia } from '../models/managementV1AssignedVia';
+import { ManagementV1ProjectRole } from '../models/managementV1ProjectRole';
 
 
 export class ManagementV1ProjectMembership {

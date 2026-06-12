@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1AppReference } from '../models/storageV1AppReference.js';
-import { StorageV1TemplateHelmChart } from '../models/storageV1TemplateHelmChart.js';
-import { StorageV1TemplateMetadata } from '../models/storageV1TemplateMetadata.js';
+import { StorageV1AppReference } from '../models/storageV1AppReference';
+import { StorageV1TemplateHelmChart } from '../models/storageV1TemplateHelmChart';
+import { StorageV1TemplateMetadata } from '../models/storageV1TemplateMetadata';
 
 
 export class StorageV1VirtualClusterSpaceTemplateDefinition {

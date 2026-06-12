@@ -10,9 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1KubeVirtNodeTypeSpec } from '../models/storageV1KubeVirtNodeTypeSpec.js';
-import { StorageV1KubeVirtProviderDeployment } from '../models/storageV1KubeVirtProviderDeployment.js';
-import { StorageV1NodeProviderClusterRef } from '../models/storageV1NodeProviderClusterRef.js';
+import { StorageV1KubeVirtNodeTypeSpec } from '../models/storageV1KubeVirtNodeTypeSpec';
+import { StorageV1NodeProviderClusterRef } from '../models/storageV1NodeProviderClusterRef';
 
 
 /**
@@ -20,7 +19,6 @@ import { StorageV1NodeProviderClusterRef } from '../models/storageV1NodeProvider
 */
 export class StorageV1NodeProviderKubeVirt {
     'clusterRef'?: StorageV1NodeProviderClusterRef;
-    'deploy'?: StorageV1KubeVirtProviderDeployment;
     /**
     * NodeTypes define NodeTypes that should be automatically created for this provider.
     */
@@ -37,12 +35,6 @@ export class StorageV1NodeProviderKubeVirt {
             "name": "clusterRef",
             "baseName": "clusterRef",
             "type": "StorageV1NodeProviderClusterRef",
-            "format": ""
-        },
-        {
-            "name": "deploy",
-            "baseName": "deploy",
-            "type": "StorageV1KubeVirtProviderDeployment",
             "format": ""
         },
         {

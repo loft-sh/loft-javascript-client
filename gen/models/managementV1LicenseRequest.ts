@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1LicenseRequestSpec } from '../models/managementV1LicenseRequestSpec.js';
-import { ManagementV1LicenseRequestStatus } from '../models/managementV1LicenseRequestStatus.js';
-import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
+import { ManagementV1LicenseRequestSpec } from '../models/managementV1LicenseRequestSpec';
+import { ManagementV1LicenseRequestStatus } from '../models/managementV1LicenseRequestStatus';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
 /**

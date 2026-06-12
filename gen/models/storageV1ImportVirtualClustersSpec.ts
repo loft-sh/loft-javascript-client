@@ -12,38 +12,24 @@
 
 
 
-/**
-* JsonnetVar represents a variable to be passed to jsonnet during manifest generation
-*/
-export class JsonnetVar {
-    'code'?: boolean;
-    'name': string;
-    'value': string;
+export class StorageV1ImportVirtualClustersSpec {
+    /**
+    * RoleMapping indicates an optional role mapping from a rancher project role to a rancher cluster role. Map to an empty role to exclude users and groups with that role from being synced.
+    */
+    'roleMapping'?: { [key: string]: string; };
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "code",
-            "baseName": "code",
-            "type": "boolean",
-            "format": ""
-        },
-        {
-            "name": "name",
-            "baseName": "name",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "value",
-            "baseName": "value",
-            "type": "string",
+            "name": "roleMapping",
+            "baseName": "roleMapping",
+            "type": "{ [key: string]: string; }",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return JsonnetVar.attributeTypeMap;
+        return StorageV1ImportVirtualClustersSpec.attributeTypeMap;
     }
 
     public constructor() {

@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1HelmTaskRelease } from '../models/storageV1HelmTaskRelease.js';
+import { StorageV1HelmTaskRelease } from '../models/storageV1HelmTaskRelease';
 
 
 export class StorageV1HelmTask {

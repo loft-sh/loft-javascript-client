@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1StatusCause } from '../models/V1StatusCause.js';
+import { V1StatusCause } from '../models/V1StatusCause';
 
 
 /**

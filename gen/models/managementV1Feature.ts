@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1FeatureStatus } from '../models/managementV1FeatureStatus.js';
-import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
+import { ManagementV1FeatureStatus } from '../models/managementV1FeatureStatus';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
 /**

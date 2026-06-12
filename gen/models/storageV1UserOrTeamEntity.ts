@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1EntityInfo } from '../models/storageV1EntityInfo.js';
+import { StorageV1EntityInfo } from '../models/storageV1EntityInfo';
 
 
 export class StorageV1UserOrTeamEntity {

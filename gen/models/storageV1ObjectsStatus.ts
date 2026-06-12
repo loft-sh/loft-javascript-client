@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1AppReference } from '../models/storageV1AppReference.js';
-import { StorageV1ChartStatus } from '../models/storageV1ChartStatus.js';
+import { StorageV1AppReference } from '../models/storageV1AppReference';
+import { StorageV1ChartStatus } from '../models/storageV1ChartStatus';
 
 
 export class StorageV1ObjectsStatus {

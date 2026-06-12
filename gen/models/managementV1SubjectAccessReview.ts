@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1SubjectAccessReviewSpec } from '../models/managementV1SubjectAccessReviewSpec.js';
-import { ManagementV1SubjectAccessReviewStatus } from '../models/managementV1SubjectAccessReviewStatus.js';
-import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
+import { ManagementV1SubjectAccessReviewSpec } from '../models/managementV1SubjectAccessReviewSpec';
+import { ManagementV1SubjectAccessReviewStatus } from '../models/managementV1SubjectAccessReviewStatus';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
 /**

@@ -10,8 +10,6 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1Access } from '../models/storageV1Access.js';
-import { StorageV1UserOrTeam } from '../models/storageV1UserOrTeam.js';
 
 
 /**
@@ -19,18 +17,9 @@ import { StorageV1UserOrTeam } from '../models/storageV1UserOrTeam.js';
 */
 export class ManagementV1NodeEnvironmentSpec {
     /**
-    * Access holds the access rights for users and teams
-    */
-    'access'?: Array<StorageV1Access>;
-    /**
     * ControlPlane indicates if the node environment is a control plane environment. This is intentionally not omitempty as we want to ensure that the control plane is always set for easier checking in for example terraform templates.
     */
     'controlPlane'?: boolean;
-    /**
-    * DisplayName is the name of the NodeClaim that is displayed in the UI.
-    */
-    'displayName'?: string;
-    'owner'?: StorageV1UserOrTeam;
     /**
     * Properties are the properties for the NodeEnvironment.
     */
@@ -38,37 +27,19 @@ export class ManagementV1NodeEnvironmentSpec {
     /**
     * ProviderRef is the name of the NodeProvider that this NodeEnvironment is based on.
     */
-    'providerRef'?: string;
+    'providerRef': string;
     /**
-    * VClusterRef references source vCluster.
+    * VClusterRef references source vCluster. This is required.
     */
-    'vClusterRef'?: string;
+    'vClusterRef': string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "access",
-            "baseName": "access",
-            "type": "Array<StorageV1Access>",
-            "format": ""
-        },
-        {
             "name": "controlPlane",
             "baseName": "controlPlane",
             "type": "boolean",
-            "format": ""
-        },
-        {
-            "name": "displayName",
-            "baseName": "displayName",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "owner",
-            "baseName": "owner",
-            "type": "StorageV1UserOrTeam",
             "format": ""
         },
         {

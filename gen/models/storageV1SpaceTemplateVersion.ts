@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1AppParameter } from '../models/storageV1AppParameter.js';
-import { StorageV1SpaceTemplateDefinition } from '../models/storageV1SpaceTemplateDefinition.js';
+import { StorageV1AppParameter } from '../models/storageV1AppParameter';
+import { StorageV1SpaceTemplateDefinition } from '../models/storageV1SpaceTemplateDefinition';
 
 
 export class StorageV1SpaceTemplateVersion {

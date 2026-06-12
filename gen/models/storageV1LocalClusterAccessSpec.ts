@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1ClusterRoleRef } from '../models/storageV1ClusterRoleRef.js';
-import { StorageV1UserOrTeam } from '../models/storageV1UserOrTeam.js';
+import { StorageV1ClusterRoleRef } from '../models/storageV1ClusterRoleRef';
+import { StorageV1UserOrTeam } from '../models/storageV1UserOrTeam';
 
 
 export class StorageV1LocalClusterAccessSpec {

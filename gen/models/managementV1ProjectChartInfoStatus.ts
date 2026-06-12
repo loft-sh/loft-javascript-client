@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { ClusterV1Metadata } from '../models/clusterV1Metadata.js';
+import { ClusterV1Metadata } from '../models/clusterV1Metadata';
 
 
 export class ManagementV1ProjectChartInfoStatus {

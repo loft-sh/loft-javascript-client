@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1Preconditions } from '../models/V1Preconditions.js';
+import { V1Preconditions } from '../models/V1Preconditions';
 
 
 /**

@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1AppTask } from '../models/storageV1AppTask.js';
-import { StorageV1HelmTask } from '../models/storageV1HelmTask.js';
+import { StorageV1AppTask } from '../models/storageV1AppTask';
+import { StorageV1HelmTask } from '../models/storageV1HelmTask';
 
 
 export class StorageV1TaskDefinition {

@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1NodeTypeOverhead } from '../models/storageV1NodeTypeOverhead.js';
+import { StorageV1NodeTypeOverhead } from '../models/storageV1NodeTypeOverhead';
 
 
 export class StorageV1NodeTypeSpec {

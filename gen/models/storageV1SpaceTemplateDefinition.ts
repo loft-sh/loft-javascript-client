@@ -10,11 +10,11 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1AppReference } from '../models/storageV1AppReference.js';
-import { StorageV1InstanceAccess } from '../models/storageV1InstanceAccess.js';
-import { StorageV1SpaceInstanceTemplateDefinition } from '../models/storageV1SpaceInstanceTemplateDefinition.js';
-import { StorageV1TemplateHelmChart } from '../models/storageV1TemplateHelmChart.js';
-import { StorageV1TemplateMetadata } from '../models/storageV1TemplateMetadata.js';
+import { StorageV1AppReference } from '../models/storageV1AppReference';
+import { StorageV1InstanceAccess } from '../models/storageV1InstanceAccess';
+import { StorageV1SpaceInstanceTemplateDefinition } from '../models/storageV1SpaceInstanceTemplateDefinition';
+import { StorageV1TemplateHelmChart } from '../models/storageV1TemplateHelmChart';
+import { StorageV1TemplateMetadata } from '../models/storageV1TemplateMetadata';
 
 
 export class StorageV1SpaceTemplateDefinition {
@@ -30,7 +30,7 @@ export class StorageV1SpaceTemplateDefinition {
     'instanceTemplate'?: StorageV1SpaceInstanceTemplateDefinition;
     'metadata'?: StorageV1TemplateMetadata;
     /**
-    * Objects are Kubernetes style YAMLs that should get deployed into the virtual cluster
+    * Objects are Kubernetes style yamls that should get deployed into the virtual cluster
     */
     'objects'?: string;
 

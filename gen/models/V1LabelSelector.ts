@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1LabelSelectorRequirement } from '../models/V1LabelSelectorRequirement.js';
+import { V1LabelSelectorRequirement } from '../models/V1LabelSelectorRequirement';
 
 
 /**

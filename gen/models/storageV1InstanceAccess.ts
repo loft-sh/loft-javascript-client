@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1InstanceAccessRule } from '../models/storageV1InstanceAccessRule.js';
+import { StorageV1InstanceAccessRule } from '../models/storageV1InstanceAccessRule';
 
 
 export class StorageV1InstanceAccess {

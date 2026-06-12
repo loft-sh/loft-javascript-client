@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1ResourceQuotaSpec } from '../models/V1ResourceQuotaSpec.js';
+import { V1ResourceQuotaSpec } from '../models/V1ResourceQuotaSpec';
 
 
 /**

@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1ClusterQuotaSpec } from '../models/agentstorageV1ClusterQuotaSpec.js';
-import { StorageV1ClusterQuotaStatus } from '../models/agentstorageV1ClusterQuotaStatus.js';
-import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
+import { StorageV1ClusterQuotaSpec } from '../models/agentstorageV1ClusterQuotaSpec';
+import { StorageV1ClusterQuotaStatus } from '../models/agentstorageV1ClusterQuotaStatus';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
 /**

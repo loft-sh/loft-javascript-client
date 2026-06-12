@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1Operation } from '../models/managementV1Operation.js';
+import { ManagementV1Operation } from '../models/managementV1Operation';
 
 
 export class ManagementV1NodeClaimData {
@@ -18,10 +18,6 @@ export class ManagementV1NodeClaimData {
     * Operations that were applied to the node claim.
     */
     'operations'?: { [key: string]: ManagementV1Operation; };
-    /**
-    * Outputs of the node environment.
-    */
-    'outputs'?: string;
     /**
     * Terraform state of the node claim.
     */
@@ -39,12 +35,6 @@ export class ManagementV1NodeClaimData {
             "baseName": "operations",
             "type": "{ [key: string]: ManagementV1Operation; }",
             "format": ""
-        },
-        {
-            "name": "outputs",
-            "baseName": "outputs",
-            "type": "string",
-            "format": "byte"
         },
         {
             "name": "state",

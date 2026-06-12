@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1RegisterVirtualClusterSpec } from '../models/managementV1RegisterVirtualClusterSpec.js';
-import { ManagementV1RegisterVirtualClusterStatus } from '../models/managementV1RegisterVirtualClusterStatus.js';
-import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
+import { ManagementV1RegisterVirtualClusterSpec } from '../models/managementV1RegisterVirtualClusterSpec';
+import { ManagementV1RegisterVirtualClusterStatus } from '../models/managementV1RegisterVirtualClusterStatus';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
 
 
 /**

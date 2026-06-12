@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1StandaloneEtcdPeer } from '../models/managementV1StandaloneEtcdPeer.js';
-import { ManagementV1StandalonePKI } from '../models/managementV1StandalonePKI.js';
+import { ManagementV1StandaloneEtcdPeer } from '../models/managementV1StandaloneEtcdPeer';
+import { ManagementV1StandalonePKI } from '../models/managementV1StandalonePKI';
 
 
 export class ManagementV1VirtualClusterStandaloneSpec {
