@@ -10,14 +10,11 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1OSImageSpec } from '../models/storageV1OSImageSpec.js';
+import { ManagementV1VirtualClusterDebugShellPodsStatus } from '../models/managementV1VirtualClusterDebugShellPodsStatus.js';
 import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
 
 
-/**
-* OSImage holds the information of machine networks
-*/
-export class StorageV1OSImage {
+export class ManagementV1VirtualClusterInstanceDebugShellPods {
     /**
     * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
     */
@@ -27,8 +24,7 @@ export class StorageV1OSImage {
     */
     'kind'?: string;
     'metadata'?: V1ObjectMeta;
-    'spec'?: StorageV1OSImageSpec;
-    'status'?: any;
+    'status'?: ManagementV1VirtualClusterDebugShellPodsStatus;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -52,20 +48,14 @@ export class StorageV1OSImage {
             "format": ""
         },
         {
-            "name": "spec",
-            "baseName": "spec",
-            "type": "StorageV1OSImageSpec",
-            "format": ""
-        },
-        {
             "name": "status",
             "baseName": "status",
-            "type": "any",
+            "type": "ManagementV1VirtualClusterDebugShellPodsStatus",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1OSImage.attributeTypeMap;
+        return ManagementV1VirtualClusterInstanceDebugShellPods.attributeTypeMap;
     }
 
     public constructor() {

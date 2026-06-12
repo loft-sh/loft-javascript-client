@@ -12,37 +12,44 @@
 
 
 
-/**
-* OperationInitiator contains information about the initiator of an operation
-*/
-export class OperationInitiator {
+export class ManagementV1AuthenticationRancher {
     /**
-    * Automated is set to true if operation was initiated automatically by the application controller.
+    * BearerToken holds the rancher API key in token username and password form. E.g. my-token:my-secret
     */
-    'automated'?: boolean;
+    'bearerToken'?: string;
     /**
-    * Username contains the name of a user who started operation
+    * Host holds the rancher host, e.g. my-domain.com
     */
-    'username'?: string;
+    'host'?: string;
+    /**
+    * Insecure tells Loft if the Rancher endpoint is insecure.
+    */
+    'insecure'?: boolean;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "automated",
-            "baseName": "automated",
-            "type": "boolean",
+            "name": "bearerToken",
+            "baseName": "bearerToken",
+            "type": "string",
             "format": ""
         },
         {
-            "name": "username",
-            "baseName": "username",
+            "name": "host",
+            "baseName": "host",
             "type": "string",
+            "format": ""
+        },
+        {
+            "name": "insecure",
+            "baseName": "insecure",
+            "type": "boolean",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return OperationInitiator.attributeTypeMap;
+        return ManagementV1AuthenticationRancher.attributeTypeMap;
     }
 
     public constructor() {

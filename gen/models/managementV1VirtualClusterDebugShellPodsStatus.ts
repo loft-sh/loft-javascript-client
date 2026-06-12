@@ -10,36 +10,27 @@
  * Do not edit the class manually.
  */
 
+import { ManagementV1VirtualClusterDebugShellPodStatus } from '../models/managementV1VirtualClusterDebugShellPodStatus.js';
 
 
-export class StorageV1ArgoCD {
+export class ManagementV1VirtualClusterDebugShellPodsStatus {
     /**
-    * Connector specifies the argo cd connector name
+    * Pods are available virtual cluster pods that can be selected for debug shell.
     */
-    'connector'?: string;
-    /**
-    * Enabled defines if argo cd is enabled
-    */
-    'enabled'?: boolean;
+    'pods'?: Array<ManagementV1VirtualClusterDebugShellPodStatus>;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "connector",
-            "baseName": "connector",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "enabled",
-            "baseName": "enabled",
-            "type": "boolean",
+            "name": "pods",
+            "baseName": "pods",
+            "type": "Array<ManagementV1VirtualClusterDebugShellPodStatus>",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1ArgoCD.attributeTypeMap;
+        return ManagementV1VirtualClusterDebugShellPodsStatus.attributeTypeMap;
     }
 
     public constructor() {
