@@ -14,7 +14,7 @@
 
 export class ManagementV1VirtualClusterExternalDatabaseSpec {
     /**
-    * Connector specifies the secret that should be used to connect to an external database server. The connection is used to manage a user and database for the vCluster. A data source endpoint constructed from the created user and database is returned on status. The secret specified by connector should contain the following fields: endpoint - the endpoint where the database server can be accessed user - the database username password - the password for the database username port - the port to be used in conjunction with the endpoint to connect to the databse server. This is commonly 3306
+    * Connector specifies the secret that should be used to connect to an external database server. The connection is used to manage a user and database for the vCluster. A data source endpoint constructed from the created user and database is returned on status. The secret specified by connector should contain the following fields: endpoint - the endpoint where the database server can be accessed user - the database username password - the password for the database username port - the port to be used in conjunction with the endpoint to connect to the databse server. This is commonly 3306 The following field is optional: caCert - PEM-encoded CA bundle used by the tenant cluster to verify the database server\'s TLS certificate. When set, the value is returned on status so the tenant cluster can write it to disk and enable sslmode=verify-full.
     */
     'connector'?: string;
 
