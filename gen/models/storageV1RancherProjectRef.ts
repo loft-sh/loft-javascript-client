@@ -10,32 +10,36 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1TemplateMetadata } from '../models/storageV1TemplateMetadata.js';
-import { ApplicationSpec } from '../models/argoCDApplicationV1alpha1ApplicationSpec.js';
 
 
-export class StorageV1ArgoCDApplicationTemplateDefinition {
-    'metadata'?: StorageV1TemplateMetadata;
-    'spec'?: ApplicationSpec;
+export class StorageV1RancherProjectRef {
+    /**
+    * Cluster defines the Rancher cluster ID Needs to be the same id within Loft
+    */
+    'cluster'?: string;
+    /**
+    * Project defines the Rancher project ID
+    */
+    'project'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "metadata",
-            "baseName": "metadata",
-            "type": "StorageV1TemplateMetadata",
+            "name": "cluster",
+            "baseName": "cluster",
+            "type": "string",
             "format": ""
         },
         {
-            "name": "spec",
-            "baseName": "spec",
-            "type": "ApplicationSpec",
+            "name": "project",
+            "baseName": "project",
+            "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1ArgoCDApplicationTemplateDefinition.attributeTypeMap;
+        return StorageV1RancherProjectRef.attributeTypeMap;
     }
 
     public constructor() {
