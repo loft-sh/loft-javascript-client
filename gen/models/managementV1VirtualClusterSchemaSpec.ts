@@ -17,7 +17,7 @@
 */
 export class ManagementV1VirtualClusterSchemaSpec {
     /**
-    * Version is the version of the virtual cluster
+    * Version is the version of the tenant cluster
     */
     'version'?: string;
 
