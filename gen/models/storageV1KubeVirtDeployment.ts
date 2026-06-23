@@ -14,6 +14,14 @@
 
 export class StorageV1KubeVirtDeployment {
     /**
+    * Chart overrides the Helm chart name used to install the KubeVirt operator.
+    */
+    'chart'?: string;
+    /**
+    * ChartRepo overrides the Helm chart repository used to install the KubeVirt operator.
+    */
+    'chartRepo'?: string;
+    /**
     * Enabled controls whether the KubeVirt operator is deployed into the cluster.
     */
     'enabled': boolean;
@@ -21,10 +29,26 @@ export class StorageV1KubeVirtDeployment {
     * HelmValues is raw YAML that will be passed as values to the KubeVirt Helm chart.
     */
     'helmValues'?: string;
+    /**
+    * Version overrides the Helm chart version used to install the KubeVirt operator.
+    */
+    'version'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+        {
+            "name": "chart",
+            "baseName": "chart",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "chartRepo",
+            "baseName": "chartRepo",
+            "type": "string",
+            "format": ""
+        },
         {
             "name": "enabled",
             "baseName": "enabled",
@@ -34,6 +58,12 @@ export class StorageV1KubeVirtDeployment {
         {
             "name": "helmValues",
             "baseName": "helmValues",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "version",
+            "baseName": "version",
             "type": "string",
             "format": ""
         }    ];
