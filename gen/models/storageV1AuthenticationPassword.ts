@@ -12,7 +12,7 @@
 
 
 
-export class ManagementV1AuthenticationPassword {
+export class StorageV1AuthenticationPassword {
     /**
     * If true login via password is disabled
     */
@@ -29,7 +29,7 @@ export class ManagementV1AuthenticationPassword {
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1AuthenticationPassword.attributeTypeMap;
+        return StorageV1AuthenticationPassword.attributeTypeMap;
     }
 
     public constructor() {

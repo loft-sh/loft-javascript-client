@@ -10,29 +10,29 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1AuthenticationGithub } from '../models/managementV1AuthenticationGithub.js';
-import { ManagementV1AuthenticationGitlab } from '../models/managementV1AuthenticationGitlab.js';
-import { ManagementV1AuthenticationGoogle } from '../models/managementV1AuthenticationGoogle.js';
-import { ManagementV1AuthenticationMicrosoft } from '../models/managementV1AuthenticationMicrosoft.js';
-import { ManagementV1AuthenticationOIDC } from '../models/managementV1AuthenticationOIDC.js';
-import { ManagementV1AuthenticationSAML } from '../models/managementV1AuthenticationSAML.js';
+import { StorageV1AuthenticationGithub } from '../models/storageV1AuthenticationGithub.js';
+import { StorageV1AuthenticationGitlab } from '../models/storageV1AuthenticationGitlab.js';
+import { StorageV1AuthenticationGoogle } from '../models/storageV1AuthenticationGoogle.js';
+import { StorageV1AuthenticationMicrosoft } from '../models/storageV1AuthenticationMicrosoft.js';
+import { StorageV1AuthenticationOIDC } from '../models/storageV1AuthenticationOIDC.js';
+import { StorageV1AuthenticationSAML } from '../models/storageV1AuthenticationSAML.js';
 
 
-export class ManagementV1ConnectorWithName {
+export class StorageV1ConnectorWithName {
     /**
     * DisplayName is the name that should show up in the ui
     */
     'displayName'?: string;
-    'github'?: ManagementV1AuthenticationGithub;
-    'gitlab'?: ManagementV1AuthenticationGitlab;
-    'google'?: ManagementV1AuthenticationGoogle;
+    'github'?: StorageV1AuthenticationGithub;
+    'gitlab'?: StorageV1AuthenticationGitlab;
+    'google'?: StorageV1AuthenticationGoogle;
     /**
     * ID is the id that should show up in the url
     */
     'id'?: string;
-    'microsoft'?: ManagementV1AuthenticationMicrosoft;
-    'oidc'?: ManagementV1AuthenticationOIDC;
-    'saml'?: ManagementV1AuthenticationSAML;
+    'microsoft'?: StorageV1AuthenticationMicrosoft;
+    'oidc'?: StorageV1AuthenticationOIDC;
+    'saml'?: StorageV1AuthenticationSAML;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -46,19 +46,19 @@ export class ManagementV1ConnectorWithName {
         {
             "name": "github",
             "baseName": "github",
-            "type": "ManagementV1AuthenticationGithub",
+            "type": "StorageV1AuthenticationGithub",
             "format": ""
         },
         {
             "name": "gitlab",
             "baseName": "gitlab",
-            "type": "ManagementV1AuthenticationGitlab",
+            "type": "StorageV1AuthenticationGitlab",
             "format": ""
         },
         {
             "name": "google",
             "baseName": "google",
-            "type": "ManagementV1AuthenticationGoogle",
+            "type": "StorageV1AuthenticationGoogle",
             "format": ""
         },
         {
@@ -70,24 +70,24 @@ export class ManagementV1ConnectorWithName {
         {
             "name": "microsoft",
             "baseName": "microsoft",
-            "type": "ManagementV1AuthenticationMicrosoft",
+            "type": "StorageV1AuthenticationMicrosoft",
             "format": ""
         },
         {
             "name": "oidc",
             "baseName": "oidc",
-            "type": "ManagementV1AuthenticationOIDC",
+            "type": "StorageV1AuthenticationOIDC",
             "format": ""
         },
         {
             "name": "saml",
             "baseName": "saml",
-            "type": "ManagementV1AuthenticationSAML",
+            "type": "StorageV1AuthenticationSAML",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1ConnectorWithName.attributeTypeMap;
+        return StorageV1ConnectorWithName.attributeTypeMap;
     }
 
     public constructor() {

@@ -12,7 +12,7 @@
 
 
 
-export class ManagementV1AuthenticationOIDC {
+export class StorageV1AuthenticationOIDC {
     /**
     * AllowedExtraClaims are claims of interest that are not part of User by default but may be provided by the OIDC provider.
     */
@@ -219,7 +219,7 @@ export class ManagementV1AuthenticationOIDC {
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1AuthenticationOIDC.attributeTypeMap;
+        return StorageV1AuthenticationOIDC.attributeTypeMap;
     }
 
     public constructor() {
