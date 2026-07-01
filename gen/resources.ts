@@ -29,6 +29,7 @@ import {ManagementV1Kiosk} from "./models/managementV1Kiosk"
 import {ManagementV1LicenseRequest} from "./models/managementV1LicenseRequest"
 import {ManagementV1License} from "./models/managementV1License"
 import {ManagementV1LoftUpgrade} from "./models/managementV1LoftUpgrade"
+import {ManagementV1MachineConfigTemplate} from "./models/managementV1MachineConfigTemplate"
 import {ManagementV1NetworkPeerDebug} from "./models/managementV1NetworkPeerDebug"
 import {ManagementV1NetworkPeer} from "./models/managementV1NetworkPeer"
 import {ManagementV1NodeClaim} from "./models/managementV1NodeClaim"
@@ -52,6 +53,7 @@ import {ManagementV1ProjectTemplates} from "./models/managementV1ProjectTemplate
 import {ManagementV1Project} from "./models/managementV1Project"
 import {ManagementV1RedirectToken} from "./models/managementV1RedirectToken"
 import {ManagementV1RegisterVirtualCluster} from "./models/managementV1RegisterVirtualCluster"
+import {ManagementV1RenderVirtualClusterTemplate} from "./models/managementV1RenderVirtualClusterTemplate"
 import {ManagementV1ResetAccessKey} from "./models/managementV1ResetAccessKey"
 import {ManagementV1SSHKey} from "./models/managementV1SSHKey"
 import {ManagementV1SelfSubjectAccessReview} from "./models/managementV1SelfSubjectAccessReview"
@@ -121,6 +123,7 @@ export type TGenResources = {
   ManagementV1License: GroupVersionResource<ManagementV1License>
   ManagementV1LicenseRequest: GroupVersionResource<ManagementV1LicenseRequest>
   ManagementV1LoftUpgrade: GroupVersionResource<ManagementV1LoftUpgrade>
+  ManagementV1MachineConfigTemplate: GroupVersionResource<ManagementV1MachineConfigTemplate>
   ManagementV1NetworkPeer: GroupVersionResource<ManagementV1NetworkPeer>
   ManagementV1NetworkPeerDebug: GroupVersionResource<ManagementV1NetworkPeerDebug>
   ManagementV1NodeClaim: GroupVersionResource<ManagementV1NodeClaim>
@@ -144,6 +147,7 @@ export type TGenResources = {
   ManagementV1ProjectTemplates: GroupVersionResource<ManagementV1ProjectTemplates>
   ManagementV1RedirectToken: GroupVersionResource<ManagementV1RedirectToken>
   ManagementV1RegisterVirtualCluster: GroupVersionResource<ManagementV1RegisterVirtualCluster>
+  ManagementV1RenderVirtualClusterTemplate: GroupVersionResource<ManagementV1RenderVirtualClusterTemplate>
   ManagementV1ResetAccessKey: GroupVersionResource<ManagementV1ResetAccessKey>
   ManagementV1SSHKey: GroupVersionResource<ManagementV1SSHKey>
   ManagementV1Self: GroupVersionResource<ManagementV1Self>
@@ -417,6 +421,14 @@ export const GenResources: TGenResources = {
     namespaced: false,
     kind: "LoftUpgrade",
   },
+  ManagementV1MachineConfigTemplate: {
+    group: "management.loft.sh",
+    version: "v1",
+    resource: "machineconfigtemplates",
+    subResource: "",
+    namespaced: false,
+    kind: "MachineConfigTemplate",
+  },
   ManagementV1NetworkPeer: {
     group: "management.loft.sh",
     version: "v1",
@@ -600,6 +612,14 @@ export const GenResources: TGenResources = {
     subResource: "",
     namespaced: false,
     kind: "RegisterVirtualCluster",
+  },
+  ManagementV1RenderVirtualClusterTemplate: {
+    group: "management.loft.sh",
+    version: "v1",
+    resource: "rendervirtualclustertemplates",
+    subResource: "",
+    namespaced: false,
+    kind: "RenderVirtualClusterTemplate",
   },
   ManagementV1ResetAccessKey: {
     group: "management.loft.sh",

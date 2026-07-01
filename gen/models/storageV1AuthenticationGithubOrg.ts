@@ -15,7 +15,7 @@
 /**
 * AuthenticationGithubOrg holds org-team filters, in which teams are optional.
 */
-export class ManagementV1AuthenticationGithubOrg {
+export class StorageV1AuthenticationGithubOrg {
     /**
     * Organization name in github (not slug, full name). Only users in this github organization can authenticate.
     */
@@ -42,7 +42,7 @@ export class ManagementV1AuthenticationGithubOrg {
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1AuthenticationGithubOrg.attributeTypeMap;
+        return StorageV1AuthenticationGithubOrg.attributeTypeMap;
     }
 
     public constructor() {

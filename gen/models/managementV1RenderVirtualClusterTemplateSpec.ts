@@ -10,22 +10,20 @@
  * Do not edit the class manually.
  */
 
+import { ManagementV1RenderVirtualClusterTemplateLoft } from '../models/managementV1RenderVirtualClusterTemplateLoft.js';
 
 
 /**
-* ConvertVirtualClusterConfigSpec holds the specification
+* RenderVirtualClusterTemplateSpec holds the specification
 */
-export class ManagementV1ConvertVirtualClusterConfigSpec {
+export class ManagementV1RenderVirtualClusterTemplateSpec {
+    'loft'?: ManagementV1RenderVirtualClusterTemplateLoft;
     /**
-    * Annotations are annotations on the tenant cluster
+    * Parameters is the YAML parameters to apply during rendering
     */
-    'annotations'?: { [key: string]: string; };
+    'parameters'?: string;
     /**
-    * Distro is the distro to be used for the config
-    */
-    'distro'?: string;
-    /**
-    * Values are the config values for the tenant cluster
+    * Values is the YAML template string to render
     */
     'values'?: string;
 
@@ -33,14 +31,14 @@ export class ManagementV1ConvertVirtualClusterConfigSpec {
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "annotations",
-            "baseName": "annotations",
-            "type": "{ [key: string]: string; }",
+            "name": "loft",
+            "baseName": "loft",
+            "type": "ManagementV1RenderVirtualClusterTemplateLoft",
             "format": ""
         },
         {
-            "name": "distro",
-            "baseName": "distro",
+            "name": "parameters",
+            "baseName": "parameters",
             "type": "string",
             "format": ""
         },
@@ -52,7 +50,7 @@ export class ManagementV1ConvertVirtualClusterConfigSpec {
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1ConvertVirtualClusterConfigSpec.attributeTypeMap;
+        return ManagementV1RenderVirtualClusterTemplateSpec.attributeTypeMap;
     }
 
     public constructor() {

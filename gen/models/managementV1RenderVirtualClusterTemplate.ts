@@ -10,14 +10,15 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1VirtualClusterNodeAccessKeyStatus } from '../models/managementV1VirtualClusterNodeAccessKeyStatus.js';
+import { ManagementV1RenderVirtualClusterTemplateSpec } from '../models/managementV1RenderVirtualClusterTemplateSpec.js';
+import { ManagementV1RenderVirtualClusterTemplateStatus } from '../models/managementV1RenderVirtualClusterTemplateStatus.js';
 import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
 
 
 /**
-* VirtualClusterNodeAccessKey holds the access key for the tenant cluster
+* RenderVirtualClusterTemplate holds template rendering request and response data for tenant clusters
 */
-export class ManagementV1VirtualClusterNodeAccessKey {
+export class ManagementV1RenderVirtualClusterTemplate {
     /**
     * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
     */
@@ -27,8 +28,8 @@ export class ManagementV1VirtualClusterNodeAccessKey {
     */
     'kind'?: string;
     'metadata'?: V1ObjectMeta;
-    'spec'?: any;
-    'status'?: ManagementV1VirtualClusterNodeAccessKeyStatus;
+    'spec'?: ManagementV1RenderVirtualClusterTemplateSpec;
+    'status'?: ManagementV1RenderVirtualClusterTemplateStatus;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -54,18 +55,18 @@ export class ManagementV1VirtualClusterNodeAccessKey {
         {
             "name": "spec",
             "baseName": "spec",
-            "type": "any",
+            "type": "ManagementV1RenderVirtualClusterTemplateSpec",
             "format": ""
         },
         {
             "name": "status",
             "baseName": "status",
-            "type": "ManagementV1VirtualClusterNodeAccessKeyStatus",
+            "type": "ManagementV1RenderVirtualClusterTemplateStatus",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1VirtualClusterNodeAccessKey.attributeTypeMap;
+        return ManagementV1RenderVirtualClusterTemplate.attributeTypeMap;
     }
 
     public constructor() {
