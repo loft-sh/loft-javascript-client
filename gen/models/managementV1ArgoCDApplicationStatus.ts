@@ -20,7 +20,7 @@ import { ApplicationStatus } from '../models/argoCDApplicationV1alpha1Applicatio
 export class ManagementV1ArgoCDApplicationStatus {
     'application'?: ApplicationStatus;
     /**
-    * Conditions holds several conditions the virtual cluster might be in
+    * Conditions holds several conditions the tenant cluster might be in
     */
     'conditions'?: Array<StorageV1Condition>;
     /**
