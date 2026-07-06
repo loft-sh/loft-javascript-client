@@ -14,11 +14,11 @@
 
 export class ManagementV1ProjectMigrateVirtualClusterInstanceSource {
     /**
-    * Name of the virtual cluster instance to migrate
+    * Name of the tenant cluster instance to migrate
     */
     'name'?: string;
     /**
-    * Namespace of the virtual cluster instance to migrate
+    * Namespace of the tenant cluster instance to migrate
     */
     'namespace'?: string;
 

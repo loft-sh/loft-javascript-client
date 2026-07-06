@@ -10,14 +10,14 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1VirtualClusterNodeAccessKeyStatus } from '../models/managementV1VirtualClusterNodeAccessKeyStatus.js';
+import { ManagementV1MachineConfigTemplateSpec } from '../models/managementV1MachineConfigTemplateSpec.js';
 import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
 
 
 /**
-* VirtualClusterNodeAccessKey holds the access key for the tenant cluster
+* MachineConfigTemplate holds the machine config template for vCluster.
 */
-export class ManagementV1VirtualClusterNodeAccessKey {
+export class ManagementV1MachineConfigTemplate {
     /**
     * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
     */
@@ -27,8 +27,8 @@ export class ManagementV1VirtualClusterNodeAccessKey {
     */
     'kind'?: string;
     'metadata'?: V1ObjectMeta;
-    'spec'?: any;
-    'status'?: ManagementV1VirtualClusterNodeAccessKeyStatus;
+    'spec'?: ManagementV1MachineConfigTemplateSpec;
+    'status'?: any;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -54,18 +54,18 @@ export class ManagementV1VirtualClusterNodeAccessKey {
         {
             "name": "spec",
             "baseName": "spec",
-            "type": "any",
+            "type": "ManagementV1MachineConfigTemplateSpec",
             "format": ""
         },
         {
             "name": "status",
             "baseName": "status",
-            "type": "ManagementV1VirtualClusterNodeAccessKeyStatus",
+            "type": "any",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1VirtualClusterNodeAccessKey.attributeTypeMap;
+        return ManagementV1MachineConfigTemplate.attributeTypeMap;
     }
 
     public constructor() {
