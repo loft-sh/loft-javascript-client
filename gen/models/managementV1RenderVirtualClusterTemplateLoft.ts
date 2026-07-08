@@ -10,40 +10,43 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1AssignedVia } from '../models/managementV1AssignedVia.js';
 
 
-export class ManagementV1VirtualClusterRole {
-    'assignedVia'?: ManagementV1AssignedVia;
+/**
+* RenderVirtualClusterTemplateLoft holds the loft metadata used during rendering
+*/
+export class ManagementV1RenderVirtualClusterTemplateLoft {
     /**
-    * DisplayName is the name of the object to display in the UI
+    * Cluster name
     */
-    'displayName'?: string;
+    'cluster'?: string;
     /**
-    * Name of the referenced object
+    * Name of the loft instance
     */
     'name'?: string;
     /**
-    * Namespace of the referenced object
+    * Namespace
     */
     'namespace'?: string;
     /**
-    * Role is the cluster role inside the tenant cluster. One of cluster-admin, admin, edit, or view
+    * Project name
     */
-    'role'?: string;
+    'project'?: string;
+    /**
+    * Team
+    */
+    'team'?: string;
+    /**
+    * User
+    */
+    'user'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "assignedVia",
-            "baseName": "assignedVia",
-            "type": "ManagementV1AssignedVia",
-            "format": ""
-        },
-        {
-            "name": "displayName",
-            "baseName": "displayName",
+            "name": "cluster",
+            "baseName": "cluster",
             "type": "string",
             "format": ""
         },
@@ -60,14 +63,26 @@ export class ManagementV1VirtualClusterRole {
             "format": ""
         },
         {
-            "name": "role",
-            "baseName": "role",
+            "name": "project",
+            "baseName": "project",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "team",
+            "baseName": "team",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "user",
+            "baseName": "user",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1VirtualClusterRole.attributeTypeMap;
+        return ManagementV1RenderVirtualClusterTemplateLoft.attributeTypeMap;
     }
 
     public constructor() {

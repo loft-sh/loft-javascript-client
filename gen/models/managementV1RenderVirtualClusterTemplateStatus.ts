@@ -12,24 +12,27 @@
 
 
 
-export class ManagementV1AuthenticationPassword {
+/**
+* RenderVirtualClusterTemplateStatus holds the status
+*/
+export class ManagementV1RenderVirtualClusterTemplateStatus {
     /**
-    * If true login via password is disabled
+    * Values are the rendered template values
     */
-    'disabled'?: boolean;
+    'values'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "disabled",
-            "baseName": "disabled",
-            "type": "boolean",
+            "name": "values",
+            "baseName": "values",
+            "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1AuthenticationPassword.attributeTypeMap;
+        return ManagementV1RenderVirtualClusterTemplateStatus.attributeTypeMap;
     }
 
     public constructor() {

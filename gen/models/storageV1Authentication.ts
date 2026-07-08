@@ -10,20 +10,20 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1AuthenticationGithub } from '../models/managementV1AuthenticationGithub.js';
-import { ManagementV1AuthenticationGitlab } from '../models/managementV1AuthenticationGitlab.js';
-import { ManagementV1AuthenticationGoogle } from '../models/managementV1AuthenticationGoogle.js';
-import { ManagementV1AuthenticationMicrosoft } from '../models/managementV1AuthenticationMicrosoft.js';
-import { ManagementV1AuthenticationOIDC } from '../models/managementV1AuthenticationOIDC.js';
-import { ManagementV1AuthenticationPassword } from '../models/managementV1AuthenticationPassword.js';
-import { ManagementV1AuthenticationSAML } from '../models/managementV1AuthenticationSAML.js';
-import { ManagementV1ConnectorWithName } from '../models/managementV1ConnectorWithName.js';
+import { StorageV1AuthenticationGithub } from '../models/storageV1AuthenticationGithub.js';
+import { StorageV1AuthenticationGitlab } from '../models/storageV1AuthenticationGitlab.js';
+import { StorageV1AuthenticationGoogle } from '../models/storageV1AuthenticationGoogle.js';
+import { StorageV1AuthenticationMicrosoft } from '../models/storageV1AuthenticationMicrosoft.js';
+import { StorageV1AuthenticationOIDC } from '../models/storageV1AuthenticationOIDC.js';
+import { StorageV1AuthenticationPassword } from '../models/storageV1AuthenticationPassword.js';
+import { StorageV1AuthenticationSAML } from '../models/storageV1AuthenticationSAML.js';
+import { StorageV1ConnectorWithName } from '../models/storageV1ConnectorWithName.js';
 
 
 /**
 * Authentication holds authentication relevant information
 */
-export class ManagementV1Authentication {
+export class StorageV1Authentication {
     /**
     * AccessKeyMaxTTLSeconds is the global maximum lifespan of an accesskey in seconds. Leaving it 0 or unspecified will disable it. Specifying 2592000 will mean all keys have a Time-To-Live of 30 days.
     */
@@ -31,7 +31,7 @@ export class ManagementV1Authentication {
     /**
     * Connectors are optional additional connectors for Loft.
     */
-    'connectors'?: Array<ManagementV1ConnectorWithName>;
+    'connectors'?: Array<StorageV1ConnectorWithName>;
     /**
     * CustomHttpHeaders are additional headers that should be set for the authentication endpoints
     */
@@ -44,9 +44,9 @@ export class ManagementV1Authentication {
     * DisableUserCreation prevents the SSO connectors from creating a new user on a users initial signin through sso. Default behaviour is false, this means that a new user object will be created once a user without a Kubernetes user object logs in.
     */
     'disableUserCreation'?: boolean;
-    'github'?: ManagementV1AuthenticationGithub;
-    'gitlab'?: ManagementV1AuthenticationGitlab;
-    'google'?: ManagementV1AuthenticationGoogle;
+    'github'?: StorageV1AuthenticationGithub;
+    'gitlab'?: StorageV1AuthenticationGitlab;
+    'google'?: StorageV1AuthenticationGoogle;
     /**
     * GroupsFilters is a regex expression to only save matching sso groups into the user resource
     */
@@ -55,10 +55,10 @@ export class ManagementV1Authentication {
     * LoginAccessKeyTTLSeconds is the time in seconds an access key is kept until it is deleted. Leaving it unspecified will default to 20 days. Setting it to zero will disable the ttl. Specifying 2592000 will mean all keys have a  default Time-To-Live of 30 days.
     */
     'loginAccessKeyTTLSeconds'?: number;
-    'microsoft'?: ManagementV1AuthenticationMicrosoft;
-    'oidc'?: ManagementV1AuthenticationOIDC;
-    'password'?: ManagementV1AuthenticationPassword;
-    'saml'?: ManagementV1AuthenticationSAML;
+    'microsoft'?: StorageV1AuthenticationMicrosoft;
+    'oidc'?: StorageV1AuthenticationOIDC;
+    'password'?: StorageV1AuthenticationPassword;
+    'saml'?: StorageV1AuthenticationSAML;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -72,7 +72,7 @@ export class ManagementV1Authentication {
         {
             "name": "connectors",
             "baseName": "connectors",
-            "type": "Array<ManagementV1ConnectorWithName>",
+            "type": "Array<StorageV1ConnectorWithName>",
             "format": ""
         },
         {
@@ -96,19 +96,19 @@ export class ManagementV1Authentication {
         {
             "name": "github",
             "baseName": "github",
-            "type": "ManagementV1AuthenticationGithub",
+            "type": "StorageV1AuthenticationGithub",
             "format": ""
         },
         {
             "name": "gitlab",
             "baseName": "gitlab",
-            "type": "ManagementV1AuthenticationGitlab",
+            "type": "StorageV1AuthenticationGitlab",
             "format": ""
         },
         {
             "name": "google",
             "baseName": "google",
-            "type": "ManagementV1AuthenticationGoogle",
+            "type": "StorageV1AuthenticationGoogle",
             "format": ""
         },
         {
@@ -126,30 +126,30 @@ export class ManagementV1Authentication {
         {
             "name": "microsoft",
             "baseName": "microsoft",
-            "type": "ManagementV1AuthenticationMicrosoft",
+            "type": "StorageV1AuthenticationMicrosoft",
             "format": ""
         },
         {
             "name": "oidc",
             "baseName": "oidc",
-            "type": "ManagementV1AuthenticationOIDC",
+            "type": "StorageV1AuthenticationOIDC",
             "format": ""
         },
         {
             "name": "password",
             "baseName": "password",
-            "type": "ManagementV1AuthenticationPassword",
+            "type": "StorageV1AuthenticationPassword",
             "format": ""
         },
         {
             "name": "saml",
             "baseName": "saml",
-            "type": "ManagementV1AuthenticationSAML",
+            "type": "StorageV1AuthenticationSAML",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1Authentication.attributeTypeMap;
+        return StorageV1Authentication.attributeTypeMap;
     }
 
     public constructor() {
