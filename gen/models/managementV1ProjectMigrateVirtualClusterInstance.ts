@@ -15,7 +15,7 @@ import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
 
 
 /**
-* ProjectMigrateVirtualClusterInstance holds project vclusterinstance migrate information
+* ProjectMigrateVirtualClusterInstance holds project vclusterinstance migrate information  Deprecated: migrating virtual cluster instances between projects is deprecated and will be removed in a future release.
 */
 export class ManagementV1ProjectMigrateVirtualClusterInstance {
     /**

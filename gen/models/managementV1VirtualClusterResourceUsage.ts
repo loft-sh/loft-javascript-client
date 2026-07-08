@@ -15,7 +15,7 @@ import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
 
 
 /**
-* VirtualClusterResourceUsage holds information about a virtual cluster\'s usage of node resources.
+* VirtualClusterResourceUsage holds information about a tenant cluster\'s usage of node resources.
 */
 export class ManagementV1VirtualClusterResourceUsage {
     /**

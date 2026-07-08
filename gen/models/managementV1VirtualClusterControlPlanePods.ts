@@ -15,7 +15,7 @@ import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
 
 
 /**
-* VirtualClusterControlPlanePods holds control plane pod information for a virtual cluster instance.
+* VirtualClusterControlPlanePods holds control plane pod information for a tenant cluster instance.
 */
 export class ManagementV1VirtualClusterControlPlanePods {
     /**
