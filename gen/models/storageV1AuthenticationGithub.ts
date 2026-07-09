@@ -10,10 +10,10 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1AuthenticationGithubOrg } from '../models/managementV1AuthenticationGithubOrg.js';
+import { StorageV1AuthenticationGithubOrg } from '../models/storageV1AuthenticationGithubOrg.js';
 
 
-export class ManagementV1AuthenticationGithub {
+export class StorageV1AuthenticationGithub {
     /**
     * ClientID holds the github client id
     */
@@ -29,7 +29,7 @@ export class ManagementV1AuthenticationGithub {
     /**
     * Loft queries the following organizations for group information. Group claims are formatted as \"(org):(team)\". For example if a user is part of the \"engineering\" team of the \"coreos\" org, the group claim would include \"coreos:engineering\".  If orgs are specified in the config then user MUST be a member of at least one of the specified orgs to authenticate with loft.
     */
-    'orgs'?: Array<ManagementV1AuthenticationGithubOrg>;
+    'orgs'?: Array<StorageV1AuthenticationGithubOrg>;
     /**
     * RedirectURI holds the redirect URI. Should be https://loft.domain.tld/auth/github/callback
     */
@@ -63,7 +63,7 @@ export class ManagementV1AuthenticationGithub {
         {
             "name": "orgs",
             "baseName": "orgs",
-            "type": "Array<ManagementV1AuthenticationGithubOrg>",
+            "type": "Array<StorageV1AuthenticationGithubOrg>",
             "format": ""
         },
         {
@@ -80,7 +80,7 @@ export class ManagementV1AuthenticationGithub {
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1AuthenticationGithub.attributeTypeMap;
+        return StorageV1AuthenticationGithub.attributeTypeMap;
     }
 
     public constructor() {

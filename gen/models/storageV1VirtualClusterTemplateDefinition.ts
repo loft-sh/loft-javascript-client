@@ -33,14 +33,18 @@ export class StorageV1VirtualClusterTemplateDefinition {
     */
     'charts'?: Array<StorageV1TemplateHelmChart>;
     /**
-    * ForwardToken signals the proxy to pass through the used token to the virtual Kubernetes api server and do a TokenReview there.
+    * ForwardToken signals the proxy to pass through the used token to the virtual Kubernetes api server and do a TokenReview there. Deprecated: use ForwardTokenMode instead. When ForwardTokenMode is empty, ForwardToken==true is treated as ForwardTokenMode \"TokenReview\" and ForwardToken==false as \"Off\".
     */
     'forwardToken'?: boolean;
+    /**
+    * ForwardTokenMode controls how the proxy forwards the caller\'s token to the virtual Kubernetes api server.   - \"Off\": do not forward the token (default).   - \"TokenReview\": run a TokenReview against the virtual cluster and proxy the request using     impersonation headers for the resulting user (historical ForwardToken behavior).   - \"Passthrough\": forward the raw bearer token directly to the virtual cluster api server     without a TokenReview and without impersonation headers. The virtual cluster api server is     responsible for authenticating and authorizing the request (e.g. via its own OIDC config). When empty, the deprecated ForwardToken bool is used to derive the mode. Both \"TokenReview\" and \"Passthrough\" skip the platform\'s own instance-access check and delegate authorization to the virtual cluster api server, so only enable them on virtual clusters that enforce their own authentication and authorization. Downgrade note: older platform versions understand only the ForwardToken bool. \"Off\" and \"TokenReview\" are kept in sync with it automatically, so they downgrade cleanly. \"Passthrough\" has no bool equivalent and is unavailable on older versions; it downgrades to forwarding disabled.
+    */
+    'forwardTokenMode'?: string;
     'helmRelease'?: StorageV1VirtualClusterHelmRelease;
     'instanceTemplate'?: StorageV1VirtualClusterInstanceTemplateDefinition;
     'metadata'?: StorageV1TemplateMetadata;
     /**
-    * Objects are Kubernetes style YAMLs that should get deployed into the virtual cluster
+    * Objects are Kubernetes style YAMLs that should get deployed into the tenant cluster
     */
     'objects'?: string;
     'pro'?: StorageV1VirtualClusterProSpec;
@@ -77,6 +81,12 @@ export class StorageV1VirtualClusterTemplateDefinition {
             "name": "forwardToken",
             "baseName": "forwardToken",
             "type": "boolean",
+            "format": ""
+        },
+        {
+            "name": "forwardTokenMode",
+            "baseName": "forwardTokenMode",
+            "type": "string",
             "format": ""
         },
         {

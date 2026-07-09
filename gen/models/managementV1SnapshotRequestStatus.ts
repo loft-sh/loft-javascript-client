@@ -11,7 +11,6 @@
  */
 
 import { ManagementV1SnapshotRequestError } from '../models/managementV1SnapshotRequestError.js';
-import { ManagementV1VolumeSnapshotsRequestStatus } from '../models/managementV1VolumeSnapshotsRequestStatus.js';
 
 
 /**
@@ -20,7 +19,6 @@ import { ManagementV1VolumeSnapshotsRequestStatus } from '../models/managementV1
 export class ManagementV1SnapshotRequestStatus {
     'error'?: ManagementV1SnapshotRequestError;
     'phase'?: string;
-    'volumeSnapshots': ManagementV1VolumeSnapshotsRequestStatus;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -35,12 +33,6 @@ export class ManagementV1SnapshotRequestStatus {
             "name": "phase",
             "baseName": "phase",
             "type": "string",
-            "format": ""
-        },
-        {
-            "name": "volumeSnapshots",
-            "baseName": "volumeSnapshots",
-            "type": "ManagementV1VolumeSnapshotsRequestStatus",
             "format": ""
         }    ];
 

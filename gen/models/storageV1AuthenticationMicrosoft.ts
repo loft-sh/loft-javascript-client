@@ -12,7 +12,7 @@
 
 
 
-export class ManagementV1AuthenticationMicrosoft {
+export class StorageV1AuthenticationMicrosoft {
     /**
     * Microsoft client id
     */
@@ -89,7 +89,7 @@ export class ManagementV1AuthenticationMicrosoft {
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1AuthenticationMicrosoft.attributeTypeMap;
+        return StorageV1AuthenticationMicrosoft.attributeTypeMap;
     }
 
     public constructor() {
