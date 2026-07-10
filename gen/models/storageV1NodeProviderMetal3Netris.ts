@@ -10,26 +10,24 @@
  * Do not edit the class manually.
  */
 
+import { StorageV1NamespacedRef } from '../models/storageV1NamespacedRef.js';
 
 
-export class ManagementV1AuthenticationPassword {
-    /**
-    * If true login via password is disabled
-    */
-    'disabled'?: boolean;
+export class StorageV1NodeProviderMetal3Netris {
+    'secretRef': StorageV1NamespacedRef;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "disabled",
-            "baseName": "disabled",
-            "type": "boolean",
+            "name": "secretRef",
+            "baseName": "secretRef",
+            "type": "StorageV1NamespacedRef",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1AuthenticationPassword.attributeTypeMap;
+        return StorageV1NodeProviderMetal3Netris.attributeTypeMap;
     }
 
     public constructor() {

@@ -14,15 +14,11 @@
 
 export class StorageV1ArgoCDDestinationVirtualCluster {
     /**
-    * Name of the virtual cluster
+    * Name of the tenant cluster
     */
     'name'?: string;
     /**
-    * Namespace within the destination to deploy the application
-    */
-    'namespace'?: string;
-    /**
-    * Target of the virtual cluster
+    * Target of the tenant cluster
     */
     'target'?: string;
 
@@ -32,12 +28,6 @@ export class StorageV1ArgoCDDestinationVirtualCluster {
         {
             "name": "name",
             "baseName": "name",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "namespace",
-            "baseName": "namespace",
             "type": "string",
             "format": ""
         },
