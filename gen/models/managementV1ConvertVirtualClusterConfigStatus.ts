@@ -21,7 +21,7 @@ export class ManagementV1ConvertVirtualClusterConfigStatus {
     */
     'converted': boolean;
     /**
-    * Values are the converted config values for the virtual cluster
+    * Values are the converted config values for the tenant cluster
     */
     'values'?: string;
 
