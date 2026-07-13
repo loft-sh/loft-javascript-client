@@ -12,7 +12,7 @@
 
 
 
-export class ManagementV1AuthenticationGoogle {
+export class StorageV1AuthenticationGoogle {
     /**
     * Required if ServiceAccountFilePath The email of a GSuite super user which the service account will impersonate when listing groups
     */
@@ -99,7 +99,7 @@ export class ManagementV1AuthenticationGoogle {
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1AuthenticationGoogle.attributeTypeMap;
+        return StorageV1AuthenticationGoogle.attributeTypeMap;
     }
 
     public constructor() {

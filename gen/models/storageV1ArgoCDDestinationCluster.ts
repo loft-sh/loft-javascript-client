@@ -17,10 +17,6 @@ export class StorageV1ArgoCDDestinationCluster {
     * Name of the cluster
     */
     'name'?: string;
-    /**
-    * Namespace within the destination to deploy the application
-    */
-    'namespace'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -28,12 +24,6 @@ export class StorageV1ArgoCDDestinationCluster {
         {
             "name": "name",
             "baseName": "name",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "namespace",
-            "baseName": "namespace",
             "type": "string",
             "format": ""
         }    ];

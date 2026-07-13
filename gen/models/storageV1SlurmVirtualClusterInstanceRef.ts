@@ -13,21 +13,31 @@
 
 
 /**
-* AuthenticationGithubOrg holds org-team filters, in which teams are optional.
+* SlurmVirtualClusterInstanceRef references a tenant cluster instance.
 */
-export class ManagementV1AuthenticationGithubOrg {
+export class StorageV1SlurmVirtualClusterInstanceRef {
     /**
-    * Organization name in github (not slug, full name). Only users in this github organization can authenticate.
+    * Cluster the tenant cluster runs in.
+    */
+    'cluster'?: string;
+    /**
+    * Name of the tenant cluster instance.
     */
     'name'?: string;
     /**
-    * Names of teams in a github organization. A user will be able to authenticate if they are members of at least one of these teams. Users in the organization can authenticate if this field is omitted from the config file.
+    * Namespace of the tenant cluster instance.
     */
-    'teams'?: Array<string>;
+    'namespace'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+        {
+            "name": "cluster",
+            "baseName": "cluster",
+            "type": "string",
+            "format": ""
+        },
         {
             "name": "name",
             "baseName": "name",
@@ -35,14 +45,14 @@ export class ManagementV1AuthenticationGithubOrg {
             "format": ""
         },
         {
-            "name": "teams",
-            "baseName": "teams",
-            "type": "Array<string>",
+            "name": "namespace",
+            "baseName": "namespace",
+            "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1AuthenticationGithubOrg.attributeTypeMap;
+        return StorageV1SlurmVirtualClusterInstanceRef.attributeTypeMap;
     }
 
     public constructor() {

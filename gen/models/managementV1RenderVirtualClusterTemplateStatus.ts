@@ -10,34 +10,29 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1SnapshotRequestError } from '../models/managementV1SnapshotRequestError.js';
 
 
 /**
-* SnapshotStatus shows the current status of a single PVC snapshot.
+* RenderVirtualClusterTemplateStatus holds the status
 */
-export class ManagementV1VolumeSnapshotRequestStatus {
-    'error': ManagementV1SnapshotRequestError;
-    'phase'?: string;
+export class ManagementV1RenderVirtualClusterTemplateStatus {
+    /**
+    * Values are the rendered template values
+    */
+    'values'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "error",
-            "baseName": "error",
-            "type": "ManagementV1SnapshotRequestError",
-            "format": ""
-        },
-        {
-            "name": "phase",
-            "baseName": "phase",
+            "name": "values",
+            "baseName": "values",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1VolumeSnapshotRequestStatus.attributeTypeMap;
+        return ManagementV1RenderVirtualClusterTemplateStatus.attributeTypeMap;
     }
 
     public constructor() {
