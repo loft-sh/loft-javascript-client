@@ -10,24 +10,29 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1NamespacedRef } from '../models/storageV1NamespacedRef.js';
 
 
-export class StorageV1NodeProviderMetal3Netris {
-    'secretRef': StorageV1NamespacedRef;
+/**
+* AllowedNodeProfile restricts which NodeProfile a project\'s consumers may reference. The Name field is either an exact profile name or an \"<owner>.*\" wildcard, matching the same semantics as AllowedNodeType.
+*/
+export class StorageV1AllowedNodeProfile {
+    /**
+    * Name of the NodeProfile, or \"<owner>.*\" to allow all NodeProfiles with the given owner prefix.
+    */
+    'name'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "secretRef",
-            "baseName": "secretRef",
-            "type": "StorageV1NamespacedRef",
+            "name": "name",
+            "baseName": "name",
+            "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1NodeProviderMetal3Netris.attributeTypeMap;
+        return StorageV1AllowedNodeProfile.attributeTypeMap;
     }
 
     public constructor() {

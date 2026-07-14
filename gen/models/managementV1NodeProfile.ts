@@ -10,21 +10,25 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1SlurmInstance } from '../models/managementV1SlurmInstance.js';
-import { V1ListMeta } from '../models/V1ListMeta.js';
+import { ManagementV1NodeProfileSpec } from '../models/managementV1NodeProfileSpec.js';
+import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
 
 
-export class ManagementV1SlurmInstanceList {
+/**
+* NodeProfile exposes reusable node runtime configuration to platform users.
+*/
+export class ManagementV1NodeProfile {
     /**
     * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
     */
     'apiVersion'?: string;
-    'items': Array<ManagementV1SlurmInstance>;
     /**
     * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
     */
     'kind'?: string;
-    'metadata'?: V1ListMeta;
+    'metadata'?: V1ObjectMeta;
+    'spec'?: ManagementV1NodeProfileSpec;
+    'status'?: any;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -36,12 +40,6 @@ export class ManagementV1SlurmInstanceList {
             "format": ""
         },
         {
-            "name": "items",
-            "baseName": "items",
-            "type": "Array<ManagementV1SlurmInstance>",
-            "format": ""
-        },
-        {
             "name": "kind",
             "baseName": "kind",
             "type": "string",
@@ -50,12 +48,24 @@ export class ManagementV1SlurmInstanceList {
         {
             "name": "metadata",
             "baseName": "metadata",
-            "type": "V1ListMeta",
+            "type": "V1ObjectMeta",
+            "format": ""
+        },
+        {
+            "name": "spec",
+            "baseName": "spec",
+            "type": "ManagementV1NodeProfileSpec",
+            "format": ""
+        },
+        {
+            "name": "status",
+            "baseName": "status",
+            "type": "any",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1SlurmInstanceList.attributeTypeMap;
+        return ManagementV1NodeProfile.attributeTypeMap;
     }
 
     public constructor() {

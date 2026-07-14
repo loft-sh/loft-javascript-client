@@ -13,26 +13,26 @@
 
 
 /**
-* SlurmSSHKeyRef references an existing SSHKey resource.
+* VirtualClusterInstanceJoinScriptSpec is the request body for the joinscript subresource. Profile configuration may be supplied via ProfileRef (catalog reference). If it is not set, the join script carries no profile-derived configuration.
 */
-export class StorageV1SlurmSSHKeyRef {
+export class ManagementV1VirtualClusterInstanceJoinScriptSpec {
     /**
-    * Name of the SSHKey resource.
+    * ProfileRef references a NodeProfile in the cluster-scoped catalog. The referenced profile must exist and be permitted by the owning project\'s allowedNodeProfiles.
     */
-    'name': string;
+    'profileRef'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "name",
-            "baseName": "name",
+            "name": "profileRef",
+            "baseName": "profileRef",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1SlurmSSHKeyRef.attributeTypeMap;
+        return ManagementV1VirtualClusterInstanceJoinScriptSpec.attributeTypeMap;
     }
 
     public constructor() {

@@ -34,6 +34,7 @@ import {ManagementV1NetworkPeerDebug} from "./models/managementV1NetworkPeerDebu
 import {ManagementV1NetworkPeer} from "./models/managementV1NetworkPeer"
 import {ManagementV1NodeClaim} from "./models/managementV1NodeClaim"
 import {ManagementV1NodeEnvironment} from "./models/managementV1NodeEnvironment"
+import {ManagementV1NodeProfile} from "./models/managementV1NodeProfile"
 import {ManagementV1NodeProviderExec} from "./models/managementV1NodeProviderExec"
 import {ManagementV1NodeProvider} from "./models/managementV1NodeProvider"
 import {ManagementV1NodeType} from "./models/managementV1NodeType"
@@ -59,8 +60,6 @@ import {ManagementV1SSHKey} from "./models/managementV1SSHKey"
 import {ManagementV1SelfSubjectAccessReview} from "./models/managementV1SelfSubjectAccessReview"
 import {ManagementV1Self} from "./models/managementV1Self"
 import {ManagementV1SharedSecret} from "./models/managementV1SharedSecret"
-import {ManagementV1SlurmInstanceAccounting} from "./models/managementV1SlurmInstanceAccounting"
-import {ManagementV1SlurmInstance} from "./models/managementV1SlurmInstance"
 import {ManagementV1SpaceInstance} from "./models/managementV1SpaceInstance"
 import {ManagementV1SpaceTemplate} from "./models/managementV1SpaceTemplate"
 import {ManagementV1SubjectAccessReview} from "./models/managementV1SubjectAccessReview"
@@ -130,6 +129,7 @@ export type TGenResources = {
   ManagementV1NetworkPeerDebug: GroupVersionResource<ManagementV1NetworkPeerDebug>
   ManagementV1NodeClaim: GroupVersionResource<ManagementV1NodeClaim>
   ManagementV1NodeEnvironment: GroupVersionResource<ManagementV1NodeEnvironment>
+  ManagementV1NodeProfile: GroupVersionResource<ManagementV1NodeProfile>
   ManagementV1NodeProvider: GroupVersionResource<ManagementV1NodeProvider>
   ManagementV1NodeProviderExec: GroupVersionResource<ManagementV1NodeProviderExec>
   ManagementV1NodeType: GroupVersionResource<ManagementV1NodeType>
@@ -155,8 +155,6 @@ export type TGenResources = {
   ManagementV1Self: GroupVersionResource<ManagementV1Self>
   ManagementV1SelfSubjectAccessReview: GroupVersionResource<ManagementV1SelfSubjectAccessReview>
   ManagementV1SharedSecret: GroupVersionResource<ManagementV1SharedSecret>
-  ManagementV1SlurmInstance: GroupVersionResource<ManagementV1SlurmInstance>
-  ManagementV1SlurmInstanceAccounting: GroupVersionResource<ManagementV1SlurmInstanceAccounting>
   ManagementV1SpaceInstance: GroupVersionResource<ManagementV1SpaceInstance>
   ManagementV1SpaceTemplate: GroupVersionResource<ManagementV1SpaceTemplate>
   ManagementV1SubjectAccessReview: GroupVersionResource<ManagementV1SubjectAccessReview>
@@ -465,6 +463,14 @@ export const GenResources: TGenResources = {
     namespaced: true,
     kind: "NodeEnvironment",
   },
+  ManagementV1NodeProfile: {
+    group: "management.loft.sh",
+    version: "v1",
+    resource: "nodeprofiles",
+    subResource: "",
+    namespaced: false,
+    kind: "NodeProfile",
+  },
   ManagementV1NodeProvider: {
     group: "management.loft.sh",
     version: "v1",
@@ -664,22 +670,6 @@ export const GenResources: TGenResources = {
     subResource: "",
     namespaced: true,
     kind: "SharedSecret",
-  },
-  ManagementV1SlurmInstance: {
-    group: "management.loft.sh",
-    version: "v1",
-    resource: "slurminstances",
-    subResource: "",
-    namespaced: true,
-    kind: "SlurmInstance",
-  },
-  ManagementV1SlurmInstanceAccounting: {
-    group: "management.loft.sh",
-    version: "v1",
-    resource: "slurminstances",
-    subResource: "accounting",
-    namespaced: true,
-    kind: "SlurmInstanceAccounting",
   },
   ManagementV1SpaceInstance: {
     group: "management.loft.sh",
