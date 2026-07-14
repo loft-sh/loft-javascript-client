@@ -10,6 +10,7 @@
  * Do not edit the class manually.
  */
 
+import { LicenseApiNodeGPUInfo } from '../models/licenseApiNodeGPUInfo.js';
 
 
 /**
@@ -18,6 +19,10 @@
 export class LicenseApiNodeInfo {
     'capacity': { [key: string]: string; };
     'creation_timestamp': string;
+    /**
+    * GPUs is the per-type accelerator breakdown for this node. It is derived from the node\'s advertised resources (and, in later iterations, DRA ResourceSlices) and is supplementary to Capacity, which is retained unchanged.
+    */
+    'gpus'?: Array<LicenseApiNodeGPUInfo>;
     'machine_id': string;
 
     static readonly discriminator: string | undefined = undefined;
@@ -33,6 +38,12 @@ export class LicenseApiNodeInfo {
             "name": "creation_timestamp",
             "baseName": "creation_timestamp",
             "type": "string",
+            "format": ""
+        },
+        {
+            "name": "gpus",
+            "baseName": "gpus",
+            "type": "Array<LicenseApiNodeGPUInfo>",
             "format": ""
         },
         {
