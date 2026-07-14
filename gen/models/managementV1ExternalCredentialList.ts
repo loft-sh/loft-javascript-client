@@ -10,25 +10,21 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1NodeProfileSpec } from '../models/storageV1NodeProfileSpec.js';
-import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
+import { ManagementV1ExternalCredential } from '../models/managementV1ExternalCredential.js';
+import { V1ListMeta } from '../models/V1ListMeta.js';
 
 
-/**
-* NodeProfile holds reusable node runtime configuration that can be referenced by manual joins, auto nodes, and platform NodeClaims.
-*/
-export class StorageV1NodeProfile {
+export class ManagementV1ExternalCredentialList {
     /**
     * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
     */
     'apiVersion'?: string;
+    'items': Array<ManagementV1ExternalCredential>;
     /**
     * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
     */
     'kind'?: string;
-    'metadata'?: V1ObjectMeta;
-    'spec'?: StorageV1NodeProfileSpec;
-    'status'?: any;
+    'metadata'?: V1ListMeta;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -40,6 +36,12 @@ export class StorageV1NodeProfile {
             "format": ""
         },
         {
+            "name": "items",
+            "baseName": "items",
+            "type": "Array<ManagementV1ExternalCredential>",
+            "format": ""
+        },
+        {
             "name": "kind",
             "baseName": "kind",
             "type": "string",
@@ -48,24 +50,12 @@ export class StorageV1NodeProfile {
         {
             "name": "metadata",
             "baseName": "metadata",
-            "type": "V1ObjectMeta",
-            "format": ""
-        },
-        {
-            "name": "spec",
-            "baseName": "spec",
-            "type": "StorageV1NodeProfileSpec",
-            "format": ""
-        },
-        {
-            "name": "status",
-            "baseName": "status",
-            "type": "any",
+            "type": "V1ListMeta",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1NodeProfile.attributeTypeMap;
+        return ManagementV1ExternalCredentialList.attributeTypeMap;
     }
 
     public constructor() {

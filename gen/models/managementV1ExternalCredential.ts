@@ -10,14 +10,15 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1VirtualClusterInstanceJoinScriptStatus } from '../models/managementV1VirtualClusterInstanceJoinScriptStatus.js';
+import { ManagementV1ExternalCredentialSpec } from '../models/managementV1ExternalCredentialSpec.js';
+import { ManagementV1ExternalCredentialStatus } from '../models/managementV1ExternalCredentialStatus.js';
 import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
 
 
 /**
-* VirtualClusterInstanceJoinScript holds join script request and response data for tenant cluster instances
+* ExternalCredential projects a labeled Secret without exposing its credential value.
 */
-export class ManagementV1VirtualClusterInstanceJoinScript {
+export class ManagementV1ExternalCredential {
     /**
     * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
     */
@@ -27,7 +28,8 @@ export class ManagementV1VirtualClusterInstanceJoinScript {
     */
     'kind'?: string;
     'metadata'?: V1ObjectMeta;
-    'status'?: ManagementV1VirtualClusterInstanceJoinScriptStatus;
+    'spec'?: ManagementV1ExternalCredentialSpec;
+    'status'?: ManagementV1ExternalCredentialStatus;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -51,14 +53,20 @@ export class ManagementV1VirtualClusterInstanceJoinScript {
             "format": ""
         },
         {
+            "name": "spec",
+            "baseName": "spec",
+            "type": "ManagementV1ExternalCredentialSpec",
+            "format": ""
+        },
+        {
             "name": "status",
             "baseName": "status",
-            "type": "ManagementV1VirtualClusterInstanceJoinScriptStatus",
+            "type": "ManagementV1ExternalCredentialStatus",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1VirtualClusterInstanceJoinScript.attributeTypeMap;
+        return ManagementV1ExternalCredential.attributeTypeMap;
     }
 
     public constructor() {

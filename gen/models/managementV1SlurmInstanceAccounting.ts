@@ -10,14 +10,14 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1NodeProfileSpec } from '../models/managementV1NodeProfileSpec.js';
+import { ManagementV1SlurmInstanceAccountingStatus } from '../models/managementV1SlurmInstanceAccountingStatus.js';
 import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
 
 
 /**
-* NodeProfile exposes reusable node runtime configuration to platform users.
+* SlurmInstanceAccounting holds Slurm accounting data (jobs and the resources allocated to them) retrieved from the tenant cluster\'s accounting REST API.
 */
-export class ManagementV1NodeProfile {
+export class ManagementV1SlurmInstanceAccounting {
     /**
     * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
     */
@@ -27,8 +27,7 @@ export class ManagementV1NodeProfile {
     */
     'kind'?: string;
     'metadata'?: V1ObjectMeta;
-    'spec'?: ManagementV1NodeProfileSpec;
-    'status'?: any;
+    'status'?: ManagementV1SlurmInstanceAccountingStatus;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -52,20 +51,14 @@ export class ManagementV1NodeProfile {
             "format": ""
         },
         {
-            "name": "spec",
-            "baseName": "spec",
-            "type": "ManagementV1NodeProfileSpec",
-            "format": ""
-        },
-        {
             "name": "status",
             "baseName": "status",
-            "type": "any",
+            "type": "ManagementV1SlurmInstanceAccountingStatus",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1NodeProfile.attributeTypeMap;
+        return ManagementV1SlurmInstanceAccounting.attributeTypeMap;
     }
 
     public constructor() {

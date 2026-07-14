@@ -10,14 +10,15 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1VirtualClusterInstanceJoinScriptStatus } from '../models/managementV1VirtualClusterInstanceJoinScriptStatus.js';
+import { ManagementV1SlurmInstanceSpec } from '../models/managementV1SlurmInstanceSpec.js';
+import { ManagementV1SlurmInstanceStatus } from '../models/managementV1SlurmInstanceStatus.js';
 import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
 
 
 /**
-* VirtualClusterInstanceJoinScript holds join script request and response data for tenant cluster instances
+* SlurmInstance represents a Slurm cluster running inside a tenant cluster.
 */
-export class ManagementV1VirtualClusterInstanceJoinScript {
+export class ManagementV1SlurmInstance {
     /**
     * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
     */
@@ -27,7 +28,8 @@ export class ManagementV1VirtualClusterInstanceJoinScript {
     */
     'kind'?: string;
     'metadata'?: V1ObjectMeta;
-    'status'?: ManagementV1VirtualClusterInstanceJoinScriptStatus;
+    'spec'?: ManagementV1SlurmInstanceSpec;
+    'status'?: ManagementV1SlurmInstanceStatus;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -51,14 +53,20 @@ export class ManagementV1VirtualClusterInstanceJoinScript {
             "format": ""
         },
         {
+            "name": "spec",
+            "baseName": "spec",
+            "type": "ManagementV1SlurmInstanceSpec",
+            "format": ""
+        },
+        {
             "name": "status",
             "baseName": "status",
-            "type": "ManagementV1VirtualClusterInstanceJoinScriptStatus",
+            "type": "ManagementV1SlurmInstanceStatus",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1VirtualClusterInstanceJoinScript.attributeTypeMap;
+        return ManagementV1SlurmInstance.attributeTypeMap;
     }
 
     public constructor() {
