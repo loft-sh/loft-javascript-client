@@ -22,6 +22,10 @@ export class StorageV1AppParameter {
     */
     'description'?: string;
     /**
+    * Hidden specifies that this parameter should not be rendered in the UI because its value is filled in and wired up automatically
+    */
+    'hidden'?: boolean;
+    /**
     * Invalidation regex that if matched will reject the input
     */
     'invalidation'?: string;
@@ -79,6 +83,12 @@ export class StorageV1AppParameter {
             "name": "description",
             "baseName": "description",
             "type": "string",
+            "format": ""
+        },
+        {
+            "name": "hidden",
+            "baseName": "hidden",
+            "type": "boolean",
             "format": ""
         },
         {
