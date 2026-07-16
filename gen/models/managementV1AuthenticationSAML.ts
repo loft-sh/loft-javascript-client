@@ -12,7 +12,7 @@
 
 
 
-export class StorageV1AuthenticationSAML {
+export class ManagementV1AuthenticationSAML {
     /**
     * List of groups to filter access based on membership
     */
@@ -159,7 +159,7 @@ export class StorageV1AuthenticationSAML {
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1AuthenticationSAML.attributeTypeMap;
+        return ManagementV1AuthenticationSAML.attributeTypeMap;
     }
 
     public constructor() {

@@ -34,7 +34,6 @@ import {ManagementV1NetworkPeerDebug} from "./models/managementV1NetworkPeerDebu
 import {ManagementV1NetworkPeer} from "./models/managementV1NetworkPeer"
 import {ManagementV1NodeClaim} from "./models/managementV1NodeClaim"
 import {ManagementV1NodeEnvironment} from "./models/managementV1NodeEnvironment"
-import {ManagementV1NodeProfile} from "./models/managementV1NodeProfile"
 import {ManagementV1NodeProviderExec} from "./models/managementV1NodeProviderExec"
 import {ManagementV1NodeProvider} from "./models/managementV1NodeProvider"
 import {ManagementV1NodeType} from "./models/managementV1NodeType"
@@ -54,7 +53,6 @@ import {ManagementV1ProjectTemplates} from "./models/managementV1ProjectTemplate
 import {ManagementV1Project} from "./models/managementV1Project"
 import {ManagementV1RedirectToken} from "./models/managementV1RedirectToken"
 import {ManagementV1RegisterVirtualCluster} from "./models/managementV1RegisterVirtualCluster"
-import {ManagementV1RenderVirtualClusterTemplate} from "./models/managementV1RenderVirtualClusterTemplate"
 import {ManagementV1ResetAccessKey} from "./models/managementV1ResetAccessKey"
 import {ManagementV1SSHKey} from "./models/managementV1SSHKey"
 import {ManagementV1SelfSubjectAccessReview} from "./models/managementV1SelfSubjectAccessReview"
@@ -129,7 +127,6 @@ export type TGenResources = {
   ManagementV1NetworkPeerDebug: GroupVersionResource<ManagementV1NetworkPeerDebug>
   ManagementV1NodeClaim: GroupVersionResource<ManagementV1NodeClaim>
   ManagementV1NodeEnvironment: GroupVersionResource<ManagementV1NodeEnvironment>
-  ManagementV1NodeProfile: GroupVersionResource<ManagementV1NodeProfile>
   ManagementV1NodeProvider: GroupVersionResource<ManagementV1NodeProvider>
   ManagementV1NodeProviderExec: GroupVersionResource<ManagementV1NodeProviderExec>
   ManagementV1NodeType: GroupVersionResource<ManagementV1NodeType>
@@ -149,7 +146,6 @@ export type TGenResources = {
   ManagementV1ProjectTemplates: GroupVersionResource<ManagementV1ProjectTemplates>
   ManagementV1RedirectToken: GroupVersionResource<ManagementV1RedirectToken>
   ManagementV1RegisterVirtualCluster: GroupVersionResource<ManagementV1RegisterVirtualCluster>
-  ManagementV1RenderVirtualClusterTemplate: GroupVersionResource<ManagementV1RenderVirtualClusterTemplate>
   ManagementV1ResetAccessKey: GroupVersionResource<ManagementV1ResetAccessKey>
   ManagementV1SSHKey: GroupVersionResource<ManagementV1SSHKey>
   ManagementV1Self: GroupVersionResource<ManagementV1Self>
@@ -463,14 +459,6 @@ export const GenResources: TGenResources = {
     namespaced: true,
     kind: "NodeEnvironment",
   },
-  ManagementV1NodeProfile: {
-    group: "management.loft.sh",
-    version: "v1",
-    resource: "nodeprofiles",
-    subResource: "",
-    namespaced: false,
-    kind: "NodeProfile",
-  },
   ManagementV1NodeProvider: {
     group: "management.loft.sh",
     version: "v1",
@@ -622,14 +610,6 @@ export const GenResources: TGenResources = {
     subResource: "",
     namespaced: false,
     kind: "RegisterVirtualCluster",
-  },
-  ManagementV1RenderVirtualClusterTemplate: {
-    group: "management.loft.sh",
-    version: "v1",
-    resource: "rendervirtualclustertemplates",
-    subResource: "",
-    namespaced: false,
-    kind: "RenderVirtualClusterTemplate",
   },
   ManagementV1ResetAccessKey: {
     group: "management.loft.sh",

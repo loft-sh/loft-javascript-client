@@ -10,26 +10,34 @@
  * Do not edit the class manually.
  */
 
+import { ManagementV1SnapshotRequestError } from '../models/managementV1SnapshotRequestError.js';
 
 
-export class StorageV1AuthenticationPassword {
-    /**
-    * If true login via password is disabled
-    */
-    'disabled'?: boolean;
+/**
+* SnapshotStatus shows the current status of a single PVC snapshot.
+*/
+export class ManagementV1VolumeSnapshotRequestStatus {
+    'error': ManagementV1SnapshotRequestError;
+    'phase'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "disabled",
-            "baseName": "disabled",
-            "type": "boolean",
+            "name": "error",
+            "baseName": "error",
+            "type": "ManagementV1SnapshotRequestError",
+            "format": ""
+        },
+        {
+            "name": "phase",
+            "baseName": "phase",
+            "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1AuthenticationPassword.attributeTypeMap;
+        return ManagementV1VolumeSnapshotRequestStatus.attributeTypeMap;
     }
 
     public constructor() {

@@ -12,7 +12,7 @@
 
 
 
-export class StorageV1AuthenticationGitlab {
+export class ManagementV1AuthenticationGitlab {
     /**
     * BaseURL is optional, default = https://gitlab.com
     */
@@ -69,7 +69,7 @@ export class StorageV1AuthenticationGitlab {
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1AuthenticationGitlab.attributeTypeMap;
+        return ManagementV1AuthenticationGitlab.attributeTypeMap;
     }
 
     public constructor() {
