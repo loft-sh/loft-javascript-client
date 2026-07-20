@@ -14,11 +14,11 @@
 
 export class StorageV1AccessKeyVirtualCluster {
     /**
-    * Name of the tenant cluster. Empty means all tenant clusters.
+    * Name of the virtual cluster. Empty means all virtual clusters.
     */
     'name'?: string;
     /**
-    * Namespace of the tenant cluster. Empty means all namespaces.
+    * Namespace of the virtual cluster. Empty means all namespaces.
     */
     'namespace'?: string;
 

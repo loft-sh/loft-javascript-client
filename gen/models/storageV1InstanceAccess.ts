@@ -19,7 +19,7 @@ export class StorageV1InstanceAccess {
     */
     'defaultClusterRole'?: string;
     /**
-    * Rules defines which users and teams should have which access to the tenant cluster. If no rule matches an authenticated incoming user, the user will get cluster admin access.
+    * Rules defines which users and teams should have which access to the virtual cluster. If no rule matches an authenticated incoming user, the user will get cluster admin access.
     */
     'rules'?: Array<StorageV1InstanceAccessRule>;
 

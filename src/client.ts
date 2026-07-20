@@ -13,7 +13,7 @@ import Cookies from "js-cookie"
 import jsonmergepatch from "json-merge-patch"
 
 import constants from "./constants"
-import { parseResourceList } from "./helpers"
+import { arr, parseResourceList } from "./helpers"
 import { NewResource, Resources } from "./resources"
 import {
   ErrorTypeNetwork,
@@ -44,7 +44,6 @@ import {
   V1Table,
   VersionV1Version,
 } from "./types"
-import { arrStrict } from "@loft-enterprise/shared"
 
 const CookieOptions: Cookies.CookieAttributes = {
   secure: true,
@@ -113,14 +112,11 @@ export type RequestVerb =
 
 export const ManagementBasePath = "/kubernetes/management"
 export const ClusterBasePath = "/kubernetes/cluster/"
+export const VClusterBasePath = "/kubernetes/virtualcluster/"
 export const ProjectBasePath = "/kubernetes/project/"
 
 export const getProjectNamespace = (name?: string, prefix?: string): string =>
   !name ? "p-" : prefix ? `${prefix}${name}` : `p-${name}`
-
-function vClusterToProject(vCluster: RequestOptionsVCluster): RequestOptionsProject {
-  return { project: vCluster.project, virtualCluster: vCluster.name }
-}
 
 export function getProjectFromNamespace(
   namespace: string | undefined,
@@ -458,10 +454,12 @@ class Client {
             ErrorTypeServiceUnavailable
           )
         }
-      } else if (response.status === 200 || response.status === 202) {
+      } else if (response.status === 200) {
         // the request succeeded, maybe we wanted text all along
         return Return.Value(text as any)
       }
+
+      console.info("Unexpected Server Response", text)
 
       return Return.Failed(
         "Unexpected server response",
@@ -573,6 +571,29 @@ class Client {
     })
   }
 
+  public vCluster<T>(
+    vCluster: RequestOptionsVCluster,
+    groupVersionResource: GroupVersionResource<T>
+  ) {
+    // TODO: This is formatting the URL wrong! We need to fix this by using project path. (ENGUI-594)
+    return new Request<T>(this, {
+      basePath:
+        VClusterBasePath + vCluster.cluster + "/" + vCluster.namespace + "/" + vCluster.name,
+      groupVersionResource,
+      vCluster,
+      headers: this.impersonationHeaders(),
+    })
+  }
+
+  public vClusterNonResource<T>(vCluster: RequestOptionsVCluster) {
+    return new Request<T>(this, {
+      basePath:
+        VClusterBasePath + vCluster.cluster + "/" + vCluster.namespace + "/" + vCluster.name,
+      vCluster,
+      headers: this.impersonationHeaders(),
+    })
+  }
+
   public auto<T>(
     cluster: string | undefined,
     vCluster: RequestOptionsVCluster | undefined,
@@ -582,7 +603,7 @@ class Client {
     return project
       ? this.project(project, groupVersionResource)
       : vCluster
-        ? this.project(vClusterToProject(vCluster), groupVersionResource)
+        ? this.vCluster(vCluster, groupVersionResource)
         : cluster
           ? this.cluster(cluster!, groupVersionResource)
           : this.management(groupVersionResource)
@@ -596,7 +617,7 @@ class Client {
     return project
       ? this.projectNonResource(project)
       : vCluster
-        ? this.projectNonResource(vClusterToProject(vCluster))
+        ? this.vClusterNonResource(vCluster)
         : cluster
           ? this.clusterNonResource(cluster!)
           : this.managementNonResource()
@@ -708,7 +729,7 @@ class Client {
         headers["Impersonate-User"] = impersonatedUser.subject
       }
 
-      ;[...arrStrict(impersonatedUser.groups), ...arrStrict(extraGroups)].forEach((group) => {
+      ;[...arr(impersonatedUser.groups), ...arr(extraGroups)].forEach((group) => {
         if (headers["Impersonate-Joined-Group"]) {
           headers["Impersonate-Joined-Group"] += ", " + group
         } else {
@@ -869,7 +890,7 @@ class Request<T> {
     }
 
     let promises = []
-    for (let j = 0; j < arrStrict(apiVersionsResult.val.versions).length; j++) {
+    for (let j = 0; j < arr(apiVersionsResult.val.versions).length; j++) {
       promises.push(
         (async (index: number) => {
           const version = apiVersionsResult.val.versions[index]
@@ -915,12 +936,12 @@ class Request<T> {
     }
 
     // get all versions and retrieve resources
-    for (let i = 0; i < arrStrict(apisGroupListResult.val.groups).length; i++) {
+    for (let i = 0; i < arr(apisGroupListResult.val.groups).length; i++) {
       const group = apisGroupListResult.val.groups[i]
       if (group === undefined) {
         continue
       }
-      for (let j = 0; j < arrStrict(group.versions).length; j++) {
+      for (let j = 0; j < arr(group.versions).length; j++) {
         promises.push(
           (async (index: number, group: V1APIGroup) => {
             const version = group.versions[index]
@@ -1042,13 +1063,13 @@ class Request<T> {
     return await this.client.doRawSocket(requestPath, K8S_WEBSOCKET_PROTOCOLS)
   }
 
-  public async Connect(options?: ExecOptions, protocols?: string[]): Promise<Result<WebSocket>> {
+  public async Connect(options?: ExecOptions): Promise<Result<WebSocket>> {
     const path = this.buildPath(options)
     if (path.err) {
       return path
     }
 
-    return await this.client.doRawSocket(path.val, protocols || K8S_WEBSOCKET_PROTOCOLS)
+    return await this.client.doRawSocket(path.val, K8S_WEBSOCKET_PROTOCOLS)
   }
 
   public async Path(
@@ -1107,7 +1128,7 @@ class Request<T> {
     )
   }
 
-  public async List(options?: ListOptions, signal?: AbortSignal): Promise<Result<List<T>>> {
+  public async List(options?: ListOptions): Promise<Result<List<T>>> {
     if (this.options.name) {
       return Return.Failed("name is set on a list request")
     }
@@ -1120,7 +1141,7 @@ class Request<T> {
     return Return.WithExtra(
       await this.client.doRaw<List<T>>(
         path.val,
-        { signal },
+        undefined,
         this.options.headers,
         this.options.allowSpecificErrors
       ),
@@ -1128,10 +1149,7 @@ class Request<T> {
     )
   }
 
-  public async ListTable(
-    options?: ListOptions,
-    signal?: AbortSignal
-  ): Promise<Result<V1Table | List<T>>> {
+  public async ListTable(options?: ListOptions): Promise<Result<V1Table | List<T>>> {
     if (this.options.name) {
       return Return.Failed("name is set on a list request")
     }
@@ -1144,7 +1162,7 @@ class Request<T> {
     return Return.WithExtra(
       await this.client.doRaw<List<T>>(
         path.val,
-        { signal },
+        undefined,
         {
           ...this.options.headers,
           Accept:
@@ -1274,10 +1292,7 @@ class Request<T> {
       request = this.client.project(this.options.project, Resources.V1SelfSubjectAccessReview)
       selfSubjectAccessReview = NewResource(Resources.V1SelfSubjectAccessReview)
     } else if (this.options.vCluster) {
-      request = this.client.project(
-        vClusterToProject(this.options.vCluster),
-        Resources.V1SelfSubjectAccessReview
-      )
+      request = this.client.vCluster(this.options.vCluster, Resources.V1SelfSubjectAccessReview)
       selfSubjectAccessReview = NewResource(Resources.V1SelfSubjectAccessReview)
     } else if (cluster) {
       request = this.client.cluster(cluster, Resources.V1SelfSubjectAccessReview)

@@ -14,7 +14,7 @@ import { StorageV1TemplateMetadata } from '../models/storageV1TemplateMetadata.j
 
 
 /**
-* VirtualClusterInstanceTemplateDefinition holds the tenant cluster instance template
+* VirtualClusterInstanceTemplateDefinition holds the virtual cluster instance template
 */
 export class StorageV1VirtualClusterInstanceTemplateDefinition {
     'metadata'?: StorageV1TemplateMetadata;

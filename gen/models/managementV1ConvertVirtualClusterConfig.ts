@@ -16,7 +16,7 @@ import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
 
 
 /**
-* ConvertVirtualClusterConfig holds config request and response data for tenant clusters
+* ConvertVirtualClusterConfig holds config request and response data for virtual clusters
 */
 export class ManagementV1ConvertVirtualClusterConfig {
     /**

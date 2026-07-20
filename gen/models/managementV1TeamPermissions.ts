@@ -45,7 +45,7 @@ export class ManagementV1TeamPermissions {
     */
     'projectMemberships'?: Array<ManagementV1ProjectMembership>;
     /**
-    * VirtualClusterRoles give information about the team\'s cluster role within the tenant cluster
+    * VirtualClusterRoles give information about the team\'s cluster role within the virtual cluster
     */
     'virtualClusterRoles'?: Array<ManagementV1VirtualClusterRole>;
 

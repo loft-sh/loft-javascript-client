@@ -17,7 +17,7 @@
 */
 export class ManagementV1ConvertVirtualClusterConfigSpec {
     /**
-    * Annotations are annotations on the tenant cluster
+    * Annotations are annotations on the virtual cluster
     */
     'annotations'?: { [key: string]: string; };
     /**
@@ -25,7 +25,7 @@ export class ManagementV1ConvertVirtualClusterConfigSpec {
     */
     'distro'?: string;
     /**
-    * Values are the config values for the tenant cluster
+    * Values are the config values for the virtual cluster
     */
     'values'?: string;
 

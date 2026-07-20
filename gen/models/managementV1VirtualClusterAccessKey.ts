@@ -14,7 +14,7 @@ import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
 
 
 /**
-* VirtualClusterAccessKey holds the access key for the tenant cluster
+* VirtualClusterAccessKey holds the access key for the virtual cluster
 */
 export class ManagementV1VirtualClusterAccessKey {
     /**

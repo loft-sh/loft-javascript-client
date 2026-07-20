@@ -300,7 +300,6 @@ export interface RequestOptionsProject {
 }
 
 export interface RequestOptionsVCluster {
-  project: string
   cluster: string
   namespace: string
   name: string

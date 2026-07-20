@@ -26,7 +26,7 @@ export class StorageV1VirtualClusterSpaceTemplateDefinition {
     'charts'?: Array<StorageV1TemplateHelmChart>;
     'metadata'?: StorageV1TemplateMetadata;
     /**
-    * Objects are Kubernetes style yamls that should get deployed into the tenant cluster namespace
+    * Objects are Kubernetes style yamls that should get deployed into the virtual cluster namespace
     */
     'objects'?: string;
 

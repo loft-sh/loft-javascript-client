@@ -38,7 +38,7 @@ export class ManagementV1ProjectTemplates {
     */
     'spaceTemplates'?: Array<ManagementV1SpaceTemplate>;
     /**
-    * VirtualClusterTemplates holds all the allowed tenant cluster templates
+    * VirtualClusterTemplates holds all the allowed virtual cluster templates
     */
     'virtualClusterTemplates'?: Array<ManagementV1VirtualClusterTemplate>;
 
