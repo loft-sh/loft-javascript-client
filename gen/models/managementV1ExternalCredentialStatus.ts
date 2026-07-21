@@ -12,27 +12,28 @@
 
 
 
-/**
-* AllowedNodeProfile restricts which NodeProfile a project\'s consumers may reference. The Name field is either an exact profile name or an \"<owner>.*\" wildcard, matching the same semantics as AllowedNodeType.
-*/
-export class StorageV1AllowedNodeProfile {
-    /**
-    * Name of the NodeProfile, or \"<owner>.*\" to allow all NodeProfiles with the given owner prefix.
-    */
-    'name'?: string;
+export class ManagementV1ExternalCredentialStatus {
+    'available': boolean;
+    'username'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "name",
-            "baseName": "name",
+            "name": "available",
+            "baseName": "available",
+            "type": "boolean",
+            "format": ""
+        },
+        {
+            "name": "username",
+            "baseName": "username",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1AllowedNodeProfile.attributeTypeMap;
+        return ManagementV1ExternalCredentialStatus.attributeTypeMap;
     }
 
     public constructor() {

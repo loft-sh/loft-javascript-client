@@ -13,26 +13,36 @@
 
 
 /**
-* VirtualClusterInstanceJoinScriptSpec is the request body for the joinscript subresource. Profile configuration may be supplied via ProfileRef (catalog reference). If it is not set, the join script carries no profile-derived configuration.
+* SlurmTopologyBlockEntry is a single block in a block topology.
 */
-export class ManagementV1VirtualClusterInstanceJoinScriptSpec {
+export class ManagementV1SlurmTopologyBlockEntry {
     /**
-    * ProfileRef references a NodeProfile in the cluster-scoped catalog. The referenced profile must exist and be permitted by the owning project\'s allowedNodeProfiles.
+    * Block is the arbitrary, Slurm-internal block name.
     */
-    'profileRef'?: string;
+    'block': string;
+    /**
+    * Nodes is the hostlist expression of nodes in the block.
+    */
+    'nodes'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "profileRef",
-            "baseName": "profileRef",
+            "name": "block",
+            "baseName": "block",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "nodes",
+            "baseName": "nodes",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1VirtualClusterInstanceJoinScriptSpec.attributeTypeMap;
+        return ManagementV1SlurmTopologyBlockEntry.attributeTypeMap;
     }
 
     public constructor() {

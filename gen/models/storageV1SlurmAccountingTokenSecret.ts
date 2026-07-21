@@ -13,26 +13,46 @@
 
 
 /**
-* AllowedNodeProfile restricts which NodeProfile a project\'s consumers may reference. The Name field is either an exact profile name or an \"<owner>.*\" wildcard, matching the same semantics as AllowedNodeType.
+* SlurmAccountingTokenSecret references a secret key inside the tenant cluster.
 */
-export class StorageV1AllowedNodeProfile {
+export class StorageV1SlurmAccountingTokenSecret {
     /**
-    * Name of the NodeProfile, or \"<owner>.*\" to allow all NodeProfiles with the given owner prefix.
+    * Key within the secret data holding the JWT.
+    */
+    'key'?: string;
+    /**
+    * Name of the secret in the tenant cluster.
     */
     'name'?: string;
+    /**
+    * Namespace of the secret in the tenant cluster.
+    */
+    'namespace'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
+            "name": "key",
+            "baseName": "key",
+            "type": "string",
+            "format": ""
+        },
+        {
             "name": "name",
             "baseName": "name",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "namespace",
+            "baseName": "namespace",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1AllowedNodeProfile.attributeTypeMap;
+        return StorageV1SlurmAccountingTokenSecret.attributeTypeMap;
     }
 
     public constructor() {

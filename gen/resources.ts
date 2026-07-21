@@ -23,6 +23,8 @@ import {ManagementV1ConvertVirtualClusterConfig} from "./models/managementV1Conv
 import {ManagementV1DatabaseConnector} from "./models/managementV1DatabaseConnector"
 import {ManagementV1DirectClusterEndpointToken} from "./models/managementV1DirectClusterEndpointToken"
 import {ManagementV1Event} from "./models/managementV1Event"
+import {ManagementV1ExternalCredentialCredentials} from "./models/managementV1ExternalCredentialCredentials"
+import {ManagementV1ExternalCredential} from "./models/managementV1ExternalCredential"
 import {ManagementV1Feature} from "./models/managementV1Feature"
 import {ManagementV1IngressAuthToken} from "./models/managementV1IngressAuthToken"
 import {ManagementV1Kiosk} from "./models/managementV1Kiosk"
@@ -60,6 +62,9 @@ import {ManagementV1SSHKey} from "./models/managementV1SSHKey"
 import {ManagementV1SelfSubjectAccessReview} from "./models/managementV1SelfSubjectAccessReview"
 import {ManagementV1Self} from "./models/managementV1Self"
 import {ManagementV1SharedSecret} from "./models/managementV1SharedSecret"
+import {ManagementV1SlurmInstanceAccounting} from "./models/managementV1SlurmInstanceAccounting"
+import {ManagementV1SlurmInstanceTopology} from "./models/managementV1SlurmInstanceTopology"
+import {ManagementV1SlurmInstance} from "./models/managementV1SlurmInstance"
 import {ManagementV1SpaceInstance} from "./models/managementV1SpaceInstance"
 import {ManagementV1SpaceTemplate} from "./models/managementV1SpaceTemplate"
 import {ManagementV1SubjectAccessReview} from "./models/managementV1SubjectAccessReview"
@@ -118,6 +123,8 @@ export type TGenResources = {
   ManagementV1DatabaseConnector: GroupVersionResource<ManagementV1DatabaseConnector>
   ManagementV1DirectClusterEndpointToken: GroupVersionResource<ManagementV1DirectClusterEndpointToken>
   ManagementV1Event: GroupVersionResource<ManagementV1Event>
+  ManagementV1ExternalCredential: GroupVersionResource<ManagementV1ExternalCredential>
+  ManagementV1ExternalCredentialCredentials: GroupVersionResource<ManagementV1ExternalCredentialCredentials>
   ManagementV1Feature: GroupVersionResource<ManagementV1Feature>
   ManagementV1IngressAuthToken: GroupVersionResource<ManagementV1IngressAuthToken>
   ManagementV1Kiosk: GroupVersionResource<ManagementV1Kiosk>
@@ -155,6 +162,9 @@ export type TGenResources = {
   ManagementV1Self: GroupVersionResource<ManagementV1Self>
   ManagementV1SelfSubjectAccessReview: GroupVersionResource<ManagementV1SelfSubjectAccessReview>
   ManagementV1SharedSecret: GroupVersionResource<ManagementV1SharedSecret>
+  ManagementV1SlurmInstance: GroupVersionResource<ManagementV1SlurmInstance>
+  ManagementV1SlurmInstanceAccounting: GroupVersionResource<ManagementV1SlurmInstanceAccounting>
+  ManagementV1SlurmInstanceTopology: GroupVersionResource<ManagementV1SlurmInstanceTopology>
   ManagementV1SpaceInstance: GroupVersionResource<ManagementV1SpaceInstance>
   ManagementV1SpaceTemplate: GroupVersionResource<ManagementV1SpaceTemplate>
   ManagementV1SubjectAccessReview: GroupVersionResource<ManagementV1SubjectAccessReview>
@@ -374,6 +384,22 @@ export const GenResources: TGenResources = {
     subResource: "",
     namespaced: false,
     kind: "Event",
+  },
+  ManagementV1ExternalCredential: {
+    group: "management.loft.sh",
+    version: "v1",
+    resource: "externalcredentials",
+    subResource: "",
+    namespaced: true,
+    kind: "ExternalCredential",
+  },
+  ManagementV1ExternalCredentialCredentials: {
+    group: "management.loft.sh",
+    version: "v1",
+    resource: "externalcredentials",
+    subResource: "credentials",
+    namespaced: true,
+    kind: "ExternalCredentialCredentials",
   },
   ManagementV1Feature: {
     group: "management.loft.sh",
@@ -670,6 +696,30 @@ export const GenResources: TGenResources = {
     subResource: "",
     namespaced: true,
     kind: "SharedSecret",
+  },
+  ManagementV1SlurmInstance: {
+    group: "management.loft.sh",
+    version: "v1",
+    resource: "slurminstances",
+    subResource: "",
+    namespaced: true,
+    kind: "SlurmInstance",
+  },
+  ManagementV1SlurmInstanceAccounting: {
+    group: "management.loft.sh",
+    version: "v1",
+    resource: "slurminstances",
+    subResource: "accounting",
+    namespaced: true,
+    kind: "SlurmInstanceAccounting",
+  },
+  ManagementV1SlurmInstanceTopology: {
+    group: "management.loft.sh",
+    version: "v1",
+    resource: "slurminstances",
+    subResource: "topology",
+    namespaced: true,
+    kind: "SlurmInstanceTopology",
   },
   ManagementV1SpaceInstance: {
     group: "management.loft.sh",

@@ -10,29 +10,30 @@
  * Do not edit the class manually.
  */
 
+import { ManagementV1SlurmTopologySwitch } from '../models/managementV1SlurmTopologySwitch.js';
 
 
 /**
-* AllowedNodeProfile restricts which NodeProfile a project\'s consumers may reference. The Name field is either an exact profile name or an \"<owner>.*\" wildcard, matching the same semantics as AllowedNodeType.
+* SlurmTopologyTree is the topology/tree layout: a set of switches, each with child switches and/or leaf nodes.
 */
-export class StorageV1AllowedNodeProfile {
+export class ManagementV1SlurmTopologyTree {
     /**
-    * Name of the NodeProfile, or \"<owner>.*\" to allow all NodeProfiles with the given owner prefix.
+    * Switches are the switch definitions making up the tree.
     */
-    'name'?: string;
+    'switches'?: Array<ManagementV1SlurmTopologySwitch>;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "name",
-            "baseName": "name",
-            "type": "string",
+            "name": "switches",
+            "baseName": "switches",
+            "type": "Array<ManagementV1SlurmTopologySwitch>",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1AllowedNodeProfile.attributeTypeMap;
+        return ManagementV1SlurmTopologyTree.attributeTypeMap;
     }
 
     public constructor() {
