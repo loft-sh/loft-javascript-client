@@ -10,39 +10,24 @@
  * Do not edit the class manually.
  */
 
+import { StorageV1ProjectSecretRef } from '../models/storageV1ProjectSecretRef.js';
 
 
-/**
-* ContainerStateWaiting is a waiting state of a container.
-*/
-export class V1ContainerStateWaiting {
-    /**
-    * Message regarding why the container is not yet running.
-    */
-    'message'?: string;
-    /**
-    * (brief) reason the container is not yet running.
-    */
-    'reason'?: string;
+export class StorageV1ChartSecretRef {
+    'projectSecretRef'?: StorageV1ProjectSecretRef;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "message",
-            "baseName": "message",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "reason",
-            "baseName": "reason",
-            "type": "string",
+            "name": "projectSecretRef",
+            "baseName": "projectSecretRef",
+            "type": "StorageV1ProjectSecretRef",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return V1ContainerStateWaiting.attributeTypeMap;
+        return StorageV1ChartSecretRef.attributeTypeMap;
     }
 
     public constructor() {

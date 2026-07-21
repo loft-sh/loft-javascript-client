@@ -12,35 +12,30 @@
 
 
 
-export class StorageV1HelmChartRepository {
+/**
+* Maintainer describes a Chart maintainer.
+*/
+export class StorageV1Maintainer {
     /**
-    * Insecure specifies if the chart should be retrieved without TLS verification
+    * Email is an optional email address to contact the named maintainer
     */
-    'insecure'?: boolean;
+    'email'?: string;
     /**
-    * Name is the name of the repository
+    * Name is a user name or organization name
     */
     'name'?: string;
     /**
-    * Password of the repository
-    */
-    'password'?: string;
-    /**
-    * URL is the repository url
+    * URL is an optional URL to an address for the named maintainer
     */
     'url'?: string;
-    /**
-    * Username of the repository
-    */
-    'username'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "insecure",
-            "baseName": "insecure",
-            "type": "boolean",
+            "name": "email",
+            "baseName": "email",
+            "type": "string",
             "format": ""
         },
         {
@@ -50,26 +45,14 @@ export class StorageV1HelmChartRepository {
             "format": ""
         },
         {
-            "name": "password",
-            "baseName": "password",
-            "type": "string",
-            "format": ""
-        },
-        {
             "name": "url",
             "baseName": "url",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "username",
-            "baseName": "username",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1HelmChartRepository.attributeTypeMap;
+        return StorageV1Maintainer.attributeTypeMap;
     }
 
     public constructor() {

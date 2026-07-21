@@ -12,7 +12,7 @@
 
 
 
-export class ClusterV1ProjectSecretRef {
+export class StorageV1ProjectSecretRef {
     /**
     * Key of the project secret to use.
     */
@@ -49,7 +49,7 @@ export class ClusterV1ProjectSecretRef {
         }    ];
 
     static getAttributeTypeMap() {
-        return ClusterV1ProjectSecretRef.attributeTypeMap;
+        return StorageV1ProjectSecretRef.attributeTypeMap;
     }
 
     public constructor() {

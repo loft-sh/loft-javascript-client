@@ -3,6 +3,8 @@ import {GroupVersionResource} from "../src"
 import {ManagementV1AgentAuditEvent} from "./models/managementV1AgentAuditEvent"
 import {ManagementV1Announcement} from "./models/managementV1Announcement"
 import {ManagementV1AppCredentials} from "./models/managementV1AppCredentials"
+import {ManagementV1AppInstanceLog} from "./models/managementV1AppInstanceLog"
+import {ManagementV1AppInstance} from "./models/managementV1AppInstance"
 import {ManagementV1App} from "./models/managementV1App"
 import {ManagementV1ArgoCDApplicationTemplate} from "./models/managementV1ArgoCDApplicationTemplate"
 import {ManagementV1ArgoCDApplication} from "./models/managementV1ArgoCDApplication"
@@ -11,7 +13,6 @@ import {ManagementV1Backup} from "./models/managementV1Backup"
 import {ManagementV1ClusterAccessKey} from "./models/managementV1ClusterAccessKey"
 import {ManagementV1ClusterAccess} from "./models/managementV1ClusterAccess"
 import {ManagementV1ClusterAgentConfig} from "./models/managementV1ClusterAgentConfig"
-import {ManagementV1ClusterCharts} from "./models/managementV1ClusterCharts"
 import {ManagementV1ClusterDomain} from "./models/managementV1ClusterDomain"
 import {ManagementV1ClusterMemberAccess} from "./models/managementV1ClusterMemberAccess"
 import {ManagementV1ClusterMembers} from "./models/managementV1ClusterMembers"
@@ -42,7 +43,6 @@ import {ManagementV1OIDCClient} from "./models/managementV1OIDCClient"
 import {ManagementV1OSImage} from "./models/managementV1OSImage"
 import {ManagementV1OwnedAccessKey} from "./models/managementV1OwnedAccessKey"
 import {ManagementV1ProjectChartInfo} from "./models/managementV1ProjectChartInfo"
-import {ManagementV1ProjectCharts} from "./models/managementV1ProjectCharts"
 import {ManagementV1ProjectClusters} from "./models/managementV1ProjectClusters"
 import {ManagementV1ProjectImportSpace} from "./models/managementV1ProjectImportSpace"
 import {ManagementV1ProjectMembers} from "./models/managementV1ProjectMembers"
@@ -63,8 +63,6 @@ import {ManagementV1SharedSecret} from "./models/managementV1SharedSecret"
 import {ManagementV1SpaceInstance} from "./models/managementV1SpaceInstance"
 import {ManagementV1SpaceTemplate} from "./models/managementV1SpaceTemplate"
 import {ManagementV1SubjectAccessReview} from "./models/managementV1SubjectAccessReview"
-import {ManagementV1TaskLog} from "./models/managementV1TaskLog"
-import {ManagementV1Task} from "./models/managementV1Task"
 import {ManagementV1TeamAccessKeys} from "./models/managementV1TeamAccessKeys"
 import {ManagementV1TeamClusters} from "./models/managementV1TeamClusters"
 import {ManagementV1TeamObjectPermissions} from "./models/managementV1TeamObjectPermissions"
@@ -99,6 +97,8 @@ export type TGenResources = {
   ManagementV1Announcement: GroupVersionResource<ManagementV1Announcement>
   ManagementV1App: GroupVersionResource<ManagementV1App>
   ManagementV1AppCredentials: GroupVersionResource<ManagementV1AppCredentials>
+  ManagementV1AppInstance: GroupVersionResource<ManagementV1AppInstance>
+  ManagementV1AppInstanceLog: GroupVersionResource<ManagementV1AppInstanceLog>
   ManagementV1ArgoCDApplication: GroupVersionResource<ManagementV1ArgoCDApplication>
   ManagementV1ArgoCDApplicationTemplate: GroupVersionResource<ManagementV1ArgoCDApplicationTemplate>
   ManagementV1Backup: GroupVersionResource<ManagementV1Backup>
@@ -107,7 +107,6 @@ export type TGenResources = {
   ManagementV1ClusterAccess: GroupVersionResource<ManagementV1ClusterAccess>
   ManagementV1ClusterAccessKey: GroupVersionResource<ManagementV1ClusterAccessKey>
   ManagementV1ClusterAgentConfig: GroupVersionResource<ManagementV1ClusterAgentConfig>
-  ManagementV1ClusterCharts: GroupVersionResource<ManagementV1ClusterCharts>
   ManagementV1ClusterDomain: GroupVersionResource<ManagementV1ClusterDomain>
   ManagementV1ClusterMemberAccess: GroupVersionResource<ManagementV1ClusterMemberAccess>
   ManagementV1ClusterMembers: GroupVersionResource<ManagementV1ClusterMembers>
@@ -138,7 +137,6 @@ export type TGenResources = {
   ManagementV1OwnedAccessKey: GroupVersionResource<ManagementV1OwnedAccessKey>
   ManagementV1Project: GroupVersionResource<ManagementV1Project>
   ManagementV1ProjectChartInfo: GroupVersionResource<ManagementV1ProjectChartInfo>
-  ManagementV1ProjectCharts: GroupVersionResource<ManagementV1ProjectCharts>
   ManagementV1ProjectClusters: GroupVersionResource<ManagementV1ProjectClusters>
   ManagementV1ProjectImportSpace: GroupVersionResource<ManagementV1ProjectImportSpace>
   ManagementV1ProjectMembers: GroupVersionResource<ManagementV1ProjectMembers>
@@ -158,8 +156,6 @@ export type TGenResources = {
   ManagementV1SpaceInstance: GroupVersionResource<ManagementV1SpaceInstance>
   ManagementV1SpaceTemplate: GroupVersionResource<ManagementV1SpaceTemplate>
   ManagementV1SubjectAccessReview: GroupVersionResource<ManagementV1SubjectAccessReview>
-  ManagementV1Task: GroupVersionResource<ManagementV1Task>
-  ManagementV1TaskLog: GroupVersionResource<ManagementV1TaskLog>
   ManagementV1Team: GroupVersionResource<ManagementV1Team>
   ManagementV1TeamAccessKeys: GroupVersionResource<ManagementV1TeamAccessKeys>
   ManagementV1TeamClusters: GroupVersionResource<ManagementV1TeamClusters>
@@ -222,6 +218,22 @@ export const GenResources: TGenResources = {
     subResource: "credentials",
     namespaced: false,
     kind: "AppCredentials",
+  },
+  ManagementV1AppInstance: {
+    group: "management.loft.sh",
+    version: "v1",
+    resource: "appinstances",
+    subResource: "",
+    namespaced: true,
+    kind: "AppInstance",
+  },
+  ManagementV1AppInstanceLog: {
+    group: "management.loft.sh",
+    version: "v1",
+    resource: "appinstances",
+    subResource: "log",
+    namespaced: true,
+    kind: "AppInstanceLog",
   },
   ManagementV1ArgoCDApplication: {
     group: "management.loft.sh",
@@ -286,14 +298,6 @@ export const GenResources: TGenResources = {
     subResource: "agentconfig",
     namespaced: false,
     kind: "ClusterAgentConfig",
-  },
-  ManagementV1ClusterCharts: {
-    group: "management.loft.sh",
-    version: "v1",
-    resource: "clusters",
-    subResource: "charts",
-    namespaced: false,
-    kind: "ClusterCharts",
   },
   ManagementV1ClusterDomain: {
     group: "management.loft.sh",
@@ -535,14 +539,6 @@ export const GenResources: TGenResources = {
     namespaced: false,
     kind: "ProjectChartInfo",
   },
-  ManagementV1ProjectCharts: {
-    group: "management.loft.sh",
-    version: "v1",
-    resource: "projects",
-    subResource: "charts",
-    namespaced: false,
-    kind: "ProjectCharts",
-  },
   ManagementV1ProjectClusters: {
     group: "management.loft.sh",
     version: "v1",
@@ -694,22 +690,6 @@ export const GenResources: TGenResources = {
     subResource: "",
     namespaced: false,
     kind: "SubjectAccessReview",
-  },
-  ManagementV1Task: {
-    group: "management.loft.sh",
-    version: "v1",
-    resource: "tasks",
-    subResource: "",
-    namespaced: false,
-    kind: "Task",
-  },
-  ManagementV1TaskLog: {
-    group: "management.loft.sh",
-    version: "v1",
-    resource: "tasks",
-    subResource: "log",
-    namespaced: false,
-    kind: "TaskLog",
   },
   ManagementV1Team: {
     group: "management.loft.sh",

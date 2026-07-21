@@ -10,13 +10,13 @@
  * Do not edit the class manually.
  */
 
-import { ClusterV1ChartSecretRef } from '../models/clusterV1ChartSecretRef.js';
+import { StorageV1ChartSecretRef } from '../models/storageV1ChartSecretRef.js';
 
 
 /**
 * Chart describes a chart
 */
-export class ClusterV1Chart {
+export class StorageV1Chart {
     /**
     * If tls certificate checks for the chart download should be skipped
     */
@@ -29,7 +29,7 @@ export class ClusterV1Chart {
     * The password that is required for this repository
     */
     'password'?: string;
-    'passwordRef'?: ClusterV1ChartSecretRef;
+    'passwordRef'?: StorageV1ChartSecretRef;
     /**
     * RepoURL is the repo url where the chart can be found
     */
@@ -38,7 +38,7 @@ export class ClusterV1Chart {
     * The username that is required for this repository
     */
     'username'?: string;
-    'usernameRef'?: ClusterV1ChartSecretRef;
+    'usernameRef'?: StorageV1ChartSecretRef;
     /**
     * Version is the chart version in the repository
     */
@@ -68,7 +68,7 @@ export class ClusterV1Chart {
         {
             "name": "passwordRef",
             "baseName": "passwordRef",
-            "type": "ClusterV1ChartSecretRef",
+            "type": "StorageV1ChartSecretRef",
             "format": ""
         },
         {
@@ -86,7 +86,7 @@ export class ClusterV1Chart {
         {
             "name": "usernameRef",
             "baseName": "usernameRef",
-            "type": "ClusterV1ChartSecretRef",
+            "type": "StorageV1ChartSecretRef",
             "format": ""
         },
         {
@@ -97,7 +97,7 @@ export class ClusterV1Chart {
         }    ];
 
     static getAttributeTypeMap() {
-        return ClusterV1Chart.attributeTypeMap;
+        return StorageV1Chart.attributeTypeMap;
     }
 
     public constructor() {

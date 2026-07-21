@@ -10,12 +10,15 @@
  * Do not edit the class manually.
  */
 
-import { ClusterV1ChartInfoSpec } from '../models/clusterV1ChartInfoSpec.js';
-import { ClusterV1ChartInfoStatus } from '../models/clusterV1ChartInfoStatus.js';
+import { ManagementV1AppInstanceSpec } from '../models/managementV1AppInstanceSpec.js';
+import { ManagementV1AppInstanceStatus } from '../models/managementV1AppInstanceStatus.js';
 import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
 
 
-export class ClusterV1ChartInfo {
+/**
+* AppInstance holds the AppInstance information
+*/
+export class ManagementV1AppInstance {
     /**
     * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
     */
@@ -25,8 +28,8 @@ export class ClusterV1ChartInfo {
     */
     'kind'?: string;
     'metadata'?: V1ObjectMeta;
-    'spec'?: ClusterV1ChartInfoSpec;
-    'status'?: ClusterV1ChartInfoStatus;
+    'spec'?: ManagementV1AppInstanceSpec;
+    'status'?: ManagementV1AppInstanceStatus;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -52,18 +55,18 @@ export class ClusterV1ChartInfo {
         {
             "name": "spec",
             "baseName": "spec",
-            "type": "ClusterV1ChartInfoSpec",
+            "type": "ManagementV1AppInstanceSpec",
             "format": ""
         },
         {
             "name": "status",
             "baseName": "status",
-            "type": "ClusterV1ChartInfoStatus",
+            "type": "ManagementV1AppInstanceStatus",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ClusterV1ChartInfo.attributeTypeMap;
+        return ManagementV1AppInstance.attributeTypeMap;
     }
 
     public constructor() {

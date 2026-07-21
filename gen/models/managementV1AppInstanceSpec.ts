@@ -11,36 +11,40 @@
  */
 
 import { StorageV1Access } from '../models/storageV1Access.js';
-import { StorageV1ArgoCDApplicationTemplateDefinition } from '../models/storageV1ArgoCDApplicationTemplateDefinition.js';
-import { StorageV1ArgoCDApplicationTemplateRef } from '../models/storageV1ArgoCDApplicationTemplateRef.js';
-import { StorageV1ArgoCDDestination } from '../models/storageV1ArgoCDDestination.js';
+import { StorageV1AppConfig } from '../models/storageV1AppConfig.js';
+import { StorageV1AppInstanceDestination } from '../models/storageV1AppInstanceDestination.js';
+import { StorageV1AppInstanceTemplateRef } from '../models/storageV1AppInstanceTemplateRef.js';
 import { StorageV1UserOrTeam } from '../models/storageV1UserOrTeam.js';
 
 
 /**
-* ArgoCDApplicationSpec holds the specification
+* AppInstanceSpec holds the specification
 */
-export class ManagementV1ArgoCDApplicationSpec {
+export class ManagementV1AppInstanceSpec {
     /**
     * Access holds the access rights for users and teams
     */
     'access'?: Array<StorageV1Access>;
     /**
-    * Description describes the Argo CD application
+    * Description describes the app instance
     */
     'description'?: string;
-    'destination'?: StorageV1ArgoCDDestination;
+    'destination'?: StorageV1AppInstanceDestination;
     /**
     * DisplayName is the name that should be displayed in the UI
     */
     'displayName'?: string;
     'owner'?: StorageV1UserOrTeam;
     /**
-    * Parameters are values to pass to the template. The values should be encoded as YAML string where each parameter is represented as a top-level field key.
+    * Parameters are values to pass to the app. The values should be encoded as YAML string where each parameter is represented as a top-level field key.
     */
     'parameters'?: any;
-    'template'?: StorageV1ArgoCDApplicationTemplateDefinition;
-    'templateRef'?: StorageV1ArgoCDApplicationTemplateRef;
+    /**
+    * ReleaseName is the name of the helm release that is created for this app instance. If empty, defaults to the name of the AppInstance.
+    */
+    'releaseName'?: string;
+    'template'?: StorageV1AppConfig;
+    'templateRef'?: StorageV1AppInstanceTemplateRef;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -60,7 +64,7 @@ export class ManagementV1ArgoCDApplicationSpec {
         {
             "name": "destination",
             "baseName": "destination",
-            "type": "StorageV1ArgoCDDestination",
+            "type": "StorageV1AppInstanceDestination",
             "format": ""
         },
         {
@@ -82,20 +86,26 @@ export class ManagementV1ArgoCDApplicationSpec {
             "format": ""
         },
         {
+            "name": "releaseName",
+            "baseName": "releaseName",
+            "type": "string",
+            "format": ""
+        },
+        {
             "name": "template",
             "baseName": "template",
-            "type": "StorageV1ArgoCDApplicationTemplateDefinition",
+            "type": "StorageV1AppConfig",
             "format": ""
         },
         {
             "name": "templateRef",
             "baseName": "templateRef",
-            "type": "StorageV1ArgoCDApplicationTemplateRef",
+            "type": "StorageV1AppInstanceTemplateRef",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1ArgoCDApplicationSpec.attributeTypeMap;
+        return ManagementV1AppInstanceSpec.attributeTypeMap;
     }
 
     public constructor() {

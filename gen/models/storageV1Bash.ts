@@ -14,7 +14,7 @@ import { V1PodSecurityContext } from '../models/V1PodSecurityContext.js';
 import { V1SecurityContext } from '../models/V1SecurityContext.js';
 
 
-export class ClusterV1Bash {
+export class StorageV1Bash {
     /**
     * ClusterRole is the cluster role to use for this job
     */
@@ -65,7 +65,7 @@ export class ClusterV1Bash {
         }    ];
 
     static getAttributeTypeMap() {
-        return ClusterV1Bash.attributeTypeMap;
+        return StorageV1Bash.attributeTypeMap;
     }
 
     public constructor() {

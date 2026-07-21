@@ -10,11 +10,11 @@
  * Do not edit the class manually.
  */
 
-import { ClusterV1Chart } from '../models/clusterV1Chart.js';
+import { StorageV1Chart } from '../models/storageV1Chart.js';
 
 
 export class ManagementV1ProjectChartInfoSpec {
-    'chart'?: ClusterV1Chart;
+    'chart'?: StorageV1Chart;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -22,7 +22,7 @@ export class ManagementV1ProjectChartInfoSpec {
         {
             "name": "chart",
             "baseName": "chart",
-            "type": "ClusterV1Chart",
+            "type": "StorageV1Chart",
             "format": ""
         }    ];
 

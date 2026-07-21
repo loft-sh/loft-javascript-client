@@ -209,10 +209,6 @@ export interface Unstructured {
   [key: string]: any
 }
 
-export const LoftSchemeGroupVirtualCluster = "virtualcluster.loft.sh"
-export const LoftSchemeVersionVirtualCluster = "v1"
-export const LoftSchemeGroupVersionVirtualCluster = "virtualcluster.loft.sh/v1"
-
 export const LoftSchemeGroupCluster = "cluster.loft.sh"
 export const LoftSchemeVersionCluster = "v1"
 export const LoftSchemeGroupVersionCluster = "cluster.loft.sh/v1"

@@ -10,28 +10,21 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1HelmChart } from '../models/storageV1HelmChart.js';
-import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
+import { ManagementV1AppInstance } from '../models/managementV1AppInstance.js';
+import { V1ListMeta } from '../models/V1ListMeta.js';
 
 
-export class ManagementV1ProjectCharts {
+export class ManagementV1AppInstanceList {
     /**
     * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
     */
     'apiVersion'?: string;
-    /**
-    * Busy will indicate if the chart parsing is still in progress.
-    */
-    'busy'?: boolean;
-    /**
-    * Holds the available helm charts for this cluster
-    */
-    'charts': Array<StorageV1HelmChart>;
+    'items': Array<ManagementV1AppInstance>;
     /**
     * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
     */
     'kind'?: string;
-    'metadata'?: V1ObjectMeta;
+    'metadata'?: V1ListMeta;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -43,15 +36,9 @@ export class ManagementV1ProjectCharts {
             "format": ""
         },
         {
-            "name": "busy",
-            "baseName": "busy",
-            "type": "boolean",
-            "format": ""
-        },
-        {
-            "name": "charts",
-            "baseName": "charts",
-            "type": "Array<StorageV1HelmChart>",
+            "name": "items",
+            "baseName": "items",
+            "type": "Array<ManagementV1AppInstance>",
             "format": ""
         },
         {
@@ -63,12 +50,12 @@ export class ManagementV1ProjectCharts {
         {
             "name": "metadata",
             "baseName": "metadata",
-            "type": "V1ObjectMeta",
+            "type": "V1ListMeta",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1ProjectCharts.attributeTypeMap;
+        return ManagementV1AppInstanceList.attributeTypeMap;
     }
 
     public constructor() {

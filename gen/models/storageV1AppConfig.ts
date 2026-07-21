@@ -15,7 +15,7 @@ import { StorageV1HelmReleaseConfig } from '../models/storageV1HelmReleaseConfig
 import { StorageV1StreamContainer } from '../models/storageV1StreamContainer.js';
 
 
-export class StorageV1AppVersion {
+export class StorageV1AppConfig {
     'config'?: StorageV1HelmReleaseConfig;
     /**
     * DefaultNamespace is the default namespace this app should installed in.
@@ -38,10 +38,6 @@ export class StorageV1AppVersion {
     * Timeout is the time to wait for any individual Kubernetes operation (like Jobs for hooks) (default 5m0s)
     */
     'timeout'?: string;
-    /**
-    * Version is the version. Needs to be in X.X.X format.
-    */
-    'version'?: string;
     /**
     * Wait determines if Loft should wait during deploy for the app to become ready
     */
@@ -93,12 +89,6 @@ export class StorageV1AppVersion {
             "format": ""
         },
         {
-            "name": "version",
-            "baseName": "version",
-            "type": "string",
-            "format": ""
-        },
-        {
             "name": "wait",
             "baseName": "wait",
             "type": "boolean",
@@ -106,7 +96,7 @@ export class StorageV1AppVersion {
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1AppVersion.attributeTypeMap;
+        return StorageV1AppConfig.attributeTypeMap;
     }
 
     public constructor() {

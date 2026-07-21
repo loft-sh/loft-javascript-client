@@ -10,7 +10,6 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1Apps } from '../models/managementV1Apps.js';
 import { ManagementV1Audit } from '../models/managementV1Audit.js';
 import { ManagementV1Cloud } from '../models/managementV1Cloud.js';
 import { ManagementV1CostControl } from '../models/managementV1CostControl.js';
@@ -27,7 +26,6 @@ import { UiV1UISettingsConfig } from '../models/uiV1UISettingsConfig.js';
 * ConfigStatus holds the status, which is the parsed raw config
 */
 export class ManagementV1ConfigStatus {
-    'apps'?: ManagementV1Apps;
     'audit'?: ManagementV1Audit;
     'auth'?: StorageV1Authentication;
     /**
@@ -62,12 +60,6 @@ export class ManagementV1ConfigStatus {
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
-        {
-            "name": "apps",
-            "baseName": "apps",
-            "type": "ManagementV1Apps",
-            "format": ""
-        },
         {
             "name": "audit",
             "baseName": "audit",

@@ -10,39 +10,25 @@
  * Do not edit the class manually.
  */
 
-import { ClusterV1HelmReleaseConfig } from '../models/clusterV1HelmReleaseConfig.js';
 
 
-export class StorageV1HelmTaskRelease {
-    'config'?: ClusterV1HelmReleaseConfig;
+export class StorageV1AppInstanceDestinationVirtualCluster {
     /**
-    * Labels are additional labels for the helm release.
-    */
-    'labels'?: { [key: string]: string; };
-    /**
-    * Name is the name of the release
+    * Name of the virtual cluster instance within the project
     */
     'name'?: string;
     /**
-    * Namespace of the release, if empty will use the target namespace
+    * Namespace the helm release is deployed into. Only used when target is vCluster; for the host target the release is always deployed into the virtual cluster\'s host namespace. If empty, defaults to the app\'s default namespace.
     */
     'namespace'?: string;
+    /**
+    * Target selects whether the app is deployed inside the virtual cluster or into its host namespace
+    */
+    'target'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
-        {
-            "name": "config",
-            "baseName": "config",
-            "type": "ClusterV1HelmReleaseConfig",
-            "format": ""
-        },
-        {
-            "name": "labels",
-            "baseName": "labels",
-            "type": "{ [key: string]: string; }",
-            "format": ""
-        },
         {
             "name": "name",
             "baseName": "name",
@@ -54,10 +40,16 @@ export class StorageV1HelmTaskRelease {
             "baseName": "namespace",
             "type": "string",
             "format": ""
+        },
+        {
+            "name": "target",
+            "baseName": "target",
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1HelmTaskRelease.attributeTypeMap;
+        return StorageV1AppInstanceDestinationVirtualCluster.attributeTypeMap;
     }
 
     public constructor() {

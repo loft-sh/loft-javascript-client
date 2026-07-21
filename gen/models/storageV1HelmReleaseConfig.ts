@@ -10,17 +10,17 @@
  * Do not edit the class manually.
  */
 
-import { ClusterV1Bash } from '../models/clusterV1Bash.js';
-import { ClusterV1Chart } from '../models/clusterV1Chart.js';
+import { StorageV1Bash } from '../models/storageV1Bash.js';
+import { StorageV1Chart } from '../models/storageV1Chart.js';
 
 
-export class ClusterV1HelmReleaseConfig {
+export class StorageV1HelmReleaseConfig {
     /**
     * Annotations are extra annotations for this helm release
     */
     'annotations'?: { [key: string]: string; };
-    'bash'?: ClusterV1Bash;
-    'chart'?: ClusterV1Chart;
+    'bash'?: StorageV1Bash;
+    'chart'?: StorageV1Chart;
     /**
     * Manifests holds kube manifests that will be deployed as a chart
     */
@@ -46,13 +46,13 @@ export class ClusterV1HelmReleaseConfig {
         {
             "name": "bash",
             "baseName": "bash",
-            "type": "ClusterV1Bash",
+            "type": "StorageV1Bash",
             "format": ""
         },
         {
             "name": "chart",
             "baseName": "chart",
-            "type": "ClusterV1Chart",
+            "type": "StorageV1Chart",
             "format": ""
         },
         {
@@ -75,7 +75,7 @@ export class ClusterV1HelmReleaseConfig {
         }    ];
 
     static getAttributeTypeMap() {
-        return ClusterV1HelmReleaseConfig.attributeTypeMap;
+        return StorageV1HelmReleaseConfig.attributeTypeMap;
     }
 
     public constructor() {

@@ -10,12 +10,10 @@
  * Do not edit the class manually.
  */
 
-import { VirtualclusterV1HelmReleaseSpec } from '../models/virtualclusterV1HelmReleaseSpec.js';
-import { VirtualclusterV1HelmReleaseStatus } from '../models/virtualclusterV1HelmReleaseStatus.js';
 import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
 
 
-export class VirtualclusterV1HelmRelease {
+export class ManagementV1AppInstanceLog {
     /**
     * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
     */
@@ -25,8 +23,6 @@ export class VirtualclusterV1HelmRelease {
     */
     'kind'?: string;
     'metadata'?: V1ObjectMeta;
-    'spec'?: VirtualclusterV1HelmReleaseSpec;
-    'status'?: VirtualclusterV1HelmReleaseStatus;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -48,22 +44,10 @@ export class VirtualclusterV1HelmRelease {
             "baseName": "metadata",
             "type": "V1ObjectMeta",
             "format": ""
-        },
-        {
-            "name": "spec",
-            "baseName": "spec",
-            "type": "VirtualclusterV1HelmReleaseSpec",
-            "format": ""
-        },
-        {
-            "name": "status",
-            "baseName": "status",
-            "type": "VirtualclusterV1HelmReleaseStatus",
-            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return VirtualclusterV1HelmRelease.attributeTypeMap;
+        return ManagementV1AppInstanceLog.attributeTypeMap;
     }
 
     public constructor() {
