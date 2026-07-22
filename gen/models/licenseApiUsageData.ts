@@ -11,7 +11,6 @@
  */
 
 import { LicenseApiFeatureUsage } from '../models/licenseApiFeatureUsage.js';
-import { LicenseApiGPUTypeUsage } from '../models/licenseApiGPUTypeUsage.js';
 import { LicenseApiResourceCount } from '../models/licenseApiResourceCount.js';
 import { LicenseApiUsageDataDetails } from '../models/licenseApiUsageDataDetails.js';
 
@@ -25,10 +24,6 @@ export class LicenseApiUsageData {
     * FeatureUsage contains the usage of features
     */
     'featureUsage': { [key: string]: LicenseApiFeatureUsage; };
-    /**
-    * GPUUsage contains the instance-wide accelerator usage broken down by GPU type (vendor and model). It is supplementary to the aggregate GPU count reported in ResourceUsage and is intended for per-type insight.
-    */
-    'gpuUsage'?: Array<LicenseApiGPUTypeUsage>;
     /**
     * ResourceUsage contains the usage of resources
     */
@@ -47,12 +42,6 @@ export class LicenseApiUsageData {
             "name": "featureUsage",
             "baseName": "featureUsage",
             "type": "{ [key: string]: LicenseApiFeatureUsage; }",
-            "format": ""
-        },
-        {
-            "name": "gpuUsage",
-            "baseName": "gpuUsage",
-            "type": "Array<LicenseApiGPUTypeUsage>",
             "format": ""
         },
         {

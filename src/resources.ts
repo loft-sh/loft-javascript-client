@@ -1,6 +1,9 @@
 import { StorageV1ClusterQuota } from "@gen/models/agentstorageV1ClusterQuota"
+import { ClusterV1ChartInfo } from "@gen/models/clusterV1ChartInfo"
+import { ClusterV1HelmRelease } from "@gen/models/clusterV1HelmRelease"
 import { ClusterV1SleepModeConfig } from "@gen/models/clusterV1SleepModeConfig"
 import { StorageV1AccessKey } from "@gen/models/storageV1AccessKey"
+import { VirtualclusterV1HelmRelease } from "@gen/models/virtualclusterV1HelmRelease"
 import { GenResources, TGenResources } from "@gen/resources"
 import {
   CoreV1Event,
@@ -28,13 +31,18 @@ import {
   APIExtensionsVersion,
   GroupVersionResource,
   LoftSchemeGroupCluster,
+  LoftSchemeGroupVirtualCluster,
   LoftSchemeVersion,
   LoftSchemeVersionCluster,
+  LoftSchemeVersionVirtualCluster,
   V1Beta1PodMetrics,
 } from "./types"
 
 export const Resources: {
   ClusterV1SleepModeConfig: GroupVersionResource<ClusterV1SleepModeConfig>
+  ClusterV1HelmRelease: GroupVersionResource<ClusterV1HelmRelease>
+  ClusterV1ChartInfo: GroupVersionResource<ClusterV1ChartInfo>
+  VirtualclusterV1HelmRelease: GroupVersionResource<VirtualclusterV1HelmRelease>
   CustomResourceDefinition: GroupVersionResource<V1CustomResourceDefinition>
   StorageV1ClusterQuota: GroupVersionResource<StorageV1ClusterQuota>
   StorageV1AccessKey: GroupVersionResource<StorageV1AccessKey>
@@ -67,6 +75,26 @@ export const Resources: {
     version: LoftSchemeVersionCluster,
     resource: "sleepmodeconfigs",
     kind: "SleepModeConfig",
+    namespaced: true,
+  },
+  ClusterV1HelmRelease: {
+    group: LoftSchemeGroupCluster,
+    version: LoftSchemeVersionCluster,
+    resource: "helmreleases",
+    kind: "HelmRelease",
+    namespaced: true,
+  },
+  ClusterV1ChartInfo: {
+    group: LoftSchemeGroupCluster,
+    version: LoftSchemeVersionCluster,
+    resource: "chartinfos",
+    kind: "ChartInfo",
+  },
+  VirtualclusterV1HelmRelease: {
+    group: LoftSchemeGroupVirtualCluster,
+    version: LoftSchemeVersionVirtualCluster,
+    resource: "helmreleases",
+    kind: "HelmRelease",
     namespaced: true,
   },
   CustomResourceDefinition: {

@@ -10,11 +10,11 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1Metadata } from '../models/storageV1Metadata.js';
+import { ClusterV1Metadata } from '../models/clusterV1Metadata.js';
 
 
 export class ManagementV1ProjectChartInfoStatus {
-    'metadata'?: StorageV1Metadata;
+    'metadata'?: ClusterV1Metadata;
     /**
     * Readme is the readme of the chart
     */
@@ -30,7 +30,7 @@ export class ManagementV1ProjectChartInfoStatus {
         {
             "name": "metadata",
             "baseName": "metadata",
-            "type": "StorageV1Metadata",
+            "type": "ClusterV1Metadata",
             "format": ""
         },
         {
