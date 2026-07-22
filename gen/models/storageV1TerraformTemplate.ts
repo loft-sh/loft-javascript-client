@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1TerraformTemplateSourceGit } from '../models/storageV1TerraformTemplateSourceGit';
+import { StorageV1TerraformTemplateSourceGit } from '../models/storageV1TerraformTemplateSourceGit.js';
 
 
 export class StorageV1TerraformTemplate {

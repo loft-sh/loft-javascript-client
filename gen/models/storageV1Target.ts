@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1TargetCluster } from '../models/storageV1TargetCluster';
-import { StorageV1TargetInstance } from '../models/storageV1TargetInstance';
+import { StorageV1TargetCluster } from '../models/storageV1TargetCluster.js';
+import { StorageV1TargetInstance } from '../models/storageV1TargetInstance.js';
 
 
 export class StorageV1Target {

@@ -10,10 +10,10 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1AccessKeyOIDC } from '../models/storageV1AccessKeyOIDC';
-import { StorageV1AccessKeyOIDCProvider } from '../models/storageV1AccessKeyOIDCProvider';
-import { StorageV1AccessKeyScope } from '../models/storageV1AccessKeyScope';
-import { StorageV1SSOIdentity } from '../models/storageV1SSOIdentity';
+import { StorageV1AccessKeyOIDC } from '../models/storageV1AccessKeyOIDC.js';
+import { StorageV1AccessKeyOIDCProvider } from '../models/storageV1AccessKeyOIDCProvider.js';
+import { StorageV1AccessKeyScope } from '../models/storageV1AccessKeyScope.js';
+import { StorageV1SSOIdentity } from '../models/storageV1SSOIdentity.js';
 
 
 export class ManagementV1OwnedAccessKeySpec {

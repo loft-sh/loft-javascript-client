@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { ClusterV1Info } from '../models/clusterV1Info';
-import { ClusterV1Metadata } from '../models/clusterV1Metadata';
+import { ClusterV1Info } from '../models/clusterV1Info.js';
+import { ClusterV1Metadata } from '../models/clusterV1Metadata.js';
 
 
 export class VirtualclusterV1HelmReleaseStatus {

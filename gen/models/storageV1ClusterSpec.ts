@@ -10,11 +10,11 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1Access } from '../models/storageV1Access';
-import { StorageV1Metrics } from '../models/storageV1Metrics';
-import { StorageV1OpenCost } from '../models/storageV1OpenCost';
-import { StorageV1SecretRef } from '../models/storageV1SecretRef';
-import { StorageV1UserOrTeam } from '../models/storageV1UserOrTeam';
+import { StorageV1Access } from '../models/storageV1Access.js';
+import { StorageV1Metrics } from '../models/storageV1Metrics.js';
+import { StorageV1OpenCost } from '../models/storageV1OpenCost.js';
+import { StorageV1SecretRef } from '../models/storageV1SecretRef.js';
+import { StorageV1UserOrTeam } from '../models/storageV1UserOrTeam.js';
 
 
 /**

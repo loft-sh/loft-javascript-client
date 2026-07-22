@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1ClusterSpec } from '../models/managementV1ClusterSpec';
-import { ManagementV1ClusterStatus } from '../models/managementV1ClusterStatus';
-import { V1ObjectMeta } from '../models/V1ObjectMeta';
+import { ManagementV1ClusterSpec } from '../models/managementV1ClusterSpec.js';
+import { ManagementV1ClusterStatus } from '../models/managementV1ClusterStatus.js';
+import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
 
 
 /**

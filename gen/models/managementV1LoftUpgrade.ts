@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1LoftUpgradeSpec } from '../models/managementV1LoftUpgradeSpec';
-import { V1ObjectMeta } from '../models/V1ObjectMeta';
+import { ManagementV1LoftUpgradeSpec } from '../models/managementV1LoftUpgradeSpec.js';
+import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
 
 
 /**

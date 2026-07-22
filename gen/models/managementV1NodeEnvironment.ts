@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1NodeEnvironmentSpec } from '../models/managementV1NodeEnvironmentSpec';
-import { ManagementV1NodeEnvironmentStatus } from '../models/managementV1NodeEnvironmentStatus';
-import { V1ObjectMeta } from '../models/V1ObjectMeta';
+import { ManagementV1NodeEnvironmentSpec } from '../models/managementV1NodeEnvironmentSpec.js';
+import { ManagementV1NodeEnvironmentStatus } from '../models/managementV1NodeEnvironmentStatus.js';
+import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
 
 
 /**

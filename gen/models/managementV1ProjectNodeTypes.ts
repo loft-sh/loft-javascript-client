@@ -10,9 +10,10 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1NodeProvider } from '../models/storageV1NodeProvider';
-import { StorageV1NodeType } from '../models/storageV1NodeType';
-import { V1ObjectMeta } from '../models/V1ObjectMeta';
+import { StorageV1NodeProvider } from '../models/storageV1NodeProvider.js';
+import { StorageV1NodeType } from '../models/storageV1NodeType.js';
+import { StorageV1OSImage } from '../models/storageV1OSImage.js';
+import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
 
 
 export class ManagementV1ProjectNodeTypes {
@@ -33,6 +34,10 @@ export class ManagementV1ProjectNodeTypes {
     * NodeTypes holds all the allowed node types for the project
     */
     'nodeTypes'?: Array<StorageV1NodeType>;
+    /**
+    * OSImages holds all the allowed OS images for the project
+    */
+    'osImages'?: Array<StorageV1OSImage>;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -65,6 +70,12 @@ export class ManagementV1ProjectNodeTypes {
             "name": "nodeTypes",
             "baseName": "nodeTypes",
             "type": "Array<StorageV1NodeType>",
+            "format": ""
+        },
+        {
+            "name": "osImages",
+            "baseName": "osImages",
+            "type": "Array<StorageV1OSImage>",
             "format": ""
         }    ];
 

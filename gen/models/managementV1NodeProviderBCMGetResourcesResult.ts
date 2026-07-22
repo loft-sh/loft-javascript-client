@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1NodeProviderBCMNodeGroup } from '../models/managementV1NodeProviderBCMNodeGroup';
-import { ManagementV1NodeProviderBCMNodeWithResources } from '../models/managementV1NodeProviderBCMNodeWithResources';
+import { ManagementV1NodeProviderBCMNodeGroup } from '../models/managementV1NodeProviderBCMNodeGroup.js';
+import { ManagementV1NodeProviderBCMNodeWithResources } from '../models/managementV1NodeProviderBCMNodeWithResources.js';
 
 
 export class ManagementV1NodeProviderBCMGetResourcesResult {

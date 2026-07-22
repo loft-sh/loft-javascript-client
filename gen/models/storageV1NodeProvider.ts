@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1NodeProviderSpec } from '../models/storageV1NodeProviderSpec';
-import { StorageV1NodeProviderStatus } from '../models/storageV1NodeProviderStatus';
-import { V1ObjectMeta } from '../models/V1ObjectMeta';
+import { StorageV1NodeProviderSpec } from '../models/storageV1NodeProviderSpec.js';
+import { StorageV1NodeProviderStatus } from '../models/storageV1NodeProviderStatus.js';
+import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
 
 
 /**

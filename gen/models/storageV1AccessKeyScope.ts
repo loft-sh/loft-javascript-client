@@ -10,12 +10,12 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1AccessKeyScopeCluster } from '../models/storageV1AccessKeyScopeCluster';
-import { StorageV1AccessKeyScopeProject } from '../models/storageV1AccessKeyScopeProject';
-import { StorageV1AccessKeyScopeRole } from '../models/storageV1AccessKeyScopeRole';
-import { StorageV1AccessKeyScopeRule } from '../models/storageV1AccessKeyScopeRule';
-import { StorageV1AccessKeyScopeSpace } from '../models/storageV1AccessKeyScopeSpace';
-import { StorageV1AccessKeyScopeVirtualCluster } from '../models/storageV1AccessKeyScopeVirtualCluster';
+import { StorageV1AccessKeyScopeCluster } from '../models/storageV1AccessKeyScopeCluster.js';
+import { StorageV1AccessKeyScopeProject } from '../models/storageV1AccessKeyScopeProject.js';
+import { StorageV1AccessKeyScopeRole } from '../models/storageV1AccessKeyScopeRole.js';
+import { StorageV1AccessKeyScopeRule } from '../models/storageV1AccessKeyScopeRule.js';
+import { StorageV1AccessKeyScopeSpace } from '../models/storageV1AccessKeyScopeSpace.js';
+import { StorageV1AccessKeyScopeVirtualCluster } from '../models/storageV1AccessKeyScopeVirtualCluster.js';
 
 
 export class StorageV1AccessKeyScope {

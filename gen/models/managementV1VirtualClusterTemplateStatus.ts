@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1EntityInfo } from '../models/storageV1EntityInfo';
+import { StorageV1EntityInfo } from '../models/storageV1EntityInfo.js';
 
 
 /**

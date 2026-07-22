@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1AssignedVia } from '../models/managementV1AssignedVia';
-import { ManagementV1ObjectName } from '../models/managementV1ObjectName';
+import { ManagementV1AssignedVia } from '../models/managementV1AssignedVia.js';
+import { ManagementV1ObjectName } from '../models/managementV1ObjectName.js';
 
 
 export class ManagementV1ClusterAccessRole {

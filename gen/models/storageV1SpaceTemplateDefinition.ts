@@ -10,11 +10,11 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1AppReference } from '../models/storageV1AppReference';
-import { StorageV1InstanceAccess } from '../models/storageV1InstanceAccess';
-import { StorageV1SpaceInstanceTemplateDefinition } from '../models/storageV1SpaceInstanceTemplateDefinition';
-import { StorageV1TemplateHelmChart } from '../models/storageV1TemplateHelmChart';
-import { StorageV1TemplateMetadata } from '../models/storageV1TemplateMetadata';
+import { StorageV1AppReference } from '../models/storageV1AppReference.js';
+import { StorageV1InstanceAccess } from '../models/storageV1InstanceAccess.js';
+import { StorageV1SpaceInstanceTemplateDefinition } from '../models/storageV1SpaceInstanceTemplateDefinition.js';
+import { StorageV1TemplateHelmChart } from '../models/storageV1TemplateHelmChart.js';
+import { StorageV1TemplateMetadata } from '../models/storageV1TemplateMetadata.js';
 
 
 export class StorageV1SpaceTemplateDefinition {

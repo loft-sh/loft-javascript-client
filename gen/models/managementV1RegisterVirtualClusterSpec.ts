@@ -41,6 +41,10 @@ export class ManagementV1RegisterVirtualClusterSpec {
     */
     'serviceUID'?: string;
     /**
+    * Standalone specifies if the vCluster is standalone
+    */
+    'standalone'?: boolean;
+    /**
     * Values specifies the vCluster config.
     */
     'values'?: string;
@@ -86,6 +90,12 @@ export class ManagementV1RegisterVirtualClusterSpec {
             "name": "serviceUID",
             "baseName": "serviceUID",
             "type": "string",
+            "format": ""
+        },
+        {
+            "name": "standalone",
+            "baseName": "standalone",
+            "type": "boolean",
             "format": ""
         },
         {

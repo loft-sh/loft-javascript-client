@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1UserProfileSecret } from '../models/managementV1UserProfileSecret';
-import { V1ObjectMeta } from '../models/V1ObjectMeta';
+import { ManagementV1UserProfileSecret } from '../models/managementV1UserProfileSecret.js';
+import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
 
 
 export class ManagementV1UserProfile {

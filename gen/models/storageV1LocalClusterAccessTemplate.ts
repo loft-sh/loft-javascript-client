@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1LocalClusterAccessSpec } from '../models/storageV1LocalClusterAccessSpec';
-import { V1ObjectMeta } from '../models/V1ObjectMeta';
+import { StorageV1LocalClusterAccessSpec } from '../models/storageV1LocalClusterAccessSpec.js';
+import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
 
 
 export class StorageV1LocalClusterAccessTemplate {

@@ -10,13 +10,13 @@
  * Do not edit the class manually.
  */
 
-import { ClusterV1HelmReleaseConfig } from '../models/clusterV1HelmReleaseConfig';
-import { StorageV1Access } from '../models/storageV1Access';
-import { StorageV1AppParameter } from '../models/storageV1AppParameter';
-import { StorageV1AppVersion } from '../models/storageV1AppVersion';
-import { StorageV1HelmConfiguration } from '../models/storageV1HelmConfiguration';
-import { StorageV1StreamContainer } from '../models/storageV1StreamContainer';
-import { StorageV1UserOrTeam } from '../models/storageV1UserOrTeam';
+import { ClusterV1HelmReleaseConfig } from '../models/clusterV1HelmReleaseConfig.js';
+import { StorageV1Access } from '../models/storageV1Access.js';
+import { StorageV1AppParameter } from '../models/storageV1AppParameter.js';
+import { StorageV1AppVersion } from '../models/storageV1AppVersion.js';
+import { StorageV1HelmConfiguration } from '../models/storageV1HelmConfiguration.js';
+import { StorageV1StreamContainer } from '../models/storageV1StreamContainer.js';
+import { StorageV1UserOrTeam } from '../models/storageV1UserOrTeam.js';
 
 
 /**

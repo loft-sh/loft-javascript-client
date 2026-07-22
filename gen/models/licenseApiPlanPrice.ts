@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { LicenseApiPlanExpiration } from '../models/licenseApiPlanExpiration';
-import { LicenseApiPriceTier } from '../models/licenseApiPriceTier';
-import { LicenseApiTierResource } from '../models/licenseApiTierResource';
+import { LicenseApiPlanExpiration } from '../models/licenseApiPlanExpiration.js';
+import { LicenseApiPriceTier } from '../models/licenseApiPriceTier.js';
+import { LicenseApiTierResource } from '../models/licenseApiTierResource.js';
 
 
 /**

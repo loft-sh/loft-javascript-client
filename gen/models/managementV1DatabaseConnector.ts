@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1DatabaseConnectorSpec } from '../models/managementV1DatabaseConnectorSpec';
-import { V1ObjectMeta } from '../models/V1ObjectMeta';
+import { ManagementV1DatabaseConnectorSpec } from '../models/managementV1DatabaseConnectorSpec.js';
+import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
 
 
 /**

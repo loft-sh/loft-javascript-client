@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1PolicyRule } from '../models/V1PolicyRule';
+import { V1PolicyRule } from '../models/V1PolicyRule.js';
 
 
 export class ManagementV1UserPermissionsRole {

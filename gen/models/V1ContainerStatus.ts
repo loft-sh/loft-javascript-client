@@ -10,11 +10,11 @@
  * Do not edit the class manually.
  */
 
-import { V1ContainerState } from '../models/V1ContainerState';
-import { V1ContainerUser } from '../models/V1ContainerUser';
-import { V1ResourceRequirements } from '../models/V1ResourceRequirements';
-import { V1ResourceStatus } from '../models/V1ResourceStatus';
-import { V1VolumeMountStatus } from '../models/V1VolumeMountStatus';
+import { V1ContainerState } from '../models/V1ContainerState.js';
+import { V1ContainerUser } from '../models/V1ContainerUser.js';
+import { V1ResourceRequirements } from '../models/V1ResourceRequirements.js';
+import { V1ResourceStatus } from '../models/V1ResourceStatus.js';
+import { V1VolumeMountStatus } from '../models/V1VolumeMountStatus.js';
 
 
 /**

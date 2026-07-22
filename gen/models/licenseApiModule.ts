@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { LicenseApiFeature } from '../models/licenseApiFeature';
-import { LicenseApiLimit } from '../models/licenseApiLimit';
+import { LicenseApiFeature } from '../models/licenseApiFeature.js';
+import { LicenseApiLimit } from '../models/licenseApiLimit.js';
 
 
 /**

@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1SnapshotRequestMetadata } from '../models/managementV1SnapshotRequestMetadata';
-import { ManagementV1SnapshotRequestStatus } from '../models/managementV1SnapshotRequestStatus';
+import { ManagementV1SnapshotRequestMetadata } from '../models/managementV1SnapshotRequestMetadata.js';
+import { ManagementV1SnapshotRequestStatus } from '../models/managementV1SnapshotRequestStatus.js';
 
 
 /**

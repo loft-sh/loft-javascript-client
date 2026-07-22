@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1AuthenticationGithubOrg } from '../models/managementV1AuthenticationGithubOrg';
+import { ManagementV1AuthenticationGithubOrg } from '../models/managementV1AuthenticationGithubOrg.js';
 
 
 export class ManagementV1AuthenticationGithub {

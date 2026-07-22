@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1Storage } from '../models/storageV1Storage';
-import { V1ResourceRequirements } from '../models/V1ResourceRequirements';
+import { StorageV1Storage } from '../models/storageV1Storage.js';
+import { V1ResourceRequirements } from '../models/V1ResourceRequirements.js';
 
 
 export class StorageV1Metrics {

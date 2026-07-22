@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1Cluster } from '../models/storageV1Cluster';
+import { StorageV1Cluster } from '../models/storageV1Cluster.js';
 
 
 export class ManagementV1ClusterAccounts {

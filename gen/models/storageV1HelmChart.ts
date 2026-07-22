@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { ClusterV1Metadata } from '../models/clusterV1Metadata';
-import { StorageV1HelmChartRepository } from '../models/storageV1HelmChartRepository';
+import { ClusterV1Metadata } from '../models/clusterV1Metadata.js';
+import { StorageV1HelmChartRepository } from '../models/storageV1HelmChartRepository.js';
 
 
 export class StorageV1HelmChart {
