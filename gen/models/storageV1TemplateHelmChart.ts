@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1ChartSecretRef } from '../models/storageV1ChartSecretRef.js';
+import { ClusterV1ChartSecretRef } from '../models/clusterV1ChartSecretRef.js';
 
 
 export class StorageV1TemplateHelmChart {
@@ -26,7 +26,7 @@ export class StorageV1TemplateHelmChart {
     * The password that is required for this repository
     */
     'password'?: string;
-    'passwordRef'?: StorageV1ChartSecretRef;
+    'passwordRef'?: ClusterV1ChartSecretRef;
     /**
     * ReleaseName is the preferred release name of the app
     */
@@ -47,7 +47,7 @@ export class StorageV1TemplateHelmChart {
     * The username that is required for this repository
     */
     'username'?: string;
-    'usernameRef'?: StorageV1ChartSecretRef;
+    'usernameRef'?: ClusterV1ChartSecretRef;
     /**
     * Values are the values that should get passed to the chart
     */
@@ -85,7 +85,7 @@ export class StorageV1TemplateHelmChart {
         {
             "name": "passwordRef",
             "baseName": "passwordRef",
-            "type": "StorageV1ChartSecretRef",
+            "type": "ClusterV1ChartSecretRef",
             "format": ""
         },
         {
@@ -121,7 +121,7 @@ export class StorageV1TemplateHelmChart {
         {
             "name": "usernameRef",
             "baseName": "usernameRef",
-            "type": "StorageV1ChartSecretRef",
+            "type": "ClusterV1ChartSecretRef",
             "format": ""
         },
         {
