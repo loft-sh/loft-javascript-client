@@ -10,36 +10,44 @@
  * Do not edit the class manually.
  */
 
+import { StorageV1AppReference } from '../models/storageV1AppReference.js';
 
 
-export class StorageV1AppInstanceDestinationCluster {
+export class StorageV1AppTask {
+    'appReference'?: StorageV1AppReference;
     /**
-    * Name of the connected cluster
+    * RollbackRevision is the revision to rollback to
     */
-    'name'?: string;
+    'rollbackRevision'?: string;
     /**
-    * Namespace in the cluster the helm release is deployed into. If empty, defaults to the app\'s default namespace.
+    * Type is the task type. Defaults to Upgrade
     */
-    'namespace'?: string;
+    'type'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "name",
-            "baseName": "name",
+            "name": "appReference",
+            "baseName": "appReference",
+            "type": "StorageV1AppReference",
+            "format": ""
+        },
+        {
+            "name": "rollbackRevision",
+            "baseName": "rollbackRevision",
             "type": "string",
             "format": ""
         },
         {
-            "name": "namespace",
-            "baseName": "namespace",
+            "name": "type",
+            "baseName": "type",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1AppInstanceDestinationCluster.attributeTypeMap;
+        return StorageV1AppTask.attributeTypeMap;
     }
 
     public constructor() {

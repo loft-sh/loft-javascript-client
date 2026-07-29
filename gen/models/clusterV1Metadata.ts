@@ -10,13 +10,13 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1Maintainer } from '../models/storageV1Maintainer.js';
+import { ClusterV1Maintainer } from '../models/clusterV1Maintainer.js';
 
 
 /**
 * Metadata for a Chart file. This models the structure of a Chart.yaml file.
 */
-export class StorageV1Metadata {
+export class ClusterV1Metadata {
     /**
     * Annotations are additional mappings uninterpreted by Helm, made available for inspection by other applications.
     */
@@ -60,7 +60,7 @@ export class StorageV1Metadata {
     /**
     * A list of name and URL/email address combinations for the maintainer(s)
     */
-    'maintainers'?: Array<StorageV1Maintainer>;
+    'maintainers'?: Array<ClusterV1Maintainer>;
     /**
     * The name of the chart
     */
@@ -152,7 +152,7 @@ export class StorageV1Metadata {
         {
             "name": "maintainers",
             "baseName": "maintainers",
-            "type": "Array<StorageV1Maintainer>",
+            "type": "Array<ClusterV1Maintainer>",
             "format": ""
         },
         {
@@ -193,7 +193,7 @@ export class StorageV1Metadata {
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1Metadata.attributeTypeMap;
+        return ClusterV1Metadata.attributeTypeMap;
     }
 
     public constructor() {

@@ -10,13 +10,13 @@
  * Do not edit the class manually.
  */
 
+import { ClusterV1HelmReleaseConfig } from '../models/clusterV1HelmReleaseConfig.js';
 import { StorageV1AppParameter } from '../models/storageV1AppParameter.js';
-import { StorageV1HelmReleaseConfig } from '../models/storageV1HelmReleaseConfig.js';
 import { StorageV1StreamContainer } from '../models/storageV1StreamContainer.js';
 
 
 export class StorageV1AppVersion {
-    'config'?: StorageV1HelmReleaseConfig;
+    'config'?: ClusterV1HelmReleaseConfig;
     /**
     * DefaultNamespace is the default namespace this app should installed in.
     */
@@ -53,7 +53,7 @@ export class StorageV1AppVersion {
         {
             "name": "config",
             "baseName": "config",
-            "type": "StorageV1HelmReleaseConfig",
+            "type": "ClusterV1HelmReleaseConfig",
             "format": ""
         },
         {

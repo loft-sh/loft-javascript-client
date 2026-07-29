@@ -10,21 +10,28 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1NodeProfile } from '../models/managementV1NodeProfile.js';
-import { V1ListMeta } from '../models/V1ListMeta.js';
+import { StorageV1HelmChart } from '../models/storageV1HelmChart.js';
+import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
 
 
-export class ManagementV1NodeProfileList {
+export class ManagementV1ClusterCharts {
     /**
     * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
     */
     'apiVersion'?: string;
-    'items': Array<ManagementV1NodeProfile>;
+    /**
+    * Busy will indicate if the chart parsing is still in progress.
+    */
+    'busy'?: boolean;
+    /**
+    * Holds the available helm charts for this cluster
+    */
+    'charts': Array<StorageV1HelmChart>;
     /**
     * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
     */
     'kind'?: string;
-    'metadata'?: V1ListMeta;
+    'metadata'?: V1ObjectMeta;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -36,9 +43,15 @@ export class ManagementV1NodeProfileList {
             "format": ""
         },
         {
-            "name": "items",
-            "baseName": "items",
-            "type": "Array<ManagementV1NodeProfile>",
+            "name": "busy",
+            "baseName": "busy",
+            "type": "boolean",
+            "format": ""
+        },
+        {
+            "name": "charts",
+            "baseName": "charts",
+            "type": "Array<StorageV1HelmChart>",
             "format": ""
         },
         {
@@ -50,12 +63,12 @@ export class ManagementV1NodeProfileList {
         {
             "name": "metadata",
             "baseName": "metadata",
-            "type": "V1ListMeta",
+            "type": "V1ObjectMeta",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1NodeProfileList.attributeTypeMap;
+        return ManagementV1ClusterCharts.attributeTypeMap;
     }
 
     public constructor() {
