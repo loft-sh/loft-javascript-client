@@ -14,7 +14,7 @@
 
 export class StorageV1VirtualClusterProSpec {
     /**
-    * Enabled defines if the tenant cluster is a pro cluster or not
+    * Enabled defines if the virtual cluster is a pro cluster or not
     */
     'enabled'?: boolean;
 
