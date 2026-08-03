@@ -18,7 +18,7 @@ export class ManagementV1VirtualClusterResourceUsageMap {
     */
     'capacity'?: { [key: string]: number; };
     /**
-    * Nodes is the total count of nodes attached to the tenant cluster.
+    * Nodes is the total count of nodes attached to the virtual cluster.
     */
     'nodes': number;
 

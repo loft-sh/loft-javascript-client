@@ -36,7 +36,7 @@ export class ManagementV1ClusterAgentConfig {
     'cluster'?: string;
     'costControl'?: ManagementV1AgentCostControlConfig;
     /**
-    * DefaultImageRegistry is the image registry for control plane internal images.
+    * DefaultImageRegistry defines if we should prefix the virtual cluster image
     */
     'defaultImageRegistry'?: string;
     /**
