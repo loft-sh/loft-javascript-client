@@ -10,44 +10,49 @@
  * Do not edit the class manually.
  */
 
-import { ClusterV1Metadata } from '../models/clusterV1Metadata.js';
 
 
-export class ManagementV1ProjectChartInfoStatus {
-    'metadata'?: ClusterV1Metadata;
+/**
+* Maintainer describes a Chart maintainer.
+*/
+export class ClusterV1Maintainer {
     /**
-    * Readme is the readme of the chart
+    * Email is an optional email address to contact the named maintainer
     */
-    'readme'?: string;
+    'email'?: string;
     /**
-    * Values are the default values of the chart
+    * Name is a user name or organization name
     */
-    'values'?: string;
+    'name'?: string;
+    /**
+    * URL is an optional URL to an address for the named maintainer
+    */
+    'url'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "metadata",
-            "baseName": "metadata",
-            "type": "ClusterV1Metadata",
-            "format": ""
-        },
-        {
-            "name": "readme",
-            "baseName": "readme",
+            "name": "email",
+            "baseName": "email",
             "type": "string",
             "format": ""
         },
         {
-            "name": "values",
-            "baseName": "values",
+            "name": "name",
+            "baseName": "name",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "url",
+            "baseName": "url",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1ProjectChartInfoStatus.attributeTypeMap;
+        return ClusterV1Maintainer.attributeTypeMap;
     }
 
     public constructor() {

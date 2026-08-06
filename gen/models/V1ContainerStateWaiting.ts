@@ -12,24 +12,37 @@
 
 
 
-export class StorageV1AppInstanceDestinationSpace {
+/**
+* ContainerStateWaiting is a waiting state of a container.
+*/
+export class V1ContainerStateWaiting {
     /**
-    * Name of the space instance within the project. The helm release is deployed into the namespace of the space.
+    * Message regarding why the container is not yet running.
     */
-    'name'?: string;
+    'message'?: string;
+    /**
+    * (brief) reason the container is not yet running.
+    */
+    'reason'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "name",
-            "baseName": "name",
+            "name": "message",
+            "baseName": "message",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "reason",
+            "baseName": "reason",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1AppInstanceDestinationSpace.attributeTypeMap;
+        return V1ContainerStateWaiting.attributeTypeMap;
     }
 
     public constructor() {

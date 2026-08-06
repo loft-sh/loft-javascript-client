@@ -10,23 +10,27 @@
  * Do not edit the class manually.
  */
 
+import { ClusterV1Info } from '../models/clusterV1Info.js';
 import { ClusterV1Metadata } from '../models/clusterV1Metadata.js';
 
 
-export class ManagementV1ProjectChartInfoStatus {
+export class ClusterV1HelmReleaseStatus {
+    'info'?: ClusterV1Info;
     'metadata'?: ClusterV1Metadata;
     /**
-    * Readme is the readme of the chart
+    * Revision is an int which represents the revision of the release.
     */
-    'readme'?: string;
-    /**
-    * Values are the default values of the chart
-    */
-    'values'?: string;
+    'version'?: number;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+        {
+            "name": "info",
+            "baseName": "info",
+            "type": "ClusterV1Info",
+            "format": ""
+        },
         {
             "name": "metadata",
             "baseName": "metadata",
@@ -34,20 +38,14 @@ export class ManagementV1ProjectChartInfoStatus {
             "format": ""
         },
         {
-            "name": "readme",
-            "baseName": "readme",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "values",
-            "baseName": "values",
-            "type": "string",
-            "format": ""
+            "name": "version",
+            "baseName": "version",
+            "type": "number",
+            "format": "int32"
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1ProjectChartInfoStatus.attributeTypeMap;
+        return ClusterV1HelmReleaseStatus.attributeTypeMap;
     }
 
     public constructor() {

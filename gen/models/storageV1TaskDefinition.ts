@@ -10,24 +10,32 @@
  * Do not edit the class manually.
  */
 
-import { ClusterV1Chart } from '../models/clusterV1Chart.js';
+import { StorageV1AppTask } from '../models/storageV1AppTask.js';
+import { StorageV1HelmTask } from '../models/storageV1HelmTask.js';
 
 
-export class ManagementV1ProjectChartInfoSpec {
-    'chart'?: ClusterV1Chart;
+export class StorageV1TaskDefinition {
+    'appTask'?: StorageV1AppTask;
+    'helm'?: StorageV1HelmTask;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "chart",
-            "baseName": "chart",
-            "type": "ClusterV1Chart",
+            "name": "appTask",
+            "baseName": "appTask",
+            "type": "StorageV1AppTask",
+            "format": ""
+        },
+        {
+            "name": "helm",
+            "baseName": "helm",
+            "type": "StorageV1HelmTask",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1ProjectChartInfoSpec.attributeTypeMap;
+        return StorageV1TaskDefinition.attributeTypeMap;
     }
 
     public constructor() {
