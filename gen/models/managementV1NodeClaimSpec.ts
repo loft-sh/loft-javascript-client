@@ -48,10 +48,6 @@ export class ManagementV1NodeClaimSpec {
     'owner'?: StorageV1UserOrTeam;
     'power'?: StorageV1NodeClaimPower;
     /**
-    * ProfileRef is the name of a NodeProfile in the catalog to apply to the resulting node. The referenced profile must exist and must be permitted by the owning project\'s allowedNodeProfiles. Optional.
-    */
-    'profileRef'?: string;
-    /**
     * Properties are extra properties for the NodeClaim.
     */
     'properties'?: { [key: string]: string; };
@@ -129,12 +125,6 @@ export class ManagementV1NodeClaimSpec {
             "name": "power",
             "baseName": "power",
             "type": "StorageV1NodeClaimPower",
-            "format": ""
-        },
-        {
-            "name": "profileRef",
-            "baseName": "profileRef",
-            "type": "string",
             "format": ""
         },
         {

@@ -113,14 +113,11 @@ export type RequestVerb =
 
 export const ManagementBasePath = "/kubernetes/management"
 export const ClusterBasePath = "/kubernetes/cluster/"
+export const VClusterBasePath = "/kubernetes/virtualcluster/"
 export const ProjectBasePath = "/kubernetes/project/"
 
 export const getProjectNamespace = (name?: string, prefix?: string): string =>
   !name ? "p-" : prefix ? `${prefix}${name}` : `p-${name}`
-
-function vClusterToProject(vCluster: RequestOptionsVCluster): RequestOptionsProject {
-  return { project: vCluster.project, virtualCluster: vCluster.name }
-}
 
 export function getProjectFromNamespace(
   namespace: string | undefined,
@@ -573,6 +570,29 @@ class Client {
     })
   }
 
+  public vCluster<T>(
+    vCluster: RequestOptionsVCluster,
+    groupVersionResource: GroupVersionResource<T>
+  ) {
+    // TODO: This is formatting the URL wrong! We need to fix this by using project path. (ENGUI-594)
+    return new Request<T>(this, {
+      basePath:
+        VClusterBasePath + vCluster.cluster + "/" + vCluster.namespace + "/" + vCluster.name,
+      groupVersionResource,
+      vCluster,
+      headers: this.impersonationHeaders(),
+    })
+  }
+
+  public vClusterNonResource<T>(vCluster: RequestOptionsVCluster) {
+    return new Request<T>(this, {
+      basePath:
+        VClusterBasePath + vCluster.cluster + "/" + vCluster.namespace + "/" + vCluster.name,
+      vCluster,
+      headers: this.impersonationHeaders(),
+    })
+  }
+
   public auto<T>(
     cluster: string | undefined,
     vCluster: RequestOptionsVCluster | undefined,
@@ -582,7 +602,7 @@ class Client {
     return project
       ? this.project(project, groupVersionResource)
       : vCluster
-        ? this.project(vClusterToProject(vCluster), groupVersionResource)
+        ? this.vCluster(vCluster, groupVersionResource)
         : cluster
           ? this.cluster(cluster!, groupVersionResource)
           : this.management(groupVersionResource)
@@ -596,7 +616,7 @@ class Client {
     return project
       ? this.projectNonResource(project)
       : vCluster
-        ? this.projectNonResource(vClusterToProject(vCluster))
+        ? this.vClusterNonResource(vCluster)
         : cluster
           ? this.clusterNonResource(cluster!)
           : this.managementNonResource()
@@ -987,15 +1007,13 @@ class Request<T> {
     return await this.client.doRawStream(requestPath, undefined, this.options.headers)
   }
 
-  public async AppInstanceLogs(
-    namespace: string,
-    appInstance: string,
+  public async TaskLogs(
+    task: string,
     options?: LogOptions
   ): Promise<Result<ReadableStreamDefaultReader<Uint8Array>>> {
-    let requestPath = [
-      this.options.basePath,
-      `apis/management.loft.sh/v1/namespaces/${namespace}/appinstances/${appInstance}/log`,
-    ].join("/")
+    let requestPath = [this.options.basePath, `apis/management.loft.sh/v1/tasks/${task}/log`].join(
+      "/"
+    )
 
     const parameters: string[] = []
     if (options) {
@@ -1109,7 +1127,7 @@ class Request<T> {
     )
   }
 
-  public async List(options?: ListOptions, signal?: AbortSignal): Promise<Result<List<T>>> {
+  public async List(options?: ListOptions): Promise<Result<List<T>>> {
     if (this.options.name) {
       return Return.Failed("name is set on a list request")
     }
@@ -1122,7 +1140,7 @@ class Request<T> {
     return Return.WithExtra(
       await this.client.doRaw<List<T>>(
         path.val,
-        { signal },
+        undefined,
         this.options.headers,
         this.options.allowSpecificErrors
       ),
@@ -1130,10 +1148,7 @@ class Request<T> {
     )
   }
 
-  public async ListTable(
-    options?: ListOptions,
-    signal?: AbortSignal
-  ): Promise<Result<V1Table | List<T>>> {
+  public async ListTable(options?: ListOptions): Promise<Result<V1Table | List<T>>> {
     if (this.options.name) {
       return Return.Failed("name is set on a list request")
     }
@@ -1146,7 +1161,7 @@ class Request<T> {
     return Return.WithExtra(
       await this.client.doRaw<List<T>>(
         path.val,
-        { signal },
+        undefined,
         {
           ...this.options.headers,
           Accept:
@@ -1276,10 +1291,7 @@ class Request<T> {
       request = this.client.project(this.options.project, Resources.V1SelfSubjectAccessReview)
       selfSubjectAccessReview = NewResource(Resources.V1SelfSubjectAccessReview)
     } else if (this.options.vCluster) {
-      request = this.client.project(
-        vClusterToProject(this.options.vCluster),
-        Resources.V1SelfSubjectAccessReview
-      )
+      request = this.client.vCluster(this.options.vCluster, Resources.V1SelfSubjectAccessReview)
       selfSubjectAccessReview = NewResource(Resources.V1SelfSubjectAccessReview)
     } else if (cluster) {
       request = this.client.cluster(cluster, Resources.V1SelfSubjectAccessReview)
