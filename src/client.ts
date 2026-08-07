@@ -987,15 +987,13 @@ class Request<T> {
     return await this.client.doRawStream(requestPath, undefined, this.options.headers)
   }
 
-  public async AppInstanceLogs(
-    namespace: string,
-    appInstance: string,
+  public async TaskLogs(
+    task: string,
     options?: LogOptions
   ): Promise<Result<ReadableStreamDefaultReader<Uint8Array>>> {
-    let requestPath = [
-      this.options.basePath,
-      `apis/management.loft.sh/v1/namespaces/${namespace}/appinstances/${appInstance}/log`,
-    ].join("/")
+    let requestPath = [this.options.basePath, `apis/management.loft.sh/v1/tasks/${task}/log`].join(
+      "/"
+    )
 
     const parameters: string[] = []
     if (options) {

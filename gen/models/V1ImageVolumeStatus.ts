@@ -10,24 +10,29 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1NamespacedRef } from '../models/storageV1NamespacedRef.js';
 
 
-export class StorageV1NodeProviderMetal3Netris {
-    'secretRef': StorageV1NamespacedRef;
+/**
+* ImageVolumeStatus represents the image-based volume status.
+*/
+export class V1ImageVolumeStatus {
+    /**
+    * ImageRef is the digest of the image used for this volume. It should have a value that\'s similar to the pod\'s status.containerStatuses[i].imageID. The ImageRef length should not exceed 256 characters.
+    */
+    'imageRef': string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "secretRef",
-            "baseName": "secretRef",
-            "type": "StorageV1NamespacedRef",
+            "name": "imageRef",
+            "baseName": "imageRef",
+            "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1NodeProviderMetal3Netris.attributeTypeMap;
+        return V1ImageVolumeStatus.attributeTypeMap;
     }
 
     public constructor() {

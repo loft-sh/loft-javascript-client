@@ -13,7 +13,7 @@
 import { ClusterV1Chart } from '../models/clusterV1Chart.js';
 
 
-export class ManagementV1ProjectChartInfoSpec {
+export class ClusterV1ChartInfoSpec {
     'chart'?: ClusterV1Chart;
 
     static readonly discriminator: string | undefined = undefined;
@@ -27,7 +27,7 @@ export class ManagementV1ProjectChartInfoSpec {
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1ProjectChartInfoSpec.attributeTypeMap;
+        return ClusterV1ChartInfoSpec.attributeTypeMap;
     }
 
     public constructor() {

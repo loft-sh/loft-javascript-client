@@ -10,36 +10,44 @@
  * Do not edit the class manually.
  */
 
+import { ClusterV1Metadata } from '../models/clusterV1Metadata.js';
 
 
-export class StorageV1AppInstanceTemplateRef {
+export class ClusterV1ChartInfoStatus {
+    'metadata'?: ClusterV1Metadata;
     /**
-    * Name holds the name of the app to reference.
+    * Readme is the readme of the chart
     */
-    'name'?: string;
+    'readme'?: string;
     /**
-    * Version of the app to deploy. If empty, the latest version is deployed.
+    * Values are the default values of the chart
     */
-    'version'?: string;
+    'values'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "name",
-            "baseName": "name",
+            "name": "metadata",
+            "baseName": "metadata",
+            "type": "ClusterV1Metadata",
+            "format": ""
+        },
+        {
+            "name": "readme",
+            "baseName": "readme",
             "type": "string",
             "format": ""
         },
         {
-            "name": "version",
-            "baseName": "version",
+            "name": "values",
+            "baseName": "values",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1AppInstanceTemplateRef.attributeTypeMap;
+        return ClusterV1ChartInfoStatus.attributeTypeMap;
     }
 
     public constructor() {

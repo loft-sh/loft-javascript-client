@@ -10,24 +10,29 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1ProjectSecretRef } from '../models/storageV1ProjectSecretRef.js';
 
 
-export class StorageV1ChartSecretRef {
-    'projectSecretRef'?: StorageV1ProjectSecretRef;
+/**
+* ContainerStateRunning is a running state of a container.
+*/
+export class V1ContainerStateRunning {
+    /**
+    * Time at which the container was last (re-)started
+    */
+    'startedAt'?: Date;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "projectSecretRef",
-            "baseName": "projectSecretRef",
-            "type": "StorageV1ProjectSecretRef",
-            "format": ""
+            "name": "startedAt",
+            "baseName": "startedAt",
+            "type": "Date",
+            "format": "date-time"
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1ChartSecretRef.attributeTypeMap;
+        return V1ContainerStateRunning.attributeTypeMap;
     }
 
     public constructor() {
