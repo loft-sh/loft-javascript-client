@@ -68,7 +68,6 @@ import {ManagementV1TeamClusters} from "./models/managementV1TeamClusters"
 import {ManagementV1TeamObjectPermissions} from "./models/managementV1TeamObjectPermissions"
 import {ManagementV1TeamPermissions} from "./models/managementV1TeamPermissions"
 import {ManagementV1Team} from "./models/managementV1Team"
-import {ManagementV1Tenant} from "./models/managementV1Tenant"
 import {ManagementV1TranslateVClusterResourceName} from "./models/managementV1TranslateVClusterResourceName"
 import {ManagementV1UsageDownload} from "./models/managementV1UsageDownload"
 import {ManagementV1UserAccessKeys} from "./models/managementV1UserAccessKeys"
@@ -162,7 +161,6 @@ export type TGenResources = {
   ManagementV1TeamClusters: GroupVersionResource<ManagementV1TeamClusters>
   ManagementV1TeamObjectPermissions: GroupVersionResource<ManagementV1TeamObjectPermissions>
   ManagementV1TeamPermissions: GroupVersionResource<ManagementV1TeamPermissions>
-  ManagementV1Tenant: GroupVersionResource<ManagementV1Tenant>
   ManagementV1TranslateVClusterResourceName: GroupVersionResource<ManagementV1TranslateVClusterResourceName>
   ManagementV1UsageDownload: GroupVersionResource<ManagementV1UsageDownload>
   ManagementV1User: GroupVersionResource<ManagementV1User>
@@ -732,14 +730,6 @@ export const GenResources: TGenResources = {
     subResource: "permissions",
     namespaced: false,
     kind: "TeamPermissions",
-  },
-  ManagementV1Tenant: {
-    group: "management.loft.sh",
-    version: "v1",
-    resource: "tenants",
-    subResource: "",
-    namespaced: false,
-    kind: "Tenant",
   },
   ManagementV1TranslateVClusterResourceName: {
     group: "management.loft.sh",
