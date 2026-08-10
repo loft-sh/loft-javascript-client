@@ -276,6 +276,10 @@ export interface DeleteOptions {
   propagationPolicy?: "Orphan" | "Background" | "Foreground"
 }
 
+export interface ClientRequestOptions {
+  skipImpersonation?: boolean
+}
+
 export interface RequestOptions<T> {
   name?: string
   namespace?: string
@@ -285,8 +289,9 @@ export interface RequestOptions<T> {
   basePath?: string
   groupVersionResource?: GroupVersionResource<T>
 
-  headers?: { [name: string]: string }
   allowSpecificErrors?: number[]
+  skipImpersonation?: boolean
+  additionalHeaders?: { [name: string]: string }
 }
 
 export interface RequestOptionsProject {

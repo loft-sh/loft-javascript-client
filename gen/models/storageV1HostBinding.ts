@@ -10,24 +10,29 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1NamespacedRef } from '../models/storageV1NamespacedRef.js';
 
 
-export class StorageV1NodeProviderMetal3Netris {
-    'secretRef': StorageV1NamespacedRef;
+/**
+* HostBinding binds a hostname to this Tenant for routing and SSO resolution.
+*/
+export class StorageV1HostBinding {
+    /**
+    * Hostname is the DNS name the platform will treat as belonging to this Tenant (e.g. acme.platform.example.com).
+    */
+    'hostname': string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "secretRef",
-            "baseName": "secretRef",
-            "type": "StorageV1NamespacedRef",
+            "name": "hostname",
+            "baseName": "hostname",
+            "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1NodeProviderMetal3Netris.attributeTypeMap;
+        return StorageV1HostBinding.attributeTypeMap;
     }
 
     public constructor() {
