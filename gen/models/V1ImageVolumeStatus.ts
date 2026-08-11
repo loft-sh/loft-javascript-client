@@ -10,24 +10,29 @@
  * Do not edit the class manually.
  */
 
-import { ClusterV1Chart } from '../models/clusterV1Chart.js';
 
 
-export class ManagementV1ProjectChartInfoSpec {
-    'chart'?: ClusterV1Chart;
+/**
+* ImageVolumeStatus represents the image-based volume status.
+*/
+export class V1ImageVolumeStatus {
+    /**
+    * ImageRef is the digest of the image used for this volume. It should have a value that\'s similar to the pod\'s status.containerStatuses[i].imageID. The ImageRef length should not exceed 256 characters.
+    */
+    'imageRef': string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "chart",
-            "baseName": "chart",
-            "type": "ClusterV1Chart",
+            "name": "imageRef",
+            "baseName": "imageRef",
+            "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1ProjectChartInfoSpec.attributeTypeMap;
+        return V1ImageVolumeStatus.attributeTypeMap;
     }
 
     public constructor() {

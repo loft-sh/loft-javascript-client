@@ -10,44 +10,44 @@
  * Do not edit the class manually.
  */
 
-import { ClusterV1Metadata } from '../models/clusterV1Metadata.js';
+import { StorageV1AppReference } from '../models/storageV1AppReference.js';
 
 
-export class ManagementV1ProjectChartInfoStatus {
-    'metadata'?: ClusterV1Metadata;
+export class StorageV1AppTask {
+    'appReference'?: StorageV1AppReference;
     /**
-    * Readme is the readme of the chart
+    * RollbackRevision is the revision to rollback to
     */
-    'readme'?: string;
+    'rollbackRevision'?: string;
     /**
-    * Values are the default values of the chart
+    * Type is the task type. Defaults to Upgrade
     */
-    'values'?: string;
+    'type'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "metadata",
-            "baseName": "metadata",
-            "type": "ClusterV1Metadata",
+            "name": "appReference",
+            "baseName": "appReference",
+            "type": "StorageV1AppReference",
             "format": ""
         },
         {
-            "name": "readme",
-            "baseName": "readme",
+            "name": "rollbackRevision",
+            "baseName": "rollbackRevision",
             "type": "string",
             "format": ""
         },
         {
-            "name": "values",
-            "baseName": "values",
+            "name": "type",
+            "baseName": "type",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1ProjectChartInfoStatus.attributeTypeMap;
+        return StorageV1AppTask.attributeTypeMap;
     }
 
     public constructor() {
