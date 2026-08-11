@@ -10,24 +10,24 @@
  * Do not edit the class manually.
  */
 
-import { ClusterV1Chart } from '../models/clusterV1Chart.js';
+import { ClusterV1ProjectSecretRef } from '../models/clusterV1ProjectSecretRef.js';
 
 
-export class ManagementV1ProjectChartInfoSpec {
-    'chart'?: ClusterV1Chart;
+export class ClusterV1ChartSecretRef {
+    'projectSecretRef'?: ClusterV1ProjectSecretRef;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "chart",
-            "baseName": "chart",
-            "type": "ClusterV1Chart",
+            "name": "projectSecretRef",
+            "baseName": "projectSecretRef",
+            "type": "ClusterV1ProjectSecretRef",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1ProjectChartInfoSpec.attributeTypeMap;
+        return ClusterV1ChartSecretRef.attributeTypeMap;
     }
 
     public constructor() {

@@ -11,18 +11,16 @@
  */
 
 import { ClusterV1Metadata } from '../models/clusterV1Metadata.js';
+import { StorageV1HelmChartRepository } from '../models/storageV1HelmChartRepository.js';
 
 
-export class ManagementV1ProjectChartInfoStatus {
+export class StorageV1HelmChart {
     'metadata'?: ClusterV1Metadata;
+    'repository'?: StorageV1HelmChartRepository;
     /**
-    * Readme is the readme of the chart
+    * Versions holds all chart versions
     */
-    'readme'?: string;
-    /**
-    * Values are the default values of the chart
-    */
-    'values'?: string;
+    'versions'?: Array<string>;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -34,20 +32,20 @@ export class ManagementV1ProjectChartInfoStatus {
             "format": ""
         },
         {
-            "name": "readme",
-            "baseName": "readme",
-            "type": "string",
+            "name": "repository",
+            "baseName": "repository",
+            "type": "StorageV1HelmChartRepository",
             "format": ""
         },
         {
-            "name": "values",
-            "baseName": "values",
-            "type": "string",
+            "name": "versions",
+            "baseName": "versions",
+            "type": "Array<string>",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1ProjectChartInfoStatus.attributeTypeMap;
+        return StorageV1HelmChart.attributeTypeMap;
     }
 
     public constructor() {

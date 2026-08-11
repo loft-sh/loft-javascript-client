@@ -10,24 +10,27 @@
  * Do not edit the class manually.
  */
 
-import { ClusterV1Chart } from '../models/clusterV1Chart.js';
+import { V1ImageVolumeStatus } from '../models/V1ImageVolumeStatus.js';
 
 
-export class ManagementV1ProjectChartInfoSpec {
-    'chart'?: ClusterV1Chart;
+/**
+* VolumeStatus represents the status of a mounted volume. At most one of its members must be specified.
+*/
+export class V1VolumeStatus {
+    'image'?: V1ImageVolumeStatus;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "chart",
-            "baseName": "chart",
-            "type": "ClusterV1Chart",
+            "name": "image",
+            "baseName": "image",
+            "type": "V1ImageVolumeStatus",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1ProjectChartInfoSpec.attributeTypeMap;
+        return V1VolumeStatus.attributeTypeMap;
     }
 
     public constructor() {

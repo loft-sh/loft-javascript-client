@@ -10,44 +10,39 @@
  * Do not edit the class manually.
  */
 
-import { ClusterV1Metadata } from '../models/clusterV1Metadata.js';
 
 
-export class ManagementV1ProjectChartInfoStatus {
-    'metadata'?: ClusterV1Metadata;
+/**
+* ContainerStateWaiting is a waiting state of a container.
+*/
+export class V1ContainerStateWaiting {
     /**
-    * Readme is the readme of the chart
+    * Message regarding why the container is not yet running.
     */
-    'readme'?: string;
+    'message'?: string;
     /**
-    * Values are the default values of the chart
+    * (brief) reason the container is not yet running.
     */
-    'values'?: string;
+    'reason'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "metadata",
-            "baseName": "metadata",
-            "type": "ClusterV1Metadata",
-            "format": ""
-        },
-        {
-            "name": "readme",
-            "baseName": "readme",
+            "name": "message",
+            "baseName": "message",
             "type": "string",
             "format": ""
         },
         {
-            "name": "values",
-            "baseName": "values",
+            "name": "reason",
+            "baseName": "reason",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1ProjectChartInfoStatus.attributeTypeMap;
+        return V1ContainerStateWaiting.attributeTypeMap;
     }
 
     public constructor() {
