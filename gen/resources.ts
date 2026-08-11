@@ -68,7 +68,6 @@ import {ManagementV1TeamClusters} from "./models/managementV1TeamClusters"
 import {ManagementV1TeamObjectPermissions} from "./models/managementV1TeamObjectPermissions"
 import {ManagementV1TeamPermissions} from "./models/managementV1TeamPermissions"
 import {ManagementV1Team} from "./models/managementV1Team"
-import {ManagementV1Tenant} from "./models/managementV1Tenant"
 import {ManagementV1TranslateVClusterResourceName} from "./models/managementV1TranslateVClusterResourceName"
 import {ManagementV1UsageDownload} from "./models/managementV1UsageDownload"
 import {ManagementV1UserAccessKeys} from "./models/managementV1UserAccessKeys"
@@ -90,6 +89,7 @@ import {ManagementV1VirtualClusterInstance} from "./models/managementV1VirtualCl
 import {ManagementV1VirtualClusterNodeAccessKey} from "./models/managementV1VirtualClusterNodeAccessKey"
 import {ManagementV1VirtualClusterResourceUsage} from "./models/managementV1VirtualClusterResourceUsage"
 import {ManagementV1VirtualClusterSchema} from "./models/managementV1VirtualClusterSchema"
+import {ManagementV1VirtualClusterSnapshotCredentials} from "./models/managementV1VirtualClusterSnapshotCredentials"
 import {ManagementV1VirtualClusterStandalone} from "./models/managementV1VirtualClusterStandalone"
 import {ManagementV1VirtualClusterTemplate} from "./models/managementV1VirtualClusterTemplate"
 
@@ -162,7 +162,6 @@ export type TGenResources = {
   ManagementV1TeamClusters: GroupVersionResource<ManagementV1TeamClusters>
   ManagementV1TeamObjectPermissions: GroupVersionResource<ManagementV1TeamObjectPermissions>
   ManagementV1TeamPermissions: GroupVersionResource<ManagementV1TeamPermissions>
-  ManagementV1Tenant: GroupVersionResource<ManagementV1Tenant>
   ManagementV1TranslateVClusterResourceName: GroupVersionResource<ManagementV1TranslateVClusterResourceName>
   ManagementV1UsageDownload: GroupVersionResource<ManagementV1UsageDownload>
   ManagementV1User: GroupVersionResource<ManagementV1User>
@@ -184,6 +183,7 @@ export type TGenResources = {
   ManagementV1VirtualClusterNodeAccessKey: GroupVersionResource<ManagementV1VirtualClusterNodeAccessKey>
   ManagementV1VirtualClusterResourceUsage: GroupVersionResource<ManagementV1VirtualClusterResourceUsage>
   ManagementV1VirtualClusterSchema: GroupVersionResource<ManagementV1VirtualClusterSchema>
+  ManagementV1VirtualClusterSnapshotCredentials: GroupVersionResource<ManagementV1VirtualClusterSnapshotCredentials>
   ManagementV1VirtualClusterStandalone: GroupVersionResource<ManagementV1VirtualClusterStandalone>
   ManagementV1VirtualClusterTemplate: GroupVersionResource<ManagementV1VirtualClusterTemplate>
 }
@@ -733,14 +733,6 @@ export const GenResources: TGenResources = {
     namespaced: false,
     kind: "TeamPermissions",
   },
-  ManagementV1Tenant: {
-    group: "management.loft.sh",
-    version: "v1",
-    resource: "tenants",
-    subResource: "",
-    namespaced: false,
-    kind: "Tenant",
-  },
   ManagementV1TranslateVClusterResourceName: {
     group: "management.loft.sh",
     version: "v1",
@@ -908,6 +900,14 @@ export const GenResources: TGenResources = {
     subResource: "",
     namespaced: false,
     kind: "VirtualClusterSchema",
+  },
+  ManagementV1VirtualClusterSnapshotCredentials: {
+    group: "management.loft.sh",
+    version: "v1",
+    resource: "virtualclusterinstances",
+    subResource: "snapshotcredentials",
+    namespaced: true,
+    kind: "VirtualClusterSnapshotCredentials",
   },
   ManagementV1VirtualClusterStandalone: {
     group: "management.loft.sh",
