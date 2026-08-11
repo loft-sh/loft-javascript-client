@@ -10,44 +10,36 @@
  * Do not edit the class manually.
  */
 
-import { ClusterV1Metadata } from '../models/clusterV1Metadata.js';
 
 
-export class ManagementV1ProjectChartInfoStatus {
-    'metadata'?: ClusterV1Metadata;
+export class StorageV1TargetCluster {
     /**
-    * Readme is the readme of the chart
+    * Cluster is the cluster where the task should get executed
     */
-    'readme'?: string;
+    'cluster'?: string;
     /**
-    * Values are the default values of the chart
+    * Namespace is the namespace where the task should get executed
     */
-    'values'?: string;
+    'namespace'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "metadata",
-            "baseName": "metadata",
-            "type": "ClusterV1Metadata",
-            "format": ""
-        },
-        {
-            "name": "readme",
-            "baseName": "readme",
+            "name": "cluster",
+            "baseName": "cluster",
             "type": "string",
             "format": ""
         },
         {
-            "name": "values",
-            "baseName": "values",
+            "name": "namespace",
+            "baseName": "namespace",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1ProjectChartInfoStatus.attributeTypeMap;
+        return StorageV1TargetCluster.attributeTypeMap;
     }
 
     public constructor() {
