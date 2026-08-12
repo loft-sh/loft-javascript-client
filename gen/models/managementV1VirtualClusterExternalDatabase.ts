@@ -16,7 +16,7 @@ import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
 
 
 /**
-* VirtualClusterExternalDatabase holds kube config request and response data for virtual clusters
+* VirtualClusterExternalDatabase holds kube config request and response data for tenant clusters
 */
 export class ManagementV1VirtualClusterExternalDatabase {
     /**

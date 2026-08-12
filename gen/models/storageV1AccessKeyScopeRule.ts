@@ -43,7 +43,7 @@ export class StorageV1AccessKeyScopeRule {
     */
     'verbs'?: Array<string>;
     /**
-    * VirtualClusters that this rule matches. Only applies to virtual cluster requests. An empty list means no restrictions will apply.
+    * VirtualClusters that this rule matches. Only applies to tenant cluster requests. An empty list means no restrictions will apply.
     */
     'virtualClusters'?: Array<StorageV1AccessKeyVirtualCluster>;
 
