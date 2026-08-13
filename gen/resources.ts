@@ -62,6 +62,8 @@ import {ManagementV1Self} from "./models/managementV1Self"
 import {ManagementV1SharedSecret} from "./models/managementV1SharedSecret"
 import {ManagementV1SpaceInstance} from "./models/managementV1SpaceInstance"
 import {ManagementV1SpaceTemplate} from "./models/managementV1SpaceTemplate"
+import {ManagementV1StackInstance} from "./models/managementV1StackInstance"
+import {ManagementV1StackTemplate} from "./models/managementV1StackTemplate"
 import {ManagementV1SubjectAccessReview} from "./models/managementV1SubjectAccessReview"
 import {ManagementV1TeamAccessKeys} from "./models/managementV1TeamAccessKeys"
 import {ManagementV1TeamClusters} from "./models/managementV1TeamClusters"
@@ -90,6 +92,7 @@ import {ManagementV1VirtualClusterInstance} from "./models/managementV1VirtualCl
 import {ManagementV1VirtualClusterNodeAccessKey} from "./models/managementV1VirtualClusterNodeAccessKey"
 import {ManagementV1VirtualClusterResourceUsage} from "./models/managementV1VirtualClusterResourceUsage"
 import {ManagementV1VirtualClusterSchema} from "./models/managementV1VirtualClusterSchema"
+import {ManagementV1VirtualClusterSnapshotCredentials} from "./models/managementV1VirtualClusterSnapshotCredentials"
 import {ManagementV1VirtualClusterStandalone} from "./models/managementV1VirtualClusterStandalone"
 import {ManagementV1VirtualClusterTemplate} from "./models/managementV1VirtualClusterTemplate"
 
@@ -156,6 +159,8 @@ export type TGenResources = {
   ManagementV1SharedSecret: GroupVersionResource<ManagementV1SharedSecret>
   ManagementV1SpaceInstance: GroupVersionResource<ManagementV1SpaceInstance>
   ManagementV1SpaceTemplate: GroupVersionResource<ManagementV1SpaceTemplate>
+  ManagementV1StackInstance: GroupVersionResource<ManagementV1StackInstance>
+  ManagementV1StackTemplate: GroupVersionResource<ManagementV1StackTemplate>
   ManagementV1SubjectAccessReview: GroupVersionResource<ManagementV1SubjectAccessReview>
   ManagementV1Team: GroupVersionResource<ManagementV1Team>
   ManagementV1TeamAccessKeys: GroupVersionResource<ManagementV1TeamAccessKeys>
@@ -184,6 +189,7 @@ export type TGenResources = {
   ManagementV1VirtualClusterNodeAccessKey: GroupVersionResource<ManagementV1VirtualClusterNodeAccessKey>
   ManagementV1VirtualClusterResourceUsage: GroupVersionResource<ManagementV1VirtualClusterResourceUsage>
   ManagementV1VirtualClusterSchema: GroupVersionResource<ManagementV1VirtualClusterSchema>
+  ManagementV1VirtualClusterSnapshotCredentials: GroupVersionResource<ManagementV1VirtualClusterSnapshotCredentials>
   ManagementV1VirtualClusterStandalone: GroupVersionResource<ManagementV1VirtualClusterStandalone>
   ManagementV1VirtualClusterTemplate: GroupVersionResource<ManagementV1VirtualClusterTemplate>
 }
@@ -685,6 +691,22 @@ export const GenResources: TGenResources = {
     namespaced: false,
     kind: "SpaceTemplate",
   },
+  ManagementV1StackInstance: {
+    group: "management.loft.sh",
+    version: "v1",
+    resource: "stackinstances",
+    subResource: "",
+    namespaced: true,
+    kind: "StackInstance",
+  },
+  ManagementV1StackTemplate: {
+    group: "management.loft.sh",
+    version: "v1",
+    resource: "stacktemplates",
+    subResource: "",
+    namespaced: false,
+    kind: "StackTemplate",
+  },
   ManagementV1SubjectAccessReview: {
     group: "management.loft.sh",
     version: "v1",
@@ -908,6 +930,14 @@ export const GenResources: TGenResources = {
     subResource: "",
     namespaced: false,
     kind: "VirtualClusterSchema",
+  },
+  ManagementV1VirtualClusterSnapshotCredentials: {
+    group: "management.loft.sh",
+    version: "v1",
+    resource: "virtualclusterinstances",
+    subResource: "snapshotcredentials",
+    namespaced: true,
+    kind: "VirtualClusterSnapshotCredentials",
   },
   ManagementV1VirtualClusterStandalone: {
     group: "management.loft.sh",
