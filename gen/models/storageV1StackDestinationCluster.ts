@@ -10,30 +10,29 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1Condition } from '../models/agentstorageV1Condition.js';
 
 
 /**
-* TenantStatus holds the status.
+* StackDestinationCluster selects a connected cluster to deploy into.
 */
-export class ManagementV1TenantStatus {
+export class StorageV1StackDestinationCluster {
     /**
-    * Conditions describes the current observed conditions of the Tenant.
+    * Name of the connected cluster.
     */
-    'conditions'?: Array<StorageV1Condition>;
+    'name'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "conditions",
-            "baseName": "conditions",
-            "type": "Array<StorageV1Condition>",
+            "name": "name",
+            "baseName": "name",
+            "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1TenantStatus.attributeTypeMap;
+        return StorageV1StackDestinationCluster.attributeTypeMap;
     }
 
     public constructor() {
