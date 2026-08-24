@@ -22,9 +22,17 @@ export class ManagementV1Audit {
     */
     'compress'?: boolean;
     /**
+    * DataStoreCAFile is the path to a PEM-encoded certificate authority bundle used to verify the audit datastore\'s server certificate, read directly by the platform pod at startup. Mount it in the platform pod via the chart\'s top-level volumes/volumeMounts (e.g. from a Secret or ConfigMap), the same way as config.database\'s caFile. When set, the connection is fully verified (postgres: sslmode=verify-full; mysql: a registered TLS config with the given CA as RootCAs) instead of the default encrypted-but-unverified connection. Optional; has no effect on the sqlite backend.  An explicit ?sslmode=/?tls= already present on DataStoreEndpoint always overrides this and is not upgraded, even when DataStoreCAFile is set - e.g. an endpoint carried over from before CA support existed with ?tls=skip-verify stays unverified. The platform logs this case at startup so it isn\'t silent.
+    */
+    'dataStoreCAFile'?: string;
+    /**
     * DataStoreEndpoint is an endpoint to store events in.
     */
     'dataStoreEndpoint'?: string;
+    /**
+    * DataStoreIdentityProvider is the identity provider to use when generating temporary authentication tokens for the audit datastore, instead of a static password embedded in DataStoreEndpoint. Examples: * aws: RDS IAM Authentication
+    */
+    'dataStoreIdentityProvider'?: string;
     /**
     * DataStoreMaxAge is the maximum number of hours to retain old log events in the datastore
     */
@@ -69,8 +77,20 @@ export class ManagementV1Audit {
             "format": ""
         },
         {
+            "name": "dataStoreCAFile",
+            "baseName": "dataStoreCAFile",
+            "type": "string",
+            "format": ""
+        },
+        {
             "name": "dataStoreEndpoint",
             "baseName": "dataStoreEndpoint",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "dataStoreIdentityProvider",
+            "baseName": "dataStoreIdentityProvider",
             "type": "string",
             "format": ""
         },
