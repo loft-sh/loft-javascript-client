@@ -10,44 +10,49 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1QuotaUsage } from '../models/storageV1QuotaUsage.js';
 
 
 /**
-* ResourceQuotaStatus reports limit-vs-used for one resource\'s quota.
+* StackSecretOutputSource names one Secret key on the destination cluster.
 */
-export class StorageV1ResourceQuotaStatus {
+export class StorageV1StackSecretOutputSource {
     /**
-    * Resource is the counted management.loft.sh resource.
+    * Key inside the Secret\'s data.
     */
-    'resource': string;
-    'tenant'?: StorageV1QuotaUsage;
-    'user'?: StorageV1QuotaUsage;
+    'key': string;
+    /**
+    * Name of the Secret.
+    */
+    'name': string;
+    /**
+    * Namespace of the Secret. Must be a namespace this stack deploys into.
+    */
+    'namespace': string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "resource",
-            "baseName": "resource",
+            "name": "key",
+            "baseName": "key",
             "type": "string",
             "format": ""
         },
         {
-            "name": "tenant",
-            "baseName": "tenant",
-            "type": "StorageV1QuotaUsage",
+            "name": "name",
+            "baseName": "name",
+            "type": "string",
             "format": ""
         },
         {
-            "name": "user",
-            "baseName": "user",
-            "type": "StorageV1QuotaUsage",
+            "name": "namespace",
+            "baseName": "namespace",
+            "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1ResourceQuotaStatus.attributeTypeMap;
+        return StorageV1StackSecretOutputSource.attributeTypeMap;
     }
 
     public constructor() {
