@@ -22,7 +22,7 @@ export class StorageV1VirtualClusterClusterRef {
     */
     'namespace'?: string;
     /**
-    * VirtualCluster is the name of the virtual cluster inside the namespace
+    * VirtualCluster is the name of the tenant cluster inside the namespace
     */
     'virtualCluster'?: string;
 

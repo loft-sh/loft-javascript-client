@@ -4,6 +4,8 @@ import {ManagementV1AgentAuditEvent} from "./models/managementV1AgentAuditEvent"
 import {ManagementV1Announcement} from "./models/managementV1Announcement"
 import {ManagementV1AppCredentials} from "./models/managementV1AppCredentials"
 import {ManagementV1App} from "./models/managementV1App"
+import {ManagementV1ArgoCDApplicationTemplate} from "./models/managementV1ArgoCDApplicationTemplate"
+import {ManagementV1ArgoCDApplication} from "./models/managementV1ArgoCDApplication"
 import {ManagementV1BackupApply} from "./models/managementV1BackupApply"
 import {ManagementV1Backup} from "./models/managementV1Backup"
 import {ManagementV1ClusterAccessKey} from "./models/managementV1ClusterAccessKey"
@@ -27,6 +29,7 @@ import {ManagementV1Kiosk} from "./models/managementV1Kiosk"
 import {ManagementV1LicenseRequest} from "./models/managementV1LicenseRequest"
 import {ManagementV1License} from "./models/managementV1License"
 import {ManagementV1LoftUpgrade} from "./models/managementV1LoftUpgrade"
+import {ManagementV1MachineConfigTemplate} from "./models/managementV1MachineConfigTemplate"
 import {ManagementV1NetworkPeerDebug} from "./models/managementV1NetworkPeerDebug"
 import {ManagementV1NetworkPeer} from "./models/managementV1NetworkPeer"
 import {ManagementV1NodeClaim} from "./models/managementV1NodeClaim"
@@ -74,8 +77,8 @@ import {ManagementV1UserPermissions} from "./models/managementV1UserPermissions"
 import {ManagementV1UserProfile} from "./models/managementV1UserProfile"
 import {ManagementV1User} from "./models/managementV1User"
 import {ManagementV1VirtualClusterAccessKey} from "./models/managementV1VirtualClusterAccessKey"
+import {ManagementV1VirtualClusterControlPlanePods} from "./models/managementV1VirtualClusterControlPlanePods"
 import {ManagementV1VirtualClusterExternalDatabase} from "./models/managementV1VirtualClusterExternalDatabase"
-import {ManagementV1VirtualClusterInstanceDebugShellPods} from "./models/managementV1VirtualClusterInstanceDebugShellPods"
 import {ManagementV1VirtualClusterInstanceDebugShell} from "./models/managementV1VirtualClusterInstanceDebugShell"
 import {ManagementV1VirtualClusterInstanceJoinScript} from "./models/managementV1VirtualClusterInstanceJoinScript"
 import {ManagementV1VirtualClusterInstanceKubeConfig} from "./models/managementV1VirtualClusterInstanceKubeConfig"
@@ -94,6 +97,8 @@ export type TGenResources = {
   ManagementV1Announcement: GroupVersionResource<ManagementV1Announcement>
   ManagementV1App: GroupVersionResource<ManagementV1App>
   ManagementV1AppCredentials: GroupVersionResource<ManagementV1AppCredentials>
+  ManagementV1ArgoCDApplication: GroupVersionResource<ManagementV1ArgoCDApplication>
+  ManagementV1ArgoCDApplicationTemplate: GroupVersionResource<ManagementV1ArgoCDApplicationTemplate>
   ManagementV1Backup: GroupVersionResource<ManagementV1Backup>
   ManagementV1BackupApply: GroupVersionResource<ManagementV1BackupApply>
   ManagementV1Cluster: GroupVersionResource<ManagementV1Cluster>
@@ -117,6 +122,7 @@ export type TGenResources = {
   ManagementV1License: GroupVersionResource<ManagementV1License>
   ManagementV1LicenseRequest: GroupVersionResource<ManagementV1LicenseRequest>
   ManagementV1LoftUpgrade: GroupVersionResource<ManagementV1LoftUpgrade>
+  ManagementV1MachineConfigTemplate: GroupVersionResource<ManagementV1MachineConfigTemplate>
   ManagementV1NetworkPeer: GroupVersionResource<ManagementV1NetworkPeer>
   ManagementV1NetworkPeerDebug: GroupVersionResource<ManagementV1NetworkPeerDebug>
   ManagementV1NodeClaim: GroupVersionResource<ManagementV1NodeClaim>
@@ -164,10 +170,10 @@ export type TGenResources = {
   ManagementV1UserPermissions: GroupVersionResource<ManagementV1UserPermissions>
   ManagementV1UserProfile: GroupVersionResource<ManagementV1UserProfile>
   ManagementV1VirtualClusterAccessKey: GroupVersionResource<ManagementV1VirtualClusterAccessKey>
+  ManagementV1VirtualClusterControlPlanePods: GroupVersionResource<ManagementV1VirtualClusterControlPlanePods>
   ManagementV1VirtualClusterExternalDatabase: GroupVersionResource<ManagementV1VirtualClusterExternalDatabase>
   ManagementV1VirtualClusterInstance: GroupVersionResource<ManagementV1VirtualClusterInstance>
   ManagementV1VirtualClusterInstanceDebugShell: GroupVersionResource<ManagementV1VirtualClusterInstanceDebugShell>
-  ManagementV1VirtualClusterInstanceDebugShellPods: GroupVersionResource<ManagementV1VirtualClusterInstanceDebugShellPods>
   ManagementV1VirtualClusterInstanceJoinScript: GroupVersionResource<ManagementV1VirtualClusterInstanceJoinScript>
   ManagementV1VirtualClusterInstanceKubeConfig: GroupVersionResource<ManagementV1VirtualClusterInstanceKubeConfig>
   ManagementV1VirtualClusterInstanceLog: GroupVersionResource<ManagementV1VirtualClusterInstanceLog>
@@ -212,6 +218,22 @@ export const GenResources: TGenResources = {
     subResource: "credentials",
     namespaced: false,
     kind: "AppCredentials",
+  },
+  ManagementV1ArgoCDApplication: {
+    group: "management.loft.sh",
+    version: "v1",
+    resource: "argocdapplications",
+    subResource: "",
+    namespaced: true,
+    kind: "ArgoCDApplication",
+  },
+  ManagementV1ArgoCDApplicationTemplate: {
+    group: "management.loft.sh",
+    version: "v1",
+    resource: "argocdapplicationtemplates",
+    subResource: "",
+    namespaced: false,
+    kind: "ArgoCDApplicationTemplate",
   },
   ManagementV1Backup: {
     group: "management.loft.sh",
@@ -396,6 +418,14 @@ export const GenResources: TGenResources = {
     subResource: "",
     namespaced: false,
     kind: "LoftUpgrade",
+  },
+  ManagementV1MachineConfigTemplate: {
+    group: "management.loft.sh",
+    version: "v1",
+    resource: "machineconfigtemplates",
+    subResource: "",
+    namespaced: false,
+    kind: "MachineConfigTemplate",
   },
   ManagementV1NetworkPeer: {
     group: "management.loft.sh",
@@ -773,6 +803,14 @@ export const GenResources: TGenResources = {
     namespaced: true,
     kind: "VirtualClusterAccessKey",
   },
+  ManagementV1VirtualClusterControlPlanePods: {
+    group: "management.loft.sh",
+    version: "v1",
+    resource: "virtualclusterinstances",
+    subResource: "controlplanepods",
+    namespaced: true,
+    kind: "VirtualClusterControlPlanePods",
+  },
   ManagementV1VirtualClusterExternalDatabase: {
     group: "management.loft.sh",
     version: "v1",
@@ -796,14 +834,6 @@ export const GenResources: TGenResources = {
     subResource: "debug-shell",
     namespaced: true,
     kind: "VirtualClusterInstanceDebugShell",
-  },
-  ManagementV1VirtualClusterInstanceDebugShellPods: {
-    group: "management.loft.sh",
-    version: "v1",
-    resource: "virtualclusterinstances",
-    subResource: "debug-shell-pods",
-    namespaced: true,
-    kind: "VirtualClusterInstanceDebugShellPods",
   },
   ManagementV1VirtualClusterInstanceJoinScript: {
     group: "management.loft.sh",

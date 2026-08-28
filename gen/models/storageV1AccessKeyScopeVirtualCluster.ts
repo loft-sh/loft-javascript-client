@@ -18,7 +18,7 @@ export class StorageV1AccessKeyScopeVirtualCluster {
     */
     'project'?: string;
     /**
-    * VirtualCluster is the name of the virtual cluster to access. You can specify * to select all virtual clusters.
+    * VirtualCluster is the name of the tenant cluster to access. You can specify * to select all tenant clusters.
     */
     'virtualCluster'?: string;
 
