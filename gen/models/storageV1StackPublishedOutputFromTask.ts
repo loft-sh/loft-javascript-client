@@ -13,36 +13,36 @@
 
 
 /**
-* QuotaUsage pairs configured limits with observed usage; both maps are keyed by the same condition keys as the corresponding ResourceQuota.
+* StackPublishedOutputFromTask names one declared output of one task.
 */
-export class StorageV1QuotaUsage {
+export class StorageV1StackPublishedOutputFromTask {
     /**
-    * Limit echoes the configured caps (condition key -> count).
+    * Output is the output name declared on that task.
     */
-    'limit'?: { [key: string]: string; };
+    'output': string;
     /**
-    * Used is the observed usage (condition key -> count).
+    * Task is the task name.
     */
-    'used'?: { [key: string]: string; };
+    'task': string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "limit",
-            "baseName": "limit",
-            "type": "{ [key: string]: string; }",
+            "name": "output",
+            "baseName": "output",
+            "type": "string",
             "format": ""
         },
         {
-            "name": "used",
-            "baseName": "used",
-            "type": "{ [key: string]: string; }",
+            "name": "task",
+            "baseName": "task",
+            "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1QuotaUsage.attributeTypeMap;
+        return StorageV1StackPublishedOutputFromTask.attributeTypeMap;
     }
 
     public constructor() {
