@@ -11,12 +11,12 @@
  */
 
 import { StorageV1Condition } from '../models/agentstorageV1Condition.js';
-import { StorageV1ResourceAllowance } from '../models/storageV1ResourceAllowance.js';
-import { StorageV1ResourceQuotaStatus } from '../models/storageV1ResourceQuotaStatus.js';
+import { StorageV1TenantHostnameBinding } from '../models/storageV1TenantHostnameBinding.js';
+import { StorageV1TenantNICoStatus } from '../models/storageV1TenantNICoStatus.js';
 
 
 /**
-* TenantStatus holds the status.
+* TenantStatus holds the status.  status.hostnames comes from the inlined storage status, where the Tenant controller writes it. It reads the same as it always did, a caller listing Tenants seeing each tenant\'s hostnames without a request per tenant, but it is now a stored field rather than a read-time join, so it costs nothing to serve and needs no ?extended=true. Writing it here still does nothing: hostnames are set through the tenants/config subresource, and the controller overwrites this projection from there.
 */
 export class ManagementV1TenantStatus {
     /**
@@ -24,17 +24,10 @@ export class ManagementV1TenantStatus {
     */
     'conditions'?: Array<StorageV1Condition>;
     /**
-    * ObservedGeneration is the generation last observed by the reconciler.
+    * Hostnames are the DNS names that resolve to this tenant, projected here from the tenant\'s configuration by the Tenant controller.  The configuration itself is written through the management tenants/config subresource and persisted in the tenant\'s backing Secret, which nothing on the request path can reach: a Secret is projected only to callers authorized on that subresource, and it cannot carry a field index. Hostnames need both. Per-request tenant resolution looks one up on every unauthenticated gateway request, and admission asks which tenant already claims one across every tenant at once, and neither caller is an authorized reader of the tenant\'s own configuration. So the controller copies them here, onto an object that can be watched, cached, and field-indexed (constants.IndexByHost).  That makes this a projection and never a source of truth. A hostname written directly onto this status does not become a claim: the next reconcile overwrites it from the Secret, which is also why the exclusivity check reading this index is not fooled by one. Hostnames are set by an operator through the tenants/config subresource, for the reasons on TenantPlatformConfig.
     */
-    'observedGeneration'?: number;
-    /**
-    * ResourceAllowances is the resolved effective scope for every scopable management.loft.sh kind for this tenant: the shipped per-kind defaults merged with Spec.ResourceAllowances. Each entry\'s Scope is the effective scope and may be ScopeUnscoped. Recomputed each reconcile from discovery scope live at request time). The leased entries are the per-Tenant projection of the cross-Tenant exclusivity index.
-    */
-    'resourceAllowances'?: Array<StorageV1ResourceAllowance>;
-    /**
-    * ResourceQuotas reports usage against the Spec.ResourceQuotas caps, aggregated across the tenant\'s projects.
-    */
-    'resourceQuotas'?: Array<StorageV1ResourceQuotaStatus>;
+    'hostnames'?: Array<StorageV1TenantHostnameBinding>;
+    'nico'?: StorageV1TenantNICoStatus;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -46,21 +39,15 @@ export class ManagementV1TenantStatus {
             "format": ""
         },
         {
-            "name": "observedGeneration",
-            "baseName": "observedGeneration",
-            "type": "number",
-            "format": "int64"
-        },
-        {
-            "name": "resourceAllowances",
-            "baseName": "resourceAllowances",
-            "type": "Array<StorageV1ResourceAllowance>",
+            "name": "hostnames",
+            "baseName": "hostnames",
+            "type": "Array<StorageV1TenantHostnameBinding>",
             "format": ""
         },
         {
-            "name": "resourceQuotas",
-            "baseName": "resourceQuotas",
-            "type": "Array<StorageV1ResourceQuotaStatus>",
+            "name": "nico",
+            "baseName": "nico",
+            "type": "StorageV1TenantNICoStatus",
             "format": ""
         }    ];
 
