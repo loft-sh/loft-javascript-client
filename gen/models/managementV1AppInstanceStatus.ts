@@ -24,6 +24,14 @@ export class ManagementV1AppInstanceStatus {
     */
     'conditions'?: Array<StorageV1Condition>;
     /**
+    * DeployAttempts counts the consecutive failed deploy attempts for the current spec generation and resolved app configuration. It backs the automatic retry of failed deploys and is reset whenever the deploy input changes or a deploy succeeds.
+    */
+    'deployAttempts'?: number;
+    /**
+    * LastDeployTime is when the last deploy attempt finished, successful or not. Together with DeployAttempts it schedules the automatic retries of failed deploys.
+    */
+    'lastDeployTime'?: Date;
+    /**
     * Message describes the reason in human-readable form why the instance is in the current phase
     */
     'message'?: string;
@@ -70,6 +78,18 @@ export class ManagementV1AppInstanceStatus {
             "baseName": "conditions",
             "type": "Array<StorageV1Condition>",
             "format": ""
+        },
+        {
+            "name": "deployAttempts",
+            "baseName": "deployAttempts",
+            "type": "number",
+            "format": "int32"
+        },
+        {
+            "name": "lastDeployTime",
+            "baseName": "lastDeployTime",
+            "type": "Date",
+            "format": "date-time"
         },
         {
             "name": "message",
