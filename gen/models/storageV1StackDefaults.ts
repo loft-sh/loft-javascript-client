@@ -10,30 +10,26 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1Condition } from '../models/agentstorageV1Condition.js';
 
 
-/**
-* TenantStatus holds the status.
-*/
-export class ManagementV1TenantStatus {
+export class StorageV1StackDefaults {
     /**
-    * Conditions describes the current observed conditions of the Tenant.
+    * TaskTimeout is the default per-task timeout. The empty value is treated as 10m.
     */
-    'conditions'?: Array<StorageV1Condition>;
+    'taskTimeout'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "conditions",
-            "baseName": "conditions",
-            "type": "Array<StorageV1Condition>",
+            "name": "taskTimeout",
+            "baseName": "taskTimeout",
+            "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1TenantStatus.attributeTypeMap;
+        return StorageV1StackDefaults.attributeTypeMap;
     }
 
     public constructor() {
