@@ -10,30 +10,29 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1Condition } from '../models/agentstorageV1Condition.js';
 
 
 /**
-* TenantStatus holds the status.
+* TenantHostnameBinding binds a hostname to this Tenant for routing and SSO resolution.
 */
-export class ManagementV1TenantStatus {
+export class StorageV1TenantHostnameBinding {
     /**
-    * Conditions describes the current observed conditions of the Tenant.
+    * Hostname is the DNS name the platform will treat as belonging to this Tenant (e.g. acme.platform.example.com).
     */
-    'conditions'?: Array<StorageV1Condition>;
+    'hostname': string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "conditions",
-            "baseName": "conditions",
-            "type": "Array<StorageV1Condition>",
+            "name": "hostname",
+            "baseName": "hostname",
+            "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1TenantStatus.attributeTypeMap;
+        return StorageV1TenantHostnameBinding.attributeTypeMap;
     }
 
     public constructor() {

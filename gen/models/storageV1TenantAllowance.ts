@@ -10,30 +10,29 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1Condition } from '../models/agentstorageV1Condition.js';
 
 
 /**
-* TenantStatus holds the status.
+* TenantAllowance governs a tenant\'s access to its own-labeled instances of a kind.
 */
-export class ManagementV1TenantStatus {
+export class StorageV1TenantAllowance {
     /**
-    * Conditions describes the current observed conditions of the Tenant.
+    * Enabled controls whether the tenant may use its own instances of this kind. Nil or true means enabled (read-write); false denies the tenant\'s own instances of the kind. Default: enabled.
     */
-    'conditions'?: Array<StorageV1Condition>;
+    'enabled'?: boolean;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "conditions",
-            "baseName": "conditions",
-            "type": "Array<StorageV1Condition>",
+            "name": "enabled",
+            "baseName": "enabled",
+            "type": "boolean",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1TenantStatus.attributeTypeMap;
+        return StorageV1TenantAllowance.attributeTypeMap;
     }
 
     public constructor() {
