@@ -10,44 +10,46 @@
  * Do not edit the class manually.
  */
 
-import { ClusterV1Metadata } from '../models/clusterV1Metadata.js';
 
 
-export class ManagementV1ProjectChartInfoStatus {
-    'metadata'?: ClusterV1Metadata;
+export class ClusterV1ProjectSecretRef {
     /**
-    * Readme is the readme of the chart
+    * Key of the project secret to use.
     */
-    'readme'?: string;
+    'key'?: string;
     /**
-    * Values are the default values of the chart
+    * Name of the project secret to use.
     */
-    'values'?: string;
+    'name'?: string;
+    /**
+    * Project is the project name where the secret is located in.
+    */
+    'project'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "metadata",
-            "baseName": "metadata",
-            "type": "ClusterV1Metadata",
-            "format": ""
-        },
-        {
-            "name": "readme",
-            "baseName": "readme",
+            "name": "key",
+            "baseName": "key",
             "type": "string",
             "format": ""
         },
         {
-            "name": "values",
-            "baseName": "values",
+            "name": "name",
+            "baseName": "name",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "project",
+            "baseName": "project",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1ProjectChartInfoStatus.attributeTypeMap;
+        return ClusterV1ProjectSecretRef.attributeTypeMap;
     }
 
     public constructor() {

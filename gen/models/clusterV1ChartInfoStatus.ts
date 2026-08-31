@@ -13,7 +13,7 @@
 import { ClusterV1Metadata } from '../models/clusterV1Metadata.js';
 
 
-export class ManagementV1ProjectChartInfoStatus {
+export class ClusterV1ChartInfoStatus {
     'metadata'?: ClusterV1Metadata;
     /**
     * Readme is the readme of the chart
@@ -47,7 +47,7 @@ export class ManagementV1ProjectChartInfoStatus {
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1ProjectChartInfoStatus.attributeTypeMap;
+        return ClusterV1ChartInfoStatus.attributeTypeMap;
     }
 
     public constructor() {
