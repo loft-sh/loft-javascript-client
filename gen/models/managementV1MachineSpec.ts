@@ -10,44 +10,39 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1QuotaUsage } from '../models/storageV1QuotaUsage.js';
 
 
 /**
-* ResourceQuotaStatus reports limit-vs-used for one resource\'s quota.
+* MachineSpec holds the mirror\'s identity.
 */
-export class StorageV1ResourceQuotaStatus {
+export class ManagementV1MachineSpec {
     /**
-    * Resource is the counted management.loft.sh resource.
+    * DisplayName is shown in the UI; providers fill it from their native naming (metal3: the BareMetalHost name, NICo: the machine hostname).
     */
-    'resource': string;
-    'tenant'?: StorageV1QuotaUsage;
-    'user'?: StorageV1QuotaUsage;
+    'displayName'?: string;
+    /**
+    * ProviderRef is the NodeProvider whose inventory this machine mirrors.
+    */
+    'providerRef'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "resource",
-            "baseName": "resource",
+            "name": "displayName",
+            "baseName": "displayName",
             "type": "string",
             "format": ""
         },
         {
-            "name": "tenant",
-            "baseName": "tenant",
-            "type": "StorageV1QuotaUsage",
-            "format": ""
-        },
-        {
-            "name": "user",
-            "baseName": "user",
-            "type": "StorageV1QuotaUsage",
+            "name": "providerRef",
+            "baseName": "providerRef",
+            "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1ResourceQuotaStatus.attributeTypeMap;
+        return ManagementV1MachineSpec.attributeTypeMap;
     }
 
     public constructor() {
