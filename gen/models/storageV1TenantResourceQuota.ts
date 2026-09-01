@@ -13,9 +13,9 @@
 
 
 /**
-* ResourceQuota caps consumption of one management.loft.sh resource for a tenant. Keys in the Tenant/User maps are conditions relative to the resource — \"total\", \"active\", \"!active\", \"template=<name>\", \"type=<name>\", \"provider=<name>\" — and values are integer counts.
+* TenantResourceQuota caps consumption of one management.loft.sh resource for a tenant. Keys in the Tenant/User maps are conditions relative to the resource (\"total\", \"active\", \"!active\", \"template=<name>\", \"type=<name>\", \"provider=<name>\"), and values are integer counts.  The key grammar intentionally diverges from pkg/quota\'s flat dot-composed expression form (e.g. \"spaceinstances.active.template=foo\"): the vocabularies overlap, but pkg/quota has no matcher for \"type=\" and expresses \"total\" as the bare resource key, so the two cannot be unified without extending pkg/quota. This per-resource shape is reconciled with pkg/quota\'s grammar when tenant quotas are actually enforced (a later Multi-Tenancy PR), where it can be validated against the live matcher; until then these fields are stored and validated for well-formedness only.
 */
-export class StorageV1ResourceQuota {
+export class StorageV1TenantResourceQuota {
     /**
     * Resource is the lowercase plural name of the counted management.loft.sh resource (e.g. \"virtualclusterinstances\", \"nodeclaims\").
     */
@@ -52,7 +52,7 @@ export class StorageV1ResourceQuota {
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1ResourceQuota.attributeTypeMap;
+        return StorageV1TenantResourceQuota.attributeTypeMap;
     }
 
     public constructor() {
