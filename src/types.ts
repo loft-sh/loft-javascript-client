@@ -284,7 +284,6 @@ export interface RequestOptions<T> {
   name?: string
   namespace?: string
 
-  vCluster?: RequestOptionsVCluster
   project?: RequestOptionsProject
   basePath?: string
   groupVersionResource?: GroupVersionResource<T>
@@ -298,13 +297,6 @@ export interface RequestOptionsProject {
   project: string
   space?: string
   virtualCluster?: string
-}
-
-export interface RequestOptionsVCluster {
-  project: string
-  cluster: string
-  namespace: string
-  name: string
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
