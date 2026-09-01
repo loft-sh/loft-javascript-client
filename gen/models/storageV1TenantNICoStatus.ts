@@ -13,17 +13,41 @@
 
 
 /**
-* TenantNICoStatus reports the NICo tenant org materialized for a Tenant.
+* TenantNICoStatus reports the NICo tenant org materialized for a Tenant and the NICo provider it is bound to, and is set by the platform. A Tenant is bound to a single NICo provider, and so to a single NICo site.
 */
 export class StorageV1TenantNICoStatus {
+    /**
+    * Endpoint is the NICo REST API endpoint taken from that NodeProvider.
+    */
+    'endpoint'?: string;
+    /**
+    * InsecureSkipTLSVerify reports whether TLS verification is skipped when reaching the NICo endpoint.
+    */
+    'insecureSkipTLSVerify'?: boolean;
     /**
     * IPBlockID is the id of the tenant-scoped NICo IPBlock from which VPC prefixes are carved. Set by the tenant onboarding flow (ENGNODE-604).
     */
     'ipBlockId'?: string;
     /**
+    * NodeProvider is the platform NodeProvider this Tenant uses.
+    */
+    'nodeProvider'?: string;
+    /**
     * Org is the NICo tenant org this Tenant maps to.
     */
     'org'?: string;
+    /**
+    * ProviderOrg is the NICo provider organization.
+    */
+    'providerOrg'?: string;
+    /**
+    * TenantAccountID is the id of this Tenant\'s NICo TenantAccount.
+    */
+    'tenantAccountId'?: string;
+    /**
+    * TenantAccountManaged reports whether the platform owns the NICo TenantAccount and removes it during cleanup.
+    */
+    'tenantAccountManaged'?: boolean;
     /**
     * TenantID is the id of the materialized NICo tenant.
     */
@@ -33,8 +57,26 @@ export class StorageV1TenantNICoStatus {
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
+            "name": "endpoint",
+            "baseName": "endpoint",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "insecureSkipTLSVerify",
+            "baseName": "insecureSkipTLSVerify",
+            "type": "boolean",
+            "format": ""
+        },
+        {
             "name": "ipBlockId",
             "baseName": "ipBlockId",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "nodeProvider",
+            "baseName": "nodeProvider",
             "type": "string",
             "format": ""
         },
@@ -42,6 +84,24 @@ export class StorageV1TenantNICoStatus {
             "name": "org",
             "baseName": "org",
             "type": "string",
+            "format": ""
+        },
+        {
+            "name": "providerOrg",
+            "baseName": "providerOrg",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "tenantAccountId",
+            "baseName": "tenantAccountId",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "tenantAccountManaged",
+            "baseName": "tenantAccountManaged",
+            "type": "boolean",
             "format": ""
         },
         {
