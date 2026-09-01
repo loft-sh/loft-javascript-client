@@ -11,10 +11,12 @@
  */
 
 import { StorageV1KubeVirtDeployment } from '../models/storageV1KubeVirtDeployment.js';
+import { StorageV1VClusterDeviceOperatorDeployment } from '../models/storageV1VClusterDeviceOperatorDeployment.js';
 
 
 export class StorageV1KubeVirtProviderDeployment {
     'kubevirt'?: StorageV1KubeVirtDeployment;
+    'vClusterDeviceOperator'?: StorageV1VClusterDeviceOperatorDeployment;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -23,6 +25,12 @@ export class StorageV1KubeVirtProviderDeployment {
             "name": "kubevirt",
             "baseName": "kubevirt",
             "type": "StorageV1KubeVirtDeployment",
+            "format": ""
+        },
+        {
+            "name": "vClusterDeviceOperator",
+            "baseName": "vClusterDeviceOperator",
+            "type": "StorageV1VClusterDeviceOperatorDeployment",
             "format": ""
         }    ];
 
