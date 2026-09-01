@@ -38,7 +38,6 @@ import {
   PatchOptions,
   RequestOptions,
   RequestOptionsProject,
-  RequestOptionsVCluster,
   Unstructured,
   UpdateOptions,
   V1AccessKey,
@@ -114,15 +113,10 @@ export type RequestVerb =
 
 export const ManagementBasePath = "/kubernetes/management"
 export const ClusterBasePath = "/kubernetes/cluster/"
-export const VClusterBasePath = "/kubernetes/virtualcluster/"
 export const ProjectBasePath = "/kubernetes/project/"
 
 export const getProjectNamespace = (name?: string, prefix?: string): string =>
   !name ? "p-" : prefix ? `${prefix}${name}` : `p-${name}`
-
-function vClusterToProject(vCluster: RequestOptionsVCluster): RequestOptionsProject {
-  return { project: vCluster.project, virtualCluster: vCluster.name }
-}
 
 export function getProjectFromNamespace(
   namespace: string | undefined,
@@ -579,59 +573,29 @@ class Client {
     })
   }
 
-  public vCluster<T>(
-    vCluster: RequestOptionsVCluster,
-    groupVersionResource: GroupVersionResource<T>,
-    options?: ClientRequestOptions
-  ) {
-    // TODO: This is formatting the URL wrong! We need to fix this by using project path. (ENGUI-594)
-    return new Request<T>(this, {
-      basePath:
-        VClusterBasePath + vCluster.cluster + "/" + vCluster.namespace + "/" + vCluster.name,
-      groupVersionResource,
-      vCluster,
-      skipImpersonation: options?.skipImpersonation,
-    })
-  }
-
-  public vClusterNonResource<T>(vCluster: RequestOptionsVCluster, options?: ClientRequestOptions) {
-    return new Request<T>(this, {
-      basePath:
-        VClusterBasePath + vCluster.cluster + "/" + vCluster.namespace + "/" + vCluster.name,
-      vCluster,
-      skipImpersonation: options?.skipImpersonation,
-    })
-  }
-
   public auto<T>(
     cluster: string | undefined,
-    vCluster: RequestOptionsVCluster | undefined,
     project: RequestOptionsProject | undefined,
     groupVersionResource: GroupVersionResource<T>,
     options?: ClientRequestOptions
   ) {
     return project
-      ? this.project(project, groupVersionResource, {}, options)
-      : vCluster
-        ? this.vCluster(vCluster, groupVersionResource, options)
-        : cluster
-          ? this.cluster(cluster!, groupVersionResource, {}, options)
-          : this.management(groupVersionResource, options)
+      ? this.project(project, groupVersionResource, undefined, options)
+      : cluster
+        ? this.cluster(cluster!, groupVersionResource, undefined, options)
+        : this.management(groupVersionResource, options)
   }
 
   public autoNonResource(
     cluster: string | undefined,
-    vCluster: RequestOptionsVCluster | undefined,
     project: RequestOptionsProject | undefined,
     options?: ClientRequestOptions
   ) {
     return project
       ? this.projectNonResource(project, options)
-      : vCluster
-        ? this.vClusterNonResource(vCluster, options)
-        : cluster
-          ? this.clusterNonResource(cluster!, options)
-          : this.managementNonResource(options)
+      : cluster
+        ? this.clusterNonResource(cluster!, options)
+        : this.managementNonResource(options)
   }
 
   public async doRawSocket(path: string, protocols?: string[]): Promise<Result<WebSocket>> {
@@ -707,7 +671,6 @@ class Client {
       credentials: skipImpersonation ? "omit" : "same-origin",
     }
 
-    // merge headers
     const response =
       type === "stream"
         ? await this.stream(path, fetchInit)
@@ -1202,7 +1165,7 @@ class Request<T> {
     return Return.WithExtra(
       await this.doRaw<List<T>>(
         path.val,
-        undefined,
+        { signal },
         this.getHeaders(),
         this.options.allowSpecificErrors
       ),
@@ -1226,7 +1189,7 @@ class Request<T> {
     return Return.WithExtra(
       await this.doRaw<List<T>>(
         path.val,
-        undefined,
+        { signal },
         this.getHeaders({
           Accept:
             "application/json;as=Table;v=v1;g=meta.k8s.io,application/json;as=Table;v=v1beta1;g=meta.k8s.io,application/json",
@@ -1359,13 +1322,6 @@ class Request<T> {
         this.options.project,
         Resources.V1SelfSubjectAccessReview,
         {},
-        clientOptions
-      )
-      selfSubjectAccessReview = NewResource(Resources.V1SelfSubjectAccessReview)
-    } else if (this.options.vCluster) {
-      request = this.client.vCluster(
-        this.options.vCluster,
-        Resources.V1SelfSubjectAccessReview,
         clientOptions
       )
       selfSubjectAccessReview = NewResource(Resources.V1SelfSubjectAccessReview)
