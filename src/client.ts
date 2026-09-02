@@ -13,7 +13,7 @@ import Cookies from "js-cookie"
 import jsonmergepatch from "json-merge-patch"
 
 import constants from "./constants"
-import { parseResourceList } from "./helpers"
+import { arr, parseResourceList } from "./helpers"
 import { NewResource, Resources } from "./resources"
 import {
   ErrorTypeNetwork,
@@ -26,7 +26,6 @@ import {
   Return,
 } from "./result"
 import {
-  ClientRequestOptions,
   CreateOptions,
   DeleteOptions,
   ExecOptions,
@@ -45,7 +44,6 @@ import {
   V1Table,
   VersionV1Version,
 } from "./types"
-import { arrStrict } from "@loft-enterprise/shared"
 
 const CookieOptions: Cookies.CookieAttributes = {
   secure: true,
@@ -119,10 +117,6 @@ export const ProjectBasePath = "/kubernetes/project/"
 
 export const getProjectNamespace = (name?: string, prefix?: string): string =>
   !name ? "p-" : prefix ? `${prefix}${name}` : `p-${name}`
-
-function vClusterToProject(vCluster: RequestOptionsVCluster): RequestOptionsProject {
-  return { project: vCluster.project, virtualCluster: vCluster.name }
-}
 
 export function getProjectFromNamespace(
   namespace: string | undefined,
@@ -353,7 +347,7 @@ class Client {
     try {
       const response = await fetch(this.apiHost + path, {
         ...init,
-        credentials: init?.credentials ?? "same-origin",
+        credentials: "same-origin",
       })
 
       if (!response.ok) {
@@ -460,10 +454,12 @@ class Client {
             ErrorTypeServiceUnavailable
           )
         }
-      } else if (response.status === 200 || response.status === 202) {
+      } else if (response.status === 200) {
         // the request succeeded, maybe we wanted text all along
         return Return.Value(text as any)
       }
+
+      console.info("Unexpected Server Response", text)
 
       return Return.Failed(
         "Unexpected server response",
@@ -506,50 +502,47 @@ class Client {
     return Return.Value(obj)
   }
 
-  public management<T>(
-    groupVersionResource: GroupVersionResource<T>,
-    options?: ClientRequestOptions
-  ) {
+  public management<T>(groupVersionResource: GroupVersionResource<T>) {
     return new Request<T>(this, {
       basePath: ManagementBasePath,
       groupVersionResource,
-      skipImpersonation: options?.skipImpersonation,
+      headers: this.impersonationHeaders(),
     })
   }
 
-  public managementNonResource = <T>(options?: ClientRequestOptions) => {
+  public managementNonResource = <T>() => {
     return new Request<T>(this, {
       basePath: ManagementBasePath,
-      skipImpersonation: options?.skipImpersonation,
+      headers: this.impersonationHeaders(),
     })
   }
 
   public cluster = <T>(
     name: string,
     groupVersionResource: GroupVersionResource<T>,
-    additionalHeaders: { [name: string]: string } = {},
-    options?: ClientRequestOptions
+    additionalHeaders: { [name: string]: string } = {}
   ) => {
     return new Request<T>(this, {
       basePath: ClusterBasePath + name,
       groupVersionResource,
-      additionalHeaders,
-      skipImpersonation: options?.skipImpersonation,
+      headers: {
+        ...this.impersonationHeaders(),
+        ...additionalHeaders,
+      },
     })
   }
 
-  public clusterNonResource = <T>(name: string, options?: ClientRequestOptions) => {
+  public clusterNonResource = <T>(name: string) => {
     return new Request<T>(this, {
       basePath: ClusterBasePath + name,
-      skipImpersonation: options?.skipImpersonation,
+      headers: this.impersonationHeaders(),
     })
   }
 
   public project = <T>(
     project: RequestOptionsProject,
     groupVersionResource: GroupVersionResource<T>,
-    additionalHeaders: { [name: string]: string } = {},
-    options?: ClientRequestOptions
+    additionalHeaders: { [name: string]: string } = {}
   ) => {
     return new Request<T>(this, {
       basePath:
@@ -559,15 +552,14 @@ class Client {
         (project.space ? "space/" + project.space : "virtualcluster/" + project.virtualCluster),
       groupVersionResource,
       project,
-      additionalHeaders,
-      skipImpersonation: options?.skipImpersonation,
+      headers: {
+        ...this.impersonationHeaders(getProjectExtraGroups(project)),
+        ...additionalHeaders,
+      },
     })
   }
 
-  public projectNonResource = <T>(
-    project: RequestOptionsProject,
-    options?: ClientRequestOptions
-  ) => {
+  public projectNonResource = <T>(project: RequestOptionsProject) => {
     return new Request<T>(this, {
       basePath:
         ProjectBasePath +
@@ -575,14 +567,13 @@ class Client {
         "/" +
         (project.space ? "space/" + project.space : "virtualcluster/" + project.virtualCluster),
       project,
-      skipImpersonation: options?.skipImpersonation,
+      headers: this.impersonationHeaders(getProjectExtraGroups(project)),
     })
   }
 
   public vCluster<T>(
     vCluster: RequestOptionsVCluster,
-    groupVersionResource: GroupVersionResource<T>,
-    options?: ClientRequestOptions
+    groupVersionResource: GroupVersionResource<T>
   ) {
     // TODO: This is formatting the URL wrong! We need to fix this by using project path. (ENGUI-594)
     return new Request<T>(this, {
@@ -590,16 +581,16 @@ class Client {
         VClusterBasePath + vCluster.cluster + "/" + vCluster.namespace + "/" + vCluster.name,
       groupVersionResource,
       vCluster,
-      skipImpersonation: options?.skipImpersonation,
+      headers: this.impersonationHeaders(),
     })
   }
 
-  public vClusterNonResource<T>(vCluster: RequestOptionsVCluster, options?: ClientRequestOptions) {
+  public vClusterNonResource<T>(vCluster: RequestOptionsVCluster) {
     return new Request<T>(this, {
       basePath:
         VClusterBasePath + vCluster.cluster + "/" + vCluster.namespace + "/" + vCluster.name,
       vCluster,
-      skipImpersonation: options?.skipImpersonation,
+      headers: this.impersonationHeaders(),
     })
   }
 
@@ -607,31 +598,29 @@ class Client {
     cluster: string | undefined,
     vCluster: RequestOptionsVCluster | undefined,
     project: RequestOptionsProject | undefined,
-    groupVersionResource: GroupVersionResource<T>,
-    options?: ClientRequestOptions
+    groupVersionResource: GroupVersionResource<T>
   ) {
     return project
-      ? this.project(project, groupVersionResource, {}, options)
+      ? this.project(project, groupVersionResource)
       : vCluster
-        ? this.vCluster(vCluster, groupVersionResource, options)
+        ? this.vCluster(vCluster, groupVersionResource)
         : cluster
-          ? this.cluster(cluster!, groupVersionResource, {}, options)
-          : this.management(groupVersionResource, options)
+          ? this.cluster(cluster!, groupVersionResource)
+          : this.management(groupVersionResource)
   }
 
   public autoNonResource(
     cluster: string | undefined,
     vCluster: RequestOptionsVCluster | undefined,
-    project: RequestOptionsProject | undefined,
-    options?: ClientRequestOptions
+    project: RequestOptionsProject | undefined
   ) {
     return project
-      ? this.projectNonResource(project, options)
+      ? this.projectNonResource(project)
       : vCluster
-        ? this.vClusterNonResource(vCluster, options)
+        ? this.vClusterNonResource(vCluster)
         : cluster
-          ? this.clusterNonResource(cluster!, options)
-          : this.managementNonResource(options)
+          ? this.clusterNonResource(cluster!)
+          : this.managementNonResource()
   }
 
   public async doRawSocket(path: string, protocols?: string[]): Promise<Result<WebSocket>> {
@@ -647,36 +636,26 @@ class Client {
   public async doRawStream(
     path: string,
     init?: RequestInit,
-    headers?: Record<string, string>,
-    skipImpersonation?: boolean
+    headers?: Record<string, string>
   ): Promise<Result<ReadableStreamDefaultReader<Uint8Array>>> {
-    return this.doRawInternal(path, init, headers, "stream", undefined, skipImpersonation)
+    return this.doRawInternal(path, init, headers, "stream")
   }
 
   public async doRawBlob(
     path: string,
     init?: RequestInit,
-    headers?: Record<string, string>,
-    skipImpersonation?: boolean
+    headers?: Record<string, string>
   ): Promise<Result<Blob>> {
-    return this.doRawInternal(path, init, headers, "blob", undefined, skipImpersonation)
+    return this.doRawInternal(path, init, headers, "blob")
   }
 
   public async doRaw<E>(
     path: string,
     init?: RequestInit,
     headers?: Record<string, string>,
-    allowSpecificErrors?: number[],
-    skipImpersonation?: boolean
+    allowSpecificErrors?: number[]
   ): Promise<Result<E>> {
-    return this.doRawInternal(
-      path,
-      init,
-      headers,
-      undefined,
-      allowSpecificErrors,
-      skipImpersonation
-    )
+    return this.doRawInternal(path, init, headers, undefined, allowSpecificErrors)
   }
 
   private async doRawInternal(
@@ -684,8 +663,7 @@ class Client {
     init?: RequestInit,
     headers?: Record<string, string>,
     type?: "resource" | "stream" | "blob",
-    allowSpecificErrors?: number[],
-    skipImpersonation?: boolean
+    allowSpecificErrors?: number[]
   ): Promise<Result<any>> {
     const requestToken = this.accessKey
     const mergedHeaders = requestToken
@@ -701,19 +679,26 @@ class Client {
           "X-Platform-Client": "true",
         })
 
-    const fetchInit: RequestInit = {
-      ...init,
-      headers: mergedHeaders,
-      credentials: skipImpersonation ? "omit" : "same-origin",
-    }
-
     // merge headers
     const response =
       type === "stream"
-        ? await this.stream(path, fetchInit)
+        ? await this.stream(path, {
+            ...init,
+            headers: mergedHeaders,
+          })
         : type === "blob"
-          ? await this.blob(path, fetchInit)
-          : await this.request(path, fetchInit, allowSpecificErrors)
+          ? await this.blob(path, {
+              ...init,
+              headers: mergedHeaders,
+            })
+          : await this.request(
+              path,
+              {
+                ...init,
+                headers: mergedHeaders,
+              },
+              allowSpecificErrors
+            )
 
     // refetch the token when its expired
     if (response.err && response.val.type === ErrorTypeUnauthorized) {
@@ -734,19 +719,6 @@ class Client {
     return response
   }
 
-  public getImpersonationHeaders(
-    skipImpersonation?: boolean,
-    project?: RequestOptionsProject
-  ): { [name: string]: string } {
-    if (skipImpersonation) {
-      return {}
-    }
-
-    const extraGroups = project ? getProjectExtraGroups(project) : undefined
-
-    return this.impersonationHeaders(extraGroups)
-  }
-
   private impersonationHeaders(extraGroups?: string[]): {
     [name: string]: string
   } {
@@ -757,7 +729,7 @@ class Client {
         headers["Impersonate-User"] = impersonatedUser.subject
       }
 
-      ;[...arrStrict(impersonatedUser.groups), ...arrStrict(extraGroups)].forEach((group) => {
+      ;[...arr(impersonatedUser.groups), ...arr(extraGroups)].forEach((group) => {
         if (headers["Impersonate-Joined-Group"]) {
           headers["Impersonate-Joined-Group"] += ", " + group
         } else {
@@ -850,45 +822,6 @@ class Request<T> {
     return new Request(this.client, { ...this.options, allowSpecificErrors: errorCodes })
   }
 
-  private getHeaders(extra?: { [name: string]: string }): { [name: string]: string } {
-    return {
-      ...this.client.getImpersonationHeaders(this.options.skipImpersonation, this.options.project),
-      ...this.options.additionalHeaders,
-      ...extra,
-    }
-  }
-
-  private doRaw<E>(
-    path: string,
-    init?: RequestInit,
-    headers?: Record<string, string>,
-    allowSpecificErrors?: number[]
-  ): Promise<Result<E>> {
-    return this.client.doRaw<E>(
-      path,
-      init,
-      headers,
-      allowSpecificErrors,
-      this.options.skipImpersonation
-    )
-  }
-
-  private doRawStream(
-    path: string,
-    init?: RequestInit,
-    headers?: Record<string, string>
-  ): Promise<Result<ReadableStreamDefaultReader<Uint8Array>>> {
-    return this.client.doRawStream(path, init, headers, this.options.skipImpersonation)
-  }
-
-  private doRawBlob(
-    path: string,
-    init?: RequestInit,
-    headers?: Record<string, string>
-  ): Promise<Result<Blob>> {
-    return this.client.doRawBlob(path, init, headers, this.options.skipImpersonation)
-  }
-
   private buildPath(options?: any): Result<string> {
     if (!this.options.groupVersionResource) {
       return Return.Failed("groupVersionResource is missing")
@@ -949,7 +882,7 @@ class Request<T> {
     const returnValue: Array<GroupVersionResource<Unstructured>> = []
 
     // parse api resources
-    const apiVersionsResult = await this.doRaw<V1APIVersions>(
+    const apiVersionsResult = await this.client.doRaw<V1APIVersions>(
       [this.options.basePath, "api"].join("/")
     )
     if (apiVersionsResult.err) {
@@ -957,14 +890,14 @@ class Request<T> {
     }
 
     let promises = []
-    for (let j = 0; j < arrStrict(apiVersionsResult.val.versions).length; j++) {
+    for (let j = 0; j < arr(apiVersionsResult.val.versions).length; j++) {
       promises.push(
         (async (index: number) => {
           const version = apiVersionsResult.val.versions[index]
           if (version === undefined) {
             return
           }
-          const resourcesResult = await this.doRaw<V1APIResourceList>(
+          const resourcesResult = await this.client.doRaw<V1APIResourceList>(
             [this.options.basePath, "api", version].join("/")
           )
           if (resourcesResult.err) {
@@ -995,7 +928,7 @@ class Request<T> {
     }
 
     // parse apis resources
-    const apisGroupListResult = await this.doRaw<V1APIGroupList>(
+    const apisGroupListResult = await this.client.doRaw<V1APIGroupList>(
       [this.options.basePath, "apis"].join("/")
     )
     if (apisGroupListResult.err) {
@@ -1003,19 +936,19 @@ class Request<T> {
     }
 
     // get all versions and retrieve resources
-    for (let i = 0; i < arrStrict(apisGroupListResult.val.groups).length; i++) {
+    for (let i = 0; i < arr(apisGroupListResult.val.groups).length; i++) {
       const group = apisGroupListResult.val.groups[i]
       if (group === undefined) {
         continue
       }
-      for (let j = 0; j < arrStrict(group.versions).length; j++) {
+      for (let j = 0; j < arr(group.versions).length; j++) {
         promises.push(
           (async (index: number, group: V1APIGroup) => {
             const version = group.versions[index]
             if (version === undefined) {
               return
             }
-            const resourcesResult = await this.doRaw<V1APIResourceList>(
+            const resourcesResult = await this.client.doRaw<V1APIResourceList>(
               [this.options.basePath, "apis", group.name, version.version].join("/")
             )
             if (resourcesResult.err) {
@@ -1050,7 +983,7 @@ class Request<T> {
   public async Version(): Promise<Result<VersionInfo>> {
     const path = [this.options.basePath, "version"]
 
-    return await this.doRaw<VersionInfo>(path.join("/"))
+    return await this.client.doRaw<VersionInfo>(path.join("/"))
   }
 
   public async VirtualClusterInstanceLogs(
@@ -1072,18 +1005,16 @@ class Request<T> {
       requestPath += "?" + parameters.join("&")
     }
 
-    return await this.doRawStream(requestPath, undefined, this.getHeaders())
+    return await this.client.doRawStream(requestPath, undefined, this.options.headers)
   }
 
-  public async AppInstanceLogs(
-    namespace: string,
-    appInstance: string,
+  public async TaskLogs(
+    task: string,
     options?: LogOptions
   ): Promise<Result<ReadableStreamDefaultReader<Uint8Array>>> {
-    let requestPath = [
-      this.options.basePath,
-      `apis/management.loft.sh/v1/namespaces/${namespace}/appinstances/${appInstance}/log`,
-    ].join("/")
+    let requestPath = [this.options.basePath, `apis/management.loft.sh/v1/tasks/${task}/log`].join(
+      "/"
+    )
 
     const parameters: string[] = []
     if (options) {
@@ -1095,7 +1026,7 @@ class Request<T> {
       requestPath += "?" + parameters.join("&")
     }
 
-    return await this.doRawStream(requestPath, undefined, this.getHeaders())
+    return await this.client.doRawStream(requestPath, undefined, this.options.headers)
   }
 
   public async Logs(
@@ -1112,7 +1043,7 @@ class Request<T> {
       requestPath += "?" + queryString
     }
 
-    return await this.doRawStream(requestPath, undefined, this.getHeaders())
+    return await this.client.doRawStream(requestPath, undefined, this.options.headers)
   }
 
   public async Exec(
@@ -1132,13 +1063,13 @@ class Request<T> {
     return await this.client.doRawSocket(requestPath, K8S_WEBSOCKET_PROTOCOLS)
   }
 
-  public async Connect(options?: ExecOptions, protocols?: string[]): Promise<Result<WebSocket>> {
+  public async Connect(options?: ExecOptions): Promise<Result<WebSocket>> {
     const path = this.buildPath(options)
     if (path.err) {
       return path
     }
 
-    return await this.client.doRawSocket(path.val, protocols || K8S_WEBSOCKET_PROTOCOLS)
+    return await this.client.doRawSocket(path.val, K8S_WEBSOCKET_PROTOCOLS)
   }
 
   public async Path(
@@ -1148,10 +1079,13 @@ class Request<T> {
   ): Promise<Result<T>> {
     const requestPath = [this.options.basePath, path]
 
-    return await this.doRaw<T>(
+    return await this.client.doRaw<T>(
       requestPath.join("/"),
       init,
-      this.getHeaders(headers),
+      {
+        ...headers,
+        ...this.options.headers,
+      },
       this.options.allowSpecificErrors
     )
   }
@@ -1172,7 +1106,12 @@ class Request<T> {
     }
 
     return Return.WithExtra(
-      await this.doRaw<T>(path.val, undefined, this.getHeaders(), this.options.allowSpecificErrors),
+      await this.client.doRaw<T>(
+        path.val,
+        undefined,
+        this.options.headers,
+        this.options.allowSpecificErrors
+      ),
       this.options
     )
   }
@@ -1184,12 +1123,12 @@ class Request<T> {
     }
 
     return Return.WithExtra(
-      await this.doRawBlob(path.val, undefined, this.getHeaders()),
+      await this.client.doRawBlob(path.val, undefined, this.options.headers),
       this.options
     )
   }
 
-  public async List(options?: ListOptions, signal?: AbortSignal): Promise<Result<List<T>>> {
+  public async List(options?: ListOptions): Promise<Result<List<T>>> {
     if (this.options.name) {
       return Return.Failed("name is set on a list request")
     }
@@ -1200,20 +1139,17 @@ class Request<T> {
     }
 
     return Return.WithExtra(
-      await this.doRaw<List<T>>(
+      await this.client.doRaw<List<T>>(
         path.val,
         undefined,
-        this.getHeaders(),
+        this.options.headers,
         this.options.allowSpecificErrors
       ),
       this.options
     )
   }
 
-  public async ListTable(
-    options?: ListOptions,
-    signal?: AbortSignal
-  ): Promise<Result<V1Table | List<T>>> {
+  public async ListTable(options?: ListOptions): Promise<Result<V1Table | List<T>>> {
     if (this.options.name) {
       return Return.Failed("name is set on a list request")
     }
@@ -1224,13 +1160,14 @@ class Request<T> {
     }
 
     return Return.WithExtra(
-      await this.doRaw<List<T>>(
+      await this.client.doRaw<List<T>>(
         path.val,
         undefined,
-        this.getHeaders({
+        {
+          ...this.options.headers,
           Accept:
             "application/json;as=Table;v=v1;g=meta.k8s.io,application/json;as=Table;v=v1beta1;g=meta.k8s.io,application/json",
-        }),
+        },
         this.options.allowSpecificErrors
       ),
       this.options
@@ -1244,14 +1181,14 @@ class Request<T> {
     }
 
     return Return.WithExtra(
-      await this.doRaw<T>(
+      await this.client.doRaw<T>(
         path.val,
         {
           method: "POST",
           body: JSON.stringify(obj),
           signal: signal,
         },
-        this.getHeaders({ "Content-Type": "application/json" }),
+        { ...this.options.headers, "Content-Type": "application/json" },
         this.options.allowSpecificErrors
       ),
       this.options
@@ -1283,7 +1220,7 @@ class Request<T> {
     }
 
     return Return.WithExtra(
-      await this.doRaw<T>(
+      await this.client.doRaw<T>(
         path.val,
         {
           method: "PATCH",
@@ -1291,9 +1228,10 @@ class Request<T> {
             return v === undefined ? null : v
           }),
         },
-        this.getHeaders({
+        {
+          ...this.options.headers,
           "Content-Type": patchType || "application/merge-patch+json",
-        }),
+        },
         this.options.allowSpecificErrors
       ),
       this.options
@@ -1309,13 +1247,13 @@ class Request<T> {
     }
 
     return Return.WithExtra(
-      await this.doRaw<T>(
+      await this.client.doRaw<T>(
         path.val,
         {
           method: "PUT",
           body: JSON.stringify(obj),
         },
-        this.getHeaders({ "Content-Type": "application/json" })
+        { ...this.options.headers, "Content-Type": "application/json" }
       ),
       this.options
     )
@@ -1330,12 +1268,12 @@ class Request<T> {
     }
 
     return Return.WithExtra(
-      await this.doRaw<T>(
+      await this.client.doRaw<T>(
         path.val,
         {
           method: "DELETE",
         },
-        this.getHeaders()
+        this.options.headers
       ),
       this.options
     )
@@ -1348,32 +1286,19 @@ class Request<T> {
         ? this.options.basePath.substring(ClusterBasePath.length)
         : undefined
 
-    const clientOptions: ClientRequestOptions | undefined = this.options.skipImpersonation
-      ? { skipImpersonation: true }
-      : undefined
-
     let request: Request<V1SelfSubjectAccessReview | ManagementV1SelfSubjectAccessReview>
     let selfSubjectAccessReview: V1SelfSubjectAccessReview | ManagementV1SelfSubjectAccessReview
     if (this.options.project) {
-      request = this.client.project(
-        this.options.project,
-        Resources.V1SelfSubjectAccessReview,
-        {},
-        clientOptions
-      )
+      request = this.client.project(this.options.project, Resources.V1SelfSubjectAccessReview)
       selfSubjectAccessReview = NewResource(Resources.V1SelfSubjectAccessReview)
     } else if (this.options.vCluster) {
-      request = this.client.vCluster(
-        this.options.vCluster,
-        Resources.V1SelfSubjectAccessReview,
-        clientOptions
-      )
+      request = this.client.vCluster(this.options.vCluster, Resources.V1SelfSubjectAccessReview)
       selfSubjectAccessReview = NewResource(Resources.V1SelfSubjectAccessReview)
     } else if (cluster) {
-      request = this.client.cluster(cluster, Resources.V1SelfSubjectAccessReview, {}, clientOptions)
+      request = this.client.cluster(cluster, Resources.V1SelfSubjectAccessReview)
       selfSubjectAccessReview = NewResource(Resources.V1SelfSubjectAccessReview)
     } else {
-      request = this.client.management(Resources.ManagementV1SelfSubjectAccessReview, clientOptions)
+      request = this.client.management(Resources.ManagementV1SelfSubjectAccessReview)
       selfSubjectAccessReview = NewResource(Resources.ManagementV1SelfSubjectAccessReview)
     }
 

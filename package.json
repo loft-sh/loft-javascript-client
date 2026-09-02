@@ -13,11 +13,11 @@
   "dependencies": {
     "@kubernetes/client-node": "1.2.0",
     "@kubevirt-ui/kubevirt-api": "1.4.2",
-    "js-cookie": "3.0.1",
+    "js-cookie": "3.0.7",
     "json-merge-patch": "1.0.2"
   },
   "devDependencies": {
     "dts-bundle-generator": "8.0.1",
-    "esbuild": "0.25.0"
+    "esbuild": "0.28.1"
   }
 }
