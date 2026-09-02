@@ -10,16 +10,16 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1NodeEnvironment } from '../models/managementV1NodeEnvironment.js';
+import { ManagementV1Machine } from '../models/managementV1Machine.js';
 import { V1ListMeta } from '../models/V1ListMeta.js';
 
 
-export class ManagementV1NodeEnvironmentList {
+export class ManagementV1MachineList {
     /**
     * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
     */
     'apiVersion'?: string;
-    'items': Array<ManagementV1NodeEnvironment>;
+    'items': Array<ManagementV1Machine>;
     /**
     * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
     */
@@ -38,7 +38,7 @@ export class ManagementV1NodeEnvironmentList {
         {
             "name": "items",
             "baseName": "items",
-            "type": "Array<ManagementV1NodeEnvironment>",
+            "type": "Array<ManagementV1Machine>",
             "format": ""
         },
         {
@@ -55,7 +55,7 @@ export class ManagementV1NodeEnvironmentList {
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1NodeEnvironmentList.attributeTypeMap;
+        return ManagementV1MachineList.attributeTypeMap;
     }
 
     public constructor() {

@@ -13,7 +13,7 @@
 import { StorageV1Condition } from '../models/agentstorageV1Condition.js';
 
 
-export class ManagementV1NodeEnvironmentStatus {
+export class ManagementV1NetworkEnvironmentStatus {
     /**
     * Conditions describe the current state of the platform NodeClaim.
     */
@@ -23,7 +23,7 @@ export class ManagementV1NodeEnvironmentStatus {
     */
     'message'?: string;
     /**
-    * Phase is the current lifecycle phase of the NodeEnvironment.
+    * Phase is the current lifecycle phase of the NetworkEnvironment.
     */
     'phase'?: string;
     /**
@@ -60,7 +60,7 @@ export class ManagementV1NodeEnvironmentStatus {
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1NodeEnvironmentStatus.attributeTypeMap;
+        return ManagementV1NetworkEnvironmentStatus.attributeTypeMap;
     }
 
     public constructor() {
