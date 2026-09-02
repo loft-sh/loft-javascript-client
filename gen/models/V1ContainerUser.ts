@@ -10,24 +10,27 @@
  * Do not edit the class manually.
  */
 
-import { ClusterV1Chart } from '../models/clusterV1Chart.js';
+import { V1LinuxContainerUser } from '../models/V1LinuxContainerUser.js';
 
 
-export class ManagementV1ProjectChartInfoSpec {
-    'chart'?: ClusterV1Chart;
+/**
+* ContainerUser represents user identity information
+*/
+export class V1ContainerUser {
+    'linux'?: V1LinuxContainerUser;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "chart",
-            "baseName": "chart",
-            "type": "ClusterV1Chart",
+            "name": "linux",
+            "baseName": "linux",
+            "type": "V1LinuxContainerUser",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1ProjectChartInfoSpec.attributeTypeMap;
+        return V1ContainerUser.attributeTypeMap;
     }
 
     public constructor() {

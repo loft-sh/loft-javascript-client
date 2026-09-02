@@ -13,7 +13,10 @@
 import { ClusterV1ChartSecretRef } from '../models/clusterV1ChartSecretRef.js';
 
 
-export class StorageV1TemplateHelmChart {
+/**
+* Chart describes a chart
+*/
+export class ClusterV1Chart {
     /**
     * If tls certificate checks for the chart download should be skipped
     */
@@ -28,38 +31,18 @@ export class StorageV1TemplateHelmChart {
     'password'?: string;
     'passwordRef'?: ClusterV1ChartSecretRef;
     /**
-    * ReleaseName is the preferred release name of the app
-    */
-    'releaseName'?: string;
-    /**
-    * ReleaseNamespace is the preferred release namespace of the app
-    */
-    'releaseNamespace'?: string;
-    /**
     * RepoURL is the repo url where the chart can be found
     */
     'repoURL'?: string;
-    /**
-    * Timeout is the time to wait for any individual Kubernetes operation (like Jobs for hooks) (default 5m0s)
-    */
-    'timeout'?: string;
     /**
     * The username that is required for this repository
     */
     'username'?: string;
     'usernameRef'?: ClusterV1ChartSecretRef;
     /**
-    * Values are the values that should get passed to the chart
-    */
-    'values'?: string;
-    /**
     * Version is the chart version in the repository
     */
     'version'?: string;
-    /**
-    * Wait determines if Loft should wait during deploy for the app to become ready
-    */
-    'wait'?: boolean;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -89,26 +72,8 @@ export class StorageV1TemplateHelmChart {
             "format": ""
         },
         {
-            "name": "releaseName",
-            "baseName": "releaseName",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "releaseNamespace",
-            "baseName": "releaseNamespace",
-            "type": "string",
-            "format": ""
-        },
-        {
             "name": "repoURL",
             "baseName": "repoURL",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "timeout",
-            "baseName": "timeout",
             "type": "string",
             "format": ""
         },
@@ -125,26 +90,14 @@ export class StorageV1TemplateHelmChart {
             "format": ""
         },
         {
-            "name": "values",
-            "baseName": "values",
-            "type": "string",
-            "format": ""
-        },
-        {
             "name": "version",
             "baseName": "version",
             "type": "string",
             "format": ""
-        },
-        {
-            "name": "wait",
-            "baseName": "wait",
-            "type": "boolean",
-            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1TemplateHelmChart.attributeTypeMap;
+        return ClusterV1Chart.attributeTypeMap;
     }
 
     public constructor() {
