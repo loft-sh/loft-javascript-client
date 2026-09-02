@@ -276,35 +276,22 @@ export interface DeleteOptions {
   propagationPolicy?: "Orphan" | "Background" | "Foreground"
 }
 
-export interface ClientRequestOptions {
-  skipImpersonation?: boolean
-}
-
 export interface RequestOptions<T> {
   name?: string
   namespace?: string
 
-  vCluster?: RequestOptionsVCluster
   project?: RequestOptionsProject
   basePath?: string
   groupVersionResource?: GroupVersionResource<T>
 
+  headers?: { [name: string]: string }
   allowSpecificErrors?: number[]
-  skipImpersonation?: boolean
-  additionalHeaders?: { [name: string]: string }
 }
 
 export interface RequestOptionsProject {
   project: string
   space?: string
   virtualCluster?: string
-}
-
-export interface RequestOptionsVCluster {
-  project: string
-  cluster: string
-  namespace: string
-  name: string
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
