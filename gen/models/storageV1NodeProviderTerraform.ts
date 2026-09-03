@@ -10,13 +10,13 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1TerraformNodeEnvironmentTemplate } from '../models/storageV1TerraformNodeEnvironmentTemplate.js';
+import { StorageV1TerraformNetworkEnvironmentTemplate } from '../models/storageV1TerraformNetworkEnvironmentTemplate.js';
 import { StorageV1TerraformNodeTypeSpec } from '../models/storageV1TerraformNodeTypeSpec.js';
 import { StorageV1TerraformTemplate } from '../models/storageV1TerraformTemplate.js';
 
 
 export class StorageV1NodeProviderTerraform {
-    'nodeEnvironmentTemplate'?: StorageV1TerraformNodeEnvironmentTemplate;
+    'networkEnvironmentTemplate'?: StorageV1TerraformNetworkEnvironmentTemplate;
     'nodeTemplate'?: StorageV1TerraformTemplate;
     /**
     * NodeTypes define NodeTypes that should be automatically created for this provider.
@@ -27,9 +27,9 @@ export class StorageV1NodeProviderTerraform {
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "nodeEnvironmentTemplate",
-            "baseName": "nodeEnvironmentTemplate",
-            "type": "StorageV1TerraformNodeEnvironmentTemplate",
+            "name": "networkEnvironmentTemplate",
+            "baseName": "networkEnvironmentTemplate",
+            "type": "StorageV1TerraformNetworkEnvironmentTemplate",
             "format": ""
         },
         {
