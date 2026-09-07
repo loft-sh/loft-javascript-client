@@ -13,7 +13,7 @@
 
 
 /**
-* StackTemplateRef references a cluster-scoped StackTemplate. The values for the template\'s declared inputs live on the instance at spec.inputs.
+* StackTemplateRef references a cluster-scoped StackTemplate. The values for the template\'s declared parameters live on the instance at spec.parameters.
 */
 export class StorageV1StackTemplateRef {
     /**

@@ -23,17 +23,17 @@ export class StorageV1StackTask {
     */
     'dependsOn'?: Array<string>;
     /**
-    * Name is the stable identifier of the task. DNS-label-safe, unique within the stack. A task that declares outputs may use letters and digits only: its outputs are referenced as {{ .tasks.<name>.outputs.<output> }}, and the template syntax cannot address a name containing \"-\".
+    * Name is the stable identifier of the task. DNS-label-safe, unique within the stack. A task that declares outputs may use letters and digits only: its outputs are referenced as {{ .Outputs.task.name }}, and the template syntax cannot address a name containing \"-\".
     */
     'name': string;
     /**
-    * Outputs declares named values this task publishes once it is Healthy. Later tasks consume them in their specs as {{ .tasks.<task>.outputs.<name> }} and must list this task in dependsOn (validated at admission).
+    * Outputs declares named values this task publishes once it is Healthy. Later tasks consume them in their specs as {{ .Outputs.task.name }} and must list this task in dependsOn (validated at admission).
     */
     'outputs'?: Array<StorageV1StackTaskOutput>;
     /**
-    * TaskTimeout overrides Defaults.TaskTimeout for this task.
+    * Timeout overrides Defaults.TaskTimeout for this task.
     */
-    'taskTimeout'?: string;
+    'timeout'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -69,8 +69,8 @@ export class StorageV1StackTask {
             "format": ""
         },
         {
-            "name": "taskTimeout",
-            "baseName": "taskTimeout",
+            "name": "timeout",
+            "baseName": "timeout",
             "type": "string",
             "format": ""
         }    ];

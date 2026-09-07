@@ -37,11 +37,11 @@ export class ManagementV1StackTemplateSpec {
     * Icon is a logo/png reference for the catalog.
     */
     'icon'?: string;
-    /**
-    * Inputs declares the typed inputs (with defaults) a stack accepts, reused from AppParameter.
-    */
-    'inputs'?: Array<StorageV1AppParameter>;
     'owner'?: StorageV1UserOrTeam;
+    /**
+    * Parameters declares the typed parameters (with defaults) a stack accepts, reused from AppParameter.
+    */
+    'parameters'?: Array<StorageV1AppParameter>;
     /**
     * PublishedOutputs selects which captured task outputs the stack exposes to its users, optionally under a different name. The values come from the captured task outputs; nothing extra is read from the cluster. They are read through the instance\'s outputs subresource, never from its status.
     */
@@ -79,15 +79,15 @@ export class ManagementV1StackTemplateSpec {
             "format": ""
         },
         {
-            "name": "inputs",
-            "baseName": "inputs",
-            "type": "Array<StorageV1AppParameter>",
-            "format": ""
-        },
-        {
             "name": "owner",
             "baseName": "owner",
             "type": "StorageV1UserOrTeam",
+            "format": ""
+        },
+        {
+            "name": "parameters",
+            "baseName": "parameters",
+            "type": "Array<StorageV1AppParameter>",
             "format": ""
         },
         {

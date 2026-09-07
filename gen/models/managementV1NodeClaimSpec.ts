@@ -38,7 +38,7 @@ export class ManagementV1NodeClaimSpec {
     */
     'displayName'?: string;
     /**
-    * EnvironmentRef is the name of the NodeEnvironment that this NodeClaim is based on.
+    * EnvironmentRef is the name of the NetworkEnvironment that this NodeClaim is based on.
     */
     'environmentRef'?: string;
     /**

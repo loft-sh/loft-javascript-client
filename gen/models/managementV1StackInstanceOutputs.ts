@@ -10,21 +10,27 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1ExternalCredential } from '../models/managementV1ExternalCredential.js';
-import { V1ListMeta } from '../models/V1ListMeta.js';
+import { ManagementV1StackInstanceOutput } from '../models/managementV1StackInstanceOutput.js';
+import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
 
 
-export class ManagementV1ExternalCredentialList {
+/**
+* StackInstanceOutputs holds the published outputs of a StackInstance. The values live in the instance\'s managed outputs Secret, never on its status, and reading them needs the get verb on the stackinstances/outputs subresource.
+*/
+export class ManagementV1StackInstanceOutputs {
     /**
     * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
     */
     'apiVersion'?: string;
-    'items': Array<ManagementV1ExternalCredential>;
     /**
     * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
     */
     'kind'?: string;
-    'metadata'?: V1ListMeta;
+    'metadata'?: V1ObjectMeta;
+    /**
+    * Outputs are the stack\'s published outputs, in the order publishedOutputs declares them. Task outputs the stack does not publish are not listed here.
+    */
+    'outputs'?: Array<ManagementV1StackInstanceOutput>;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -36,12 +42,6 @@ export class ManagementV1ExternalCredentialList {
             "format": ""
         },
         {
-            "name": "items",
-            "baseName": "items",
-            "type": "Array<ManagementV1ExternalCredential>",
-            "format": ""
-        },
-        {
             "name": "kind",
             "baseName": "kind",
             "type": "string",
@@ -50,12 +50,18 @@ export class ManagementV1ExternalCredentialList {
         {
             "name": "metadata",
             "baseName": "metadata",
-            "type": "V1ListMeta",
+            "type": "V1ObjectMeta",
+            "format": ""
+        },
+        {
+            "name": "outputs",
+            "baseName": "outputs",
+            "type": "Array<ManagementV1StackInstanceOutput>",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1ExternalCredentialList.attributeTypeMap;
+        return ManagementV1StackInstanceOutputs.attributeTypeMap;
     }
 
     public constructor() {

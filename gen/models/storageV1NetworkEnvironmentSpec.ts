@@ -11,33 +11,30 @@
  */
 
 import { StorageV1Access } from '../models/storageV1Access.js';
-import { StorageV1SlurmSSHKeyRef } from '../models/storageV1SlurmSSHKeyRef.js';
-import { StorageV1SlurmVirtualCluster } from '../models/storageV1SlurmVirtualCluster.js';
 import { StorageV1UserOrTeam } from '../models/storageV1UserOrTeam.js';
 
 
 /**
-* SlurmInstanceSpec defines the desired state of a SlurmInstance.
+* NetworkEnvironmentSpec defines spec of network environment.
 */
-export class ManagementV1SlurmInstanceSpec {
+export class StorageV1NetworkEnvironmentSpec {
     /**
-    * Access holds the access rights for users and teams.
+    * Access holds the access rights for users and teams
     */
     'access'?: Array<StorageV1Access>;
     /**
-    * Description describes the SlurmInstance.
-    */
-    'description'?: string;
-    /**
-    * DisplayName is the name that should be displayed in the UI.
+    * DisplayName is the name of the NodeClaim that is displayed in the UI.
     */
     'displayName'?: string;
     'owner'?: StorageV1UserOrTeam;
     /**
-    * RootAuthorizedKeys references existing SSHKey resources whose public keys are authorized as root on the Slurm login node.
+    * Properties are the properties for the NetworkEnvironment.
     */
-    'rootAuthorizedKeys'?: Array<StorageV1SlurmSSHKeyRef>;
-    'virtualCluster': StorageV1SlurmVirtualCluster;
+    'properties'?: { [key: string]: string; };
+    /**
+    * ProviderRef is the name of the NodeProvider that this NetworkEnvironment is based on. It may be left empty, in which case the NetworkEnvironment is a pure property container: it provisions no infrastructure, becomes available immediately, carries no cleanup finalizer, and can never be a provider\'s default environment - NodeClaims must reference it explicitly. A NodeProvider that requires a network environment cannot be served by one. Once set, it cannot be changed.
+    */
+    'providerRef'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -46,12 +43,6 @@ export class ManagementV1SlurmInstanceSpec {
             "name": "access",
             "baseName": "access",
             "type": "Array<StorageV1Access>",
-            "format": ""
-        },
-        {
-            "name": "description",
-            "baseName": "description",
-            "type": "string",
             "format": ""
         },
         {
@@ -67,20 +58,20 @@ export class ManagementV1SlurmInstanceSpec {
             "format": ""
         },
         {
-            "name": "rootAuthorizedKeys",
-            "baseName": "rootAuthorizedKeys",
-            "type": "Array<StorageV1SlurmSSHKeyRef>",
+            "name": "properties",
+            "baseName": "properties",
+            "type": "{ [key: string]: string; }",
             "format": ""
         },
         {
-            "name": "virtualCluster",
-            "baseName": "virtualCluster",
-            "type": "StorageV1SlurmVirtualCluster",
+            "name": "providerRef",
+            "baseName": "providerRef",
+            "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1SlurmInstanceSpec.attributeTypeMap;
+        return StorageV1NetworkEnvironmentSpec.attributeTypeMap;
     }
 
     public constructor() {

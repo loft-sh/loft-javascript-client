@@ -12,6 +12,7 @@
 
 import { StorageV1Access } from '../models/storageV1Access.js';
 import { StorageV1AllowedCluster } from '../models/storageV1AllowedCluster.js';
+import { StorageV1AllowedNetworkEnvironment } from '../models/storageV1AllowedNetworkEnvironment.js';
 import { StorageV1AllowedNodeProfile } from '../models/storageV1AllowedNodeProfile.js';
 import { StorageV1AllowedNodeType } from '../models/storageV1AllowedNodeType.js';
 import { StorageV1AllowedRunner } from '../models/storageV1AllowedRunner.js';
@@ -39,6 +40,10 @@ export class ManagementV1ProjectSpec {
     * AllowedClusters are target clusters that are allowed to target with environments.
     */
     'allowedClusters'?: Array<StorageV1AllowedCluster>;
+    /**
+    * AllowedNetworkEnvironments restricts which NetworkEnvironments can be referenced by NodeClaims in this project. NetworkEnvironments are cluster scoped and shared across projects, so this is how a project is scoped to a subset of them. Each entry is an exact NetworkEnvironment name (\"shared-vpc\"). If unset (nil), all NetworkEnvironments are allowed; an empty list disallows all NetworkEnvironments.
+    */
+    'allowedNetworkEnvironments'?: Array<StorageV1AllowedNetworkEnvironment>;
     /**
     * AllowedNodeProfiles restricts which NodeProfiles can be referenced by NodeClaims and joinscript requests in this project. An entry can be an exact name (\"platform.gpu-training\") or an owner wildcard (\"platform.*\"). If unset (nil), all NodeProfiles are allowed; an empty list disallows all NodeProfiles.
     */
@@ -93,6 +98,12 @@ export class ManagementV1ProjectSpec {
             "name": "allowedClusters",
             "baseName": "allowedClusters",
             "type": "Array<StorageV1AllowedCluster>",
+            "format": ""
+        },
+        {
+            "name": "allowedNetworkEnvironments",
+            "baseName": "allowedNetworkEnvironments",
+            "type": "Array<StorageV1AllowedNetworkEnvironment>",
             "format": ""
         },
         {
