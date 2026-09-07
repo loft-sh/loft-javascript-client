@@ -10,39 +10,37 @@
  * Do not edit the class manually.
  */
 
+import { StorageV1TenantSSHKeyAllow } from '../models/storageV1TenantSSHKeyAllow.js';
 
 
 /**
-* QuotaUsage pairs configured limits with observed usage; both maps are keyed by the same condition keys as the corresponding ResourceQuota.
+* TenantSSHKeys governs the SSH keys a tenant may use for machine access.
 */
-export class StorageV1QuotaUsage {
+export class StorageV1TenantSSHKeys {
+    'allow'?: StorageV1TenantSSHKeyAllow;
     /**
-    * Limit echoes the configured caps (condition key -> count).
+    * Enabled gates the capability. False denies the tenant every SSH key; only true enables it. Default: disabled.
     */
-    'limit'?: { [key: string]: string; };
-    /**
-    * Used is the observed usage (condition key -> count).
-    */
-    'used'?: { [key: string]: string; };
+    'enabled'?: boolean;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "limit",
-            "baseName": "limit",
-            "type": "{ [key: string]: string; }",
+            "name": "allow",
+            "baseName": "allow",
+            "type": "StorageV1TenantSSHKeyAllow",
             "format": ""
         },
         {
-            "name": "used",
-            "baseName": "used",
-            "type": "{ [key: string]: string; }",
+            "name": "enabled",
+            "baseName": "enabled",
+            "type": "boolean",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1QuotaUsage.attributeTypeMap;
+        return StorageV1TenantSSHKeys.attributeTypeMap;
     }
 
     public constructor() {
