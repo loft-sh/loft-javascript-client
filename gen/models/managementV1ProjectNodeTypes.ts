@@ -10,7 +10,6 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1NodeProfile } from '../models/storageV1NodeProfile.js';
 import { StorageV1NodeProvider } from '../models/storageV1NodeProvider.js';
 import { StorageV1NodeType } from '../models/storageV1NodeType.js';
 import { StorageV1OSImage } from '../models/storageV1OSImage.js';
@@ -27,10 +26,6 @@ export class ManagementV1ProjectNodeTypes {
     */
     'kind'?: string;
     'metadata'?: V1ObjectMeta;
-    /**
-    * NodeProfiles holds all the allowed node profiles for the project
-    */
-    'nodeProfiles'?: Array<StorageV1NodeProfile>;
     /**
     * NodeProviders holds all the allowed node providers for the project
     */
@@ -63,12 +58,6 @@ export class ManagementV1ProjectNodeTypes {
             "name": "metadata",
             "baseName": "metadata",
             "type": "V1ObjectMeta",
-            "format": ""
-        },
-        {
-            "name": "nodeProfiles",
-            "baseName": "nodeProfiles",
-            "type": "Array<StorageV1NodeProfile>",
             "format": ""
         },
         {

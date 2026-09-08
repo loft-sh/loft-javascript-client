@@ -45,16 +45,8 @@ export class ManagementV1NodeClaimSpec {
     * KubeletArgs are additional arguments to pass to the kubelet.
     */
     'kubeletArgs'?: { [key: string]: string; };
-    /**
-    * MachineRef is the name of a Machine from the provider\'s inventory to provision this claim on. Mutually exclusive with TypeRef: the machine is picked by identity, so there is no node type to schedule against and no node type capacity is consumed. Only providers that mirror an inventory support it.
-    */
-    'machineRef'?: string;
     'owner'?: StorageV1UserOrTeam;
     'power'?: StorageV1NodeClaimPower;
-    /**
-    * ProfileRef is the name of a NodeProfile in the catalog to apply to the resulting node. The referenced profile must exist and must be permitted by the owning project\'s allowedNodeProfiles. Optional.
-    */
-    'profileRef'?: string;
     /**
     * Properties are extra properties for the NodeClaim.
     */
@@ -124,12 +116,6 @@ export class ManagementV1NodeClaimSpec {
             "format": ""
         },
         {
-            "name": "machineRef",
-            "baseName": "machineRef",
-            "type": "string",
-            "format": ""
-        },
-        {
             "name": "owner",
             "baseName": "owner",
             "type": "StorageV1UserOrTeam",
@@ -139,12 +125,6 @@ export class ManagementV1NodeClaimSpec {
             "name": "power",
             "baseName": "power",
             "type": "StorageV1NodeClaimPower",
-            "format": ""
-        },
-        {
-            "name": "profileRef",
-            "baseName": "profileRef",
-            "type": "string",
             "format": ""
         },
         {
