@@ -10,14 +10,15 @@
  * Do not edit the class manually.
  */
 
+import { ManagementV1Apps } from '../models/managementV1Apps.js';
 import { ManagementV1Audit } from '../models/managementV1Audit.js';
+import { ManagementV1Authentication } from '../models/managementV1Authentication.js';
 import { ManagementV1Cloud } from '../models/managementV1Cloud.js';
 import { ManagementV1CostControl } from '../models/managementV1CostControl.js';
 import { ManagementV1DatabaseKine } from '../models/managementV1DatabaseKine.js';
 import { ManagementV1ImageBuilder } from '../models/managementV1ImageBuilder.js';
 import { ManagementV1OIDC } from '../models/managementV1OIDC.js';
 import { ManagementV1PlatformDB } from '../models/managementV1PlatformDB.js';
-import { StorageV1Authentication } from '../models/storageV1Authentication.js';
 import { StorageV1VaultIntegrationSpec } from '../models/storageV1VaultIntegrationSpec.js';
 import { UiV1UISettingsConfig } from '../models/uiV1UISettingsConfig.js';
 
@@ -26,8 +27,9 @@ import { UiV1UISettingsConfig } from '../models/uiV1UISettingsConfig.js';
 * ConfigStatus holds the status, which is the parsed raw config
 */
 export class ManagementV1ConfigStatus {
+    'apps'?: ManagementV1Apps;
     'audit'?: ManagementV1Audit;
-    'auth'?: StorageV1Authentication;
+    'auth'?: ManagementV1Authentication;
     /**
     * AuthenticateVersionEndpoint will force authentication for the \'/version\' endpoint. Will only work with vCluster v0.27 & later
     */
@@ -61,6 +63,12 @@ export class ManagementV1ConfigStatus {
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
+            "name": "apps",
+            "baseName": "apps",
+            "type": "ManagementV1Apps",
+            "format": ""
+        },
+        {
             "name": "audit",
             "baseName": "audit",
             "type": "ManagementV1Audit",
@@ -69,7 +77,7 @@ export class ManagementV1ConfigStatus {
         {
             "name": "auth",
             "baseName": "auth",
-            "type": "StorageV1Authentication",
+            "type": "ManagementV1Authentication",
             "format": ""
         },
         {

@@ -22,6 +22,7 @@ export class ManagementV1SnapshotTaken {
     'snapshotRequest'?: ManagementV1SnapshotRequest;
     'status'?: string;
     'timestamp'?: string;
+    'totalPV': number;
     'url'?: string;
 
     static readonly discriminator: string | undefined = undefined;
@@ -56,6 +57,12 @@ export class ManagementV1SnapshotTaken {
             "baseName": "timestamp",
             "type": "string",
             "format": ""
+        },
+        {
+            "name": "totalPV",
+            "baseName": "totalPV",
+            "type": "number",
+            "format": "int32"
         },
         {
             "name": "url",
