@@ -17,11 +17,11 @@
 */
 export class ManagementV1VirtualClusterSchemaStatus {
     /**
-    * DefaultValues are the default values of the tenant cluster
+    * DefaultValues are the default values of the virtual cluster
     */
     'defaultValues'?: string;
     /**
-    * Schema is the schema of the tenant cluster
+    * Schema is the schema of the virtual cluster
     */
     'schema'?: string;
 
