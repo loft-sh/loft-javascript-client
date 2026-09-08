@@ -29,11 +29,11 @@ export class ManagementV1SpaceInstanceStatus {
     */
     'canUse'?: boolean;
     /**
-    * Conditions holds several conditions the tenant cluster might be in
+    * Conditions holds several conditions the virtual cluster might be in
     */
     'conditions'?: Array<StorageV1Condition>;
     /**
-    * IgnoreReconciliation tells the controller to ignore reconciliation for this instance -- this is primarily used when migrating tenant cluster instances from project to project; this prevents a situation where there are two tenant cluster instances representing the same tenant cluster which could cause issues with concurrent reconciliations of the same object. Once the tenant cluster instance has been cloned and placed into the new project, this (the \"old\") tenant cluster instance can safely be deleted.
+    * IgnoreReconciliation tells the controller to ignore reconciliation for this instance -- this is primarily used when migrating virtual cluster instances from project to project; this prevents a situation where there are two virtual cluster instances representing the same virtual cluster which could cause issues with concurrent reconciliations of the same object. Once the virtual cluster instance has been cloned and placed into the new project, this (the \"old\") virtual cluster instance can safely be deleted.
     */
     'ignoreReconciliation'?: boolean;
     /**
