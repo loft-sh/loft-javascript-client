@@ -11,13 +11,9 @@
  */
 
 import { StorageV1Access } from '../models/storageV1Access.js';
-import { StorageV1TenantControlPlaneClusters } from '../models/storageV1TenantControlPlaneClusters.js';
-import { StorageV1TenantMachines } from '../models/storageV1TenantMachines.js';
-import { StorageV1TenantNodeTypes } from '../models/storageV1TenantNodeTypes.js';
-import { StorageV1TenantOSImages } from '../models/storageV1TenantOSImages.js';
-import { StorageV1TenantPlatformConfig } from '../models/storageV1TenantPlatformConfig.js';
-import { StorageV1TenantSSHKeys } from '../models/storageV1TenantSSHKeys.js';
-import { StorageV1TenantTemplates } from '../models/storageV1TenantTemplates.js';
+import { StorageV1TenantHostnameBinding } from '../models/storageV1TenantHostnameBinding.js';
+import { StorageV1TenantResourceAllowance } from '../models/storageV1TenantResourceAllowance.js';
+import { StorageV1TenantResourceQuota } from '../models/storageV1TenantResourceQuota.js';
 import { StorageV1UserOrTeam } from '../models/storageV1UserOrTeam.js';
 
 
@@ -29,7 +25,6 @@ export class ManagementV1TenantSpec {
     * Access holds the access rights for users and teams on the Tenant CR itself. Stored and validated now; enforcement (operator-side delegation) activates with the Tenant authorizer in a later Multi-Tenancy PR — see the Owner field.
     */
     'access'?: Array<StorageV1Access>;
-    'controlPlaneClusters'?: StorageV1TenantControlPlaneClusters;
     /**
     * Description describes this Tenant.
     */
@@ -38,13 +33,19 @@ export class ManagementV1TenantSpec {
     * DisplayName is the name that should be displayed in the UI.
     */
     'displayName'?: string;
-    'machines'?: StorageV1TenantMachines;
-    'nodeTypes'?: StorageV1TenantNodeTypes;
-    'osImages'?: StorageV1TenantOSImages;
+    /**
+    * Hostnames are the DNS names that resolve to this tenant. Used for SSO bootstrap, UI branding, and per-request tenant resolution.
+    */
+    'hostnames'?: Array<StorageV1TenantHostnameBinding>;
     'owner'?: StorageV1UserOrTeam;
-    'platformConfig'?: StorageV1TenantPlatformConfig;
-    'sshKeys'?: StorageV1TenantSSHKeys;
-    'templates'?: StorageV1TenantTemplates;
+    /**
+    * ResourceAllowances controls, per management.loft.sh kind, how a tenant may see and use instances of that kind. Each entry splits into a Tenant section (the tenant\'s own instances: enabled or disabled) and an Admin section (admin-owned instances: a kind-wide scope of hidden/shared/rbac plus per-name exceptions of hidden/shared/exclusive). At most one entry per resource; a resource with no entry falls to the shipped per-kind default, then to the admin catch-all (rbac). Stored and validated now; the visibility/usability treatment these entries describe is enforced by the tenant scope library in a later Multi-Tenancy PR.
+    */
+    'resourceAllowances'?: Array<StorageV1TenantResourceAllowance>;
+    /**
+    * ResourceQuotas caps how many of a resource this tenant may hold or consume, aggregated across all the tenant\'s projects. Parity with Project quotas, not a replacement (Projects keep their per-project quotas; the tenant quota is an outer bound).
+    */
+    'resourceQuotas'?: Array<StorageV1TenantResourceQuota>;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -53,12 +54,6 @@ export class ManagementV1TenantSpec {
             "name": "access",
             "baseName": "access",
             "type": "Array<StorageV1Access>",
-            "format": ""
-        },
-        {
-            "name": "controlPlaneClusters",
-            "baseName": "controlPlaneClusters",
-            "type": "StorageV1TenantControlPlaneClusters",
             "format": ""
         },
         {
@@ -74,21 +69,9 @@ export class ManagementV1TenantSpec {
             "format": ""
         },
         {
-            "name": "machines",
-            "baseName": "machines",
-            "type": "StorageV1TenantMachines",
-            "format": ""
-        },
-        {
-            "name": "nodeTypes",
-            "baseName": "nodeTypes",
-            "type": "StorageV1TenantNodeTypes",
-            "format": ""
-        },
-        {
-            "name": "osImages",
-            "baseName": "osImages",
-            "type": "StorageV1TenantOSImages",
+            "name": "hostnames",
+            "baseName": "hostnames",
+            "type": "Array<StorageV1TenantHostnameBinding>",
             "format": ""
         },
         {
@@ -98,21 +81,15 @@ export class ManagementV1TenantSpec {
             "format": ""
         },
         {
-            "name": "platformConfig",
-            "baseName": "platformConfig",
-            "type": "StorageV1TenantPlatformConfig",
+            "name": "resourceAllowances",
+            "baseName": "resourceAllowances",
+            "type": "Array<StorageV1TenantResourceAllowance>",
             "format": ""
         },
         {
-            "name": "sshKeys",
-            "baseName": "sshKeys",
-            "type": "StorageV1TenantSSHKeys",
-            "format": ""
-        },
-        {
-            "name": "templates",
-            "baseName": "templates",
-            "type": "StorageV1TenantTemplates",
+            "name": "resourceQuotas",
+            "baseName": "resourceQuotas",
+            "type": "Array<StorageV1TenantResourceQuota>",
             "format": ""
         }    ];
 
