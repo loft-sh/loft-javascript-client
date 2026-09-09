@@ -36,7 +36,7 @@ export class ManagementV1StackInstanceStatus {
     */
     'phase'?: string;
     /**
-    * Tasks is the denormalized per-task status, including not-yet-materialized tasks.
+    * Tasks is the denormalized per-task status, including not-yet-materialized tasks. It is empty when the instance stopped before it could work out its task set, such as a missing destination or a template that does not resolve.
     */
     'tasks'?: Array<StorageV1StackTaskStatus>;
 

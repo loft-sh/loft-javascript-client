@@ -13,11 +13,11 @@
 
 
 /**
-* TenantNodeTypeAllow selects the NodeTypes a tenant may provision from. A tenant cannot author a NodeType of its own, so there is no custom allowance. ByName and ByLabels are additive: a NodeType matched by either is allowed, and setting neither allows every NodeType (see TenantSpec).
+* TenantNodeTypeAllow selects the NodeTypes a tenant may provision from. A tenant cannot author a NodeType of its own, so there is no custom allowance. Setting neither selector allows every NodeType (see TenantSpec).  A name grant and a label grant may not both be set. Each produces its own leg in the read plan, and the plan\'s legs are concatenated on the assumption that they are disjoint -- so a NodeType that is both named here and matched by these labels would be served twice in one page, counted twice, and delivered twice to a watch.  Only this capability can produce the collision, because it is the only one offering a name selector at all. An empty byLabels is still allowed alongside byName: it resolves to a shared baseline, which drops the name selector rather than adding a second leg.  To grant a set plus an extra instance, label the extra one and widen byLabels. That is what byLabels is for, and it keeps the grant expressed in one place.
 */
 export class StorageV1TenantNodeTypeAllow {
     /**
-    * ByLabels selects NodeTypes carrying all of these labels, and is the way to allow a whole provider: label the NodeTypes it owns and match that label here.
+    * ByLabels selects NodeTypes carrying all of these labels, and is the way to allow a whole provider: label the NodeTypes it owns and match that label here.  An empty map and an absent one are deliberately different, which is why this field carries no omitempty. An empty conjunction is vacuously true, so byLabels: {} matches every admin-owned instance; absent or null matches none. With omitempty the two forms both serialize to nothing and the distinction dies on the first round trip, which is why it has to be stated here rather than inferred from emptiness on Allow. ByName gets no equivalent treatment: an empty enumeration reads as \"nothing\" to everyone, and only a conjunction has the vacuous-truth property that makes empty mean everything.
     */
     'byLabels'?: { [key: string]: string; };
     /**

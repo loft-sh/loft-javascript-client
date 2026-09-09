@@ -10,6 +10,7 @@
  * Do not edit the class manually.
  */
 
+import { StorageV1NetworkEnvironment } from '../models/storageV1NetworkEnvironment.js';
 import { StorageV1NodeProfile } from '../models/storageV1NodeProfile.js';
 import { StorageV1NodeProvider } from '../models/storageV1NodeProvider.js';
 import { StorageV1NodeType } from '../models/storageV1NodeType.js';
@@ -27,6 +28,10 @@ export class ManagementV1ProjectNodeTypes {
     */
     'kind'?: string;
     'metadata'?: V1ObjectMeta;
+    /**
+    * NetworkEnvironments holds all the allowed network environments for the project
+    */
+    'networkEnvironments'?: Array<StorageV1NetworkEnvironment>;
     /**
     * NodeProfiles holds all the allowed node profiles for the project
     */
@@ -63,6 +68,12 @@ export class ManagementV1ProjectNodeTypes {
             "name": "metadata",
             "baseName": "metadata",
             "type": "V1ObjectMeta",
+            "format": ""
+        },
+        {
+            "name": "networkEnvironments",
+            "baseName": "networkEnvironments",
+            "type": "Array<StorageV1NetworkEnvironment>",
             "format": ""
         },
         {

@@ -13,12 +13,17 @@
 import { StorageV1Condition } from '../models/agentstorageV1Condition.js';
 import { StorageV1TenantHostnameBinding } from '../models/storageV1TenantHostnameBinding.js';
 import { StorageV1TenantNICoStatus } from '../models/storageV1TenantNICoStatus.js';
+import { StorageV1TenantResourceBoundary } from '../models/storageV1TenantResourceBoundary.js';
 
 
 /**
 * TenantStatus holds the status.  status.hostnames comes from the inlined storage status, where the Tenant controller writes it. It reads the same as it always did, a caller listing Tenants seeing each tenant\'s hostnames without a request per tenant, but it is now a stored field rather than a read-time join, so it costs nothing to serve and needs no ?extended=true. Writing it here still does nothing: hostnames are set through the tenants/config subresource, and the controller overwrites this projection from there.
 */
 export class ManagementV1TenantStatus {
+    /**
+    * Boundary is the resolved tenant boundary, one entry per resource kind, projected here by the Tenant controller. Mostly a report: see TenantResourceBoundary for the single field the read path consumes.
+    */
+    'boundary'?: Array<StorageV1TenantResourceBoundary>;
     /**
     * Conditions describes the current observed conditions of the Tenant.
     */
@@ -32,6 +37,12 @@ export class ManagementV1TenantStatus {
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+        {
+            "name": "boundary",
+            "baseName": "boundary",
+            "type": "Array<StorageV1TenantResourceBoundary>",
+            "format": ""
+        },
         {
             "name": "conditions",
             "baseName": "conditions",

@@ -12,7 +12,6 @@
 
 import { StorageV1Access } from '../models/storageV1Access.js';
 import { StorageV1TenantControlPlaneClusters } from '../models/storageV1TenantControlPlaneClusters.js';
-import { StorageV1TenantMachines } from '../models/storageV1TenantMachines.js';
 import { StorageV1TenantNodeTypes } from '../models/storageV1TenantNodeTypes.js';
 import { StorageV1TenantOSImages } from '../models/storageV1TenantOSImages.js';
 import { StorageV1TenantPlatformConfig } from '../models/storageV1TenantPlatformConfig.js';
@@ -26,7 +25,7 @@ import { StorageV1UserOrTeam } from '../models/storageV1UserOrTeam.js';
 */
 export class ManagementV1TenantSpec {
     /**
-    * Access holds the access rights for users and teams on the Tenant CR itself. Stored and validated now; enforcement (operator-side delegation) activates with the Tenant authorizer in a later Multi-Tenancy PR — see the Owner field.
+    * Access holds the access rights for users and teams on the Tenant object. Stored and validated on write, but it grants nothing at request time yet. It does not express tenant membership: a User\'s own tenant label is what binds it to a Tenant.
     */
     'access'?: Array<StorageV1Access>;
     'controlPlaneClusters'?: StorageV1TenantControlPlaneClusters;
@@ -38,7 +37,6 @@ export class ManagementV1TenantSpec {
     * DisplayName is the name that should be displayed in the UI.
     */
     'displayName'?: string;
-    'machines'?: StorageV1TenantMachines;
     'nodeTypes'?: StorageV1TenantNodeTypes;
     'osImages'?: StorageV1TenantOSImages;
     'owner'?: StorageV1UserOrTeam;
@@ -71,12 +69,6 @@ export class ManagementV1TenantSpec {
             "name": "displayName",
             "baseName": "displayName",
             "type": "string",
-            "format": ""
-        },
-        {
-            "name": "machines",
-            "baseName": "machines",
-            "type": "StorageV1TenantMachines",
             "format": ""
         },
         {

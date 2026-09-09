@@ -10,15 +10,15 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1NodeEnvironmentSpec } from '../models/managementV1NodeEnvironmentSpec.js';
-import { ManagementV1NodeEnvironmentStatus } from '../models/managementV1NodeEnvironmentStatus.js';
+import { ManagementV1NetworkEnvironmentSpec } from '../models/managementV1NetworkEnvironmentSpec.js';
+import { ManagementV1NetworkEnvironmentStatus } from '../models/managementV1NetworkEnvironmentStatus.js';
 import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
 
 
 /**
-* NodeEnvironment holds the node environment for vCluster.
+* NetworkEnvironment holds the network environment for vCluster.
 */
-export class ManagementV1NodeEnvironment {
+export class ManagementV1NetworkEnvironment {
     /**
     * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
     */
@@ -28,8 +28,8 @@ export class ManagementV1NodeEnvironment {
     */
     'kind'?: string;
     'metadata'?: V1ObjectMeta;
-    'spec'?: ManagementV1NodeEnvironmentSpec;
-    'status'?: ManagementV1NodeEnvironmentStatus;
+    'spec'?: ManagementV1NetworkEnvironmentSpec;
+    'status'?: ManagementV1NetworkEnvironmentStatus;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -55,18 +55,18 @@ export class ManagementV1NodeEnvironment {
         {
             "name": "spec",
             "baseName": "spec",
-            "type": "ManagementV1NodeEnvironmentSpec",
+            "type": "ManagementV1NetworkEnvironmentSpec",
             "format": ""
         },
         {
             "name": "status",
             "baseName": "status",
-            "type": "ManagementV1NodeEnvironmentStatus",
+            "type": "ManagementV1NetworkEnvironmentStatus",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1NodeEnvironment.attributeTypeMap;
+        return ManagementV1NetworkEnvironment.attributeTypeMap;
     }
 
     public constructor() {
