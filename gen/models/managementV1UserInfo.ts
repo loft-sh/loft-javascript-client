@@ -39,10 +39,6 @@ export class ManagementV1UserInfo {
     */
     'teams'?: Array<StorageV1EntityInfo>;
     /**
-    * Tenant is the name of the Tenant this user belongs to, derived from the tenant.vcluster.com/owner label on the User. Empty for an operator (unscoped) user, including a user that only inherits a label from a Team, since Team labels do not grant tenancy. The UI reads this to pre-fill the \"<tenant>--\" prefix required on cluster-scoped tenant-owned resources.
-    */
-    'tenant'?: string;
-    /**
     * The username that is used to login
     */
     'username'?: string;
@@ -84,12 +80,6 @@ export class ManagementV1UserInfo {
             "name": "teams",
             "baseName": "teams",
             "type": "Array<StorageV1EntityInfo>",
-            "format": ""
-        },
-        {
-            "name": "tenant",
-            "baseName": "tenant",
-            "type": "string",
             "format": ""
         },
         {

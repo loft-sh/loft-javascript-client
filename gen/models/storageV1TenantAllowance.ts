@@ -10,28 +10,20 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1TenantSSHKeyAllow } from '../models/storageV1TenantSSHKeyAllow.js';
 
 
 /**
-* TenantSSHKeys governs the SSH keys a tenant may use for machine access.
+* TenantAllowance governs a tenant\'s access to its own-labeled instances of a kind.
 */
-export class StorageV1TenantSSHKeys {
-    'allow'?: StorageV1TenantSSHKeyAllow;
+export class StorageV1TenantAllowance {
     /**
-    * Enabled gates the capability. False denies the tenant every SSH key; only true enables it. Default: disabled.
+    * Enabled controls whether the tenant may use its own instances of this kind. Nil or true means enabled (read-write); false denies the tenant\'s own instances of the kind. Default: enabled.
     */
     'enabled'?: boolean;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
-        {
-            "name": "allow",
-            "baseName": "allow",
-            "type": "StorageV1TenantSSHKeyAllow",
-            "format": ""
-        },
         {
             "name": "enabled",
             "baseName": "enabled",
@@ -40,7 +32,7 @@ export class StorageV1TenantSSHKeys {
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1TenantSSHKeys.attributeTypeMap;
+        return StorageV1TenantAllowance.attributeTypeMap;
     }
 
     public constructor() {
