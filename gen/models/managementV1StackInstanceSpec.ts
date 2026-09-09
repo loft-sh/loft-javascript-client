@@ -36,13 +36,13 @@ export class ManagementV1StackInstanceSpec {
     * DisplayName is the name that should be displayed in the UI
     */
     'displayName'?: string;
-    /**
-    * Inputs are the values the template\'s tasks reference as .Values.<name>, rendered with the shared template engine. Declarations provide defaults and validation but are not a whitelist: values without a matching declaration are passed through and may be referenced too.
-    */
-    'inputs'?: any;
     'owner'?: StorageV1UserOrTeam;
     /**
-    * PrunePolicy controls what happens to an owned application whose task is removed from the resolved task set. The empty value is treated as Retain.
+    * Parameters are the values the template\'s tasks reference as .Values.<name>, the same way an app reads its parameters. Declarations provide defaults and validation but are not a whitelist: values without a matching declaration are passed through and may be referenced too.
+    */
+    'parameters'?: any;
+    /**
+    * PrunePolicy controls what happens to an owned application whose task is removed from the resolved task set. Leaving it out is treated as Retain.
     */
     'prunePolicy'?: string;
     'template'?: StorageV1StackTemplateDefinition;
@@ -82,15 +82,15 @@ export class ManagementV1StackInstanceSpec {
             "format": ""
         },
         {
-            "name": "inputs",
-            "baseName": "inputs",
-            "type": "any",
-            "format": ""
-        },
-        {
             "name": "owner",
             "baseName": "owner",
             "type": "StorageV1UserOrTeam",
+            "format": ""
+        },
+        {
+            "name": "parameters",
+            "baseName": "parameters",
+            "type": "any",
             "format": ""
         },
         {

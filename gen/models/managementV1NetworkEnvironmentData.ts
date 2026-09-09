@@ -13,17 +13,17 @@
 import { ManagementV1Operation } from '../models/managementV1Operation.js';
 
 
-export class ManagementV1NodeEnvironmentData {
+export class ManagementV1NetworkEnvironmentData {
     /**
-    * Operations that were applied to the node environment.
+    * Operations that were applied to the network environment.
     */
     'operations'?: { [key: string]: ManagementV1Operation; };
     /**
-    * Outputs of the node environment.
+    * Outputs of the network environment.
     */
     'outputs'?: string;
     /**
-    * Terraform state of the node environment.
+    * Terraform state of the network environment.
     */
     'state'?: string;
 
@@ -50,7 +50,7 @@ export class ManagementV1NodeEnvironmentData {
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1NodeEnvironmentData.attributeTypeMap;
+        return ManagementV1NetworkEnvironmentData.attributeTypeMap;
     }
 
     public constructor() {
