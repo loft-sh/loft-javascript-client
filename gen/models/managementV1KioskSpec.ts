@@ -10,8 +10,6 @@
  * Do not edit the class manually.
  */
 
-import { ClusterV1ChartInfo } from '../models/clusterV1ChartInfo.js';
-import { ClusterV1HelmRelease } from '../models/clusterV1HelmRelease.js';
 import { ClusterV1SleepModeConfig } from '../models/clusterV1SleepModeConfig.js';
 import { StorageV1ClusterQuota } from '../models/agentstorageV1ClusterQuota.js';
 import { ManagementV1License } from '../models/managementV1License.js';
@@ -30,8 +28,6 @@ import { UiV1UISettings } from '../models/uiV1UISettings.js';
 export class ManagementV1KioskSpec {
     'UISettings'?: UiV1UISettings;
     'accessKey'?: StorageV1AccessKey;
-    'chartInfo'?: ClusterV1ChartInfo;
-    'helmRelease'?: ClusterV1HelmRelease;
     'license'?: ManagementV1License;
     'nodeClaimData'?: ManagementV1NodeClaimData;
     'nodeEnvironmentData'?: ManagementV1NodeEnvironmentData;
@@ -57,18 +53,6 @@ export class ManagementV1KioskSpec {
             "name": "accessKey",
             "baseName": "accessKey",
             "type": "StorageV1AccessKey",
-            "format": ""
-        },
-        {
-            "name": "chartInfo",
-            "baseName": "chartInfo",
-            "type": "ClusterV1ChartInfo",
-            "format": ""
-        },
-        {
-            "name": "helmRelease",
-            "baseName": "helmRelease",
-            "type": "ClusterV1HelmRelease",
             "format": ""
         },
         {

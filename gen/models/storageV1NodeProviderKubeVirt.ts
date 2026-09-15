@@ -22,6 +22,10 @@ export class StorageV1NodeProviderKubeVirt {
     'clusterRef'?: StorageV1NodeProviderClusterRef;
     'deploy'?: StorageV1KubeVirtProviderDeployment;
     /**
+    * NamespaceStrategy determines in which namespace of the connected cluster the VirtualMachines are created. \"Provider\" (default) creates all VirtualMachines in clusterRef.namespace. \"VirtualCluster\" creates the VirtualMachines in the namespace of the tenant cluster the NodeClaim belongs to. If the NodeClaim cannot be traced back to a tenant cluster namespace within clusterRef.cluster, clusterRef.namespace is used instead.
+    */
+    'namespaceStrategy'?: string;
+    /**
     * NodeTypes define NodeTypes that should be automatically created for this provider.
     */
     'nodeTypes': Array<StorageV1KubeVirtNodeTypeSpec>;
@@ -43,6 +47,12 @@ export class StorageV1NodeProviderKubeVirt {
             "name": "deploy",
             "baseName": "deploy",
             "type": "StorageV1KubeVirtProviderDeployment",
+            "format": ""
+        },
+        {
+            "name": "namespaceStrategy",
+            "baseName": "namespaceStrategy",
+            "type": "string",
             "format": ""
         },
         {

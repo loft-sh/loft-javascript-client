@@ -10,11 +10,11 @@
  * Do not edit the class manually.
  */
 
-import { ClusterV1HelmReleaseConfig } from '../models/clusterV1HelmReleaseConfig.js';
 import { StorageV1Access } from '../models/storageV1Access.js';
 import { StorageV1AppParameter } from '../models/storageV1AppParameter.js';
 import { StorageV1AppVersion } from '../models/storageV1AppVersion.js';
 import { StorageV1HelmConfiguration } from '../models/storageV1HelmConfiguration.js';
+import { StorageV1HelmReleaseConfig } from '../models/storageV1HelmReleaseConfig.js';
 import { StorageV1StreamContainer } from '../models/storageV1StreamContainer.js';
 import { StorageV1UserOrTeam } from '../models/storageV1UserOrTeam.js';
 
@@ -31,7 +31,7 @@ export class ManagementV1AppSpec {
     * Clusters are the clusters this app can be installed in.
     */
     'clusters'?: Array<string>;
-    'config'?: ClusterV1HelmReleaseConfig;
+    'config'?: StorageV1HelmReleaseConfig;
     /**
     * DefaultNamespace is the default namespace this app should installed in.
     */
@@ -98,7 +98,7 @@ export class ManagementV1AppSpec {
         {
             "name": "config",
             "baseName": "config",
-            "type": "ClusterV1HelmReleaseConfig",
+            "type": "StorageV1HelmReleaseConfig",
             "format": ""
         },
         {
