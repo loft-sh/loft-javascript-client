@@ -14,14 +14,13 @@ import { StorageV1TerraformTemplate } from '../models/storageV1TerraformTemplate
 import { StorageV1TerraformTemplateSourceGit } from '../models/storageV1TerraformTemplateSourceGit.js';
 
 
-export class StorageV1TerraformNodeEnvironmentTemplate {
+export class StorageV1TerraformNetworkEnvironmentTemplate {
     'git'?: StorageV1TerraformTemplateSourceGit;
     'infrastructure'?: StorageV1TerraformTemplate;
     /**
     * Inline is the inline template to use for this node type.
     */
     'inline'?: string;
-    'kubernetes'?: StorageV1TerraformTemplate;
     /**
     * Timeout is the timeout to use for the terraform operations. Defaults to 60m.
     */
@@ -49,12 +48,6 @@ export class StorageV1TerraformNodeEnvironmentTemplate {
             "format": ""
         },
         {
-            "name": "kubernetes",
-            "baseName": "kubernetes",
-            "type": "StorageV1TerraformTemplate",
-            "format": ""
-        },
-        {
             "name": "timeout",
             "baseName": "timeout",
             "type": "string",
@@ -62,7 +55,7 @@ export class StorageV1TerraformNodeEnvironmentTemplate {
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1TerraformNodeEnvironmentTemplate.attributeTypeMap;
+        return StorageV1TerraformNetworkEnvironmentTemplate.attributeTypeMap;
     }
 
     public constructor() {

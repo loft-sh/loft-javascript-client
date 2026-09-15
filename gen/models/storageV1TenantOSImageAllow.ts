@@ -18,7 +18,7 @@ import { StorageV1TenantCustomAllow } from '../models/storageV1TenantCustomAllow
 */
 export class StorageV1TenantOSImageAllow {
     /**
-    * ByLabels selects admin-owned OS images carrying all of these labels.
+    * ByLabels selects admin-owned OS images carrying all of these labels.  An empty map and an absent one are deliberately different, which is why this field carries no omitempty. An empty conjunction is vacuously true, so byLabels: {} matches every admin-owned instance; absent or null matches none. With omitempty the two forms both serialize to nothing and the distinction dies on the first round trip, which is why it has to be stated here rather than inferred from emptiness on Allow. ByName gets no equivalent treatment: an empty enumeration reads as \"nothing\" to everyone, and only a conjunction has the vacuous-truth property that makes empty mean everything.
     */
     'byLabels'?: { [key: string]: string; };
     'custom'?: StorageV1TenantCustomAllow;
