@@ -21,7 +21,7 @@ export class StorageV1StackTaskOutput {
     'fromResource'?: StorageV1StackResourceOutputSource;
     'fromSecret'?: StorageV1StackSecretOutputSource;
     /**
-    * Name identifies the output. Letters and digits only, unique within the task: the output is referenced as {{ .tasks.<task>.outputs.<name> }}, and the template syntax cannot address a name containing \"-\".
+    * Name identifies the output. Letters and digits only, unique within the task: the output is referenced as {{ .Outputs.task.name }}, and the template syntax cannot address a name containing \"-\".
     */
     'name': string;
 

@@ -13,36 +13,36 @@
 
 
 /**
-* MachineSpec holds the mirror\'s identity.
+* TenantAdminException overrides the admin baseline scope for specific admin-owned instances of a kind, named explicitly.
 */
-export class ManagementV1MachineSpec {
+export class StorageV1TenantAdminException {
     /**
-    * DisplayName is shown in the UI; providers fill it from their native naming (metal3: the BareMetalHost name, NICo: the machine hostname).
+    * ResourceNames are the admin-owned instances this exception applies to. Each must be a concrete instance name; the \"*\" wildcard is not allowed.
     */
-    'displayName'?: string;
+    'resourceNames': Array<string>;
     /**
-    * ProviderRef is the NodeProvider whose inventory this machine mirrors.
+    * Scope is the treatment for the named admin-owned instances: hidden, shared, or exclusive.
     */
-    'providerRef'?: string;
+    'scope': string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "displayName",
-            "baseName": "displayName",
-            "type": "string",
+            "name": "resourceNames",
+            "baseName": "resourceNames",
+            "type": "Array<string>",
             "format": ""
         },
         {
-            "name": "providerRef",
-            "baseName": "providerRef",
+            "name": "scope",
+            "baseName": "scope",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1MachineSpec.attributeTypeMap;
+        return StorageV1TenantAdminException.attributeTypeMap;
     }
 
     public constructor() {
