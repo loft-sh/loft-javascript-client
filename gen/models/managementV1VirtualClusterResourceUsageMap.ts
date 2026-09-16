@@ -10,18 +10,13 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1GPUTypeUsage } from '../models/managementV1GPUTypeUsage.js';
 
 
 export class ManagementV1VirtualClusterResourceUsageMap {
     /**
-    * Capacity is a map of raw node resource names to their total amounts across all attached nodes (e.g. \"cpu\", \"nvidia.com/gpu\"). It is per-resource-name, not per-vendor: for GPUs it only includes \"nvidia.com/gpu\" and not other accelerator vendors, so use GPUs (not Capacity) for a cross-vendor GPU total.
+    * Capacity is a map of resources to their total amounts across all attached nodes.
     */
     'capacity'?: { [key: string]: number; };
-    /**
-    * GPUs is the accelerator usage across all attached nodes, broken down by GPU type (vendor and model).
-    */
-    'gpus'?: Array<ManagementV1GPUTypeUsage>;
     /**
     * Nodes is the total count of nodes attached to the tenant cluster.
     */
@@ -35,12 +30,6 @@ export class ManagementV1VirtualClusterResourceUsageMap {
             "baseName": "capacity",
             "type": "{ [key: string]: number; }",
             "format": "int32"
-        },
-        {
-            "name": "gpus",
-            "baseName": "gpus",
-            "type": "Array<ManagementV1GPUTypeUsage>",
-            "format": ""
         },
         {
             "name": "nodes",

@@ -26,7 +26,7 @@ export class ManagementV1ArgoCDApplicationSpec {
     */
     'access'?: Array<StorageV1Access>;
     /**
-    * Description describes the Argo CD application
+    * Description describes an OS image
     */
     'description'?: string;
     'destination'?: StorageV1ArgoCDDestination;
