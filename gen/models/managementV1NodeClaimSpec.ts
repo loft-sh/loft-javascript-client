@@ -45,10 +45,6 @@ export class ManagementV1NodeClaimSpec {
     * KubeletArgs are additional arguments to pass to the kubelet.
     */
     'kubeletArgs'?: { [key: string]: string; };
-    /**
-    * MachineRef is the name of a Machine from the provider\'s inventory to provision this claim on. Mutually exclusive with TypeRef: the machine is picked by identity, so there is no node type to schedule against and no node type capacity is consumed. Only providers that mirror an inventory support it.
-    */
-    'machineRef'?: string;
     'owner'?: StorageV1UserOrTeam;
     'power'?: StorageV1NodeClaimPower;
     /**
@@ -121,12 +117,6 @@ export class ManagementV1NodeClaimSpec {
             "name": "kubeletArgs",
             "baseName": "kubeletArgs",
             "type": "{ [key: string]: string; }",
-            "format": ""
-        },
-        {
-            "name": "machineRef",
-            "baseName": "machineRef",
-            "type": "string",
             "format": ""
         },
         {
