@@ -19,7 +19,7 @@ export class ManagementV1NodeClaimData {
     */
     'operations'?: { [key: string]: ManagementV1Operation; };
     /**
-    * Outputs of the node environment.
+    * Outputs of the network environment.
     */
     'outputs'?: string;
     /**

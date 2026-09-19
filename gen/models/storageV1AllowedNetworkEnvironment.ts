@@ -13,46 +13,26 @@
 
 
 /**
-* SlurmVirtualClusterInstanceRef references a tenant cluster instance.
+* AllowedNetworkEnvironment restricts which NetworkEnvironment a project\'s consumers may reference.  Unlike AllowedNodeType and AllowedNodeProfile, there is no \"<provider>.*\" wildcard here: those resources are named \"<provider>.<name>\", whereas NetworkEnvironment names are rejected at creation if they contain a dot, so no such prefix could ever match.
 */
-export class StorageV1SlurmVirtualClusterInstanceRef {
+export class StorageV1AllowedNetworkEnvironment {
     /**
-    * Cluster the tenant cluster runs in.
-    */
-    'cluster'?: string;
-    /**
-    * Name of the tenant cluster instance.
+    * Name is the exact name of the NetworkEnvironment.
     */
     'name'?: string;
-    /**
-    * Namespace of the tenant cluster instance.
-    */
-    'namespace'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "cluster",
-            "baseName": "cluster",
-            "type": "string",
-            "format": ""
-        },
-        {
             "name": "name",
             "baseName": "name",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "namespace",
-            "baseName": "namespace",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1SlurmVirtualClusterInstanceRef.attributeTypeMap;
+        return StorageV1AllowedNetworkEnvironment.attributeTypeMap;
     }
 
     public constructor() {
