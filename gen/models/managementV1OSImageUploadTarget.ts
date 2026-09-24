@@ -10,30 +10,36 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1SlurmTopologySwitch } from '../models/managementV1SlurmTopologySwitch.js';
 
 
-/**
-* SlurmTopologyTree is the topology/tree layout: a set of switches, each with child switches and/or leaf nodes.
-*/
-export class ManagementV1SlurmTopologyTree {
+export class ManagementV1OSImageUploadTarget {
     /**
-    * Switches are the switch definitions making up the tree.
+    * PartNumber is 1-based, so the part covers the bytes at offset (PartNumber-1)*PartSizeBytes.
     */
-    'switches'?: Array<ManagementV1SlurmTopologySwitch>;
+    'partNumber': number;
+    /**
+    * URL accepts a plain PUT of that part\'s bytes. Only Host is signed, so no additional request headers are needed.
+    */
+    'url': string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "switches",
-            "baseName": "switches",
-            "type": "Array<ManagementV1SlurmTopologySwitch>",
+            "name": "partNumber",
+            "baseName": "partNumber",
+            "type": "number",
+            "format": "int32"
+        },
+        {
+            "name": "url",
+            "baseName": "url",
+            "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1SlurmTopologyTree.attributeTypeMap;
+        return ManagementV1OSImageUploadTarget.attributeTypeMap;
     }
 
     public constructor() {

@@ -12,27 +12,24 @@
 
 
 
-/**
-* SlurmSSHKeyRef references an existing SSHKey resource.
-*/
-export class StorageV1SlurmSSHKeyRef {
+export class ManagementV1OSImageFinalizeStatus {
     /**
-    * Name of the SSHKey resource.
+    * CompletedAt is when the object was assembled. A repeated call reports the first one, since completing again would change an object consumers may already have pulled.
     */
-    'name': string;
+    'completedAt'?: Date;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "name",
-            "baseName": "name",
-            "type": "string",
-            "format": ""
+            "name": "completedAt",
+            "baseName": "completedAt",
+            "type": "Date",
+            "format": "date-time"
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1SlurmSSHKeyRef.attributeTypeMap;
+        return ManagementV1OSImageFinalizeStatus.attributeTypeMap;
     }
 
     public constructor() {

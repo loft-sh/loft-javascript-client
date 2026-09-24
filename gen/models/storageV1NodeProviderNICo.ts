@@ -31,6 +31,10 @@ export class StorageV1NodeProviderNICo {
     */
     'instanceTypeIds'?: Array<string>;
     /**
+    * NetworkMode selects how tenant networking is provisioned at this site. Defaults to fnn.  Possible enum values:  - `\"flat\"` configures FLAT VPCs with automatic interface assignment.  - `\"fnn\"` configures FNN VPCs with explicit interfaces and VPC prefixes.
+    */
+    'networkMode'?: StorageV1NodeProviderNICoNetworkModeEnum;
+    /**
     * Org is the NICo organization used for provider-scoped API calls (the /v2/org/{org}/nico path) and stamped as the provider token\'s organization claim. Optional; defaults to \"vcluster-autonodes\".
     */
     'org'?: string;
@@ -75,6 +79,12 @@ export class StorageV1NodeProviderNICo {
             "format": ""
         },
         {
+            "name": "networkMode",
+            "baseName": "networkMode",
+            "type": "StorageV1NodeProviderNICoNetworkModeEnum",
+            "format": ""
+        },
+        {
             "name": "org",
             "baseName": "org",
             "type": "string",
@@ -105,5 +115,11 @@ export class StorageV1NodeProviderNICo {
 
     public constructor() {
     }
+}
+
+
+export enum StorageV1NodeProviderNICoNetworkModeEnum {
+    Flat = 'flat',
+    Fnn = 'fnn'
 }
 

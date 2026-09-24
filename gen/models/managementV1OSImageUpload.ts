@@ -10,15 +10,12 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1NodeEnvironmentSpec } from '../models/managementV1NodeEnvironmentSpec.js';
-import { ManagementV1NodeEnvironmentStatus } from '../models/managementV1NodeEnvironmentStatus.js';
+import { ManagementV1OSImageUploadSpec } from '../models/managementV1OSImageUploadSpec.js';
+import { ManagementV1OSImageUploadStatus } from '../models/managementV1OSImageUploadStatus.js';
 import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
 
 
-/**
-* NodeEnvironment holds the node environment for vCluster.
-*/
-export class ManagementV1NodeEnvironment {
+export class ManagementV1OSImageUpload {
     /**
     * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
     */
@@ -28,8 +25,8 @@ export class ManagementV1NodeEnvironment {
     */
     'kind'?: string;
     'metadata'?: V1ObjectMeta;
-    'spec'?: ManagementV1NodeEnvironmentSpec;
-    'status'?: ManagementV1NodeEnvironmentStatus;
+    'spec': ManagementV1OSImageUploadSpec;
+    'status'?: ManagementV1OSImageUploadStatus;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -55,18 +52,18 @@ export class ManagementV1NodeEnvironment {
         {
             "name": "spec",
             "baseName": "spec",
-            "type": "ManagementV1NodeEnvironmentSpec",
+            "type": "ManagementV1OSImageUploadSpec",
             "format": ""
         },
         {
             "name": "status",
             "baseName": "status",
-            "type": "ManagementV1NodeEnvironmentStatus",
+            "type": "ManagementV1OSImageUploadStatus",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1NodeEnvironment.attributeTypeMap;
+        return ManagementV1OSImageUpload.attributeTypeMap;
     }
 
     public constructor() {

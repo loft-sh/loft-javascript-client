@@ -12,28 +12,24 @@
 
 
 
-export class ManagementV1ExternalCredentialStatus {
-    'available': boolean;
-    'username'?: string;
+export class ManagementV1OSImageFinalizeSpec {
+    /**
+    * Checksum is the sha256 of the whole file, lowercase hex. It is recorded for consumers rather than verified: S3 has no whole-file hash for a multipart object.
+    */
+    'checksum': string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "available",
-            "baseName": "available",
-            "type": "boolean",
-            "format": ""
-        },
-        {
-            "name": "username",
-            "baseName": "username",
+            "name": "checksum",
+            "baseName": "checksum",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1ExternalCredentialStatus.attributeTypeMap;
+        return ManagementV1OSImageFinalizeSpec.attributeTypeMap;
     }
 
     public constructor() {
