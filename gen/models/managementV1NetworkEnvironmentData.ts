@@ -10,46 +10,47 @@
  * Do not edit the class manually.
  */
 
+import { ManagementV1Operation } from '../models/managementV1Operation.js';
 
 
-export class ManagementV1TenantNICoTokenStatus {
+export class ManagementV1NetworkEnvironmentData {
     /**
-    * Endpoint is the NICo REST API endpoint the token is minted for.
+    * Operations that were applied to the network environment.
     */
-    'endpoint'?: string;
+    'operations'?: { [key: string]: ManagementV1Operation; };
     /**
-    * Org is the NICo organization the token is scoped to.
+    * Outputs of the network environment.
     */
-    'org'?: string;
+    'outputs'?: string;
     /**
-    * Token is the platform-signed NICo bearer token.
+    * Terraform state of the network environment.
     */
-    'token'?: string;
+    'state'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "endpoint",
-            "baseName": "endpoint",
-            "type": "string",
+            "name": "operations",
+            "baseName": "operations",
+            "type": "{ [key: string]: ManagementV1Operation; }",
             "format": ""
         },
         {
-            "name": "org",
-            "baseName": "org",
+            "name": "outputs",
+            "baseName": "outputs",
             "type": "string",
-            "format": ""
+            "format": "byte"
         },
         {
-            "name": "token",
-            "baseName": "token",
+            "name": "state",
+            "baseName": "state",
             "type": "string",
-            "format": ""
+            "format": "byte"
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1TenantNICoTokenStatus.attributeTypeMap;
+        return ManagementV1NetworkEnvironmentData.attributeTypeMap;
     }
 
     public constructor() {

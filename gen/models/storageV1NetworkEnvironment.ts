@@ -10,15 +10,15 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1SlurmInstanceSpec } from '../models/managementV1SlurmInstanceSpec.js';
-import { ManagementV1SlurmInstanceStatus } from '../models/managementV1SlurmInstanceStatus.js';
+import { StorageV1NetworkEnvironmentSpec } from '../models/storageV1NetworkEnvironmentSpec.js';
+import { StorageV1NetworkEnvironmentStatus } from '../models/storageV1NetworkEnvironmentStatus.js';
 import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
 
 
 /**
-* SlurmInstance represents a Slurm cluster running inside a tenant cluster.
+* NetworkEnvironment holds the network environment for vCluster.
 */
-export class ManagementV1SlurmInstance {
+export class StorageV1NetworkEnvironment {
     /**
     * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
     */
@@ -28,8 +28,8 @@ export class ManagementV1SlurmInstance {
     */
     'kind'?: string;
     'metadata'?: V1ObjectMeta;
-    'spec'?: ManagementV1SlurmInstanceSpec;
-    'status'?: ManagementV1SlurmInstanceStatus;
+    'spec'?: StorageV1NetworkEnvironmentSpec;
+    'status'?: StorageV1NetworkEnvironmentStatus;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -55,18 +55,18 @@ export class ManagementV1SlurmInstance {
         {
             "name": "spec",
             "baseName": "spec",
-            "type": "ManagementV1SlurmInstanceSpec",
+            "type": "StorageV1NetworkEnvironmentSpec",
             "format": ""
         },
         {
             "name": "status",
             "baseName": "status",
-            "type": "ManagementV1SlurmInstanceStatus",
+            "type": "StorageV1NetworkEnvironmentStatus",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1SlurmInstance.attributeTypeMap;
+        return StorageV1NetworkEnvironment.attributeTypeMap;
     }
 
     public constructor() {

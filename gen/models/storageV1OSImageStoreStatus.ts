@@ -13,56 +13,46 @@
 
 
 /**
-* SlurmAccountingStorage summarizes the accounting database configuration.
+* OSImageStoreStatus is the verified object behind a Ready image.
 */
-export class StorageV1SlurmAccountingStorage {
+export class StorageV1OSImageStoreStatus {
     /**
-    * Database is the accounting database name.
+    * Checksum is the sha256 the client declared at finalize. It is recorded for consumers such as Ironic rather than verified, since S3 has no whole-file hash for a multipart object.
     */
-    'database'?: string;
+    'checksum'?: string;
     /**
-    * Host is the accounting database host.
+    * Location is the object key in the bucket.
     */
-    'host'?: string;
+    'location'?: string;
     /**
-    * Port is the accounting database port.
+    * SizeBytes is the size the object store reports for the object, not the one the client declared.
     */
-    'port'?: number;
-    /**
-    * Username is the accounting database user.
-    */
-    'username'?: string;
+    'sizeBytes'?: number;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "database",
-            "baseName": "database",
+            "name": "checksum",
+            "baseName": "checksum",
             "type": "string",
             "format": ""
         },
         {
-            "name": "host",
-            "baseName": "host",
+            "name": "location",
+            "baseName": "location",
             "type": "string",
             "format": ""
         },
         {
-            "name": "port",
-            "baseName": "port",
+            "name": "sizeBytes",
+            "baseName": "sizeBytes",
             "type": "number",
-            "format": "int32"
-        },
-        {
-            "name": "username",
-            "baseName": "username",
-            "type": "string",
-            "format": ""
+            "format": "int64"
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1SlurmAccountingStorage.attributeTypeMap;
+        return StorageV1OSImageStoreStatus.attributeTypeMap;
     }
 
     public constructor() {

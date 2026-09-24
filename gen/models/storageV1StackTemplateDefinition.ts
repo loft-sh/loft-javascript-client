@@ -16,13 +16,13 @@ import { StorageV1StackTask } from '../models/storageV1StackTask.js';
 
 
 /**
-* StackTemplateDefinition is the reusable payload of a StackTemplate: the declared inputs and the task DAG. It is embedded inline in StackTemplateSpec and used verbatim as a StackInstance\'s inline spec.template.
+* StackTemplateDefinition is the reusable payload of a StackTemplate: the declared parameters and the task DAG. It is embedded inline in StackTemplateSpec and used verbatim as a StackInstance\'s inline spec.template.
 */
 export class StorageV1StackTemplateDefinition {
     /**
-    * Inputs declares the typed inputs (with defaults) a stack accepts, reused from AppParameter.
+    * Parameters declares the typed parameters (with defaults) a stack accepts, reused from AppParameter.
     */
-    'inputs'?: Array<StorageV1AppParameter>;
+    'parameters'?: Array<StorageV1AppParameter>;
     /**
     * PublishedOutputs selects which captured task outputs the stack exposes to its users, optionally under a different name. The values come from the captured task outputs; nothing extra is read from the cluster. They are read through the instance\'s outputs subresource, never from its status.
     */
@@ -36,8 +36,8 @@ export class StorageV1StackTemplateDefinition {
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "inputs",
-            "baseName": "inputs",
+            "name": "parameters",
+            "baseName": "parameters",
             "type": "Array<StorageV1AppParameter>",
             "format": ""
         },

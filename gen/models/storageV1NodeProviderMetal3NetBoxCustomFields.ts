@@ -13,36 +13,36 @@
 
 
 /**
-* SlurmTopologyBlockEntry is a single block in a block topology.
+* NodeProviderMetal3NetBoxCustomFields names the NetBox device custom fields holding the BMC login. NetBox has no schema for it, so deployments keep it in custom fields; these are the names to read.
 */
-export class ManagementV1SlurmTopologyBlockEntry {
+export class StorageV1NodeProviderMetal3NetBoxCustomFields {
     /**
-    * Block is the arbitrary, Slurm-internal block name.
+    * BMCPassword holds the BMC password. The platform never serves this field\'s value. Defaults to \"bmc_password\".
     */
-    'block': string;
+    'bmcPassword'?: string;
     /**
-    * Nodes is the hostlist expression of nodes in the block.
+    * BMCUsername holds the BMC login name. Defaults to \"bmc_username\".
     */
-    'nodes'?: string;
+    'bmcUsername'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "block",
-            "baseName": "block",
+            "name": "bmcPassword",
+            "baseName": "bmcPassword",
             "type": "string",
             "format": ""
         },
         {
-            "name": "nodes",
-            "baseName": "nodes",
+            "name": "bmcUsername",
+            "baseName": "bmcUsername",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1SlurmTopologyBlockEntry.attributeTypeMap;
+        return StorageV1NodeProviderMetal3NetBoxCustomFields.attributeTypeMap;
     }
 
     public constructor() {
