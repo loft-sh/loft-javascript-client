@@ -12,27 +12,24 @@
 
 
 
-/**
-* StackTemplateRef references a cluster-scoped StackTemplate. The values for the template\'s declared parameters live on the instance at spec.parameters.
-*/
-export class StorageV1StackTemplateRef {
+export class ManagementV1OSImageFinalizeStatus {
     /**
-    * Name holds the name of the StackTemplate to reference.
+    * CompletedAt is when the object was assembled. A repeated call reports the first one, since completing again would change an object consumers may already have pulled.
     */
-    'name': string;
+    'completedAt'?: Date;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "name",
-            "baseName": "name",
-            "type": "string",
-            "format": ""
+            "name": "completedAt",
+            "baseName": "completedAt",
+            "type": "Date",
+            "format": "date-time"
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1StackTemplateRef.attributeTypeMap;
+        return ManagementV1OSImageFinalizeStatus.attributeTypeMap;
     }
 
     public constructor() {

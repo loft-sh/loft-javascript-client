@@ -12,15 +12,14 @@
 
 
 
-export class StorageV1AppInstanceDestinationCluster {
+/**
+* AllowedNetworkEnvironment restricts which NetworkEnvironment a project\'s consumers may reference.  Unlike AllowedNodeType and AllowedNodeProfile, there is no \"<provider>.*\" wildcard here: those resources are named \"<provider>.<name>\", whereas NetworkEnvironment names are rejected at creation if they contain a dot, so no such prefix could ever match.
+*/
+export class StorageV1AllowedNetworkEnvironment {
     /**
-    * Name of the connected cluster
+    * Name is the exact name of the NetworkEnvironment.
     */
     'name'?: string;
-    /**
-    * Namespace in the cluster the helm release is deployed into. If empty, uses the app\'s default namespace only for initial release resolution. Existing instances retain their recorded release coordinates.
-    */
-    'namespace'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -30,16 +29,10 @@ export class StorageV1AppInstanceDestinationCluster {
             "baseName": "name",
             "type": "string",
             "format": ""
-        },
-        {
-            "name": "namespace",
-            "baseName": "namespace",
-            "type": "string",
-            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1AppInstanceDestinationCluster.attributeTypeMap;
+        return StorageV1AllowedNetworkEnvironment.attributeTypeMap;
     }
 
     public constructor() {

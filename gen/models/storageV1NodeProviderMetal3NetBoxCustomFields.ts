@@ -12,34 +12,37 @@
 
 
 
-export class StorageV1AppInstanceDestinationCluster {
+/**
+* NodeProviderMetal3NetBoxCustomFields names the NetBox device custom fields holding the BMC login. NetBox has no schema for it, so deployments keep it in custom fields; these are the names to read.
+*/
+export class StorageV1NodeProviderMetal3NetBoxCustomFields {
     /**
-    * Name of the connected cluster
+    * BMCPassword holds the BMC password. The platform never serves this field\'s value. Defaults to \"bmc_password\".
     */
-    'name'?: string;
+    'bmcPassword'?: string;
     /**
-    * Namespace in the cluster the helm release is deployed into. If empty, uses the app\'s default namespace only for initial release resolution. Existing instances retain their recorded release coordinates.
+    * BMCUsername holds the BMC login name. Defaults to \"bmc_username\".
     */
-    'namespace'?: string;
+    'bmcUsername'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "name",
-            "baseName": "name",
+            "name": "bmcPassword",
+            "baseName": "bmcPassword",
             "type": "string",
             "format": ""
         },
         {
-            "name": "namespace",
-            "baseName": "namespace",
+            "name": "bmcUsername",
+            "baseName": "bmcUsername",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1AppInstanceDestinationCluster.attributeTypeMap;
+        return StorageV1NodeProviderMetal3NetBoxCustomFields.attributeTypeMap;
     }
 
     public constructor() {

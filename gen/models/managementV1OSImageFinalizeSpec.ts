@@ -12,34 +12,24 @@
 
 
 
-export class StorageV1AppInstanceDestinationCluster {
+export class ManagementV1OSImageFinalizeSpec {
     /**
-    * Name of the connected cluster
+    * Checksum is the sha256 of the whole file, lowercase hex. It is recorded for consumers rather than verified: S3 has no whole-file hash for a multipart object.
     */
-    'name'?: string;
-    /**
-    * Namespace in the cluster the helm release is deployed into. If empty, uses the app\'s default namespace only for initial release resolution. Existing instances retain their recorded release coordinates.
-    */
-    'namespace'?: string;
+    'checksum': string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "name",
-            "baseName": "name",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "namespace",
-            "baseName": "namespace",
+            "name": "checksum",
+            "baseName": "checksum",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1AppInstanceDestinationCluster.attributeTypeMap;
+        return ManagementV1OSImageFinalizeSpec.attributeTypeMap;
     }
 
     public constructor() {

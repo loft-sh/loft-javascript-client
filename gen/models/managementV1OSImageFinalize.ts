@@ -10,15 +10,12 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1OSImageSpec } from '../models/storageV1OSImageSpec.js';
-import { StorageV1OSImageStatus } from '../models/storageV1OSImageStatus.js';
+import { ManagementV1OSImageFinalizeSpec } from '../models/managementV1OSImageFinalizeSpec.js';
+import { ManagementV1OSImageFinalizeStatus } from '../models/managementV1OSImageFinalizeStatus.js';
 import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
 
 
-/**
-* OSImage holds the information of machine networks
-*/
-export class StorageV1OSImage {
+export class ManagementV1OSImageFinalize {
     /**
     * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
     */
@@ -28,8 +25,8 @@ export class StorageV1OSImage {
     */
     'kind'?: string;
     'metadata'?: V1ObjectMeta;
-    'spec'?: StorageV1OSImageSpec;
-    'status'?: StorageV1OSImageStatus;
+    'spec': ManagementV1OSImageFinalizeSpec;
+    'status'?: ManagementV1OSImageFinalizeStatus;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -55,18 +52,18 @@ export class StorageV1OSImage {
         {
             "name": "spec",
             "baseName": "spec",
-            "type": "StorageV1OSImageSpec",
+            "type": "ManagementV1OSImageFinalizeSpec",
             "format": ""
         },
         {
             "name": "status",
             "baseName": "status",
-            "type": "StorageV1OSImageStatus",
+            "type": "ManagementV1OSImageFinalizeStatus",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1OSImage.attributeTypeMap;
+        return ManagementV1OSImageFinalize.attributeTypeMap;
     }
 
     public constructor() {

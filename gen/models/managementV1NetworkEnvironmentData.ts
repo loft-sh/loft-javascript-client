@@ -13,9 +13,9 @@
 import { ManagementV1Operation } from '../models/managementV1Operation.js';
 
 
-export class ManagementV1NodeClaimData {
+export class ManagementV1NetworkEnvironmentData {
     /**
-    * Operations that were applied to the node claim.
+    * Operations that were applied to the network environment.
     */
     'operations'?: { [key: string]: ManagementV1Operation; };
     /**
@@ -23,13 +23,9 @@ export class ManagementV1NodeClaimData {
     */
     'outputs'?: string;
     /**
-    * Terraform state of the node claim.
+    * Terraform state of the network environment.
     */
     'state'?: string;
-    /**
-    * UserData that should be used to start the node.
-    */
-    'userData'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -51,16 +47,10 @@ export class ManagementV1NodeClaimData {
             "baseName": "state",
             "type": "string",
             "format": "byte"
-        },
-        {
-            "name": "userData",
-            "baseName": "userData",
-            "type": "string",
-            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1NodeClaimData.attributeTypeMap;
+        return ManagementV1NetworkEnvironmentData.attributeTypeMap;
     }
 
     public constructor() {

@@ -10,15 +10,15 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1OSImageSpec } from '../models/storageV1OSImageSpec.js';
-import { StorageV1OSImageStatus } from '../models/storageV1OSImageStatus.js';
+import { StorageV1NetworkEnvironmentSpec } from '../models/storageV1NetworkEnvironmentSpec.js';
+import { StorageV1NetworkEnvironmentStatus } from '../models/storageV1NetworkEnvironmentStatus.js';
 import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
 
 
 /**
-* OSImage holds the information of machine networks
+* NetworkEnvironment holds the network environment for vCluster.
 */
-export class StorageV1OSImage {
+export class StorageV1NetworkEnvironment {
     /**
     * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
     */
@@ -28,8 +28,8 @@ export class StorageV1OSImage {
     */
     'kind'?: string;
     'metadata'?: V1ObjectMeta;
-    'spec'?: StorageV1OSImageSpec;
-    'status'?: StorageV1OSImageStatus;
+    'spec'?: StorageV1NetworkEnvironmentSpec;
+    'status'?: StorageV1NetworkEnvironmentStatus;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -55,18 +55,18 @@ export class StorageV1OSImage {
         {
             "name": "spec",
             "baseName": "spec",
-            "type": "StorageV1OSImageSpec",
+            "type": "StorageV1NetworkEnvironmentSpec",
             "format": ""
         },
         {
             "name": "status",
             "baseName": "status",
-            "type": "StorageV1OSImageStatus",
+            "type": "StorageV1NetworkEnvironmentStatus",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1OSImage.attributeTypeMap;
+        return StorageV1NetworkEnvironment.attributeTypeMap;
     }
 
     public constructor() {

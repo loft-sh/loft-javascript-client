@@ -10,15 +10,14 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1OSImageSpec } from '../models/storageV1OSImageSpec.js';
-import { StorageV1OSImageStatus } from '../models/storageV1OSImageStatus.js';
+import { ManagementV1StackInstanceOutput } from '../models/managementV1StackInstanceOutput.js';
 import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
 
 
 /**
-* OSImage holds the information of machine networks
+* StackInstanceOutputs holds the published outputs of a StackInstance. The values live in the instance\'s managed outputs Secret, never on its status, and reading them needs the get verb on the stackinstances/outputs subresource.
 */
-export class StorageV1OSImage {
+export class ManagementV1StackInstanceOutputs {
     /**
     * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
     */
@@ -28,8 +27,10 @@ export class StorageV1OSImage {
     */
     'kind'?: string;
     'metadata'?: V1ObjectMeta;
-    'spec'?: StorageV1OSImageSpec;
-    'status'?: StorageV1OSImageStatus;
+    /**
+    * Outputs are the stack\'s published outputs, in the order publishedOutputs declares them. Task outputs the stack does not publish are not listed here.
+    */
+    'outputs'?: Array<ManagementV1StackInstanceOutput>;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -53,20 +54,14 @@ export class StorageV1OSImage {
             "format": ""
         },
         {
-            "name": "spec",
-            "baseName": "spec",
-            "type": "StorageV1OSImageSpec",
-            "format": ""
-        },
-        {
-            "name": "status",
-            "baseName": "status",
-            "type": "StorageV1OSImageStatus",
+            "name": "outputs",
+            "baseName": "outputs",
+            "type": "Array<ManagementV1StackInstanceOutput>",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1OSImage.attributeTypeMap;
+        return ManagementV1StackInstanceOutputs.attributeTypeMap;
     }
 
     public constructor() {

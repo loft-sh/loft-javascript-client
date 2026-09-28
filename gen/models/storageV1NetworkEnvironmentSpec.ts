@@ -14,32 +14,27 @@ import { StorageV1Access } from '../models/storageV1Access.js';
 import { StorageV1UserOrTeam } from '../models/storageV1UserOrTeam.js';
 
 
-export class ManagementV1OSImageSpec {
+/**
+* NetworkEnvironmentSpec defines spec of network environment.
+*/
+export class StorageV1NetworkEnvironmentSpec {
     /**
     * Access holds the access rights for users and teams
     */
     'access'?: Array<StorageV1Access>;
     /**
-    * ConnectorRef names the image store connector holding this image\'s blob. Empty means a properties-only image. Immutable once set.
-    */
-    'connectorRef'?: string;
-    /**
-    * Description describes an OS image
-    */
-    'description'?: string;
-    /**
-    * DisplayName is the name that should be displayed in the UI
+    * DisplayName is the name of the NodeClaim that is displayed in the UI.
     */
     'displayName'?: string;
-    /**
-    * Format is the on-disk format of the image blob and part of the object key. Immutable once set.
-    */
-    'format'?: string;
     'owner'?: StorageV1UserOrTeam;
     /**
-    * Properties is the configuration for the OS image
+    * Properties are the properties for the NetworkEnvironment.
     */
     'properties'?: { [key: string]: string; };
+    /**
+    * ProviderRef is the name of the NodeProvider that this NetworkEnvironment is based on. It may be left empty, in which case the NetworkEnvironment is a pure property container: it provisions no infrastructure, becomes available immediately, carries no cleanup finalizer, and can never be a provider\'s default environment - NodeClaims must reference it explicitly. A NodeProvider that requires a network environment cannot be served by one. Once set, it cannot be changed.
+    */
+    'providerRef'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -51,26 +46,8 @@ export class ManagementV1OSImageSpec {
             "format": ""
         },
         {
-            "name": "connectorRef",
-            "baseName": "connectorRef",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "description",
-            "baseName": "description",
-            "type": "string",
-            "format": ""
-        },
-        {
             "name": "displayName",
             "baseName": "displayName",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "format",
-            "baseName": "format",
             "type": "string",
             "format": ""
         },
@@ -85,10 +62,16 @@ export class ManagementV1OSImageSpec {
             "baseName": "properties",
             "type": "{ [key: string]: string; }",
             "format": ""
+        },
+        {
+            "name": "providerRef",
+            "baseName": "providerRef",
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1OSImageSpec.attributeTypeMap;
+        return StorageV1NetworkEnvironmentSpec.attributeTypeMap;
     }
 
     public constructor() {

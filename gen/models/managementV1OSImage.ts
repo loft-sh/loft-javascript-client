@@ -11,6 +11,7 @@
  */
 
 import { ManagementV1OSImageSpec } from '../models/managementV1OSImageSpec.js';
+import { ManagementV1OSImageStatus } from '../models/managementV1OSImageStatus.js';
 import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
 
 
@@ -28,7 +29,7 @@ export class ManagementV1OSImage {
     'kind'?: string;
     'metadata'?: V1ObjectMeta;
     'spec'?: ManagementV1OSImageSpec;
-    'status'?: any;
+    'status'?: ManagementV1OSImageStatus;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -60,7 +61,7 @@ export class ManagementV1OSImage {
         {
             "name": "status",
             "baseName": "status",
-            "type": "any",
+            "type": "ManagementV1OSImageStatus",
             "format": ""
         }    ];
 

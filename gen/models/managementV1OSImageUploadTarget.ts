@@ -12,34 +12,34 @@
 
 
 
-export class StorageV1AppInstanceDestinationCluster {
+export class ManagementV1OSImageUploadTarget {
     /**
-    * Name of the connected cluster
+    * PartNumber is 1-based, so the part covers the bytes at offset (PartNumber-1)*PartSizeBytes.
     */
-    'name'?: string;
+    'partNumber': number;
     /**
-    * Namespace in the cluster the helm release is deployed into. If empty, uses the app\'s default namespace only for initial release resolution. Existing instances retain their recorded release coordinates.
+    * URL accepts a plain PUT of that part\'s bytes. Only Host is signed, so no additional request headers are needed.
     */
-    'namespace'?: string;
+    'url': string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "name",
-            "baseName": "name",
-            "type": "string",
-            "format": ""
+            "name": "partNumber",
+            "baseName": "partNumber",
+            "type": "number",
+            "format": "int32"
         },
         {
-            "name": "namespace",
-            "baseName": "namespace",
+            "name": "url",
+            "baseName": "url",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1AppInstanceDestinationCluster.attributeTypeMap;
+        return ManagementV1OSImageUploadTarget.attributeTypeMap;
     }
 
     public constructor() {
