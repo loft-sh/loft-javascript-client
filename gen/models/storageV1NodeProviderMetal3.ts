@@ -13,12 +13,14 @@
 import { StorageV1Metal3NodeTypeSpec } from '../models/storageV1Metal3NodeTypeSpec.js';
 import { StorageV1Metal3ProviderDeployment } from '../models/storageV1Metal3ProviderDeployment.js';
 import { StorageV1NodeProviderClusterRef } from '../models/storageV1NodeProviderClusterRef.js';
+import { StorageV1NodeProviderMetal3NetBox } from '../models/storageV1NodeProviderMetal3NetBox.js';
 import { StorageV1NodeProviderMetal3Netris } from '../models/storageV1NodeProviderMetal3Netris.js';
 
 
 export class StorageV1NodeProviderMetal3 {
     'clusterRef'?: StorageV1NodeProviderClusterRef;
     'deploy'?: StorageV1Metal3ProviderDeployment;
+    'netBox'?: StorageV1NodeProviderMetal3NetBox;
     'netris'?: StorageV1NodeProviderMetal3Netris;
     /**
     * NeutronEnabled turns on the neutron network shim for this provider: BareMetalHost network attachments are allocated by the platform and reconciled through ConfigMaps instead of being written directly as DHCP annotations.
@@ -42,6 +44,12 @@ export class StorageV1NodeProviderMetal3 {
             "name": "deploy",
             "baseName": "deploy",
             "type": "StorageV1Metal3ProviderDeployment",
+            "format": ""
+        },
+        {
+            "name": "netBox",
+            "baseName": "netBox",
+            "type": "StorageV1NodeProviderMetal3NetBox",
             "format": ""
         },
         {

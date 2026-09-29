@@ -13,8 +13,8 @@
 import { ClusterV1SleepModeConfig } from '../models/clusterV1SleepModeConfig.js';
 import { StorageV1ClusterQuota } from '../models/agentstorageV1ClusterQuota.js';
 import { ManagementV1License } from '../models/managementV1License.js';
+import { ManagementV1NetworkEnvironmentData } from '../models/managementV1NetworkEnvironmentData.js';
 import { ManagementV1NodeClaimData } from '../models/managementV1NodeClaimData.js';
-import { ManagementV1NodeEnvironmentData } from '../models/managementV1NodeEnvironmentData.js';
 import { ManagementV1NodeProviderBCMGetResourcesResult } from '../models/managementV1NodeProviderBCMGetResourcesResult.js';
 import { ManagementV1NodeProviderBCMNodeWithResources } from '../models/managementV1NodeProviderBCMNodeWithResources.js';
 import { ManagementV1NodeProviderBCMTestConnectionResult } from '../models/managementV1NodeProviderBCMTestConnectionResult.js';
@@ -29,8 +29,8 @@ export class ManagementV1KioskSpec {
     'UISettings'?: UiV1UISettings;
     'accessKey'?: StorageV1AccessKey;
     'license'?: ManagementV1License;
+    'networkEnvironmentData'?: ManagementV1NetworkEnvironmentData;
     'nodeClaimData'?: ManagementV1NodeClaimData;
-    'nodeEnvironmentData'?: ManagementV1NodeEnvironmentData;
     'nodeProviderBCMGetResourcesResult'?: ManagementV1NodeProviderBCMGetResourcesResult;
     'nodeProviderBCMNodeWithResources'?: ManagementV1NodeProviderBCMNodeWithResources;
     'nodeProviderBCMTestConnectionResult'?: ManagementV1NodeProviderBCMTestConnectionResult;
@@ -62,15 +62,15 @@ export class ManagementV1KioskSpec {
             "format": ""
         },
         {
-            "name": "nodeClaimData",
-            "baseName": "nodeClaimData",
-            "type": "ManagementV1NodeClaimData",
+            "name": "networkEnvironmentData",
+            "baseName": "networkEnvironmentData",
+            "type": "ManagementV1NetworkEnvironmentData",
             "format": ""
         },
         {
-            "name": "nodeEnvironmentData",
-            "baseName": "nodeEnvironmentData",
-            "type": "ManagementV1NodeEnvironmentData",
+            "name": "nodeClaimData",
+            "baseName": "nodeClaimData",
+            "type": "ManagementV1NodeClaimData",
             "format": ""
         },
         {

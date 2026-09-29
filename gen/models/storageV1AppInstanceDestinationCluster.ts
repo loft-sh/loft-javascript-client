@@ -18,7 +18,7 @@ export class StorageV1AppInstanceDestinationCluster {
     */
     'name'?: string;
     /**
-    * Namespace in the cluster the helm release is deployed into. If empty, defaults to the app\'s default namespace.
+    * Namespace in the cluster the helm release is deployed into. If empty, uses the app\'s default namespace only for initial release resolution. Existing instances retain their recorded release coordinates.
     */
     'namespace'?: string;
 
