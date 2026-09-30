@@ -18,7 +18,7 @@ export class StorageV1AppInstanceDestinationVirtualCluster {
     */
     'name'?: string;
     /**
-    * Namespace the helm release is deployed into. Only used when target is vCluster; for the host target the release is always deployed into the virtual cluster\'s host namespace. If empty, defaults to the app\'s default namespace.
+    * Namespace the helm release is deployed into. Only used when target is vCluster; for the host target the release is always deployed into the virtual cluster\'s host namespace. If empty, uses the app\'s default namespace only for initial release resolution. Existing instances retain their recorded release coordinates.
     */
     'namespace'?: string;
     /**

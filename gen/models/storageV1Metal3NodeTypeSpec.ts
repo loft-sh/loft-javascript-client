@@ -25,6 +25,10 @@ export class StorageV1Metal3NodeTypeSpec {
     * DisplayName is the name that should be displayed in the UI
     */
     'displayName'?: string;
+    /**
+    * MachinePool selects the machines a tenant\'s NodeClaims of this type may be placed on. Assigned, the default, keeps them to the machines the tenant owns or was assigned exclusively. Shared adds the machines no tenant owns or holds, so a tenant can get a node from a machine that was never assigned to it. A machine assigned to another tenant or reserved for the platform is never shared, and a claim no tenant owns reaches the unassigned machines either way.  Only providers that assign machines to tenants honor it: metal3 and nico. The node types of an externalPlatform provider mirror the remote node type\'s value. When a provider\'s node type leaves it empty, the provider\'s spec.machinePool applies.
+    */
+    'machinePool'?: string;
     'metadata'?: StorageV1ManagedNodeTypeObjectMeta;
     /**
     * Name is the name of this node type.
@@ -62,6 +66,12 @@ export class StorageV1Metal3NodeTypeSpec {
         {
             "name": "displayName",
             "baseName": "displayName",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "machinePool",
+            "baseName": "machinePool",
             "type": "string",
             "format": ""
         },
