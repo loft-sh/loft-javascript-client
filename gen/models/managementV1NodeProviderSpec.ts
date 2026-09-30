@@ -12,6 +12,7 @@
 
 import { StorageV1NodeProviderBCM } from '../models/storageV1NodeProviderBCM.js';
 import { StorageV1NodeProviderClusterAPI } from '../models/storageV1NodeProviderClusterAPI.js';
+import { StorageV1NodeProviderExternalPlatform } from '../models/storageV1NodeProviderExternalPlatform.js';
 import { StorageV1NodeProviderKubeVirt } from '../models/storageV1NodeProviderKubeVirt.js';
 import { StorageV1NodeProviderMetal3 } from '../models/storageV1NodeProviderMetal3.js';
 import { StorageV1NodeProviderNICo } from '../models/storageV1NodeProviderNICo.js';
@@ -28,7 +29,12 @@ export class ManagementV1NodeProviderSpec {
     * DisplayName is the name that should be displayed in the UI
     */
     'displayName'?: string;
+    'externalPlatform'?: StorageV1NodeProviderExternalPlatform;
     'kubeVirt'?: StorageV1NodeProviderKubeVirt;
+    /**
+    * MachinePool is the machine pool of this provider\'s node types that do not set their own. See NodeTypeSpec.MachinePool. Discovered node types (nico) can only be set here.
+    */
+    'machinePool'?: string;
     'metal3'?: StorageV1NodeProviderMetal3;
     'nico'?: StorageV1NodeProviderNICo;
     /**
@@ -59,9 +65,21 @@ export class ManagementV1NodeProviderSpec {
             "format": ""
         },
         {
+            "name": "externalPlatform",
+            "baseName": "externalPlatform",
+            "type": "StorageV1NodeProviderExternalPlatform",
+            "format": ""
+        },
+        {
             "name": "kubeVirt",
             "baseName": "kubeVirt",
             "type": "StorageV1NodeProviderKubeVirt",
+            "format": ""
+        },
+        {
+            "name": "machinePool",
+            "baseName": "machinePool",
+            "type": "string",
             "format": ""
         },
         {
