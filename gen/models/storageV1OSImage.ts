@@ -11,7 +11,6 @@
  */
 
 import { StorageV1OSImageSpec } from '../models/storageV1OSImageSpec.js';
-import { StorageV1OSImageStatus } from '../models/storageV1OSImageStatus.js';
 import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
 
 
@@ -29,7 +28,7 @@ export class StorageV1OSImage {
     'kind'?: string;
     'metadata'?: V1ObjectMeta;
     'spec'?: StorageV1OSImageSpec;
-    'status'?: StorageV1OSImageStatus;
+    'status'?: any;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -61,7 +60,7 @@ export class StorageV1OSImage {
         {
             "name": "status",
             "baseName": "status",
-            "type": "StorageV1OSImageStatus",
+            "type": "any",
             "format": ""
         }    ];
 

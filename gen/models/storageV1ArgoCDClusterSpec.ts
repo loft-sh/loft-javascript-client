@@ -10,27 +10,27 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1NICoPlatformIssued } from '../models/storageV1NICoPlatformIssued.js';
+import { StorageV1TemplateMetadata } from '../models/storageV1TemplateMetadata.js';
 
 
 /**
-* NICoIdentity selects the source of the tokens the platform uses to authenticate to the NICo REST API. Exactly one source is configured; today only platform-issued tokens are supported.
+* ArgoCDClusterSpec holds settings for the cluster entry that is registered in argo cd.
 */
-export class StorageV1NICoIdentity {
-    'platformIssued': StorageV1NICoPlatformIssued;
+export class StorageV1ArgoCDClusterSpec {
+    'metadata'?: StorageV1TemplateMetadata;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "platformIssued",
-            "baseName": "platformIssued",
-            "type": "StorageV1NICoPlatformIssued",
+            "name": "metadata",
+            "baseName": "metadata",
+            "type": "StorageV1TemplateMetadata",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1NICoIdentity.attributeTypeMap;
+        return StorageV1ArgoCDClusterSpec.attributeTypeMap;
     }
 
     public constructor() {
