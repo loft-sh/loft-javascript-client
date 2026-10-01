@@ -31,10 +31,6 @@ export class StorageV1NodeProviderSpec {
     'displayName'?: string;
     'externalPlatform'?: StorageV1NodeProviderExternalPlatform;
     'kubeVirt'?: StorageV1NodeProviderKubeVirt;
-    /**
-    * MachinePool is the machine pool of this provider\'s node types that do not set their own. See NodeTypeSpec.MachinePool. Discovered node types (nico) can only be set here.
-    */
-    'machinePool'?: string;
     'metal3'?: StorageV1NodeProviderMetal3;
     'nico'?: StorageV1NodeProviderNICo;
     /**
@@ -74,12 +70,6 @@ export class StorageV1NodeProviderSpec {
             "name": "kubeVirt",
             "baseName": "kubeVirt",
             "type": "StorageV1NodeProviderKubeVirt",
-            "format": ""
-        },
-        {
-            "name": "machinePool",
-            "baseName": "machinePool",
-            "type": "string",
             "format": ""
         },
         {

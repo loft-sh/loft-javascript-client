@@ -10,26 +10,32 @@
  * Do not edit the class manually.
  */
 
+import { ManagementV1ConnectorArgoCDSpec } from '../models/managementV1ConnectorArgoCDSpec.js';
+import { ManagementV1ConnectorImageStoreSpec } from '../models/managementV1ConnectorImageStoreSpec.js';
 import { ManagementV1ConnectorSharedDatabaseSpec } from '../models/managementV1ConnectorSharedDatabaseSpec.js';
 
 
 /**
-* ConnectorSpec holds the specification
+* ConnectorSpec holds the specification. Exactly one payload section must be set. The section determines the connector type, stamped to the loft.sh/connector-type label on create. The connector type is immutable after create.
 */
 export class ManagementV1ConnectorSpec {
+    'argoCd'?: ManagementV1ConnectorArgoCDSpec;
     /**
     * DisplayName is the human-readable name shown in the UI. It is projected from and stamped to the loft.sh/display-name annotation on the backing Secret.
     */
     'displayName'?: string;
+    'imageStore'?: ManagementV1ConnectorImageStoreSpec;
     'sharedDatabase'?: ManagementV1ConnectorSharedDatabaseSpec;
-    /**
-    * Type is the connector type and selects which payload section below applies. Required: create rejects an empty or unknown type and update rejects a change, so the field is immutable after create. It is projected from and stamped to the loft.sh/connector-type label on the backing Secret. Required fields carry no omitempty, so a read always serializes them (as \"\" for a sparse pre-existing Secret) and the object stays valid against the published schema, which lists them as required.  Possible enum values:  - `\"argocd\"` connects the platform to an Argo CD (or Akuity) instance.  - `\"observability\"` connects the platform to an observability stack.  - `\"shared-database\"` connects the platform to a shared database server used to provision databases as tenant cluster backing stores.
-    */
-    'type': ManagementV1ConnectorSpecTypeEnum;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+        {
+            "name": "argoCd",
+            "baseName": "argoCd",
+            "type": "ManagementV1ConnectorArgoCDSpec",
+            "format": ""
+        },
         {
             "name": "displayName",
             "baseName": "displayName",
@@ -37,15 +43,15 @@ export class ManagementV1ConnectorSpec {
             "format": ""
         },
         {
-            "name": "sharedDatabase",
-            "baseName": "sharedDatabase",
-            "type": "ManagementV1ConnectorSharedDatabaseSpec",
+            "name": "imageStore",
+            "baseName": "imageStore",
+            "type": "ManagementV1ConnectorImageStoreSpec",
             "format": ""
         },
         {
-            "name": "type",
-            "baseName": "type",
-            "type": "ManagementV1ConnectorSpecTypeEnum",
+            "name": "sharedDatabase",
+            "baseName": "sharedDatabase",
+            "type": "ManagementV1ConnectorSharedDatabaseSpec",
             "format": ""
         }    ];
 
@@ -55,12 +61,5 @@ export class ManagementV1ConnectorSpec {
 
     public constructor() {
     }
-}
-
-
-export enum ManagementV1ConnectorSpecTypeEnum {
-    Argocd = 'argocd',
-    Observability = 'observability',
-    SharedDatabase = 'shared-database'
 }
 

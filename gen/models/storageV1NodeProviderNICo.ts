@@ -14,7 +14,7 @@ import { StorageV1NICoIdentity } from '../models/storageV1NICoIdentity.js';
 
 
 /**
-* NodeProviderNICo configures a node provider backed by the NVIDIA Infra Controller (NICo) REST API. The NICo tenant org is taken from the platform Tenant\'s nico.vcluster.com/org annotation, not from this provider config.
+* NodeProviderNICo configures a node provider backed by the NVIDIA Infra Controller (NICo) REST API. Platform workloads use the provider org. Tenant workloads use the org from their Tenant\'s nico.vcluster.com/org annotation.
 */
 export class StorageV1NodeProviderNICo {
     /**

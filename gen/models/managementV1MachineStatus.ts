@@ -33,10 +33,6 @@ export class ManagementV1MachineStatus {
     */
     'message'?: string;
     /**
-    * NodeTypes names the NodeTypes whose pool includes this machine: the ones a claim of the type may be placed on, whoever the machine is assigned to. It is filled from the provider inventory: for metal3, the node types whose host selector and resources the machine matches; for nico, the node type of its instance type; for externalPlatform, the mirrored node types the remote machine is in. Sorted.
-    */
-    'nodeTypes'?: Array<string>;
-    /**
     * Phase is the machine\'s state at the provider, normalized across providers. It says nothing about platform NodeClaims: the node-claim annotation answers which claim, if any, holds the machine.
     */
     'phase'?: string;
@@ -75,12 +71,6 @@ export class ManagementV1MachineStatus {
             "name": "message",
             "baseName": "message",
             "type": "string",
-            "format": ""
-        },
-        {
-            "name": "nodeTypes",
-            "baseName": "nodeTypes",
-            "type": "Array<string>",
             "format": ""
         },
         {
