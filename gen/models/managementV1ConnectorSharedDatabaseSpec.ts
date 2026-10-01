@@ -25,7 +25,7 @@ export class ManagementV1ConnectorSharedDatabaseSpec {
     */
     'caCert'?: string;
     /**
-    * Dialect is the database server dialect, mysql or postgres. Data key \"type\" (distinct from spec.type, the connector type). Required on every write: there is no server-side default and unknown values are rejected. Reads of a pre-existing Secret without the key still project mysql, matching how the read consumers treat such Secrets.
+    * Dialect is the database server dialect, mysql or postgres. Data key \"type\" (distinct from the connector type label). Required on every write: there is no server-side default and unknown values are rejected. Reads of a pre-existing Secret without the key still project mysql, matching how the read consumers treat such Secrets.
     */
     'dialect': string;
     /**
