@@ -10,6 +10,7 @@
  * Do not edit the class manually.
  */
 
+import { StorageV1TenantNICoSiteAccess } from '../models/storageV1TenantNICoSiteAccess.js';
 
 
 /**
@@ -40,6 +41,7 @@ export class StorageV1TenantNICoStatus {
     * ProviderOrg is the NICo provider organization.
     */
     'providerOrg'?: string;
+    'siteAccess'?: StorageV1TenantNICoSiteAccess;
     /**
     * TenantAccountID is the id of this Tenant\'s NICo TenantAccount.
     */
@@ -90,6 +92,12 @@ export class StorageV1TenantNICoStatus {
             "name": "providerOrg",
             "baseName": "providerOrg",
             "type": "string",
+            "format": ""
+        },
+        {
+            "name": "siteAccess",
+            "baseName": "siteAccess",
+            "type": "StorageV1TenantNICoSiteAccess",
             "format": ""
         },
         {
