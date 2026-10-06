@@ -33,6 +33,10 @@ export class StorageV1TenantResourceBoundary {
     */
     'derived'?: Array<string>;
     /**
+    * Enabled reports the governing capability\'s switch: absent where none governs the kind, false where one does and is off, true where one does and is on. False outranks every other field here -- the tenant reaches nothing of the kind, not even an instance lent to it. Reported only.
+    */
+    'enabled'?: boolean;
+    /**
     * Own reports whether the tenant may author instances of this kind; reading what it already owns is not gated by it. Reported only.
     */
     'own'?: boolean;
@@ -66,6 +70,12 @@ export class StorageV1TenantResourceBoundary {
             "name": "derived",
             "baseName": "derived",
             "type": "Array<string>",
+            "format": ""
+        },
+        {
+            "name": "enabled",
+            "baseName": "enabled",
+            "type": "boolean",
             "format": ""
         },
         {
