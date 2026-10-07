@@ -22,6 +22,7 @@ import {
   V1StorageClassList,
 } from "@kubernetes/client-node"
 
+import { IronicNode, IronicNodeAbort } from "./ironicnode"
 import { ThirdPartyResources, ThirdPartyResourcesList } from "./third-party/third-party-resources"
 import {
   APIExtensionsGroup,
@@ -35,6 +36,8 @@ import {
 
 export const Resources: {
   ClusterV1SleepModeConfig: GroupVersionResource<ClusterV1SleepModeConfig>
+  ClusterV1IronicNode: GroupVersionResource<IronicNode>
+  ClusterV1IronicNodeAbort: GroupVersionResource<IronicNodeAbort>
   CustomResourceDefinition: GroupVersionResource<V1CustomResourceDefinition>
   StorageV1ClusterQuota: GroupVersionResource<StorageV1ClusterQuota>
   StorageV1AccessKey: GroupVersionResource<StorageV1AccessKey>
@@ -67,6 +70,21 @@ export const Resources: {
     version: LoftSchemeVersionCluster,
     resource: "sleepmodeconfigs",
     kind: "SleepModeConfig",
+    namespaced: true,
+  },
+  ClusterV1IronicNode: {
+    group: LoftSchemeGroupCluster,
+    version: LoftSchemeVersionCluster,
+    resource: "ironicnodes",
+    kind: "IronicNode",
+    namespaced: true,
+  },
+  ClusterV1IronicNodeAbort: {
+    group: LoftSchemeGroupCluster,
+    version: LoftSchemeVersionCluster,
+    resource: "ironicnodes",
+    subResource: "abort",
+    kind: "IronicNodeAbort",
     namespaced: true,
   },
   CustomResourceDefinition: {
