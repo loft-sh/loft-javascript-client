@@ -11,6 +11,7 @@
  */
 
 import { StorageV1Access } from '../models/storageV1Access.js';
+import { StorageV1TenantConnectors } from '../models/storageV1TenantConnectors.js';
 import { StorageV1TenantControlPlaneClusters } from '../models/storageV1TenantControlPlaneClusters.js';
 import { StorageV1TenantNodeTypes } from '../models/storageV1TenantNodeTypes.js';
 import { StorageV1TenantOSImages } from '../models/storageV1TenantOSImages.js';
@@ -28,6 +29,7 @@ export class ManagementV1TenantSpec {
     * Access holds the access rights for users and teams on the Tenant object. Stored and validated on write, but it grants nothing at request time yet. It does not express tenant membership: a User\'s own tenant label is what binds it to a Tenant.
     */
     'access'?: Array<StorageV1Access>;
+    'connectors'?: StorageV1TenantConnectors;
     'controlPlaneClusters'?: StorageV1TenantControlPlaneClusters;
     /**
     * Description describes this Tenant.
@@ -51,6 +53,12 @@ export class ManagementV1TenantSpec {
             "name": "access",
             "baseName": "access",
             "type": "Array<StorageV1Access>",
+            "format": ""
+        },
+        {
+            "name": "connectors",
+            "baseName": "connectors",
+            "type": "StorageV1TenantConnectors",
             "format": ""
         },
         {

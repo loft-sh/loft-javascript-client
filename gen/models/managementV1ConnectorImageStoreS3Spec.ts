@@ -40,6 +40,10 @@ export class ManagementV1ConnectorImageStoreS3Spec {
     * SecretKey is the secret access key of the static credentials. Data key \"secretKey\". Required on create. A credential (see the type comment): an empty value on update keeps the stored key, and a pre-existing Secret without a stored key cannot be updated through this API until the request supplies one.
     */
     'secretKey'?: string;
+    /**
+    * SessionToken is set only for temporary credentials. Data key \"sessionToken\". Optional; an empty value on update removes it. A credential (see the type comment). Pre-signed URLs expire with the session, so this is meant for short-lived use.
+    */
+    'sessionToken'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -77,6 +81,12 @@ export class ManagementV1ConnectorImageStoreS3Spec {
         {
             "name": "secretKey",
             "baseName": "secretKey",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "sessionToken",
+            "baseName": "sessionToken",
             "type": "string",
             "format": ""
         }    ];

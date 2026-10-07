@@ -50,6 +50,10 @@ export class StorageV1StackTaskStatus {
     */
     'synced'?: boolean;
     /**
+    * TimeoutAt is when the stack fails the task if it is still progressing. Set only while the task is Progressing, and moved when the task starts a new wait, such as capturing its outputs.
+    */
+    'timeoutAt'?: Date;
+    /**
     * Type is the task\'s child kind (argoCDApplication or app). Empty on status objects written before this field existed.
     */
     'type'?: string;
@@ -110,6 +114,12 @@ export class StorageV1StackTaskStatus {
             "baseName": "synced",
             "type": "boolean",
             "format": ""
+        },
+        {
+            "name": "timeoutAt",
+            "baseName": "timeoutAt",
+            "type": "Date",
+            "format": "date-time"
         },
         {
             "name": "type",

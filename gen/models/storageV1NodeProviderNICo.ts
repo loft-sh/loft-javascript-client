@@ -14,7 +14,7 @@ import { StorageV1NICoIdentity } from '../models/storageV1NICoIdentity.js';
 
 
 /**
-* NodeProviderNICo configures a node provider backed by the NVIDIA Infra Controller (NICo) REST API. Platform workloads use the provider org. Tenant workloads use the org from their Tenant\'s nico.vcluster.com/org annotation.
+* NodeProviderNICo configures a node provider backed by the NVIDIA Infra Controller (NICo) REST API. Platform workloads use the provider org. Tenant workloads use an org named after their Tenant; the platform owns the tenant-org namespace of this NICo instance.
 */
 export class StorageV1NodeProviderNICo {
     /**
@@ -39,11 +39,7 @@ export class StorageV1NodeProviderNICo {
     */
     'org'?: string;
     /**
-    * SiteIPBlockCIDR creates the NICo site-level parent IPBlock with this CIDR. Mutually exclusive with SiteIPBlockID.
-    */
-    'siteIPBlockCIDR'?: string;
-    /**
-    * SiteIPBlockID adopts an existing NICo site-level parent IPBlock. Mutually exclusive with SiteIPBlockCIDR.
+    * SiteIPBlockID adopts an existing NICo site-level parent IPBlock.
     */
     'siteIPBlockID'?: string;
     /**
@@ -87,12 +83,6 @@ export class StorageV1NodeProviderNICo {
         {
             "name": "org",
             "baseName": "org",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "siteIPBlockCIDR",
-            "baseName": "siteIPBlockCIDR",
             "type": "string",
             "format": ""
         },

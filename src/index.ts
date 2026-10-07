@@ -1,6 +1,7 @@
 export * from "./client"
 export { default as Client } from "./client"
 export * from "./resources"
+export * from "./ironicnode"
 export * from "./result"
 export * from "./poll"
 export * from "./types"
