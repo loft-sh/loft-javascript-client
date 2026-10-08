@@ -37,7 +37,7 @@ export class ManagementV1ConnectorSharedDatabaseSpec {
     */
     'identityProvider'?: string;
     /**
-    * Password is the password of the database user. Data key \"password\". Required on create unless identityProvider is set. It is a credential: served only to a caller who could update this connector and empty for every other caller (see the Connector type). On update an empty password keeps the stored one, so a redacted read written back never clears a credential; switching to identityProvider removes it. Switching back from identityProvider to password authentication requires a non-empty password in the request: the stored one was removed by the earlier switch, so there is nothing to keep.
+    * Password is the password of the database user. Data key \"password\". Required on create unless identityProvider is set. It is a credential: served only to a caller who could update this connector and absent for every other caller (see the Connector type). On update an empty password keeps the stored one, so a read without the credential written back never clears it; switching to identityProvider removes it. Switching back from identityProvider to password authentication requires a non-empty password in the request: the stored one was removed by the earlier switch, so there is nothing to keep.
     */
     'password'?: string;
     /**

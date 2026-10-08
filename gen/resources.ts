@@ -96,6 +96,7 @@ import {ManagementV1VirtualClusterInstanceShell} from "./models/managementV1Virt
 import {ManagementV1VirtualClusterInstanceSnapshot} from "./models/managementV1VirtualClusterInstanceSnapshot"
 import {ManagementV1VirtualClusterInstance} from "./models/managementV1VirtualClusterInstance"
 import {ManagementV1VirtualClusterNodeAccessKey} from "./models/managementV1VirtualClusterNodeAccessKey"
+import {ManagementV1VirtualClusterObservabilityConnector} from "./models/managementV1VirtualClusterObservabilityConnector"
 import {ManagementV1VirtualClusterResourceUsage} from "./models/managementV1VirtualClusterResourceUsage"
 import {ManagementV1VirtualClusterSchema} from "./models/managementV1VirtualClusterSchema"
 import {ManagementV1VirtualClusterSnapshotCredentials} from "./models/managementV1VirtualClusterSnapshotCredentials"
@@ -199,6 +200,7 @@ export type TGenResources = {
   ManagementV1VirtualClusterInstanceShell: GroupVersionResource<ManagementV1VirtualClusterInstanceShell>
   ManagementV1VirtualClusterInstanceSnapshot: GroupVersionResource<ManagementV1VirtualClusterInstanceSnapshot>
   ManagementV1VirtualClusterNodeAccessKey: GroupVersionResource<ManagementV1VirtualClusterNodeAccessKey>
+  ManagementV1VirtualClusterObservabilityConnector: GroupVersionResource<ManagementV1VirtualClusterObservabilityConnector>
   ManagementV1VirtualClusterResourceUsage: GroupVersionResource<ManagementV1VirtualClusterResourceUsage>
   ManagementV1VirtualClusterSchema: GroupVersionResource<ManagementV1VirtualClusterSchema>
   ManagementV1VirtualClusterSnapshotCredentials: GroupVersionResource<ManagementV1VirtualClusterSnapshotCredentials>
@@ -974,6 +976,14 @@ export const GenResources: TGenResources = {
     subResource: "nodeaccesskey",
     namespaced: true,
     kind: "VirtualClusterNodeAccessKey",
+  },
+  ManagementV1VirtualClusterObservabilityConnector: {
+    group: "management.loft.sh",
+    version: "v1",
+    resource: "virtualclusterinstances",
+    subResource: "observabilityconnector",
+    namespaced: true,
+    kind: "VirtualClusterObservabilityConnector",
   },
   ManagementV1VirtualClusterResourceUsage: {
     group: "management.loft.sh",
