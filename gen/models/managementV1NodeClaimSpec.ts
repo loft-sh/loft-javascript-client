@@ -11,6 +11,7 @@
  */
 
 import { StorageV1Access } from '../models/storageV1Access.js';
+import { StorageV1NodeClaimNestedInstances } from '../models/storageV1NodeClaimNestedInstances.js';
 import { StorageV1NodeClaimPower } from '../models/storageV1NodeClaimPower.js';
 import { StorageV1UserOrTeam } from '../models/storageV1UserOrTeam.js';
 import { V1NodeSelectorRequirement } from '../models/V1NodeSelectorRequirement.js';
@@ -49,6 +50,7 @@ export class ManagementV1NodeClaimSpec {
     * MachineRef is the name of a Machine from the provider\'s inventory to provision this claim on. Mutually exclusive with TypeRef: the machine is picked by identity, so there is no node type to schedule against and no node type capacity is consumed. Only providers that mirror an inventory support it.
     */
     'machineRef'?: string;
+    'nestedInstances'?: StorageV1NodeClaimNestedInstances;
     'owner'?: StorageV1UserOrTeam;
     'power'?: StorageV1NodeClaimPower;
     /**
@@ -127,6 +129,12 @@ export class ManagementV1NodeClaimSpec {
             "name": "machineRef",
             "baseName": "machineRef",
             "type": "string",
+            "format": ""
+        },
+        {
+            "name": "nestedInstances",
+            "baseName": "nestedInstances",
+            "type": "StorageV1NodeClaimNestedInstances",
             "format": ""
         },
         {

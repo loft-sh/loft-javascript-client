@@ -41,7 +41,7 @@ export class ManagementV1ConnectorArgoCDSelfHostedSpec {
     */
     'token'?: string;
     /**
-    * Username is the Argo CD username for basic authentication, used together with password as the alternative to token. Data key \"username\". Projected only when no token is stored, because the consumer authenticates with the token whenever one is present and a username beside it describes a method the connector does not use.
+    * Username is the Argo CD username for basic authentication, used together with password as the alternative to token. Data key \"username\". Projected in the full view only when no token is stored, because the consumer authenticates with the token whenever one is present and a username beside it describes a method the connector does not use.
     */
     'username'?: string;
 

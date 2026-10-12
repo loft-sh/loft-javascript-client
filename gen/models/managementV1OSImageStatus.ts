@@ -24,6 +24,10 @@ export class ManagementV1OSImageStatus {
     */
     'expiresAt'?: Date;
     /**
+    * ObservedSessionID is the upload session the phase was decided for. Empty when it was decided before any session was opened.
+    */
+    'observedSessionID'?: string;
+    /**
     * Phase is where the image is in its upload lifecycle. Empty for an image that holds no bytes. The controller owns every transition; the upload endpoints only annotate.
     */
     'phase'?: string;
@@ -43,6 +47,12 @@ export class ManagementV1OSImageStatus {
             "baseName": "expiresAt",
             "type": "Date",
             "format": "date-time"
+        },
+        {
+            "name": "observedSessionID",
+            "baseName": "observedSessionID",
+            "type": "string",
+            "format": ""
         },
         {
             "name": "phase",
