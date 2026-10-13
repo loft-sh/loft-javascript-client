@@ -374,7 +374,11 @@ class Client {
         }
       }
 
-      return await this.parseResponse(path, response, allowSpecificErrors)
+      const result = await this.parseResponse<E>(path, response, allowSpecificErrors)
+      // the platform names the pod that served some requests (e.g. VPN diagnostics)
+      const podName = response.headers?.get(constants.platformPodNameHeader)
+
+      return podName ? Return.WithExtra(result, { podName }) : result
     } catch (err) {
       const error = err as {
         reason: string
@@ -389,7 +393,11 @@ class Client {
     }
   }
 
-  public async socket(path: string, protocols: string[] | string | undefined): Promise<WebSocket> {
+  public async socket(
+    path: string,
+    protocols: string[] | string | undefined,
+    signal?: AbortSignal
+  ): Promise<WebSocket> {
     return new Promise<WebSocket>((resolve, reject) => {
       const client = new WebSocket(`${this.wsHost}${path}`, protocols)
       let resolved = false
@@ -397,6 +405,19 @@ class Client {
         resolved = true
         resolve(client)
       }
+
+      // Aborting a pending connect closes the socket, which would otherwise open with no owner.
+      // Once open, closing it is up to the caller.
+      signal?.addEventListener(
+        "abort",
+        () => {
+          if (!resolved) {
+            client.close()
+            reject(new Error("Web socket connect was aborted"))
+          }
+        },
+        { once: true }
+      )
 
       client.onerror = (err) => {
         if (!resolved) {
@@ -598,13 +619,23 @@ class Client {
         : this.managementNonResource(options)
   }
 
-  public async doRawSocket(path: string, protocols?: string[]): Promise<Result<WebSocket>> {
+  public async doRawSocket(
+    path: string,
+    protocols?: string[],
+    signal?: AbortSignal
+  ): Promise<Result<WebSocket>> {
     try {
-      return Return.Value(await this.socket(path, protocols))
+      return Return.Value(await this.socket(path, protocols, signal))
     } catch (err) {
       console.error(err)
 
-      return Return.Failed((err as Error).message || JSON.stringify(err))
+      // A failed handshake only surfaces as an error Event: the browser hides the status and body.
+      if (!(err instanceof Error)) {
+        return Return.Failed(
+          "The server rejected the connection. Check that you have access and that the target exists."
+        )
+      }
+      return Return.Failed(err.message)
     }
   }
 
@@ -1095,13 +1126,17 @@ class Request<T> {
     return await this.client.doRawSocket(requestPath, K8S_WEBSOCKET_PROTOCOLS)
   }
 
-  public async Connect(options?: ExecOptions, protocols?: string[]): Promise<Result<WebSocket>> {
+  public async Connect(
+    options?: ExecOptions,
+    protocols?: string[],
+    signal?: AbortSignal
+  ): Promise<Result<WebSocket>> {
     const path = this.buildPath(options)
     if (path.err) {
       return path
     }
 
-    return await this.client.doRawSocket(path.val, protocols || K8S_WEBSOCKET_PROTOCOLS)
+    return await this.client.doRawSocket(path.val, protocols || K8S_WEBSOCKET_PROTOCOLS, signal)
   }
 
   public async Path(

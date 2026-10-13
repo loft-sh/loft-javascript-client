@@ -12,6 +12,8 @@
 
 import { ManagementV1ConnectorArgoCDSpec } from '../models/managementV1ConnectorArgoCDSpec.js';
 import { ManagementV1ConnectorImageStoreSpec } from '../models/managementV1ConnectorImageStoreSpec.js';
+import { ManagementV1ConnectorNetBoxSpec } from '../models/managementV1ConnectorNetBoxSpec.js';
+import { ManagementV1ConnectorObservabilitySpec } from '../models/managementV1ConnectorObservabilitySpec.js';
 import { ManagementV1ConnectorSharedDatabaseSpec } from '../models/managementV1ConnectorSharedDatabaseSpec.js';
 
 
@@ -21,10 +23,16 @@ import { ManagementV1ConnectorSharedDatabaseSpec } from '../models/managementV1C
 export class ManagementV1ConnectorSpec {
     'argoCd'?: ManagementV1ConnectorArgoCDSpec;
     /**
+    * Description is the free-text description shown in the UI. It is projected from and stamped to the loft.sh/description annotation on the backing Secret.
+    */
+    'description'?: string;
+    /**
     * DisplayName is the human-readable name shown in the UI. It is projected from and stamped to the loft.sh/display-name annotation on the backing Secret.
     */
     'displayName'?: string;
     'imageStore'?: ManagementV1ConnectorImageStoreSpec;
+    'netBox'?: ManagementV1ConnectorNetBoxSpec;
+    'observability'?: ManagementV1ConnectorObservabilitySpec;
     'sharedDatabase'?: ManagementV1ConnectorSharedDatabaseSpec;
 
     static readonly discriminator: string | undefined = undefined;
@@ -37,6 +45,12 @@ export class ManagementV1ConnectorSpec {
             "format": ""
         },
         {
+            "name": "description",
+            "baseName": "description",
+            "type": "string",
+            "format": ""
+        },
+        {
             "name": "displayName",
             "baseName": "displayName",
             "type": "string",
@@ -46,6 +60,18 @@ export class ManagementV1ConnectorSpec {
             "name": "imageStore",
             "baseName": "imageStore",
             "type": "ManagementV1ConnectorImageStoreSpec",
+            "format": ""
+        },
+        {
+            "name": "netBox",
+            "baseName": "netBox",
+            "type": "ManagementV1ConnectorNetBoxSpec",
+            "format": ""
+        },
+        {
+            "name": "observability",
+            "baseName": "observability",
+            "type": "ManagementV1ConnectorObservabilitySpec",
             "format": ""
         },
         {

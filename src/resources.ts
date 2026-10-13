@@ -23,6 +23,7 @@ import {
 } from "@kubernetes/client-node"
 
 import { IronicNode, IronicNodeAbort } from "./ironicnode"
+import { Metal3BMCConsole, Metal3BMCRedfish } from "./metal3bmc"
 import { ThirdPartyResources, ThirdPartyResourcesList } from "./third-party/third-party-resources"
 import {
   APIExtensionsGroup,
@@ -38,6 +39,8 @@ export const Resources: {
   ClusterV1SleepModeConfig: GroupVersionResource<ClusterV1SleepModeConfig>
   ClusterV1IronicNode: GroupVersionResource<IronicNode>
   ClusterV1IronicNodeAbort: GroupVersionResource<IronicNodeAbort>
+  ClusterV1Metal3BMCRedfish: GroupVersionResource<Metal3BMCRedfish>
+  ClusterV1Metal3BMCConsole: GroupVersionResource<Metal3BMCConsole>
   CustomResourceDefinition: GroupVersionResource<V1CustomResourceDefinition>
   StorageV1ClusterQuota: GroupVersionResource<StorageV1ClusterQuota>
   StorageV1AccessKey: GroupVersionResource<StorageV1AccessKey>
@@ -85,6 +88,22 @@ export const Resources: {
     resource: "ironicnodes",
     subResource: "abort",
     kind: "IronicNodeAbort",
+    namespaced: true,
+  },
+  ClusterV1Metal3BMCRedfish: {
+    group: LoftSchemeGroupCluster,
+    version: LoftSchemeVersionCluster,
+    resource: "metal3bmcs",
+    subResource: "redfish",
+    kind: "Metal3BMCRedfish",
+    namespaced: true,
+  },
+  ClusterV1Metal3BMCConsole: {
+    group: LoftSchemeGroupCluster,
+    version: LoftSchemeVersionCluster,
+    resource: "metal3bmcs",
+    subResource: "console",
+    kind: "Metal3BMCConsole",
     namespaced: true,
   },
   CustomResourceDefinition: {
