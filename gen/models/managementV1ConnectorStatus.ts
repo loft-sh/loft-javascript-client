@@ -11,6 +11,7 @@
  */
 
 import { StorageV1Condition } from '../models/agentstorageV1Condition.js';
+import { ManagementV1ConnectorObservabilityStatus } from '../models/managementV1ConnectorObservabilityStatus.js';
 
 
 /**
@@ -21,6 +22,7 @@ export class ManagementV1ConnectorStatus {
     * Conditions holds the conditions observed for this connector. The list is open: v1 names Configured, Reachable (and Authenticated where credentials fail separately from connectivity) and Reconciled, but a controller may publish other types.  The computed Configured condition reports the connector\'s own metadata.creationTimestamp as its lastTransitionTime, unless a controller has published a Configured in the same state, in which case that condition\'s transition time is adopted. The API recomputes this condition on every read and keeps no record of when the outcome last flipped, so the creation time is a stand-in that the real transition can only have happened at or after, never a transition the server observed.
     */
     'conditions'?: Array<StorageV1Condition>;
+    'observability'?: ManagementV1ConnectorObservabilityStatus;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -29,6 +31,12 @@ export class ManagementV1ConnectorStatus {
             "name": "conditions",
             "baseName": "conditions",
             "type": "Array<StorageV1Condition>",
+            "format": ""
+        },
+        {
+            "name": "observability",
+            "baseName": "observability",
+            "type": "ManagementV1ConnectorObservabilityStatus",
             "format": ""
         }    ];
 
