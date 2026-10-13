@@ -15,26 +15,34 @@ import { StorageV1UserOrTeam } from '../models/storageV1UserOrTeam.js';
 
 
 /**
-* NetworkEnvironmentSpec defines spec of network environment.
+* NodeEnvironmentSpec defines spec of node environment.
 */
-export class ManagementV1NetworkEnvironmentSpec {
+export class ManagementV1NodeEnvironmentSpec {
     /**
     * Access holds the access rights for users and teams
     */
     'access'?: Array<StorageV1Access>;
+    /**
+    * ControlPlane indicates if the node environment is a control plane environment. This is intentionally not omitempty as we want to ensure that the control plane is always set for easier checking in for example terraform templates.
+    */
+    'controlPlane'?: boolean;
     /**
     * DisplayName is the name of the NodeClaim that is displayed in the UI.
     */
     'displayName'?: string;
     'owner'?: StorageV1UserOrTeam;
     /**
-    * Properties are the properties for the NetworkEnvironment.
+    * Properties are the properties for the NodeEnvironment.
     */
     'properties'?: { [key: string]: string; };
     /**
-    * ProviderRef is the name of the NodeProvider that this NetworkEnvironment is based on. A NodeClaim of another provider that names this environment is refused at admission, and a project is offered it only alongside a NodeType of this provider. Required at creation and immutable afterwards. Objects created without one before that requirement provision nothing, are available immediately, carry no cleanup finalizer, and admission refuses new NodeClaims naming them.
+    * ProviderRef is the name of the NodeProvider that this NodeEnvironment is based on.
     */
     'providerRef'?: string;
+    /**
+    * VClusterRef references source vCluster.
+    */
+    'vClusterRef'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -43,6 +51,12 @@ export class ManagementV1NetworkEnvironmentSpec {
             "name": "access",
             "baseName": "access",
             "type": "Array<StorageV1Access>",
+            "format": ""
+        },
+        {
+            "name": "controlPlane",
+            "baseName": "controlPlane",
+            "type": "boolean",
             "format": ""
         },
         {
@@ -68,10 +82,16 @@ export class ManagementV1NetworkEnvironmentSpec {
             "baseName": "providerRef",
             "type": "string",
             "format": ""
+        },
+        {
+            "name": "vClusterRef",
+            "baseName": "vClusterRef",
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1NetworkEnvironmentSpec.attributeTypeMap;
+        return ManagementV1NodeEnvironmentSpec.attributeTypeMap;
     }
 
     public constructor() {
