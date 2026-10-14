@@ -12,9 +12,6 @@
 
 import { StorageV1Access } from '../models/storageV1Access.js';
 import { StorageV1AllowedCluster } from '../models/storageV1AllowedCluster.js';
-import { StorageV1AllowedNetworkEnvironment } from '../models/storageV1AllowedNetworkEnvironment.js';
-import { StorageV1AllowedNodeProfile } from '../models/storageV1AllowedNodeProfile.js';
-import { StorageV1AllowedNodeType } from '../models/storageV1AllowedNodeType.js';
 import { StorageV1AllowedRunner } from '../models/storageV1AllowedRunner.js';
 import { StorageV1AllowedTemplate } from '../models/storageV1AllowedTemplate.js';
 import { StorageV1ArgoIntegrationSpec } from '../models/storageV1ArgoIntegrationSpec.js';
@@ -41,18 +38,6 @@ export class ManagementV1ProjectSpec {
     */
     'allowedClusters'?: Array<StorageV1AllowedCluster>;
     /**
-    * AllowedNetworkEnvironments restricts which NetworkEnvironments can be referenced by NodeClaims in this project. NetworkEnvironments are cluster scoped and shared across projects, so this is how a project is scoped to a subset of them. Each entry is an exact NetworkEnvironment name (\"shared-vpc\"). If unset (nil), all NetworkEnvironments are allowed; an empty list disallows all NetworkEnvironments.
-    */
-    'allowedNetworkEnvironments'?: Array<StorageV1AllowedNetworkEnvironment>;
-    /**
-    * AllowedNodeProfiles restricts which NodeProfiles can be referenced by NodeClaims and joinscript requests in this project. An entry can be an exact name (\"platform.gpu-training\") or an owner wildcard (\"platform.*\"). If unset (nil), all NodeProfiles are allowed; an empty list disallows all NodeProfiles.
-    */
-    'allowedNodeProfiles'?: Array<StorageV1AllowedNodeProfile>;
-    /**
-    * AllowedNodeTypes restricts which NodeTypes can be referenced by NodeClaims in this project. An entry can be an exact name (\"aws.large\") or a provider wildcard (\"aws.*\"). If unset (nil), all NodeTypes are allowed; an empty list disallows all NodeTypes.
-    */
-    'allowedNodeTypes'?: Array<StorageV1AllowedNodeType>;
-    /**
     * AllowedRunners are target runners that are allowed to target with
     */
     'allowedRunners'?: Array<StorageV1AllowedRunner>;
@@ -61,10 +46,6 @@ export class ManagementV1ProjectSpec {
     */
     'allowedTemplates'?: Array<StorageV1AllowedTemplate>;
     'argoCD'?: StorageV1ArgoIntegrationSpec;
-    /**
-    * DefaultNodeProfile is the default NodeProfile applied to nodes in this project when none is selected explicitly. It is overridden by the vCluster-level privateNodes.defaultProfile and by per-node/per-pool selection, and is validated against allowedNodeProfiles.
-    */
-    'defaultNodeProfile'?: string;
     /**
     * Description describes an app
     */
@@ -101,24 +82,6 @@ export class ManagementV1ProjectSpec {
             "format": ""
         },
         {
-            "name": "allowedNetworkEnvironments",
-            "baseName": "allowedNetworkEnvironments",
-            "type": "Array<StorageV1AllowedNetworkEnvironment>",
-            "format": ""
-        },
-        {
-            "name": "allowedNodeProfiles",
-            "baseName": "allowedNodeProfiles",
-            "type": "Array<StorageV1AllowedNodeProfile>",
-            "format": ""
-        },
-        {
-            "name": "allowedNodeTypes",
-            "baseName": "allowedNodeTypes",
-            "type": "Array<StorageV1AllowedNodeType>",
-            "format": ""
-        },
-        {
             "name": "allowedRunners",
             "baseName": "allowedRunners",
             "type": "Array<StorageV1AllowedRunner>",
@@ -134,12 +97,6 @@ export class ManagementV1ProjectSpec {
             "name": "argoCD",
             "baseName": "argoCD",
             "type": "StorageV1ArgoIntegrationSpec",
-            "format": ""
-        },
-        {
-            "name": "defaultNodeProfile",
-            "baseName": "defaultNodeProfile",
-            "type": "string",
             "format": ""
         },
         {
