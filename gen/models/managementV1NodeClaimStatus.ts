@@ -11,7 +11,6 @@
  */
 
 import { StorageV1Condition } from '../models/agentstorageV1Condition.js';
-import { StorageV1NodeClaimPower } from '../models/storageV1NodeClaimPower.js';
 
 
 export class ManagementV1NodeClaimStatus {
@@ -27,7 +26,6 @@ export class ManagementV1NodeClaimStatus {
     * Phase is the current lifecycle phase of the NodeClaim.
     */
     'phase'?: string;
-    'power'?: StorageV1NodeClaimPower;
     /**
     * Reason describes the reason in machine-readable form
     */
@@ -52,12 +50,6 @@ export class ManagementV1NodeClaimStatus {
             "name": "phase",
             "baseName": "phase",
             "type": "string",
-            "format": ""
-        },
-        {
-            "name": "power",
-            "baseName": "power",
-            "type": "StorageV1NodeClaimPower",
             "format": ""
         },
         {

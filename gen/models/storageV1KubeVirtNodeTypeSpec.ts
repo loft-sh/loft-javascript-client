@@ -27,10 +27,6 @@ export class StorageV1KubeVirtNodeTypeSpec {
     */
     'displayName'?: string;
     /**
-    * MachineAllocationPolicy selects the machines a tenant\'s NodeClaims of this type may use: Assigned only those the tenant owns or was assigned exclusively, OnDemand also those no tenant owns or holds (never another tenant\'s or the platform\'s). Claims no tenant owns reach unassigned machines either way. Honored by metal3 and nico; externalPlatform node types mirror the remote\'s value. For kubevirt, Assigned runs the VMs on the tenant\'s machines provisioned for VMs and OnDemand on the cluster\'s shared nodes. Empty falls back to the provider\'s spec.machineAllocationPolicy, then to OnDemand for kubevirt and Assigned for the rest.
-    */
-    'machineAllocationPolicy'?: string;
-    /**
     * MaxCapacity is the maximum number of nodes that can be created for this NodeType.
     */
     'maxCapacity'?: number;
@@ -73,12 +69,6 @@ export class StorageV1KubeVirtNodeTypeSpec {
         {
             "name": "displayName",
             "baseName": "displayName",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "machineAllocationPolicy",
-            "baseName": "machineAllocationPolicy",
             "type": "string",
             "format": ""
         },

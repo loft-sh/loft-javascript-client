@@ -14,14 +14,6 @@
 
 export class StorageV1Metal3Deployment {
     /**
-    * Chart overrides the Helm chart name used to install Metal3.
-    */
-    'chart'?: string;
-    /**
-    * ChartRepo overrides the Helm chart repository used to install Metal3.
-    */
-    'chartRepo'?: string;
-    /**
     * Enabled controls whether Metal3 and Ironic are deployed into the cluster.
     */
     'enabled': boolean;
@@ -29,26 +21,10 @@ export class StorageV1Metal3Deployment {
     * HelmValues is raw YAML that will be passed as values to the Metal3 Helm chart.
     */
     'helmValues'?: string;
-    /**
-    * Version overrides the Helm chart version used to install Metal3.
-    */
-    'version'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
-        {
-            "name": "chart",
-            "baseName": "chart",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "chartRepo",
-            "baseName": "chartRepo",
-            "type": "string",
-            "format": ""
-        },
         {
             "name": "enabled",
             "baseName": "enabled",
@@ -58,12 +34,6 @@ export class StorageV1Metal3Deployment {
         {
             "name": "helmValues",
             "baseName": "helmValues",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "version",
-            "baseName": "version",
             "type": "string",
             "format": ""
         }    ];
