@@ -39,10 +39,6 @@ export class ManagementV1UserInfo {
     */
     'teams'?: Array<StorageV1EntityInfo>;
     /**
-    * Tenant is the name of the Tenant that owns this user or team, derived from its tenant.vcluster.com/owner label. Empty for a user or team no tenant owns, including a user that only inherits a label from a Team, since Team labels do not grant tenancy. Empty for any other kind of entity.
-    */
-    'tenant'?: string;
-    /**
     * The username that is used to login
     */
     'username'?: string;
@@ -84,12 +80,6 @@ export class ManagementV1UserInfo {
             "name": "teams",
             "baseName": "teams",
             "type": "Array<StorageV1EntityInfo>",
-            "format": ""
-        },
-        {
-            "name": "tenant",
-            "baseName": "tenant",
-            "type": "string",
             "format": ""
         },
         {
