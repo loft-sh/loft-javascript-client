@@ -18,6 +18,10 @@ import { V1ResourceRequirements } from '../models/V1ResourceRequirements.js';
 */
 export class ManagementV1ConnectorObservabilitySpec {
     /**
+    * Destinations is raw YAML text listing additional OTLP destinations the gateway forwards to. Data key \"destinations\". Each entry has:    - name: unique, lowercase, up to 40 characters   - signal: metrics or logs   - endpoint: an http or https URL   - insecureSkipVerify: optional, skips TLS verification   - certSecretName: optional, a kubernetes.io/tls Secret for mTLS  The list is checked with the gateway controller\'s parser and stored as sent.
+    */
+    'destinations'?: string;
+    /**
     * FleetDefault marks this connector as the one backing the platform-wide fleet metrics Grafana. It is projected from and stamped to the platform.vcluster.com/fleet-observability-connector label on the backing Secret, which is the API for it: a metadata write carrying the label with a value that disagrees with this field is refused. At most one connector may be the fleet default: a write claiming it while another connector (including a terminating one) holds it is rejected with a 409 Conflict naming the holder.  The field is tri-state. Unset carries no opinion: on create the connector claims the label automatically only when no holder exists anywhere (exactly like the UI\'s first create), on update it keeps the connector\'s current holder state and can never demote it. True claims the label explicitly (or is rejected naming the holder), false never claims it and releases it when this connector is the holder. Reads carry the value true when the label is present and leave the field unset when it is absent, never an explicit false, so a read-modify-write round trip of a non-holder stays a no-op instead of becoming a demotion request. An explicit false is accepted and demotes, but is never echoed back, so declarative tooling that keeps fleetDefault: false in its manifest sees a permanent diff on that field.  Moving the fleet default to another connector takes two writes: demote the holder with an explicit false first, then claim with true on the new connector. A claim while a holder exists is never an implicit steal.  A pre-existing sparse Secret missing the grafanaUrl key cannot be demoted through this API: write-time validation rejects the whole update until the field is filled in. The escape hatch is removing the fleet label on the backing Secret directly.
     */
     'fleetDefault'?: boolean;
@@ -75,6 +79,12 @@ export class ManagementV1ConnectorObservabilitySpec {
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+        {
+            "name": "destinations",
+            "baseName": "destinations",
+            "type": "string",
+            "format": ""
+        },
         {
             "name": "fleetDefault",
             "baseName": "fleetDefault",
