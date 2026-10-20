@@ -12,6 +12,7 @@
 
 import { StorageV1ManagedNodeTypeObjectMeta } from '../models/storageV1ManagedNodeTypeObjectMeta.js';
 import { StorageV1Metal3BareMetalHosts } from '../models/storageV1Metal3BareMetalHosts.js';
+import { StorageV1NodeTypeMachines } from '../models/storageV1NodeTypeMachines.js';
 import { StorageV1NodeTypeOverhead } from '../models/storageV1NodeTypeOverhead.js';
 
 
@@ -29,6 +30,7 @@ export class StorageV1Metal3NodeTypeSpec {
     * MachineAllocationPolicy selects the machines a tenant\'s NodeClaims of this type may use: Assigned only those the tenant owns or was assigned exclusively, OnDemand also those no tenant owns or holds (never another tenant\'s or the platform\'s). Claims no tenant owns reach unassigned machines either way. Honored by metal3 and nico; externalPlatform node types mirror the remote\'s value. For kubevirt, Assigned runs the VMs on the tenant\'s machines provisioned for VMs and OnDemand on the cluster\'s shared nodes. Empty falls back to the provider\'s spec.machineAllocationPolicy, then to OnDemand for kubevirt and Assigned for the rest.
     */
     'machineAllocationPolicy'?: string;
+    'machines'?: StorageV1NodeTypeMachines;
     'metadata'?: StorageV1ManagedNodeTypeObjectMeta;
     /**
     * Name is the name of this node type.
@@ -73,6 +75,12 @@ export class StorageV1Metal3NodeTypeSpec {
             "name": "machineAllocationPolicy",
             "baseName": "machineAllocationPolicy",
             "type": "string",
+            "format": ""
+        },
+        {
+            "name": "machines",
+            "baseName": "machines",
+            "type": "StorageV1NodeTypeMachines",
             "format": ""
         },
         {
