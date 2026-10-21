@@ -10,6 +10,7 @@
  * Do not edit the class manually.
  */
 
+import { StorageV1MachineNodeTypeSpec } from '../models/storageV1MachineNodeTypeSpec.js';
 import { StorageV1NICoIdentity } from '../models/storageV1NICoIdentity.js';
 
 
@@ -27,13 +28,13 @@ export class StorageV1NodeProviderNICo {
     */
     'insecureSkipTLSVerify'?: boolean;
     /**
-    * InstanceTypeIDs is an allow-list of NICo InstanceType IDs to surface as NodeTypes. Empty surfaces all.
-    */
-    'instanceTypeIds'?: Array<string>;
-    /**
     * NetworkMode selects how tenant networking is provisioned at this site. Defaults to fnn.  Possible enum values:  - `\"flat\"` configures FLAT VPCs with automatic interface assignment.  - `\"fnn\"` configures FNN VPCs with explicit interfaces and VPC prefixes.
     */
     'networkMode'?: StorageV1NodeProviderNICoNetworkModeEnum;
+    /**
+    * NodeTypes define the NodeTypes this provider offers. A Machine with a NICo instance type carries it as the nico.vcluster.com/instance-type-id label, so a NodeType selects an instance type by label.
+    */
+    'nodeTypes'?: Array<StorageV1MachineNodeTypeSpec>;
     /**
     * Org is the NICo organization used for provider-scoped API calls (the /v2/org/{org}/nico path) and stamped as the provider token\'s organization claim. Optional; defaults to \"vcluster-autonodes\".
     */
@@ -69,15 +70,15 @@ export class StorageV1NodeProviderNICo {
             "format": ""
         },
         {
-            "name": "instanceTypeIds",
-            "baseName": "instanceTypeIds",
-            "type": "Array<string>",
-            "format": ""
-        },
-        {
             "name": "networkMode",
             "baseName": "networkMode",
             "type": "StorageV1NodeProviderNICoNetworkModeEnum",
+            "format": ""
+        },
+        {
+            "name": "nodeTypes",
+            "baseName": "nodeTypes",
+            "type": "Array<StorageV1MachineNodeTypeSpec>",
             "format": ""
         },
         {

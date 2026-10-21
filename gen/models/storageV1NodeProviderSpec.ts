@@ -32,7 +32,7 @@ export class StorageV1NodeProviderSpec {
     'externalPlatform'?: StorageV1NodeProviderExternalPlatform;
     'kubeVirt'?: StorageV1NodeProviderKubeVirt;
     /**
-    * MachineAllocationPolicy is the NodeTypeSpec.MachineAllocationPolicy of this provider\'s node types that leave theirs empty, and the only one discovered (nico) node types can have.
+    * MachineAllocationPolicy is the NodeTypeSpec.MachineAllocationPolicy of this provider\'s node types that leave theirs empty.
     */
     'machineAllocationPolicy'?: string;
     'metal3'?: StorageV1NodeProviderMetal3;
