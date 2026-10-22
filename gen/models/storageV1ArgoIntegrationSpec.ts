@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1ArgoProjectSpec } from '../models/storageV1ArgoProjectSpec';
-import { StorageV1ArgoSSOSpec } from '../models/storageV1ArgoSSOSpec';
+import { StorageV1ArgoProjectSpec } from '../models/storageV1ArgoProjectSpec.js';
+import { StorageV1ArgoSSOSpec } from '../models/storageV1ArgoSSOSpec.js';
 
 
 export class StorageV1ArgoIntegrationSpec {

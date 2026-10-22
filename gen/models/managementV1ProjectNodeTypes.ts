@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1NodeProvider } from '../models/storageV1NodeProvider';
-import { StorageV1NodeType } from '../models/storageV1NodeType';
-import { V1ObjectMeta } from '../models/V1ObjectMeta';
+import { StorageV1NodeProvider } from '../models/storageV1NodeProvider.js';
+import { StorageV1NodeType } from '../models/storageV1NodeType.js';
+import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
 
 
 export class ManagementV1ProjectNodeTypes {

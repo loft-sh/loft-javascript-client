@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1VirtualClusterResourceUsageStatus } from '../models/managementV1VirtualClusterResourceUsageStatus';
-import { V1ObjectMeta } from '../models/V1ObjectMeta';
+import { ManagementV1VirtualClusterResourceUsageStatus } from '../models/managementV1VirtualClusterResourceUsageStatus.js';
+import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
 
 
 /**

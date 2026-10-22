@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1VirtualClusterTemplate } from '../models/managementV1VirtualClusterTemplate';
-import { V1ListMeta } from '../models/V1ListMeta';
+import { ManagementV1VirtualClusterTemplate } from '../models/managementV1VirtualClusterTemplate.js';
+import { V1ListMeta } from '../models/V1ListMeta.js';
 
 
 export class ManagementV1VirtualClusterTemplateList {

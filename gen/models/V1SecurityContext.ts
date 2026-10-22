@@ -10,11 +10,11 @@
  * Do not edit the class manually.
  */
 
-import { V1AppArmorProfile } from '../models/V1AppArmorProfile';
-import { V1Capabilities } from '../models/V1Capabilities';
-import { V1SELinuxOptions } from '../models/V1SELinuxOptions';
-import { V1SeccompProfile } from '../models/V1SeccompProfile';
-import { V1WindowsSecurityContextOptions } from '../models/V1WindowsSecurityContextOptions';
+import { V1AppArmorProfile } from '../models/V1AppArmorProfile.js';
+import { V1Capabilities } from '../models/V1Capabilities.js';
+import { V1SELinuxOptions } from '../models/V1SELinuxOptions.js';
+import { V1SeccompProfile } from '../models/V1SeccompProfile.js';
+import { V1WindowsSecurityContextOptions } from '../models/V1WindowsSecurityContextOptions.js';
 
 
 /**

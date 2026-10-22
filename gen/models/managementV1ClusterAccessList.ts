@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1ClusterAccess } from '../models/managementV1ClusterAccess';
-import { V1ListMeta } from '../models/V1ListMeta';
+import { ManagementV1ClusterAccess } from '../models/managementV1ClusterAccess.js';
+import { V1ListMeta } from '../models/V1ListMeta.js';
 
 
 export class ManagementV1ClusterAccessList {

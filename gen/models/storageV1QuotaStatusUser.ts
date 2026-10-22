@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1QuotaStatusUserUsed } from '../models/storageV1QuotaStatusUserUsed';
+import { StorageV1QuotaStatusUserUsed } from '../models/storageV1QuotaStatusUserUsed.js';
 
 
 export class StorageV1QuotaStatusUser {

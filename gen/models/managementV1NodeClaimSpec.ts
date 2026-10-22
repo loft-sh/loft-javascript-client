@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1NodeSelectorRequirement } from '../models/V1NodeSelectorRequirement';
-import { V1Taint } from '../models/V1Taint';
+import { V1NodeSelectorRequirement } from '../models/V1NodeSelectorRequirement.js';
+import { V1Taint } from '../models/V1Taint.js';
 
 
 /**

@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1TranslateVClusterResourceNameSpec } from '../models/managementV1TranslateVClusterResourceNameSpec';
-import { ManagementV1TranslateVClusterResourceNameStatus } from '../models/managementV1TranslateVClusterResourceNameStatus';
-import { V1ObjectMeta } from '../models/V1ObjectMeta';
+import { ManagementV1TranslateVClusterResourceNameSpec } from '../models/managementV1TranslateVClusterResourceNameSpec.js';
+import { ManagementV1TranslateVClusterResourceNameStatus } from '../models/managementV1TranslateVClusterResourceNameStatus.js';
+import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
 
 
 /**

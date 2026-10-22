@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1Condition } from '../models/agentstorageV1Condition';
+import { StorageV1Condition } from '../models/agentstorageV1Condition.js';
 
 
 export class ManagementV1NodeClaimStatus {

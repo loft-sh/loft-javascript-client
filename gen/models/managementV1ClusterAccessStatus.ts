@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1EntityInfo } from '../models/storageV1EntityInfo';
-import { StorageV1UserOrTeamEntity } from '../models/storageV1UserOrTeamEntity';
+import { StorageV1EntityInfo } from '../models/storageV1EntityInfo.js';
+import { StorageV1UserOrTeamEntity } from '../models/storageV1UserOrTeamEntity.js';
 
 
 /**

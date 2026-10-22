@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1ContainerStateRunning } from '../models/V1ContainerStateRunning';
-import { V1ContainerStateTerminated } from '../models/V1ContainerStateTerminated';
-import { V1ContainerStateWaiting } from '../models/V1ContainerStateWaiting';
+import { V1ContainerStateRunning } from '../models/V1ContainerStateRunning.js';
+import { V1ContainerStateTerminated } from '../models/V1ContainerStateTerminated.js';
+import { V1ContainerStateWaiting } from '../models/V1ContainerStateWaiting.js';
 
 
 /**

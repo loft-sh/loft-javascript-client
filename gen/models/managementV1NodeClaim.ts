@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1NodeClaimSpec } from '../models/managementV1NodeClaimSpec';
-import { ManagementV1NodeClaimStatus } from '../models/managementV1NodeClaimStatus';
-import { V1ObjectMeta } from '../models/V1ObjectMeta';
+import { ManagementV1NodeClaimSpec } from '../models/managementV1NodeClaimSpec.js';
+import { ManagementV1NodeClaimStatus } from '../models/managementV1NodeClaimStatus.js';
+import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
 
 
 /**

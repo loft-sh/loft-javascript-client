@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1NonResourceAttributes } from '../models/V1NonResourceAttributes';
-import { V1ResourceAttributes } from '../models/V1ResourceAttributes';
+import { V1NonResourceAttributes } from '../models/V1NonResourceAttributes.js';
+import { V1ResourceAttributes } from '../models/V1ResourceAttributes.js';
 
 
 export class ManagementV1SubjectAccessReviewSpec {

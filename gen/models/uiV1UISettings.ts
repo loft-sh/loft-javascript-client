@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { UiV1UISettingsSpec } from '../models/uiV1UISettingsSpec';
-import { UiV1UISettingsStatus } from '../models/uiV1UISettingsStatus';
-import { V1ObjectMeta } from '../models/V1ObjectMeta';
+import { UiV1UISettingsSpec } from '../models/uiV1UISettingsSpec.js';
+import { UiV1UISettingsStatus } from '../models/uiV1UISettingsStatus.js';
+import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
 
 
 /**

@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1ClusterSpec } from '../models/storageV1ClusterSpec';
-import { StorageV1ClusterStatus } from '../models/storageV1ClusterStatus';
-import { V1ObjectMeta } from '../models/V1ObjectMeta';
+import { StorageV1ClusterSpec } from '../models/storageV1ClusterSpec.js';
+import { StorageV1ClusterStatus } from '../models/storageV1ClusterStatus.js';
+import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
 
 
 /**

@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1NodeProviderExecSpec } from '../models/managementV1NodeProviderExecSpec';
-import { ManagementV1NodeProviderExecStatus } from '../models/managementV1NodeProviderExecStatus';
-import { V1ObjectMeta } from '../models/V1ObjectMeta';
+import { ManagementV1NodeProviderExecSpec } from '../models/managementV1NodeProviderExecSpec.js';
+import { ManagementV1NodeProviderExecStatus } from '../models/managementV1NodeProviderExecStatus.js';
+import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
 
 
 export class ManagementV1NodeProviderExec {

@@ -2,6 +2,9 @@ import { V1APIResourceList } from "@kubernetes/client-node"
 
 import { GroupVersionResource, Unstructured } from "./types"
 
+/**
+ * @deprecated Use arrStrict from shared instead.
+ */
 export function arr<T>(array: T[] | undefined | null): T[] {
   return !array ? [] : array
 }

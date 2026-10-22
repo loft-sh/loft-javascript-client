@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1VirtualClusterExternalDatabaseSpec } from '../models/managementV1VirtualClusterExternalDatabaseSpec';
-import { ManagementV1VirtualClusterExternalDatabaseStatus } from '../models/managementV1VirtualClusterExternalDatabaseStatus';
-import { V1ObjectMeta } from '../models/V1ObjectMeta';
+import { ManagementV1VirtualClusterExternalDatabaseSpec } from '../models/managementV1VirtualClusterExternalDatabaseSpec.js';
+import { ManagementV1VirtualClusterExternalDatabaseStatus } from '../models/managementV1VirtualClusterExternalDatabaseStatus.js';
+import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
 
 
 /**

@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1ClusterAccounts } from '../models/managementV1ClusterAccounts';
-import { V1ObjectMeta } from '../models/V1ObjectMeta';
+import { ManagementV1ClusterAccounts } from '../models/managementV1ClusterAccounts.js';
+import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
 
 
 export class ManagementV1TeamClusters {

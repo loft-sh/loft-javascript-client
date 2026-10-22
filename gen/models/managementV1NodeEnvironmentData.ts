@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1Operation } from '../models/managementV1Operation';
+import { ManagementV1Operation } from '../models/managementV1Operation.js';
 
 
 export class ManagementV1NodeEnvironmentData {

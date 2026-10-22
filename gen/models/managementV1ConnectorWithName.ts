@@ -10,12 +10,12 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1AuthenticationGithub } from '../models/managementV1AuthenticationGithub';
-import { ManagementV1AuthenticationGitlab } from '../models/managementV1AuthenticationGitlab';
-import { ManagementV1AuthenticationGoogle } from '../models/managementV1AuthenticationGoogle';
-import { ManagementV1AuthenticationMicrosoft } from '../models/managementV1AuthenticationMicrosoft';
-import { ManagementV1AuthenticationOIDC } from '../models/managementV1AuthenticationOIDC';
-import { ManagementV1AuthenticationSAML } from '../models/managementV1AuthenticationSAML';
+import { ManagementV1AuthenticationGithub } from '../models/managementV1AuthenticationGithub.js';
+import { ManagementV1AuthenticationGitlab } from '../models/managementV1AuthenticationGitlab.js';
+import { ManagementV1AuthenticationGoogle } from '../models/managementV1AuthenticationGoogle.js';
+import { ManagementV1AuthenticationMicrosoft } from '../models/managementV1AuthenticationMicrosoft.js';
+import { ManagementV1AuthenticationOIDC } from '../models/managementV1AuthenticationOIDC.js';
+import { ManagementV1AuthenticationSAML } from '../models/managementV1AuthenticationSAML.js';
 
 
 export class ManagementV1ConnectorWithName {

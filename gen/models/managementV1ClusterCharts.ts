@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1HelmChart } from '../models/storageV1HelmChart';
-import { V1ObjectMeta } from '../models/V1ObjectMeta';
+import { StorageV1HelmChart } from '../models/storageV1HelmChart.js';
+import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
 
 
 export class ManagementV1ClusterCharts {

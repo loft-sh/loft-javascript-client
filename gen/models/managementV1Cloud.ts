@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1MaintenanceWindow } from '../models/managementV1MaintenanceWindow';
+import { ManagementV1MaintenanceWindow } from '../models/managementV1MaintenanceWindow.js';
 
 
 export class ManagementV1Cloud {

@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1APIResource } from '../models/V1APIResource';
+import { V1APIResource } from '../models/V1APIResource.js';
 
 
 /**

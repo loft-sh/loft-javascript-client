@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { ClusterV1ProjectSecretRef } from '../models/clusterV1ProjectSecretRef';
+import { ClusterV1ProjectSecretRef } from '../models/clusterV1ProjectSecretRef.js';
 
 
 export class ClusterV1ChartSecretRef {

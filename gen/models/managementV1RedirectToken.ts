@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1RedirectTokenSpec } from '../models/managementV1RedirectTokenSpec';
-import { ManagementV1RedirectTokenStatus } from '../models/managementV1RedirectTokenStatus';
-import { V1ObjectMeta } from '../models/V1ObjectMeta';
+import { ManagementV1RedirectTokenSpec } from '../models/managementV1RedirectTokenSpec.js';
+import { ManagementV1RedirectTokenStatus } from '../models/managementV1RedirectTokenStatus.js';
+import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
 
 
 /**

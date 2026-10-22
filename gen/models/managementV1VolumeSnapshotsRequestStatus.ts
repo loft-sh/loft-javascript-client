@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1SnapshotRequestError } from '../models/managementV1SnapshotRequestError';
-import { ManagementV1VolumeSnapshotRequestStatus } from '../models/managementV1VolumeSnapshotRequestStatus';
+import { ManagementV1SnapshotRequestError } from '../models/managementV1SnapshotRequestError.js';
+import { ManagementV1VolumeSnapshotRequestStatus } from '../models/managementV1VolumeSnapshotRequestStatus.js';
 
 
 /**
