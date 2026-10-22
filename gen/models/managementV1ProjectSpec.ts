@@ -12,7 +12,6 @@
 
 import { StorageV1Access } from '../models/storageV1Access.js';
 import { StorageV1AllowedCluster } from '../models/storageV1AllowedCluster.js';
-import { StorageV1AllowedNodeType } from '../models/storageV1AllowedNodeType.js';
 import { StorageV1AllowedRunner } from '../models/storageV1AllowedRunner.js';
 import { StorageV1AllowedTemplate } from '../models/storageV1AllowedTemplate.js';
 import { StorageV1ArgoIntegrationSpec } from '../models/storageV1ArgoIntegrationSpec.js';
@@ -38,10 +37,6 @@ export class ManagementV1ProjectSpec {
     * AllowedClusters are target clusters that are allowed to target with environments.
     */
     'allowedClusters'?: Array<StorageV1AllowedCluster>;
-    /**
-    * AllowedNodeTypes restricts which NodeTypes can be referenced by NodeClaims in this project. An entry can be an exact name (\"aws.large\") or a provider wildcard (\"aws.*\"). If unset (nil), all NodeTypes are allowed; an empty list disallows all NodeTypes.
-    */
-    'allowedNodeTypes'?: Array<StorageV1AllowedNodeType>;
     /**
     * AllowedRunners are target runners that are allowed to target with
     */
@@ -84,12 +79,6 @@ export class ManagementV1ProjectSpec {
             "name": "allowedClusters",
             "baseName": "allowedClusters",
             "type": "Array<StorageV1AllowedCluster>",
-            "format": ""
-        },
-        {
-            "name": "allowedNodeTypes",
-            "baseName": "allowedNodeTypes",
-            "type": "Array<StorageV1AllowedNodeType>",
             "format": ""
         },
         {

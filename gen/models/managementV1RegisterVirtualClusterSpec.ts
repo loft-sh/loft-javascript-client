@@ -25,19 +25,19 @@ export class ManagementV1RegisterVirtualClusterSpec {
     */
     'forceName'?: boolean;
     /**
-    * KubernetesVersion is the Kubernetes version of the tenant cluster.
+    * KubernetesVersion is the Kubernetes version of the virtual cluster.
     */
     'kubernetesVersion'?: string;
     /**
-    * Name is the tenant cluster instance name. If the name is already taken, the platform will construct a name for the vcluster based on the service uid and this name.
+    * Name is the virtual cluster instance name. If the name is already taken, the platform will construct a name for the vcluster based on the service uid and this name.
     */
     'name'?: string;
     /**
-    * Project is the project name the tenant cluster should be in.
+    * Project is the project name the virtual cluster should be in.
     */
     'project'?: string;
     /**
-    * ServiceUID uniquely identifies the tenant cluster based on the service uid.
+    * ServiceUID uniquely identifies the virtual cluster based on the service uid.
     */
     'serviceUID'?: string;
     /**

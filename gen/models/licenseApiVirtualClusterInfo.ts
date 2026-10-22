@@ -13,7 +13,7 @@
 
 
 /**
-* VirtualClusterInfo holds information about a single tenant cluster
+* VirtualClusterInfo holds information about a single virtual cluster
 */
 export class LicenseApiVirtualClusterInfo {
     'creation_timestamp': string;

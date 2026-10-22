@@ -11,7 +11,6 @@
  */
 
 import { StorageV1Access } from '../models/storageV1Access.js';
-import { StorageV1NodeClaimPower } from '../models/storageV1NodeClaimPower.js';
 import { StorageV1UserOrTeam } from '../models/storageV1UserOrTeam.js';
 import { V1NodeSelectorRequirement } from '../models/V1NodeSelectorRequirement.js';
 import { V1Taint } from '../models/V1Taint.js';
@@ -46,7 +45,6 @@ export class ManagementV1NodeClaimSpec {
     */
     'kubeletArgs'?: { [key: string]: string; };
     'owner'?: StorageV1UserOrTeam;
-    'power'?: StorageV1NodeClaimPower;
     /**
     * Properties are extra properties for the NodeClaim.
     */
@@ -119,12 +117,6 @@ export class ManagementV1NodeClaimSpec {
             "name": "owner",
             "baseName": "owner",
             "type": "StorageV1UserOrTeam",
-            "format": ""
-        },
-        {
-            "name": "power",
-            "baseName": "power",
-            "type": "StorageV1NodeClaimPower",
             "format": ""
         },
         {

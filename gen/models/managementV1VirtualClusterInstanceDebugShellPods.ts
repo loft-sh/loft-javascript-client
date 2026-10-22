@@ -10,14 +10,11 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1VirtualClusterControlPlanePodsStatus } from '../models/managementV1VirtualClusterControlPlanePodsStatus.js';
+import { ManagementV1VirtualClusterDebugShellPodsStatus } from '../models/managementV1VirtualClusterDebugShellPodsStatus.js';
 import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
 
 
-/**
-* VirtualClusterControlPlanePods holds control plane pod information for a tenant cluster instance.
-*/
-export class ManagementV1VirtualClusterControlPlanePods {
+export class ManagementV1VirtualClusterInstanceDebugShellPods {
     /**
     * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
     */
@@ -27,7 +24,7 @@ export class ManagementV1VirtualClusterControlPlanePods {
     */
     'kind'?: string;
     'metadata'?: V1ObjectMeta;
-    'status'?: ManagementV1VirtualClusterControlPlanePodsStatus;
+    'status'?: ManagementV1VirtualClusterDebugShellPodsStatus;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -53,12 +50,12 @@ export class ManagementV1VirtualClusterControlPlanePods {
         {
             "name": "status",
             "baseName": "status",
-            "type": "ManagementV1VirtualClusterControlPlanePodsStatus",
+            "type": "ManagementV1VirtualClusterDebugShellPodsStatus",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1VirtualClusterControlPlanePods.attributeTypeMap;
+        return ManagementV1VirtualClusterInstanceDebugShellPods.attributeTypeMap;
     }
 
     public constructor() {

@@ -18,6 +18,6 @@
   },
   "devDependencies": {
     "dts-bundle-generator": "8.0.1",
-    "esbuild": "0.25.0"
+    "esbuild": "0.28.1"
   }
 }
