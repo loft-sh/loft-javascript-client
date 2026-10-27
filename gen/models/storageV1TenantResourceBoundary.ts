@@ -41,7 +41,7 @@ export class StorageV1TenantResourceBoundary {
     */
     'own'?: boolean;
     /**
-    * Resource is the lowercase plural management.loft.sh resource name.
+    * Resource is the lowercase plural resource name: a management.loft.sh kind, or clusterroles or roles for the RBAC role kinds.
     */
     'resource': string;
 

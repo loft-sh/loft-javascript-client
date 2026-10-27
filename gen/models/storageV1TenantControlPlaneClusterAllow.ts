@@ -13,13 +13,17 @@
 
 
 /**
-* TenantControlPlaneClusterAllow selects the admin-owned Control Plane Clusters a tenant may target. A tenant cannot register a Control Plane Cluster of its own, so there is no custom allowance.
+* TenantControlPlaneClusterAllow selects the admin-owned Control Plane Clusters a tenant may target, by ByName or ByLabels. A tenant cannot register a Control Plane Cluster of its own, so there is no custom allowance.  ByName and a non-empty ByLabels may not both be set: a cluster that is both named and labelled would be served twice. To grant a set plus one more cluster, label it and widen ByLabels.  An empty ByLabels is not an unset one: byLabels: {} matches every admin-owned Control Plane Cluster, so beside ByName it admits all of them and ByName is ignored. Leave ByLabels absent to grant by name.
 */
 export class StorageV1TenantControlPlaneClusterAllow {
     /**
     * ByLabels selects Control Plane Clusters carrying all of these labels.  An empty map and an absent one are deliberately different, which is why this field carries no omitempty. An empty conjunction is vacuously true, so byLabels: {} matches every admin-owned instance; absent or null matches none. With omitempty the two forms both serialize to nothing and the distinction dies on the first round trip, which is why it has to be stated here rather than inferred from emptiness on Allow. ByName gets no equivalent treatment: an empty enumeration reads as \"nothing\" to everyone, and only a conjunction has the vacuous-truth property that makes empty mean everything.
     */
     'byLabels'?: { [key: string]: string; };
+    /**
+    * ByName selects admin-owned Control Plane Clusters by their exact names. There is no wildcard.
+    */
+    'byName'?: Array<string>;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -28,6 +32,12 @@ export class StorageV1TenantControlPlaneClusterAllow {
             "name": "byLabels",
             "baseName": "byLabels",
             "type": "{ [key: string]: string; }",
+            "format": ""
+        },
+        {
+            "name": "byName",
+            "baseName": "byName",
+            "type": "Array<string>",
             "format": ""
         }    ];
 
