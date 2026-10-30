@@ -13,6 +13,7 @@
 import { StorageV1Access } from '../models/storageV1Access.js';
 import { StorageV1TenantConnectors } from '../models/storageV1TenantConnectors.js';
 import { StorageV1TenantControlPlaneClusters } from '../models/storageV1TenantControlPlaneClusters.js';
+import { StorageV1TenantExternalClusters } from '../models/storageV1TenantExternalClusters.js';
 import { StorageV1TenantNodeTypes } from '../models/storageV1TenantNodeTypes.js';
 import { StorageV1TenantOSImages } from '../models/storageV1TenantOSImages.js';
 import { StorageV1TenantPlatformConfig } from '../models/storageV1TenantPlatformConfig.js';
@@ -39,6 +40,7 @@ export class ManagementV1TenantSpec {
     * DisplayName is the name that should be displayed in the UI.
     */
     'displayName'?: string;
+    'externalClusters'?: StorageV1TenantExternalClusters;
     'nodeTypes'?: StorageV1TenantNodeTypes;
     'osImages'?: StorageV1TenantOSImages;
     'owner'?: StorageV1UserOrTeam;
@@ -77,6 +79,12 @@ export class ManagementV1TenantSpec {
             "name": "displayName",
             "baseName": "displayName",
             "type": "string",
+            "format": ""
+        },
+        {
+            "name": "externalClusters",
+            "baseName": "externalClusters",
+            "type": "StorageV1TenantExternalClusters",
             "format": ""
         },
         {
