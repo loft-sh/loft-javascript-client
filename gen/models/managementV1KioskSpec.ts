@@ -10,11 +10,13 @@
  * Do not edit the class manually.
  */
 
+import { ClusterV1ChartInfo } from '../models/clusterV1ChartInfo.js';
+import { ClusterV1HelmRelease } from '../models/clusterV1HelmRelease.js';
 import { ClusterV1SleepModeConfig } from '../models/clusterV1SleepModeConfig.js';
 import { StorageV1ClusterQuota } from '../models/agentstorageV1ClusterQuota.js';
 import { ManagementV1License } from '../models/managementV1License.js';
-import { ManagementV1NetworkEnvironmentData } from '../models/managementV1NetworkEnvironmentData.js';
 import { ManagementV1NodeClaimData } from '../models/managementV1NodeClaimData.js';
+import { ManagementV1NodeEnvironmentData } from '../models/managementV1NodeEnvironmentData.js';
 import { ManagementV1NodeProviderBCMGetResourcesResult } from '../models/managementV1NodeProviderBCMGetResourcesResult.js';
 import { ManagementV1NodeProviderBCMNodeWithResources } from '../models/managementV1NodeProviderBCMNodeWithResources.js';
 import { ManagementV1NodeProviderBCMTestConnectionResult } from '../models/managementV1NodeProviderBCMTestConnectionResult.js';
@@ -28,9 +30,11 @@ import { UiV1UISettings } from '../models/uiV1UISettings.js';
 export class ManagementV1KioskSpec {
     'UISettings'?: UiV1UISettings;
     'accessKey'?: StorageV1AccessKey;
+    'chartInfo'?: ClusterV1ChartInfo;
+    'helmRelease'?: ClusterV1HelmRelease;
     'license'?: ManagementV1License;
-    'networkEnvironmentData'?: ManagementV1NetworkEnvironmentData;
     'nodeClaimData'?: ManagementV1NodeClaimData;
+    'nodeEnvironmentData'?: ManagementV1NodeEnvironmentData;
     'nodeProviderBCMGetResourcesResult'?: ManagementV1NodeProviderBCMGetResourcesResult;
     'nodeProviderBCMNodeWithResources'?: ManagementV1NodeProviderBCMNodeWithResources;
     'nodeProviderBCMTestConnectionResult'?: ManagementV1NodeProviderBCMTestConnectionResult;
@@ -56,21 +60,33 @@ export class ManagementV1KioskSpec {
             "format": ""
         },
         {
+            "name": "chartInfo",
+            "baseName": "chartInfo",
+            "type": "ClusterV1ChartInfo",
+            "format": ""
+        },
+        {
+            "name": "helmRelease",
+            "baseName": "helmRelease",
+            "type": "ClusterV1HelmRelease",
+            "format": ""
+        },
+        {
             "name": "license",
             "baseName": "license",
             "type": "ManagementV1License",
             "format": ""
         },
         {
-            "name": "networkEnvironmentData",
-            "baseName": "networkEnvironmentData",
-            "type": "ManagementV1NetworkEnvironmentData",
-            "format": ""
-        },
-        {
             "name": "nodeClaimData",
             "baseName": "nodeClaimData",
             "type": "ManagementV1NodeClaimData",
+            "format": ""
+        },
+        {
+            "name": "nodeEnvironmentData",
+            "baseName": "nodeEnvironmentData",
+            "type": "ManagementV1NodeEnvironmentData",
             "format": ""
         },
         {
