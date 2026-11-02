@@ -22,7 +22,7 @@ export class StorageV1AllowedTemplate {
     */
     'isDefault'?: boolean;
     /**
-    * Kind of the template that is allowed. Supports DevPodWorkspaceTemplate, VirtualClusterTemplate, SpaceTemplate and StackTemplate.
+    * Kind of the template that is allowed. Currently only supports DevPodWorkspaceTemplate, VirtualClusterTemplate & SpaceTemplate
     */
     'kind'?: string;
     /**

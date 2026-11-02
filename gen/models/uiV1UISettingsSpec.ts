@@ -29,7 +29,7 @@ export class UiV1UISettingsSpec {
     */
     'agentNamespace'?: string;
     /**
-    * AvailableVClusterVersions lists all tenant cluster versions available to the platform instance
+    * AvailableVClusterVersions lists all virtual cluster versions available to the platform instance
     */
     'availableVClusterVersions'?: Array<UiV1VClusterVersion>;
     /**

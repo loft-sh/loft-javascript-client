@@ -19,7 +19,7 @@ import { StorageV1NamespacedRef } from '../models/storageV1NamespacedRef.js';
 */
 export class StorageV1NodeProviderBCM {
     /**
-    * Endpoint is an address for head node.
+    * Endpoint is a address for head node.
     */
     'endpoint': string;
     /**
