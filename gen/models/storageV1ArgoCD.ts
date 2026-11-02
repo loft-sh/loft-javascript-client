@@ -10,11 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1ArgoCDClusterSpec } from '../models/storageV1ArgoCDClusterSpec.js';
 
 
 export class StorageV1ArgoCD {
-    'cluster'?: StorageV1ArgoCDClusterSpec;
     /**
     * Connector specifies the argo cd connector name
     */
@@ -27,12 +25,6 @@ export class StorageV1ArgoCD {
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
-        {
-            "name": "cluster",
-            "baseName": "cluster",
-            "type": "StorageV1ArgoCDClusterSpec",
-            "format": ""
-        },
         {
             "name": "connector",
             "baseName": "connector",
