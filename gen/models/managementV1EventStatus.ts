@@ -66,6 +66,10 @@ export class ManagementV1EventStatus {
     * MicroTime is version of Time with microsecond level precision.
     */
     'stageTimestamp'?: Date;
+    /**
+    * Tenant is the tenant recorded for the request when it was stored. Empty for operator requests and events stored before tenant recording.
+    */
+    'tenant'?: string;
     'user': V1UserInfo;
     /**
     * UserAgent records the user agent string reported by the client. Note that the UserAgent is provided by the client, and must not be trusted.
@@ -168,6 +172,12 @@ export class ManagementV1EventStatus {
             "baseName": "stageTimestamp",
             "type": "Date",
             "format": "date-time-micro"
+        },
+        {
+            "name": "tenant",
+            "baseName": "tenant",
+            "type": "string",
+            "format": ""
         },
         {
             "name": "user",
