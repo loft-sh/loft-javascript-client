@@ -37,6 +37,7 @@ import {ManagementV1NetworkEnvironment} from "./models/managementV1NetworkEnviro
 import {ManagementV1NetworkPeerDebug} from "./models/managementV1NetworkPeerDebug"
 import {ManagementV1NetworkPeer} from "./models/managementV1NetworkPeer"
 import {ManagementV1NodeClaim} from "./models/managementV1NodeClaim"
+import {ManagementV1NodePool} from "./models/managementV1NodePool"
 import {ManagementV1NodeProfile} from "./models/managementV1NodeProfile"
 import {ManagementV1NodeProviderExec} from "./models/managementV1NodeProviderExec"
 import {ManagementV1NodeProvider} from "./models/managementV1NodeProvider"
@@ -141,6 +142,7 @@ export type TGenResources = {
   ManagementV1NetworkPeer: GroupVersionResource<ManagementV1NetworkPeer>
   ManagementV1NetworkPeerDebug: GroupVersionResource<ManagementV1NetworkPeerDebug>
   ManagementV1NodeClaim: GroupVersionResource<ManagementV1NodeClaim>
+  ManagementV1NodePool: GroupVersionResource<ManagementV1NodePool>
   ManagementV1NodeProfile: GroupVersionResource<ManagementV1NodeProfile>
   ManagementV1NodeProvider: GroupVersionResource<ManagementV1NodeProvider>
   ManagementV1NodeProviderExec: GroupVersionResource<ManagementV1NodeProviderExec>
@@ -504,6 +506,14 @@ export const GenResources: TGenResources = {
     subResource: "",
     namespaced: true,
     kind: "NodeClaim",
+  },
+  ManagementV1NodePool: {
+    group: "management.loft.sh",
+    version: "v1",
+    resource: "nodepools",
+    subResource: "",
+    namespaced: true,
+    kind: "NodePool",
   },
   ManagementV1NodeProfile: {
     group: "management.loft.sh",
