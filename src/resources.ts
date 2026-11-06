@@ -1,6 +1,9 @@
 import { StorageV1ClusterQuota } from "@gen/models/agentstorageV1ClusterQuota"
+import { ClusterV1ChartInfo } from "@gen/models/clusterV1ChartInfo"
+import { ClusterV1HelmRelease } from "@gen/models/clusterV1HelmRelease"
 import { ClusterV1SleepModeConfig } from "@gen/models/clusterV1SleepModeConfig"
 import { StorageV1AccessKey } from "@gen/models/storageV1AccessKey"
+import { VirtualclusterV1HelmRelease } from "@gen/models/virtualclusterV1HelmRelease"
 import { GenResources, TGenResources } from "@gen/resources"
 import {
   CoreV1Event,
@@ -22,25 +25,24 @@ import {
   V1StorageClassList,
 } from "@kubernetes/client-node"
 
-import { IronicNode, IronicNodeAbort } from "./ironicnode"
-import { Metal3BMCConsole, Metal3BMCRedfish } from "./metal3bmc"
 import { ThirdPartyResources, ThirdPartyResourcesList } from "./third-party/third-party-resources"
 import {
   APIExtensionsGroup,
   APIExtensionsVersion,
   GroupVersionResource,
   LoftSchemeGroupCluster,
+  LoftSchemeGroupVirtualCluster,
   LoftSchemeVersion,
   LoftSchemeVersionCluster,
+  LoftSchemeVersionVirtualCluster,
   V1Beta1PodMetrics,
 } from "./types"
 
 export const Resources: {
   ClusterV1SleepModeConfig: GroupVersionResource<ClusterV1SleepModeConfig>
-  ClusterV1IronicNode: GroupVersionResource<IronicNode>
-  ClusterV1IronicNodeAbort: GroupVersionResource<IronicNodeAbort>
-  ClusterV1Metal3BMCRedfish: GroupVersionResource<Metal3BMCRedfish>
-  ClusterV1Metal3BMCConsole: GroupVersionResource<Metal3BMCConsole>
+  ClusterV1HelmRelease: GroupVersionResource<ClusterV1HelmRelease>
+  ClusterV1ChartInfo: GroupVersionResource<ClusterV1ChartInfo>
+  VirtualclusterV1HelmRelease: GroupVersionResource<VirtualclusterV1HelmRelease>
   CustomResourceDefinition: GroupVersionResource<V1CustomResourceDefinition>
   StorageV1ClusterQuota: GroupVersionResource<StorageV1ClusterQuota>
   StorageV1AccessKey: GroupVersionResource<StorageV1AccessKey>
@@ -75,35 +77,24 @@ export const Resources: {
     kind: "SleepModeConfig",
     namespaced: true,
   },
-  ClusterV1IronicNode: {
+  ClusterV1HelmRelease: {
     group: LoftSchemeGroupCluster,
     version: LoftSchemeVersionCluster,
-    resource: "ironicnodes",
-    kind: "IronicNode",
+    resource: "helmreleases",
+    kind: "HelmRelease",
     namespaced: true,
   },
-  ClusterV1IronicNodeAbort: {
+  ClusterV1ChartInfo: {
     group: LoftSchemeGroupCluster,
     version: LoftSchemeVersionCluster,
-    resource: "ironicnodes",
-    subResource: "abort",
-    kind: "IronicNodeAbort",
-    namespaced: true,
+    resource: "chartinfos",
+    kind: "ChartInfo",
   },
-  ClusterV1Metal3BMCRedfish: {
-    group: LoftSchemeGroupCluster,
-    version: LoftSchemeVersionCluster,
-    resource: "metal3bmcs",
-    subResource: "redfish",
-    kind: "Metal3BMCRedfish",
-    namespaced: true,
-  },
-  ClusterV1Metal3BMCConsole: {
-    group: LoftSchemeGroupCluster,
-    version: LoftSchemeVersionCluster,
-    resource: "metal3bmcs",
-    subResource: "console",
-    kind: "Metal3BMCConsole",
+  VirtualclusterV1HelmRelease: {
+    group: LoftSchemeGroupVirtualCluster,
+    version: LoftSchemeVersionVirtualCluster,
+    resource: "helmreleases",
+    kind: "HelmRelease",
     namespaced: true,
   },
   CustomResourceDefinition: {

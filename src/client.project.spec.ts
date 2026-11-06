@@ -4,6 +4,14 @@ import { afterEach, describe, expect, it, vi } from "vitest"
 
 import Client from "./client"
 import { Resources } from "./resources"
+import { RequestOptionsVCluster } from "./types"
+
+const vClusterOptions: RequestOptionsVCluster = {
+  project: "default",
+  cluster: "loft-cluster",
+  namespace: "p-default",
+  name: "vcluster-h4nkm",
+}
 
 const projectOptions = { project: "default", virtualCluster: "vcluster-h4nkm" }
 
@@ -56,6 +64,15 @@ describe("Client.project tenant cluster paths", () => {
     expect(path.val).not.toContain("/p-default/")
   })
 
+  it("routes auto() through project() when only vCluster options are provided", () => {
+    const autoPath = client
+      .auto(undefined, vClusterOptions, undefined, Resources.V1Pod)
+      .ResolvePath()
+    const projectPath = client.project(projectOptions, Resources.V1Pod).ResolvePath()
+
+    expect(autoPath.val).toBe(projectPath.val)
+  })
+
   it("builds non-resource paths for API discovery", async () => {
     const fetchMock = vi.fn().mockResolvedValue({
       ok: true,
@@ -63,7 +80,9 @@ describe("Client.project tenant cluster paths", () => {
     })
     vi.stubGlobal("fetch", fetchMock)
 
-    await client.autoNonResource(undefined, projectOptions).Path("apis/storage.k8s.io/v1")
+    await client
+      .autoNonResource(undefined, vClusterOptions, undefined)
+      .Path("apis/storage.k8s.io/v1")
 
     expect(fetchMock).toHaveBeenCalledWith(
       "http://localhost:8080/kubernetes/project/default/virtualcluster/vcluster-h4nkm/apis/storage.k8s.io/v1",
