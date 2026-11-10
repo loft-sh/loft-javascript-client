@@ -13,7 +13,6 @@
 import { ClusterV1SleepModeConfig } from '../models/clusterV1SleepModeConfig.js';
 import { StorageV1Condition } from '../models/agentstorageV1Condition.js';
 import { StorageV1ObjectsStatus } from '../models/storageV1ObjectsStatus.js';
-import { StorageV1VirtualClusterInstanceStorageStatus } from '../models/storageV1VirtualClusterInstanceStorageStatus.js';
 import { StorageV1VirtualClusterTemplateDefinition } from '../models/storageV1VirtualClusterTemplateDefinition.js';
 
 
@@ -67,10 +66,6 @@ export class ManagementV1VirtualClusterInstanceStatus {
     'serviceUID'?: string;
     'sleepModeConfig'?: ClusterV1SleepModeConfig;
     'spaceObjects'?: StorageV1ObjectsStatus;
-    /**
-    * Storage lists the TenantStorages the rendered values attach to the tenant cluster. It follows status.virtualCluster, so on an instance that waits for a template sync it shows what the tenant cluster runs, not what spec.storage asks for.
-    */
-    'storage'?: Array<StorageV1VirtualClusterInstanceStorageStatus>;
     'virtualCluster'?: StorageV1VirtualClusterTemplateDefinition;
     'virtualClusterObjects'?: StorageV1ObjectsStatus;
 
@@ -153,12 +148,6 @@ export class ManagementV1VirtualClusterInstanceStatus {
             "name": "spaceObjects",
             "baseName": "spaceObjects",
             "type": "StorageV1ObjectsStatus",
-            "format": ""
-        },
-        {
-            "name": "storage",
-            "baseName": "storage",
-            "type": "Array<StorageV1VirtualClusterInstanceStorageStatus>",
             "format": ""
         },
         {
