@@ -10,36 +10,27 @@
  * Do not edit the class manually.
  */
 
+import { StorageV1NodeProviderValidationTier } from '../models/storageV1NodeProviderValidationTier.js';
 
 
-export class ManagementV1ProjectMigrateVirtualClusterInstanceSource {
-    /**
-    * Name of the tenant cluster instance to migrate
-    */
-    'name'?: string;
-    /**
-    * Namespace of the tenant cluster instance to migrate
-    */
-    'namespace'?: string;
+/**
+* NodeProviderValidation configures the validation tiers of a NodeProvider. A tier is a point in a machine\'s lifecycle where it is validated.
+*/
+export class StorageV1NodeProviderValidation {
+    'preIngestion'?: StorageV1NodeProviderValidationTier;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "name",
-            "baseName": "name",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "namespace",
-            "baseName": "namespace",
-            "type": "string",
+            "name": "preIngestion",
+            "baseName": "preIngestion",
+            "type": "StorageV1NodeProviderValidationTier",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1ProjectMigrateVirtualClusterInstanceSource.attributeTypeMap;
+        return StorageV1NodeProviderValidation.attributeTypeMap;
     }
 
     public constructor() {

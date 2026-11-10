@@ -52,7 +52,6 @@ import {ManagementV1ProjectClusters} from "./models/managementV1ProjectClusters"
 import {ManagementV1ProjectImportSpace} from "./models/managementV1ProjectImportSpace"
 import {ManagementV1ProjectMembers} from "./models/managementV1ProjectMembers"
 import {ManagementV1ProjectMigrateSpaceInstance} from "./models/managementV1ProjectMigrateSpaceInstance"
-import {ManagementV1ProjectMigrateVirtualClusterInstance} from "./models/managementV1ProjectMigrateVirtualClusterInstance"
 import {ManagementV1ProjectNodeTypes} from "./models/managementV1ProjectNodeTypes"
 import {ManagementV1ProjectSecret} from "./models/managementV1ProjectSecret"
 import {ManagementV1ProjectTemplates} from "./models/managementV1ProjectTemplates"
@@ -70,6 +69,8 @@ import {ManagementV1SpaceTemplate} from "./models/managementV1SpaceTemplate"
 import {ManagementV1StackInstanceOutputs} from "./models/managementV1StackInstanceOutputs"
 import {ManagementV1StackInstance} from "./models/managementV1StackInstance"
 import {ManagementV1StackTemplate} from "./models/managementV1StackTemplate"
+import {ManagementV1StorageAccount} from "./models/managementV1StorageAccount"
+import {ManagementV1StorageProfile} from "./models/managementV1StorageProfile"
 import {ManagementV1SubjectAccessReview} from "./models/managementV1SubjectAccessReview"
 import {ManagementV1TeamAccessKeys} from "./models/managementV1TeamAccessKeys"
 import {ManagementV1TeamClusters} from "./models/managementV1TeamClusters"
@@ -77,6 +78,8 @@ import {ManagementV1TeamObjectPermissions} from "./models/managementV1TeamObject
 import {ManagementV1TeamPermissions} from "./models/managementV1TeamPermissions"
 import {ManagementV1Team} from "./models/managementV1Team"
 import {ManagementV1TenantConfig} from "./models/managementV1TenantConfig"
+import {ManagementV1TenantStorageCredentials} from "./models/managementV1TenantStorageCredentials"
+import {ManagementV1TenantStorage} from "./models/managementV1TenantStorage"
 import {ManagementV1Tenant} from "./models/managementV1Tenant"
 import {ManagementV1TranslateVClusterResourceName} from "./models/managementV1TranslateVClusterResourceName"
 import {ManagementV1UsageDownload} from "./models/managementV1UsageDownload"
@@ -158,7 +161,6 @@ export type TGenResources = {
   ManagementV1ProjectImportSpace: GroupVersionResource<ManagementV1ProjectImportSpace>
   ManagementV1ProjectMembers: GroupVersionResource<ManagementV1ProjectMembers>
   ManagementV1ProjectMigrateSpaceInstance: GroupVersionResource<ManagementV1ProjectMigrateSpaceInstance>
-  ManagementV1ProjectMigrateVirtualClusterInstance: GroupVersionResource<ManagementV1ProjectMigrateVirtualClusterInstance>
   ManagementV1ProjectNodeTypes: GroupVersionResource<ManagementV1ProjectNodeTypes>
   ManagementV1ProjectSecret: GroupVersionResource<ManagementV1ProjectSecret>
   ManagementV1ProjectTemplates: GroupVersionResource<ManagementV1ProjectTemplates>
@@ -175,6 +177,8 @@ export type TGenResources = {
   ManagementV1StackInstance: GroupVersionResource<ManagementV1StackInstance>
   ManagementV1StackInstanceOutputs: GroupVersionResource<ManagementV1StackInstanceOutputs>
   ManagementV1StackTemplate: GroupVersionResource<ManagementV1StackTemplate>
+  ManagementV1StorageAccount: GroupVersionResource<ManagementV1StorageAccount>
+  ManagementV1StorageProfile: GroupVersionResource<ManagementV1StorageProfile>
   ManagementV1SubjectAccessReview: GroupVersionResource<ManagementV1SubjectAccessReview>
   ManagementV1Team: GroupVersionResource<ManagementV1Team>
   ManagementV1TeamAccessKeys: GroupVersionResource<ManagementV1TeamAccessKeys>
@@ -183,6 +187,8 @@ export type TGenResources = {
   ManagementV1TeamPermissions: GroupVersionResource<ManagementV1TeamPermissions>
   ManagementV1Tenant: GroupVersionResource<ManagementV1Tenant>
   ManagementV1TenantConfig: GroupVersionResource<ManagementV1TenantConfig>
+  ManagementV1TenantStorage: GroupVersionResource<ManagementV1TenantStorage>
+  ManagementV1TenantStorageCredentials: GroupVersionResource<ManagementV1TenantStorageCredentials>
   ManagementV1TranslateVClusterResourceName: GroupVersionResource<ManagementV1TranslateVClusterResourceName>
   ManagementV1UsageDownload: GroupVersionResource<ManagementV1UsageDownload>
   ManagementV1User: GroupVersionResource<ManagementV1User>
@@ -635,14 +641,6 @@ export const GenResources: TGenResources = {
     namespaced: false,
     kind: "ProjectMigrateSpaceInstance",
   },
-  ManagementV1ProjectMigrateVirtualClusterInstance: {
-    group: "management.loft.sh",
-    version: "v1",
-    resource: "projects",
-    subResource: "migratevirtualclusterinstance",
-    namespaced: false,
-    kind: "ProjectMigrateVirtualClusterInstance",
-  },
   ManagementV1ProjectNodeTypes: {
     group: "management.loft.sh",
     version: "v1",
@@ -771,6 +769,22 @@ export const GenResources: TGenResources = {
     namespaced: false,
     kind: "StackTemplate",
   },
+  ManagementV1StorageAccount: {
+    group: "management.loft.sh",
+    version: "v1",
+    resource: "storageaccounts",
+    subResource: "",
+    namespaced: false,
+    kind: "StorageAccount",
+  },
+  ManagementV1StorageProfile: {
+    group: "management.loft.sh",
+    version: "v1",
+    resource: "storageprofiles",
+    subResource: "",
+    namespaced: false,
+    kind: "StorageProfile",
+  },
   ManagementV1SubjectAccessReview: {
     group: "management.loft.sh",
     version: "v1",
@@ -834,6 +848,22 @@ export const GenResources: TGenResources = {
     subResource: "config",
     namespaced: false,
     kind: "TenantConfig",
+  },
+  ManagementV1TenantStorage: {
+    group: "management.loft.sh",
+    version: "v1",
+    resource: "tenantstorages",
+    subResource: "",
+    namespaced: false,
+    kind: "TenantStorage",
+  },
+  ManagementV1TenantStorageCredentials: {
+    group: "management.loft.sh",
+    version: "v1",
+    resource: "tenantstorages",
+    subResource: "credentials",
+    namespaced: false,
+    kind: "TenantStorageCredentials",
   },
   ManagementV1TranslateVClusterResourceName: {
     group: "management.loft.sh",
