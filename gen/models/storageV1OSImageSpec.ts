@@ -20,10 +20,6 @@ export class StorageV1OSImageSpec {
     */
     'access'?: Array<StorageV1Access>;
     /**
-    * ConnectorRef names the image store connector holding this image\'s blob. Empty means a properties-only image. Immutable once set.
-    */
-    'connectorRef'?: string;
-    /**
     * Description describes an OS image
     */
     'description'?: string;
@@ -31,10 +27,6 @@ export class StorageV1OSImageSpec {
     * DisplayName is the name that should be displayed in the UI
     */
     'displayName'?: string;
-    /**
-    * Format is the on-disk format of the image blob and part of the object key. Immutable once set.
-    */
-    'format'?: string;
     'owner'?: StorageV1UserOrTeam;
     /**
     * Properties is the configuration for the OS image
@@ -51,12 +43,6 @@ export class StorageV1OSImageSpec {
             "format": ""
         },
         {
-            "name": "connectorRef",
-            "baseName": "connectorRef",
-            "type": "string",
-            "format": ""
-        },
-        {
             "name": "description",
             "baseName": "description",
             "type": "string",
@@ -65,12 +51,6 @@ export class StorageV1OSImageSpec {
         {
             "name": "displayName",
             "baseName": "displayName",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "format",
-            "baseName": "format",
             "type": "string",
             "format": ""
         },
