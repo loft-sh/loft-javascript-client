@@ -10,21 +10,18 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1NodeProviderBCM } from '../models/storageV1NodeProviderBCM.js';
 import { StorageV1NodeProviderClusterAPI } from '../models/storageV1NodeProviderClusterAPI.js';
 import { StorageV1NodeProviderExternalPlatform } from '../models/storageV1NodeProviderExternalPlatform.js';
 import { StorageV1NodeProviderKubeVirt } from '../models/storageV1NodeProviderKubeVirt.js';
 import { StorageV1NodeProviderMetal3 } from '../models/storageV1NodeProviderMetal3.js';
 import { StorageV1NodeProviderNICo } from '../models/storageV1NodeProviderNICo.js';
 import { StorageV1NodeProviderTerraform } from '../models/storageV1NodeProviderTerraform.js';
-import { StorageV1NodeProviderValidation } from '../models/storageV1NodeProviderValidation.js';
 
 
 /**
-* NodeProviderSpec defines the desired state of NodeProvider. Only one of the provider types (Pods, BCM, Kubevirt) should be specified at a time.
+* NodeProviderSpec defines the desired state of NodeProvider. Exactly one provider type must be set.
 */
 export class StorageV1NodeProviderSpec {
-    'bcm'?: StorageV1NodeProviderBCM;
     'clusterAPI'?: StorageV1NodeProviderClusterAPI;
     /**
     * DisplayName is the name that should be displayed in the UI
@@ -43,17 +40,10 @@ export class StorageV1NodeProviderSpec {
     */
     'properties'?: { [key: string]: string; };
     'terraform'?: StorageV1NodeProviderTerraform;
-    'validation'?: StorageV1NodeProviderValidation;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
-        {
-            "name": "bcm",
-            "baseName": "bcm",
-            "type": "StorageV1NodeProviderBCM",
-            "format": ""
-        },
         {
             "name": "clusterAPI",
             "baseName": "clusterAPI",
@@ -106,12 +96,6 @@ export class StorageV1NodeProviderSpec {
             "name": "terraform",
             "baseName": "terraform",
             "type": "StorageV1NodeProviderTerraform",
-            "format": ""
-        },
-        {
-            "name": "validation",
-            "baseName": "validation",
-            "type": "StorageV1NodeProviderValidation",
             "format": ""
         }    ];
 
