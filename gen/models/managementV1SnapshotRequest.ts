@@ -15,7 +15,7 @@ import { ManagementV1SnapshotRequestStatus } from '../models/managementV1Snapsho
 
 
 /**
-* SnapshotRequest is the request to take a snapshot.
+* SnapshotRequest is the request to take a snapshot of a volume.
 */
 export class ManagementV1SnapshotRequest {
     'metadata'?: ManagementV1SnapshotRequestMetadata;
