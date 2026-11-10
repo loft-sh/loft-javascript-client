@@ -10,13 +10,12 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1VirtualClusterInstanceJoinScriptSpec } from '../models/managementV1VirtualClusterInstanceJoinScriptSpec.js';
 import { ManagementV1VirtualClusterInstanceJoinScriptStatus } from '../models/managementV1VirtualClusterInstanceJoinScriptStatus.js';
 import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
 
 
 /**
-* VirtualClusterInstanceJoinScript holds join script request and response data for tenant cluster instances
+* VirtualClusterInstanceJoinScript holds join script request and response data for virtual cluster instances
 */
 export class ManagementV1VirtualClusterInstanceJoinScript {
     /**
@@ -28,7 +27,6 @@ export class ManagementV1VirtualClusterInstanceJoinScript {
     */
     'kind'?: string;
     'metadata'?: V1ObjectMeta;
-    'spec'?: ManagementV1VirtualClusterInstanceJoinScriptSpec;
     'status'?: ManagementV1VirtualClusterInstanceJoinScriptStatus;
 
     static readonly discriminator: string | undefined = undefined;
@@ -50,12 +48,6 @@ export class ManagementV1VirtualClusterInstanceJoinScript {
             "name": "metadata",
             "baseName": "metadata",
             "type": "V1ObjectMeta",
-            "format": ""
-        },
-        {
-            "name": "spec",
-            "baseName": "spec",
-            "type": "ManagementV1VirtualClusterInstanceJoinScriptSpec",
             "format": ""
         },
         {

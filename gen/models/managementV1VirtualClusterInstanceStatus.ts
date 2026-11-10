@@ -13,7 +13,6 @@
 import { ClusterV1SleepModeConfig } from '../models/clusterV1SleepModeConfig.js';
 import { StorageV1Condition } from '../models/agentstorageV1Condition.js';
 import { StorageV1ObjectsStatus } from '../models/storageV1ObjectsStatus.js';
-import { StorageV1VirtualClusterInstanceStorageStatus } from '../models/storageV1VirtualClusterInstanceStorageStatus.js';
 import { StorageV1VirtualClusterTemplateDefinition } from '../models/storageV1VirtualClusterTemplateDefinition.js';
 
 
@@ -30,7 +29,7 @@ export class ManagementV1VirtualClusterInstanceStatus {
     */
     'canUse'?: boolean;
     /**
-    * Conditions holds several conditions the tenant cluster might be in
+    * Conditions holds several conditions the virtual cluster might be in
     */
     'conditions'?: Array<StorageV1Condition>;
     /**
@@ -38,11 +37,11 @@ export class ManagementV1VirtualClusterInstanceStatus {
     */
     'deployHash'?: string;
     /**
-    * IgnoreReconciliation tells the controller to ignore reconciliation for this instance -- this is primarily used when migrating tenant cluster instances from project to project; this prevents a situation where there are two tenant cluster instances representing the same tenant cluster which could cause issues with concurrent reconciliations of the same object. Once the tenant cluster instance has been cloned and placed into the new project, this (the \"old\") tenant cluster instance can safely be deleted.
+    * IgnoreReconciliation tells the controller to ignore reconciliation for this instance -- this is primarily used when migrating virtual cluster instances from project to project; this prevents a situation where there are two virtual cluster instances representing the same virtual cluster which could cause issues with concurrent reconciliations of the same object. Once the virtual cluster instance has been cloned and placed into the new project, this (the \"old\") virtual cluster instance can safely be deleted.
     */
     'ignoreReconciliation'?: boolean;
     /**
-    * KubernetesVersion is the Kubernetes version of the tenant cluster.
+    * KubernetesVersion is the Kubernetes version of the virtual cluster.
     */
     'kubernetesVersion'?: string;
     /**
@@ -54,7 +53,7 @@ export class ManagementV1VirtualClusterInstanceStatus {
     */
     'online'?: boolean;
     /**
-    * Phase describes the current phase the tenant cluster instance is in
+    * Phase describes the current phase the virtual cluster instance is in
     */
     'phase'?: string;
     /**
@@ -62,15 +61,11 @@ export class ManagementV1VirtualClusterInstanceStatus {
     */
     'reason'?: string;
     /**
-    * ServiceUID is the service uid of the tenant cluster to uniquely identify it.
+    * ServiceUID is the service uid of the virtual cluster to uniquely identify it.
     */
     'serviceUID'?: string;
     'sleepModeConfig'?: ClusterV1SleepModeConfig;
     'spaceObjects'?: StorageV1ObjectsStatus;
-    /**
-    * Storage lists the TenantStorages the rendered values attach to the tenant cluster. It follows status.virtualCluster, so on an instance that waits for a template sync it shows what the tenant cluster runs, not what spec.storage asks for.
-    */
-    'storage'?: Array<StorageV1VirtualClusterInstanceStorageStatus>;
     'virtualCluster'?: StorageV1VirtualClusterTemplateDefinition;
     'virtualClusterObjects'?: StorageV1ObjectsStatus;
 
@@ -153,12 +148,6 @@ export class ManagementV1VirtualClusterInstanceStatus {
             "name": "spaceObjects",
             "baseName": "spaceObjects",
             "type": "StorageV1ObjectsStatus",
-            "format": ""
-        },
-        {
-            "name": "storage",
-            "baseName": "storage",
-            "type": "Array<StorageV1VirtualClusterInstanceStorageStatus>",
             "format": ""
         },
         {

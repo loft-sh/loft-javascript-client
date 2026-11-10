@@ -16,7 +16,7 @@ import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
 
 
 /**
-* VirtualClusterInstanceKubeConfig holds kube config request and response data for tenant clusters
+* VirtualClusterInstanceKubeConfig holds kube config request and response data for virtual clusters
 */
 export class ManagementV1VirtualClusterInstanceKubeConfig {
     /**

@@ -27,7 +27,7 @@ export class ManagementV1VirtualClusterTemplateSpec {
     */
     'access'?: Array<StorageV1Access>;
     /**
-    * Description describes the tenant cluster template
+    * Description describes the virtual cluster template
     */
     'description'?: string;
     /**
