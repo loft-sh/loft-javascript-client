@@ -44,7 +44,7 @@ export class StorageV1AccessKeyScope {
     */
     'spaces'?: Array<StorageV1AccessKeyScopeSpace>;
     /**
-    * VirtualClusters specifies the tenant clusters the access key is allowed to access.
+    * VirtualClusters specifies the virtual clusters the access key is allowed to access.
     */
     'virtualClusters'?: Array<StorageV1AccessKeyScopeVirtualCluster>;
 
