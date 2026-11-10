@@ -12,12 +12,9 @@
 
 import { StorageV1NodeProviderBCM } from '../models/storageV1NodeProviderBCM.js';
 import { StorageV1NodeProviderClusterAPI } from '../models/storageV1NodeProviderClusterAPI.js';
-import { StorageV1NodeProviderExternalPlatform } from '../models/storageV1NodeProviderExternalPlatform.js';
 import { StorageV1NodeProviderKubeVirt } from '../models/storageV1NodeProviderKubeVirt.js';
 import { StorageV1NodeProviderMetal3 } from '../models/storageV1NodeProviderMetal3.js';
-import { StorageV1NodeProviderNICo } from '../models/storageV1NodeProviderNICo.js';
 import { StorageV1NodeProviderTerraform } from '../models/storageV1NodeProviderTerraform.js';
-import { StorageV1NodeProviderValidation } from '../models/storageV1NodeProviderValidation.js';
 
 
 /**
@@ -30,20 +27,13 @@ export class StorageV1NodeProviderSpec {
     * DisplayName is the name that should be displayed in the UI
     */
     'displayName'?: string;
-    'externalPlatform'?: StorageV1NodeProviderExternalPlatform;
     'kubeVirt'?: StorageV1NodeProviderKubeVirt;
-    /**
-    * MachineAllocationPolicy is the NodeTypeSpec.MachineAllocationPolicy of this provider\'s node types that leave theirs empty.
-    */
-    'machineAllocationPolicy'?: string;
     'metal3'?: StorageV1NodeProviderMetal3;
-    'nico'?: StorageV1NodeProviderNICo;
     /**
     * Properties are global properties that are applied to all node claims and environments managed by this provider.
     */
     'properties'?: { [key: string]: string; };
     'terraform'?: StorageV1NodeProviderTerraform;
-    'validation'?: StorageV1NodeProviderValidation;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -67,33 +57,15 @@ export class StorageV1NodeProviderSpec {
             "format": ""
         },
         {
-            "name": "externalPlatform",
-            "baseName": "externalPlatform",
-            "type": "StorageV1NodeProviderExternalPlatform",
-            "format": ""
-        },
-        {
             "name": "kubeVirt",
             "baseName": "kubeVirt",
             "type": "StorageV1NodeProviderKubeVirt",
             "format": ""
         },
         {
-            "name": "machineAllocationPolicy",
-            "baseName": "machineAllocationPolicy",
-            "type": "string",
-            "format": ""
-        },
-        {
             "name": "metal3",
             "baseName": "metal3",
             "type": "StorageV1NodeProviderMetal3",
-            "format": ""
-        },
-        {
-            "name": "nico",
-            "baseName": "nico",
-            "type": "StorageV1NodeProviderNICo",
             "format": ""
         },
         {
@@ -106,12 +78,6 @@ export class StorageV1NodeProviderSpec {
             "name": "terraform",
             "baseName": "terraform",
             "type": "StorageV1NodeProviderTerraform",
-            "format": ""
-        },
-        {
-            "name": "validation",
-            "baseName": "validation",
-            "type": "StorageV1NodeProviderValidation",
             "format": ""
         }    ];
 
