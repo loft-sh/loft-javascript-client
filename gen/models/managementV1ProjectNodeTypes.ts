@@ -10,11 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1NetworkEnvironment } from '../models/storageV1NetworkEnvironment.js';
-import { StorageV1NodeProfile } from '../models/storageV1NodeProfile.js';
 import { StorageV1NodeProvider } from '../models/storageV1NodeProvider.js';
 import { StorageV1NodeType } from '../models/storageV1NodeType.js';
-import { StorageV1OSImage } from '../models/storageV1OSImage.js';
 import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
 
 
@@ -29,14 +26,6 @@ export class ManagementV1ProjectNodeTypes {
     'kind'?: string;
     'metadata'?: V1ObjectMeta;
     /**
-    * NetworkEnvironments holds all the allowed network environments for the project
-    */
-    'networkEnvironments'?: Array<StorageV1NetworkEnvironment>;
-    /**
-    * NodeProfiles holds all the allowed node profiles for the project
-    */
-    'nodeProfiles'?: Array<StorageV1NodeProfile>;
-    /**
     * NodeProviders holds all the allowed node providers for the project
     */
     'nodeProviders'?: Array<StorageV1NodeProvider>;
@@ -44,10 +33,6 @@ export class ManagementV1ProjectNodeTypes {
     * NodeTypes holds all the allowed node types for the project
     */
     'nodeTypes'?: Array<StorageV1NodeType>;
-    /**
-    * OSImages holds all the allowed OS images for the project
-    */
-    'osImages'?: Array<StorageV1OSImage>;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -71,18 +56,6 @@ export class ManagementV1ProjectNodeTypes {
             "format": ""
         },
         {
-            "name": "networkEnvironments",
-            "baseName": "networkEnvironments",
-            "type": "Array<StorageV1NetworkEnvironment>",
-            "format": ""
-        },
-        {
-            "name": "nodeProfiles",
-            "baseName": "nodeProfiles",
-            "type": "Array<StorageV1NodeProfile>",
-            "format": ""
-        },
-        {
             "name": "nodeProviders",
             "baseName": "nodeProviders",
             "type": "Array<StorageV1NodeProvider>",
@@ -92,12 +65,6 @@ export class ManagementV1ProjectNodeTypes {
             "name": "nodeTypes",
             "baseName": "nodeTypes",
             "type": "Array<StorageV1NodeType>",
-            "format": ""
-        },
-        {
-            "name": "osImages",
-            "baseName": "osImages",
-            "type": "Array<StorageV1OSImage>",
             "format": ""
         }    ];
 
