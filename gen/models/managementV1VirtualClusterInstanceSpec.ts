@@ -15,6 +15,7 @@ import { StorageV1InstanceAccessRule } from '../models/storageV1InstanceAccessRu
 import { StorageV1TemplateRef } from '../models/storageV1TemplateRef.js';
 import { StorageV1UserOrTeam } from '../models/storageV1UserOrTeam.js';
 import { StorageV1VirtualClusterClusterRef } from '../models/storageV1VirtualClusterClusterRef.js';
+import { StorageV1VirtualClusterInstanceStorage } from '../models/storageV1VirtualClusterInstanceStorage.js';
 import { StorageV1VirtualClusterTemplateDefinition } from '../models/storageV1VirtualClusterTemplateDefinition.js';
 
 
@@ -56,6 +57,10 @@ export class ManagementV1VirtualClusterInstanceSpec {
     * Standalone specifies if the tenant cluster is standalone and not hosted in another Kubernetes cluster.
     */
     'standalone'?: boolean;
+    /**
+    * Storage attaches TenantStorages of the instance\'s tenant to the tenant cluster, statically: each entry becomes one PersistentVolume of the volume the platform provisioned and one StorageClass named after the storage that binds claims to it and provisions nothing. The platform adds the vendor\'s node driver to experimental.deploy and writes the tenant\'s CSI identity, scoped to the tenant on the storage system, into the tenant cluster directly, since the driver refuses a mount-only login. The storage system\'s and the vendor tenant\'s admin identities never reach the tenant cluster. Removing an entry removes its PersistentVolume and StorageClass; the volume itself is never touched. Needs private nodes or a standalone control plane.
+    */
+    'storage'?: Array<StorageV1VirtualClusterInstanceStorage>;
     'template'?: StorageV1VirtualClusterTemplateDefinition;
     'templateRef'?: StorageV1TemplateRef;
 
@@ -120,6 +125,12 @@ export class ManagementV1VirtualClusterInstanceSpec {
             "name": "standalone",
             "baseName": "standalone",
             "type": "boolean",
+            "format": ""
+        },
+        {
+            "name": "storage",
+            "baseName": "storage",
+            "type": "Array<StorageV1VirtualClusterInstanceStorage>",
             "format": ""
         },
         {

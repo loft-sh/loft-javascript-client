@@ -15,6 +15,7 @@ import { ManagementV1ConnectorImageStoreSpec } from '../models/managementV1Conne
 import { ManagementV1ConnectorNetBoxSpec } from '../models/managementV1ConnectorNetBoxSpec.js';
 import { ManagementV1ConnectorObservabilitySpec } from '../models/managementV1ConnectorObservabilitySpec.js';
 import { ManagementV1ConnectorSharedDatabaseSpec } from '../models/managementV1ConnectorSharedDatabaseSpec.js';
+import { ManagementV1ConnectorStorageSpec } from '../models/managementV1ConnectorStorageSpec.js';
 
 
 /**
@@ -34,6 +35,7 @@ export class ManagementV1ConnectorSpec {
     'netBox'?: ManagementV1ConnectorNetBoxSpec;
     'observability'?: ManagementV1ConnectorObservabilitySpec;
     'sharedDatabase'?: ManagementV1ConnectorSharedDatabaseSpec;
+    'storage'?: ManagementV1ConnectorStorageSpec;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -78,6 +80,12 @@ export class ManagementV1ConnectorSpec {
             "name": "sharedDatabase",
             "baseName": "sharedDatabase",
             "type": "ManagementV1ConnectorSharedDatabaseSpec",
+            "format": ""
+        },
+        {
+            "name": "storage",
+            "baseName": "storage",
+            "type": "ManagementV1ConnectorStorageSpec",
             "format": ""
         }    ];
 

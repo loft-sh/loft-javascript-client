@@ -13,11 +13,13 @@
 import { StorageV1Metal3NodeTypeSpec } from '../models/storageV1Metal3NodeTypeSpec.js';
 import { StorageV1Metal3ProviderDeployment } from '../models/storageV1Metal3ProviderDeployment.js';
 import { StorageV1NodeProviderClusterRef } from '../models/storageV1NodeProviderClusterRef.js';
+import { StorageV1NodeProviderMetal3Aviz } from '../models/storageV1NodeProviderMetal3Aviz.js';
 import { StorageV1NodeProviderMetal3NetBox } from '../models/storageV1NodeProviderMetal3NetBox.js';
 import { StorageV1NodeProviderMetal3Netris } from '../models/storageV1NodeProviderMetal3Netris.js';
 
 
 export class StorageV1NodeProviderMetal3 {
+    'aviz'?: StorageV1NodeProviderMetal3Aviz;
     'clusterRef'?: StorageV1NodeProviderClusterRef;
     'deploy'?: StorageV1Metal3ProviderDeployment;
     'netBox'?: StorageV1NodeProviderMetal3NetBox;
@@ -34,6 +36,12 @@ export class StorageV1NodeProviderMetal3 {
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+        {
+            "name": "aviz",
+            "baseName": "aviz",
+            "type": "StorageV1NodeProviderMetal3Aviz",
+            "format": ""
+        },
         {
             "name": "clusterRef",
             "baseName": "clusterRef",

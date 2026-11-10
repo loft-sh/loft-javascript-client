@@ -10,14 +10,15 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1ProjectMigrateVirtualClusterInstanceSource } from '../models/managementV1ProjectMigrateVirtualClusterInstanceSource.js';
+import { ManagementV1StorageProfileSpec } from '../models/managementV1StorageProfileSpec.js';
+import { ManagementV1StorageProfileStatus } from '../models/managementV1StorageProfileStatus.js';
 import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
 
 
 /**
-* ProjectMigrateVirtualClusterInstance holds project vclusterinstance migrate information  Deprecated: migrating virtual cluster instances between projects is deprecated and will be removed in a future release.
+* StorageProfile holds a tier of tenant storage.
 */
-export class ManagementV1ProjectMigrateVirtualClusterInstance {
+export class ManagementV1StorageProfile {
     /**
     * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
     */
@@ -27,7 +28,8 @@ export class ManagementV1ProjectMigrateVirtualClusterInstance {
     */
     'kind'?: string;
     'metadata'?: V1ObjectMeta;
-    'sourceVirtualClusterInstance': ManagementV1ProjectMigrateVirtualClusterInstanceSource;
+    'spec'?: ManagementV1StorageProfileSpec;
+    'status'?: ManagementV1StorageProfileStatus;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -51,14 +53,20 @@ export class ManagementV1ProjectMigrateVirtualClusterInstance {
             "format": ""
         },
         {
-            "name": "sourceVirtualClusterInstance",
-            "baseName": "sourceVirtualClusterInstance",
-            "type": "ManagementV1ProjectMigrateVirtualClusterInstanceSource",
+            "name": "spec",
+            "baseName": "spec",
+            "type": "ManagementV1StorageProfileSpec",
+            "format": ""
+        },
+        {
+            "name": "status",
+            "baseName": "status",
+            "type": "ManagementV1StorageProfileStatus",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1ProjectMigrateVirtualClusterInstance.attributeTypeMap;
+        return ManagementV1StorageProfile.attributeTypeMap;
     }
 
     public constructor() {
