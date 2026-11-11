@@ -18,7 +18,7 @@ import { StorageV1StorageAccountVendor } from '../models/storageV1StorageAccount
 
 export class ManagementV1StorageAccountStatus {
     /**
-    * Applied holds the tenant document last written, platform-owned keys included except credentials, so a change in the spec can be diffed against what the vendor has.
+    * Applied is an informational copy of the tenant document last written, platform-owned keys included except credentials. The controller diffs spec changes against the record in the credentials Secret, never against this field.
     */
     'applied'?: any;
     /**

@@ -10,15 +10,15 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1TenantStorageSpec } from '../models/managementV1TenantStorageSpec.js';
-import { ManagementV1TenantStorageStatus } from '../models/managementV1TenantStorageStatus.js';
+import { ManagementV1StorageVolumeSpec } from '../models/managementV1StorageVolumeSpec.js';
+import { ManagementV1StorageVolumeStatus } from '../models/managementV1StorageVolumeStatus.js';
 import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
 
 
 /**
-* TenantStorage holds storage of one tier assigned to one tenant.
+* StorageVolume holds storage of one tier assigned to one tenant.
 */
-export class ManagementV1TenantStorage {
+export class ManagementV1StorageVolume {
     /**
     * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
     */
@@ -28,8 +28,8 @@ export class ManagementV1TenantStorage {
     */
     'kind'?: string;
     'metadata'?: V1ObjectMeta;
-    'spec'?: ManagementV1TenantStorageSpec;
-    'status'?: ManagementV1TenantStorageStatus;
+    'spec'?: ManagementV1StorageVolumeSpec;
+    'status'?: ManagementV1StorageVolumeStatus;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -55,18 +55,18 @@ export class ManagementV1TenantStorage {
         {
             "name": "spec",
             "baseName": "spec",
-            "type": "ManagementV1TenantStorageSpec",
+            "type": "ManagementV1StorageVolumeSpec",
             "format": ""
         },
         {
             "name": "status",
             "baseName": "status",
-            "type": "ManagementV1TenantStorageStatus",
+            "type": "ManagementV1StorageVolumeStatus",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1TenantStorage.attributeTypeMap;
+        return ManagementV1StorageVolume.attributeTypeMap;
     }
 
     public constructor() {

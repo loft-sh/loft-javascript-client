@@ -14,7 +14,7 @@ import { StorageV1VastStorageMount } from '../models/storageV1VastStorageMount.j
 
 
 /**
-* VastStorageSection is VAST\'s object model as YAML, as a profile carries it. Each document is sent as the JSON body of the matching VMS create call after the platform fills the keys it owns (names, tenant_id, policy_id, the path, the quota size and credentials); unknown keys pass through untouched. Capacity keys may use the template \"{{ .storage.size }}\" and may be written as Kubernetes quantities. At creation the tenant-level documents are copied into the tenant\'s StorageAccount and the volume-level ones into the TenantStorage.
+* VastStorageSection is VAST\'s object model as YAML, as a profile carries it. Each document is sent as the JSON body of the matching VMS create call after the platform fills the keys it owns (names, tenant_id, policy_id, the path, the quota size and credentials); unknown keys pass through untouched. Capacity keys may use the template \"{{ .storage.size }}\" and may be written as Kubernetes quantities. At creation the tenant-level documents are copied into the tenant\'s StorageAccount and the volume-level ones into the StorageVolume.
 */
 export class StorageV1VastStorageSection {
     /**

@@ -18,6 +18,10 @@ import { StorageV1NodeProviderValidationVirtualClusterRef } from '../models/stor
 */
 export class StorageV1NodeProviderValidationTier {
     /**
+    * JoinTimeout is how long a machine has to join the validation cluster once the platform starts joining it. Defaults to 1h.
+    */
+    'joinTimeout'?: string;
+    /**
     * NetworkEnvironmentRef is the NetworkEnvironment of this provider a machine joins the validation cluster in, for a provider that needs one.
     */
     'networkEnvironmentRef'?: string;
@@ -26,6 +30,10 @@ export class StorageV1NodeProviderValidationTier {
     */
     'osImageRef': string;
     /**
+    * SetupTimeout is how long the platform keeps trying to set up each test of the suite before it fails the attempt as SetupFailed: from the start of the attempt for the first test, and from the end of the test before it for a later one. How long a test may run is the suite\'s, set in the test itself. Defaults to 45m.
+    */
+    'setupTimeout'?: string;
+    /**
     * SuiteConfigMapName is the ConfigMap in the validation cluster that holds the suite, the tests a machine runs there. Defaults to \"pre-ingestion-validation\".
     */
     'suiteConfigMapName'?: string;
@@ -33,11 +41,21 @@ export class StorageV1NodeProviderValidationTier {
     * SuiteConfigMapNamespace is the namespace of the suite\'s ConfigMap in the validation cluster. The tests run in it too. Defaults to \"vcluster-platform\".
     */
     'suiteConfigMapNamespace'?: string;
+    /**
+    * TestPollInterval is how often the platform checks a running test for its result. A suite whose tests run for hours can be checked less often. Defaults to 1m.
+    */
+    'testPollInterval'?: string;
     'virtualClusterRef': StorageV1NodeProviderValidationVirtualClusterRef;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+        {
+            "name": "joinTimeout",
+            "baseName": "joinTimeout",
+            "type": "string",
+            "format": ""
+        },
         {
             "name": "networkEnvironmentRef",
             "baseName": "networkEnvironmentRef",
@@ -51,6 +69,12 @@ export class StorageV1NodeProviderValidationTier {
             "format": ""
         },
         {
+            "name": "setupTimeout",
+            "baseName": "setupTimeout",
+            "type": "string",
+            "format": ""
+        },
+        {
             "name": "suiteConfigMapName",
             "baseName": "suiteConfigMapName",
             "type": "string",
@@ -59,6 +83,12 @@ export class StorageV1NodeProviderValidationTier {
         {
             "name": "suiteConfigMapNamespace",
             "baseName": "suiteConfigMapNamespace",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "testPollInterval",
+            "baseName": "testPollInterval",
             "type": "string",
             "format": ""
         },

@@ -68,7 +68,7 @@ export class ManagementV1VirtualClusterInstanceStatus {
     'sleepModeConfig'?: ClusterV1SleepModeConfig;
     'spaceObjects'?: StorageV1ObjectsStatus;
     /**
-    * Storage lists the TenantStorages the rendered values attach to the tenant cluster. It follows status.virtualCluster, so on an instance that waits for a template sync it shows what the tenant cluster runs, not what spec.storage asks for.
+    * Storage lists the StorageVolumes the rendered values attach to the tenant cluster. It follows status.virtualCluster, so on an instance that waits for a template sync it shows what the tenant cluster runs, not what spec.storage asks for.
     */
     'storage'?: Array<StorageV1VirtualClusterInstanceStorageStatus>;
     'virtualCluster'?: StorageV1VirtualClusterTemplateDefinition;

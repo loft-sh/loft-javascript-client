@@ -11,15 +11,15 @@
  */
 
 import { StorageV1Condition } from '../models/agentstorageV1Condition.js';
-import { StorageV1TenantStorageApplied } from '../models/storageV1TenantStorageApplied.js';
-import { StorageV1TenantStorageCapacity } from '../models/storageV1TenantStorageCapacity.js';
-import { StorageV1TenantStorageObject } from '../models/storageV1TenantStorageObject.js';
-import { StorageV1TenantStorageVolume } from '../models/storageV1TenantStorageVolume.js';
+import { StorageV1StorageVolumeApplied } from '../models/storageV1StorageVolumeApplied.js';
+import { StorageV1StorageVolumeCapacity } from '../models/storageV1StorageVolumeCapacity.js';
+import { StorageV1StorageVolumeObject } from '../models/storageV1StorageVolumeObject.js';
+import { StorageV1StorageVolumeVendor } from '../models/storageV1StorageVolumeVendor.js';
 
 
-export class ManagementV1TenantStorageStatus {
-    'applied'?: StorageV1TenantStorageApplied;
-    'capacity'?: StorageV1TenantStorageCapacity;
+export class ManagementV1StorageVolumeStatus {
+    'applied'?: StorageV1StorageVolumeApplied;
+    'capacity'?: StorageV1StorageVolumeCapacity;
     /**
     * Conditions holds several conditions the storage might be in
     */
@@ -29,7 +29,7 @@ export class ManagementV1TenantStorageStatus {
     */
     'connectorRef'?: string;
     /**
-    * CredentialsSecret names the Secret in the platform namespace that holds the vendor tenant\'s administrative, CSI and mount identities. It belongs to the StorageAccount and is shared by the TenantStorages of one tenant on one storage system.
+    * CredentialsSecret names the Secret in the platform namespace that holds the vendor tenant\'s administrative, CSI and mount identities. It belongs to the StorageAccount and is shared by the StorageVolumes of one tenant on one storage system.
     */
     'credentialsSecret'?: string;
     /**
@@ -40,7 +40,7 @@ export class ManagementV1TenantStorageStatus {
     * Message is a human readable message for the phase.
     */
     'message'?: string;
-    'object'?: StorageV1TenantStorageObject;
+    'object'?: StorageV1StorageVolumeObject;
     /**
     * Phase is the lifecycle phase.
     */
@@ -57,7 +57,7 @@ export class ManagementV1TenantStorageStatus {
     * StorageAccount names the StorageAccount that owns the vendor tenant and identities the storage lives in.
     */
     'storageAccount'?: string;
-    'volume'?: StorageV1TenantStorageVolume;
+    'volume'?: StorageV1StorageVolumeVendor;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -65,13 +65,13 @@ export class ManagementV1TenantStorageStatus {
         {
             "name": "applied",
             "baseName": "applied",
-            "type": "StorageV1TenantStorageApplied",
+            "type": "StorageV1StorageVolumeApplied",
             "format": ""
         },
         {
             "name": "capacity",
             "baseName": "capacity",
-            "type": "StorageV1TenantStorageCapacity",
+            "type": "StorageV1StorageVolumeCapacity",
             "format": ""
         },
         {
@@ -107,7 +107,7 @@ export class ManagementV1TenantStorageStatus {
         {
             "name": "object",
             "baseName": "object",
-            "type": "StorageV1TenantStorageObject",
+            "type": "StorageV1StorageVolumeObject",
             "format": ""
         },
         {
@@ -137,12 +137,12 @@ export class ManagementV1TenantStorageStatus {
         {
             "name": "volume",
             "baseName": "volume",
-            "type": "StorageV1TenantStorageVolume",
+            "type": "StorageV1StorageVolumeVendor",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1TenantStorageStatus.attributeTypeMap;
+        return ManagementV1StorageVolumeStatus.attributeTypeMap;
     }
 
     public constructor() {

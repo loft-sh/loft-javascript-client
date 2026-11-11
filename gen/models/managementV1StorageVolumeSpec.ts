@@ -17,9 +17,9 @@ import { StorageV1WekaVolumeSection } from '../models/storageV1WekaVolumeSection
 
 
 /**
-* TenantStorageSpec defines spec of a tenant storage.
+* StorageVolumeSpec defines spec of a storage volume.
 */
-export class ManagementV1TenantStorageSpec {
+export class ManagementV1StorageVolumeSpec {
     /**
     * Access holds the access rights for users and teams
     */
@@ -107,7 +107,7 @@ export class ManagementV1TenantStorageSpec {
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1TenantStorageSpec.attributeTypeMap;
+        return ManagementV1StorageVolumeSpec.attributeTypeMap;
     }
 
     public constructor() {

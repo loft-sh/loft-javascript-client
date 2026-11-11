@@ -34,7 +34,7 @@ export class ManagementV1NodePoolSpec {
     'static'?: StorageV1NodePoolStatic;
     'template': StorageV1NodePoolTemplate;
     /**
-    * VClusterRef is the name of the cluster in this namespace the pool\'s nodes join. It cannot be changed.
+    * VClusterRef is the name of the cluster in this namespace the pool\'s nodes join. The cluster has to run a vCluster version that takes node pools from the platform. It cannot be changed.
     */
     'vClusterRef': string;
 

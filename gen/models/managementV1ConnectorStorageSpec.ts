@@ -15,7 +15,7 @@ import { ManagementV1ConnectorStorageWekaSpec } from '../models/managementV1Conn
 
 
 /**
-* ConnectorStorageSpec configures the storage system StorageProfiles provision tenant storage on. A StorageProfile names the connector through spec.connectorRef and the tenant storage controller logs in with these credentials to create vendor tenants, identities and volumes.  One field per block is a credential under the Connector type\'s view rule: weka.password and vast.password are served to a caller who could update this connector and empty for every other caller, and on update an empty value keeps the stored one, so a redacted read written back never clears the password.
+* ConnectorStorageSpec configures the storage system StorageProfiles provision storage volume on. A StorageProfile names the connector through spec.connectorRef and the storage volume controller logs in with these credentials to create vendor tenants, identities and volumes.  One field per block is a credential under the Connector type\'s view rule: weka.password and vast.password are served to a caller who could update this connector and empty for every other caller, and on update an empty value keeps the stored one, so a redacted read written back never clears the password.
 */
 export class ManagementV1ConnectorStorageSpec {
     /**
