@@ -30,7 +30,7 @@ export class StorageV1ArgoIntegrationSpec {
     'project'?: StorageV1ArgoProjectSpec;
     'sso'?: StorageV1ArgoSSOSpec;
     /**
-    * VirtualClusterInstance defines the name of *virtual cluster* (instance) that ArgoCD is deployed into. If provided, Cluster will be ignored and Loft will assume that ArgoCD is running in the specified virtual cluster.
+    * VirtualClusterInstance defines the name of *tenant cluster* (instance) that ArgoCD is deployed into. If provided, Cluster will be ignored and Loft will assume that ArgoCD is running in the specified tenant cluster.
     */
     'virtualClusterInstance'?: string;
 

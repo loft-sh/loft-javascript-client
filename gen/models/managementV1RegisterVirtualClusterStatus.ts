@@ -17,11 +17,11 @@
 */
 export class ManagementV1RegisterVirtualClusterStatus {
     /**
-    * Name is the actual name of the virtual cluster instance.
+    * Name is the actual name of the tenant cluster instance.
     */
     'name'?: string;
     /**
-    * Namespace is the namespace of the virtual cluster instance.
+    * Namespace is the namespace of the tenant cluster instance.
     */
     'namespace'?: string;
 

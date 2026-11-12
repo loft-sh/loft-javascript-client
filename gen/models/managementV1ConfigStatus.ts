@@ -12,13 +12,13 @@
 
 import { ManagementV1Apps } from '../models/managementV1Apps.js';
 import { ManagementV1Audit } from '../models/managementV1Audit.js';
-import { ManagementV1Authentication } from '../models/managementV1Authentication.js';
 import { ManagementV1Cloud } from '../models/managementV1Cloud.js';
 import { ManagementV1CostControl } from '../models/managementV1CostControl.js';
 import { ManagementV1DatabaseKine } from '../models/managementV1DatabaseKine.js';
 import { ManagementV1ImageBuilder } from '../models/managementV1ImageBuilder.js';
 import { ManagementV1OIDC } from '../models/managementV1OIDC.js';
 import { ManagementV1PlatformDB } from '../models/managementV1PlatformDB.js';
+import { StorageV1Authentication } from '../models/storageV1Authentication.js';
 import { StorageV1VaultIntegrationSpec } from '../models/storageV1VaultIntegrationSpec.js';
 import { UiV1UISettingsConfig } from '../models/uiV1UISettingsConfig.js';
 
@@ -29,7 +29,7 @@ import { UiV1UISettingsConfig } from '../models/uiV1UISettingsConfig.js';
 export class ManagementV1ConfigStatus {
     'apps'?: ManagementV1Apps;
     'audit'?: ManagementV1Audit;
-    'auth'?: ManagementV1Authentication;
+    'auth'?: StorageV1Authentication;
     /**
     * AuthenticateVersionEndpoint will force authentication for the \'/version\' endpoint. Will only work with vCluster v0.27 & later
     */
@@ -77,7 +77,7 @@ export class ManagementV1ConfigStatus {
         {
             "name": "auth",
             "baseName": "auth",
-            "type": "ManagementV1Authentication",
+            "type": "StorageV1Authentication",
             "format": ""
         },
         {

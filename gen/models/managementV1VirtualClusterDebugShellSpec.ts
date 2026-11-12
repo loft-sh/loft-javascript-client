@@ -17,7 +17,7 @@
 */
 export class ManagementV1VirtualClusterDebugShellSpec {
     /**
-    * PodName specifies which virtual cluster replica should get ephemeral container. This is needed to virtual cluster deployed with HA (3+ replicas)
+    * PodName specifies which tenant cluster replica should get ephemeral container. This is needed to tenant cluster deployed with HA (3+ replicas)
     */
     'podName'?: string;
 

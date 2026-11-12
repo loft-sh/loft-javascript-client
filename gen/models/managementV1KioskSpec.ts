@@ -23,11 +23,13 @@ import { ManagementV1NodeProviderBCMTestConnectionResult } from '../models/manag
 import { ManagementV1NodeProviderCalculateCostResult } from '../models/managementV1NodeProviderCalculateCostResult.js';
 import { ManagementV1NodeProviderExecResult } from '../models/managementV1NodeProviderExecResult.js';
 import { ManagementV1NodeProviderTerraformValidateResult } from '../models/managementV1NodeProviderTerraformValidateResult.js';
+import { StorageV1AccessKey } from '../models/storageV1AccessKey.js';
 import { UiV1UISettings } from '../models/uiV1UISettings.js';
 
 
 export class ManagementV1KioskSpec {
     'UISettings'?: UiV1UISettings;
+    'accessKey'?: StorageV1AccessKey;
     'chartInfo'?: ClusterV1ChartInfo;
     'helmRelease'?: ClusterV1HelmRelease;
     'license'?: ManagementV1License;
@@ -49,6 +51,12 @@ export class ManagementV1KioskSpec {
             "name": "UISettings",
             "baseName": "UISettings",
             "type": "UiV1UISettings",
+            "format": ""
+        },
+        {
+            "name": "accessKey",
+            "baseName": "accessKey",
+            "type": "StorageV1AccessKey",
             "format": ""
         },
         {

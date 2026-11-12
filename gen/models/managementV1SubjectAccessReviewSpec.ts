@@ -16,21 +16,21 @@ import { V1ResourceAttributes } from '../models/V1ResourceAttributes.js';
 
 export class ManagementV1SubjectAccessReviewSpec {
     /**
-    * Extra corresponds to the user.Info.GetExtra() method from the authenticator.  Since that is input to the authorizer it needs a reflection here.
+    * extra corresponds to the user.Info.GetExtra() method from the authenticator.  Since that is input to the authorizer it needs a reflection here.
     */
     'extra'?: { [key: string]: Array<string>; };
     /**
-    * Groups is the groups you\'re testing for.
+    * groups is the groups you\'re testing for.
     */
     'groups'?: Array<string>;
     'nonResourceAttributes'?: V1NonResourceAttributes;
     'resourceAttributes'?: V1ResourceAttributes;
     /**
-    * UID information about the requesting user.
+    * uid information about the requesting user.
     */
     'uid'?: string;
     /**
-    * User is the user you\'re testing for. If you specify \"User\" but not \"Groups\", then is it interpreted as \"What if User were not a member of any groups
+    * user is the user you\'re testing for. If you specify \"User\" but not \"Groups\", then is it interpreted as \"What if User were not a member of any groups
     */
     'user'?: string;
 
