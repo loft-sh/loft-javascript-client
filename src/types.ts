@@ -108,6 +108,7 @@ export interface V1Info {
 export interface V1InfoMethods {
   sso?: V1InfoMethodsSSO[]
   password?: V1InfoMethodsPassword
+  rancher?: V1InfoMethodsRancher
 }
 
 export interface V1InfoMethodsSSO {
@@ -119,6 +120,11 @@ export interface V1InfoMethodsSSO {
 
 export interface V1InfoMethodsPassword {
   enabled?: boolean
+}
+
+export interface V1InfoMethodsRancher {
+  enabled?: boolean
+  host?: string
 }
 
 export interface V1OIDCRedirect {
@@ -300,7 +306,6 @@ export interface RequestOptionsProject {
 }
 
 export interface RequestOptionsVCluster {
-  project: string
   cluster: string
   namespace: string
   name: string

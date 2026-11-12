@@ -23,12 +23,12 @@ import { StorageV1VirtualClusterTemplateDefinition } from '../models/storageV1Vi
 */
 export class ManagementV1VirtualClusterInstanceSpec {
     /**
-    * Access to the tenant cluster object itself
+    * Access to the virtual cluster object itself
     */
     'access'?: Array<StorageV1Access>;
     'clusterRef'?: StorageV1VirtualClusterClusterRef;
     /**
-    * Description describes a tenant cluster instance
+    * Description describes a virtual cluster instance
     */
     'description'?: string;
     /**
@@ -36,11 +36,11 @@ export class ManagementV1VirtualClusterInstanceSpec {
     */
     'displayName'?: string;
     /**
-    * External specifies if the tenant cluster is managed by the platform agent or externally.
+    * External specifies if the virtual cluster is managed by the platform agent or externally.
     */
     'external'?: boolean;
     /**
-    * ExtraAccessRules defines extra rules which users and teams should have which access to the tenant cluster.
+    * ExtraAccessRules defines extra rules which users and teams should have which access to the virtual cluster.
     */
     'extraAccessRules'?: Array<StorageV1InstanceAccessRule>;
     /**
@@ -53,7 +53,7 @@ export class ManagementV1VirtualClusterInstanceSpec {
     */
     'parameters'?: string;
     /**
-    * Standalone specifies if the tenant cluster is standalone and not hosted in another Kubernetes cluster.
+    * Standalone specifies if the virtual cluster is standalone and not hosted in another Kubernetes cluster.
     */
     'standalone'?: boolean;
     'template'?: StorageV1VirtualClusterTemplateDefinition;

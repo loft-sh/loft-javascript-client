@@ -21,10 +21,6 @@ export class V1ResourceHealth {
     */
     'health'?: string;
     /**
-    * Message provides human-readable context for Health (e.g. \"ECC error count exceeded threshold\"). This field is populated by the kubelet when ResourceHealthStatusMessage is enabled if the DRA plugin returns a message, and is null otherwise.
-    */
-    'message'?: string;
-    /**
     * ResourceID is the unique identifier of the resource. See the ResourceID type for more information.
     */
     'resourceID': string;
@@ -35,12 +31,6 @@ export class V1ResourceHealth {
         {
             "name": "health",
             "baseName": "health",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "message",
-            "baseName": "message",
             "type": "string",
             "format": ""
         },

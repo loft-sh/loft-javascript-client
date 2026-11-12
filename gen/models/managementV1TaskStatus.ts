@@ -22,7 +22,7 @@ import { V1ContainerStatus } from '../models/V1ContainerStatus.js';
 export class ManagementV1TaskStatus {
     'cluster'?: StorageV1EntityInfo;
     /**
-    * Conditions holds several conditions the tenant cluster might be in
+    * Conditions holds several conditions the virtual cluster might be in
     */
     'conditions'?: Array<StorageV1Condition>;
     'containerState'?: V1ContainerStatus;
