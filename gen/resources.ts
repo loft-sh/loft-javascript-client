@@ -69,10 +69,6 @@ import {ManagementV1SpaceTemplate} from "./models/managementV1SpaceTemplate"
 import {ManagementV1StackInstanceOutputs} from "./models/managementV1StackInstanceOutputs"
 import {ManagementV1StackInstance} from "./models/managementV1StackInstance"
 import {ManagementV1StackTemplate} from "./models/managementV1StackTemplate"
-import {ManagementV1StorageAccount} from "./models/managementV1StorageAccount"
-import {ManagementV1StorageProfile} from "./models/managementV1StorageProfile"
-import {ManagementV1StorageVolumeCredentials} from "./models/managementV1StorageVolumeCredentials"
-import {ManagementV1StorageVolume} from "./models/managementV1StorageVolume"
 import {ManagementV1SubjectAccessReview} from "./models/managementV1SubjectAccessReview"
 import {ManagementV1TeamAccessKeys} from "./models/managementV1TeamAccessKeys"
 import {ManagementV1TeamClusters} from "./models/managementV1TeamClusters"
@@ -177,10 +173,6 @@ export type TGenResources = {
   ManagementV1StackInstance: GroupVersionResource<ManagementV1StackInstance>
   ManagementV1StackInstanceOutputs: GroupVersionResource<ManagementV1StackInstanceOutputs>
   ManagementV1StackTemplate: GroupVersionResource<ManagementV1StackTemplate>
-  ManagementV1StorageAccount: GroupVersionResource<ManagementV1StorageAccount>
-  ManagementV1StorageProfile: GroupVersionResource<ManagementV1StorageProfile>
-  ManagementV1StorageVolume: GroupVersionResource<ManagementV1StorageVolume>
-  ManagementV1StorageVolumeCredentials: GroupVersionResource<ManagementV1StorageVolumeCredentials>
   ManagementV1SubjectAccessReview: GroupVersionResource<ManagementV1SubjectAccessReview>
   ManagementV1Team: GroupVersionResource<ManagementV1Team>
   ManagementV1TeamAccessKeys: GroupVersionResource<ManagementV1TeamAccessKeys>
@@ -768,38 +760,6 @@ export const GenResources: TGenResources = {
     subResource: "",
     namespaced: false,
     kind: "StackTemplate",
-  },
-  ManagementV1StorageAccount: {
-    group: "management.loft.sh",
-    version: "v1",
-    resource: "storageaccounts",
-    subResource: "",
-    namespaced: false,
-    kind: "StorageAccount",
-  },
-  ManagementV1StorageProfile: {
-    group: "management.loft.sh",
-    version: "v1",
-    resource: "storageprofiles",
-    subResource: "",
-    namespaced: false,
-    kind: "StorageProfile",
-  },
-  ManagementV1StorageVolume: {
-    group: "management.loft.sh",
-    version: "v1",
-    resource: "storagevolumes",
-    subResource: "",
-    namespaced: false,
-    kind: "StorageVolume",
-  },
-  ManagementV1StorageVolumeCredentials: {
-    group: "management.loft.sh",
-    version: "v1",
-    resource: "storagevolumes",
-    subResource: "credentials",
-    namespaced: false,
-    kind: "StorageVolumeCredentials",
   },
   ManagementV1SubjectAccessReview: {
     group: "management.loft.sh",

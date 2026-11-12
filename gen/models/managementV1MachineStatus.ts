@@ -12,7 +12,6 @@
 
 import { StorageV1Condition } from '../models/agentstorageV1Condition.js';
 import { StorageV1MachineHardware } from '../models/storageV1MachineHardware.js';
-import { StorageV1MachineHostValidationStatus } from '../models/storageV1MachineHostValidationStatus.js';
 import { StorageV1MachineSystem } from '../models/storageV1MachineSystem.js';
 
 
@@ -25,7 +24,6 @@ export class ManagementV1MachineStatus {
     */
     'conditions'?: Array<StorageV1Condition>;
     'hardware'?: StorageV1MachineHardware;
-    'hostValidation'?: StorageV1MachineHostValidationStatus;
     /**
     * LastSyncTime is when this state was last confirmed against the provider.
     */
@@ -61,12 +59,6 @@ export class ManagementV1MachineStatus {
             "name": "hardware",
             "baseName": "hardware",
             "type": "StorageV1MachineHardware",
-            "format": ""
-        },
-        {
-            "name": "hostValidation",
-            "baseName": "hostValidation",
-            "type": "StorageV1MachineHostValidationStatus",
             "format": ""
         },
         {
