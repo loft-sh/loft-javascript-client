@@ -15,7 +15,7 @@ import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
 
 
 /**
-* VirtualClusterInstanceJoinScript holds join script request and response data for virtual cluster instances
+* VirtualClusterInstanceJoinScript holds join script request and response data for tenant cluster instances
 */
 export class ManagementV1VirtualClusterInstanceJoinScript {
     /**

@@ -18,7 +18,7 @@ export class StorageV1NamespacePattern {
     */
     'space'?: string;
     /**
-    * VirtualCluster holds the namespace pattern to use for virtual cluster instances
+    * VirtualCluster holds the namespace pattern to use for tenant cluster instances
     */
     'virtualCluster'?: string;
 

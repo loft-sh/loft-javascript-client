@@ -15,7 +15,7 @@ import { LicenseApiVirtualClusterInfo } from '../models/licenseApiVirtualCluster
 
 
 /**
-* UsageDataDetails holds detailed information about the nodes and virtual cluster for an instance deployment of vCluster Platform
+* UsageDataDetails holds detailed information about the nodes and tenant cluster for an instance deployment of vCluster Platform
 */
 export class LicenseApiUsageDataDetails {
     /**
@@ -23,7 +23,7 @@ export class LicenseApiUsageDataDetails {
     */
     'nodes': Array<LicenseApiNodeInfo>;
     /**
-    * VClusters contains the details of the virtual clusters
+    * VClusters contains the details of the tenant clusters
     */
     'vClusters': Array<LicenseApiVirtualClusterInfo>;
 

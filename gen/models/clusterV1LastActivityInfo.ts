@@ -49,7 +49,7 @@ export class ClusterV1LastActivityInfo {
     */
     'verb'?: string;
     /**
-    * VirtualCluster is the virtual cluster this activity happened in
+    * VirtualCluster is the tenant cluster this activity happened in
     */
     'virtualCluster'?: string;
 

@@ -58,11 +58,11 @@ export class ManagementV1ResetAccessKeySpec {
     */
     'team'?: string;
     /**
-    * The time to life for this access key
+    * The time to live for this access key
     */
     'ttl'?: number;
     /**
-    * If this is specified, the time to life for this access key will start after the lastActivity instead of creation timestamp
+    * If this is specified, the time to live for this access key will start after the lastActivity instead of creation timestamp
     */
     'ttlAfterLastActivity'?: boolean;
     /**

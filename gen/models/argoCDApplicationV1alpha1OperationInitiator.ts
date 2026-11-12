@@ -10,27 +10,39 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1VirtualClusterDebugShellPodStatus } from '../models/managementV1VirtualClusterDebugShellPodStatus.js';
 
 
-export class ManagementV1VirtualClusterDebugShellPodsStatus {
+/**
+* OperationInitiator contains information about the initiator of an operation
+*/
+export class OperationInitiator {
     /**
-    * Pods are available virtual cluster pods that can be selected for debug shell.
+    * Automated is set to true if operation was initiated automatically by the application controller.
     */
-    'pods'?: Array<ManagementV1VirtualClusterDebugShellPodStatus>;
+    'automated'?: boolean;
+    /**
+    * Username contains the name of a user who started operation
+    */
+    'username'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "pods",
-            "baseName": "pods",
-            "type": "Array<ManagementV1VirtualClusterDebugShellPodStatus>",
+            "name": "automated",
+            "baseName": "automated",
+            "type": "boolean",
+            "format": ""
+        },
+        {
+            "name": "username",
+            "baseName": "username",
+            "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1VirtualClusterDebugShellPodsStatus.attributeTypeMap;
+        return OperationInitiator.attributeTypeMap;
     }
 
     public constructor() {

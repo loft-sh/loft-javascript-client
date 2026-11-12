@@ -32,7 +32,7 @@ export class ManagementV1UserSpec {
     */
     'description'?: string;
     /**
-    * If disabled is true, an user will not be able to login anymore. All other user resources are unaffected and other users can still interact with this user
+    * If disabled is true, a user will not be able to login anymore. All other user resources are unaffected and other users can still interact with this user
     */
     'disabled'?: boolean;
     /**

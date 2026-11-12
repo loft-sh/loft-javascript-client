@@ -22,7 +22,7 @@ export class StorageV1AccessKeyScopeRole {
     */
     'role'?: StorageV1AccessKeyScopeRoleRoleEnum;
     /**
-    * VirtualClusters specifies the virtual clusters the access key is allowed to access.
+    * VirtualClusters specifies the tenant clusters the access key is allowed to access.
     */
     'virtualClusters'?: Array<string>;
 

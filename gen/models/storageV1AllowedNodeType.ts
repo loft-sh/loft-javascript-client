@@ -12,14 +12,11 @@
 
 
 
-/**
-* VirtualClusterDebugShellPodStatus contains selectable vcluster pod metadata.
-*/
-export class ManagementV1VirtualClusterDebugShellPodStatus {
+export class StorageV1AllowedNodeType {
+    /**
+    * Name of the NodeType, or \"<provider>.*\" to allow all NodeTypes of the given provider.
+    */
     'name'?: string;
-    'namespace'?: string;
-    'phase'?: string;
-    'ready'?: boolean;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -29,28 +26,10 @@ export class ManagementV1VirtualClusterDebugShellPodStatus {
             "baseName": "name",
             "type": "string",
             "format": ""
-        },
-        {
-            "name": "namespace",
-            "baseName": "namespace",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "phase",
-            "baseName": "phase",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "ready",
-            "baseName": "ready",
-            "type": "boolean",
-            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1VirtualClusterDebugShellPodStatus.attributeTypeMap;
+        return StorageV1AllowedNodeType.attributeTypeMap;
     }
 
     public constructor() {
