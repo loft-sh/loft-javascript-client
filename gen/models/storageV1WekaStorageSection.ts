@@ -14,7 +14,7 @@ import { StorageV1WekaStorageMount } from '../models/storageV1WekaStorageMount.j
 
 
 /**
-* WekaStorageSection is WEKA\'s object model as YAML, as a profile carries it. Each document is sent as the JSON body of the matching create call after the platform fills the keys it owns (names, sizes and credentials); unknown keys pass through untouched. Capacity keys may use the templates \"{{ .storage.size }}\" (the TenantStorage size) and \"{{ .tenant.size }}\" (the sum of the tenant\'s TenantStorage sizes) and may be written with units, which WEKA parses itself. At creation the tenant-level documents are copied into the tenant\'s StorageAccount and the volume-level ones into the TenantStorage.
+* WekaStorageSection is WEKA\'s object model as YAML, as a profile carries it. Each document is sent as the JSON body of the matching create call after the platform fills the keys it owns (names, sizes and credentials); unknown keys pass through untouched. Capacity keys may use the templates \"{{ .storage.size }}\" (the StorageVolume size) and \"{{ .tenant.size }}\" (the sum of the tenant\'s StorageVolume sizes) and may be written with units, which WEKA parses itself. At creation the tenant-level documents are copied into the tenant\'s StorageAccount and the volume-level ones into the StorageVolume.
 */
 export class StorageV1WekaStorageSection {
     /**

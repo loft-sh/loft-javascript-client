@@ -17,7 +17,6 @@ import { StorageV1AllowedNodeProfile } from '../models/storageV1AllowedNodeProfi
 import { StorageV1AllowedNodeType } from '../models/storageV1AllowedNodeType.js';
 import { StorageV1AllowedRunner } from '../models/storageV1AllowedRunner.js';
 import { StorageV1AllowedTemplate } from '../models/storageV1AllowedTemplate.js';
-import { StorageV1ArgoIntegrationSpec } from '../models/storageV1ArgoIntegrationSpec.js';
 import { StorageV1Member } from '../models/storageV1Member.js';
 import { StorageV1NamespacePattern } from '../models/storageV1NamespacePattern.js';
 import { StorageV1ProjectNamespaceTemplate } from '../models/storageV1ProjectNamespaceTemplate.js';
@@ -60,7 +59,6 @@ export class ManagementV1ProjectSpec {
     * AllowedTemplates are the templates that are allowed to use in this project.
     */
     'allowedTemplates'?: Array<StorageV1AllowedTemplate>;
-    'argoCD'?: StorageV1ArgoIntegrationSpec;
     /**
     * DefaultNodeProfile is the default NodeProfile applied to nodes in this project when none is selected explicitly. It is overridden by the vCluster-level privateNodes.defaultProfile and by per-node/per-pool selection, and is validated against allowedNodeProfiles.
     */
@@ -128,12 +126,6 @@ export class ManagementV1ProjectSpec {
             "name": "allowedTemplates",
             "baseName": "allowedTemplates",
             "type": "Array<StorageV1AllowedTemplate>",
-            "format": ""
-        },
-        {
-            "name": "argoCD",
-            "baseName": "argoCD",
-            "type": "StorageV1ArgoIntegrationSpec",
             "format": ""
         },
         {

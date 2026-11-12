@@ -10,52 +10,25 @@
  * Do not edit the class manually.
  */
 
-import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
+import { ManagementV1StorageVolume } from '../models/managementV1StorageVolume.js';
+import { V1ListMeta } from '../models/V1ListMeta.js';
 
 
-/**
-* TenantStorageCredentials is the S3 access to one tenant storage: where its bucket is and the tenant\'s S3 keys. Served by GET on the credentials subresource to callers that can see the storage and hold get on tenantstorages/credentials. Every read is audited.
-*/
-export class ManagementV1TenantStorageCredentials {
-    /**
-    * AccessKey is the tenant\'s S3 access key.
-    */
-    'accessKey'?: string;
+export class ManagementV1StorageVolumeList {
     /**
     * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
     */
     'apiVersion'?: string;
-    /**
-    * Bucket is the storage\'s bucket.
-    */
-    'bucket'?: string;
-    /**
-    * CAData is the PEM bundle that verifies the endpoint, empty when the endpoint needs none.
-    */
-    'caData'?: string;
-    /**
-    * Endpoint is the S3 endpoint URL. Clients address the bucket path-style.
-    */
-    'endpoint'?: string;
+    'items': Array<ManagementV1StorageVolume>;
     /**
     * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
     */
     'kind'?: string;
-    'metadata'?: V1ObjectMeta;
-    /**
-    * SecretKey is the tenant\'s S3 secret key.
-    */
-    'secretKey'?: string;
+    'metadata'?: V1ListMeta;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
-        {
-            "name": "accessKey",
-            "baseName": "accessKey",
-            "type": "string",
-            "format": ""
-        },
         {
             "name": "apiVersion",
             "baseName": "apiVersion",
@@ -63,21 +36,9 @@ export class ManagementV1TenantStorageCredentials {
             "format": ""
         },
         {
-            "name": "bucket",
-            "baseName": "bucket",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "caData",
-            "baseName": "caData",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "endpoint",
-            "baseName": "endpoint",
-            "type": "string",
+            "name": "items",
+            "baseName": "items",
+            "type": "Array<ManagementV1StorageVolume>",
             "format": ""
         },
         {
@@ -89,18 +50,12 @@ export class ManagementV1TenantStorageCredentials {
         {
             "name": "metadata",
             "baseName": "metadata",
-            "type": "V1ObjectMeta",
-            "format": ""
-        },
-        {
-            "name": "secretKey",
-            "baseName": "secretKey",
-            "type": "string",
+            "type": "V1ListMeta",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1TenantStorageCredentials.attributeTypeMap;
+        return ManagementV1StorageVolumeList.attributeTypeMap;
     }
 
     public constructor() {

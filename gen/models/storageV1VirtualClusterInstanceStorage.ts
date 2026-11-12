@@ -13,7 +13,7 @@
 
 
 /**
-* VirtualClusterInstanceStorage attaches one TenantStorage to a tenant cluster.
+* VirtualClusterInstanceStorage attaches one StorageVolume to a tenant cluster.
 */
 export class StorageV1VirtualClusterInstanceStorage {
     /**
@@ -21,7 +21,7 @@ export class StorageV1VirtualClusterInstanceStorage {
     */
     '_default'?: boolean;
     /**
-    * StorageRef names a TenantStorage assigned to the instance\'s tenant. It has to be Available when it is attached.
+    * StorageRef names a StorageVolume assigned to the instance\'s tenant. It has to be Available when it is attached.
     */
     'storageRef': string;
 

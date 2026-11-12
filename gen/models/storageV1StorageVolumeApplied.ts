@@ -13,9 +13,9 @@
 
 
 /**
-* TenantStorageApplied holds the vendor document last written.
+* StorageVolumeApplied holds the vendor document last written.
 */
-export class StorageV1TenantStorageApplied {
+export class StorageV1StorageVolumeApplied {
     /**
     * Volume is the volume document as written, platform-owned keys included.
     */
@@ -32,7 +32,7 @@ export class StorageV1TenantStorageApplied {
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1TenantStorageApplied.attributeTypeMap;
+        return StorageV1StorageVolumeApplied.attributeTypeMap;
     }
 
     public constructor() {

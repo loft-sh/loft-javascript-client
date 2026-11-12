@@ -25,7 +25,7 @@ export class StorageV1VirtualClusterInstanceStorageStatus {
     */
     'storageClass'?: string;
     /**
-    * StorageRef names the TenantStorage.
+    * StorageRef names the StorageVolume.
     */
     'storageRef': string;
 

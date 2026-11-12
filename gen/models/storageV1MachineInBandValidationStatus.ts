@@ -31,6 +31,10 @@ export class StorageV1MachineInBandValidationStatus {
     */
     'finishTime'?: Date;
     /**
+    * JoinTime is when the attempt\'s node joined the validation cluster. The setup of the first test counts from it. Unset while the node joins, and for an attempt that started on a node the machine already had there.
+    */
+    'joinTime'?: Date;
+    /**
     * LeavingSince is when the platform started taking the machine out of the validation cluster for a tenant that assigned or reserved it. Unset once its validation NodeClaim is gone.
     */
     'leavingSince'?: Date;
@@ -82,6 +86,12 @@ export class StorageV1MachineInBandValidationStatus {
         {
             "name": "finishTime",
             "baseName": "finishTime",
+            "type": "Date",
+            "format": "date-time"
+        },
+        {
+            "name": "joinTime",
+            "baseName": "joinTime",
             "type": "Date",
             "format": "date-time"
         },

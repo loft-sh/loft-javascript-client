@@ -17,11 +17,11 @@
 */
 export class StorageV1StorageAccountQuota {
     /**
-    * Reserved is the sum of the sizes of the tenant\'s TenantStorages on this connector, the value written to the vendor\'s quota keys.
+    * Reserved is the sum of the sizes of the tenant\'s StorageVolumes on this connector, the value written to the vendor\'s quota keys.
     */
     'reserved'?: string;
     /**
-    * Storages is how many TenantStorages the sum covers.
+    * Storages is how many StorageVolumes the sum covers.
     */
     'storages'?: number;
 

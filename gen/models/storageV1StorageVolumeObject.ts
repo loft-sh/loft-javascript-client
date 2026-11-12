@@ -12,44 +12,47 @@
 
 
 
-export class StorageV1ArgoProjectSpecMetadata {
+/**
+* StorageVolumeObject is where a storage\'s data is reached over S3.
+*/
+export class StorageV1StorageVolumeObject {
     /**
-    * Description to add to the ArgoCD project.
+    * Bucket is the bucket over the storage\'s volume.
     */
-    'description'?: string;
+    'bucket'?: string;
     /**
-    * ExtraAnnotations are optional annotations that can be attached to the project in ArgoCD.
+    * Endpoint is the S3 endpoint URL the connector names.
     */
-    'extraAnnotations'?: { [key: string]: string; };
+    'endpoint'?: string;
     /**
-    * ExtraLabels are optional labels that can be attached to the project in ArgoCD.
+    * PathStyle is true when clients address the bucket in the path rather than the host name.
     */
-    'extraLabels'?: { [key: string]: string; };
+    'pathStyle'?: boolean;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "description",
-            "baseName": "description",
+            "name": "bucket",
+            "baseName": "bucket",
             "type": "string",
             "format": ""
         },
         {
-            "name": "extraAnnotations",
-            "baseName": "extraAnnotations",
-            "type": "{ [key: string]: string; }",
+            "name": "endpoint",
+            "baseName": "endpoint",
+            "type": "string",
             "format": ""
         },
         {
-            "name": "extraLabels",
-            "baseName": "extraLabels",
-            "type": "{ [key: string]: string; }",
+            "name": "pathStyle",
+            "baseName": "pathStyle",
+            "type": "boolean",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1ArgoProjectSpecMetadata.attributeTypeMap;
+        return StorageV1StorageVolumeObject.attributeTypeMap;
     }
 
     public constructor() {

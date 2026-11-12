@@ -16,7 +16,7 @@ import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
 
 
 /**
-* StorageProfile holds a tier of tenant storage.
+* StorageProfile holds a tier of storage volume.
 */
 export class ManagementV1StorageProfile {
     /**

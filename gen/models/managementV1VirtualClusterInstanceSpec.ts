@@ -58,7 +58,7 @@ export class ManagementV1VirtualClusterInstanceSpec {
     */
     'standalone'?: boolean;
     /**
-    * Storage attaches TenantStorages of the instance\'s tenant to the tenant cluster, statically: each entry becomes one PersistentVolume of the volume the platform provisioned and one StorageClass named after the storage that binds claims to it and provisions nothing. The platform adds the vendor\'s node driver to experimental.deploy and writes the tenant\'s CSI identity, scoped to the tenant on the storage system, into the tenant cluster directly, since the driver refuses a mount-only login. The storage system\'s and the vendor tenant\'s admin identities never reach the tenant cluster. Removing an entry removes its PersistentVolume and StorageClass; the volume itself is never touched. Needs private nodes or a standalone control plane.
+    * Storage attaches StorageVolumes of the instance\'s tenant to the tenant cluster, statically: each entry becomes one PersistentVolume of the volume the platform provisioned and one StorageClass named after the storage that binds claims to it and provisions nothing. The platform adds the vendor\'s node driver to experimental.deploy and writes the tenant\'s CSI identity, scoped to the tenant on the storage system, into the tenant cluster directly, since the driver refuses a mount-only login. The storage system\'s and the vendor tenant\'s admin identities never reach the tenant cluster. Removing an entry removes its PersistentVolume and StorageClass; the volume itself is never touched. Needs private nodes or a standalone control plane.
     */
     'storage'?: Array<StorageV1VirtualClusterInstanceStorage>;
     'template'?: StorageV1VirtualClusterTemplateDefinition;

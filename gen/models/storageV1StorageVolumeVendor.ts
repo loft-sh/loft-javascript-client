@@ -13,9 +13,9 @@
 
 
 /**
-* TenantStorageVolume identifies the vendor objects behind a TenantStorage.
+* StorageVolumeVendor identifies the vendor objects behind a StorageVolume.
 */
-export class StorageV1TenantStorageVolume {
+export class StorageV1StorageVolumeVendor {
     /**
     * CreatedByPlatform is false for an imported volume, which the platform never deletes.
     */
@@ -72,7 +72,7 @@ export class StorageV1TenantStorageVolume {
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1TenantStorageVolume.attributeTypeMap;
+        return StorageV1StorageVolumeVendor.attributeTypeMap;
     }
 
     public constructor() {
