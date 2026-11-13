@@ -13,7 +13,7 @@
 
 
 /**
-* Access describes the access to a secret
+* Access grants users and teams verbs on the object that holds it
 */
 export class StorageV1Access {
     /**
@@ -25,11 +25,11 @@ export class StorageV1Access {
     */
     'subresources'?: Array<string>;
     /**
-    * Teams specifies which teams should be able to access this secret with the aforementioned verbs
+    * Teams specifies which teams should be able to access this object with the aforementioned verbs
     */
     'teams'?: Array<string>;
     /**
-    * Users specifies which users should be able to access this secret with the aforementioned verbs
+    * Users specifies which users should be able to access this object with the aforementioned verbs
     */
     'users'?: Array<string>;
     /**
