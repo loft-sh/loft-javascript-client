@@ -16,7 +16,6 @@ import { StorageV1NodeProviderKubeVirt } from '../models/storageV1NodeProviderKu
 import { StorageV1NodeProviderMetal3 } from '../models/storageV1NodeProviderMetal3.js';
 import { StorageV1NodeProviderNICo } from '../models/storageV1NodeProviderNICo.js';
 import { StorageV1NodeProviderTerraform } from '../models/storageV1NodeProviderTerraform.js';
-import { StorageV1NodeProviderValidation } from '../models/storageV1NodeProviderValidation.js';
 
 
 /**
@@ -41,7 +40,6 @@ export class StorageV1NodeProviderSpec {
     */
     'properties'?: { [key: string]: string; };
     'terraform'?: StorageV1NodeProviderTerraform;
-    'validation'?: StorageV1NodeProviderValidation;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -98,12 +96,6 @@ export class StorageV1NodeProviderSpec {
             "name": "terraform",
             "baseName": "terraform",
             "type": "StorageV1NodeProviderTerraform",
-            "format": ""
-        },
-        {
-            "name": "validation",
-            "baseName": "validation",
-            "type": "StorageV1NodeProviderValidation",
             "format": ""
         }    ];
 
