@@ -13,8 +13,11 @@
 import { ClusterV1SleepModeConfig } from '../models/clusterV1SleepModeConfig.js';
 import { StorageV1ClusterQuota } from '../models/agentstorageV1ClusterQuota.js';
 import { ManagementV1License } from '../models/managementV1License.js';
-import { ManagementV1NetworkEnvironmentData } from '../models/managementV1NetworkEnvironmentData.js';
 import { ManagementV1NodeClaimData } from '../models/managementV1NodeClaimData.js';
+import { ManagementV1NodeEnvironmentData } from '../models/managementV1NodeEnvironmentData.js';
+import { ManagementV1NodeProviderBCMGetResourcesResult } from '../models/managementV1NodeProviderBCMGetResourcesResult.js';
+import { ManagementV1NodeProviderBCMNodeWithResources } from '../models/managementV1NodeProviderBCMNodeWithResources.js';
+import { ManagementV1NodeProviderBCMTestConnectionResult } from '../models/managementV1NodeProviderBCMTestConnectionResult.js';
 import { ManagementV1NodeProviderCalculateCostResult } from '../models/managementV1NodeProviderCalculateCostResult.js';
 import { ManagementV1NodeProviderExecResult } from '../models/managementV1NodeProviderExecResult.js';
 import { ManagementV1NodeProviderTerraformValidateResult } from '../models/managementV1NodeProviderTerraformValidateResult.js';
@@ -26,8 +29,11 @@ export class ManagementV1KioskSpec {
     'UISettings'?: UiV1UISettings;
     'accessKey'?: StorageV1AccessKey;
     'license'?: ManagementV1License;
-    'networkEnvironmentData'?: ManagementV1NetworkEnvironmentData;
     'nodeClaimData'?: ManagementV1NodeClaimData;
+    'nodeEnvironmentData'?: ManagementV1NodeEnvironmentData;
+    'nodeProviderBCMGetResourcesResult'?: ManagementV1NodeProviderBCMGetResourcesResult;
+    'nodeProviderBCMNodeWithResources'?: ManagementV1NodeProviderBCMNodeWithResources;
+    'nodeProviderBCMTestConnectionResult'?: ManagementV1NodeProviderBCMTestConnectionResult;
     'nodeProviderCalculateCostResult'?: ManagementV1NodeProviderCalculateCostResult;
     'nodeProviderExecResult'?: ManagementV1NodeProviderExecResult;
     'nodeProviderTerraformValidateResult'?: ManagementV1NodeProviderTerraformValidateResult;
@@ -56,15 +62,33 @@ export class ManagementV1KioskSpec {
             "format": ""
         },
         {
-            "name": "networkEnvironmentData",
-            "baseName": "networkEnvironmentData",
-            "type": "ManagementV1NetworkEnvironmentData",
-            "format": ""
-        },
-        {
             "name": "nodeClaimData",
             "baseName": "nodeClaimData",
             "type": "ManagementV1NodeClaimData",
+            "format": ""
+        },
+        {
+            "name": "nodeEnvironmentData",
+            "baseName": "nodeEnvironmentData",
+            "type": "ManagementV1NodeEnvironmentData",
+            "format": ""
+        },
+        {
+            "name": "nodeProviderBCMGetResourcesResult",
+            "baseName": "nodeProviderBCMGetResourcesResult",
+            "type": "ManagementV1NodeProviderBCMGetResourcesResult",
+            "format": ""
+        },
+        {
+            "name": "nodeProviderBCMNodeWithResources",
+            "baseName": "nodeProviderBCMNodeWithResources",
+            "type": "ManagementV1NodeProviderBCMNodeWithResources",
+            "format": ""
+        },
+        {
+            "name": "nodeProviderBCMTestConnectionResult",
+            "baseName": "nodeProviderBCMTestConnectionResult",
+            "type": "ManagementV1NodeProviderBCMTestConnectionResult",
             "format": ""
         },
         {

@@ -30,10 +30,6 @@ export class ManagementV1SelfStatus {
     */
     'chatAuthToken'?: string;
     /**
-    * ExternalClustersAllowed reports whether the described subject\'s tenant allows importing externally deployed clusters: its tenant\'s setting, or true outside any tenant. It does not account for RBAC: registering a cluster still needs create on registervirtualclusters. Unset if it could not be determined.
-    */
-    'externalClustersAllowed'?: boolean;
-    /**
     * The groups of the currently logged in user
     */
     'groups'?: Array<string>;
@@ -85,12 +81,6 @@ export class ManagementV1SelfStatus {
             "name": "chatAuthToken",
             "baseName": "chatAuthToken",
             "type": "string",
-            "format": ""
-        },
-        {
-            "name": "externalClustersAllowed",
-            "baseName": "externalClustersAllowed",
-            "type": "boolean",
             "format": ""
         },
         {
