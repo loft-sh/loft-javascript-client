@@ -10,17 +10,13 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1Metrics } from '../models/storageV1Metrics.js';
-import { StorageV1OpenCost } from '../models/storageV1OpenCost.js';
 
 
 export class ManagementV1AgentCostControlConfig {
     /**
-    * Enabled specifies whether the ROI dashboard should be available in the UI, and if the metrics infrastructure that provides dashboard data is deployed
+    * Enabled is always false.
     */
     'enabled'?: boolean;
-    'metrics'?: StorageV1Metrics;
-    'opencost'?: StorageV1OpenCost;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -29,18 +25,6 @@ export class ManagementV1AgentCostControlConfig {
             "name": "enabled",
             "baseName": "enabled",
             "type": "boolean",
-            "format": ""
-        },
-        {
-            "name": "metrics",
-            "baseName": "metrics",
-            "type": "StorageV1Metrics",
-            "format": ""
-        },
-        {
-            "name": "opencost",
-            "baseName": "opencost",
-            "type": "StorageV1OpenCost",
             "format": ""
         }    ];
 
