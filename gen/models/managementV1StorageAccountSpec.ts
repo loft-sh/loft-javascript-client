@@ -12,7 +12,6 @@
 
 import { StorageV1Access } from '../models/storageV1Access.js';
 import { StorageV1UserOrTeam } from '../models/storageV1UserOrTeam.js';
-import { StorageV1VastTenantSection } from '../models/storageV1VastTenantSection.js';
 import { StorageV1WekaTenantSection } from '../models/storageV1WekaTenantSection.js';
 
 
@@ -42,10 +41,9 @@ export class ManagementV1StorageAccountSpec {
     '_import'?: boolean;
     'owner'?: StorageV1UserOrTeam;
     /**
-    * Profile names the StorageProfile whose tenant-level documents seed Weka or Vast at creation when both are empty. Informational afterwards.
+    * Profile names the StorageProfile whose tenant-level documents seed Weka at creation when Weka is empty. Informational afterwards.
     */
     'profile'?: string;
-    'vast'?: StorageV1VastTenantSection;
     'weka'?: StorageV1WekaTenantSection;
 
     static readonly discriminator: string | undefined = undefined;
@@ -91,12 +89,6 @@ export class ManagementV1StorageAccountSpec {
             "name": "profile",
             "baseName": "profile",
             "type": "string",
-            "format": ""
-        },
-        {
-            "name": "vast",
-            "baseName": "vast",
-            "type": "StorageV1VastTenantSection",
             "format": ""
         },
         {

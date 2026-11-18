@@ -13,36 +13,36 @@
 
 
 /**
-* ConnectorStorageS3Spec is the S3 endpoint a storage system\'s tenants use. Clients address buckets path-style.
+* StackUIFormGroup is one titled group of form fields.
 */
-export class ManagementV1ConnectorStorageS3Spec {
+export class StorageV1StackUIFormGroup {
     /**
-    * CAData is the PEM bundle that verifies the S3 endpoint; the connector\'s caData when empty. Data key \"s3CaData\".
+    * Fields are dotted paths under spec, for example \"warmPoolRef.name\".
     */
-    'caData'?: string;
+    'fields': Array<string>;
     /**
-    * Endpoint is the URL the AI cloud exposes in front of the S3 servers, for example https://s3.example.com:9000. Data key \"s3Endpoint\".
+    * Label is the group heading.
     */
-    'endpoint'?: string;
+    'label': string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "caData",
-            "baseName": "caData",
-            "type": "string",
+            "name": "fields",
+            "baseName": "fields",
+            "type": "Array<string>",
             "format": ""
         },
         {
-            "name": "endpoint",
-            "baseName": "endpoint",
+            "name": "label",
+            "baseName": "label",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1ConnectorStorageS3Spec.attributeTypeMap;
+        return StorageV1StackUIFormGroup.attributeTypeMap;
     }
 
     public constructor() {

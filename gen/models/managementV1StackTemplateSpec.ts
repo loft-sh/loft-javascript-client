@@ -14,6 +14,7 @@ import { StorageV1Access } from '../models/storageV1Access.js';
 import { StorageV1AppParameter } from '../models/storageV1AppParameter.js';
 import { StorageV1StackPublishedOutput } from '../models/storageV1StackPublishedOutput.js';
 import { StorageV1StackTask } from '../models/storageV1StackTask.js';
+import { StorageV1StackUI } from '../models/storageV1StackUI.js';
 import { StorageV1UserOrTeam } from '../models/storageV1UserOrTeam.js';
 
 
@@ -50,6 +51,7 @@ export class ManagementV1StackTemplateSpec {
     * Tasks is the DAG blueprint. Each task follows the same task-level mutual-exclusivity rule (ArgoCDApplication XOR App), validated at admission.
     */
     'tasks'?: Array<StorageV1StackTask>;
+    'ui'?: StorageV1StackUI;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -100,6 +102,12 @@ export class ManagementV1StackTemplateSpec {
             "name": "tasks",
             "baseName": "tasks",
             "type": "Array<StorageV1StackTask>",
+            "format": ""
+        },
+        {
+            "name": "ui",
+            "baseName": "ui",
+            "type": "StorageV1StackUI",
             "format": ""
         }    ];
 

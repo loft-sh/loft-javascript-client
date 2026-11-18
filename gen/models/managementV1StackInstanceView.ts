@@ -10,73 +10,33 @@
  * Do not edit the class manually.
  */
 
+import { ManagementV1StackInstanceViewSpec } from '../models/managementV1StackInstanceViewSpec.js';
+import { ManagementV1StackInstanceViewStatus } from '../models/managementV1StackInstanceViewStatus.js';
 import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
 
 
 /**
-* StorageVolumeCredentials is the S3 access to one storage volume: where its bucket is and the tenant\'s S3 keys. Served by GET on the credentials subresource to callers that can see the storage and hold get on storagevolumes/credentials. Every read is audited.
+* StackInstanceView renders the detail page of one object that a stack declares in spec.ui. The caller posts the object to show; the platform reads it and its relations on the destination as the caller, and returns the declared cards with their values filled in.
 */
-export class ManagementV1StorageVolumeCredentials {
-    /**
-    * AccessKey is the tenant\'s S3 access key.
-    */
-    'accessKey'?: string;
+export class ManagementV1StackInstanceView {
     /**
     * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
     */
     'apiVersion'?: string;
     /**
-    * Bucket is the storage\'s bucket.
-    */
-    'bucket'?: string;
-    /**
-    * CAData is the PEM bundle that verifies the endpoint, empty when the endpoint needs none.
-    */
-    'caData'?: string;
-    /**
-    * Endpoint is the S3 endpoint URL. Clients address the bucket path-style.
-    */
-    'endpoint'?: string;
-    /**
     * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
     */
     'kind'?: string;
     'metadata'?: V1ObjectMeta;
-    /**
-    * SecretKey is the tenant\'s S3 secret key.
-    */
-    'secretKey'?: string;
+    'spec'?: ManagementV1StackInstanceViewSpec;
+    'status'?: ManagementV1StackInstanceViewStatus;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "accessKey",
-            "baseName": "accessKey",
-            "type": "string",
-            "format": ""
-        },
-        {
             "name": "apiVersion",
             "baseName": "apiVersion",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "bucket",
-            "baseName": "bucket",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "caData",
-            "baseName": "caData",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "endpoint",
-            "baseName": "endpoint",
             "type": "string",
             "format": ""
         },
@@ -93,14 +53,20 @@ export class ManagementV1StorageVolumeCredentials {
             "format": ""
         },
         {
-            "name": "secretKey",
-            "baseName": "secretKey",
-            "type": "string",
+            "name": "spec",
+            "baseName": "spec",
+            "type": "ManagementV1StackInstanceViewSpec",
+            "format": ""
+        },
+        {
+            "name": "status",
+            "baseName": "status",
+            "type": "ManagementV1StackInstanceViewStatus",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1StorageVolumeCredentials.attributeTypeMap;
+        return ManagementV1StackInstanceView.attributeTypeMap;
     }
 
     public constructor() {

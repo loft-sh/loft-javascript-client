@@ -12,7 +12,6 @@
 
 import { StorageV1Access } from '../models/storageV1Access.js';
 import { StorageV1UserOrTeam } from '../models/storageV1UserOrTeam.js';
-import { StorageV1VastVolumeSection } from '../models/storageV1VastVolumeSection.js';
 import { StorageV1WekaVolumeSection } from '../models/storageV1WekaVolumeSection.js';
 
 
@@ -29,10 +28,6 @@ export class ManagementV1StorageVolumeSpec {
     */
     'displayName'?: string;
     /**
-    * Encrypted creates the volume encrypted at rest. On WEKA the client encrypts on the host and a KMS has to wrap the key; without one the storage is refused. It wins over an encrypted key in the vendor section, and the two have to agree at creation. Set at creation only: a later change is reported by the Synced condition and never applied.
-    */
-    'encrypted'?: boolean;
-    /**
     * Import adopts a volume that exists already instead of creating it, and creates the tenant\'s StorageAccount in import mode when it does not exist yet. The platform never deletes what it did not create.
     */
     '_import'?: boolean;
@@ -45,7 +40,6 @@ export class ManagementV1StorageVolumeSpec {
     * Size is the capacity of the volume. Growing it grows the vendor quota first and the volume after; shrinking is passed to the vendor, which refuses it when used data does not fit.
     */
     'size': string;
-    'vast'?: StorageV1VastVolumeSection;
     'weka'?: StorageV1WekaVolumeSection;
 
     static readonly discriminator: string | undefined = undefined;
@@ -61,12 +55,6 @@ export class ManagementV1StorageVolumeSpec {
             "name": "displayName",
             "baseName": "displayName",
             "type": "string",
-            "format": ""
-        },
-        {
-            "name": "encrypted",
-            "baseName": "encrypted",
-            "type": "boolean",
             "format": ""
         },
         {
@@ -91,12 +79,6 @@ export class ManagementV1StorageVolumeSpec {
             "name": "size",
             "baseName": "size",
             "type": "string",
-            "format": ""
-        },
-        {
-            "name": "vast",
-            "baseName": "vast",
-            "type": "StorageV1VastVolumeSection",
             "format": ""
         },
         {

@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
+import { StorageV1MachineValidationCertification } from '../models/storageV1MachineValidationCertification.js';
 import { StorageV1MachineValidationRejoin } from '../models/storageV1MachineValidationRejoin.js';
-import { StorageV1MachineValidationTestResult } from '../models/storageV1MachineValidationTestResult.js';
 
 
 /**
@@ -19,9 +19,10 @@ import { StorageV1MachineValidationTestResult } from '../models/storageV1Machine
 */
 export class StorageV1MachineInBandValidationStatus {
     /**
-    * AttemptID identifies the attempt. The Certifications and Jobs of any other attempt are ignored.
+    * AttemptID identifies the attempt. The Certifications of any other attempt are ignored.
     */
     'attemptID'?: string;
+    'certification'?: StorageV1MachineValidationCertification;
     /**
     * ClusterUID is the UID of the validation tenant cluster the attempt ran in.
     */
@@ -31,7 +32,7 @@ export class StorageV1MachineInBandValidationStatus {
     */
     'finishTime'?: Date;
     /**
-    * JoinTime is when the attempt\'s node joined the validation cluster. The setup of the first test counts from it. Unset while the node joins, and for an attempt that started on a node the machine already had there.
+    * JoinTime is when the attempt\'s node joined the validation cluster. The setup of the Certification counts from it. Unset while the node joins, and for an attempt that started on a node the machine already had there.
     */
     'joinTime'?: Date;
     /**
@@ -48,21 +49,13 @@ export class StorageV1MachineInBandValidationStatus {
     'nodeName'?: string;
     'rejoin'?: StorageV1MachineValidationRejoin;
     /**
-    * Result is where the attempt stands. Only Passed lets the machine be assigned to a tenant or used for an instance on a provider with a validation tier.  Possible enum values:  - `\"JoinFailed\"` is when the validation NodeClaim failed or the node did not join before the join deadline.  - `\"Joining\"` is while the validation NodeClaim exists and its node has not joined the validation cluster.  - `\"Passed\"` is once every test passed.  - `\"Running\"` is while a test\'s Certification or Job runs on the node.  - `\"SetupFailed\"` is when the tests could not run: the suite is missing or not understood, the Certification kind is not served in the validation cluster, a test\'s image cannot be pulled, a Certification failed without recording the node, the setup deadline passed, or a test pod was lost without an exit code.  - `\"Starting\"` is once the node joined and before the first test runs.  - `\"TestFailed\"` is when a test failed on the node: its Certification failed and recorded the node, or its Job exited non-zero or ran past its timeout. The message is the reason recorded for the node, or the last line the Job printed.
+    * Result is where the attempt stands. Only Passed lets the machine be assigned to a tenant or used for an instance on a provider with a validation tier.  Possible enum values:  - `\"JoinFailed\"` is when the validation NodeClaim failed or the node did not join before the join deadline.  - `\"Joining\"` is while the validation NodeClaim exists and its node has not joined the validation cluster.  - `\"Passed\"` is once the Certification passed.  - `\"Running\"` is while the Certification runs on the node.  - `\"SetupFailed\"` is when the Certification did not test the node: its ConfigMap is missing or not understood, the Certification kind is not served in the validation cluster, the setup deadline passed, or the Certification failed without recording the node, succeeded without testing it, was deleted, or did not finish within its timeouts and the setup timeout.  - `\"Starting\"` is once the node joined and before the Certification runs.  - `\"TestFailed\"` is when the Certification failed and recorded the node in the failed nodes of a category. The message lists the reasons recorded for the node.
     */
     'result'?: StorageV1MachineInBandValidationStatusResultEnum;
     /**
     * StartTime is when the attempt started.
     */
     'startTime'?: Date;
-    /**
-    * SuiteHash is the hash of the test suite the attempt ran. A changed suite does not invalidate a pass, so this says which suite a pass was for.
-    */
-    'suiteHash'?: string;
-    /**
-    * Tests holds the result of each test the attempt reached, in suite order.
-    */
-    'tests'?: Array<StorageV1MachineValidationTestResult>;
     /**
     * Tier is the validation tier the attempt ran for.
     */
@@ -75,6 +68,12 @@ export class StorageV1MachineInBandValidationStatus {
             "name": "attemptID",
             "baseName": "attemptID",
             "type": "string",
+            "format": ""
+        },
+        {
+            "name": "certification",
+            "baseName": "certification",
+            "type": "StorageV1MachineValidationCertification",
             "format": ""
         },
         {
@@ -130,18 +129,6 @@ export class StorageV1MachineInBandValidationStatus {
             "baseName": "startTime",
             "type": "Date",
             "format": "date-time"
-        },
-        {
-            "name": "suiteHash",
-            "baseName": "suiteHash",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "tests",
-            "baseName": "tests",
-            "type": "Array<StorageV1MachineValidationTestResult>",
-            "format": ""
         },
         {
             "name": "tier",

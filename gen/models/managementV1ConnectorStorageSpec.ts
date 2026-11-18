@@ -10,19 +10,17 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1ConnectorStorageVastSpec } from '../models/managementV1ConnectorStorageVastSpec.js';
 import { ManagementV1ConnectorStorageWekaSpec } from '../models/managementV1ConnectorStorageWekaSpec.js';
 
 
 /**
-* ConnectorStorageSpec configures the storage system StorageProfiles provision storage volume on. A StorageProfile names the connector through spec.connectorRef and the storage volume controller logs in with these credentials to create vendor tenants, identities and volumes.  One field per block is a credential under the Connector type\'s view rule: weka.password and vast.password are served to a caller who could update this connector and empty for every other caller, and on update an empty value keeps the stored one, so a redacted read written back never clears the password.
+* ConnectorStorageSpec configures the storage system StorageProfiles provision storage volume on. A StorageProfile names the connector through spec.connectorRef and the storage volume controller logs in with these credentials to create vendor tenants, identities and volumes.  One field is a credential under the Connector type\'s view rule: weka.password is served to a caller who could update this connector and empty for every other caller, and on update an empty value keeps the stored one, so a redacted read written back never clears the password.
 */
 export class ManagementV1ConnectorStorageSpec {
     /**
-    * Provider selects the storage system and which block below applies. Required; weka or vast. Data key \"provider\".  Possible enum values:  - `\"vast\"` is a VAST cluster reached through its VMS REST API.  - `\"weka\"` is a WEKA cluster reached through its REST API v2 (Tenancy 2.0).
+    * Provider selects the storage system and which block below applies. Required; only weka is supported. Data key \"provider\".  Possible enum values:  - `\"weka\"` is a WEKA cluster reached through its REST API v2 (Tenancy 2.0).
     */
     'provider': ManagementV1ConnectorStorageSpecProviderEnum;
-    'vast'?: ManagementV1ConnectorStorageVastSpec;
     'weka'?: ManagementV1ConnectorStorageWekaSpec;
 
     static readonly discriminator: string | undefined = undefined;
@@ -32,12 +30,6 @@ export class ManagementV1ConnectorStorageSpec {
             "name": "provider",
             "baseName": "provider",
             "type": "ManagementV1ConnectorStorageSpecProviderEnum",
-            "format": ""
-        },
-        {
-            "name": "vast",
-            "baseName": "vast",
-            "type": "ManagementV1ConnectorStorageVastSpec",
             "format": ""
         },
         {
@@ -57,7 +49,6 @@ export class ManagementV1ConnectorStorageSpec {
 
 
 export enum ManagementV1ConnectorStorageSpecProviderEnum {
-    Vast = 'vast',
     Weka = 'weka'
 }
 

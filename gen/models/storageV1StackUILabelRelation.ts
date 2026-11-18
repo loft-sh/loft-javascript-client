@@ -13,46 +13,36 @@
 
 
 /**
-* StorageVolumeObject is where a storage\'s data is reached over S3.
+* StackUILabelRelation selects related objects whose label Key equals the value at ValuePath.
 */
-export class StorageV1StorageVolumeObject {
+export class StorageV1StackUILabelRelation {
     /**
-    * Bucket is the bucket over the storage\'s volume.
+    * Key is the label key on the related objects.
     */
-    'bucket'?: string;
+    'key': string;
     /**
-    * Endpoint is the S3 endpoint URL the connector names.
+    * ValuePath is a JSONPath on the object that gives the label value.
     */
-    'endpoint'?: string;
-    /**
-    * PathStyle is true when clients address the bucket in the path rather than the host name.
-    */
-    'pathStyle'?: boolean;
+    'valuePath': string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "bucket",
-            "baseName": "bucket",
+            "name": "key",
+            "baseName": "key",
             "type": "string",
             "format": ""
         },
         {
-            "name": "endpoint",
-            "baseName": "endpoint",
+            "name": "valuePath",
+            "baseName": "valuePath",
             "type": "string",
-            "format": ""
-        },
-        {
-            "name": "pathStyle",
-            "baseName": "pathStyle",
-            "type": "boolean",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1StorageVolumeObject.attributeTypeMap;
+        return StorageV1StackUILabelRelation.attributeTypeMap;
     }
 
     public constructor() {

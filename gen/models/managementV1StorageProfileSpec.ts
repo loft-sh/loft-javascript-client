@@ -12,7 +12,6 @@
 
 import { StorageV1Access } from '../models/storageV1Access.js';
 import { StorageV1UserOrTeam } from '../models/storageV1UserOrTeam.js';
-import { StorageV1VastStorageSection } from '../models/storageV1VastStorageSection.js';
 import { StorageV1WekaStorageSection } from '../models/storageV1WekaStorageSection.js';
 
 
@@ -29,19 +28,14 @@ export class ManagementV1StorageProfileSpec {
     */
     'connectorRef': string;
     /**
-    * Description is a short summary of the tier, shown next to the display name in the admin profile picker and list. Keep the storage vendor out of it, as out of the profile name.
-    */
-    'description'?: string;
-    /**
     * DisplayName is the name that should be displayed in the UI
     */
     'displayName'?: string;
     'owner'?: StorageV1UserOrTeam;
     /**
-    * Protocols is how tenants reach the tier\'s data: posix (the vendor\'s native file client), nfs, smb, s3 or block, one or several for the same data. WEKA serves posix and s3, VAST nfs. s3 is only valid next to the file protocol: it adds a bucket over the storage\'s volume.
+    * Protocols is how tenants reach the tier\'s data: posix (the vendor\'s native file client), nfs, smb, s3 or block, one or several for the same data. WEKA serves posix today.
     */
     'protocols'?: Array<string>;
-    'vast'?: StorageV1VastStorageSection;
     'weka'?: StorageV1WekaStorageSection;
 
     static readonly discriminator: string | undefined = undefined;
@@ -56,12 +50,6 @@ export class ManagementV1StorageProfileSpec {
         {
             "name": "connectorRef",
             "baseName": "connectorRef",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "description",
-            "baseName": "description",
             "type": "string",
             "format": ""
         },
@@ -81,12 +69,6 @@ export class ManagementV1StorageProfileSpec {
             "name": "protocols",
             "baseName": "protocols",
             "type": "Array<string>",
-            "format": ""
-        },
-        {
-            "name": "vast",
-            "baseName": "vast",
-            "type": "StorageV1VastStorageSection",
             "format": ""
         },
         {

@@ -17,7 +17,7 @@
 */
 export class StorageV1WekaStorageMount {
     /**
-    * Options are filesystem-level options passed to mount -o, for example sync_on_close. Client-mode options such as net or num_cores belong to the machine and are set on its node type.
+    * Options are passed to mount -o, for example net=udp for a host without DPDK. They only matter for the first mount on a host without a running client container.
     */
     'options'?: Array<string>;
     /**
