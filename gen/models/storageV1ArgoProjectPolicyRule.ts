@@ -14,7 +14,7 @@
 
 export class StorageV1ArgoProjectPolicyRule {
     /**
-    * Action is one of \"*\", \"get\", \"create\", \"update\", \"delete\", \"sync\", or \"override\".
+    * Action is an ArgoCD action such as \"*\", \"get\", \"create\", \"update\", \"delete\", \"sync\", or \"override\". Required when creating or changing the ArgoCD configuration; there is no default. Must not contain commas, double quotes, whitespace, or control characters.
     */
     'action'?: string;
     /**
@@ -22,9 +22,13 @@ export class StorageV1ArgoProjectPolicyRule {
     */
     'application'?: string;
     /**
-    * Kind is the kind to apply the rule to
+    * Kind is the kind to apply the rule to. Defaults to \"applications\". Must not contain commas, double quotes, whitespace, or control characters.
     */
     'kind'?: string;
+    /**
+    * Object is the complete ArgoCD RBAC object pattern, such as \"loft-myproject/team-a/_*\". If omitted or empty, it defaults to \"loft-<project-name>/_*\". The pattern must start with \"loft-<project-name>/\" followed by one application component or namespace/application. Each component must be non-empty and may contain only letters, digits, underscores, dots, hyphens, and \"*\". Commas, double quotes, whitespace, and control characters are not allowed. For applications outside the ArgoCD namespace, use \"loft-<project-name>/<namespace>/<application>\". DEPRECATED: Only available in 4.x releases; not carried into 5.0 and later.
+    */
+    'object'?: string;
     /**
     * Allow applies the \"allow\" permission to the rule, if allow is not set, the permission will always be set to \"deny\".
     */
@@ -48,6 +52,12 @@ export class StorageV1ArgoProjectPolicyRule {
         {
             "name": "kind",
             "baseName": "kind",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "object",
+            "baseName": "object",
             "type": "string",
             "format": ""
         },

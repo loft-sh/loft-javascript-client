@@ -23,11 +23,11 @@ export class StorageV1ArgoProjectRole {
     */
     'groups'?: Array<string>;
     /**
-    * Name of the ArgoCD role to attach to the project.
+    * Name of the ArgoCD role to attach to the project. Required when creating or changing the ArgoCD configuration. Must not contain commas, double quotes, whitespace, or control characters.
     */
     'name'?: string;
     /**
-    * Rules ist a list of policy rules to attach to the role.
+    * Rules is a list of policy rules to attach to the role.
     */
     'rules'?: Array<StorageV1ArgoProjectPolicyRule>;
 
