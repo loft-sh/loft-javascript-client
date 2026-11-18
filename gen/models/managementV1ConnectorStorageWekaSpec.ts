@@ -10,8 +10,6 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1ConnectorStorageCSISpec } from '../models/managementV1ConnectorStorageCSISpec.js';
-import { ManagementV1ConnectorStorageS3Spec } from '../models/managementV1ConnectorStorageS3Spec.js';
 
 
 /**
@@ -22,7 +20,6 @@ export class ManagementV1ConnectorStorageWekaSpec {
     * CAData is the PEM bundle that verifies the management endpoints. Data key \"caData\".
     */
     'caData'?: string;
-    'csi'?: ManagementV1ConnectorStorageCSISpec;
     /**
     * Endpoints are the management URLs of the cluster\'s backends, https://host:14000, comma separated; two or more give the platform a failover. Data key \"endpoints\". Required.
     */
@@ -35,7 +32,6 @@ export class ManagementV1ConnectorStorageWekaSpec {
     * Password is its password. Data key \"password\". Required on create. A credential (see the type comment): an empty value on update keeps the stored one.
     */
     'password'?: string;
-    's3'?: ManagementV1ConnectorStorageS3Spec;
     /**
     * TenantPrefix is prepended to platform tenant names on the WEKA side, so several platforms can share one cluster. Data key \"tenantPrefix\".
     */
@@ -55,12 +51,6 @@ export class ManagementV1ConnectorStorageWekaSpec {
             "format": ""
         },
         {
-            "name": "csi",
-            "baseName": "csi",
-            "type": "ManagementV1ConnectorStorageCSISpec",
-            "format": ""
-        },
-        {
             "name": "endpoints",
             "baseName": "endpoints",
             "type": "string",
@@ -76,12 +66,6 @@ export class ManagementV1ConnectorStorageWekaSpec {
             "name": "password",
             "baseName": "password",
             "type": "string",
-            "format": ""
-        },
-        {
-            "name": "s3",
-            "baseName": "s3",
-            "type": "ManagementV1ConnectorStorageS3Spec",
             "format": ""
         },
         {

@@ -13,7 +13,7 @@
 
 
 /**
-* MachineValidationArtifact is a file a validation test produced.
+* MachineValidationArtifact is a file an in-band attempt produced.
 */
 export class StorageV1MachineValidationArtifact {
     /**

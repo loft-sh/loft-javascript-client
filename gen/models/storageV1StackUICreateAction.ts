@@ -13,36 +13,36 @@
 
 
 /**
-* VirtualClusterInstanceStorage attaches one StorageVolume to a tenant cluster.
+* StackUICreateAction creates one object.
 */
-export class StorageV1VirtualClusterInstanceStorage {
+export class StorageV1StackUICreateAction {
     /**
-    * Default marks the storage\'s StorageClass as the tenant cluster\'s default. At most one entry may set it; when none does, the first attached storage is the default.
+    * Object is a CEL expression that builds the object as a map, for example \"{\'metadata\': {\'generateName\': self.metadata.name + \'-\'}, \'spec\': {...}}\".
     */
-    '_default'?: boolean;
+    'object': string;
     /**
-    * StorageRef names a StorageVolume assigned to the instance\'s tenant. It has to be Available when it is attached.
+    * Resource names a resource of this stack. The platform sets apiVersion, kind and namespace.
     */
-    'storageRef': string;
+    'resource': string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "_default",
-            "baseName": "default",
-            "type": "boolean",
+            "name": "object",
+            "baseName": "object",
+            "type": "string",
             "format": ""
         },
         {
-            "name": "storageRef",
-            "baseName": "storageRef",
+            "name": "resource",
+            "baseName": "resource",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1VirtualClusterInstanceStorage.attributeTypeMap;
+        return StorageV1StackUICreateAction.attributeTypeMap;
     }
 
     public constructor() {

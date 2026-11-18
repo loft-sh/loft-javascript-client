@@ -21,7 +21,7 @@ export class StorageV1StorageVolumeVendor {
     */
     'createdByPlatform'?: boolean;
     /**
-    * Name is the vendor-side volume name, a filesystem on WEKA and the view path on VAST.
+    * Name is the vendor-side volume name, a filesystem on WEKA.
     */
     'name'?: string;
     /**

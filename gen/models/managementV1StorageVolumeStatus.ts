@@ -13,7 +13,6 @@
 import { StorageV1Condition } from '../models/agentstorageV1Condition.js';
 import { StorageV1StorageVolumeApplied } from '../models/storageV1StorageVolumeApplied.js';
 import { StorageV1StorageVolumeCapacity } from '../models/storageV1StorageVolumeCapacity.js';
-import { StorageV1StorageVolumeObject } from '../models/storageV1StorageVolumeObject.js';
 import { StorageV1StorageVolumeVendor } from '../models/storageV1StorageVolumeVendor.js';
 
 
@@ -33,14 +32,9 @@ export class ManagementV1StorageVolumeStatus {
     */
     'credentialsSecret'?: string;
     /**
-    * Encrypted is whether the vendor reports the volume as encrypted at rest.
-    */
-    'encrypted'?: boolean;
-    /**
     * Message is a human readable message for the phase.
     */
     'message'?: string;
-    'object'?: StorageV1StorageVolumeObject;
     /**
     * Phase is the lifecycle phase.
     */
@@ -93,21 +87,9 @@ export class ManagementV1StorageVolumeStatus {
             "format": ""
         },
         {
-            "name": "encrypted",
-            "baseName": "encrypted",
-            "type": "boolean",
-            "format": ""
-        },
-        {
             "name": "message",
             "baseName": "message",
             "type": "string",
-            "format": ""
-        },
-        {
-            "name": "object",
-            "baseName": "object",
-            "type": "StorageV1StorageVolumeObject",
             "format": ""
         },
         {

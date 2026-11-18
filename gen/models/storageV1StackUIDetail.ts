@@ -10,29 +10,30 @@
  * Do not edit the class manually.
  */
 
+import { StorageV1StackUICard } from '../models/storageV1StackUICard.js';
 
 
 /**
-* VastStorageMount configures the NFS mounts of machines.
+* StackUIDetail is the layout of a detail page: cards of labelled rows.
 */
-export class StorageV1VastStorageMount {
+export class StorageV1StackUIDetail {
     /**
-    * Options replace the default NFS mount options vers=3,proto=tcp, for example vers=4.1 or proto=rdma,port=20049.
+    * Cards are shown in order.
     */
-    'options'?: Array<string>;
+    'cards': Array<StorageV1StackUICard>;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "options",
-            "baseName": "options",
-            "type": "Array<string>",
+            "name": "cards",
+            "baseName": "cards",
+            "type": "Array<StorageV1StackUICard>",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1VastStorageMount.attributeTypeMap;
+        return StorageV1StackUIDetail.attributeTypeMap;
     }
 
     public constructor() {

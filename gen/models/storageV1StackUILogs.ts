@@ -13,40 +13,46 @@
 
 
 /**
-* ClusterResourceRestrictionItem is a cluster resource that is restricted by the project\'s whitelist or blacklist
+* StackUILogs reads the log of one pod container.
 */
-export class ClusterResourceRestrictionItem {
-    'group': string;
-    'kind': string;
+export class StorageV1StackUILogs {
     /**
-    * Name is the name of the restricted resource. Glob patterns using Go\'s filepath.Match syntax are supported. Unlike the group and kind fields, if no name is specified, all resources of the specified group/kind are matched.
+    * Container is the container name. Empty reads the pod\'s only container.
     */
-    'name'?: string;
+    'container'?: string;
+    /**
+    * From names a relation whose first object is the pod. Empty reads the object itself, which must then be a pod.
+    */
+    '_from'?: string;
+    /**
+    * TailLines is how many lines to show. The default is 100 and the maximum is 1000.
+    */
+    'tailLines'?: number;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "group",
-            "baseName": "group",
+            "name": "container",
+            "baseName": "container",
             "type": "string",
             "format": ""
         },
         {
-            "name": "kind",
-            "baseName": "kind",
+            "name": "_from",
+            "baseName": "from",
             "type": "string",
             "format": ""
         },
         {
-            "name": "name",
-            "baseName": "name",
-            "type": "string",
-            "format": ""
+            "name": "tailLines",
+            "baseName": "tailLines",
+            "type": "number",
+            "format": "int64"
         }    ];
 
     static getAttributeTypeMap() {
-        return ClusterResourceRestrictionItem.attributeTypeMap;
+        return StorageV1StackUILogs.attributeTypeMap;
     }
 
     public constructor() {

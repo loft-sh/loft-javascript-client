@@ -17,17 +17,13 @@
 */
 export class StorageV1WekaTenantSection {
     /**
-    * CSIUser is the body of POST /users for the identity tenant cluster node plugins log in with, minus username and password. The role defaults to CSI, the least csi-wekafs accepts.
+    * CSIUser is the body of POST /users for the identity tenant clusters mount with, minus username and password. The role defaults to CSI.
     */
     'csiUser'?: any;
     /**
-    * MountUser is the body of POST /users for the mount-only identity machines mount with, minus username and password. The role defaults to Regular, which a mount token needs.
+    * MountUser is the body of POST /users for the identity machines mount with, minus username and password. The role defaults to Regular, which a mount token needs.
     */
     'mountUser'?: any;
-    /**
-    * S3User is the body of POST /users for the tenant\'s S3 identity, minus username, password, role (always S3) and org. posix_uid and posix_gid, the owner of objects written over S3, default to 0.
-    */
-    's3User'?: any;
     /**
     * Tenant is the body of POST /tenants minus name, username and password.
     */
@@ -45,12 +41,6 @@ export class StorageV1WekaTenantSection {
         {
             "name": "mountUser",
             "baseName": "mountUser",
-            "type": "any",
-            "format": ""
-        },
-        {
-            "name": "s3User",
-            "baseName": "s3User",
             "type": "any",
             "format": ""
         },

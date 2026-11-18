@@ -17,21 +17,17 @@
 */
 export class StorageV1StorageAccountIdentities {
     /**
-    * Admin is the vendor tenant\'s administrative identity, which the platform operates with. It never reaches a tenant cluster.
+    * Admin is the vendor tenant\'s administrative identity, which the platform operates with.
     */
     'admin'?: string;
     /**
-    * CSI is the tenant\'s CSI identity, which tenant cluster node plugins log in with: the CSI driver refuses a mount-only one.
+    * CSI is the identity tenant clusters mount with.
     */
     'csi'?: string;
     /**
-    * Mount is the mount-only identity machines mount with.
+    * Mount is the identity machines mount with.
     */
     'mount'?: string;
-    /**
-    * S3 is the tenant\'s S3 identity, minted with the first storage that offers s3. Its keys stay in the Secret.
-    */
-    's3'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -51,12 +47,6 @@ export class StorageV1StorageAccountIdentities {
         {
             "name": "mount",
             "baseName": "mount",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "s3",
-            "baseName": "s3",
             "type": "string",
             "format": ""
         }    ];

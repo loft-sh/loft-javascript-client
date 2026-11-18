@@ -13,30 +13,26 @@
 
 
 /**
-* GroupKind specifies a Group and a Kind, but does not force a version.  This is useful for identifying concepts during lookup stages without having partially valid types
+* StackUITimeline lists events. It always includes the events of the object itself.
 */
-export class V1GroupKind {
-    'group': string;
-    'kind': string;
+export class StorageV1StackUITimeline {
+    /**
+    * Relations name relations whose objects\' events join the timeline, for example the pod of a sandbox.
+    */
+    'relations'?: Array<string>;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "group",
-            "baseName": "group",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "kind",
-            "baseName": "kind",
-            "type": "string",
+            "name": "relations",
+            "baseName": "relations",
+            "type": "Array<string>",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return V1GroupKind.attributeTypeMap;
+        return StorageV1StackUITimeline.attributeTypeMap;
     }
 
     public constructor() {
