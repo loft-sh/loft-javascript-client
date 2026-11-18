@@ -10,6 +10,7 @@
  * Do not edit the class manually.
  */
 
+import { StorageV1ServiceEndpoint } from '../models/storageV1ServiceEndpoint.js';
 import { StorageV1TenantNICoSiteAccess } from '../models/storageV1TenantNICoSiteAccess.js';
 
 
@@ -17,12 +18,13 @@ import { StorageV1TenantNICoSiteAccess } from '../models/storageV1TenantNICoSite
 * TenantNICoStatus reports the NICo tenant org materialized for a Tenant and the NICo provider it is bound to, and is set by the platform. A Tenant is bound to a single NICo provider, and so to a single NICo site.
 */
 export class StorageV1TenantNICoStatus {
+    'api'?: StorageV1ServiceEndpoint;
     /**
-    * Endpoint is the NICo REST API endpoint taken from that NodeProvider.
+    * Deprecated: use api.url. Read only while api is unset, and still written so a platform without api can release the Tenant.
     */
     'endpoint'?: string;
     /**
-    * InsecureSkipTLSVerify reports whether TLS verification is skipped when reaching the NICo endpoint.
+    * Deprecated: use api.insecureSkipTLSVerify. Read only while api is unset, and still written so a platform without api can release the Tenant.
     */
     'insecureSkipTLSVerify'?: boolean;
     /**
@@ -58,6 +60,12 @@ export class StorageV1TenantNICoStatus {
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+        {
+            "name": "api",
+            "baseName": "api",
+            "type": "StorageV1ServiceEndpoint",
+            "format": ""
+        },
         {
             "name": "endpoint",
             "baseName": "endpoint",

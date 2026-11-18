@@ -10,30 +10,27 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1Condition } from '../models/agentstorageV1Condition.js';
+import { V1LabelSelector } from '../models/V1LabelSelector.js';
 
 
 /**
-* SharedSecretStatus holds the status
+* NodeTypeHostValidationProfiles selects the host validation profiles a node type requires.
 */
-export class ManagementV1SharedSecretStatus {
-    /**
-    * Conditions holds several conditions the project might be in
-    */
-    'conditions'?: Array<StorageV1Condition>;
+export class StorageV1NodeTypeHostValidationProfiles {
+    'selector'?: V1LabelSelector;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "conditions",
-            "baseName": "conditions",
-            "type": "Array<StorageV1Condition>",
+            "name": "selector",
+            "baseName": "selector",
+            "type": "V1LabelSelector",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1SharedSecretStatus.attributeTypeMap;
+        return StorageV1NodeTypeHostValidationProfiles.attributeTypeMap;
     }
 
     public constructor() {

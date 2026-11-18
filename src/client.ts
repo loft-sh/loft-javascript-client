@@ -1,5 +1,8 @@
 import { ManagementV1Self } from "@gen/models/managementV1Self"
 import { ManagementV1SelfSubjectAccessReview } from "@gen/models/managementV1SelfSubjectAccessReview"
+import { ManagementV1SelfSubjectAccessReviewStatus } from "@gen/models/managementV1SelfSubjectAccessReviewStatus"
+import { V1ResourceAttributes } from "@gen/models/V1ResourceAttributes"
+import { V1SubjectAccessReviewStatus } from "@gen/models/V1SubjectAccessReviewStatus"
 import {
   V1APIGroup,
   V1APIGroupList,
@@ -62,6 +65,15 @@ const K8S_WEBSOCKET_PROTOCOLS = [
   "v2.channel.k8s.io",
   "channel.k8s.io",
 ]
+
+// The review endpoint rejects a request with more reviews than this.
+const MAX_REVIEWS_PER_REQUEST = 1024
+
+function isAllowed(
+  status: V1SubjectAccessReviewStatus | ManagementV1SelfSubjectAccessReviewStatus | undefined
+): boolean {
+  return !!(status?.allowed && !status.denied)
+}
 
 export function getApiHost(): string {
   // development
@@ -162,6 +174,33 @@ class Client {
     this.apiHost = apiHost || getApiHost()
     this.wsHost = wsHost || getWebSocketHost()
     this.accessKey = accessKey || Client.getAccessKey()
+  }
+
+  public async canIBatch(reviews: V1ResourceAttributes[]): Promise<Result<boolean[]>> {
+    const allowed: boolean[] = []
+
+    for (let start = 0; start < reviews.length; start += MAX_REVIEWS_PER_REQUEST) {
+      const chunk = reviews.slice(start, start + MAX_REVIEWS_PER_REQUEST)
+      const review = NewResource(Resources.ManagementV1SelfSubjectAccessReview)
+      review.spec = { reviews: chunk.map((resourceAttributes) => ({ resourceAttributes })) }
+
+      const response = await this.management(Resources.ManagementV1SelfSubjectAccessReview).Create(
+        review
+      )
+      if (response.err) {
+        return response
+      }
+
+      // A server without spec.reviews drops the field and answers without statuses.
+      const statuses = arrStrict(response.val.status?.statuses)
+      if (statuses.length !== chunk.length) {
+        return Return.Failed(`access review answered ${statuses.length} of ${chunk.length} reviews`)
+      }
+
+      allowed.push(...statuses.map(isAllowed))
+    }
+
+    return Return.Value(allowed)
   }
 
   public async getUser(): Promise<Result<string>> {
@@ -1385,7 +1424,7 @@ class Request<T> {
       return response
     }
 
-    return Return.Value(!!(response.val.status?.allowed && !response.val.status.denied))
+    return Return.Value(isAllowed(response.val.status))
   }
 }
 

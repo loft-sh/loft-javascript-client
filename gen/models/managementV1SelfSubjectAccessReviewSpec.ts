@@ -12,11 +12,16 @@
 
 import { V1NonResourceAttributes } from '../models/V1NonResourceAttributes.js';
 import { V1ResourceAttributes } from '../models/V1ResourceAttributes.js';
+import { V1SelfSubjectAccessReviewSpec } from '../models/V1SelfSubjectAccessReviewSpec.js';
 
 
 export class ManagementV1SelfSubjectAccessReviewSpec {
     'nonResourceAttributes'?: V1NonResourceAttributes;
     'resourceAttributes'?: V1ResourceAttributes;
+    /**
+    * Reviews evaluates many access checks in one request, at most 1024. Set either Reviews or ResourceAttributes and NonResourceAttributes, not both.
+    */
+    'reviews'?: Array<V1SelfSubjectAccessReviewSpec>;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -31,6 +36,12 @@ export class ManagementV1SelfSubjectAccessReviewSpec {
             "name": "resourceAttributes",
             "baseName": "resourceAttributes",
             "type": "V1ResourceAttributes",
+            "format": ""
+        },
+        {
+            "name": "reviews",
+            "baseName": "reviews",
+            "type": "Array<V1SelfSubjectAccessReviewSpec>",
             "format": ""
         }    ];
 

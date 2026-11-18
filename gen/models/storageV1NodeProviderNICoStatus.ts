@@ -10,24 +10,27 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1Metrics } from '../models/storageV1Metrics.js';
+import { StorageV1NodeProviderNICoBMCProxyStatus } from '../models/storageV1NodeProviderNICoBMCProxyStatus.js';
 
 
-export class ManagementV1CostControlGlobalConfig {
-    'metrics'?: StorageV1Metrics;
+/**
+* NodeProviderNICoStatus is what a NICo node provider publishes about itself.
+*/
+export class StorageV1NodeProviderNICoStatus {
+    'bmcProxy'?: StorageV1NodeProviderNICoBMCProxyStatus;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "metrics",
-            "baseName": "metrics",
-            "type": "StorageV1Metrics",
+            "name": "bmcProxy",
+            "baseName": "bmcProxy",
+            "type": "StorageV1NodeProviderNICoBMCProxyStatus",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1CostControlGlobalConfig.attributeTypeMap;
+        return StorageV1NodeProviderNICoStatus.attributeTypeMap;
     }
 
     public constructor() {

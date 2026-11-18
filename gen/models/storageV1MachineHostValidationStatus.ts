@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1MachineHostValidationProfileResult } from '../models/storageV1MachineHostValidationProfileResult.js';
 import { StorageV1MachineInBandValidationStatus } from '../models/storageV1MachineInBandValidationStatus.js';
+import { StorageV1MachineOutOfBandValidationStatus } from '../models/storageV1MachineOutOfBandValidationStatus.js';
 
 
 /**
@@ -19,14 +19,7 @@ import { StorageV1MachineInBandValidationStatus } from '../models/storageV1Machi
 */
 export class StorageV1MachineHostValidationStatus {
     'inBand'?: StorageV1MachineInBandValidationStatus;
-    /**
-    * Profiles holds one result per host validation profile the machine was checked against. A profile added to a node type after this check has no entry, and does not count as matched. They gate picking the machine for a node type.
-    */
-    'profiles'?: Array<StorageV1MachineHostValidationProfileResult>;
-    /**
-    * ReadTime is when the settings behind the profile results were read. The retry of a RebootRequired or ReadFailed profile counts from it.
-    */
-    'readTime'?: Date;
+    'outOfBand'?: StorageV1MachineOutOfBandValidationStatus;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -38,16 +31,10 @@ export class StorageV1MachineHostValidationStatus {
             "format": ""
         },
         {
-            "name": "profiles",
-            "baseName": "profiles",
-            "type": "Array<StorageV1MachineHostValidationProfileResult>",
+            "name": "outOfBand",
+            "baseName": "outOfBand",
+            "type": "StorageV1MachineOutOfBandValidationStatus",
             "format": ""
-        },
-        {
-            "name": "readTime",
-            "baseName": "readTime",
-            "type": "Date",
-            "format": "date-time"
         }    ];
 
     static getAttributeTypeMap() {
