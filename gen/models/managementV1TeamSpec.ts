@@ -12,7 +12,6 @@
 
 import { StorageV1Access } from '../models/storageV1Access.js';
 import { StorageV1ClusterRoleRef } from '../models/storageV1ClusterRoleRef.js';
-import { StorageV1KindSecretRef } from '../models/storageV1KindSecretRef.js';
 import { StorageV1UserOrTeam } from '../models/storageV1UserOrTeam.js';
 
 
@@ -37,10 +36,6 @@ export class ManagementV1TeamSpec {
     * The groups defined in a token that belong to a team
     */
     'groups'?: Array<string>;
-    /**
-    * ImagePullSecrets holds secret references to image pull secrets the team has access to.
-    */
-    'imagePullSecrets'?: Array<StorageV1KindSecretRef>;
     'owner'?: StorageV1UserOrTeam;
     /**
     * The username of the team that will be used for identification and docker registry namespace
@@ -82,12 +77,6 @@ export class ManagementV1TeamSpec {
             "name": "groups",
             "baseName": "groups",
             "type": "Array<string>",
-            "format": ""
-        },
-        {
-            "name": "imagePullSecrets",
-            "baseName": "imagePullSecrets",
-            "type": "Array<StorageV1KindSecretRef>",
             "format": ""
         },
         {
