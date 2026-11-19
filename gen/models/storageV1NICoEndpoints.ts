@@ -10,34 +10,34 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1CostControlResourcePrice } from '../models/managementV1CostControlResourcePrice.js';
+import { StorageV1ServiceEndpoint } from '../models/storageV1ServiceEndpoint.js';
 
 
-export class ManagementV1CostControlGPUSettings {
-    'averageGPUPrice'?: ManagementV1CostControlResourcePrice;
-    /**
-    * Enabled specifies whether GPU settings should be available in the UI.
-    */
-    'enabled'?: boolean;
+/**
+* NICoEndpoints are the NICo services a provider talks to, each with its own TLS settings.
+*/
+export class StorageV1NICoEndpoints {
+    'api': StorageV1ServiceEndpoint;
+    'bmcProxy'?: StorageV1ServiceEndpoint;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "averageGPUPrice",
-            "baseName": "averageGPUPrice",
-            "type": "ManagementV1CostControlResourcePrice",
+            "name": "api",
+            "baseName": "api",
+            "type": "StorageV1ServiceEndpoint",
             "format": ""
         },
         {
-            "name": "enabled",
-            "baseName": "enabled",
-            "type": "boolean",
+            "name": "bmcProxy",
+            "baseName": "bmcProxy",
+            "type": "StorageV1ServiceEndpoint",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1CostControlGPUSettings.attributeTypeMap;
+        return StorageV1NICoEndpoints.attributeTypeMap;
     }
 
     public constructor() {

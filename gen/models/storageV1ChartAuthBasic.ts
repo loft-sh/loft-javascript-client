@@ -12,34 +12,34 @@
 
 
 
-export class ManagementV1CostControlResourcePrice {
+export class StorageV1ChartAuthBasic {
     /**
-    * Price specifies the price.
+    * Password to log in with.
     */
-    'price'?: number;
+    'password'?: string;
     /**
-    * TimePeriod specifies the time period for the price.
+    * Username to log in with.
     */
-    'timePeriod'?: string;
+    'username'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "price",
-            "baseName": "price",
-            "type": "number",
-            "format": "double"
+            "name": "password",
+            "baseName": "password",
+            "type": "string",
+            "format": ""
         },
         {
-            "name": "timePeriod",
-            "baseName": "timePeriod",
+            "name": "username",
+            "baseName": "username",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1CostControlResourcePrice.attributeTypeMap;
+        return StorageV1ChartAuthBasic.attributeTypeMap;
     }
 
     public constructor() {

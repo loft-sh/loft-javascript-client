@@ -11,6 +11,7 @@
  */
 
 import { StorageV1MachineNodeTypeSpec } from '../models/storageV1MachineNodeTypeSpec.js';
+import { StorageV1NICoEndpoints } from '../models/storageV1NICoEndpoints.js';
 import { StorageV1NICoIdentity } from '../models/storageV1NICoIdentity.js';
 
 
@@ -19,12 +20,13 @@ import { StorageV1NICoIdentity } from '../models/storageV1NICoIdentity.js';
 */
 export class StorageV1NodeProviderNICo {
     /**
-    * Endpoint is the base URL (scheme + host + optional port) of the NICo REST API. The /v2/org/{org}/nico path is appended by the client.
+    * Deprecated: use endpoints.api.url. Read only while endpoints is unset.
     */
-    'endpoint': string;
+    'endpoint'?: string;
+    'endpoints'?: StorageV1NICoEndpoints;
     'identity'?: StorageV1NICoIdentity;
     /**
-    * InsecureSkipTLSVerify disables TLS certificate verification against the NICo endpoint. Intended for development and test only.
+    * Deprecated: use endpoints.api.insecureSkipTLSVerify. Read only while endpoints is unset.
     */
     'insecureSkipTLSVerify'?: boolean;
     /**
@@ -55,6 +57,12 @@ export class StorageV1NodeProviderNICo {
             "name": "endpoint",
             "baseName": "endpoint",
             "type": "string",
+            "format": ""
+        },
+        {
+            "name": "endpoints",
+            "baseName": "endpoints",
+            "type": "StorageV1NICoEndpoints",
             "format": ""
         },
         {

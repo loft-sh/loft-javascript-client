@@ -10,36 +10,35 @@
  * Do not edit the class manually.
  */
 
+import { StorageV1ChartAuthAWS } from '../models/storageV1ChartAuthAWS.js';
+import { StorageV1ChartAuthBasic } from '../models/storageV1ChartAuthBasic.js';
 
 
-export class StorageV1Storage {
-    /**
-    * Size the size of the metrics backend\'s persistent volume
-    */
-    'size'?: string;
-    /**
-    * StorageClass the storage class to use when provisioning the metrics backend\'s persistent volume If set to \"-\" or \"\" dynamic provisioning is disabled If set to undefined or null (the default), the cluster\'s default storage class is used for provisioning
-    */
-    'storageClass'?: string;
+/**
+* ChartAuth holds the credentials for a chart repository. The auth method is implied by which field is set.
+*/
+export class StorageV1ChartAuth {
+    'aws'?: StorageV1ChartAuthAWS;
+    'basic'?: StorageV1ChartAuthBasic;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "size",
-            "baseName": "size",
-            "type": "string",
+            "name": "aws",
+            "baseName": "aws",
+            "type": "StorageV1ChartAuthAWS",
             "format": ""
         },
         {
-            "name": "storageClass",
-            "baseName": "storageClass",
-            "type": "string",
+            "name": "basic",
+            "baseName": "basic",
+            "type": "StorageV1ChartAuthBasic",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1Storage.attributeTypeMap;
+        return StorageV1ChartAuth.attributeTypeMap;
     }
 
     public constructor() {
