@@ -10,23 +10,31 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1NodeProviderBCM } from '../models/storageV1NodeProviderBCM.js';
 import { StorageV1NodeProviderClusterAPI } from '../models/storageV1NodeProviderClusterAPI.js';
+import { StorageV1NodeProviderExternalPlatform } from '../models/storageV1NodeProviderExternalPlatform.js';
 import { StorageV1NodeProviderKubeVirt } from '../models/storageV1NodeProviderKubeVirt.js';
+import { StorageV1NodeProviderMetal3 } from '../models/storageV1NodeProviderMetal3.js';
+import { StorageV1NodeProviderNICo } from '../models/storageV1NodeProviderNICo.js';
 import { StorageV1NodeProviderTerraform } from '../models/storageV1NodeProviderTerraform.js';
 
 
 /**
-* NodeProviderSpec defines the desired state of NodeProvider. Only one of the provider types (Pods, BCM, Kubevirt) should be specified at a time.
+* NodeProviderSpec defines the desired state of NodeProvider. Exactly one provider type must be set.
 */
 export class StorageV1NodeProviderSpec {
-    'bcm'?: StorageV1NodeProviderBCM;
     'clusterAPI'?: StorageV1NodeProviderClusterAPI;
     /**
     * DisplayName is the name that should be displayed in the UI
     */
     'displayName'?: string;
+    'externalPlatform'?: StorageV1NodeProviderExternalPlatform;
     'kubeVirt'?: StorageV1NodeProviderKubeVirt;
+    /**
+    * MachineAllocationPolicy is the NodeTypeSpec.MachineAllocationPolicy of this provider\'s node types that leave theirs empty.
+    */
+    'machineAllocationPolicy'?: string;
+    'metal3'?: StorageV1NodeProviderMetal3;
+    'nico'?: StorageV1NodeProviderNICo;
     /**
     * Properties are global properties that are applied to all node claims and environments managed by this provider.
     */
@@ -36,12 +44,6 @@ export class StorageV1NodeProviderSpec {
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
-        {
-            "name": "bcm",
-            "baseName": "bcm",
-            "type": "StorageV1NodeProviderBCM",
-            "format": ""
-        },
         {
             "name": "clusterAPI",
             "baseName": "clusterAPI",
@@ -55,9 +57,33 @@ export class StorageV1NodeProviderSpec {
             "format": ""
         },
         {
+            "name": "externalPlatform",
+            "baseName": "externalPlatform",
+            "type": "StorageV1NodeProviderExternalPlatform",
+            "format": ""
+        },
+        {
             "name": "kubeVirt",
             "baseName": "kubeVirt",
             "type": "StorageV1NodeProviderKubeVirt",
+            "format": ""
+        },
+        {
+            "name": "machineAllocationPolicy",
+            "baseName": "machineAllocationPolicy",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "metal3",
+            "baseName": "metal3",
+            "type": "StorageV1NodeProviderMetal3",
+            "format": ""
+        },
+        {
+            "name": "nico",
+            "baseName": "nico",
+            "type": "StorageV1NodeProviderNICo",
             "format": ""
         },
         {

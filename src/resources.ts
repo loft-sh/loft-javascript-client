@@ -1,8 +1,6 @@
 import { StorageV1ClusterQuota } from "@gen/models/agentstorageV1ClusterQuota"
-import { ClusterV1ChartInfo } from "@gen/models/clusterV1ChartInfo"
-import { ClusterV1HelmRelease } from "@gen/models/clusterV1HelmRelease"
 import { ClusterV1SleepModeConfig } from "@gen/models/clusterV1SleepModeConfig"
-import { VirtualclusterV1HelmRelease } from "@gen/models/virtualclusterV1HelmRelease"
+import { StorageV1AccessKey } from "@gen/models/storageV1AccessKey"
 import { GenResources, TGenResources } from "@gen/resources"
 import {
   CoreV1Event,
@@ -24,30 +22,35 @@ import {
   V1StorageClassList,
 } from "@kubernetes/client-node"
 
+import { IronicNode, IronicNodeAbort } from "./ironicnode"
+import { Metal3BMCConsole, Metal3BMCRedfish } from "./metal3bmc"
+import { ThirdPartyResources, ThirdPartyResourcesList } from "./third-party/third-party-resources"
 import {
   APIExtensionsGroup,
   APIExtensionsVersion,
   GroupVersionResource,
   LoftSchemeGroupCluster,
-  LoftSchemeGroupVirtualCluster,
   LoftSchemeVersion,
   LoftSchemeVersionCluster,
-  LoftSchemeVersionVirtualCluster,
   V1Beta1PodMetrics,
 } from "./types"
 
 export const Resources: {
   ClusterV1SleepModeConfig: GroupVersionResource<ClusterV1SleepModeConfig>
-  ClusterV1HelmRelease: GroupVersionResource<ClusterV1HelmRelease>
-  ClusterV1ChartInfo: GroupVersionResource<ClusterV1ChartInfo>
-  VirtualclusterV1HelmRelease: GroupVersionResource<VirtualclusterV1HelmRelease>
+  ClusterV1IronicNode: GroupVersionResource<IronicNode>
+  ClusterV1IronicNodeAbort: GroupVersionResource<IronicNodeAbort>
+  ClusterV1Metal3BMCRedfish: GroupVersionResource<Metal3BMCRedfish>
+  ClusterV1Metal3BMCConsole: GroupVersionResource<Metal3BMCConsole>
   CustomResourceDefinition: GroupVersionResource<V1CustomResourceDefinition>
   StorageV1ClusterQuota: GroupVersionResource<StorageV1ClusterQuota>
+  StorageV1AccessKey: GroupVersionResource<StorageV1AccessKey>
   NetworkingV1Ingress: GroupVersionResource<V1Ingress>
   V1StatefulSet: GroupVersionResource<V1StatefulSet>
   V1Deployment: GroupVersionResource<V1Deployment>
   V1Event: GroupVersionResource<CoreV1Event>
   V1Pod: GroupVersionResource<V1Pod>
+  V1PodLog: GroupVersionResource<V1Pod>
+  V1PodExec: GroupVersionResource<V1Pod>
   V1Service: GroupVersionResource<V1Service>
   V1Node: GroupVersionResource<V1Node>
   V1Namespace: GroupVersionResource<V1Namespace>
@@ -61,8 +64,10 @@ export const Resources: {
   V1User: GroupVersionResource<any>
   V1StorageClassList: GroupVersionResource<V1StorageClassList>
   V1Beta1PodMetrics: GroupVersionResource<V1Beta1PodMetrics>
-} & TGenResources = {
+} & TGenResources &
+  ThirdPartyResourcesList = {
   ...GenResources,
+  ...ThirdPartyResources,
   ClusterV1SleepModeConfig: {
     group: LoftSchemeGroupCluster,
     version: LoftSchemeVersionCluster,
@@ -70,24 +75,35 @@ export const Resources: {
     kind: "SleepModeConfig",
     namespaced: true,
   },
-  ClusterV1HelmRelease: {
+  ClusterV1IronicNode: {
     group: LoftSchemeGroupCluster,
     version: LoftSchemeVersionCluster,
-    resource: "helmreleases",
-    kind: "HelmRelease",
+    resource: "ironicnodes",
+    kind: "IronicNode",
     namespaced: true,
   },
-  ClusterV1ChartInfo: {
+  ClusterV1IronicNodeAbort: {
     group: LoftSchemeGroupCluster,
     version: LoftSchemeVersionCluster,
-    resource: "chartinfos",
-    kind: "ChartInfo",
+    resource: "ironicnodes",
+    subResource: "abort",
+    kind: "IronicNodeAbort",
+    namespaced: true,
   },
-  VirtualclusterV1HelmRelease: {
-    group: LoftSchemeGroupVirtualCluster,
-    version: LoftSchemeVersionVirtualCluster,
-    resource: "helmreleases",
-    kind: "HelmRelease",
+  ClusterV1Metal3BMCRedfish: {
+    group: LoftSchemeGroupCluster,
+    version: LoftSchemeVersionCluster,
+    resource: "metal3bmcs",
+    subResource: "redfish",
+    kind: "Metal3BMCRedfish",
+    namespaced: true,
+  },
+  ClusterV1Metal3BMCConsole: {
+    group: LoftSchemeGroupCluster,
+    version: LoftSchemeVersionCluster,
+    resource: "metal3bmcs",
+    subResource: "console",
+    kind: "Metal3BMCConsole",
     namespaced: true,
   },
   CustomResourceDefinition: {
@@ -101,6 +117,12 @@ export const Resources: {
     version: LoftSchemeVersion,
     resource: "clusterquotas",
     kind: "ClusterQuota",
+  },
+  StorageV1AccessKey: {
+    group: "storage.loft.sh",
+    version: LoftSchemeVersion,
+    resource: "accesskeys",
+    kind: "AccessKey",
   },
   NetworkingV1Ingress: {
     group: "networking.k8s.io",
@@ -134,6 +156,22 @@ export const Resources: {
     group: "",
     version: "v1",
     resource: "pods",
+    kind: "Pod",
+    namespaced: true,
+  },
+  V1PodLog: {
+    group: "",
+    version: "v1",
+    resource: "pods",
+    subResource: "log",
+    kind: "Pod",
+    namespaced: true,
+  },
+  V1PodExec: {
+    group: "",
+    version: "v1",
+    resource: "pods",
+    subResource: "exec",
     kind: "Pod",
     namespaced: true,
   },
@@ -230,19 +268,21 @@ export function NewResource<T>(
       ? groupVersionResource.group + "/" + groupVersionResource.version
       : groupVersionResource.version,
     kind: groupVersionResource.kind,
-    metadata: {
-      name: name,
-    },
+    ...(name != null ? { metadata: { name: name } } : {}),
     ...data,
   } as T
 }
 
 export function formatResourceReadable<T>(groupVersionResource: GroupVersionResource<T>) {
-  return groupVersionResource.kind
+  let name = groupVersionResource.kind
     .replace(/([a-z0-9])([A-Z])/g, "$1 $2")
     .replace(/([A-Z]+)([A-Z][a-z])/g, "$1 $2")
-    .replace(/\sInstance$/, "")
-    .trim()
+
+  if (groupVersionResource.group?.endsWith(".loft.sh")) {
+    name = name.replace(/\sInstance$/, "")
+  }
+
+  return name.trim()
 }
 
 export function formatResourceDomain<T>(groupVersionResource: GroupVersionResource<T>) {

@@ -28,7 +28,7 @@ export class ManagementV1VirtualClusterRole {
     */
     'namespace'?: string;
     /**
-    * Role is the cluster role inside the virtual cluster. One of cluster-admin, admin, edit, or view
+    * Role is the cluster role inside the tenant cluster. One of cluster-admin, admin, edit, or view
     */
     'role'?: string;
 

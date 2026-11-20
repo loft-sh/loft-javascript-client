@@ -14,6 +14,10 @@
 
 export class ManagementV1VirtualClusterExternalDatabaseStatus {
     /**
+    * CaCert is the PEM-encoded CA bundle the tenant cluster should use to verify the database server\'s TLS certificate, sourced from the connector secret\'s caCert field. When non-empty, the tenant cluster should write this to disk and configure Kine to verify the server against it (sslmode=verify-full).
+    */
+    'caCert'?: string;
+    /**
     * DataSource holds a datasource endpoint constructed from the vCluster\'s designated user and database. The user and database are created from the given connector.
     */
     'dataSource'?: string;
@@ -21,10 +25,20 @@ export class ManagementV1VirtualClusterExternalDatabaseStatus {
     * IdentityProvider is the kine identity provider to use when generating temporary authentication tokens for enhanced security.
     */
     'identityProvider'?: string;
+    /**
+    * SslMode is an explicit Postgres sslmode value sourced from the connector secret\'s sslMode field. When non-empty (e.g. \"disable\", \"require\", \"verify-full\"), the tenant cluster should pass this to Kine to override the default policy. Empty means the tenant cluster should derive the mode from CaCert (verify-full when CaCert is set, require otherwise).
+    */
+    'sslMode'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+        {
+            "name": "caCert",
+            "baseName": "caCert",
+            "type": "string",
+            "format": ""
+        },
         {
             "name": "dataSource",
             "baseName": "dataSource",
@@ -34,6 +48,12 @@ export class ManagementV1VirtualClusterExternalDatabaseStatus {
         {
             "name": "identityProvider",
             "baseName": "identityProvider",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "sslMode",
+            "baseName": "sslMode",
             "type": "string",
             "format": ""
         }    ];

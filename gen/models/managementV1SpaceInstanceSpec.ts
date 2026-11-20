@@ -36,7 +36,7 @@ export class ManagementV1SpaceInstanceSpec {
     */
     'displayName'?: string;
     /**
-    * ExtraAccessRules defines extra rules which users and teams should have which access to the virtual cluster.
+    * ExtraAccessRules defines extra rules which users and teams should have which access to the tenant cluster.
     */
     'extraAccessRules'?: Array<StorageV1InstanceAccessRule>;
     'owner'?: StorageV1UserOrTeam;

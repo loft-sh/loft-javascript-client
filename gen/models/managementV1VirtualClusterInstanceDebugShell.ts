@@ -16,7 +16,7 @@ import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
 
 
 /**
-* VirtualClusterDebugShell creates (or returns) an ephemeral debug-shell container in a virtual cluster pod for the requesting user.
+* VirtualClusterDebugShell creates (or returns) an ephemeral debug-shell container in a tenant cluster pod for the requesting user.
 */
 export class ManagementV1VirtualClusterInstanceDebugShell {
     /**

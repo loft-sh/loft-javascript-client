@@ -11,8 +11,7 @@
  */
 
 import { StorageV1Access } from '../models/storageV1Access.js';
-import { StorageV1Metrics } from '../models/storageV1Metrics.js';
-import { StorageV1OpenCost } from '../models/storageV1OpenCost.js';
+import { StorageV1ArgoCD } from '../models/storageV1ArgoCD.js';
 import { StorageV1SecretRef } from '../models/storageV1SecretRef.js';
 import { StorageV1UserOrTeam } from '../models/storageV1UserOrTeam.js';
 
@@ -25,6 +24,7 @@ export class StorageV1ClusterSpec {
     * Access holds the access rights for users and teams
     */
     'access'?: Array<StorageV1Access>;
+    'argoCD'?: StorageV1ArgoCD;
     'config'?: StorageV1SecretRef;
     /**
     * Description describes a cluster access object
@@ -42,15 +42,13 @@ export class StorageV1ClusterSpec {
     * The namespace where the cluster components will be installed in
     */
     'managementNamespace'?: string;
-    'metrics'?: StorageV1Metrics;
     /**
     * NetworkPeer specifies if the cluster is connected via tailscale, when this is specified, config is optional
     */
     'networkPeer'?: boolean;
-    'opencost'?: StorageV1OpenCost;
     'owner'?: StorageV1UserOrTeam;
     /**
-    * If unusable is true, no spaces or virtual clusters can be scheduled on this cluster.
+    * If unusable is true, no spaces or tenant clusters can be scheduled on this cluster.
     */
     'unusable'?: boolean;
 
@@ -61,6 +59,12 @@ export class StorageV1ClusterSpec {
             "name": "access",
             "baseName": "access",
             "type": "Array<StorageV1Access>",
+            "format": ""
+        },
+        {
+            "name": "argoCD",
+            "baseName": "argoCD",
+            "type": "StorageV1ArgoCD",
             "format": ""
         },
         {
@@ -94,21 +98,9 @@ export class StorageV1ClusterSpec {
             "format": ""
         },
         {
-            "name": "metrics",
-            "baseName": "metrics",
-            "type": "StorageV1Metrics",
-            "format": ""
-        },
-        {
             "name": "networkPeer",
             "baseName": "networkPeer",
             "type": "boolean",
-            "format": ""
-        },
-        {
-            "name": "opencost",
-            "baseName": "opencost",
-            "type": "StorageV1OpenCost",
             "format": ""
         },
         {
