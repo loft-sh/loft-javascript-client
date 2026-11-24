@@ -10,21 +10,25 @@
  * Do not edit the class manually.
  */
 
-import { ManagementV1SharedSecret } from '../models/managementV1SharedSecret.js';
-import { V1ListMeta } from '../models/V1ListMeta.js';
+import { ManagementV1HostValidationProfileSpec } from '../models/managementV1HostValidationProfileSpec.js';
+import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
 
 
-export class ManagementV1SharedSecretList {
+/**
+* HostValidationProfile exposes the settings a kind of host has to have to platform admins.
+*/
+export class ManagementV1HostValidationProfile {
     /**
     * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
     */
     'apiVersion'?: string;
-    'items': Array<ManagementV1SharedSecret>;
     /**
     * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
     */
     'kind'?: string;
-    'metadata'?: V1ListMeta;
+    'metadata'?: V1ObjectMeta;
+    'spec'?: ManagementV1HostValidationProfileSpec;
+    'status'?: any;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -36,12 +40,6 @@ export class ManagementV1SharedSecretList {
             "format": ""
         },
         {
-            "name": "items",
-            "baseName": "items",
-            "type": "Array<ManagementV1SharedSecret>",
-            "format": ""
-        },
-        {
             "name": "kind",
             "baseName": "kind",
             "type": "string",
@@ -50,12 +48,24 @@ export class ManagementV1SharedSecretList {
         {
             "name": "metadata",
             "baseName": "metadata",
-            "type": "V1ListMeta",
+            "type": "V1ObjectMeta",
+            "format": ""
+        },
+        {
+            "name": "spec",
+            "baseName": "spec",
+            "type": "ManagementV1HostValidationProfileSpec",
+            "format": ""
+        },
+        {
+            "name": "status",
+            "baseName": "status",
+            "type": "any",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ManagementV1SharedSecretList.attributeTypeMap;
+        return ManagementV1HostValidationProfile.attributeTypeMap;
     }
 
     public constructor() {

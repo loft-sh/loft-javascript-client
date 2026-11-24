@@ -26,6 +26,7 @@ import {ManagementV1DatabaseConnector} from "./models/managementV1DatabaseConnec
 import {ManagementV1DirectClusterEndpointToken} from "./models/managementV1DirectClusterEndpointToken"
 import {ManagementV1Event} from "./models/managementV1Event"
 import {ManagementV1Feature} from "./models/managementV1Feature"
+import {ManagementV1HostValidationProfile} from "./models/managementV1HostValidationProfile"
 import {ManagementV1IngressAuthToken} from "./models/managementV1IngressAuthToken"
 import {ManagementV1Kiosk} from "./models/managementV1Kiosk"
 import {ManagementV1LicenseRequest} from "./models/managementV1LicenseRequest"
@@ -63,7 +64,6 @@ import {ManagementV1ResetAccessKey} from "./models/managementV1ResetAccessKey"
 import {ManagementV1SSHKey} from "./models/managementV1SSHKey"
 import {ManagementV1SelfSubjectAccessReview} from "./models/managementV1SelfSubjectAccessReview"
 import {ManagementV1Self} from "./models/managementV1Self"
-import {ManagementV1SharedSecret} from "./models/managementV1SharedSecret"
 import {ManagementV1SpaceInstance} from "./models/managementV1SpaceInstance"
 import {ManagementV1SpaceTemplate} from "./models/managementV1SpaceTemplate"
 import {ManagementV1StackInstanceOutputs} from "./models/managementV1StackInstanceOutputs"
@@ -134,6 +134,7 @@ export type TGenResources = {
   ManagementV1DirectClusterEndpointToken: GroupVersionResource<ManagementV1DirectClusterEndpointToken>
   ManagementV1Event: GroupVersionResource<ManagementV1Event>
   ManagementV1Feature: GroupVersionResource<ManagementV1Feature>
+  ManagementV1HostValidationProfile: GroupVersionResource<ManagementV1HostValidationProfile>
   ManagementV1IngressAuthToken: GroupVersionResource<ManagementV1IngressAuthToken>
   ManagementV1Kiosk: GroupVersionResource<ManagementV1Kiosk>
   ManagementV1License: GroupVersionResource<ManagementV1License>
@@ -171,7 +172,6 @@ export type TGenResources = {
   ManagementV1SSHKey: GroupVersionResource<ManagementV1SSHKey>
   ManagementV1Self: GroupVersionResource<ManagementV1Self>
   ManagementV1SelfSubjectAccessReview: GroupVersionResource<ManagementV1SelfSubjectAccessReview>
-  ManagementV1SharedSecret: GroupVersionResource<ManagementV1SharedSecret>
   ManagementV1SpaceInstance: GroupVersionResource<ManagementV1SpaceInstance>
   ManagementV1SpaceTemplate: GroupVersionResource<ManagementV1SpaceTemplate>
   ManagementV1StackInstance: GroupVersionResource<ManagementV1StackInstance>
@@ -424,6 +424,14 @@ export const GenResources: TGenResources = {
     subResource: "",
     namespaced: false,
     kind: "Feature",
+  },
+  ManagementV1HostValidationProfile: {
+    group: "management.loft.sh",
+    version: "v1",
+    resource: "hostvalidationprofiles",
+    subResource: "",
+    namespaced: false,
+    kind: "HostValidationProfile",
   },
   ManagementV1IngressAuthToken: {
     group: "management.loft.sh",
@@ -720,14 +728,6 @@ export const GenResources: TGenResources = {
     subResource: "",
     namespaced: false,
     kind: "SelfSubjectAccessReview",
-  },
-  ManagementV1SharedSecret: {
-    group: "management.loft.sh",
-    version: "v1",
-    resource: "sharedsecrets",
-    subResource: "",
-    namespaced: true,
-    kind: "SharedSecret",
   },
   ManagementV1SpaceInstance: {
     group: "management.loft.sh",

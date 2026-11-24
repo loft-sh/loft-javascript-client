@@ -17,6 +17,10 @@
 */
 export class StorageV1MachineHostValidationSettingResult {
     /**
+    * Attribute is the setting\'s attribute in the profile, the name the BMC knows it by.
+    */
+    'attribute'?: string;
+    /**
     * Current is the value the BMC reports, rendered as a string. Empty when the attribute is missing or nothing was read.
     */
     'current'?: string;
@@ -40,6 +44,12 @@ export class StorageV1MachineHostValidationSettingResult {
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+        {
+            "name": "attribute",
+            "baseName": "attribute",
+            "type": "string",
+            "format": ""
+        },
         {
             "name": "current",
             "baseName": "current",

@@ -18,6 +18,10 @@ import { StorageV1MachineHostValidationGroupResult } from '../models/storageV1Ma
 */
 export class StorageV1MachineHostValidationProfileResult {
     /**
+    * Groups mirrors the profile\'s groups, one result each, in the order the profile declares them.
+    */
+    'groups'?: Array<StorageV1MachineHostValidationGroupResult>;
+    /**
     * Message says what the result means, naming the first setting that did not match and both of its values, or what went wrong with the read.
     */
     'message'?: string;
@@ -26,11 +30,7 @@ export class StorageV1MachineHostValidationProfileResult {
     */
     'name': string;
     /**
-    * OutOfBand mirrors the profile\'s out-of-band groups, one result each.
-    */
-    'outOfBand'?: Array<StorageV1MachineHostValidationGroupResult>;
-    /**
-    * Result is the profile\'s result.  Possible enum values:  - `\"Matched\"` means every setting has the value the profile requires.  - `\"Mismatched\"` means a setting has another value, or the BMC does not report it at all. The host is at fault, so it is not read again on its own: an admin fixes the setting and asks for a re-check.  - `\"ReadFailed\"` means the proxy or the BMC returned an error, or the BMC reported another serial number. The setup is at fault, not the host. The controller reads again on its own.  - `\"Reading\"` means the check was requested and has not finished. A result left at Reading by a restart is checked again.  - `\"RebootRequired\"` means every setting that differs already has the required value staged, so the machine matches the profile once it reboots. The platform never reboots a machine, NICo or an admin does. The controller reads again on its own.  - `\"Unsupported\"` means nothing can read this machine\'s settings: its node provider is not NICo, or it has no BMC proxy endpoint. The setup is at fault, not the host, and only a change to the node provider clears it.
+    * Result is the profile\'s result.  Possible enum values:  - `\"Matched\"` means every setting has the value the profile requires.  - `\"Mismatched\"` means a setting has another value, or the BMC does not report it at all. The host is at fault, so it is not read again on its own: an admin fixes the setting and asks for a re-run.  - `\"ReadFailed\"` means the proxy or the BMC returned an error, or the BMC reported another serial number. The setup is at fault, not the host. The controller reads again on its own.  - `\"Reading\"` means the check was requested and has not finished. A result left at Reading by a restart is checked again.  - `\"RebootRequired\"` means every setting that differs already has the required value staged, so the machine matches the profile once it reboots. The platform never reboots a machine, NICo or an admin does. The controller reads again on its own.  - `\"Unsupported\"` means nothing can read this machine\'s settings: its node provider is not NICo, or it has no BMC proxy endpoint. The setup is at fault, not the host, and only a change to the node provider clears it.
     */
     'result': StorageV1MachineHostValidationProfileResultResultEnum;
     /**
@@ -42,6 +42,12 @@ export class StorageV1MachineHostValidationProfileResult {
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
+            "name": "groups",
+            "baseName": "groups",
+            "type": "Array<StorageV1MachineHostValidationGroupResult>",
+            "format": ""
+        },
+        {
             "name": "message",
             "baseName": "message",
             "type": "string",
@@ -51,12 +57,6 @@ export class StorageV1MachineHostValidationProfileResult {
             "name": "name",
             "baseName": "name",
             "type": "string",
-            "format": ""
-        },
-        {
-            "name": "outOfBand",
-            "baseName": "outOfBand",
-            "type": "Array<StorageV1MachineHostValidationGroupResult>",
             "format": ""
         },
         {

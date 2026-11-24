@@ -10,34 +10,26 @@
  * Do not edit the class manually.
  */
 
-import { V1ResourceRequirements } from '../models/V1ResourceRequirements.js';
 
 
-export class StorageV1OpenCost {
+export class StorageV1ChartAuthAWS {
     /**
-    * Replicas is the number of desired replicas.
+    * UseWorkloadIdentity fetches an Amazon ECR authorization token with the AWS SDK\'s default credential chain: EKS Pod Identity, IRSA or the EC2 instance profile. The chart repo must be an Amazon ECR registry, and the identity is the platform\'s or the agent\'s, so its IAM policy decides which repositories every cluster can pull charts from.
     */
-    'replicas'?: number;
-    'resources'?: V1ResourceRequirements;
+    'useWorkloadIdentity'?: boolean;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "replicas",
-            "baseName": "replicas",
-            "type": "number",
-            "format": "int32"
-        },
-        {
-            "name": "resources",
-            "baseName": "resources",
-            "type": "V1ResourceRequirements",
+            "name": "useWorkloadIdentity",
+            "baseName": "useWorkloadIdentity",
+            "type": "boolean",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StorageV1OpenCost.attributeTypeMap;
+        return StorageV1ChartAuthAWS.attributeTypeMap;
     }
 
     public constructor() {

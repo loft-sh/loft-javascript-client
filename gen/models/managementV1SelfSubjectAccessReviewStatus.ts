@@ -10,6 +10,7 @@
  * Do not edit the class manually.
  */
 
+import { V1SubjectAccessReviewStatus } from '../models/V1SubjectAccessReviewStatus.js';
 
 
 export class ManagementV1SelfSubjectAccessReviewStatus {
@@ -29,6 +30,10 @@ export class ManagementV1SelfSubjectAccessReviewStatus {
     * reason is optional.  It indicates why a request was allowed or denied.
     */
     'reason'?: string;
+    /**
+    * Statuses holds one result for each entry of spec.reviews, in the same order. When spec.reviews is set, only Statuses carries results.
+    */
+    'statuses'?: Array<V1SubjectAccessReviewStatus>;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -55,6 +60,12 @@ export class ManagementV1SelfSubjectAccessReviewStatus {
             "name": "reason",
             "baseName": "reason",
             "type": "string",
+            "format": ""
+        },
+        {
+            "name": "statuses",
+            "baseName": "statuses",
+            "type": "Array<V1SubjectAccessReviewStatus>",
             "format": ""
         }    ];
 

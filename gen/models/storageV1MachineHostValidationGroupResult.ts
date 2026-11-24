@@ -26,7 +26,7 @@ export class StorageV1MachineHostValidationGroupResult {
     */
     'serial': string;
     /**
-    * Settings holds one result per setting of the group.
+    * Settings holds one result per setting of the group, in the order the group declares them.
     */
     'settings'?: Array<StorageV1MachineHostValidationSettingResult>;
     /**
