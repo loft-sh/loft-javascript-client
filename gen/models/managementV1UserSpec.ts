@@ -12,6 +12,7 @@
 
 import { StorageV1Access } from '../models/storageV1Access.js';
 import { StorageV1ClusterRoleRef } from '../models/storageV1ClusterRoleRef.js';
+import { StorageV1KindSecretRef } from '../models/storageV1KindSecretRef.js';
 import { StorageV1SecretRef } from '../models/storageV1SecretRef.js';
 import { StorageV1UserOrTeam } from '../models/storageV1UserOrTeam.js';
 
@@ -54,6 +55,10 @@ export class ManagementV1UserSpec {
     * The URL to an icon that should be shown for the user
     */
     'icon'?: string;
+    /**
+    * ImagePullSecrets holds secret references to image pull secrets the user has access to.
+    */
+    'imagePullSecrets'?: Array<StorageV1KindSecretRef>;
     'owner'?: StorageV1UserOrTeam;
     'passwordRef'?: StorageV1SecretRef;
     /**
@@ -134,6 +139,12 @@ export class ManagementV1UserSpec {
             "name": "icon",
             "baseName": "icon",
             "type": "string",
+            "format": ""
+        },
+        {
+            "name": "imagePullSecrets",
+            "baseName": "imagePullSecrets",
+            "type": "Array<StorageV1KindSecretRef>",
             "format": ""
         },
         {

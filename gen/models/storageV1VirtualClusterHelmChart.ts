@@ -10,11 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1ChartAuth } from '../models/storageV1ChartAuth.js';
 
 
 export class StorageV1VirtualClusterHelmChart {
-    'auth'?: StorageV1ChartAuth;
     /**
     * InsecureSkipTlsVerify skips the TLS verification for the helm chart
     */
@@ -24,7 +22,7 @@ export class StorageV1VirtualClusterHelmChart {
     */
     'name'?: string;
     /**
-    * The password that is required for this repository Deprecated: Use Auth.Basic, which takes precedence.
+    * The password that is required for this repository
     */
     'password'?: string;
     /**
@@ -32,7 +30,7 @@ export class StorageV1VirtualClusterHelmChart {
     */
     'repo'?: string;
     /**
-    * The username that is required for this repository Deprecated: Use Auth.Basic, which takes precedence.
+    * The username that is required for this repository
     */
     'username'?: string;
     /**
@@ -43,12 +41,6 @@ export class StorageV1VirtualClusterHelmChart {
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
-        {
-            "name": "auth",
-            "baseName": "auth",
-            "type": "StorageV1ChartAuth",
-            "format": ""
-        },
         {
             "name": "insecureSkipTlsVerify",
             "baseName": "insecureSkipTlsVerify",

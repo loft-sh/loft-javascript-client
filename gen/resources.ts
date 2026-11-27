@@ -20,32 +20,26 @@ import {ManagementV1ClusterReset} from "./models/managementV1ClusterReset"
 import {ManagementV1ClusterRoleTemplate} from "./models/managementV1ClusterRoleTemplate"
 import {ManagementV1Cluster} from "./models/managementV1Cluster"
 import {ManagementV1Config} from "./models/managementV1Config"
-import {ManagementV1Connector} from "./models/managementV1Connector"
 import {ManagementV1ConvertVirtualClusterConfig} from "./models/managementV1ConvertVirtualClusterConfig"
 import {ManagementV1DatabaseConnector} from "./models/managementV1DatabaseConnector"
 import {ManagementV1DirectClusterEndpointToken} from "./models/managementV1DirectClusterEndpointToken"
 import {ManagementV1Event} from "./models/managementV1Event"
 import {ManagementV1Feature} from "./models/managementV1Feature"
-import {ManagementV1HostValidationProfile} from "./models/managementV1HostValidationProfile"
 import {ManagementV1IngressAuthToken} from "./models/managementV1IngressAuthToken"
 import {ManagementV1Kiosk} from "./models/managementV1Kiosk"
 import {ManagementV1LicenseRequest} from "./models/managementV1LicenseRequest"
 import {ManagementV1License} from "./models/managementV1License"
 import {ManagementV1LoftUpgrade} from "./models/managementV1LoftUpgrade"
 import {ManagementV1MachineConfigTemplate} from "./models/managementV1MachineConfigTemplate"
-import {ManagementV1Machine} from "./models/managementV1Machine"
-import {ManagementV1NetworkEnvironment} from "./models/managementV1NetworkEnvironment"
 import {ManagementV1NetworkPeerDebug} from "./models/managementV1NetworkPeerDebug"
 import {ManagementV1NetworkPeer} from "./models/managementV1NetworkPeer"
 import {ManagementV1NodeClaim} from "./models/managementV1NodeClaim"
-import {ManagementV1NodePool} from "./models/managementV1NodePool"
+import {ManagementV1NodeEnvironment} from "./models/managementV1NodeEnvironment"
 import {ManagementV1NodeProfile} from "./models/managementV1NodeProfile"
 import {ManagementV1NodeProviderExec} from "./models/managementV1NodeProviderExec"
 import {ManagementV1NodeProvider} from "./models/managementV1NodeProvider"
 import {ManagementV1NodeType} from "./models/managementV1NodeType"
 import {ManagementV1OIDCClient} from "./models/managementV1OIDCClient"
-import {ManagementV1OSImageFinalize} from "./models/managementV1OSImageFinalize"
-import {ManagementV1OSImageUpload} from "./models/managementV1OSImageUpload"
 import {ManagementV1OSImage} from "./models/managementV1OSImage"
 import {ManagementV1OwnedAccessKey} from "./models/managementV1OwnedAccessKey"
 import {ManagementV1ProjectChartInfo} from "./models/managementV1ProjectChartInfo"
@@ -53,6 +47,7 @@ import {ManagementV1ProjectClusters} from "./models/managementV1ProjectClusters"
 import {ManagementV1ProjectImportSpace} from "./models/managementV1ProjectImportSpace"
 import {ManagementV1ProjectMembers} from "./models/managementV1ProjectMembers"
 import {ManagementV1ProjectMigrateSpaceInstance} from "./models/managementV1ProjectMigrateSpaceInstance"
+import {ManagementV1ProjectMigrateVirtualClusterInstance} from "./models/managementV1ProjectMigrateVirtualClusterInstance"
 import {ManagementV1ProjectNodeTypes} from "./models/managementV1ProjectNodeTypes"
 import {ManagementV1ProjectSecret} from "./models/managementV1ProjectSecret"
 import {ManagementV1ProjectTemplates} from "./models/managementV1ProjectTemplates"
@@ -64,15 +59,12 @@ import {ManagementV1ResetAccessKey} from "./models/managementV1ResetAccessKey"
 import {ManagementV1SSHKey} from "./models/managementV1SSHKey"
 import {ManagementV1SelfSubjectAccessReview} from "./models/managementV1SelfSubjectAccessReview"
 import {ManagementV1Self} from "./models/managementV1Self"
+import {ManagementV1SharedSecret} from "./models/managementV1SharedSecret"
 import {ManagementV1SpaceInstance} from "./models/managementV1SpaceInstance"
 import {ManagementV1SpaceTemplate} from "./models/managementV1SpaceTemplate"
 import {ManagementV1StackInstanceOutputs} from "./models/managementV1StackInstanceOutputs"
-import {ManagementV1StackInstanceView} from "./models/managementV1StackInstanceView"
 import {ManagementV1StackInstance} from "./models/managementV1StackInstance"
 import {ManagementV1StackTemplate} from "./models/managementV1StackTemplate"
-import {ManagementV1StorageAccount} from "./models/managementV1StorageAccount"
-import {ManagementV1StorageProfile} from "./models/managementV1StorageProfile"
-import {ManagementV1StorageVolume} from "./models/managementV1StorageVolume"
 import {ManagementV1SubjectAccessReview} from "./models/managementV1SubjectAccessReview"
 import {ManagementV1TeamAccessKeys} from "./models/managementV1TeamAccessKeys"
 import {ManagementV1TeamClusters} from "./models/managementV1TeamClusters"
@@ -100,7 +92,6 @@ import {ManagementV1VirtualClusterInstanceShell} from "./models/managementV1Virt
 import {ManagementV1VirtualClusterInstanceSnapshot} from "./models/managementV1VirtualClusterInstanceSnapshot"
 import {ManagementV1VirtualClusterInstance} from "./models/managementV1VirtualClusterInstance"
 import {ManagementV1VirtualClusterNodeAccessKey} from "./models/managementV1VirtualClusterNodeAccessKey"
-import {ManagementV1VirtualClusterObservabilityConnector} from "./models/managementV1VirtualClusterObservabilityConnector"
 import {ManagementV1VirtualClusterResourceUsage} from "./models/managementV1VirtualClusterResourceUsage"
 import {ManagementV1VirtualClusterSchema} from "./models/managementV1VirtualClusterSchema"
 import {ManagementV1VirtualClusterSnapshotCredentials} from "./models/managementV1VirtualClusterSnapshotCredentials"
@@ -128,33 +119,27 @@ export type TGenResources = {
   ManagementV1ClusterReset: GroupVersionResource<ManagementV1ClusterReset>
   ManagementV1ClusterRoleTemplate: GroupVersionResource<ManagementV1ClusterRoleTemplate>
   ManagementV1Config: GroupVersionResource<ManagementV1Config>
-  ManagementV1Connector: GroupVersionResource<ManagementV1Connector>
   ManagementV1ConvertVirtualClusterConfig: GroupVersionResource<ManagementV1ConvertVirtualClusterConfig>
   ManagementV1DatabaseConnector: GroupVersionResource<ManagementV1DatabaseConnector>
   ManagementV1DirectClusterEndpointToken: GroupVersionResource<ManagementV1DirectClusterEndpointToken>
   ManagementV1Event: GroupVersionResource<ManagementV1Event>
   ManagementV1Feature: GroupVersionResource<ManagementV1Feature>
-  ManagementV1HostValidationProfile: GroupVersionResource<ManagementV1HostValidationProfile>
   ManagementV1IngressAuthToken: GroupVersionResource<ManagementV1IngressAuthToken>
   ManagementV1Kiosk: GroupVersionResource<ManagementV1Kiosk>
   ManagementV1License: GroupVersionResource<ManagementV1License>
   ManagementV1LicenseRequest: GroupVersionResource<ManagementV1LicenseRequest>
   ManagementV1LoftUpgrade: GroupVersionResource<ManagementV1LoftUpgrade>
-  ManagementV1Machine: GroupVersionResource<ManagementV1Machine>
   ManagementV1MachineConfigTemplate: GroupVersionResource<ManagementV1MachineConfigTemplate>
-  ManagementV1NetworkEnvironment: GroupVersionResource<ManagementV1NetworkEnvironment>
   ManagementV1NetworkPeer: GroupVersionResource<ManagementV1NetworkPeer>
   ManagementV1NetworkPeerDebug: GroupVersionResource<ManagementV1NetworkPeerDebug>
   ManagementV1NodeClaim: GroupVersionResource<ManagementV1NodeClaim>
-  ManagementV1NodePool: GroupVersionResource<ManagementV1NodePool>
+  ManagementV1NodeEnvironment: GroupVersionResource<ManagementV1NodeEnvironment>
   ManagementV1NodeProfile: GroupVersionResource<ManagementV1NodeProfile>
   ManagementV1NodeProvider: GroupVersionResource<ManagementV1NodeProvider>
   ManagementV1NodeProviderExec: GroupVersionResource<ManagementV1NodeProviderExec>
   ManagementV1NodeType: GroupVersionResource<ManagementV1NodeType>
   ManagementV1OIDCClient: GroupVersionResource<ManagementV1OIDCClient>
   ManagementV1OSImage: GroupVersionResource<ManagementV1OSImage>
-  ManagementV1OSImageFinalize: GroupVersionResource<ManagementV1OSImageFinalize>
-  ManagementV1OSImageUpload: GroupVersionResource<ManagementV1OSImageUpload>
   ManagementV1OwnedAccessKey: GroupVersionResource<ManagementV1OwnedAccessKey>
   ManagementV1Project: GroupVersionResource<ManagementV1Project>
   ManagementV1ProjectChartInfo: GroupVersionResource<ManagementV1ProjectChartInfo>
@@ -162,6 +147,7 @@ export type TGenResources = {
   ManagementV1ProjectImportSpace: GroupVersionResource<ManagementV1ProjectImportSpace>
   ManagementV1ProjectMembers: GroupVersionResource<ManagementV1ProjectMembers>
   ManagementV1ProjectMigrateSpaceInstance: GroupVersionResource<ManagementV1ProjectMigrateSpaceInstance>
+  ManagementV1ProjectMigrateVirtualClusterInstance: GroupVersionResource<ManagementV1ProjectMigrateVirtualClusterInstance>
   ManagementV1ProjectNodeTypes: GroupVersionResource<ManagementV1ProjectNodeTypes>
   ManagementV1ProjectSecret: GroupVersionResource<ManagementV1ProjectSecret>
   ManagementV1ProjectTemplates: GroupVersionResource<ManagementV1ProjectTemplates>
@@ -172,15 +158,12 @@ export type TGenResources = {
   ManagementV1SSHKey: GroupVersionResource<ManagementV1SSHKey>
   ManagementV1Self: GroupVersionResource<ManagementV1Self>
   ManagementV1SelfSubjectAccessReview: GroupVersionResource<ManagementV1SelfSubjectAccessReview>
+  ManagementV1SharedSecret: GroupVersionResource<ManagementV1SharedSecret>
   ManagementV1SpaceInstance: GroupVersionResource<ManagementV1SpaceInstance>
   ManagementV1SpaceTemplate: GroupVersionResource<ManagementV1SpaceTemplate>
   ManagementV1StackInstance: GroupVersionResource<ManagementV1StackInstance>
   ManagementV1StackInstanceOutputs: GroupVersionResource<ManagementV1StackInstanceOutputs>
-  ManagementV1StackInstanceView: GroupVersionResource<ManagementV1StackInstanceView>
   ManagementV1StackTemplate: GroupVersionResource<ManagementV1StackTemplate>
-  ManagementV1StorageAccount: GroupVersionResource<ManagementV1StorageAccount>
-  ManagementV1StorageProfile: GroupVersionResource<ManagementV1StorageProfile>
-  ManagementV1StorageVolume: GroupVersionResource<ManagementV1StorageVolume>
   ManagementV1SubjectAccessReview: GroupVersionResource<ManagementV1SubjectAccessReview>
   ManagementV1Team: GroupVersionResource<ManagementV1Team>
   ManagementV1TeamAccessKeys: GroupVersionResource<ManagementV1TeamAccessKeys>
@@ -208,7 +191,6 @@ export type TGenResources = {
   ManagementV1VirtualClusterInstanceShell: GroupVersionResource<ManagementV1VirtualClusterInstanceShell>
   ManagementV1VirtualClusterInstanceSnapshot: GroupVersionResource<ManagementV1VirtualClusterInstanceSnapshot>
   ManagementV1VirtualClusterNodeAccessKey: GroupVersionResource<ManagementV1VirtualClusterNodeAccessKey>
-  ManagementV1VirtualClusterObservabilityConnector: GroupVersionResource<ManagementV1VirtualClusterObservabilityConnector>
   ManagementV1VirtualClusterResourceUsage: GroupVersionResource<ManagementV1VirtualClusterResourceUsage>
   ManagementV1VirtualClusterSchema: GroupVersionResource<ManagementV1VirtualClusterSchema>
   ManagementV1VirtualClusterSnapshotCredentials: GroupVersionResource<ManagementV1VirtualClusterSnapshotCredentials>
@@ -377,14 +359,6 @@ export const GenResources: TGenResources = {
     namespaced: false,
     kind: "Config",
   },
-  ManagementV1Connector: {
-    group: "management.loft.sh",
-    version: "v1",
-    resource: "connectors",
-    subResource: "",
-    namespaced: false,
-    kind: "Connector",
-  },
   ManagementV1ConvertVirtualClusterConfig: {
     group: "management.loft.sh",
     version: "v1",
@@ -424,14 +398,6 @@ export const GenResources: TGenResources = {
     subResource: "",
     namespaced: false,
     kind: "Feature",
-  },
-  ManagementV1HostValidationProfile: {
-    group: "management.loft.sh",
-    version: "v1",
-    resource: "hostvalidationprofiles",
-    subResource: "",
-    namespaced: false,
-    kind: "HostValidationProfile",
   },
   ManagementV1IngressAuthToken: {
     group: "management.loft.sh",
@@ -473,14 +439,6 @@ export const GenResources: TGenResources = {
     namespaced: false,
     kind: "LoftUpgrade",
   },
-  ManagementV1Machine: {
-    group: "management.loft.sh",
-    version: "v1",
-    resource: "machines",
-    subResource: "",
-    namespaced: false,
-    kind: "Machine",
-  },
   ManagementV1MachineConfigTemplate: {
     group: "management.loft.sh",
     version: "v1",
@@ -488,14 +446,6 @@ export const GenResources: TGenResources = {
     subResource: "",
     namespaced: false,
     kind: "MachineConfigTemplate",
-  },
-  ManagementV1NetworkEnvironment: {
-    group: "management.loft.sh",
-    version: "v1",
-    resource: "networkenvironments",
-    subResource: "",
-    namespaced: false,
-    kind: "NetworkEnvironment",
   },
   ManagementV1NetworkPeer: {
     group: "management.loft.sh",
@@ -521,13 +471,13 @@ export const GenResources: TGenResources = {
     namespaced: true,
     kind: "NodeClaim",
   },
-  ManagementV1NodePool: {
+  ManagementV1NodeEnvironment: {
     group: "management.loft.sh",
     version: "v1",
-    resource: "nodepools",
+    resource: "nodeenvironments",
     subResource: "",
     namespaced: true,
-    kind: "NodePool",
+    kind: "NodeEnvironment",
   },
   ManagementV1NodeProfile: {
     group: "management.loft.sh",
@@ -576,22 +526,6 @@ export const GenResources: TGenResources = {
     subResource: "",
     namespaced: false,
     kind: "OSImage",
-  },
-  ManagementV1OSImageFinalize: {
-    group: "management.loft.sh",
-    version: "v1",
-    resource: "osimages",
-    subResource: "finalize",
-    namespaced: false,
-    kind: "OSImageFinalize",
-  },
-  ManagementV1OSImageUpload: {
-    group: "management.loft.sh",
-    version: "v1",
-    resource: "osimages",
-    subResource: "upload",
-    namespaced: false,
-    kind: "OSImageUpload",
   },
   ManagementV1OwnedAccessKey: {
     group: "management.loft.sh",
@@ -648,6 +582,14 @@ export const GenResources: TGenResources = {
     subResource: "migratespaceinstance",
     namespaced: false,
     kind: "ProjectMigrateSpaceInstance",
+  },
+  ManagementV1ProjectMigrateVirtualClusterInstance: {
+    group: "management.loft.sh",
+    version: "v1",
+    resource: "projects",
+    subResource: "migratevirtualclusterinstance",
+    namespaced: false,
+    kind: "ProjectMigrateVirtualClusterInstance",
   },
   ManagementV1ProjectNodeTypes: {
     group: "management.loft.sh",
@@ -729,6 +671,14 @@ export const GenResources: TGenResources = {
     namespaced: false,
     kind: "SelfSubjectAccessReview",
   },
+  ManagementV1SharedSecret: {
+    group: "management.loft.sh",
+    version: "v1",
+    resource: "sharedsecrets",
+    subResource: "",
+    namespaced: true,
+    kind: "SharedSecret",
+  },
   ManagementV1SpaceInstance: {
     group: "management.loft.sh",
     version: "v1",
@@ -761,14 +711,6 @@ export const GenResources: TGenResources = {
     namespaced: true,
     kind: "StackInstanceOutputs",
   },
-  ManagementV1StackInstanceView: {
-    group: "management.loft.sh",
-    version: "v1",
-    resource: "stackinstances",
-    subResource: "view",
-    namespaced: true,
-    kind: "StackInstanceView",
-  },
   ManagementV1StackTemplate: {
     group: "management.loft.sh",
     version: "v1",
@@ -776,30 +718,6 @@ export const GenResources: TGenResources = {
     subResource: "",
     namespaced: false,
     kind: "StackTemplate",
-  },
-  ManagementV1StorageAccount: {
-    group: "management.loft.sh",
-    version: "v1",
-    resource: "storageaccounts",
-    subResource: "",
-    namespaced: false,
-    kind: "StorageAccount",
-  },
-  ManagementV1StorageProfile: {
-    group: "management.loft.sh",
-    version: "v1",
-    resource: "storageprofiles",
-    subResource: "",
-    namespaced: false,
-    kind: "StorageProfile",
-  },
-  ManagementV1StorageVolume: {
-    group: "management.loft.sh",
-    version: "v1",
-    resource: "storagevolumes",
-    subResource: "",
-    namespaced: false,
-    kind: "StorageVolume",
   },
   ManagementV1SubjectAccessReview: {
     group: "management.loft.sh",
@@ -1016,14 +934,6 @@ export const GenResources: TGenResources = {
     subResource: "nodeaccesskey",
     namespaced: true,
     kind: "VirtualClusterNodeAccessKey",
-  },
-  ManagementV1VirtualClusterObservabilityConnector: {
-    group: "management.loft.sh",
-    version: "v1",
-    resource: "virtualclusterinstances",
-    subResource: "observabilityconnector",
-    namespaced: true,
-    kind: "VirtualClusterObservabilityConnector",
   },
   ManagementV1VirtualClusterResourceUsage: {
     group: "management.loft.sh",

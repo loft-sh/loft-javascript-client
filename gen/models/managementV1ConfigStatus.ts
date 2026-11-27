@@ -12,11 +12,13 @@
 
 import { ManagementV1Audit } from '../models/managementV1Audit.js';
 import { ManagementV1Cloud } from '../models/managementV1Cloud.js';
+import { ManagementV1CostControl } from '../models/managementV1CostControl.js';
 import { ManagementV1DatabaseKine } from '../models/managementV1DatabaseKine.js';
 import { ManagementV1ImageBuilder } from '../models/managementV1ImageBuilder.js';
 import { ManagementV1OIDC } from '../models/managementV1OIDC.js';
 import { ManagementV1PlatformDB } from '../models/managementV1PlatformDB.js';
 import { StorageV1Authentication } from '../models/storageV1Authentication.js';
+import { StorageV1VaultIntegrationSpec } from '../models/storageV1VaultIntegrationSpec.js';
 import { UiV1UISettingsConfig } from '../models/uiV1UISettingsConfig.js';
 
 
@@ -31,6 +33,7 @@ export class ManagementV1ConfigStatus {
     */
     'authenticateVersionEndpoint'?: boolean;
     'cloud'?: ManagementV1Cloud;
+    'costControl'?: ManagementV1CostControl;
     'database'?: ManagementV1DatabaseKine;
     /**
     * DEPRECATED: DevPodSubDomain holds a subdomain in the following form *.workspace.my-domain.com DevPodSubDomain holds a subdomain in the following form *.workspace.my-domain.com
@@ -52,6 +55,7 @@ export class ManagementV1ConfigStatus {
     */
     'projectNamespacePrefix'?: string;
     'uiSettings'?: UiV1UISettingsConfig;
+    'vault'?: StorageV1VaultIntegrationSpec;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -78,6 +82,12 @@ export class ManagementV1ConfigStatus {
             "name": "cloud",
             "baseName": "cloud",
             "type": "ManagementV1Cloud",
+            "format": ""
+        },
+        {
+            "name": "costControl",
+            "baseName": "costControl",
+            "type": "ManagementV1CostControl",
             "format": ""
         },
         {
@@ -132,6 +142,12 @@ export class ManagementV1ConfigStatus {
             "name": "uiSettings",
             "baseName": "uiSettings",
             "type": "UiV1UISettingsConfig",
+            "format": ""
+        },
+        {
+            "name": "vault",
+            "baseName": "vault",
+            "type": "StorageV1VaultIntegrationSpec",
             "format": ""
         }    ];
 
