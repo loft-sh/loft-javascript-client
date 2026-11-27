@@ -11,7 +11,6 @@
  */
 
 import { StorageV1Condition } from '../models/agentstorageV1Condition.js';
-import { StorageV1NodeProviderNICoStatus } from '../models/storageV1NodeProviderNICoStatus.js';
 
 
 /**
@@ -26,7 +25,6 @@ export class StorageV1NodeProviderStatus {
     * Message is a human-readable message indicating details about why the NodeProvider is in its current state.
     */
     'message'?: string;
-    'nico'?: StorageV1NodeProviderNICoStatus;
     /**
     * Phase is the current lifecycle phase of the NodeProvider.
     */
@@ -49,12 +47,6 @@ export class StorageV1NodeProviderStatus {
             "name": "message",
             "baseName": "message",
             "type": "string",
-            "format": ""
-        },
-        {
-            "name": "nico",
-            "baseName": "nico",
-            "type": "StorageV1NodeProviderNICoStatus",
             "format": ""
         },
         {
